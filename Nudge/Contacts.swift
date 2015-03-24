@@ -90,14 +90,15 @@ class Contacts {
             }
 
             let name = nameRef.takeRetainedValue()
+            let socialProfiles: ABMultiValueRef = ABRecordCopyValue(person, kABPersonInstantMessageProperty).takeRetainedValue() as ABMultiValueRef
 
-            let socialProfiles: ABMultiValueRef = ABRecordCopyValue(person, kABPersonSocialProfileProperty).takeRetainedValue() as ABMultiValueRef
-println("Test", socialProfiles)
             for var index:CFIndex = 0; index < ABMultiValueGetCount(socialProfiles); ++index {
 
                 if let socialProfile: AnyObject = ABMultiValueCopyValueAtIndex(socialProfiles, index).takeRetainedValue() as? NSDictionary {
 
-                    println("Test", socialProfile)
+                    if (socialProfile["service"] as String == "Facebook") {
+                        println("Facebook: " + (socialProfile["username"] as String))
+                    }
 
                 }
             }
