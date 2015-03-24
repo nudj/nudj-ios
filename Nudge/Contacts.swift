@@ -83,7 +83,13 @@ class Contacts {
 
         for person in people {
             let birthday = ABRecordCopyValue(person, kABPersonBirthdayProperty);
-            let name = ABRecordCopyCompositeName(person).takeRetainedValue()
+            let nameRef = ABRecordCopyCompositeName(person)
+
+            if (nameRef == nil || birthday == nil) {
+                continue
+            }
+
+            let name = nameRef.takeRetainedValue()
 
             let socialProfiles: ABMultiValueRef = ABRecordCopyValue(person, kABPersonSocialProfileProperty).takeRetainedValue() as ABMultiValueRef
 println("Test", socialProfiles)
