@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class ContactsCell: DataTableCell {
 
@@ -26,7 +27,7 @@ class ContactsCell: DataTableCell {
             let statusId = data!["user"]["status"].intValue
             
             if (status.isValidStatus(statusId)) {
-                status.setTitle(statusId)
+                status.setTitleByIndex(statusId)
             } else {
                 self.hideStatus()
             }

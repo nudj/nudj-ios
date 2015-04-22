@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import AddressBook
+import SwiftyJSON
 
 class LoginController: BaseController {
 
@@ -34,7 +35,7 @@ class LoginController: BaseController {
 
         let phoneNumber = self.getFormattedNumber()
 
-        if (countElements(phoneNumber) <= 8) {
+        if (count(phoneNumber) <= 8) {
             showSimpleAlert("Phone field is required.")
             return;
         }

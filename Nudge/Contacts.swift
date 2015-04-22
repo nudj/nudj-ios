@@ -90,15 +90,19 @@ class Contacts {
             }
 
             let name = nameRef.takeRetainedValue()
-            let socialProfiles: ABMultiValueRef = ABRecordCopyValue(person, kABPersonInstantMessageProperty).takeRetainedValue() as ABMultiValueRef
+//            let socialProfiles: ABMultiValueRef = ABRecordCopyValue(person, kABPersonInstantMessageProperty).takeRetainedValue() as ABMultiValueRef
+            let socialProfiles: ABMultiValueRef = ABRecordCopyValue(person, kABPersonSocialProfileProperty).takeRetainedValue() as ABMultiValueRef
+
+            println("Social Profiles")
+            println(ABMultiValueGetCount(socialProfiles))
 
             for var index:CFIndex = 0; index < ABMultiValueGetCount(socialProfiles); ++index {
 
                 if let socialProfile: AnyObject = ABMultiValueCopyValueAtIndex(socialProfiles, index).takeRetainedValue() as? NSDictionary {
 
-                    if (socialProfile["service"] as String == "Facebook") {
-                        println("Facebook: " + (socialProfile["username"] as String))
-                    }
+//                    if (socialProfile["service"] as String == "Facebook") {
+                        println(socialProfile)
+//                    }
 
                 }
             }
@@ -109,7 +113,7 @@ class Contacts {
                 let formatter = NSDateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd"
 
-                let date = birthday.takeRetainedValue() as NSDate
+                let date = birthday.takeRetainedValue() as! NSDate
                 println(name, formatter.stringFromDate(date))
             }
         }
@@ -131,9 +135,9 @@ class Contacts {
             let numbers: ABMultiValueRef = ABRecordCopyValue(person, kABPersonPhoneProperty).takeRetainedValue()
             if (ABMultiValueGetCount(numbers) > 0) {
                 let name = ABRecordCopyCompositeName(person).takeRetainedValue()
-                let phone = ABMultiValueCopyValueAtIndex(numbers, 0).takeRetainedValue() as String
+                let phone = ABMultiValueCopyValueAtIndex(numbers, 0).takeRetainedValue() as! String
 
-                contacts.updateValue(name, forKey: phone)
+                contacts.updateValue(name as String, forKey: phone)
             } else {
                 println("No Phone")
             }

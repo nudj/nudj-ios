@@ -18,8 +18,8 @@ class AsyncImage: UIImageView {
     var blurRadius:CGFloat = 8
     var circleShape = false
 
-    override init() {
-        super.init()
+    init() {
+        super.init(image: nil, highlightedImage: nil)
         self.prepare()
     }
 
@@ -44,7 +44,7 @@ class AsyncImage: UIImageView {
     }
 
     func downloadImage(url:String?, completion: (() -> Void)? = nil) {
-        if (url == nil || countElements(url!) <= 0) {
+        if (url == nil || count(url!) <= 0) {
             return
         }
 

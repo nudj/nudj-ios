@@ -7,15 +7,16 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class MainFeed: BaseController, DataProviderProtocol {
 
     @IBOutlet weak var table: DataTable!
 
     override func viewDidLoad() {
-        self.table.setCellNib("JobCellTableViewCell")
+        self.table.asignCellNib("JobCellTableViewCell")
 
-        self.table.dataProvider = self
+        self.table.dataProvider = self as DataProviderProtocol
         self.table.delegate = self.table
         self.table.dataSource = self.table
         self.table.loadData()

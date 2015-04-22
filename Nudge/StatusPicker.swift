@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class StatusPicker: BaseController, UIPickerViewDelegate, UIPickerViewDataSource {
 
@@ -15,7 +16,7 @@ class StatusPicker: BaseController, UIPickerViewDelegate, UIPickerViewDataSource
     
     @IBOutlet weak var picker: UIPickerView!
 
-    override init(coder aDecoder: NSCoder) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
         self.apiRequest(.GET, path: "config/status", params: nil, closure: {

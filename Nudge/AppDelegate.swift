@@ -55,14 +55,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     self.user = UserModel()
                 }
 
-                let obj = results.first as NSManagedObject;
+                let obj = results.first as! NSManagedObject;
 
-                self.user!.id = obj.valueForKey("id") == nil ? nil : Int32(obj.valueForKey("id") as Int)
-                self.user!.name = obj.valueForKey("name") == nil ? nil : (obj.valueForKey("name") as String)
-                self.user!.token = obj.valueForKey("token") == nil ? nil : (obj.valueForKey("token") as String)
+                self.user!.id = obj.valueForKey("id") == nil ? nil : Int32(obj.valueForKey("id") as! Int)
+                self.user!.name = obj.valueForKey("name") == nil ? nil : (obj.valueForKey("name") as! String)
+                self.user!.token = obj.valueForKey("token") == nil ? nil : (obj.valueForKey("token") as! String)
                 self.user!.completed = obj.valueForKey("completed") == nil ? false : obj.valueForKey("completed")!.boolValue
                 self.user!.addressBookAccess = obj.valueForKey("addressBookAccess") == nil ? false : obj.valueForKey("addressBookAccess")!.boolValue
-                self.user!.status = obj.valueForKey("status") == nil ? 0 : Int32(obj.valueForKey("status") as Int)
+                self.user!.status = obj.valueForKey("status") == nil ? 0 : Int32(obj.valueForKey("status") as! Int)
             }
 
         } else {
@@ -116,8 +116,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func pushViewControllerWithId(id: String) {
         println("Go To: " + id)
         let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let navigationController:UINavigationController = storyboard.instantiateViewControllerWithIdentifier("mainNavigationController") as UINavigationController
-        let rootViewController:UIViewController = storyboard.instantiateViewControllerWithIdentifier(id) as UIViewController
+        let navigationController:UINavigationController = storyboard.instantiateViewControllerWithIdentifier("mainNavigationController") as! UINavigationController
+        let rootViewController:UIViewController = storyboard.instantiateViewControllerWithIdentifier(id) as! UIViewController
         navigationController.viewControllers = [rootViewController]
         self.window?.rootViewController = navigationController
     }
@@ -151,7 +151,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var applicationDocumentsDirectory: NSURL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "e-man.NudgeData" in the application's documents Application Support directory.
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-        return urls[urls.count-1] as NSURL
+        return urls[urls.count-1] as! NSURL
         }()
 
     lazy var managedObjectModel: NSManagedObjectModel = {
@@ -174,7 +174,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
             dict[NSLocalizedFailureReasonErrorKey] = failureReason
             dict[NSUnderlyingErrorKey] = error
-            error = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
+            error = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict as [NSObject : AnyObject])
             // Replace this with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             NSLog("Unresolved error \(error), \(error!.userInfo)")

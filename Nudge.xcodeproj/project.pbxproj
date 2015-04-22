@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		87A9717841995C55EB6FEBD1 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDD460F204898DA0004C5B93 /* Pods.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		EB000F7C1AB2E0B800E4D385 /* DataTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB000F7B1AB2E0B800E4D385 /* DataTableCell.swift */; };
 		EB000F7F1AB71D6600E4D385 /* ContactsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB000F7E1AB71D6600E4D385 /* ContactsController.swift */; };
 		EB04F6201AA72520002F2677 /* RegistrationInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB04F61F1AA72520002F2677 /* RegistrationInput.swift */; };
@@ -18,6 +19,9 @@
 		EB0926D91A8DE4CB00E1D958 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB0926D81A8DE4CB00E1D958 /* Images.xcassets */; };
 		EB0926DC1A8DE4CB00E1D958 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB0926DA1A8DE4CB00E1D958 /* LaunchScreen.xib */; };
 		EB0926E81A8DE4CB00E1D958 /* NudgeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0926E71A8DE4CB00E1D958 /* NudgeTests.swift */; };
+		EB27E01D1ADD37790023EFB3 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB27E01C1ADD37790023EFB3 /* Alamofire.framework */; };
+		EB2F78091AD288E400B59C0E /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2F78071AD288E400B59C0E /* SettingsCell.swift */; };
+		EB2F780A1AD288E400B59C0E /* SettingsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB2F78081AD288E400B59C0E /* SettingsCell.xib */; };
 		EB313D2E1AAF37FB00F008B8 /* StatusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB313D2D1AAF37FB00F008B8 /* StatusButton.swift */; };
 		EB313D301AAF4C5A00F008B8 /* StatusPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB313D2F1AAF4C5A00F008B8 /* StatusPicker.swift */; };
 		EB35BBA51AB7288000842E1F /* ContactsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB35BBA31AB7288000842E1F /* ContactsCell.swift */; };
@@ -29,8 +33,6 @@
 		EBB3382E1A9F5973000CAD88 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB337FA1A9F581F000CAD88 /* CoreData.framework */; };
 		EBB338301A9F5A44000CAD88 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB3382F1A9F5A44000CAD88 /* UserModel.swift */; };
 		EBB338331A9F5FF9000CAD88 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB338321A9F5FF9000CAD88 /* LoginController.swift */; };
-		EBB338351A9F61CD000CAD88 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB338341A9F61CD000CAD88 /* SwiftyJSON.swift */; };
-		EBB338381A9F64C3000CAD88 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB338371A9F64C3000CAD88 /* Alamofire.swift */; };
 		EBB3383C1A9F73D4000CAD88 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB3383B1A9F73D4000CAD88 /* API.swift */; };
 		EBB338401AA0ADB5000CAD88 /* VerifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB3383F1AA0ADB5000CAD88 /* VerifyViewController.swift */; };
 		EBB338421AA0C365000CAD88 /* InitProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB338411AA0C365000CAD88 /* InitProfile.swift */; };
@@ -39,7 +41,9 @@
 		EBBF42551AB0AF5F0001E8B6 /* JobCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBBF42531AB0AF5F0001E8B6 /* JobCellTableViewCell.xib */; };
 		EBBF42571AB1DEFF0001E8B6 /* DataTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBF42561AB1DEFF0001E8B6 /* DataTable.swift */; };
 		EBBF42591AB1E55F0001E8B6 /* DataProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBF42581AB1E55F0001E8B6 /* DataProviderProtocol.swift */; };
+		EBDD28CE1ACD8ADA00956995 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDD28CD1ACD8ADA00956995 /* SettingsController.swift */; };
 		EBF5607F1AC04E460050A4DC /* RootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF5607E1AC04E460050A4DC /* RootNavigationController.swift */; };
+		EBF9DD8A1AE6A8EC00A1A67D /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF9DD891AE6A8EC00A1A67D /* SwiftyJSON.framework */; };
 		EBFB0CFA1AC0065500CCCB35 /* KSToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFB0CF61AC0065500CCCB35 /* KSToken.swift */; };
 		EBFB0CFB1AC0065500CCCB35 /* KSTokenField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFB0CF71AC0065500CCCB35 /* KSTokenField.swift */; };
 		EBFB0CFC1AC0065500CCCB35 /* KSTokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFB0CF81AC0065500CCCB35 /* KSTokenView.swift */; };
@@ -57,6 +61,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		39A67AE42E9231EE2A750094 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		91ACAE069A6F9735FED79A9F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EB000F7B1AB2E0B800E4D385 /* DataTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTableCell.swift; sourceTree = "<group>"; };
 		EB000F7E1AB71D6600E4D385 /* ContactsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsController.swift; sourceTree = "<group>"; };
 		EB04F61F1AA72520002F2677 /* RegistrationInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationInput.swift; sourceTree = "<group>"; };
@@ -72,6 +78,9 @@
 		EB0926E11A8DE4CB00E1D958 /* NudgeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NudgeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB0926E61A8DE4CB00E1D958 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB0926E71A8DE4CB00E1D958 /* NudgeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NudgeTests.swift; sourceTree = "<group>"; };
+		EB27E01C1ADD37790023EFB3 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Debug-iphoneos/Pods/Alamofire.framework"; sourceTree = "<group>"; };
+		EB2F78071AD288E400B59C0E /* SettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		EB2F78081AD288E400B59C0E /* SettingsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsCell.xib; sourceTree = "<group>"; };
 		EB313D2D1AAF37FB00F008B8 /* StatusButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusButton.swift; sourceTree = "<group>"; };
 		EB313D2F1AAF4C5A00F008B8 /* StatusPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusPicker.swift; sourceTree = "<group>"; };
 		EB35BBA31AB7288000842E1F /* ContactsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsCell.swift; sourceTree = "<group>"; };
@@ -83,8 +92,6 @@
 		EBB337FA1A9F581F000CAD88 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		EBB3382F1A9F5A44000CAD88 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		EBB338321A9F5FF9000CAD88 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
-		EBB338341A9F61CD000CAD88 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
-		EBB338371A9F64C3000CAD88 /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
 		EBB3383B1A9F73D4000CAD88 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		EBB3383F1AA0ADB5000CAD88 /* VerifyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyViewController.swift; sourceTree = "<group>"; };
 		EBB338411AA0C365000CAD88 /* InitProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitProfile.swift; sourceTree = "<group>"; };
@@ -93,11 +100,15 @@
 		EBBF42531AB0AF5F0001E8B6 /* JobCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JobCellTableViewCell.xib; sourceTree = "<group>"; };
 		EBBF42561AB1DEFF0001E8B6 /* DataTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTable.swift; sourceTree = "<group>"; };
 		EBBF42581AB1E55F0001E8B6 /* DataProviderProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProviderProtocol.swift; sourceTree = "<group>"; };
+		EBDD28CD1ACD8ADA00956995 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		EBF1028F1ADD59D20096FB3C /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/Pods/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		EBF5607E1AC04E460050A4DC /* RootNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
+		EBF9DD891AE6A8EC00A1A67D /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/Pods/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		EBFB0CF61AC0065500CCCB35 /* KSToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSToken.swift; sourceTree = "<group>"; };
 		EBFB0CF71AC0065500CCCB35 /* KSTokenField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSTokenField.swift; sourceTree = "<group>"; };
 		EBFB0CF81AC0065500CCCB35 /* KSTokenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSTokenView.swift; sourceTree = "<group>"; };
 		EBFB0CF91AC0065500CCCB35 /* KSUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSUtils.swift; sourceTree = "<group>"; };
+		FDD460F204898DA0004C5B93 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +117,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBB3382E1A9F5973000CAD88 /* CoreData.framework in Frameworks */,
+				87A9717841995C55EB6FEBD1 /* Pods.framework in Frameworks */,
+				EBF9DD8A1AE6A8EC00A1A67D /* SwiftyJSON.framework in Frameworks */,
+				EB27E01D1ADD37790023EFB3 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +133,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		68263C45D8985A9D3857F073 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				91ACAE069A6F9735FED79A9F /* Pods.debug.xcconfig */,
+				39A67AE42E9231EE2A750094 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B24DF65843B49C77F100654A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EBF9DD891AE6A8EC00A1A67D /* SwiftyJSON.framework */,
+				EBF1028F1ADD59D20096FB3C /* SwiftyJSON.framework */,
+				EB27E01C1ADD37790023EFB3 /* Alamofire.framework */,
+				FDD460F204898DA0004C5B93 /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EB000F7D1AB71D4400E4D385 /* Contatcs */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +177,8 @@
 				EB0926CC1A8DE4CB00E1D958 /* Nudge */,
 				EB0926E41A8DE4CB00E1D958 /* NudgeTests */,
 				EB0926CB1A8DE4CB00E1D958 /* Products */,
+				68263C45D8985A9D3857F073 /* Pods */,
+				B24DF65843B49C77F100654A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -158,6 +194,7 @@
 		EB0926CC1A8DE4CB00E1D958 /* Nudge */ = {
 			isa = PBXGroup;
 			children = (
+				EBDD28CC1ACD8AA700956995 /* MainControllers */,
 				EB000F7D1AB71D4400E4D385 /* Contatcs */,
 				EB6F22B81AAF702F007FF1B8 /* Common */,
 				EB04F6211AAD8993002F2677 /* Drivers */,
@@ -249,8 +286,6 @@
 			isa = PBXGroup;
 			children = (
 				EBFB0CF51AC0065500CCCB35 /* KSTokenView */,
-				EBB338371A9F64C3000CAD88 /* Alamofire.swift */,
-				EBB338341A9F61CD000CAD88 /* SwiftyJSON.swift */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -273,6 +308,16 @@
 				EBB3383B1A9F73D4000CAD88 /* API.swift */,
 			);
 			name = Comunication;
+			sourceTree = "<group>";
+		};
+		EBDD28CC1ACD8AA700956995 /* MainControllers */ = {
+			isa = PBXGroup;
+			children = (
+				EBDD28CD1ACD8ADA00956995 /* SettingsController.swift */,
+				EB2F78071AD288E400B59C0E /* SettingsCell.swift */,
+				EB2F78081AD288E400B59C0E /* SettingsCell.xib */,
+			);
+			name = MainControllers;
 			sourceTree = "<group>";
 		};
 		EBFB0CF51AC0065500CCCB35 /* KSTokenView */ = {
@@ -302,9 +347,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB0926EB1A8DE4CB00E1D958 /* Build configuration list for PBXNativeTarget "Nudge" */;
 			buildPhases = (
+				30F2C7085A8ADC56610FB4A5 /* Check Pods Manifest.lock */,
 				EB0926C61A8DE4CB00E1D958 /* Sources */,
 				EB0926C71A8DE4CB00E1D958 /* Frameworks */,
 				EB0926C81A8DE4CB00E1D958 /* Resources */,
+				C751DBEFD9EE0FE3DA600BDB /* Copy Pods Resources */,
+				0A04781945E5FF55A489AEC4 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -376,6 +424,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB2F780A1AD288E400B59C0E /* SettingsCell.xib in Resources */,
 				EB0926D71A8DE4CB00E1D958 /* Main.storyboard in Resources */,
 				EB0926DC1A8DE4CB00E1D958 /* LaunchScreen.xib in Resources */,
 				EB0926D91A8DE4CB00E1D958 /* Images.xcassets in Resources */,
@@ -393,6 +442,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0A04781945E5FF55A489AEC4 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		30F2C7085A8ADC56610FB4A5 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C751DBEFD9EE0FE3DA600BDB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EB0926C61A8DE4CB00E1D958 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -405,7 +502,6 @@
 				EB6F22BA1AAF706A007FF1B8 /* AsyncImage.swift in Sources */,
 				EB04F6201AA72520002F2677 /* RegistrationInput.swift in Sources */,
 				EB000F7F1AB71D6600E4D385 /* ContactsController.swift in Sources */,
-				EBB338381A9F64C3000CAD88 /* Alamofire.swift in Sources */,
 				EB35BBA51AB7288000842E1F /* ContactsCell.swift in Sources */,
 				EBB338401AA0ADB5000CAD88 /* VerifyViewController.swift in Sources */,
 				EB0926D01A8DE4CB00E1D958 /* AppDelegate.swift in Sources */,
@@ -415,8 +511,8 @@
 				EBFB0CFC1AC0065500CCCB35 /* KSTokenView.swift in Sources */,
 				EBB338301A9F5A44000CAD88 /* UserModel.swift in Sources */,
 				EBFB0CFD1AC0065500CCCB35 /* KSUtils.swift in Sources */,
+				EBDD28CE1ACD8ADA00956995 /* SettingsController.swift in Sources */,
 				EB04F6231AAD89AF002F2677 /* Contacts.swift in Sources */,
-				EBB338351A9F61CD000CAD88 /* SwiftyJSON.swift in Sources */,
 				EBFB0CFB1AC0065500CCCB35 /* KSTokenField.swift in Sources */,
 				EBB3383C1A9F73D4000CAD88 /* API.swift in Sources */,
 				EBB338461AA0EA46000CAD88 /* BaseController.swift in Sources */,
@@ -427,6 +523,7 @@
 				EB000F7C1AB2E0B800E4D385 /* DataTableCell.swift in Sources */,
 				EB313D301AAF4C5A00F008B8 /* StatusPicker.swift in Sources */,
 				EBBF42541AB0AF5F0001E8B6 /* JobCellTableViewCell.swift in Sources */,
+				EB2F78091AD288E400B59C0E /* SettingsCell.swift in Sources */,
 				EBBF42571AB1DEFF0001E8B6 /* DataTable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -548,9 +645,14 @@
 		};
 		EB0926EC1A8DE4CB00E1D958 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 91ACAE069A6F9735FED79A9F /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods",
+				);
 				INFOPLIST_FILE = Nudge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -559,9 +661,14 @@
 		};
 		EB0926ED1A8DE4CB00E1D958 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 39A67AE42E9231EE2A750094 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods",
+				);
 				INFOPLIST_FILE = Nudge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

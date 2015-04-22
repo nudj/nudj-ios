@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SwiftyJSON
+import Alamofire
 
 class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
 
@@ -37,7 +39,7 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
         self.addSubview(refreshControl)
     }
 
-    func setCellNib(name: String) {
+    func asignCellNib(name: String) {
         self.cellNib = name
         self.registerNib(UINib(nibName: self.cellNib!, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
     }
@@ -87,7 +89,7 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell:DataTableCell = self.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath) as DataTableCell
+        let cell:DataTableCell = self.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath) as! DataTableCell
 
         cell.loadData(self.data[indexPath.row])
 

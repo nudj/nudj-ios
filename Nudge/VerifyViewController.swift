@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import SwiftyJSON
+import Alamofire
 
 class VerifyViewController: BaseController {
 
@@ -46,13 +48,13 @@ class VerifyViewController: BaseController {
     }
 
     @IBAction func CodeChanged(sender: UITextField) {
-        if (countElements(sender.text) == 5) {
+        if (count(sender.text) == 5) {
             self.submit()
         }
     }
 
     @IBAction func resendButton() {
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate;
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
 
         self.apiRequest(.POST, path: "users", params: ["phone": phoneNumber], closure: {
             (json: JSON) in
@@ -72,7 +74,7 @@ class VerifyViewController: BaseController {
         let code = codeField.text
         println("Sending Code: " + code)
 
-        if (countElements(code) != 5) {
+        if (count(code) != 5) {
             showSimpleAlert("Invalid Code")
             return;
         }
@@ -92,7 +94,7 @@ class VerifyViewController: BaseController {
                 return;
             }
 
-            let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate;
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
 
             let user = appDelegate.user == nil ? UserModel() : appDelegate.user!
             user.id = Int32(json["data"]["id"].intValue)

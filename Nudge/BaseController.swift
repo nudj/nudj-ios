@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class BaseController: UIViewController {
 
@@ -30,8 +32,8 @@ class BaseController: UIViewController {
         self.showSimpleAlert("Unknown Error Occured.")
     }
 
-    func apiRequest(method: Method, path: String, params: [String: AnyObject]? = nil, closure: ((JSON) -> ())? = nil, errorHandler: ((NSError) -> Void)? = nil ) {
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate;
+    func apiRequest(method: Alamofire.Method, path: String, params: [String: AnyObject]? = nil, closure: ((JSON) -> ())? = nil, errorHandler: ((NSError) -> Void)? = nil ) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
 
         appDelegate.api?.request(method, path: path, params: params, closure: {
             (json: JSON) in

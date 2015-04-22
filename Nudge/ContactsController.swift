@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SwiftyJSON
 
 class ContactsController: BaseController, UITableViewDataSource, UITableViewDelegate {
 
@@ -37,7 +38,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
 
     func refresh(sender: AnyObject?) {
         // Load Data
-        self.apiRequest(Method.GET, path: "contacts?params=contact.alias,contact.user,user.image,user.status&sizes=user.profile", closure: { response in
+        self.apiRequest(.GET, path: "contacts?params=contact.alias,contact.user,user.image,user.status&sizes=user.profile", closure: { response in
 
             self.indexes = []
             self.data = []
@@ -67,7 +68,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell:ContactsCell = table.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath) as ContactsCell
+        let cell:ContactsCell = table.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath) as! ContactsCell
 
         if (self.data[indexPath.section] != nil) {
             cell.loadData(self.data[indexPath.section][indexPath.row])

@@ -36,7 +36,7 @@ class StatusButton: UIButton {
         self.setTitle(title, forState: UIControlState.Normal)
     }
 
-    func setTitle(title: Int) {
+    func setTitleByIndex(title: Int) {
         if (!self.isValidStatus(title)) {
             self.setTitle("", forState: UIControlState.Normal)
         } else {

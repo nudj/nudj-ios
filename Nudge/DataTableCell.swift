@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class DataTableCell: UITableViewCell {
     func loadData(data:JSON?) {
