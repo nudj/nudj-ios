@@ -28,6 +28,9 @@ class JobCellTableViewCell: DataTableCell {
         self.bonusAmount.text = "£" + data!["bonus"].stringValue
         self.creator.text = data!["user"]["name"].stringValue
         self.creatorImage.downloadImage(data!["user"]["image"]["profile"].stringValue)
+
+        self.selectionStyle = UITableViewCellSelectionStyle.None
+        
     }
     
 }

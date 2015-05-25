@@ -13,11 +13,11 @@ import Alamofire
 class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
 
     var refreshControl:UIRefreshControl!
-    let spaceToScroll:CGFloat = 200
+    let spaceToScroll:CGFloat = 400
     var cellIdentifier = "NudgeCell"
     var cellNib:String?
     
-    var dataSize = 10
+    var dataSize = 20
     var page = 1
     var end = false
     var loading = false
@@ -37,6 +37,8 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.addSubview(refreshControl)
+
+        self.autoresizingMask = UIViewAutoresizing.FlexibleBottomMargin | UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleHeight
     }
 
     func asignCellNib(name: String) {
@@ -63,9 +65,9 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
                 self.data.append(obj)
             }
 
-            self.reloadData()
-
             self.setLoadingStatus(false)
+
+            self.reloadData()
         })
     }
 

@@ -8,6 +8,7 @@
 
 import Foundation
 import AddressBook
+import UIKit
 
 class Contacts {
 
@@ -16,6 +17,8 @@ class Contacts {
     init() {
         
     }
+
+    static var images = [String: UIImage]()
 
     func createAddressBook() -> Bool {
         if self.book != nil {
@@ -134,15 +137,23 @@ class Contacts {
         for person in people {
             let numbers: ABMultiValueRef = ABRecordCopyValue(person, kABPersonPhoneProperty).takeRetainedValue()
             if (ABMultiValueGetCount(numbers) > 0) {
-                let name = ABRecordCopyCompositeName(person).takeRetainedValue()
-                let phone = ABMultiValueCopyValueAtIndex(numbers, 0).takeRetainedValue() as! String
 
-                contacts.updateValue(name as String, forKey: phone)
-            } else {
-                println("No Phone")
+                if let name = ABRecordCopyCompositeName(person) {
+                    if let phone = ABMultiValueCopyValueAtIndex(numbers, 0) {
+                        contacts.updateValue(name.takeRetainedValue() as String, forKey: phone.takeRetainedValue() as! String)
+                    }
+                }
+                
+
             }
         }
 
-        BaseController().apiRequest(.PUT, path: "users", params: ["contacts": contacts])
+        if (contacts.isEmpty) {
+            return
+        }
+
+        println(contacts)
+
+        BaseController().apiRequest(.PUT, path: "users", params: ["contacts": contacts], closure: {result in println(result)}, errorHandler: {result in println(result)})
     }
 }

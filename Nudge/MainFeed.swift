@@ -14,6 +14,8 @@ class MainFeed: BaseController, DataProviderProtocol {
     @IBOutlet weak var table: DataTable!
 
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         self.table.asignCellNib("JobCellTableViewCell")
 
         self.table.dataProvider = self as DataProviderProtocol

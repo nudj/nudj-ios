@@ -311,6 +311,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0510;
+				TargetAttributes = {
+					E66AD49C95D4E989522919A7 = {
+						DevelopmentTeam = BMY483J96G;
+					};
+				};
 			};
 			buildConfigurationList = 124FC2F2E518C49414DDE4D7 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -408,6 +413,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CDBC0371BCC343B1A7D57FEB /* Pods.debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -593,6 +599,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2AB9E824C76C9E57774CC084 /* Pods.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;

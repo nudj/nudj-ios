@@ -13,12 +13,15 @@ import SwiftyJSON
 
 class API {
 
-    var baseURL = "http://192.168.3.139/eman/nudge-api/project/public/api/v1/"
-//    var baseURL = "http://95.87.227.252:8080/nudge/public/index.php/api/v1/"
-//    var baseURL = "http://192.168.3.45/nudge/public/index.php/api/v1/"
+    // Server4u
+    var baseURL = "http://api.nudj.co/api/v1/"
 
+    static let sharedInstance = API();
+
+
+    // Standard Call without specitying token
     func request(method: Alamofire.Method, path: String, params: [String: AnyObject]? = nil, closure: (JSON) -> (), errorHandler: ((NSError) -> Void)? ) {
-        self.request(method, path: path, params: params, closure: closure, errorHandler: errorHandler)
+        self.request(method, path: path, params: params, closure: closure, token: nil, errorHandler: errorHandler)
     }
 
     func request(method: Alamofire.Method, path: String, params: [String: AnyObject]? = nil, closure: (JSON) -> (), token: String?, errorHandler: ((NSError) -> Void)? ) {
@@ -29,20 +32,63 @@ class API {
             println("Token: " + token!)
         }
         
-        manager.request(method, baseURL + path, parameters: params, encoding: .JSON).responseJSON() {
-            (request, rawResponse, JSONResponse, error) in
+        manager.request(method, baseURL + path, parameters: params, encoding: .JSON).responseString {
+            (request, rawResponse, response, error) in
 
-            println(request)
+            println("Request: \(request)")
 
-            if (error != nil) {
-                println(rawResponse)
-                println(error)
-            } else {
-                //                    println(JSONResponse)
+            // We have API Error
+            if (rawResponse != nil && rawResponse!.statusCode >= 400) {
+
+                println("[API.request] rawResponse: \(rawResponse!)")
+
+                // Try to get error code
+                if (response != nil) {
+                    println("[API.request] Response: \(response!)")
+                    if let errorFromString = response!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+
+                        let errorJson = JSON(data: errorFromString)
+
+                        // Log out user and show Login screen
+                        if (errorJson["error"]["error_code"] == 10002) { // Unauthorized
+                            println("Logout!")
+                            let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                            delegate.logout()
+                            delegate.pushViewControllerWithId("loginController")
+                            return
+                        }
+                    }
+                }
             }
 
-            if (JSONResponse != nil) {
-                closure(JSON(JSONResponse!))
+            if (error != nil) {
+
+                if (rawResponse != nil) {
+                    println("Response Details: \(rawResponse!.statusCode) \(rawResponse!.description)")
+                    println("Response: \(response!)")
+                }
+
+                println("[API.request] Error: \(error!)")
+
+                if(errorHandler != nil) {
+                    errorHandler!(error!)
+                }
+
+                return
+
+            } else if (response == nil) {
+
+                if(errorHandler != nil) {
+                    errorHandler!(NSError())
+                }
+                return
+
+            }
+
+            if let dataFromString = response!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+
+                closure(JSON(data: dataFromString))
+
             } else if(errorHandler != nil) {
                 errorHandler!(error!)
             }

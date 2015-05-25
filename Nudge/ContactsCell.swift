@@ -26,11 +26,11 @@ class ContactsCell: DataTableCell {
 
             let statusId = data!["user"]["status"].intValue
             
-            if (status.isValidStatus(statusId)) {
-                status.setTitleByIndex(statusId)
-            } else {
+//            if (status.isValidStatus(statusId)) {
+//                status.setTitleByIndex(statusId)
+//            } else {
                 self.hideStatus()
-            }
+//            }
 
         } else {
             self.hideStatus()

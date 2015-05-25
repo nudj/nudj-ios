@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -69,7 +69,7 @@
                             <constraint firstAttribute="height" constant="18" id="r5i-nG-wS3"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="£900" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TpL-j8-F0W">
@@ -82,14 +82,24 @@
                         <color key="textColor" red="0.066666666666666666" green="0.5725490196078431" blue="0.73725490196078436" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bonus" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rkX-dP-5w2">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Earn" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rkX-dP-5w2">
                         <rect key="frame" x="238" y="102" width="39" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="MdV-gl-9v5"/>
                             <constraint firstAttribute="width" constant="39" id="UwX-OX-Uu5"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="London" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dd0-Nn-tUf">
+                        <rect key="frame" x="262" y="86" width="50" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="0CJ-cl-C5o"/>
+                            <constraint firstAttribute="height" constant="18" id="Y5r-bm-ukx"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -98,10 +108,12 @@
                     <constraint firstAttribute="trailingMargin" secondItem="Zuf-wv-kLx" secondAttribute="trailing" id="EGt-7K-jpC"/>
                     <constraint firstAttribute="bottomMargin" secondItem="TpL-j8-F0W" secondAttribute="bottom" id="FfU-ec-1RC"/>
                     <constraint firstItem="VGx-xe-5UY" firstAttribute="leading" secondItem="T5K-wM-kd7" secondAttribute="trailing" constant="8" id="Ljc-FC-Hlm"/>
+                    <constraint firstItem="TpL-j8-F0W" firstAttribute="top" secondItem="dd0-Nn-tUf" secondAttribute="bottom" constant="-2" id="MQi-RL-5Bq"/>
                     <constraint firstItem="up9-lT-fX9" firstAttribute="top" secondItem="ZOA-2V-UsG" secondAttribute="bottom" id="Ngo-8j-7YY"/>
                     <constraint firstItem="ZOA-2V-UsG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="T7q-iC-7Bh"/>
                     <constraint firstItem="ZOA-2V-UsG" firstAttribute="top" secondItem="T5K-wM-kd7" secondAttribute="bottom" constant="16" id="UtI-w6-ARD"/>
                     <constraint firstItem="rkX-dP-5w2" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="ZE0-LO-sfI"/>
+                    <constraint firstItem="dd0-Nn-tUf" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="ZnM-1n-qI4"/>
                     <constraint firstItem="T5K-wM-kd7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Zy4-T1-oqX"/>
                     <constraint firstItem="Zuf-wv-kLx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="bbU-b0-0lp"/>
                     <constraint firstAttribute="trailingMargin" secondItem="7Kb-cS-OJp" secondAttribute="trailing" id="ee2-4e-fte"/>
@@ -123,7 +135,7 @@
                 <outlet property="salary" destination="up9-lT-fX9" id="Nri-na-j1P"/>
                 <outlet property="title" destination="Zuf-wv-kLx" id="TrT-jg-DXg"/>
             </connections>
-            <point key="canvasLocation" x="658" y="369.5"/>
+            <point key="canvasLocation" x="512" y="351.5"/>
         </tableViewCell>
     </objects>
     <resources>

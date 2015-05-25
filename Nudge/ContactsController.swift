@@ -37,6 +37,9 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
     }
 
     func refresh(sender: AnyObject?) {
+
+        Contacts().sync()
+
         // Load Data
         self.apiRequest(.GET, path: "contacts?params=contact.alias,contact.user,user.image,user.status&sizes=user.profile", closure: { response in
 

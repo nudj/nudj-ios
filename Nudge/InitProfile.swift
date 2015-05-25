@@ -12,7 +12,7 @@ import SwiftyJSON
 
 class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, KSTokenViewDelegate, UITextViewDelegate {
 
-    let msgTitle = "Chouse Image Source"
+    let msgTitle = "Choose Image Source"
 
     @IBOutlet weak var statusButton: StatusButton!
     @IBOutlet weak var profilePhoto: AsyncImage!
@@ -22,6 +22,7 @@ class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePicker
     @IBOutlet weak var skills: KSTokenView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var aboutMeField: UITextView!
+    @IBOutlet weak var nextButton: UIBarButtonItem!
 
     var activeTextField:UIView? = nil
     var openSpace:CGFloat = 0
@@ -32,6 +33,16 @@ class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePicker
         super.viewWillAppear(animated)
 
         self.registerNotification()
+
+        UserModel.getById(0, fields: ["user.status"], closure: { result in
+            let status = result["data"]["status"]
+
+            if status.stringValue != "" {
+                self.statusButton.setTitleByIndex(status.intValue)
+                self.statusButton.changeColor(UIColor.whiteColor())
+            }
+
+        })
     }
 
     override func viewWillDisappear(animated: Bool) {
@@ -52,33 +63,31 @@ class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePicker
         skills.delegate = self
         skills.promptText = ""
 
+//        self.apiRequest(Alamofire.Method.GET, path: "users/me?params=user.name,user.image", closure: { json in
+//
+//            self.nameLabel.text = json["data"]["name"].stringValue
+//
+//            if (json["data"]["image"] != nil) {
+//                self.showUserImage(json["data"]["image"])
+//            }
+//
+//        }, errorHandler: {error in })
 
-        self.apiRequest(Alamofire.Method.GET, path: "users/me?params=user.status,user.name,user.image", closure: { json in
+        UserModel.getById(0, fields: ["user.name", "user.image"], closure: { result in
+            self.nameLabel.text = result["data"]["name"].stringValue
+            self.showUserImage(result["data"]["image"])
 
-            self.nameLabel.text = json["data"]["name"].stringValue
+        })
+    }
 
-            if (json["data"]["status"] != nil && json["data"]["status"].stringValue != "") {
-                self.statusButton.setTitleByIndex(json["data"]["status"].intValue)
+    func setInitialStatus(status: Bool) {
+        if (status) {
+            if (self.navigationItem.rightBarButtonItem != nil) {
+                self.navigationItem.rightBarButtonItem = self.nextButton
             }
-
-            if (json["data"]["image"] != nil) {
-                self.showUserImage(json["data"]["image"])
-            }
-
-        }, errorHandler: {error in })
-    }
-    
-    @IBAction func continueAct(sender: AnyObject) {
-        self.navigationController?.navigationItem.hidesBackButton = true
-        self.performSegueWithIdentifier("showMainScreen", sender: nil)
-    }
-
-    @IBAction func showStatusPicker() {
-        self.performSegueWithIdentifier("showStatusPicker", sender: self)
-    }
-
-    @IBAction func HideImportView(sender: UIButton) {
-        
+        } else {
+            self.navigationItem.rightBarButtonItem = nil
+        }
     }
 
     func makeThingsWhite() {
@@ -131,15 +140,22 @@ class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePicker
         self.profilePhoto.startActivity()
         self.backgroundImage.startActivity()
 
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let image = info[UIImagePickerControllerEditedImage] as! UIImage
         let imageData = UIImageJPEGRepresentation(image, 0.8).base64EncodedStringWithOptions(.allZeros)
 
-        self.apiUpdateUser(["image": imageData], closure: { json in
+        self.apiUpdateUser(["image": imageData], closure: { response in
+
             self.apiRequest(.GET, path: "users/me?params=user.image", closure: { imageResponse in
                 self.showUserImage(imageResponse["data"]["image"])
             })
+
+        }, errorHandler: {_ in
+            self.profilePhoto.stopActivity()
+            self.backgroundImage.stopActivity()
         })
     }
+
+    // MARK: User Update functions
 
     func updateUserName(userName: String) -> Void {
 
@@ -150,12 +166,28 @@ class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePicker
         })
     }
 
+    func updateAbout(text: String) -> Void {
+
+        self.apiRequest(.PUT, path: "users", params: ["about": text], closure: { _ in
+            // TODO:
+        })
+    }
+
     // MARK: TextFieldDelegate
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.updateUserName(textField.text)
+        textField.resignFirstResponder()
 
         return true
+    }
+
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if (textField == nameLabel) {
+            self.updateUserName(textField.text)
+        } else {
+            activeTextField = textField
+        }
     }
 
     // MARK: UITextViewDelegate
@@ -165,13 +197,9 @@ class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePicker
         self.scrollToField()
     }
 
-    func textFieldDidBeginEditing(textField: UITextField) {
-        println(textField)
-        if (textField == nameLabel) {
-            self.updateUserName(textField.text)
-        } else {
-            activeTextField = textField
-        }
+    func textViewShouldEndEditing(textView: UITextView) -> Bool {
+        textView.resignFirstResponder()
+        return true
     }
 
     // MARK: KSTokenViewDelegate
@@ -232,6 +260,24 @@ class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePicker
         notificationCenter.addObserver(self, selector: "keyboardWillBeShown:", name: UIKeyboardDidShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: "keyboardWillBeShown:", name: UIKeyboardDidChangeFrameNotification, object: nil)
         notificationCenter.addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
+    }
+
+    // MARK: - Navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using [segue destinationViewController].
+        // Pass the selected object to the new view controller.
+    }
+
+    @IBAction func continueAct(sender: AnyObject) {
+        self.performSegueWithIdentifier("showMainScreen", sender: nil)
+    }
+
+    @IBAction func showStatusPicker() {
+        self.performSegueWithIdentifier("showStatusPicker", sender: self)
+    }
+
+    @IBAction func HideImportView(sender: UIButton) {
+
     }
 
 }

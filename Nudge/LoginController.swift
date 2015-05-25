@@ -17,6 +17,7 @@ class LoginController: BaseController {
     let msgContent = "you will be able to text and refer anyone in your contacts"
 
     var addressBookAccess = false
+    var code = ""
 
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var phoneField: UITextField!
@@ -24,8 +25,11 @@ class LoginController: BaseController {
 
     override func viewWillAppear(animated: Bool) {
         super.viewDidAppear(animated)
+
         phoneField.becomeFirstResponder()
         self.showLoginButton()
+
+        self.changeNavigationBar(true)
     }
 
     @IBAction func loginAct(sender: UIButton) {
@@ -37,6 +41,7 @@ class LoginController: BaseController {
 
         if (count(phoneNumber) <= 8) {
             showSimpleAlert("Phone field is required.")
+            showLoginButton()
             return;
         }
 
@@ -45,11 +50,14 @@ class LoginController: BaseController {
         self.apiRequest(.POST, path: "users", params: ["phone": phoneNumber], closure: {
             (json: JSON) in
 
-            if (json["status"].boolValue != true) {
+            if (count(json["data"]["code"].stringValue) <= 0) {
+                println(json)
                 self.showUnknownError()
+                return
             }
 
             println("Verification code: " + json["data"]["code"].stringValue)
+            self.code = json["data"]["code"].stringValue
 
             if (!Contacts().isAuthorized()) {
                 self.askForAddressBookPermission()
@@ -142,6 +150,11 @@ class LoginController: BaseController {
 
     func getCleanNumber(number: String? = nil) -> String {
         let value = number == nil ? phoneField.text : number
+
+        if (count(value) <= 0) {
+            return "";
+        }
+
         let index = advance(value.startIndex, 1)
 
         if (value.substringToIndex(index) == "0") {
@@ -155,11 +168,23 @@ class LoginController: BaseController {
         return self.countryCode.text + self.getCleanNumber(number: self.phoneField.text)
     }
 
+    // MARK: - Navigation bar
+
+    func changeNavigationBar(hidden: Bool) {
+        if let nav = self.navigationController {
+            nav.navigationBarHidden = hidden
+        }
+    }
+
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.destinationViewController.isKindOfClass(VerifyViewController)) {
-            segue.destinationViewController.setValue(self.getFormattedNumber(), forKey: "phoneNumber")
-            segue.destinationViewController.setValue(self.addressBookAccess, forKey: "addressBookAccess")
+        
+        self.changeNavigationBar(false)
+
+        if let verify = segue.destinationViewController as? VerifyViewController {
+            verify.setValue(self.getFormattedNumber(), forKey: "phoneNumber")
+            verify.setValue(self.addressBookAccess, forKey: "addressBookAccess")
+            verify.code = self.code
         }
     }
 }

@@ -15,11 +15,16 @@ class VerifyViewController: BaseController {
 
     @IBOutlet weak var codeField: UITextField!
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+
     @IBOutlet weak var smsText: UILabel!
     var initialSMSText: NSAttributedString? = nil
 
+    let codeLength = 4
+
     var phoneNumber = ""
     var addressBookAccess = false
+    var code = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,15 +45,18 @@ class VerifyViewController: BaseController {
 
         smsText.attributedText = tmp
         smsText.sizeToFit()
+
+        self.showSimpleAlert("Your verification code is: " + self.code);
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         codeField.becomeFirstResponder()
+        self.showCodeField(animated: true)
     }
 
     @IBAction func CodeChanged(sender: UITextField) {
-        if (count(sender.text) == 5) {
+        if (count(sender.text) == codeLength) {
             self.submit()
         }
     }
@@ -59,7 +67,11 @@ class VerifyViewController: BaseController {
         self.apiRequest(.POST, path: "users", params: ["phone": phoneNumber], closure: {
             (json: JSON) in
 
-            self.showSimpleAlert("Your new code is sent.")
+            self.code = json["data"]["code"].stringValue
+            
+            self.showSimpleAlert("Your new code is sent.") { _ in
+                self.showSimpleAlert("Your verification code is: " + self.code);
+            }
         })
     }
 
@@ -74,23 +86,19 @@ class VerifyViewController: BaseController {
         let code = codeField.text
         println("Sending Code: " + code)
 
-        if (count(code) != 5) {
+        if (count(code) != self.codeLength) {
             showSimpleAlert("Invalid Code")
             return;
         }
+
+        self.hideCodeField()
 
         self.apiRequest(Method.PUT, path: "users/verify", params: ["phone": phoneNumber, "verification": code], closure: {
             (json: JSON) in
             NSLog(json.stringValue)
 
             if (!self.isValidResponse(json)) {
-
-                if (json["error"] != nil) {
-                    self.showSimpleAlert(json["error"]["message"].stringValue)
-                } else {
-                    self.showUnknownError()
-                }
-
+                self.showCodeField(animated: true)
                 return;
             }
 
@@ -104,11 +112,33 @@ class VerifyViewController: BaseController {
 
             appDelegate.pushUserData(user)
 
-            // Sunc contacts
+            // Sync contacts
             Contacts().sync()
             
             self.performSegueWithIdentifier("showInitProfile", sender: nil)
+        }, errorHandler: {_ in
+            self.showCodeField(animated: true)
         })
+    }
+
+    func hideCodeField() {
+        self.activityIndicator.startAnimating()
+        
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            self.codeField.alpha = 0;
+        })
+    }
+
+    func showCodeField(animated: Bool = true) {
+        self.activityIndicator.stopAnimating()
+
+        if (animated) {
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                self.codeField.alpha = 1;
+            })
+        } else {
+            self.codeField.alpha = 1;
+        }
     }
 
 }

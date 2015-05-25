@@ -7,12 +7,38 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class SettingsController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    var statusButton = StatusButton()
+
     let cellIdentifier = "SettingsCell";
 
-//    let structure = 
+    let structure: [[SettingsItem]] = [
+        [
+            SettingsItem(name: "My Profile", action: "showYourProfile"),
+            SettingsItem(name: "My Status", action: "showStatusPicker"),
+            SettingsItem(name: "Notifications", action: ""),
+            SettingsItem(name: "Saved Jobs", action: ""),
+            SettingsItem(name: "Posted Jobs", action: ""),
+            SettingsItem(name: "My Account", action: "")
+        ],
+        [
+            SettingsItem(name: "Linked In", action: ""),
+            SettingsItem(name: "Facebook", action: "")
+        ],
+        [
+            SettingsItem(name: "Invite Friends", action: ""),
+            SettingsItem(name: "Terms And Conditions", action: ""),
+            SettingsItem(name: "Send Feedback", action: "")
+        ],
+        [
+            SettingsItem(name: "Log Out", action: "goToLogin"),
+            SettingsItem(name: "DELETE MY ACCOUNT", action: "")
+        ]
+    ];
 
     @IBOutlet weak var table: UITableView!
 
@@ -20,48 +46,68 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
 
         table.registerNib(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
-
-
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        BaseController().apiRequest(Alamofire.Method.GET, path: "users/me?params=user.status", closure: { json in
+            if (json["data"]["status"] != nil && json["data"]["status"].stringValue != "") {
+                self.statusButton.setTitleByIndex(json["data"]["status"].intValue)
+            }
+        })
+
+        self.statusButton.changeColor(UIColor.blueColor())
+    }
+
     // MARK: - Table view data source
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 4
+        return structure.count
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 1:
-            return 6
-        case 2:
-            return 2
-        case 3:
-            return 3
-        case 4:
-            return 1
-        default:
-            return 0
-        }
+        return structure[section].count;
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! SettingsCell
+        let data = structure[indexPath.section][indexPath.row]
 
-        switch (indexPath.section, indexPath.row) {
-        case (1, 0):
-            cell.textLabel!.text = "My Profile"
-        default:
-            cell.textLabel!.text = "Test"
+        cell.setTitle(data.name);
 
+        if (indexPath.section == 3) {
+            cell.alignCenter()
+        } else {
+            cell.alignLeft()
+        }
+
+        if (data.action == "showStatusPicker") {
+            cell.accessoryView = self.statusButton
+        } else {
+            cell.accessoryView = nil
+            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         }
 
         return cell
+    }
+
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return section == structure.count - 1 ? 0.01: 0
+    }
+
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return section == 0 ? 0.01: 0
+    }
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let action = structure[indexPath.section][indexPath.row].action
+
+        if (count(action) <= 0) {
+            return
+        }
+
+        performSegueWithIdentifier(action, sender: self)
     }
 
 
@@ -100,14 +146,23 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     */
 
-    /*
     // MARK: - Navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // goToLogin
+        if (segue.destinationViewController.isKindOfClass(LoginController)) {
+            let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            delegate.logout()
+        }
+
+        // showYourProfile
+        if (segue.destinationViewController.isKindOfClass(InitProfile)) {
+            if let controller = (segue.destinationViewController as? InitProfile) {
+                controller.setInitialStatus(false)
+            }
+        }
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
     }
-    */
 
 }

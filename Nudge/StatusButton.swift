@@ -10,7 +10,7 @@ import UIKit
 
 struct Status {
     static let titles = ["Inactive", "Hiring"]
-    static let colors = [UIColor.lightGrayColor(), UIColor(red: 0, green: 161, blue: 135, alpha: 0)]
+    static let colors = [UIColor.lightGrayColor(), UIColor(red: 0, green: 0.63, blue: 0.53, alpha: 1)]
 }
 
 class StatusButton: UIButton {
@@ -19,9 +19,19 @@ class StatusButton: UIButton {
 
     var gray = true
 
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+
+        self.setup()
+    }
+
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
+        self.setup()
+    }
+
+    func setup() {
         self.titleLabel?.font = self.titleLabel?.font.fontWithSize(10)
         self.setTitle(self.initialTitle, forState: UIControlState.Normal)
 
@@ -37,6 +47,7 @@ class StatusButton: UIButton {
     }
 
     func setTitleByIndex(title: Int) {
+
         if (!self.isValidStatus(title)) {
             self.setTitle("", forState: UIControlState.Normal)
         } else {

@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,12 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
+        Crashlytics.startWithAPIKey("eaeedfb00437f7c323cc45deea4fe92b94dd90bf")
+
         // Getting of user details from CoreData
         fetchUserData()
 
         prepareApi();
 
-        if (user != nil && user!.completed == false) {
+        if (user != nil && user!.id != nil && user!.completed == false) {
             // User did not passed full registration
             self.pushViewControllerWithId("initProfile")
 
@@ -32,7 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Proceed to login view
         } else {
             // Valid User, Proceed
-//            self.pushViewControllerWithId(, application: application)
             self.pushViewControllerWithId("mainNavigation")
         }
 
@@ -92,12 +94,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let entity =  NSEntityDescription.entityForName("User", inManagedObjectContext: managedContext)
         let userObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
 
-        userObject.setValue(NSInteger(user.id!), forKey: "id")
+        userObject.setValue(user.id == nil ? nil : NSInteger(user.id!), forKey: "id")
         userObject.setValue(user.name, forKey: "name")
         userObject.setValue(user.token, forKey: "token")
         userObject.setValue(user.completed, forKey: "completed")
         userObject.setValue(user.addressBookAccess, forKey: "addressBookAccess")
-        userObject.setValue(NSInteger(user.status!), forKey: "status")
+        userObject.setValue(user.status == nil ? nil : NSInteger(user.status!), forKey: "status")
 
         var error: NSError?
         if !managedContext.save(&error) {
@@ -105,6 +107,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             self.user = user
         }
+    }
+
+    func deleteUserData() {
+        let managedContext = self.managedObjectContext!
+        let fetchRequest = NSFetchRequest(entityName:"User")
+
+        var error: NSError?
+
+        let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error)
+
+        if let results = fetchedResults {
+            if (results.count > 0) {
+                for obj in results {
+                    let user = obj as! NSManagedObject
+                    println("Deleted: ", user)
+                    managedContext.deleteObject(user)
+                }
+
+                if !managedContext.save(&error) {
+                    println("Could remove user details \(error), \(error?.userInfo)")
+                }
+            }
+        } else {
+            println("Could not find active user \(error), \(error!.userInfo)")
+        }
+    }
+
+    func logout() {
+        self.deleteUserData()
     }
 
     func prepareApi() {

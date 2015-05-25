@@ -35,19 +35,21 @@ class BaseController: UIViewController {
     func apiRequest(method: Alamofire.Method, path: String, params: [String: AnyObject]? = nil, closure: ((JSON) -> ())? = nil, errorHandler: ((NSError) -> Void)? = nil ) {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
 
-        appDelegate.api?.request(method, path: path, params: params, closure: {
+        appDelegate.api!.request(method, path: path, params: params, closure: {
             (json: JSON) in
-            NSLog(json.stringValue)
 
             if (json["status"].boolValue != true && json["data"] == nil) {
+                println(json)
                 if (json["error"] != nil) {
                     self.showSimpleAlert(json["error"]["message"].stringValue)
                 } else {
                     self.showUnknownError()
                 }
-                if (closure != nil) {
-                    closure!(nil)
+
+                if (errorHandler != nil) {
+                    errorHandler!(NSError())
                 }
+
                 return;
             }
 
@@ -57,7 +59,7 @@ class BaseController: UIViewController {
         }, token: appDelegate.getUserToken(), errorHandler: errorHandler)
     }
 
-    func apiUpdateUser(params: [String: AnyObject], closure: ((JSON) -> ())?) {
-        self.apiRequest(.PUT, path: "users", params: params, closure: closure)
+    func apiUpdateUser(params: [String: AnyObject], closure: ((JSON) -> ())?, errorHandler: ((NSError) -> Void)? = nil) {
+        self.apiRequest(.PUT, path: "users", params: params, closure: closure, errorHandler: errorHandler)
     }
 }

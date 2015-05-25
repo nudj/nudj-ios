@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import SwiftyJSON
+import Alamofire
 
 class UserModel {
 
@@ -25,6 +27,24 @@ class UserModel {
         self.id = id;
         self.name = name;
         self.token = token;
+    }
+
+    static func getById(id: Int, fields:[String]?, closure: ((JSON) -> ())? = nil, errorHandler: ((NSError) -> Void)? = nil ) {
+        let params = [String: AnyObject]()
+
+        let block = closure == nil
+            ? { _ in }
+            : closure
+
+        let userFields = (fields == nil)
+            ? ""
+            : ",".join(fields!)
+
+        let userId = id <= 0
+            ? "me"
+            : "\(id)"
+
+        API.sharedInstance.request(Alamofire.Method.GET, path: "users/\(userId)?params=\(userFields)", params: params, closure: closure!, errorHandler: errorHandler)
     }
 
 }
