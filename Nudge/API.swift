@@ -13,8 +13,11 @@ import SwiftyJSON
 
 class API {
 
-    // Server4u
+    // Production
     var baseURL = "http://api.nudj.co/api/v1/"
+
+    // Server4u
+    // var baseURL = "http://95.87.227.252:8080/nudge/public/index.php/api/v1/"
 
     static let sharedInstance = API();
 
@@ -49,8 +52,10 @@ class API {
 
                         let errorJson = JSON(data: errorFromString)
 
+                        let code = errorJson["error"]["error_code"];
+
                         // Log out user and show Login screen
-                        if (errorJson["error"]["error_code"] == 10002) { // Unauthorized
+                        if (code == 10002 || code == 10004) { // Unauthorized, Invalid Token
                             println("Logout!")
                             let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
                             delegate.logout()

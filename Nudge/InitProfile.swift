@@ -63,21 +63,21 @@ class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePicker
         skills.delegate = self
         skills.promptText = ""
 
-//        self.apiRequest(Alamofire.Method.GET, path: "users/me?params=user.name,user.image", closure: { json in
-//
-//            self.nameLabel.text = json["data"]["name"].stringValue
-//
-//            if (json["data"]["image"] != nil) {
-//                self.showUserImage(json["data"]["image"])
-//            }
-//
-//        }, errorHandler: {error in })
+        self.apiRequest(Alamofire.Method.GET, path: "users/me?params=user.name,user.image", closure: { json in
 
-        UserModel.getById(0, fields: ["user.name", "user.image"], closure: { result in
-            self.nameLabel.text = result["data"]["name"].stringValue
-            self.showUserImage(result["data"]["image"])
+            self.nameLabel.text = json["data"]["name"].stringValue
 
-        })
+            if (json["data"]["image"] != nil) {
+                self.showUserImage(json["data"]["image"])
+            }
+
+        }, errorHandler: {error in })
+
+//        UserModel.getById(0, fields: ["user.name", "user.image"], closure: { result in
+//            self.nameLabel.text = result["data"]["name"].stringValue
+//            self.showUserImage(result["data"]["image"])
+//
+//        })
     }
 
     func setInitialStatus(status: Bool) {
