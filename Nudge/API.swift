@@ -15,11 +15,12 @@ class API {
 
     // Production
     var baseURL = "http://api.nudj.co/api/v1/"
+    var token:String? = nil
 
     // Server4u
     // var baseURL = "http://95.87.227.252:8080/nudge/public/index.php/api/v1/"
 
-    static let sharedInstance = API();
+    static var sharedInstance = API();
 
 
     // Standard Call without specitying token
@@ -32,38 +33,17 @@ class API {
 
         if (token != nil) {
             manager.session.configuration.HTTPAdditionalHeaders = ["token": token!]
-            println("Token: " + token!)
+        } else if self.token != nil {
+            manager.session.configuration.HTTPAdditionalHeaders = ["token": self.token!]
         }
         
-        manager.request(method, baseURL + path, parameters: params, encoding: .JSON).responseString {
+        manager.request(method, (baseURL + path) as String, parameters: params).responseString { // , encoding: .JSON //Removed this ... no Idea why it works without it and some times it does not with it.
             (request, rawResponse, response, error) in
 
-            println("Request: \(request)")
-
-            // We have API Error
-            if (rawResponse != nil && rawResponse!.statusCode >= 400) {
-
-                println("[API.request] rawResponse: \(rawResponse!)")
-
-                // Try to get error code
-                if (response != nil) {
-                    println("[API.request] Response: \(response!)")
-                    if let errorFromString = response!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
-
-                        let errorJson = JSON(data: errorFromString)
-
-                        let code = errorJson["error"]["error_code"];
-
-                        // Log out user and show Login screen
-                        if (code == 10002 || code == 10004) { // Unauthorized, Invalid Token
-                            println("Logout!")
-                            let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                            delegate.logout()
-                            delegate.pushViewControllerWithId("loginController")
-                            return
-                        }
-                    }
-                }
+            // Try to catch general API errors
+            if (self.tryToCatchAPIError(rawResponse, response: response)) {
+                // We have general error from server and the user should not continue.
+                return
             }
 
             if (error != nil) {
@@ -86,8 +66,8 @@ class API {
                 if(errorHandler != nil) {
                     errorHandler!(NSError())
                 }
-                return
 
+                return
             }
 
             if let dataFromString = response!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
@@ -95,9 +75,49 @@ class API {
                 closure(JSON(data: dataFromString))
 
             } else if(errorHandler != nil) {
-                errorHandler!(error!)
+
+                errorHandler!(NSError())
+
             }
         }
     }
-    
+
+    func tryToCatchAPIError(rawResponse: NSHTTPURLResponse?, response: String?) -> Bool {
+
+        if (rawResponse != nil && rawResponse!.statusCode >= 400) {
+
+            println("[API Error] rawResponse: \(rawResponse!)")
+
+            // Try to get error code
+            if (response != nil) {
+                println("[API Error] Response: \(response!)")
+                if let errorFromString = response!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+
+                    let errorJson = JSON(data: errorFromString)
+
+                    let code = errorJson["error"]["error_code"];
+
+                    // Log out user and show Login screen
+                    if (code == 10002) {
+                        println("Unauthorized -> Logout!")
+                        self.performLogout()
+                        return true
+                    } else if (code == 10004) {
+                        println("Invalid Token -> Logout!")
+                        self.performLogout()
+                        return true
+                    }
+                }
+            }
+        }
+
+        return false
+    }
+
+    func performLogout() {
+        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        delegate.logout()
+        delegate.pushViewControllerWithId("loginController")
+    }
+
 }

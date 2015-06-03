@@ -139,6 +139,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func prepareApi() {
+        API.sharedInstance.token = self.getUserToken()
+
+        println("Token: " + API.sharedInstance.token!)
+
         if (api == nil) {
             api = API();
         }
