@@ -537,8 +537,8 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" directionalLockEnabled="YES" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="smp-rK-aNl">
-                                <rect key="frame" x="0.0" y="214" width="414" height="522"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="smp-rK-aNl">
+                                <rect key="frame" x="0.0" y="214" width="414" height="473"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="doe-k8-8AP" userLabel="Scroll Container">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
@@ -615,7 +615,7 @@
                                                         <color key="textColor" red="0.58823529409999997" green="0.58823529409999997" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F3t-ez-kh9" customClass="KSTokenView" customModule="Nudge" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F3t-ez-kh9">
                                                         <rect key="frame" x="37" y="42" width="369" height="50"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </view>
@@ -783,7 +783,6 @@
                         <outlet property="nextButton" destination="q6p-o6-BJM" id="6gr-iL-Nmu"/>
                         <outlet property="profilePhoto" destination="GeY-dg-YuP" id="HDQ-rM-g8G"/>
                         <outlet property="scrollView" destination="smp-rK-aNl" id="Fol-TB-Tp6"/>
-                        <outlet property="skills" destination="F3t-ez-kh9" id="tA9-fV-0rn"/>
                         <outlet property="statusButton" destination="xYk-9i-uqx" id="IlW-7K-Wse"/>
                         <outlet property="topView" destination="MaM-1e-UFb" id="erA-3Y-DB2"/>
                         <segue destination="F3c-zd-gaG" kind="show" identifier="showStatusPicker" id="1RO-e0-4AP"/>
@@ -943,6 +942,6 @@
         <segue reference="BCe-Pt-bFX"/>
         <segue reference="m0n-l7-DaR"/>
         <segue reference="zyP-mc-EMC"/>
-        <segue reference="H51-O9-Snf"/>
+        <segue reference="1RO-e0-4AP"/>
     </inferredMetricsTieBreakers>
 </document>

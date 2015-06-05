@@ -29,6 +29,10 @@ class UserModel {
         self.token = token;
     }
 
+    static func getCurrent(fields:[String]?, closure: ((JSON) -> ())? = nil, errorHandler: ((NSError) -> Void)? = nil) {
+        UserModel.getById(0, fields: fields, closure: closure, errorHandler: errorHandler)
+    }
+
     static func getById(id: Int, fields:[String]?, closure: ((JSON) -> ())? = nil, errorHandler: ((NSError) -> Void)? = nil ) {
         let params = [String: AnyObject]()
 

@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, KSTokenViewDelegate, UITextViewDelegate {
+class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate { // KSTokenViewDelegate
 
     let msgTitle = "Choose Image Source"
 
@@ -19,7 +19,9 @@ class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePicker
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var backgroundImage: AsyncImage!
-    @IBOutlet weak var skills: KSTokenView!
+//    @IBOutlet weak var skills: KSTokenView!
+
+//    @IBOutlet weak var skills: KSTokenView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var aboutMeField: UITextView!
     @IBOutlet weak var nextButton: UIBarButtonItem!
@@ -60,24 +62,13 @@ class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePicker
 
         statusButton.changeColor(UIColor.lightGrayColor())
 
-        skills.delegate = self
-        skills.promptText = ""
+//        skills.delegate = self
+//        skills.promptText = ""
 
-        self.apiRequest(Alamofire.Method.GET, path: "users/me?params=user.name,user.image", closure: { json in
-
-            self.nameLabel.text = json["data"]["name"].stringValue
-
-            if (json["data"]["image"] != nil) {
-                self.showUserImage(json["data"]["image"])
-            }
-
-        }, errorHandler: {error in })
-
-//        UserModel.getById(0, fields: ["user.name", "user.image"], closure: { result in
-//            self.nameLabel.text = result["data"]["name"].stringValue
-//            self.showUserImage(result["data"]["image"])
-//
-//        })
+        UserModel.getCurrent(["user.name", "user.image"], closure: { result in
+            self.nameLabel.text = result["data"]["name"].stringValue
+            self.showUserImage(result["data"]["image"])
+        })
     }
 
     func setInitialStatus(status: Bool) {
@@ -203,22 +194,22 @@ class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePicker
     }
 
     // MARK: KSTokenViewDelegate
-
-    func tokenView(token: KSTokenView, performSearchWithString string: String, completion: ((results: Array<AnyObject>) -> Void)?) {
-        self.apiRequest(Method.GET, path: "skills/suggest/" + string, closure: { result in
-            var data: Array<String> = result["data"].arrayObject as! Array<String>
-            println(data)
-            completion!(results: data)
-        })
-    }
-
-    func tokenView(token: KSTokenView, displayTitleForObject object: AnyObject) -> String {
-        return object as! String
-    }
-
-    func tokenViewDidBeginEditing(tokenView: KSTokenView) {
-        activeTextField = tokenView
-    }
+//
+//    func tokenView(token: KSTokenView, performSearchWithString string: String, completion: ((results: Array<AnyObject>) -> Void)?) {
+//        self.apiRequest(Method.GET, path: "skills/suggest/" + string, closure: { result in
+//            var data: Array<String> = result["data"].arrayObject as! Array<String>
+//            println(data)
+//            completion!(results: data)
+//        })
+//    }
+//
+//    func tokenView(token: KSTokenView, displayTitleForObject object: AnyObject) -> String {
+//        return object as! String
+//    }
+//
+//    func tokenViewDidBeginEditing(tokenView: KSTokenView) {
+//        activeTextField = tokenView
+//    }
 
     // MARK: Scroll Management
 
