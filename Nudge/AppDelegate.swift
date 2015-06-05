@@ -136,6 +136,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func logout() {
         self.deleteUserData()
+        API.sharedInstance.token = nil
+        if api != nil {
+            api?.token = nil
+        }
     }
 
     func prepareApi() {
@@ -144,7 +148,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         println("Token: " + API.sharedInstance.token!)
 
         if (api == nil) {
-            api = API();
+            api = API()
         }
     }
 

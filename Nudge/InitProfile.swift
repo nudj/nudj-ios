@@ -19,12 +19,10 @@ class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePicker
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var backgroundImage: AsyncImage!
-//    @IBOutlet weak var skills: KSTokenView!
-
-//    @IBOutlet weak var skills: KSTokenView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var aboutMeField: UITextView!
     @IBOutlet weak var nextButton: UIBarButtonItem!
+//    @IBOutlet weak var skills: KSTokenView!
 
     var activeTextField:UIView? = nil
     var openSpace:CGFloat = 0
