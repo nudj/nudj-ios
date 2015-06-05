@@ -615,7 +615,7 @@
                                                         <color key="textColor" red="0.58823529409999997" green="0.58823529409999997" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F3t-ez-kh9">
+                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F3t-ez-kh9" customClass="KSTokenView" customModule="Nudge" customModuleProvider="target">
                                                         <rect key="frame" x="37" y="42" width="369" height="50"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </view>
@@ -783,6 +783,7 @@
                         <outlet property="nextButton" destination="q6p-o6-BJM" id="6gr-iL-Nmu"/>
                         <outlet property="profilePhoto" destination="GeY-dg-YuP" id="HDQ-rM-g8G"/>
                         <outlet property="scrollView" destination="smp-rK-aNl" id="Fol-TB-Tp6"/>
+                        <outlet property="skills" destination="F3t-ez-kh9" id="gCH-pe-CvI"/>
                         <outlet property="statusButton" destination="xYk-9i-uqx" id="IlW-7K-Wse"/>
                         <outlet property="topView" destination="MaM-1e-UFb" id="erA-3Y-DB2"/>
                         <segue destination="F3c-zd-gaG" kind="show" identifier="showStatusPicker" id="1RO-e0-4AP"/>

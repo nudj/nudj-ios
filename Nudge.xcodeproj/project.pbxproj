@@ -50,7 +50,10 @@
 		EBEA9B4C1AF26ACB0027A2A2 /* AddJobCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA9B4A1AF26ACB0027A2A2 /* AddJobCell.swift */; };
 		EBEA9B4D1AF26ACB0027A2A2 /* AddJobCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBEA9B4B1AF26ACB0027A2A2 /* AddJobCell.xib */; };
 		EBEA9B4F1AF274480027A2A2 /* AddJobItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA9B4E1AF274480027A2A2 /* AddJobItem.swift */; };
-		EBF186161B218EC400D8D80D /* KSTokenView in Resources */ = {isa = PBXBuildFile; fileRef = EBF186151B218EC400D8D80D /* KSTokenView */; };
+		EBF186201B21DACA00D8D80D /* KSToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF1861C1B21DACA00D8D80D /* KSToken.swift */; };
+		EBF186211B21DACA00D8D80D /* KSTokenField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF1861D1B21DACA00D8D80D /* KSTokenField.swift */; };
+		EBF186221B21DACA00D8D80D /* KSTokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF1861E1B21DACA00D8D80D /* KSTokenView.swift */; };
+		EBF186231B21DACA00D8D80D /* KSUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF1861F1B21DACA00D8D80D /* KSUtils.swift */; };
 		EBF9DD8A1AE6A8EC00A1A67D /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF9DD891AE6A8EC00A1A67D /* SwiftyJSON.framework */; };
 /* End PBXBuildFile section */
 
@@ -128,7 +131,10 @@
 		EBEA9B4B1AF26ACB0027A2A2 /* AddJobCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddJobCell.xib; sourceTree = "<group>"; };
 		EBEA9B4E1AF274480027A2A2 /* AddJobItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddJobItem.swift; sourceTree = "<group>"; };
 		EBF1028F1ADD59D20096FB3C /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/Pods/SwiftyJSON.framework"; sourceTree = "<group>"; };
-		EBF186151B218EC400D8D80D /* KSTokenView */ = {isa = PBXFileReference; lastKnownFileType = folder; path = KSTokenView; sourceTree = "<group>"; };
+		EBF1861C1B21DACA00D8D80D /* KSToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSToken.swift; sourceTree = "<group>"; };
+		EBF1861D1B21DACA00D8D80D /* KSTokenField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSTokenField.swift; sourceTree = "<group>"; };
+		EBF1861E1B21DACA00D8D80D /* KSTokenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSTokenView.swift; sourceTree = "<group>"; };
+		EBF1861F1B21DACA00D8D80D /* KSUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSUtils.swift; sourceTree = "<group>"; };
 		EBF9DD891AE6A8EC00A1A67D /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/Pods/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		FDD460F204898DA0004C5B93 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -199,6 +205,7 @@
 		EB0926C11A8DE4CB00E1D958 = {
 			isa = PBXGroup;
 			children = (
+				EBF1861A1B21D9D500D8D80D /* Libraries */,
 				EB6189471B04F78D00CAA623 /* Crashlytics.framework */,
 				EB0926CC1A8DE4CB00E1D958 /* Nudge */,
 				EB0926E41A8DE4CB00E1D958 /* NudgeTests */,
@@ -231,7 +238,6 @@
 				EB0926D81A8DE4CB00E1D958 /* Images.xcassets */,
 				EB0926DA1A8DE4CB00E1D958 /* LaunchScreen.xib */,
 				EBB337F91A9F5557000CAD88 /* DataModel */,
-				EBF186141B218EA800D8D80D /* Libraries */,
 				EBB337FC1A9F5826000CAD88 /* Frameworks */,
 				EB0926CD1A8DE4CB00E1D958 /* Supporting Files */,
 				EBFB0CFE1AC009F900CCCB35 /* Obsolate */,
@@ -358,12 +364,23 @@
 			name = ActionControllers;
 			sourceTree = "<group>";
 		};
-		EBF186141B218EA800D8D80D /* Libraries */ = {
+		EBF1861A1B21D9D500D8D80D /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				EBF186151B218EC400D8D80D /* KSTokenView */,
+				EBF1861B1B21D9DE00D8D80D /* KSTokenView */,
 			);
 			name = Libraries;
+			sourceTree = "<group>";
+		};
+		EBF1861B1B21D9DE00D8D80D /* KSTokenView */ = {
+			isa = PBXGroup;
+			children = (
+				EBF1861C1B21DACA00D8D80D /* KSToken.swift */,
+				EBF1861D1B21DACA00D8D80D /* KSTokenField.swift */,
+				EBF1861E1B21DACA00D8D80D /* KSTokenView.swift */,
+				EBF1861F1B21DACA00D8D80D /* KSUtils.swift */,
+			);
+			name = KSTokenView;
 			sourceTree = "<group>";
 		};
 		EBFB0CFE1AC009F900CCCB35 /* Obsolate */ = {
@@ -465,7 +482,6 @@
 				EB0926DC1A8DE4CB00E1D958 /* LaunchScreen.xib in Resources */,
 				EB0926D91A8DE4CB00E1D958 /* Images.xcassets in Resources */,
 				EBBF42551AB0AF5F0001E8B6 /* JobCellTableViewCell.xib in Resources */,
-				EBF186161B218EC400D8D80D /* KSTokenView in Resources */,
 				EBEA9B4D1AF26ACB0027A2A2 /* AddJobCell.xib in Resources */,
 				EB35BBA61AB7288000842E1F /* ContactsCell.xib in Resources */,
 			);
@@ -548,6 +564,7 @@
 			files = (
 				EBB338421AA0C365000CAD88 /* InitProfile.swift in Sources */,
 				EBB338331A9F5FF9000CAD88 /* LoginController.swift in Sources */,
+				EBF186201B21DACA00D8D80D /* KSToken.swift in Sources */,
 				EB6F22BA1AAF706A007FF1B8 /* AsyncImage.swift in Sources */,
 				EB04F6201AA72520002F2677 /* RegistrationInput.swift in Sources */,
 				EB000F7F1AB71D6600E4D385 /* ContactsController.swift in Sources */,
@@ -561,10 +578,12 @@
 				EB9F71DF1B0E0060000C2D9F /* MainTabBar.swift in Sources */,
 				EBDD28CE1ACD8ADA00956995 /* SettingsController.swift in Sources */,
 				EB04F6231AAD89AF002F2677 /* Contacts.swift in Sources */,
+				EBF186211B21DACA00D8D80D /* KSTokenField.swift in Sources */,
 				EBB3383C1A9F73D4000CAD88 /* API.swift in Sources */,
 				EBEA9B451AF0D2280027A2A2 /* SettingsItem.swift in Sources */,
 				EBB338461AA0EA46000CAD88 /* BaseController.swift in Sources */,
 				EBBF42591AB1E55F0001E8B6 /* DataProviderProtocol.swift in Sources */,
+				EBF186231B21DACA00D8D80D /* KSUtils.swift in Sources */,
 				EB9F71E11B0E0200000C2D9F /* MainTabItem.swift in Sources */,
 				EB313D2E1AAF37FB00F008B8 /* StatusButton.swift in Sources */,
 				EBB337F81A9F53CA000CAD88 /* NudgeData.xcdatamodeld in Sources */,
@@ -572,6 +591,7 @@
 				EB000F7C1AB2E0B800E4D385 /* DataTableCell.swift in Sources */,
 				EBEA9B491AF265150027A2A2 /* AddJobController.swift in Sources */,
 				EB313D301AAF4C5A00F008B8 /* StatusPicker.swift in Sources */,
+				EBF186221B21DACA00D8D80D /* KSTokenView.swift in Sources */,
 				EBBF42541AB0AF5F0001E8B6 /* JobCellTableViewCell.swift in Sources */,
 				EB2F78091AD288E400B59C0E /* SettingsCell.swift in Sources */,
 				EBEA9B4F1AF274480027A2A2 /* AddJobItem.swift in Sources */,
