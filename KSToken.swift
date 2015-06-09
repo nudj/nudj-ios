@@ -119,9 +119,13 @@ class KSToken : UIControl {
       let context = UIGraphicsGetCurrentContext()
       
       //// Rectangle Drawing
-      
+
+    let drawArea = (borderWidth > 0)
+        ? CGRect(x: rect.origin.x + borderWidth, y: rect.origin.y + borderWidth, width: rect.width - borderWidth * 2, height:  rect.height - borderWidth * 2)
+        : rect
+
       // fill background
-      let rectanglePath = UIBezierPath(roundedRect: rect, cornerRadius: 15)
+      let rectanglePath = UIBezierPath(roundedRect: drawArea, cornerRadius: 15)
       
       var textColor: UIColor
       var backgroundColor: UIColor
@@ -164,12 +168,13 @@ class KSToken : UIControl {
       rectangleStyle.alignment = NSTextAlignment.Center
       let rectangleFontAttributes = [NSFontAttributeName: font, NSForegroundColorAttributeName: textColor, NSParagraphStyleAttributeName: rectangleStyle]
       
-      var maxDrawableHeight = max(rect.height , font.lineHeight)
-      let textHeight: CGFloat = KSUtils.getRect(rectangleTextContent, width: rect.width, height: maxDrawableHeight , font: font).size.height
+      var maxDrawableHeight = max(drawArea.height , font.lineHeight)
+
+    let textHeight: CGFloat = KSUtils.getRect(rectangleTextContent, width: drawArea.width, height: maxDrawableHeight , font: font).size.height
       CGContextSaveGState(context)
-      CGContextClipToRect(context, rect);
+      CGContextClipToRect(context, drawArea);
       
-      let textRect = CGRect(x: rect.minX + paddingX, y: rect.minY + (maxDrawableHeight - textHeight) / 2, width: min(maxWidth, rect.width) - (paddingX*2), height: maxDrawableHeight)
+      let textRect = CGRect(x: drawArea.minX + paddingX, y: drawArea.minY + (maxDrawableHeight - textHeight) / 2, width: min(maxWidth, drawArea.width) - (paddingX*2), height: maxDrawableHeight)
       
       rectangleTextContent.drawInRect(textRect, withAttributes: rectangleFontAttributes)
       CGContextRestoreGState(context)

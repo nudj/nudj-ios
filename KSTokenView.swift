@@ -89,17 +89,17 @@ import UIKit
 */
 class KSTokenView: UIView {
    
-   //MARK: - Private Properties
+   //MARK: - Properties
    //__________________________________________________________________________________
    //
-   private var _tokenField: KSTokenField!
-   private var _searchTableView: UITableView = UITableView(frame: .zeroRect, style: UITableViewStyle.Plain)
-   private var _resultArray = [AnyObject]()
-   private var _showingSearchResult = false
-   private var _indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
-   private var _popover: UIPopoverController?
-   private let _searchResultHeight: CGFloat = 200.0
-   private var _lastSearchString: String = ""
+   var _tokenField: KSTokenField!
+   var _searchTableView: UITableView = UITableView(frame: .zeroRect, style: UITableViewStyle.Plain)
+   var _resultArray = [AnyObject]()
+   var _showingSearchResult = false
+   var _indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+   var _popover: UIPopoverController?
+   let _searchResultHeight: CGFloat = 200.0
+   var _lastSearchString: String = ""
    
    //MARK: - Public Properties
    //__________________________________________________________________________________
@@ -356,7 +356,7 @@ class KSTokenView: UIView {
    //__________________________________________________________________________________
    //
    
-   private func _commonSetup() {
+   func _commonSetup() {
       backgroundColor = UIColor.clearColor()
       _tokenField = KSTokenField(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height))
       _tokenField.textColor = UIColor.blackColor()
@@ -400,15 +400,15 @@ class KSTokenView: UIView {
       _searchTableView.frame.size = CGSize(width: frame.width, height: searchResultSize.height)
    }
    
-   //MARK: - Private Methods
+   //MARK: - Methods
    //__________________________________________________________________________________
    //
    
-   private func _updateTokenField() {
+   func _updateTokenField() {
       _tokenField.parentView = self
    }
    
-   private func _updateTokenFieldLayout(newValue: KSTokenViewStyle) {
+   func _updateTokenFieldLayout(newValue: KSTokenViewStyle) {
       switch (newValue) {
       case .Rounded:
          _tokenField.borderStyle = .RoundedRect
@@ -420,14 +420,14 @@ class KSTokenView: UIView {
       }
    }
    
-   private func _lastToken() -> KSToken? {
+   func _lastToken() -> KSToken? {
       if _tokenField.tokens.count == 0 {
          return nil
       }
       return _tokenField.tokens.last
    }
    
-   private func _removeToken(token: KSToken, removingAll: Bool = false) {
+   func _removeToken(token: KSToken, removingAll: Bool = false) {
       if token.sticky {return}
       if (!removingAll) {
          var shouldRemoveToken: Bool? = true
@@ -448,7 +448,7 @@ class KSTokenView: UIView {
       }
    }
    
-   private func _canAddMoreToken() -> Bool {
+   func _canAddMoreToken() -> Bool {
       if (maxTokenLimit != -1 && _tokenField.tokens.count >= maxTokenLimit) {
          _hideSearchResults()
          return false
@@ -669,23 +669,25 @@ class KSTokenView: UIView {
          self._hideActivityIndicator()
          if (results.count > 0) {
             self._displayData(results)
-         }
+         } else {
+            self._hideSearchResults()
+        }
       })
    }
    
-   private func _displayData(results: Array<AnyObject>) {
+   func _displayData(results: Array<AnyObject>) {
       _resultArray = _filteredSearchResults(results)
       _searchTableView.reloadData()
       _showSearchResults()
    }
    
-   private func _showEmptyResults() {
+   func _showEmptyResults() {
       _resultArray.removeAll(keepCapacity: false)
       _searchTableView.reloadData()
       _showSearchResults()
    }
-   
-   private func _showSearchResults() {
+
+   func _showSearchResults() {
       if (_tokenField.isFirstResponder()) {
          _showingSearchResult = true
          if (KSUtils.isIpad()) {
@@ -699,7 +701,7 @@ class KSTokenView: UIView {
       }
    }
    
-   private func _hideSearchResults() {
+   func _hideSearchResults() {
       _showingSearchResult = false
       if (KSUtils.isIpad()) {
          _popover?.dismissPopoverAnimated(false)
@@ -710,7 +712,7 @@ class KSTokenView: UIView {
       }
    }
    
-   private func _repositionSearchResults() {
+   func _repositionSearchResults() {
       if (!_showingSearchResult) {
          return
       }
@@ -730,7 +732,7 @@ class KSTokenView: UIView {
       
    }
    
-   private func _filteredSearchResults(results: Array <AnyObject>) -> Array <AnyObject> {
+   func _filteredSearchResults(results: Array <AnyObject>) -> Array <AnyObject> {
       var filteredResults: Array<AnyObject> = Array()
       
       for object: AnyObject in results {
@@ -761,17 +763,17 @@ class KSTokenView: UIView {
       return filteredResults
    }
    
-   private func _sortStringForObject(object: AnyObject) -> String {
+   func _sortStringForObject(object: AnyObject) -> String {
       let title = (delegate?.tokenView(self, displayTitleForObject: object))!
       return title
    }
    
-   private func _showActivityIndicator() {
+   func _showActivityIndicator() {
       _indicator.startAnimating()
       _searchTableView.tableHeaderView = _indicator
    }
    
-   private func _hideActivityIndicator() {
+   func _hideActivityIndicator() {
       _indicator.stopAnimating()
       _searchTableView.tableHeaderView = nil
    }
@@ -815,7 +817,7 @@ extension KSTokenView : KSTokenFieldDelegate {
       UIView.animateWithDuration(
          animateDuration,
          animations: {
-            //            self._tokenField.frame.size.height = height
+//                        self._tokenField.frame.size.height = height
             self.frame.size.height = height
             
             if (KSUtils.constrainsEnabled(self)) {

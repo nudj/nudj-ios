@@ -67,6 +67,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.user!.status = obj.valueForKey("status") == nil ? 0 : Int32(obj.valueForKey("status") as! Int)
             }
 
+            println("User: \(self.user)")
+
         } else {
             println("Could not fetch \(error), \(error!.userInfo)")
         }

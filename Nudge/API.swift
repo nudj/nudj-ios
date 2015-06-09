@@ -28,6 +28,21 @@ class API {
         self.request(method, path: path, params: params, closure: closure, token: nil, errorHandler: errorHandler)
     }
 
+    // MARK: Standard Requests Without token
+    func get(path: String, params: [String: AnyObject]? = nil, closure: (JSON) -> (), errorHandler: ((NSError) -> Void)? ) {
+        self.request(Method.GET, path: path, params: params, closure: closure, token: nil, errorHandler: errorHandler)
+    }
+
+    func post(path: String, params: [String: AnyObject]? = nil, closure: (JSON) -> (), errorHandler: ((NSError) -> Void)? ) {
+        self.request(Method.POST, path: path, params: params, closure: closure, token: nil, errorHandler: errorHandler)
+    }
+
+    func put(path: String, params: [String: AnyObject]? = nil, closure: (JSON) -> (), errorHandler: ((NSError) -> Void)? ) {
+        self.request(Method.PUT, path: path, params: params, closure: closure, token: nil, errorHandler: errorHandler)
+    }
+
+    // MARK: General request
+
     func request(method: Alamofire.Method, path: String, params: [String: AnyObject]? = nil, closure: (JSON) -> (), token: String?, errorHandler: ((NSError) -> Void)? ) {
         let manager = Manager.sharedInstance
 

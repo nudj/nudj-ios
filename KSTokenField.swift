@@ -566,12 +566,7 @@ class KSTokenField: UITextField {
                title = title.substringWithRange(Range<String.Index>(start: advance(title.startIndex, 0), end: advance(title.endIndex, -count(_separatorText!))))
             }
             
-            var width = KSUtils.widthOfString(title, font: font)
-            if width + _leftViewRect().width > bounds.width {
-               text = "\(tokens.count) \(_descriptionText)"
-            } else {
-               text = title
-            }
+            text = title
          }
          break
       }

@@ -45,6 +45,7 @@
 		EBD1073E1AF0B8F800310818 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDD460F204898DA0004C5B93 /* Pods.framework */; };
 		EBD1073F1AF0B8F800310818 /* Pods.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FDD460F204898DA0004C5B93 /* Pods.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EBDD28CE1ACD8ADA00956995 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDD28CD1ACD8ADA00956995 /* SettingsController.swift */; };
+		EBE5C3121B25811400CFF7E9 /* TokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE5C3111B25811400CFF7E9 /* TokenView.swift */; };
 		EBEA9B451AF0D2280027A2A2 /* SettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA9B441AF0D2280027A2A2 /* SettingsItem.swift */; };
 		EBEA9B491AF265150027A2A2 /* AddJobController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA9B481AF265150027A2A2 /* AddJobController.swift */; };
 		EBEA9B4C1AF26ACB0027A2A2 /* AddJobCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA9B4A1AF26ACB0027A2A2 /* AddJobCell.swift */; };
@@ -125,6 +126,7 @@
 		EBBF42561AB1DEFF0001E8B6 /* DataTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTable.swift; sourceTree = "<group>"; };
 		EBBF42581AB1E55F0001E8B6 /* DataProviderProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProviderProtocol.swift; sourceTree = "<group>"; };
 		EBDD28CD1ACD8ADA00956995 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		EBE5C3111B25811400CFF7E9 /* TokenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenView.swift; sourceTree = "<group>"; };
 		EBEA9B441AF0D2280027A2A2 /* SettingsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsItem.swift; sourceTree = "<group>"; };
 		EBEA9B481AF265150027A2A2 /* AddJobController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddJobController.swift; sourceTree = "<group>"; };
 		EBEA9B4A1AF26ACB0027A2A2 /* AddJobCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddJobCell.swift; sourceTree = "<group>"; };
@@ -205,7 +207,6 @@
 		EB0926C11A8DE4CB00E1D958 = {
 			isa = PBXGroup;
 			children = (
-				EBF1861A1B21D9D500D8D80D /* Libraries */,
 				EB6189471B04F78D00CAA623 /* Crashlytics.framework */,
 				EB0926CC1A8DE4CB00E1D958 /* Nudge */,
 				EB0926E41A8DE4CB00E1D958 /* NudgeTests */,
@@ -238,6 +239,7 @@
 				EB0926D81A8DE4CB00E1D958 /* Images.xcassets */,
 				EB0926DA1A8DE4CB00E1D958 /* LaunchScreen.xib */,
 				EBB337F91A9F5557000CAD88 /* DataModel */,
+				EBF1861A1B21D9D500D8D80D /* Libraries */,
 				EBB337FC1A9F5826000CAD88 /* Frameworks */,
 				EB0926CD1A8DE4CB00E1D958 /* Supporting Files */,
 				EBFB0CFE1AC009F900CCCB35 /* Obsolate */,
@@ -283,6 +285,7 @@
 				EBBF42581AB1E55F0001E8B6 /* DataProviderProtocol.swift */,
 				EB9F71DE1B0E0060000C2D9F /* MainTabBar.swift */,
 				EB9F71E01B0E0200000C2D9F /* MainTabItem.swift */,
+				EBE5C3111B25811400CFF7E9 /* TokenView.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				EBF1861B1B21D9DE00D8D80D /* KSTokenView */,
 			);
 			name = Libraries;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		EBF1861B1B21D9DE00D8D80D /* KSTokenView */ = {
@@ -579,6 +583,7 @@
 				EBDD28CE1ACD8ADA00956995 /* SettingsController.swift in Sources */,
 				EB04F6231AAD89AF002F2677 /* Contacts.swift in Sources */,
 				EBF186211B21DACA00D8D80D /* KSTokenField.swift in Sources */,
+				EBE5C3121B25811400CFF7E9 /* TokenView.swift in Sources */,
 				EBB3383C1A9F73D4000CAD88 /* API.swift in Sources */,
 				EBEA9B451AF0D2280027A2A2 /* SettingsItem.swift in Sources */,
 				EBB338461AA0EA46000CAD88 /* BaseController.swift in Sources */,

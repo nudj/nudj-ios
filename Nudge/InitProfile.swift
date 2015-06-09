@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate, KSTokenViewDelegate {
+class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
 
     let msgTitle = "Choose Image Source"
 
@@ -22,7 +22,6 @@ class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePicker
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var aboutMeField: UITextView!
     @IBOutlet weak var nextButton: UIBarButtonItem!
-    @IBOutlet weak var skills: KSTokenView!
 
     var activeTextField:UIView? = nil
     var openSpace:CGFloat = 0
@@ -59,9 +58,6 @@ class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePicker
         self.profilePhoto.addGestureRecognizer(gesture)
 
         statusButton.changeColor(UIColor.lightGrayColor())
-
-//        skills.delegate = self
-//        skills.promptText = ""
 
         UserModel.getCurrent(["user.name", "user.image"], closure: { result in
             self.nameLabel.text = result["data"]["name"].stringValue
@@ -189,24 +185,6 @@ class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePicker
     func textViewShouldEndEditing(textView: UITextView) -> Bool {
         textView.resignFirstResponder()
         return true
-    }
-
-    // MARK: KSTokenViewDelegate
-
-    func tokenView(token: KSTokenView, performSearchWithString string: String, completion: ((results: Array<AnyObject>) -> Void)?) {
-        self.apiRequest(Method.GET, path: "skills/suggest/" + string, closure: { result in
-            var data: Array<String> = result["data"].arrayObject as! Array<String>
-            println(data)
-            completion!(results: data)
-        })
-    }
-
-    func tokenView(token: KSTokenView, displayTitleForObject object: AnyObject) -> String {
-        return object as! String
-    }
-
-    func tokenViewDidBeginEditing(tokenView: KSTokenView) {
-        activeTextField = tokenView
     }
 
     // MARK: Scroll Management

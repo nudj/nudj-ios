@@ -10,7 +10,7 @@ import Foundation
 import SwiftyJSON
 import Alamofire
 
-class UserModel {
+class UserModel: Printable {
 
     var id: Int32?
     var name: String?
@@ -18,6 +18,10 @@ class UserModel {
     var completed: Bool = false
     var addressBookAccess = false
     var status: Int32? = 0
+
+    var description:String {
+        return "UserModel: id: \(id), name: \(name), completed: \(completed ? 1 : 0), status: \(status)"
+    }
 
     init() {
         

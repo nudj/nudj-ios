@@ -596,40 +596,6 @@
                                                     <constraint firstAttribute="width" constant="335" id="qUd-z0-Yp8"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tdu-Qe-djm" userLabel="Skills View">
-                                                <rect key="frame" x="0.0" y="106" width="414" height="100"/>
-                                                <subviews>
-                                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="user_image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="i5r-zg-Q8P">
-                                                        <rect key="frame" x="8" y="8" width="21" height="21"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="21" id="8FO-B1-nCI"/>
-                                                            <constraint firstAttribute="width" constant="21" id="mgE-lC-2Ue"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Skills" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f9t-Ft-qVj">
-                                                        <rect key="frame" x="37" y="8" width="377" height="21"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="21" id="vNh-UR-tDZ"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" red="0.58823529409999997" green="0.58823529409999997" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F3t-ez-kh9" customClass="KSTokenView" customModule="Nudge" customModuleProvider="target">
-                                                        <rect key="frame" x="37" y="42" width="369" height="50"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </view>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstItem="f9t-Ft-qVj" firstAttribute="top" secondItem="Tdu-Qe-djm" secondAttribute="top" constant="8" id="3f1-Ir-1Ue"/>
-                                                    <constraint firstItem="f9t-Ft-qVj" firstAttribute="leading" secondItem="i5r-zg-Q8P" secondAttribute="trailing" constant="8" id="90C-aw-P7L"/>
-                                                    <constraint firstItem="i5r-zg-Q8P" firstAttribute="leading" secondItem="Tdu-Qe-djm" secondAttribute="leading" constant="8" id="Gy8-rm-OrT"/>
-                                                    <constraint firstAttribute="trailing" secondItem="f9t-Ft-qVj" secondAttribute="trailing" id="Jo3-07-3Sz"/>
-                                                    <constraint firstAttribute="height" constant="100" id="oKE-c9-JLS"/>
-                                                    <constraint firstItem="i5r-zg-Q8P" firstAttribute="top" secondItem="Tdu-Qe-djm" secondAttribute="top" constant="8" id="yN0-g2-BWH"/>
-                                                </constraints>
-                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gSb-np-M1I" userLabel="Separator 2">
                                                 <rect key="frame" x="79" y="206" width="335" height="1"/>
                                                 <color key="backgroundColor" red="0.94586116075515747" green="0.94583284854888916" blue="0.94584894180297852" alpha="1" colorSpace="calibratedRGB"/>
@@ -666,6 +632,56 @@
                                                     <constraint firstItem="spQ-EU-FFP" firstAttribute="leading" secondItem="tFW-xo-igr" secondAttribute="leading" constant="8" id="cKS-nT-rg7"/>
                                                     <constraint firstAttribute="height" constant="84" id="iK3-Of-8PK"/>
                                                     <constraint firstItem="XEy-IL-utB" firstAttribute="top" secondItem="tFW-xo-igr" secondAttribute="top" constant="8" id="v2V-M4-8VP"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tdu-Qe-djm" userLabel="Skills View">
+                                                <rect key="frame" x="0.0" y="106" width="414" height="100"/>
+                                                <subviews>
+                                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="user_image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="i5r-zg-Q8P">
+                                                        <rect key="frame" x="8" y="8" width="21" height="21"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="21" id="8FO-B1-nCI"/>
+                                                            <constraint firstAttribute="width" constant="21" id="mgE-lC-2Ue"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Skills" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f9t-Ft-qVj">
+                                                        <rect key="frame" x="37" y="8" width="377" height="21"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="21" id="vNh-UR-tDZ"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" red="0.58823529409999997" green="0.58823529409999997" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F3t-ez-kh9" customClass="TokenView" customModule="Nudge" customModuleProvider="target">
+                                                        <rect key="frame" x="37" y="42" width="369" height="50"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="autocompleteEndpoint" value="skills/suggest"/>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="tokenBackgroundColor">
+                                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="tokenTextColor">
+                                                                <color key="value" red="0.087011836469173431" green="0.50277942419052124" blue="0.68618696928024292" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="tokenBorderColor">
+                                                                <color key="value" red="0.087011836470000006" green="0.50277942419999999" blue="0.6861869693" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="f9t-Ft-qVj" firstAttribute="top" secondItem="Tdu-Qe-djm" secondAttribute="top" constant="8" id="3f1-Ir-1Ue"/>
+                                                    <constraint firstAttribute="bottom" secondItem="F3t-ez-kh9" secondAttribute="bottom" constant="8" id="5sI-cM-IhU"/>
+                                                    <constraint firstItem="F3t-ez-kh9" firstAttribute="top" secondItem="f9t-Ft-qVj" secondAttribute="bottom" constant="13" id="8ko-TT-L4F"/>
+                                                    <constraint firstItem="f9t-Ft-qVj" firstAttribute="leading" secondItem="i5r-zg-Q8P" secondAttribute="trailing" constant="8" id="90C-aw-P7L"/>
+                                                    <constraint firstItem="i5r-zg-Q8P" firstAttribute="leading" secondItem="Tdu-Qe-djm" secondAttribute="leading" constant="8" id="Gy8-rm-OrT"/>
+                                                    <constraint firstAttribute="trailing" secondItem="f9t-Ft-qVj" secondAttribute="trailing" id="Jo3-07-3Sz"/>
+                                                    <constraint firstItem="F3t-ez-kh9" firstAttribute="leading" secondItem="f9t-Ft-qVj" secondAttribute="leading" id="aWZ-LM-zDR"/>
+                                                    <constraint firstAttribute="height" constant="100" id="oKE-c9-JLS"/>
+                                                    <constraint firstItem="F3t-ez-kh9" firstAttribute="trailing" secondItem="Tdu-Qe-djm" secondAttribute="trailingMargin" id="x4Y-7e-7dq"/>
+                                                    <constraint firstItem="i5r-zg-Q8P" firstAttribute="top" secondItem="Tdu-Qe-djm" secondAttribute="top" constant="8" id="yN0-g2-BWH"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -783,7 +799,6 @@
                         <outlet property="nextButton" destination="q6p-o6-BJM" id="6gr-iL-Nmu"/>
                         <outlet property="profilePhoto" destination="GeY-dg-YuP" id="HDQ-rM-g8G"/>
                         <outlet property="scrollView" destination="smp-rK-aNl" id="Fol-TB-Tp6"/>
-                        <outlet property="skills" destination="F3t-ez-kh9" id="gCH-pe-CvI"/>
                         <outlet property="statusButton" destination="xYk-9i-uqx" id="IlW-7K-Wse"/>
                         <outlet property="topView" destination="MaM-1e-UFb" id="erA-3Y-DB2"/>
                         <segue destination="F3c-zd-gaG" kind="show" identifier="showStatusPicker" id="1RO-e0-4AP"/>
