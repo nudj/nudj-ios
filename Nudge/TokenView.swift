@@ -212,4 +212,11 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
         }
     }
 
+    func tokenView(tokenView: KSTokenView, didSelectToken token: KSToken) {
+        if (!_tokenField.isFirstResponder()) {
+            _tokenField.becomeFirstResponder()
+            _tokenField.selectToken(token)
+        }
+    }
+
 }

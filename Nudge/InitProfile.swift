@@ -14,8 +14,20 @@ class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePicker
 
     let msgTitle = "Choose Image Source"
 
-    @IBOutlet weak var statusButton: StatusButton!
-    @IBOutlet weak var profilePhoto: AsyncImage!
+    @IBOutlet weak var statusButton: StatusButton! {
+        didSet {
+            statusButton.changeColor(UIColor.lightGrayColor())
+        }
+    }
+    
+    @IBOutlet weak var profilePhoto: AsyncImage! {
+        didSet {
+            let gesture = UITapGestureRecognizer(target: self, action: "pickLibrary")
+            gesture.numberOfTapsRequired = 1
+            profilePhoto.addGestureRecognizer(gesture)
+        }
+    }
+
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var backgroundImage: AsyncImage!
@@ -23,10 +35,20 @@ class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePicker
     @IBOutlet weak var nextButton: UIBarButtonItem!
 
     @IBOutlet weak var skillsIcon: UIImageView!
-    @IBOutlet weak var skills: TokenView!
+    @IBOutlet weak var skills: TokenView! {
+        didSet {
+            skills.startEditClosure = scrollToSuperView
+            skills.changedClosure = updateSkills
+        }
+    }
 
     @IBOutlet weak var findMeIcon: UIImageView!
-    @IBOutlet weak var findMe: TokenView!
+    @IBOutlet weak var findMe: TokenView! {
+        didSet {
+            findMe.startEditClosure = scrollToSuperView
+            findMe.changedClosure = updateFindMe
+        }
+    }
 
     @IBOutlet weak var aboutMeIcon: UIImageView!
     @IBOutlet weak var aboutMeField: UITextView!
@@ -70,21 +92,6 @@ class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePicker
         super.viewWillDisappear(animated)
 
         NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        let gesture = UITapGestureRecognizer(target: self, action: "pickLibrary")
-        gesture.numberOfTapsRequired = 1
-        self.profilePhoto.addGestureRecognizer(gesture)
-
-        statusButton.changeColor(UIColor.lightGrayColor())
-
-        skills.startEditClosure = scrollToSuperView
-        skills.changedClosure = updateSkills
-        findMe.startEditClosure = scrollToSuperView
-        findMe.changedClosure = updateFindMe
     }
 
     func setInitialStatus(status: Bool) {
