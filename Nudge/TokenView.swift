@@ -23,8 +23,15 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
     @IBInspectable
     var tokenBorderColor:UIColor? = nil
 
+    @IBInspectable
+    var tokenBorderWidth:CGFloat = 0
 
     var suggestionsParent:UIView? = nil
+
+    var startEditClosure:((TokenView)->())? = nil
+    var changedClosure:((TokenView)->())? = nil
+
+    var setupMode = false
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -62,9 +69,24 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
         shouldSortResultsAlphabatically = false
     }
 
+    func fillTokens(tokens:[String]) {
+        setupMode = true
+        for t in tokens {
+            addTokenWithTitle(t)
+        }
+        _tokenField.tokenize()
+        setupMode = false
+    }
+
     override func _showSearchResults() {
         if (_tokenField.isFirstResponder()) {
+
+            if (_showingSearchResult) {
+                return
+            }
+
             _showingSearchResult = true
+
             if (KSUtils.isIpad()) {
                 _popover?.presentPopoverFromRect(_tokenField.frame, inView: _tokenField, permittedArrowDirections: .Up, animated: false)
 
@@ -73,13 +95,15 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
                     parent.addSubview(_searchTableView)
                     let point = parent.convertPoint(CGPoint(x: 0, y: bounds.height), fromView: self)
                     _searchTableView.frame.origin = point
-                    _searchTableView.hidden = false
                 } else {
                     addSubview(_searchTableView)
                     _searchTableView.frame.origin = CGPoint(x: 0, y: bounds.height)
-                    _searchTableView.hidden = false
                 }
+
+                _searchTableView.hidden = false
+                resizeSearchTable()
             }
+
         }
     }
 
@@ -100,22 +124,25 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
             if let parent = suggestionsParent {
                 let point = parent.convertPoint(CGPoint(x: 0, y: bounds.height), fromView: self)
                 _searchTableView.frame.origin = point
-                _searchTableView.layoutIfNeeded()
             } else {
                 _searchTableView.frame.origin = CGPoint(x: 0, y: bounds.height)
-                _searchTableView.layoutIfNeeded()
             }
+
+            resizeSearchTable()
         }
         
     }
 
-    override func addToken(token: KSToken) -> KSToken? {
-        prepareToken(token)
-
-        return super.addToken(token)
+    func resizeSearchTable() {
+        if (_resultArray.count <= 0) {
+            _hideSearchResults()
+        } else {
+            _searchTableView.layoutIfNeeded()
+            _searchTableView.frame.size = _searchTableView.contentSize
+        }
     }
 
-    func prepareToken(token: KSToken) {
+    func prepareToken(token: KSToken) -> KSToken {
         if (tokenBackgroundColor != nil) {
             token.tokenBackgroundColor = tokenBackgroundColor!
         }
@@ -125,12 +152,18 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
         }
 
         if (tokenBorderColor != nil) {
-            token.borderWidth = 1
+            token.borderWidth = self.tokenBorderWidth
             token.borderColor = tokenBorderColor!
         }
+
+        return token
     }
 
     // MARK: KSTokenViewDelegate
+
+    func tokenView(tokenView: KSTokenView, shouldChangeAppearanceForToken token: KSToken) -> KSToken? {
+        return prepareToken(token)
+    }
 
     func tokenView(token: KSTokenView, performSearchWithString string: String, completion: ((results: Array<AnyObject>) -> Void)?) {
         if var path = self.autocompleteEndpoint {
@@ -143,14 +176,16 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
 
             API.sharedInstance.get(path, params: nil, closure: { result in
                 if let data: Array<String> = result["data"].arrayObject as? Array<String> {
-                    println(data)
                     completion!(results: data)
+                } else {
+                    completion!(results: [String]())
                 }
-//                var data: Array<String> = result["data"].arrayObject as! Array<String>
-//                println(data)
-//                completion!(results: data)
-            }, errorHandler: { _ in
 
+                self._repositionSearchResults()
+
+            }, errorHandler: { _ in
+                completion!(results: [String]())
+                self._repositionSearchResults()
             })
         }
     }
@@ -159,13 +194,22 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
         return object as! String
     }
 
-    func tokenView(tokenView: KSTokenView, didChangeFrame frame: CGRect) {
-        UIView.animateWithDuration(0.25, animations: { _ in
-            if var parentFrame = self.superview?.superview?.frame {
-                parentFrame.size.height = self.frame.origin.y + self.frame.height
-                self.superview!.superview!.frame = parentFrame
-            }
-        })
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if (startEditClosure != nil) {
+            startEditClosure!(self)
+        }
+    }
+
+    func tokenView(tokenView: KSTokenView, didAddToken token: KSToken) {
+        if (!setupMode && self.changedClosure != nil) {
+            self.changedClosure!(self)
+        }
+    }
+
+    func tokenView(tokenView: KSTokenView, didDeleteToken token: KSToken) {
+        if (!setupMode && self.changedClosure != nil) {
+            self.changedClosure!(self)
+        }
     }
 
 }

@@ -8,7 +8,8 @@
 
 import UIKit
 
-class AddJobController: BaseController, UITableViewDataSource, UITableViewDelegate {
+@IBDesignable
+class AddJobController: UITableViewController {
 
     let cellIdentifier = "AddJobCell"
 
@@ -38,26 +39,26 @@ class AddJobController: BaseController, UITableViewDataSource, UITableViewDelega
     }
 
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return structure.count;
-    }
-
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AddJobCell
-        let data = structure[indexPath.row]
-
-        cell.setup(data.type, image: data.image, placeholder: data.placeholder)
-
-        return cell
-    }
-
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        let placeholder = structure[indexPath.section][indexPath.row].placeholder
+//    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+//        return 1
+//    }
 //
-//        performSegueWithIdentifier(placeholder, sender: self)
-    }
+//    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return structure.count;
+//    }
+//
+//    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AddJobCell
+//        let data = structure[indexPath.row]
+//
+//        cell.setup(data.type, image: data.image, placeholder: data.placeholder)
+//
+//        return cell
+//    }
+//
+//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+////        let placeholder = structure[indexPath.section][indexPath.row].placeholder
+////
+////        performSegueWithIdentifier(placeholder, sender: self)
+//    }
 }

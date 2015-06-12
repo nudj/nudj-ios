@@ -20,10 +20,18 @@ class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePicker
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var backgroundImage: AsyncImage!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var aboutMeField: UITextView!
     @IBOutlet weak var nextButton: UIBarButtonItem!
 
-    var activeTextField:UIView? = nil
+    @IBOutlet weak var skillsIcon: UIImageView!
+    @IBOutlet weak var skills: TokenView!
+
+    @IBOutlet weak var findMeIcon: UIImageView!
+    @IBOutlet weak var findMe: TokenView!
+
+    @IBOutlet weak var aboutMeIcon: UIImageView!
+    @IBOutlet weak var aboutMeField: UITextView!
+    @IBOutlet weak var aboutMeFieldHeight: NSLayoutConstraint!
+
     var openSpace:CGFloat = 0
 
     var imagePicker = UIImagePickerController()
@@ -33,7 +41,16 @@ class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePicker
 
         self.registerNotification()
 
-        UserModel.getById(0, fields: ["user.status"], closure: { result in
+        // Get Local Values for the user
+        UserModel.getLocal({user in
+            if (user == nil) {
+                return
+            }
+
+            self.nameLabel.text = user!.name
+        })
+
+        UserModel.getCurrent(["user.status", "user.name", "user.image", "user.skills"], closure: { result in
             let status = result["data"]["status"]
 
             if status.stringValue != "" {
@@ -41,6 +58,11 @@ class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePicker
                 self.statusButton.changeColor(UIColor.whiteColor())
             }
 
+            self.nameLabel.text = result["data"]["name"].stringValue
+            self.showUserImage(result["data"]["image"])
+
+            let tokensJSON:[JSON] = result["data"]["skills"].arrayValue
+            self.skills.fillTokens(tokensJSON.map{ return $0["name"].stringValue })
         })
     }
 
@@ -59,10 +81,10 @@ class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePicker
 
         statusButton.changeColor(UIColor.lightGrayColor())
 
-        UserModel.getCurrent(["user.name", "user.image"], closure: { result in
-            self.nameLabel.text = result["data"]["name"].stringValue
-            self.showUserImage(result["data"]["image"])
-        })
+        skills.startEditClosure = scrollToSuperView
+        skills.changedClosure = updateSkills
+        findMe.startEditClosure = scrollToSuperView
+        findMe.changedClosure = updateFindMe
     }
 
     func setInitialStatus(status: Bool) {
@@ -79,6 +101,108 @@ class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePicker
         nameLabel.textColor = UIColor.whiteColor()
         statusButton.changeColor(UIColor.whiteColor())
     }
+
+    // MARK: User Update functions
+
+    func updateUserName(userName: String) -> Void {
+
+        UserModel.update(["name": userName], closure: { result in
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
+            appDelegate.user!.name = userName
+            appDelegate.pushUserData()
+        })
+
+    }
+
+    func updateAbout(text: String) -> Void {
+        UserModel.update(["about": text], closure: {response in println(response)})
+    }
+
+    // MARK: TokenView Management
+
+    func updateSkills(view:TokenView) {
+        skillsIcon.highlighted = view.tokens()?.count > 0
+
+        if (view.tokens() == nil) {
+            UserModel.update(["skills": [String]()])
+        } else {
+            let skillsArray = view.tokens()!.map({token in return token.title})
+            UserModel.update(["skills": skillsArray])
+        }
+    }
+
+    func updateFindMe(view:TokenView) {
+        findMeIcon.highlighted = view.tokens()?.count > 0
+    }
+
+    // MARK: TextFieldDelegate
+
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.updateUserName(textField.text)
+        textField.resignFirstResponder()
+
+        return true
+    }
+
+    // MARK: TextViewDelegate
+
+    func textViewShouldBeginEditing(textView: UITextView) -> Bool {
+        scrollToSuperView(textView)
+        
+        return true
+    }
+
+    func textViewDidChange(textView: UITextView) {
+        aboutMeIcon.highlighted = count(textView.text) > 0
+    }
+
+    func textViewShouldEndEditing(textView: UITextView) -> Bool {
+        textView.resignFirstResponder()
+
+        updateAbout(textView.text)
+
+        return true
+    }
+
+    // MARK: Scroll Management
+
+    func keyboardWillBeShown(sender: NSNotification) {
+        let info: NSDictionary = sender.userInfo!
+        let value: NSValue = info.valueForKey(UIKeyboardFrameBeginUserInfoKey) as! NSValue
+        let keyboardSize: CGSize = value.CGRectValue().size
+        let contentInsets: UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0)
+
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+
+        self.openSpace = scrollView.frame.height - keyboardSize.height;
+    }
+
+    func keyboardWillBeHidden(sender: NSNotification) {
+        let contentInsets: UIEdgeInsets = UIEdgeInsetsZero
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+        scrollView.layoutIfNeeded()
+    }
+
+    func scrollToSuperView(view: UIView) {
+        if (view.superview == nil) {
+            return;
+        }
+
+        scrollView.setContentOffset(view.superview!.frame.origin, animated: true)
+    }
+
+    // MARK: Notifications Management
+
+    func registerNotification() {
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: "keyboardWillBeShown:", name: UIKeyboardDidShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
+    }
+
+
+    // MARK: - Image management
 
     func pickLibrary() {
         var alert = UIAlertController(title: self.msgTitle, message: nil, preferredStyle: UIAlertControllerStyle.Alert)
@@ -134,99 +258,10 @@ class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePicker
                 self.showUserImage(imageResponse["data"]["image"])
             })
 
-        }, errorHandler: {_ in
-            self.profilePhoto.stopActivity()
-            self.backgroundImage.stopActivity()
+            }, errorHandler: {_ in
+                self.profilePhoto.stopActivity()
+                self.backgroundImage.stopActivity()
         })
-    }
-
-    // MARK: User Update functions
-
-    func updateUserName(userName: String) -> Void {
-
-        self.apiRequest(.PUT, path: "users", params: ["name": userName], closure: { _ in
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
-            appDelegate.user!.name = userName
-            appDelegate.pushUserData()
-        })
-    }
-
-    func updateAbout(text: String) -> Void {
-
-        self.apiRequest(.PUT, path: "users", params: ["about": text], closure: { _ in
-            // TODO:
-        })
-    }
-
-    // MARK: TextFieldDelegate
-
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        self.updateUserName(textField.text)
-        textField.resignFirstResponder()
-
-        return true
-    }
-
-    func textFieldDidBeginEditing(textField: UITextField) {
-        if (textField == nameLabel) {
-            self.updateUserName(textField.text)
-        } else {
-            activeTextField = textField
-        }
-    }
-
-    // MARK: UITextViewDelegate
-
-    func textViewDidBeginEditing(textView: UITextView) {
-        activeTextField = textView
-        self.scrollToField()
-    }
-
-    func textViewShouldEndEditing(textView: UITextView) -> Bool {
-        textView.resignFirstResponder()
-        return true
-    }
-
-    // MARK: Scroll Management
-
-    func keyboardWillBeShown(sender: NSNotification) {
-        let info: NSDictionary = sender.userInfo!
-        let value: NSValue = info.valueForKey(UIKeyboardFrameBeginUserInfoKey) as! NSValue
-        let keyboardSize: CGSize = value.CGRectValue().size
-        let contentInsets: UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0)
-
-        scrollView.contentInset = contentInsets
-        scrollView.scrollIndicatorInsets = contentInsets
-
-        self.openSpace = scrollView.frame.height - keyboardSize.height;
-
-        println("scrollView", scrollView.frame.height)
-        println("Keyboard", keyboardSize.height)
-
-        self.scrollToField()
-    }
-
-    func keyboardWillBeHidden(sender: NSNotification) {
-        let contentInsets: UIEdgeInsets = UIEdgeInsetsZero
-        scrollView.contentInset = contentInsets
-        scrollView.scrollIndicatorInsets = contentInsets
-    }
-
-    func scrollToField() {
-        if (activeTextField == nil) {
-            return;
-        }
-
-        scrollView.scrollRectToVisible(activeTextField!.superview!.frame, animated:true)
-    }
-
-    // MARK: Notifications Management
-
-    func registerNotification() {
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: "keyboardWillBeShown:", name: UIKeyboardDidShowNotification, object: nil)
-        notificationCenter.addObserver(self, selector: "keyboardWillBeShown:", name: UIKeyboardDidChangeFrameNotification, object: nil)
-        notificationCenter.addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
     }
 
     // MARK: - Navigation

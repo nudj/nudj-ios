@@ -121,7 +121,7 @@ class KSToken : UIControl {
       //// Rectangle Drawing
 
     let drawArea = (borderWidth > 0)
-        ? CGRect(x: rect.origin.x + borderWidth, y: rect.origin.y + borderWidth, width: rect.width - borderWidth * 2, height:  rect.height - borderWidth * 2)
+        ? rect //CGRect(x: rect.origin.x, y: rect.origin.y + borderWidth, width: rect.width + borderWidth * 2, height:  rect.height - borderWidth * 2)
         : rect
 
       // fill background
@@ -170,7 +170,7 @@ class KSToken : UIControl {
       
       var maxDrawableHeight = max(drawArea.height , font.lineHeight)
 
-    let textHeight: CGFloat = KSUtils.getRect(rectangleTextContent, width: drawArea.width, height: maxDrawableHeight , font: font).size.height
+      let textHeight: CGFloat = KSUtils.getRect(rectangleTextContent, width: drawArea.width, height: maxDrawableHeight , font: font).size.height
       CGContextSaveGState(context)
       CGContextClipToRect(context, drawArea);
       
@@ -181,9 +181,10 @@ class KSToken : UIControl {
       
       // Border
       if (self.borderWidth > 0.0 && self.borderColor != UIColor.clearColor()) {
+         let borderPath = UIBezierPath(roundedRect: CGRect(x: drawArea.minX + borderWidth, y: drawArea.minY + borderWidth, width: drawArea.width - borderWidth * 2, height: drawArea.height - borderWidth * 2), cornerRadius: 15)
          self.borderColor.setStroke()
-         rectanglePath.lineWidth = self.borderWidth
-         rectanglePath.stroke()
+         borderPath.lineWidth = self.borderWidth
+         borderPath.stroke()
       }
    }
 }

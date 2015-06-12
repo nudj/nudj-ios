@@ -103,6 +103,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="7Kb-cS-OJp" firstAttribute="top" secondItem="Zuf-wv-kLx" secondAttribute="bottom" constant="8" id="C2Y-jc-1Ga"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Zuf-wv-kLx" secondAttribute="trailing" id="EGt-7K-jpC"/>
@@ -127,6 +128,7 @@
                     <constraint firstItem="T5K-wM-kd7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="u72-DJ-Pqj"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="bonusAmount" destination="TpL-j8-F0W" id="oKF-Ea-lN3"/>
                 <outlet property="company" destination="ZOA-2V-UsG" id="Lgg-3C-Mff"/>

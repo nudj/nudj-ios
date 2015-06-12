@@ -9,6 +9,7 @@
 import UIKit
 import SwiftyJSON
 
+@IBDesignable
 class MainFeed: BaseController, DataProviderProtocol {
 
     @IBOutlet weak var table: DataTable!
@@ -30,4 +31,3 @@ class MainFeed: BaseController, DataProviderProtocol {
     }
 
 }
-

@@ -14,10 +14,14 @@ enum AddJobbCellType {
     case Tags
 }
 
+@IBDesignable
 class AddJobCell: UITableViewCell, UITextFieldDelegate, UITextViewDelegate {
 
     @IBOutlet weak var thumb: UIImageView!
+
+    @IBInspectable
     @IBOutlet weak var textField: UITextField!
+
     @IBOutlet weak var textView: UITextView!
 
     var isFilled = false

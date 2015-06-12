@@ -33,6 +33,11 @@ class UserModel: Printable {
         self.token = token;
     }
 
+    static func getLocal(closure: ((UserModel?) -> ())) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
+        closure(appDelegate.user)
+    }
+
     static func getCurrent(fields:[String]?, closure: ((JSON) -> ())? = nil, errorHandler: ((NSError) -> Void)? = nil) {
         UserModel.getById(0, fields: fields, closure: closure, errorHandler: errorHandler)
     }
@@ -53,6 +58,13 @@ class UserModel: Printable {
             : "\(id)"
 
         API.sharedInstance.request(Alamofire.Method.GET, path: "users/\(userId)?params=\(userFields)", params: params, closure: closure!, errorHandler: errorHandler)
+    }
+
+    static func update(fields: [String: AnyObject], closure: ((JSON) -> ())? = nil, errorHandler: ((NSError) -> Void)? = nil) {
+        let realClosure = (closure != nil) ? closure! : { _ in }
+        let realErrorHandler = (errorHandler != nil) ? errorHandler! : { error in println(error) }
+
+        API.sharedInstance.put("users/me", params: fields, closure: realClosure, errorHandler: realErrorHandler)
     }
 
 }

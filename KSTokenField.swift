@@ -161,15 +161,15 @@ class KSTokenField: UITextField {
       clipsToBounds = true
       _state = .Closed
       
-      _setScrollRect()
-      _scrollView.backgroundColor = UIColor.clearColor()
-      _scrollView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
-      let gestureRecognizer = UITapGestureRecognizer(target: self, action: "becomeFirstResponder")
-      gestureRecognizer.cancelsTouchesInView = false
-      _scrollView.addGestureRecognizer(gestureRecognizer)
-      _scrollView.delegate = self
-      addSubview(_scrollView)
-      
+//      _setScrollRect()
+//      _scrollView.backgroundColor = UIColor.clearColor()
+//      _scrollView.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+//      let gestureRecognizer = UITapGestureRecognizer(target: self, action: "becomeFirstResponder")
+//      gestureRecognizer.cancelsTouchesInView = false
+//      _scrollView.addGestureRecognizer(gestureRecognizer)
+//      _scrollView.delegate = self
+//      addSubview(_scrollView)
+
       addTarget(self, action: "tokenFieldTextDidChange:", forControlEvents: UIControlEvents.EditingChanged)
    }
    
@@ -236,8 +236,10 @@ class KSTokenField: UITextField {
    }
    
    private func _insertToken(token: KSToken, shouldLayout: Bool = true) {
-      _scrollView.addSubview(token)
-      _scrollView.bringSubviewToFront(token)
+        addSubview(token)
+    bringSubviewToFront(token)
+//      _scrollView.addSubview(token)
+//      _scrollView.bringSubviewToFront(token)
       token.setNeedsDisplay()
       if shouldLayout == true {
          updateLayout()
@@ -319,11 +321,18 @@ class KSTokenField: UITextField {
          return
       }
       _state = .Closed
-      for subview in _scrollView.subviews {
-         if subview is KSToken {
+
+    for subview in self.subviews {
+        if subview is KSToken {
             subview.removeFromSuperview()
          }
-      }
+    }
+//      for subview in _scrollView.subviews {
+//         if subview is KSToken {
+//            subview.removeFromSuperview()
+//         }
+//      }
+
       updateLayout()
    }
    
@@ -410,14 +419,16 @@ class KSTokenField: UITextField {
       }
       
       var positionY = (lineNumber == 1 && tokens.count == 0) ? _selfFrame!.size.height: (tokenPosition.y + tokenHeight + _marginY!)
-      _scrollView.contentSize = CGSize(width: _scrollView.frame.width, height: positionY)
-      if (positionY > maximumHeight) {
-         positionY = maximumHeight
-      }
-      
-      _scrollView.frame.size = CGSize(width: _scrollView.frame.width, height: positionY)
-      scrollViewScrollToEnd()
-      
+
+//      _scrollView.contentSize = CGSize(width: _scrollView.frame.width, height: positionY)
+
+//      if (positionY > maximumHeight) {
+//         positionY = maximumHeight
+//      }
+//
+//      _scrollView.frame.size = CGSize(width: _scrollView.frame.width, height: positionY)
+//      scrollViewScrollToEnd()
+
       return CGPoint(x: tokenPosition.x + leftMargin, y: positionY)
    }
    
@@ -445,9 +456,9 @@ class KSTokenField: UITextField {
       }
       
       let offsetWidth = ((tokenPosition.x + _marginX! + _leftViewRect().width) > (frame.width - _minWidthForInput)) ? _minWidthForInput : 0
-      _scrollView.contentSize = CGSize(width: max(_scrollView.frame.width, tokenPosition.x + offsetWidth), height: frame.height)
-      scrollViewScrollToEnd()
-      
+//      _scrollView.contentSize = CGSize(width: max(_scrollView.frame.width, tokenPosition.x + offsetWidth), height: frame.height)
+//      scrollViewScrollToEnd()
+
       return CGPoint(x: min(tokenPosition.x + leftMargin, frame.width - _minWidthForInput), y: frame.height)
    }
    
@@ -588,8 +599,10 @@ class KSTokenField: UITextField {
       if (_placeholderLabel == nil) {
          _placeholderLabel = UILabel(frame: CGRect(x: xPos, y: 0, width: _selfFrame!.width - xPos - _leftViewRect().size.width, height: 30))
          _placeholderLabel?.textColor = placeHolderColor
-         _scrollView.addSubview(_placeholderLabel!)
-         
+
+        addSubview(_placeholderLabel!)
+//         _scrollView.addSubview(_placeholderLabel!)
+
       } else {
          _placeholderLabel?.frame.origin.x = xPos
       }

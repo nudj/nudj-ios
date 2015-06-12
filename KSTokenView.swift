@@ -661,7 +661,7 @@ class KSTokenView: UIView {
       if (!_canAddMoreToken()) {
          return
       }
-      _showEmptyResults()
+//      _showEmptyResults()
       _showActivityIndicator()
       
       let trimmedSearchString = string.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
@@ -916,6 +916,7 @@ extension KSTokenView : UITableViewDelegate {
       } else if (!shouldDisplayAlreadyTokenized) {
          _resultArray.removeAtIndex(indexPath.row)
          tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Left)
+        _repositionSearchResults()
       }
    }
 }
