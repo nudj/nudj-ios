@@ -42,10 +42,6 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         var cell:UITableViewCell = chatTable.dequeueReusableCellWithIdentifier(cellIdentifier) as! UITableViewCell
         
         cell.textLabel?.text = "hello again"
-        cell.textLabel?.textColor = UIColor.greenColor()
-        
-        
-        cell.backgroundColor = UIColor.lightGrayColor()
         
         
         return cell

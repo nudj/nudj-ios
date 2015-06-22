@@ -54,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .stringByTrimmingCharactersInSet( characterSet )
             .stringByReplacingOccurrencesOfString( " ", withString: "" ) as String
 
-        println( deviceTokenString )
+        println( "Device token ->\(deviceTokenString)")
     }
 
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
@@ -70,6 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         application.registerUserNotificationSettings( settings )
         application.registerForRemoteNotifications()
+        
     }
 
     func fetchUserData() {

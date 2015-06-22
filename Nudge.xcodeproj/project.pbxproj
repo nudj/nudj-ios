@@ -103,13 +103,13 @@
 		EB000F7E1AB71D6600E4D385 /* ContactsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsController.swift; sourceTree = "<group>"; };
 		EB04F61F1AA72520002F2677 /* RegistrationInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationInput.swift; sourceTree = "<group>"; };
 		EB04F6221AAD89AF002F2677 /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
-		EB0926CA1A8DE4CB00E1D958 /* Nudge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nudge.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB0926CA1A8DE4CB00E1D958 /* nudge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nudge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB0926CE1A8DE4CB00E1D958 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB0926CF1A8DE4CB00E1D958 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB0926D11A8DE4CB00E1D958 /* MainFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeed.swift; sourceTree = "<group>"; };
 		EB0926D81A8DE4CB00E1D958 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EB0926DB1A8DE4CB00E1D958 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		EB0926E11A8DE4CB00E1D958 /* NudgeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NudgeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB0926E11A8DE4CB00E1D958 /* nudgeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nudgeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB0926E61A8DE4CB00E1D958 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB0926E71A8DE4CB00E1D958 /* NudgeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NudgeTests.swift; sourceTree = "<group>"; };
 		EB27E01C1ADD37790023EFB3 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Debug-iphoneos/Pods/Alamofire.framework"; sourceTree = "<group>"; };
@@ -249,8 +249,8 @@
 		EB0926CB1A8DE4CB00E1D958 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EB0926CA1A8DE4CB00E1D958 /* Nudge.app */,
-				EB0926E11A8DE4CB00E1D958 /* NudgeTests.xctest */,
+				EB0926CA1A8DE4CB00E1D958 /* nudge.app */,
+				EB0926E11A8DE4CB00E1D958 /* nudgeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -450,7 +450,7 @@
 			);
 			name = Nudge;
 			productName = Nudge;
-			productReference = EB0926CA1A8DE4CB00E1D958 /* Nudge.app */;
+			productReference = EB0926CA1A8DE4CB00E1D958 /* nudge.app */;
 			productType = "com.apple.product-type.application";
 		};
 		EB0926E01A8DE4CB00E1D958 /* NudgeTests */ = {
@@ -468,7 +468,7 @@
 			);
 			name = NudgeTests;
 			productName = NudgeTests;
-			productReference = EB0926E11A8DE4CB00E1D958 /* NudgeTests.xctest */;
+			productReference = EB0926E11A8DE4CB00E1D958 /* nudgeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -773,7 +773,7 @@
 				INFOPLIST_FILE = Nudge/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = nudge;
 			};
 			name = Debug;
 		};
@@ -783,6 +783,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods",
@@ -791,7 +792,7 @@
 				INFOPLIST_FILE = Nudge/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = nudge;
 			};
 			name = Release;
 		};
@@ -809,7 +810,7 @@
 				);
 				INFOPLIST_FILE = NudgeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = nudgeTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nudge.app/Nudge";
 			};
 			name = Debug;
@@ -824,7 +825,7 @@
 				);
 				INFOPLIST_FILE = NudgeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = nudgeTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nudge.app/Nudge";
 			};
 			name = Release;
