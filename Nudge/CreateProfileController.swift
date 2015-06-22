@@ -36,7 +36,14 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
     }
 
     func showUserData() {
-        UserModel.getCurrent(["user.status", "user.name", "user.image"], closure: { user in
+        UserModel.getCurrent(["user.status", "user.name", "user.image", "user.completed"], closure: { user in
+
+            if (user.completed) {
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
+                appDelegate.user!.completed = true
+                appDelegate.pushUserData()
+                appDelegate.pushViewControllerWithId("mainNavigation")
+            }
 
             if !user.isDefaultImage {
                 self.image.downloadImage(user.image["profile"])
