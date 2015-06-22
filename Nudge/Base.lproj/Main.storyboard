@@ -1333,16 +1333,10 @@
         <image name="user_image_placeholder" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-<<<<<<< HEAD
-        <segue reference="BCe-Pt-bFX"/>
-        <segue reference="m0n-l7-DaR"/>
-        <segue reference="zyP-mc-EMC"/>
-        <segue reference="H51-O9-Snf"/>
-=======
         <segue reference="vho-Q5-Kri"/>
         <segue reference="l7l-cF-kYn"/>
         <segue reference="fbd-Xz-21X"/>
         <segue reference="1RO-e0-4AP"/>
->>>>>>> origin/master
+
     </inferredMetricsTieBreakers>
 </document>
