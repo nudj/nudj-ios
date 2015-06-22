@@ -45,6 +45,8 @@ class API {
 
     func request(method: Alamofire.Method, path: String, params: [String: AnyObject]? = nil, closure: (JSON) -> (), token: String?, errorHandler: ((NSError) -> Void)? ) {
         let manager = Manager.sharedInstance
+        manager.session.configuration.HTTPShouldSetCookies = false
+        manager.session.configuration.HTTPMaximumConnectionsPerHost = 8
 
         if (token != nil) {
             manager.session.configuration.HTTPAdditionalHeaders = ["token": token!]
@@ -70,24 +72,26 @@ class API {
 
                 println("[API.request] Error: \(error!)")
 
-                if(errorHandler != nil) {
-                    errorHandler!(error!)
-                }
+                errorHandler?(NSError())
 
                 return
 
             } else if (response == nil) {
 
-                if(errorHandler != nil) {
-                    errorHandler!(NSError())
-                }
+                errorHandler?(NSError())
 
                 return
             }
 
             if let dataFromString = response!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
 
-                closure(JSON(data: dataFromString))
+                let json = JSON(data: dataFromString)
+
+                if (json.null != nil) {
+                    errorHandler?(NSError())
+                } else {
+                    closure(json)
+                }
 
             } else if(errorHandler != nil) {
 

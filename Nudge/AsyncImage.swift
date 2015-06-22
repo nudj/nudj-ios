@@ -14,9 +14,14 @@ class AsyncImage: UIImageView {
 
     let loader = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
 
-    var blur = false
+    @IBInspectable
+    var blur:Bool = false
+
+    @IBInspectable
     var blurRadius:CGFloat = 8
-    var circleShape = false
+
+    @IBInspectable
+    var circleShape:Bool = false
 
     init() {
         super.init(image: nil, highlightedImage: nil)
@@ -38,9 +43,13 @@ class AsyncImage: UIImageView {
     }
 
     func getDataFromUrl(url:String, completion: ((data: NSData?) -> Void)) {
-        NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: url)!) { (data, response, error) in
+        let session = NSURLSession.sharedSession();
+        session.configuration.HTTPShouldSetCookies = false
+        session.configuration.HTTPMaximumConnectionsPerHost = 8
+
+        session.dataTaskWithURL(NSURL(string: url)!) { (data, response, error) in
             completion(data: NSData(data: data))
-            }.resume()
+        }.resume()
     }
 
     func downloadImage(url:String?, completion: (() -> Void)? = nil) {

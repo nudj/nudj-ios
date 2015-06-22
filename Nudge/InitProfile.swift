@@ -72,26 +72,30 @@ class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePicker
             self.nameLabel.text = user!.name
         })
 
-        UserModel.getCurrent(["user.status", "user.name", "user.image", "user.skills"], closure: { result in
-            let status = result["data"]["status"]
-
-            if status.stringValue != "" {
-                self.statusButton.setTitleByIndex(status.intValue)
-                self.statusButton.changeColor(UIColor.whiteColor())
-            }
-
-            self.nameLabel.text = result["data"]["name"].stringValue
-            self.showUserImage(result["data"]["image"])
-
-            let tokensJSON:[JSON] = result["data"]["skills"].arrayValue
-            self.skills.fillTokens(tokensJSON.map{ return $0["name"].stringValue })
-        })
+        showUserData()
     }
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
 
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+
+    func showUserData() {
+        UserModel.getCurrent(["user.status", "user.name", "user.image", "user.skills", "user.about"], closure: { user in
+            if let status = user.status {
+                self.statusButton.setTitleByIndex(status)
+                self.statusButton.changeColor(UIColor.whiteColor())
+            }
+
+            self.nameLabel.text = user.name
+            self.aboutMeField.text = user.about
+            self.showUserImage(user.image)
+
+            if let skills = user.skills {
+                self.skills.fillTokens(skills)
+            }
+        })
     }
 
     func setInitialStatus(status: Bool) {
@@ -139,6 +143,15 @@ class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePicker
     }
 
     func updateFindMe(view:TokenView) {
+        findMeIcon.highlighted = view.tokens()?.count > 0
+
+        if (view.tokens() == nil) {
+            UserModel.update(["findme": [String]()])
+        } else {
+            let findArray = view.tokens()!.map({token in return token.title})
+            UserModel.update(["findme": findArray])
+        }
+
         findMeIcon.highlighted = view.tokens()?.count > 0
     }
 
@@ -237,14 +250,14 @@ class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePicker
         }
     }
 
-    func showUserImage(json: JSON) {
-        if (json["profile"] != nil && count(json["profile"].stringValue) > 0) {
-            self.profilePhoto.downloadImage(json["profile"].stringValue)
+    func showUserImage(images: [String:String]) {
+        if (images["profile"] != nil && count(images["profile"]!) > 0) {
+            self.profilePhoto.downloadImage(images["profile"]!)
         }
 
-        if (json["cover"] != nil && count(json["cover"].stringValue) > 0) {
+        if (images["cover"] != nil && count(images["cover"]!) > 0) {
             self.backgroundImage.blur = true
-            self.backgroundImage.downloadImage(json["cover"].stringValue) { _ in
+            self.backgroundImage.downloadImage(images["cover"]!) { _ in
                 self.makeThingsWhite()
             }
         }
@@ -259,16 +272,14 @@ class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePicker
         let image = info[UIImagePickerControllerEditedImage] as! UIImage
         let imageData = UIImageJPEGRepresentation(image, 0.8).base64EncodedStringWithOptions(.allZeros)
 
-        self.apiUpdateUser(["image": imageData], closure: { response in
-
-            self.apiRequest(.GET, path: "users/me?params=user.image", closure: { imageResponse in
-                self.showUserImage(imageResponse["data"]["image"])
+        UserModel.update(["image": imageData], closure: { response in
+            UserModel.getCurrent(["user.image"], closure: { user in
+                self.showUserImage(user.image)
             })
-
-            }, errorHandler: {_ in
-                self.profilePhoto.stopActivity()
-                self.backgroundImage.stopActivity()
-        })
+        }) { _ in
+            self.profilePhoto.stopActivity()
+            self.backgroundImage.stopActivity()
+        }
     }
 
     // MARK: - Navigation

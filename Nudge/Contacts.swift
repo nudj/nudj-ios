@@ -152,8 +152,8 @@ class Contacts {
             return
         }
 
-        println(contacts)
+//        println(contacts)
 
-        BaseController().apiRequest(.PUT, path: "users", params: ["contacts": contacts], closure: {result in println(result)}, errorHandler: {result in println(result)})
+        UserModel.update(["contacts": contacts], closure: {result in println(result)}, errorHandler: {result in println(result)})
     }
 }

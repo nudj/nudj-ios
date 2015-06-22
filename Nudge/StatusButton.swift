@@ -18,6 +18,7 @@ class StatusButton: UIButton {
     let initialTitle = "SELECT STATUS"
 
     var gray = true
+    var isChanged = false
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,21 +48,28 @@ class StatusButton: UIButton {
 
     func setTitle(title: String) {
         self.setTitle(title, forState: UIControlState.Normal)
+        isChanged = true
     }
 
     func setTitleByIndex(title: Int) {
 
         if (!self.isValidStatus(title)) {
             self.setTitle("", forState: UIControlState.Normal)
+            isChanged = false
         } else {
             self.setTitle(Status.titles[title], forState: UIControlState.Normal)
             self.changeColor(Status.colors[title])
+            isChanged = true
         }
     }
 
     func changeColor(color: UIColor) {
         self.layer.borderColor = color.CGColor
         self.setTitleColor(color, forState: UIControlState.Normal)
+    }
+
+    func isSelectedStatus() -> Bool {
+        return isChanged
     }
 
     func isValidStatus(index: Int) -> Bool {

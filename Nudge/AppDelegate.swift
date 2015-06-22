@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Fabric
 import Crashlytics
 
 @UIApplicationMain
@@ -19,7 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
-        Crashlytics.startWithAPIKey("eaeedfb00437f7c323cc45deea4fe92b94dd90bf")
+//        Crashlytics.startWithAPIKey("eaeedfb00437f7c323cc45deea4fe92b94dd90bf")
+        Fabric.with([Crashlytics()])
 
         // Getting of user details from CoreData
         fetchUserData()
@@ -28,7 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if (user != nil && user!.id != nil && user!.completed == false) {
             // User did not passed full registration
-            self.pushViewControllerWithId("initProfile")
+//            self.pushViewControllerWithId("initProfile")
+            self.pushViewControllerWithId("createProfile")
 
         } else if (user == nil || user!.completed) {
             // Invalid user Require Login
@@ -38,7 +41,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.pushViewControllerWithId("mainNavigation")
         }
 
+        requestNotificationPermission(application)
+
         return true
+    }
+
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        var characterSet: NSCharacterSet = NSCharacterSet( charactersInString: "<>" )
+
+        var deviceTokenString: String = ( deviceToken.description as NSString )
+            .stringByTrimmingCharactersInSet( characterSet )
+            .stringByReplacingOccurrencesOfString( " ", withString: "" ) as String
+
+        println( deviceTokenString )
+    }
+
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        println( "Notification Error: ", error.localizedDescription )
+    }
+
+    func requestNotificationPermission(application: UIApplication) {
+        var types: UIUserNotificationType = UIUserNotificationType.Badge |
+            UIUserNotificationType.Alert |
+            UIUserNotificationType.Sound
+
+        var settings: UIUserNotificationSettings = UIUserNotificationSettings( forTypes: types, categories: nil )
+
+        application.registerUserNotificationSettings( settings )
+        application.registerForRemoteNotifications()
     }
 
     func fetchUserData() {
@@ -59,12 +89,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
                 let obj = results.first as! NSManagedObject;
 
-                self.user!.id = obj.valueForKey("id") == nil ? nil : Int32(obj.valueForKey("id") as! Int)
+                self.user!.id = obj.valueForKey("id") == nil ? nil : obj.valueForKey("id") as? Int
                 self.user!.name = obj.valueForKey("name") == nil ? nil : (obj.valueForKey("name") as! String)
                 self.user!.token = obj.valueForKey("token") == nil ? nil : (obj.valueForKey("token") as! String)
                 self.user!.completed = obj.valueForKey("completed") == nil ? false : obj.valueForKey("completed")!.boolValue
                 self.user!.addressBookAccess = obj.valueForKey("addressBookAccess") == nil ? false : obj.valueForKey("addressBookAccess")!.boolValue
-                self.user!.status = obj.valueForKey("status") == nil ? 0 : Int32(obj.valueForKey("status") as! Int)
+                self.user!.status = obj.valueForKey("status") == nil ? 0 : obj.valueForKey("status") as! Int
             }
 
             println("User: \(self.user)")

@@ -105,7 +105,7 @@ class VerifyViewController: BaseController {
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
 
             let user = appDelegate.user == nil ? UserModel() : appDelegate.user!
-            user.id = Int32(json["data"]["id"].intValue)
+            user.id = json["data"]["id"].intValue
             user.token = json["data"]["token"].stringValue
             user.completed = json["data"]["completed"].boolValue
             user.addressBookAccess = self.addressBookAccess

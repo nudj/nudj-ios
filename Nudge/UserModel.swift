@@ -12,12 +12,19 @@ import Alamofire
 
 class UserModel: Printable {
 
-    var id: Int32?
+    var id: Int?
+
     var name: String?
     var token: String?
+    var about: String?
+
     var completed: Bool = false
     var addressBookAccess = false
-    var status: Int32? = 0
+    var status: Int? = 0
+
+    var skills:[String]?
+    var image:[String:String] = ["profile": "http://usr-img.doppels.com/place_holder_grey.png"]
+    var isDefaultImage = true
 
     var description:String {
         return "UserModel: id: \(id), name: \(name), completed: \(completed ? 1 : 0), status: \(status)"
@@ -27,7 +34,7 @@ class UserModel: Printable {
         
     }
 
-    init(id: Int32?, name: String?, token: String?) {
+    init(id: Int?, name: String?, token: String?) {
         self.id = id;
         self.name = name;
         self.token = token;
@@ -38,8 +45,50 @@ class UserModel: Printable {
         closure(appDelegate.user)
     }
 
-    static func getCurrent(fields:[String]?, closure: ((JSON) -> ())? = nil, errorHandler: ((NSError) -> Void)? = nil) {
-        UserModel.getById(0, fields: fields, closure: closure, errorHandler: errorHandler)
+    static func getCurrent(fields:[String]?, closure: ((UserModel) -> ())? = nil, errorHandler: ((NSError) -> Void)? = nil) {
+        UserModel.getById(0, fields: fields, closure: {response in
+            let userResponse = response["data"]
+
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
+            var user = appDelegate.user == nil ? UserModel() : appDelegate.user!
+
+            let mirror = reflect(user);
+
+            user.updateFromJson(userResponse)
+
+            closure?(user)
+
+        }, errorHandler: errorHandler)
+    }
+
+    func updateFromJson(source: JSON) {
+        for (key: String, subJson: JSON) in source {
+            switch key {
+                case "id": self.id = subJson.intValue
+                case "status": self.status = subJson.intValue
+
+                case "name": self.name = subJson.stringValue
+                case "token": self.token = subJson.stringValue
+                case "about": self.about = subJson.stringValue
+
+                case "image": self.updateImageFromJson(subJson)
+                case "skills": self.skills = subJson.arrayValue.map({return $0.stringValue})
+
+                case "completed": self.completed = subJson.boolValue
+                // addressBookAccess is per device, so it should not be updated trough this method
+
+            default:
+                println("!!!! Unknown user key: " + key)
+            }
+        }
+    }
+
+    func updateImageFromJson(source:JSON) {
+        for (key,val) in source.dictionaryValue {
+            println(key, val)
+            self.image[key] = val.stringValue;
+            self.isDefaultImage = true
+        }
     }
 
     static func getById(id: Int, fields:[String]?, closure: ((JSON) -> ())? = nil, errorHandler: ((NSError) -> Void)? = nil ) {
