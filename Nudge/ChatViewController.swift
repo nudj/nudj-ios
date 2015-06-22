@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class ChatViewController: UIViewController {
+class ChatViewController: JSQMessagesViewController {
     
 
 }

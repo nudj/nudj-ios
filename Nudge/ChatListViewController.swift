@@ -34,15 +34,14 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 50
+        
+        return 70
+        
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         var cell:UITableViewCell = chatTable.dequeueReusableCellWithIdentifier(cellIdentifier) as! UITableViewCell
-        
-        cell.textLabel?.text = "hello again"
-        
         
         return cell
     }
@@ -53,7 +52,8 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         println("sup?????")
         
-        let vc : ChatViewController =  ChatViewController(nibName: "ChatViewController", bundle: nil)
+        let vc : ChatViewController =  ChatViewController()
+        //(nibName: "ChatViewController", bundle: nil)
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
