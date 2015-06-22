@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		A9C6EC921B381EB000EC9140 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC911B381EB000EC9140 /* ChatViewController.swift */; };
 		A9C6EC981B38273300EC9140 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9C6EC971B38273300EC9140 /* Crashlytics.framework */; };
+		A9C6EC9A1B38416C00EC9140 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9C6EC991B38416C00EC9140 /* ChatViewController.xib */; };
+		A9C6EC9C1B38447700EC9140 /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC9B1B38447700EC9140 /* ChatListViewController.swift */; };
+		A9C6EC9F1B3853F900EC9140 /* ChatListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC9D1B3853F900EC9140 /* ChatListTableViewCell.swift */; };
+		A9C6ECA01B3853F900EC9140 /* ChatListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9C6EC9E1B3853F900EC9140 /* ChatListTableViewCell.xib */; };
 		EB000F7C1AB2E0B800E4D385 /* DataTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB000F7B1AB2E0B800E4D385 /* DataTableCell.swift */; };
 		EB000F7F1AB71D6600E4D385 /* ContactsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB000F7E1AB71D6600E4D385 /* ContactsController.swift */; };
 		EB04F6201AA72520002F2677 /* RegistrationInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB04F61F1AA72520002F2677 /* RegistrationInput.swift */; };
@@ -91,6 +95,10 @@
 		91ACAE069A6F9735FED79A9F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A9C6EC911B381EB000EC9140 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		A9C6EC971B38273300EC9140 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		A9C6EC991B38416C00EC9140 /* ChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
+		A9C6EC9B1B38447700EC9140 /* ChatListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
+		A9C6EC9D1B3853F900EC9140 /* ChatListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListTableViewCell.swift; sourceTree = "<group>"; };
+		A9C6EC9E1B3853F900EC9140 /* ChatListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatListTableViewCell.xib; sourceTree = "<group>"; };
 		EB000F7B1AB2E0B800E4D385 /* DataTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTableCell.swift; sourceTree = "<group>"; };
 		EB000F7E1AB71D6600E4D385 /* ContactsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsController.swift; sourceTree = "<group>"; };
 		EB04F61F1AA72520002F2677 /* RegistrationInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationInput.swift; sourceTree = "<group>"; };
@@ -186,6 +194,10 @@
 			isa = PBXGroup;
 			children = (
 				A9C6EC911B381EB000EC9140 /* ChatViewController.swift */,
+				A9C6EC991B38416C00EC9140 /* ChatViewController.xib */,
+				A9C6EC9B1B38447700EC9140 /* ChatListViewController.swift */,
+				A9C6EC9D1B3853F900EC9140 /* ChatListTableViewCell.swift */,
+				A9C6EC9E1B3853F900EC9140 /* ChatListTableViewCell.xib */,
 			);
 			name = ChatView;
 			sourceTree = "<group>";
@@ -507,7 +519,9 @@
 				EB0926DC1A8DE4CB00E1D958 /* LaunchScreen.xib in Resources */,
 				EB0926D91A8DE4CB00E1D958 /* Images.xcassets in Resources */,
 				EBBF42551AB0AF5F0001E8B6 /* JobCellTableViewCell.xib in Resources */,
+				A9C6ECA01B3853F900EC9140 /* ChatListTableViewCell.xib in Resources */,
 				EBEA9B4D1AF26ACB0027A2A2 /* AddJobCell.xib in Resources */,
+				A9C6EC9A1B38416C00EC9140 /* ChatViewController.xib in Resources */,
 				EB35BBA61AB7288000842E1F /* ContactsCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -608,9 +622,11 @@
 				EBF186211B21DACA00D8D80D /* KSTokenField.swift in Sources */,
 				EBE5C3121B25811400CFF7E9 /* TokenView.swift in Sources */,
 				EBB3383C1A9F73D4000CAD88 /* API.swift in Sources */,
+				A9C6EC9F1B3853F900EC9140 /* ChatListTableViewCell.swift in Sources */,
 				EBEA9B451AF0D2280027A2A2 /* SettingsItem.swift in Sources */,
 				EBB338461AA0EA46000CAD88 /* BaseController.swift in Sources */,
 				EBBF42591AB1E55F0001E8B6 /* DataProviderProtocol.swift in Sources */,
+				A9C6EC9C1B38447700EC9140 /* ChatListViewController.swift in Sources */,
 				EBF186231B21DACA00D8D80D /* KSUtils.swift in Sources */,
 				EB9F71E11B0E0200000C2D9F /* MainTabItem.swift in Sources */,
 				EB313D2E1AAF37FB00F008B8 /* StatusButton.swift in Sources */,
