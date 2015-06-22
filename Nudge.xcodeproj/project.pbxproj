@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A9C6EC921B381EB000EC9140 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC911B381EB000EC9140 /* ChatViewController.swift */; };
+		A9C6EC981B38273300EC9140 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9C6EC971B38273300EC9140 /* Crashlytics.framework */; };
 		EB000F7C1AB2E0B800E4D385 /* DataTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB000F7B1AB2E0B800E4D385 /* DataTableCell.swift */; };
 		EB000F7F1AB71D6600E4D385 /* ContactsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB000F7E1AB71D6600E4D385 /* ContactsController.swift */; };
 		EB04F6201AA72520002F2677 /* RegistrationInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB04F61F1AA72520002F2677 /* RegistrationInput.swift */; };
@@ -23,7 +25,6 @@
 		EB313D301AAF4C5A00F008B8 /* StatusPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB313D2F1AAF4C5A00F008B8 /* StatusPicker.swift */; };
 		EB35BBA51AB7288000842E1F /* ContactsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB35BBA31AB7288000842E1F /* ContactsCell.swift */; };
 		EB35BBA61AB7288000842E1F /* ContactsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB35BBA41AB7288000842E1F /* ContactsCell.xib */; };
-		EB6189481B04F78D00CAA623 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB6189471B04F78D00CAA623 /* Crashlytics.framework */; };
 		EB6F22BA1AAF706A007FF1B8 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6F22B91AAF706A007FF1B8 /* AsyncImage.swift */; };
 		EB6F22BC1AB02E7F007FF1B8 /* MainTitleBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6F22BB1AB02E7F007FF1B8 /* MainTitleBar.swift */; };
 		EB6F22BE1AB045C0007FF1B8 /* RBResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6F22BD1AB045C0007FF1B8 /* RBResizer.swift */; };
@@ -88,6 +89,8 @@
 /* Begin PBXFileReference section */
 		39A67AE42E9231EE2A750094 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		91ACAE069A6F9735FED79A9F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		A9C6EC911B381EB000EC9140 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		A9C6EC971B38273300EC9140 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		EB000F7B1AB2E0B800E4D385 /* DataTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTableCell.swift; sourceTree = "<group>"; };
 		EB000F7E1AB71D6600E4D385 /* ContactsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsController.swift; sourceTree = "<group>"; };
 		EB04F61F1AA72520002F2677 /* RegistrationInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationInput.swift; sourceTree = "<group>"; };
@@ -108,7 +111,6 @@
 		EB313D2F1AAF4C5A00F008B8 /* StatusPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusPicker.swift; sourceTree = "<group>"; };
 		EB35BBA31AB7288000842E1F /* ContactsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsCell.swift; sourceTree = "<group>"; };
 		EB35BBA41AB7288000842E1F /* ContactsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsCell.xib; sourceTree = "<group>"; };
-		EB6189471B04F78D00CAA623 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		EB6F22B91AAF706A007FF1B8 /* AsyncImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		EB6F22BB1AB02E7F007FF1B8 /* MainTitleBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTitleBar.swift; sourceTree = "<group>"; };
 		EB6F22BD1AB045C0007FF1B8 /* RBResizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RBResizer.swift; sourceTree = "<group>"; };
@@ -153,10 +155,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBB3382E1A9F5973000CAD88 /* CoreData.framework in Frameworks */,
-				EB6189481B04F78D00CAA623 /* Crashlytics.framework in Frameworks */,
 				EBD1073E1AF0B8F800310818 /* Pods.framework in Frameworks */,
 				EBF9DD8A1AE6A8EC00A1A67D /* SwiftyJSON.framework in Frameworks */,
 				EB27E01D1ADD37790023EFB3 /* Alamofire.framework in Frameworks */,
+				A9C6EC981B38273300EC9140 /* Crashlytics.framework in Frameworks */,
 				EBA8C3431B30852B00522167 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -178,6 +180,14 @@
 				39A67AE42E9231EE2A750094 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		A9C6EC901B381E8800EC9140 /* ChatView */ = {
+			isa = PBXGroup;
+			children = (
+				A9C6EC911B381EB000EC9140 /* ChatViewController.swift */,
+			);
+			name = ChatView;
 			sourceTree = "<group>";
 		};
 		B24DF65843B49C77F100654A /* Frameworks */ = {
@@ -214,7 +224,7 @@
 		EB0926C11A8DE4CB00E1D958 = {
 			isa = PBXGroup;
 			children = (
-				EB6189471B04F78D00CAA623 /* Crashlytics.framework */,
+				A9C6EC971B38273300EC9140 /* Crashlytics.framework */,
 				EBA8C3421B30852B00522167 /* Fabric.framework */,
 				EB0926CC1A8DE4CB00E1D958 /* Nudge */,
 				EB0926E41A8DE4CB00E1D958 /* NudgeTests */,
@@ -350,6 +360,7 @@
 		EBDD28CC1ACD8AA700956995 /* MainControllers */ = {
 			isa = PBXGroup;
 			children = (
+				A9C6EC901B381E8800EC9140 /* ChatView */,
 				EBB338391A9F73A5000CAD88 /* Login/Register */,
 				EB000F7D1AB71D4400E4D385 /* Contatcs */,
 				EBEA9B461AF2641B0027A2A2 /* MainFeed */,
@@ -606,6 +617,7 @@
 				EBB337F81A9F53CA000CAD88 /* NudgeData.xcdatamodeld in Sources */,
 				EBEA9B4C1AF26ACB0027A2A2 /* AddJobCell.swift in Sources */,
 				EB000F7C1AB2E0B800E4D385 /* DataTableCell.swift in Sources */,
+				A9C6EC921B381EB000EC9140 /* ChatViewController.swift in Sources */,
 				EBEA9B491AF265150027A2A2 /* AddJobController.swift in Sources */,
 				EB313D301AAF4C5A00F008B8 /* StatusPicker.swift in Sources */,
 				EBF186221B21DACA00D8D80D /* KSTokenView.swift in Sources */,
