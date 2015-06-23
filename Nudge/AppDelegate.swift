@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            self.pushViewControllerWithId("initProfile")
             self.pushViewControllerWithId("createProfile")
 
-        } else if (user == nil || user!.completed) {
+        } else if (user == nil) {
             // Invalid user Require Login
             // Proceed to login view
         } else {

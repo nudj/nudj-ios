@@ -688,6 +688,9 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
+ 
+    NSLog(@"BOOM");
+    
     if (textView != self.inputToolbar.contentView.textView) {
         return;
     }
@@ -701,6 +704,9 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 - (void)textViewDidChange:(UITextView *)textView
 {
+    
+    NSLog(@"BOOM BOOM");
+    
     if (textView != self.inputToolbar.contentView.textView) {
         return;
     }
@@ -710,6 +716,10 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
+    
+    NSLog(@"BOOM BOOM BOOM");
+
+    
     if (textView != self.inputToolbar.contentView.textView) {
         return;
     }

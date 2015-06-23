@@ -216,9 +216,11 @@ class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePicker
     // MARK: Notifications Management
 
     func registerNotification() {
+        
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: "keyboardWillBeShown:", name: UIKeyboardDidShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
+    
     }
 
 
