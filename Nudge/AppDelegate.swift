@@ -18,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var user: UserModel?
     var api: API?
-
+    var chatInst: ChatModels?
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
 //        Crashlytics.startWithAPIKey("eaeedfb00437f7c323cc45deea4fe92b94dd90bf")
@@ -28,7 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         fetchUserData()
 
         prepareApi();
-
+        
+        
         if (user != nil && user!.id != nil && user!.completed == false) {
             // User did not passed full registration
 //            self.pushViewControllerWithId("initProfile")
@@ -54,7 +56,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .stringByTrimmingCharactersInSet( characterSet )
             .stringByReplacingOccurrencesOfString( " ", withString: "" ) as String
 
+        
         println( "Device token ->\(deviceTokenString)")
+        
+        API.sharedInstance.put("devices", params: ["token":deviceTokenString], closure:{ response in
+        
+            println("Response -> \(response)");
+        
+        });
     }
 
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
@@ -100,6 +109,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
 
             println("User: \(self.user)")
+            
+            //Setup XMPP and connect
+            chatInst = ChatModels()
+            
+            if(!chatInst!.connect()){
+                
+                println("NOT Connected to chat server so will try reconnecting !!!")
+                
+            }
+
 
         } else {
             println("Could not fetch \(error), \(error!.userInfo)")
@@ -211,6 +230,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
+        //Connect to the chat server or Reconect if disconnected
+        if ((chatInst) != nil)
+        {
+            if !chatInst!.connect() {
+                
+                println("NOT Connected to chat server so will try reconnecting !!!")
+            
+            }
+        }
+       
     }
 
     func applicationWillTerminate(application: UIApplication) {

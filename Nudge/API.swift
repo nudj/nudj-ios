@@ -29,15 +29,15 @@ class API {
     }
 
     // MARK: Standard Requests Without token
-    func get(path: String, params: [String: AnyObject]? = nil, closure: (JSON) -> (), errorHandler: ((NSError) -> Void)? ) {
+    func get(path: String, params: [String: AnyObject]? = nil, closure: (JSON) -> (), errorHandler: ((NSError) -> Void)? = nil) {
         self.request(Method.GET, path: path, params: params, closure: closure, token: nil, errorHandler: errorHandler)
     }
 
-    func post(path: String, params: [String: AnyObject]? = nil, closure: (JSON) -> (), errorHandler: ((NSError) -> Void)? ) {
+    func post(path: String, params: [String: AnyObject]? = nil, closure: (JSON) -> (), errorHandler: ((NSError) -> Void)? = nil) {
         self.request(Method.POST, path: path, params: params, closure: closure, token: nil, errorHandler: errorHandler)
     }
 
-    func put(path: String, params: [String: AnyObject]? = nil, closure: (JSON) -> (), errorHandler: ((NSError) -> Void)? ) {
+    func put(path: String, params: [String: AnyObject]? = nil, closure: (JSON) -> (), errorHandler: ((NSError) -> Void)? = nil) {
         self.request(Method.PUT, path: path, params: params, closure: closure, token: nil, errorHandler: errorHandler)
     }
 

@@ -9,26 +9,24 @@
 import UIKit
 import Foundation
 
-class ChatViewController: JSQMessagesViewController {
+class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
     
     var outgoingBubbleImageData :JSQMessagesBubbleImage?;
     var incomingBubbleImageData :JSQMessagesBubbleImage?;
     var templateImage :JSQMessagesAvatarImage?;
+    
     var messages = NSMutableArray();
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view, typically from a nib.
         
-        /**
-        *  You MUST set your senderId and display name
-        */
-        
-        NSNotificationCenter.defaultCenter().addObserver(
+        /*NSNotificationCenter.defaultCenter().addObserver(
             self,
             selector: "updateContentFunction:",
             name: "updateContent",
-            object: nil);
+            object: nil);*/
         
         self.title = "Conversation"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage.jsq_defaultTypingIndicatorImage(), style:UIBarButtonItemStyle.Plain, target:self, action:"performAction:");
@@ -53,7 +51,9 @@ class ChatViewController: JSQMessagesViewController {
     
         self.templateImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(UIImage(named: "user_image_placeholder"), diameter: 30)
         
-        //diameter:kJSQMessagesCollectionViewAvatarSizeDefault
+        var appGlobalDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appGlobalDelegate.chatInst!.delegate = self as ChatModelsDelegate
+        
     }
     
     // ACTIONS
@@ -346,19 +346,23 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     
-    @objc func updateContentFunction(notification: NSNotification){
+   // @objc func updateContentFunction(notification: NSNotification){
+        
+   //
+    //}
+
+    func recievedUser(content: NSDictionary) {
+        
+    }
+    
+    func recievedMessage(content:NSDictionary){
         //do stuff
-        
-        let message:Dictionary<String,String!> = notification.userInfo as! Dictionary<String,String!>;
-        var msg = message["message"]
-        
-        println("again -> \(msg!)")
-        
+        var msg = content["message"] as! String
+    
         self.scrollToBottomAnimated(true);
-        
-        self.messages.addObject(JSQMessage(senderId:"3@chat.nudge.co", senderDisplayName:"", date:NSDate(), text:msg!));
+    
+        self.messages.addObject(JSQMessage(senderId:"3@chat.nudge.co", senderDisplayName:"", date:NSDate(), text:msg));
         self.finishReceivingMessageAnimated(true);
-        
     }
 
 }
