@@ -185,6 +185,7 @@
 		A996508B1B38805B00D5A8E9 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A99650891B38805B00D5A8E9 /* libxml2.2.dylib */; };
 		A996508C1B38805B00D5A8E9 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A996508A1B38805B00D5A8E9 /* libxml2.dylib */; };
 		A996508E1B38806700D5A8E9 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A996508D1B38806700D5A8E9 /* libresolv.dylib */; };
+		A99650901B39776A00D5A8E9 /* ChatModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A996508F1B39776A00D5A8E9 /* ChatModels.swift */; };
 		A9C6EC921B381EB000EC9140 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC911B381EB000EC9140 /* ChatViewController.swift */; };
 		A9C6EC981B38273300EC9140 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9C6EC971B38273300EC9140 /* Crashlytics.framework */; };
 		A9C6EC9A1B38416C00EC9140 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9C6EC991B38416C00EC9140 /* ChatViewController.xib */; };
@@ -632,6 +633,7 @@
 		A99650891B38805B00D5A8E9 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		A996508A1B38805B00D5A8E9 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		A996508D1B38806700D5A8E9 /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
+		A996508F1B39776A00D5A8E9 /* ChatModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatModels.swift; sourceTree = "<group>"; };
 		A9C6EC911B381EB000EC9140 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		A9C6EC971B38273300EC9140 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		A9C6EC991B38416C00EC9140 /* ChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
@@ -1836,6 +1838,7 @@
 			isa = PBXGroup;
 			children = (
 				EBB3382F1A9F5A44000CAD88 /* UserModel.swift */,
+				A996508F1B39776A00D5A8E9 /* ChatModels.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -2119,6 +2122,7 @@
 				A9964FEB1B387CC800D5A8E9 /* JSQMessagesAvatarImage.m in Sources */,
 				A99650641B387CC800D5A8E9 /* NSXMLElement+XEP_0203.m in Sources */,
 				A9964FEE1B387CC800D5A8E9 /* JSQVideoMediaItem.m in Sources */,
+				A99650901B39776A00D5A8E9 /* ChatModels.swift in Sources */,
 				A9964FE21B387CC800D5A8E9 /* JSQMessagesMediaViewBubbleImageMasker.m in Sources */,
 				A99650441B387CC800D5A8E9 /* XMPPResultSet.m in Sources */,
 				A99650461B387CC800D5A8E9 /* XMPPPubSub.m in Sources */,

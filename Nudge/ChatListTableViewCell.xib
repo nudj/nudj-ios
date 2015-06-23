@@ -32,7 +32,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="user_image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Sy0-Re-C7T">
-                        <rect key="frame" x="10" y="10" width="50" height="50"/>
+                        <rect key="frame" x="8" y="10" width="50" height="50"/>
                     </imageView>
                 </subviews>
             </tableViewCellContentView>
