@@ -34,6 +34,7 @@ class BaseController: UIViewController {
 
     func apiRequest(method: Alamofire.Method, path: String, params: [String: AnyObject]? = nil, closure: ((JSON) -> ())? = nil, errorHandler: ((NSError) -> Void)? = nil ) {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
+        let token = appDelegate.api!.token ?? ""
 
         appDelegate.api!.request(method, path: path, params: params, closure: {
             (json: JSON) in
@@ -56,7 +57,7 @@ class BaseController: UIViewController {
             if (closure != nil) {
                 closure!(json)
             }
-        }, token: appDelegate.getUserToken(), errorHandler: errorHandler)
+        }, token: token, errorHandler: errorHandler)
     }
 
     func apiUpdateUser(params: [String: AnyObject], closure: ((JSON) -> ())?, errorHandler: ((NSError) -> Void)? = nil) {

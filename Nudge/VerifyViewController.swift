@@ -112,6 +112,9 @@ class VerifyViewController: BaseController {
 
             appDelegate.pushUserData(user)
 
+            // Change user API token
+            appDelegate.prepareApi()
+
             // Sync contacts
             Contacts().sync()
             

@@ -11,6 +11,7 @@ import SwiftyJSON
 
 class CompleteProfileController: UITableViewController, UITextFieldDelegate, UITextViewDelegate {
 
+    var defaultTopInset: CGFloat = 0.0
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -51,10 +52,14 @@ class CompleteProfileController: UITableViewController, UITextFieldDelegate, UIT
         return true
     }
 
+    func textFieldDidBeginEditing(textField: UITextField) {
+        scrollToCell(textField)
+    }
+
     // MARK: TextViewDelegate
 
     func textViewShouldBeginEditing(textView: UITextView) -> Bool {
-        scrollToSuperView(textView)
+        scrollToCell(textView)
 
         return true
     }
@@ -69,25 +74,50 @@ class CompleteProfileController: UITableViewController, UITextFieldDelegate, UIT
         let info: NSDictionary = sender.userInfo!
         let value: NSValue = info.valueForKey(UIKeyboardFrameBeginUserInfoKey) as! NSValue
         let keyboardSize: CGSize = value.CGRectValue().size
-        let contentInsets: UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0)
 
-        self.tableView?.contentInset = contentInsets
-        self.tableView?.scrollIndicatorInsets = contentInsets
+        if let table = self.tableView {
+            var insets = table.contentInset
+            insets.bottom = keyboardSize.height;
+            defaultTopInset = insets.top
+
+            table.contentInset = insets
+            table.scrollIndicatorInsets = insets
+        }
+
     }
 
     func keyboardWillBeHidden(sender: NSNotification) {
-        let contentInsets: UIEdgeInsets = UIEdgeInsetsZero
-        self.tableView?.contentInset = contentInsets
-        self.tableView?.scrollIndicatorInsets = contentInsets
-        self.tableView?.layoutIfNeeded()
-    }
+        if let table = self.tableView {
+            var insets = table.contentInset
+            insets.bottom = 0.0;
 
-    func scrollToSuperView(view: UIView) {
-        if (view.superview == nil) {
-            return;
+            table.contentInset = insets
+            table.scrollIndicatorInsets = insets
+            table.layoutIfNeeded()
         }
 
-        self.tableView?.setContentOffset(view.superview!.frame.origin, animated: true)
+    }
+
+    func scrollToCell(view: UIView) {
+        if let table = self.tableView {
+            if let cell = findContainingTableCell(view) {
+                var point = cell.frame.origin
+                point.y = point.y - defaultTopInset
+                table.setContentOffset(point, animated: true)
+            }
+        }
+    }
+
+    func findContainingTableCell(view: UIView) -> UITableViewCell? {
+        if let sView = view.superview {
+            if let cell = sView as? UITableViewCell {
+                return cell
+            } else {
+                return findContainingTableCell(sView)
+            }
+        }
+
+        return nil
     }
 
     // MARK: Notifications Management

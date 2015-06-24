@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var user: UserModel?
     var api: API?
     var chatInst: ChatModels?
+    var deviceToken: String?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
@@ -52,18 +53,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         var characterSet: NSCharacterSet = NSCharacterSet( charactersInString: "<>" )
 
-        var deviceTokenString: String = ( deviceToken.description as NSString )
+        self.deviceToken = ( deviceToken.description as NSString )
             .stringByTrimmingCharactersInSet( characterSet )
             .stringByReplacingOccurrencesOfString( " ", withString: "" ) as String
 
-        
-        println( "Device token ->\(deviceTokenString)")
-        
-        API.sharedInstance.put("devices", params: ["token":deviceTokenString], closure:{ response in
-        
-            println("Response -> \(response)");
-        
-        });
+        syncDeviceToken()
     }
 
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
@@ -80,6 +74,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerUserNotificationSettings( settings )
         application.registerForRemoteNotifications()
         
+    }
+
+    func syncDeviceToken() {
+        if (API.sharedInstance.token != nil) {
+            return
+        }
+
+        if self.deviceToken != nil {
+            println( "Device token sent -> \(self.deviceToken!)")
+            API.sharedInstance.put("devices", params: ["token":self.deviceToken!], closure:{ _ in });
+        }
     }
 
     func fetchUserData() {
@@ -124,14 +129,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             println("Could not fetch \(error), \(error!.userInfo)")
         }
 
-    }
-
-    func getUserToken() -> String {
-        if (self.user == nil) {
-            return ""
-        }
-
-        return (self.user!.token == nil) ? "" : self.user!.token!
     }
 
     func pushUserData() {
@@ -196,9 +193,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func prepareApi() {
-        API.sharedInstance.token = self.getUserToken()
+        API.sharedInstance.token = self.user?.token
 
-        println("Token: " + API.sharedInstance.token!)
+        println("Token: \(API.sharedInstance.token)")
 
         if (api == nil) {
             api = API()

@@ -121,7 +121,7 @@ class API {
                         println("Unauthorized -> Logout!")
                         self.performLogout()
                         return true
-                    } else if (code == 10004) {
+                    } else if (code == 11101) {
                         println("Invalid Token -> Logout!")
                         self.performLogout()
                         return true
