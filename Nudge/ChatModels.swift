@@ -14,7 +14,7 @@ protocol ChatModelsDelegate {
     func recievedUser(content:NSDictionary)
 }
 
-class ChatModels: NSObject, XMPPRosterDelegate {
+class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     var delegate : ChatModelsDelegate?
     var chatInformation = [NSManagedObject]();
     
@@ -36,6 +36,7 @@ class ChatModels: NSObject, XMPPRosterDelegate {
     var xmppCapabilities :XMPPCapabilities?;
     var xmppMessageArchivingStorage :XMPPMessageArchivingCoreDataStorage?;
     var xmppMessageArchivingModule  :XMPPMessageArchiving?;
+    var xmppRoomStorage :XMPPRoomCoreDataStorage?;
     
     let  otherUsername = "5@chat.nudj.co";
     let  otherUserPassword = "SKozZ3AuQLUTcHm8FVxSFjxuC3wniMzczWN6g9n5LU6dnAarxXzlPOXIPwtT";
@@ -77,6 +78,7 @@ class ChatModels: NSObject, XMPPRosterDelegate {
         xmppMessageArchivingModule = XMPPMessageArchiving(messageArchivingStorage: xmppMessageArchivingStorage);
         xmppMessageArchivingModule!.clientSideMessageArchivingOnly = true;
         
+        xmppRoomStorage = XMPPRoomCoreDataStorage.sharedInstance();
         
         // Activate xmpp modules
         xmppReconnect!.activate(xmppStream);
@@ -89,6 +91,7 @@ class ChatModels: NSObject, XMPPRosterDelegate {
         xmppStream!.addDelegate(self, delegateQueue: dispatch_get_main_queue());
         xmppRoster!.addDelegate(self, delegateQueue:dispatch_get_main_queue());
         xmppMessageArchivingModule!.addDelegate(self, delegateQueue:dispatch_get_main_queue());
+        
         
     }
     
@@ -248,6 +251,8 @@ class ChatModels: NSObject, XMPPRosterDelegate {
         
         self.xmppStream?.sendElement(message);*/
         
+        self.retrieveAllChatsList();
+        
     }
     
     
@@ -262,13 +267,48 @@ class ChatModels: NSObject, XMPPRosterDelegate {
         
         //var user :XMPPUserCoreDataStorageObject = xmppRosterStorage!.userForJID(message.from(), xmppStream:xmppStream!, managedObjectContext:self.managedObjectContext_roster());
         
-        var msg = message.elementForName("body").stringValue()
+        var queryElement = message.elementForName("x", xmlns:"jabber:x:conference")
         
+        if(queryElement != nil){
+            
+            println("Received conference invite from ->  \(message.fromStr())")
+            
+            var jid = queryElement.attributesAsDictionary().valueForKey("jid") as! String
+                
+            println("conference id ->  \(jid)");
+            
+            self.acceptAndJoinChatRoom(jid);
+            
+        }else{
+
+        
+        println("Received something from the messages delegate -> \(message.xmlns()) -> \(message.XMLString()) -> \(message.attributesAsDictionary())")
+        }
+        
+        
+        var msg = message.elementForName("body") != nil ? message.elementForName("body").stringValue() : nil
+        
+        if msg != nil {
         println("Receiving messages -> \(msg)");
         
         //NSNotificationCenter.defaultCenter().postNotificationName("updateContent", object:nil, userInfo:["message":msg]);
         
         delegate?.recievedMessage(["message":msg])
+        
+        }
+    }
+    
+    func acceptAndJoinChatRoom(sender:String){
+        
+        println("acceptAndJoinChatRoom -> \(sender)")
+        
+        var roomJID = XMPPJID.jidWithString(sender);
+        var xmppRoom = XMPPRoom(roomStorage: xmppRoomStorage, jid: roomJID, dispatchQueue: dispatch_get_main_queue())
+        xmppRoom.activate(xmppStream)
+        xmppRoom.addDelegate(self, delegateQueue: dispatch_get_main_queue())
+        xmppRoom.joinRoomUsingNickname(jabberUsername, history: nil, password:"")
+        
+
     }
     
     func xmppStream(sender:XMPPStream, didReceiveIQ iq:XMPPIQ) -> Bool{
@@ -301,6 +341,73 @@ class ChatModels: NSObject, XMPPRosterDelegate {
         
     }
 
+    func xmppRoom(sender: XMPPRoom!, didReceiveMessage message: XMPPMessage!, fromOccupant occupantJID: XMPPJID!) {
+        
+     println("XMPPROOM Message -> \(message.stringValue())")
+        
+    }
+    
+    func xmppRoomDidJoin(sender: XMPPRoom!) {
+        
+        println("XMPPROOM JOINED -> \(sender.fetchMembersList())")
+        //sender.sendMessageWithBody("i just joined bitches")
+        
+    }
+    
+    func xmppRoomDidCreate(sender: XMPPRoom!) {
+        
+        println("XMPPROOM CREATED -> \(sender.roomJID)")
+        
+    }
     
     
+    func retrieveAllChatsList(){
+        
+        
+        var moc = xmppMessageArchivingStorage!.mainThreadManagedObjectContext;
+        var entityDescription = NSEntityDescription.entityForName("XMPPMessageArchiving_Message_CoreDataObject", inManagedObjectContext: moc);
+        var request = NSFetchRequest();
+        request.entity = entityDescription;
+        var error: NSError?;
+        var messages :NSArray = moc.executeFetchRequest(request, error: &error)!;
+        var message:XMPPMessageArchiving_Message_CoreDataObject?;
+        
+        //Retrieve all the messages for the current conversation
+        /*for message in messages {
+            
+            var mm:Dictionary = [ message.bareJidStr:message.body()]
+            println("All conversartion => \(mm)")
+           
+        }*/
+
+        
+        /*var roomJID = XMPPJID.jidWithString("jnaurl@conference.chat.nudj.co");
+        var xmppRoom = XMPPRoom(roomStorage: xmppRoomStorage, jid: roomJID, dispatchQueue: dispatch_get_main_queue())
+        xmppRoom.activate(xmppStream)
+        xmppRoom.addDelegate(self, delegateQueue: dispatch_get_main_queue())*/
+  
+        self.acceptAndJoinChatRoom("jnaurl@conference.chat.nudj.co")
+
+       /* NSManagedObjectContext *moc = [shareIstance.xmppMessageArchivingStorage mainThreadManagedObjectContext];
+        NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"XMPPMessageArchiving_Message_CoreDataObject"
+        inManagedObjectContext:moc];
+        
+        NSFetchRequest *request = [[NSFetchRequest alloc]init];
+        [request setEntity:entityDescription];
+        NSError *error;
+        
+        NSArray *messages = [moc executeFetchRequest:request error:&error];*/
+        
+    }
+   /*
+    Recieved something i dont know -> <iq xmlns="jabber:client" from="3@chat.nudj.co/Antonios Macbook" to="6@chat.nudj.co/38442159071435158087723956" type="result" id="ADEC1B28-0C1A-4363-9B4B-01C5DE21A02F"><query xmlns="http://jabber.org/protocol/disco#info"><identity category="client" type="pc" name="imagent"></identity><feature var="http://jabber.org/protocol/xhtml-im"></feature><feature var="vcard-temp:x:update"></feature><feature var="http://jabber.org/protocol/disco#info"></feature><feature var="jabber:iq:version"></feature><feature var="http://jabber.org/protocol/si"></feature><feature var="http://jabber.org/protocol/sipub"></feature><feature var="http://jabber.org/protocol/bytestreams"></feature><feature var="apple:profile:efh-transfer"></feature><feature var="http://jabber.org/protocol/si/profile/file-transfer"></feature><feature var="apple:profile:transfer-extensions:rsrcfork"></feature><feature var="http://www.apple.com/xmpp/message-attachments"></feature></query></iq>
+ 
+    Received something from the messages delegate -> jabber:client -> <message xmlns="jabber:client" from="jnaurl@conference.chat.nudj.co/3" to="6@chat.nudj.co/38442159071435158087723956" type="groupchat" id="iChat_16D5C663"><body>testing</body><html xmlns="http://jabber.org/protocol/xhtml-im"><body xmlns="http://www.w3.org/1999/xhtml"><span style="color: #000000;">testing</span></body></html></message> -> {
+    from = "jnaurl@conference.chat.nudj.co/3";
+    id = "iChat_16D5C663";
+    to = "6@chat.nudj.co/38442159071435158087723956";
+    type = groupchat;
+    }
+*/
+
 }

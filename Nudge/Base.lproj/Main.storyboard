@@ -853,6 +853,74 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="rxX-ch-pw7">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rxX-ch-pw7" id="ydJ-jp-EV9">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bio" highlightedImage="bio-active" translatesAutoresizingMaskIntoConstraints="NO" id="vyL-4k-NNE">
+                                                    <rect key="frame" x="8" y="8" width="26" height="26"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="vyL-4k-NNE" secondAttribute="height" multiplier="1:1" id="ZbN-b6-9su"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TVT-Wt-ADA">
+                                                    <rect key="frame" x="42" y="8" width="364" height="83"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="83" id="Rf4-wc-iqI"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="vyL-4k-NNE" firstAttribute="leading" secondItem="ydJ-jp-EV9" secondAttribute="leadingMargin" id="05b-OL-Dn2"/>
+                                                <constraint firstItem="TVT-Wt-ADA" firstAttribute="leading" secondItem="vyL-4k-NNE" secondAttribute="trailing" constant="8" id="34h-Gu-cQC"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="TVT-Wt-ADA" secondAttribute="bottom" id="I9z-LE-rgR"/>
+                                                <constraint firstItem="TVT-Wt-ADA" firstAttribute="top" secondItem="ydJ-jp-EV9" secondAttribute="topMargin" id="IYN-O8-zNh"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="vyL-4k-NNE" secondAttribute="bottom" id="kl3-YP-Ap6"/>
+                                                <constraint firstItem="vyL-4k-NNE" firstAttribute="top" secondItem="ydJ-jp-EV9" secondAttribute="topMargin" id="rTW-la-rUF"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="TVT-Wt-ADA" secondAttribute="trailing" id="seB-4x-zw3"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="kl3-YP-Ap6"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="0kp-Wg-crH">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0kp-Wg-crH" id="yPk-wM-SmB">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="skills" highlightedImage="skills-active" translatesAutoresizingMaskIntoConstraints="NO" id="vsJ-ol-eCx">
+                                                    <rect key="frame" x="8" y="8" width="28" height="28"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="vsJ-ol-eCx" secondAttribute="height" multiplier="1:1" id="F4G-GG-PEB"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jjY-IO-uh4" customClass="TokenView" customModule="nudge" customModuleProvider="target">
+                                                    <rect key="frame" x="44" y="8" width="362" height="28"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="28" id="LVm-bT-aKw"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="vsJ-ol-eCx" firstAttribute="leading" secondItem="yPk-wM-SmB" secondAttribute="leadingMargin" id="14H-PB-P8a"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="jjY-IO-uh4" secondAttribute="bottom" id="2rw-zK-TKB"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="jjY-IO-uh4" secondAttribute="trailing" id="NtI-2X-jkE"/>
+                                                <constraint firstItem="vsJ-ol-eCx" firstAttribute="top" secondItem="yPk-wM-SmB" secondAttribute="topMargin" id="Wj7-n1-Wyb"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="vsJ-ol-eCx" secondAttribute="bottom" id="ePJ-ch-yxb"/>
+                                                <constraint firstItem="jjY-IO-uh4" firstAttribute="top" secondItem="yPk-wM-SmB" secondAttribute="topMargin" id="hfb-Ia-o62"/>
+                                                <constraint firstItem="jjY-IO-uh4" firstAttribute="leading" secondItem="vsJ-ol-eCx" secondAttribute="trailing" constant="8" id="nZd-TB-bx0"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+>>>>>>> Stashed changes
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -1259,7 +1327,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bfN-ai-G9E">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bfN-ai-G9E">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -1270,10 +1338,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottomMargin" secondItem="bfN-ai-G9E" secondAttribute="bottom" id="0i7-7l-PJE"/>
-                            <constraint firstItem="bfN-ai-G9E" firstAttribute="top" secondItem="0zw-Tm-HWi" secondAttribute="bottom" id="VJQ-Cl-WXo"/>
-                            <constraint firstItem="bfN-ai-G9E" firstAttribute="leading" secondItem="FSd-Fl-VSg" secondAttribute="leadingMargin" constant="-16" id="gCi-ky-SES"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="bfN-ai-G9E" secondAttribute="trailing" constant="-16" id="zzf-Fy-V9R"/>
+                            <constraint firstAttribute="bottom" secondItem="bfN-ai-G9E" secondAttribute="bottom" constant="20" symbolic="YES" id="TO9-mk-lGx"/>
+                            <constraint firstItem="bfN-ai-G9E" firstAttribute="leading" secondItem="FSd-Fl-VSg" secondAttribute="leading" id="dZa-NV-i0N"/>
+                            <constraint firstItem="bfN-ai-G9E" firstAttribute="top" secondItem="FSd-Fl-VSg" secondAttribute="top" id="emZ-TI-mco"/>
+                            <constraint firstAttribute="trailing" secondItem="bfN-ai-G9E" secondAttribute="trailing" id="w0X-ep-VGZ"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Chats" image="chatIcon" badgeValue="5" id="iDq-Rj-zbl"/>
