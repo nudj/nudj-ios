@@ -34,7 +34,7 @@ class BaseController: UIViewController {
 
     func apiRequest(method: Alamofire.Method, path: String, params: [String: AnyObject]? = nil, closure: ((JSON) -> ())? = nil, errorHandler: ((NSError) -> Void)? = nil ) {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
-        let token = appDelegate.api!.token ?? ""
+        let token = API.sharedInstance.token ?? ""
 
         appDelegate.api!.request(method, path: path, params: params, closure: {
             (json: JSON) in

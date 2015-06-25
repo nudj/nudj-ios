@@ -19,11 +19,8 @@ class StatusPicker: BaseController, UIPickerViewDelegate, UIPickerViewDataSource
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
-        self.apiRequest(.GET, path: "config/status", params: nil, closure: {
+        API.sharedInstance.get("config/status", params: nil, closure: {
             json in
-            if (json["data"] == nil) {
-                return
-            }
 
             for (key, value) in json["data"] {
                 self.availableStatuses.updateValue(value.stringValue, forKey: key.toInt()!)
