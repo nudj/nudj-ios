@@ -54,6 +54,8 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarBottomLayoutGuide;
+@property (strong, nonatomic) IBOutlet UIView *customTitleBar;
+@property (strong, nonatomic) IBOutlet UIView *dropDownView;
 
 @property (weak, nonatomic) UIView *snapshotView;
 
@@ -119,11 +121,14 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
     self.jsq_isObserving = NO;
 
-    self.toolbarHeightConstraint.constant = self.inputToolbar.preferredDefaultHeight;
+    self.toolbarHeightConstraint.constant = self.inputToolbar.preferredDefaultHeight;;
 
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
 
+    self.inputToolbar.contentView.leftBarButtonItem = nil;
+    self.inputToolbar.contentView.rightBarButtonItem.titleLabel.textColor = [UIColor greenColor];
+    
     self.inputToolbar.delegate = self;
     self.inputToolbar.contentView.textView.placeHolder = [NSBundle jsq_localizedStringForKey:@"new_message"];
     self.inputToolbar.contentView.textView.delegate = self;
@@ -148,6 +153,10 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
                                                                           contextView:self.view
                                                                  panGestureRecognizer:self.collectionView.panGestureRecognizer
                                                                              delegate:self];
+    
+    
+  
+
 }
 
 - (void)dealloc
@@ -210,12 +219,28 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 - (void)viewDidLoad
 {
+    //[super viewDidLoad];
+
+    //[[[self class] nib] instantiateWithOwner:self options:nil];
+
+    //[self jsq_configureMessagesViewController];
+    //[self jsq_registerForNotifications:YES];
+    
+    self.customTitleBar.layer.masksToBounds = NO;
+    self.customTitleBar.layer.shadowOffset = CGSizeMake(0, 1);
+    self.customTitleBar.layer.shadowRadius = 2;
+    self.customTitleBar.layer.shadowOpacity = 0.5;
+    
+    [self.dropDownView setFrame:CGRectMake(0, 64, self.view.frame.size.width, 70)];
+    
     [super viewDidLoad];
-
-    [[[self class] nib] instantiateWithOwner:self options:nil];
-
+    [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([JSQMessagesViewController class])
+                                  owner:self
+                                options:nil];
     [self jsq_configureMessagesViewController];
     [self jsq_registerForNotifications:YES];
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -689,12 +714,11 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
  
-    NSLog(@"BOOM");
     
     if (textView != self.inputToolbar.contentView.textView) {
         return;
     }
-
+    
     [textView becomeFirstResponder];
 
     if (self.automaticallyScrollsToMostRecentMessage) {
@@ -705,7 +729,6 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 - (void)textViewDidChange:(UITextView *)textView
 {
     
-    NSLog(@"BOOM BOOM");
     
     if (textView != self.inputToolbar.contentView.textView) {
         return;
@@ -716,8 +739,6 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
-    
-    NSLog(@"BOOM BOOM BOOM");
 
     
     if (textView != self.inputToolbar.contentView.textView) {

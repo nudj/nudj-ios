@@ -123,7 +123,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         
     }
     
-    // MARK: XMPP protocols and configs
+    // MARK: XMPP methods protocols and configs
     
     func managedObjectContext_roster () -> NSManagedObjectContext! {
         
@@ -136,7 +136,6 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         return xmppCapabilitiesStorage!.mainThreadManagedObjectContext;
         
     }
-    
     
     func goOnline()
     {
@@ -238,20 +237,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         
         self.goOnline();
         
-        println("Has CONNECTED TO JABBER");
-        
-        
-        /* var body = DDXMLElement.elementWithName("body") as! DDXMLElement;
-        body.setStringValue("Testing message sending");
-        
-        var message = DDXMLElement.elementWithName("message") as! DDXMLElement;
-        message.addAttributeWithName("type", stringValue:"chat");
-        message.addAttributeWithName("to", stringValue:otherUsername);
-        message.addChild(body);
-        
-        self.xmppStream?.sendElement(message);*/
-        
-        self.retrieveAllChatsList();
+        println("CLIENT HAS CONNECTED TO JABBER");
         
     }
     
@@ -265,15 +251,13 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     
     func xmppStream(sender :XMPPStream, didReceiveMessage message:XMPPMessage) {
         
-        //var user :XMPPUserCoreDataStorageObject = xmppRosterStorage!.userForJID(message.from(), xmppStream:xmppStream!, managedObjectContext:self.managedObjectContext_roster());
+        var conferenceInvitation = message.elementForName("x", xmlns:"jabber:x:conference")
         
-        var queryElement = message.elementForName("x", xmlns:"jabber:x:conference")
-        
-        if(queryElement != nil){
+        if(conferenceInvitation != nil){
             
             println("Received conference invite from ->  \(message.fromStr())")
             
-            var jid = queryElement.attributesAsDictionary().valueForKey("jid") as! String
+            var jid = conferenceInvitation.attributesAsDictionary().valueForKey("jid") as! String
                 
             println("conference id ->  \(jid)");
             
@@ -281,54 +265,42 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             
         }else{
 
-        
-        println("Received something from the messages delegate -> \(message.xmlns()) -> \(message.XMLString()) -> \(message.attributesAsDictionary())")
+            println("Received something from the messages delegate -> \(message.attributesAsDictionary())")
         }
         
         
         var msg = message.elementForName("body") != nil ? message.elementForName("body").stringValue() : nil
         
         if msg != nil {
-        println("Receiving messages -> \(msg)");
         
-        //NSNotificationCenter.defaultCenter().postNotificationName("updateContent", object:nil, userInfo:["message":msg]);
-        
-        delegate?.recievedMessage(["message":msg])
+            println("Receiving messages -> \(msg)");
+            delegate?.recievedMessage(["message":msg])
         
         }
     }
     
-    func acceptAndJoinChatRoom(sender:String){
-        
-        println("acceptAndJoinChatRoom -> \(sender)")
-        
-        var roomJID = XMPPJID.jidWithString(sender);
-        var xmppRoom = XMPPRoom(roomStorage: xmppRoomStorage, jid: roomJID, dispatchQueue: dispatch_get_main_queue())
-        xmppRoom.activate(xmppStream)
-        xmppRoom.addDelegate(self, delegateQueue: dispatch_get_main_queue())
-        xmppRoom.joinRoomUsingNickname(jabberUsername, history: nil, password:"")
-        
-
-    }
-    
     func xmppStream(sender:XMPPStream, didReceiveIQ iq:XMPPIQ) -> Bool{
-        
-        
-        
-        var queryElement = iq.elementForName("query", xmlns:"jabber:iq:roster")
-        var queryElement1 = iq.elementForName("vCard", xmlns:"vcard-temp")
+
+        var roster = iq.elementForName("query", xmlns:"jabber:iq:roster")
+        var vCard = iq.elementForName("vCard", xmlns:"vcard-temp")
+        var conference = iq.elementForName("query", xmlns:"http://jabber.org/protocol/disco#items");
         
         // GET JABBER ROSTER item
-        if (queryElement != nil){
+        if (roster != nil){
             
-            let itemElements = queryElement.elementsForName("item") as NSArray;
+            let itemElements = roster.elementsForName("item") as NSArray;
             println("Recieved a roster for -> \(itemElements)");
             
-        }else if(queryElement1 != nil){
+        }else if(vCard != nil){
             
             //var fullNameQuery = queryElement1.elementForName("from");
+            println("Recieved a vcard for -> \(vCard)");
             
-            println("Recieved a vcard for -> \(iq)");
+        }else if(conference != nil){
+
+            let itemElements = conference.elementsForName("item") as NSArray;
+            println("Recieved conferences -> \(itemElements)");
+
             
         }else{
             
@@ -336,14 +308,12 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         }
         
         
-        
         return true
-        
     }
 
     func xmppRoom(sender: XMPPRoom!, didReceiveMessage message: XMPPMessage!, fromOccupant occupantJID: XMPPJID!) {
         
-     println("XMPPROOM Message -> \(message.stringValue())")
+        println("XMPPROOM Message -> \(message.stringValue())")
         
     }
     
@@ -360,9 +330,36 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         
     }
     
+    // MARK: Custom chat room methods
+    
+    func acceptAndJoinChatRoom(sender:String){
+        
+        println("accept and Joined ChatRoom -> \(sender)")
+        
+        var roomJID = XMPPJID.jidWithString(sender);
+        var xmppRoom = XMPPRoom(roomStorage: xmppRoomStorage, jid: roomJID, dispatchQueue: dispatch_get_main_queue())
+        xmppRoom.activate(xmppStream)
+        xmppRoom.addDelegate(self, delegateQueue: dispatch_get_main_queue())
+        xmppRoom.joinRoomUsingNickname(jabberUsername, history: nil, password:"")
+        
+    }
+    
     
     func retrieveAllChatsList(){
+     
+        var serverJID = XMPPJID.jidWithString(chatServer)
+        var iq = XMPPIQ.iqWithType("get", to: serverJID)
+        iq.addAttributeWithName("from", stringValue: xmppStream!.myJID.full())
         
+        var query = DDXMLElement.elementWithName("query") as! DDXMLElement
+        query.addAttributeWithName("xmlns", stringValue: "http://jabber.org/protocol/disco#items")
+        
+        iq.addChild(query)
+        xmppStream!.sendElement(iq);
+    }
+    
+    
+    func retrieveStoredChats (){
         
         var moc = xmppMessageArchivingStorage!.mainThreadManagedObjectContext;
         var entityDescription = NSEntityDescription.entityForName("XMPPMessageArchiving_Message_CoreDataObject", inManagedObjectContext: moc);
@@ -372,34 +369,18 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         var messages :NSArray = moc.executeFetchRequest(request, error: &error)!;
         var message:XMPPMessageArchiving_Message_CoreDataObject?;
         
-        //Retrieve all the messages for the current conversation
-        /*for message in messages {
-            
-            var mm:Dictionary = [ message.bareJidStr:message.body()]
-            println("All conversartion => \(mm)")
-           
-        }*/
-
-        
-        /*var roomJID = XMPPJID.jidWithString("jnaurl@conference.chat.nudj.co");
-        var xmppRoom = XMPPRoom(roomStorage: xmppRoomStorage, jid: roomJID, dispatchQueue: dispatch_get_main_queue())
-        xmppRoom.activate(xmppStream)
-        xmppRoom.addDelegate(self, delegateQueue: dispatch_get_main_queue())*/
-  
-        self.acceptAndJoinChatRoom("jnaurl@conference.chat.nudj.co")
-
-       /* NSManagedObjectContext *moc = [shareIstance.xmppMessageArchivingStorage mainThreadManagedObjectContext];
-        NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"XMPPMessageArchiving_Message_CoreDataObject"
-        inManagedObjectContext:moc];
-        
-        NSFetchRequest *request = [[NSFetchRequest alloc]init];
-        [request setEntity:entityDescription];
-        NSError *error;
-        
-        NSArray *messages = [moc executeFetchRequest:request error:&error];*/
+        // Retrieve all the messages for the current conversation
+        for message in messages {
+        var mm:Dictionary = [ message.bareJidStr:message.body()]
+        println("All conversartion => \(mm)")
+        }
         
     }
-   /*
+    
+    
+    //self.acceptAndJoinChatRoom("jnaurl@conference.chat.nudj.co")
+   
+    /*
     Recieved something i dont know -> <iq xmlns="jabber:client" from="3@chat.nudj.co/Antonios Macbook" to="6@chat.nudj.co/38442159071435158087723956" type="result" id="ADEC1B28-0C1A-4363-9B4B-01C5DE21A02F"><query xmlns="http://jabber.org/protocol/disco#info"><identity category="client" type="pc" name="imagent"></identity><feature var="http://jabber.org/protocol/xhtml-im"></feature><feature var="vcard-temp:x:update"></feature><feature var="http://jabber.org/protocol/disco#info"></feature><feature var="jabber:iq:version"></feature><feature var="http://jabber.org/protocol/si"></feature><feature var="http://jabber.org/protocol/sipub"></feature><feature var="http://jabber.org/protocol/bytestreams"></feature><feature var="apple:profile:efh-transfer"></feature><feature var="http://jabber.org/protocol/si/profile/file-transfer"></feature><feature var="apple:profile:transfer-extensions:rsrcfork"></feature><feature var="http://www.apple.com/xmpp/message-attachments"></feature></query></iq>
  
     Received something from the messages delegate -> jabber:client -> <message xmlns="jabber:client" from="jnaurl@conference.chat.nudj.co/3" to="6@chat.nudj.co/38442159071435158087723956" type="groupchat" id="iChat_16D5C663"><body>testing</body><html xmlns="http://jabber.org/protocol/xhtml-im"><body xmlns="http://www.w3.org/1999/xhtml"><span style="color: #000000;">testing</span></body></html></message> -> {
@@ -408,6 +389,6 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     to = "6@chat.nudj.co/38442159071435158087723956";
     type = groupchat;
     }
-*/
+    */
 
 }

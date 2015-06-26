@@ -57,6 +57,18 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
     }
     
     // ACTIONS
+    func createDropDownView(){
+        
+        var dropDown = UIView(frame: CGRectMake(0, 0, 320, 50));
+        dropDown.backgroundColor = UIColor.whiteColor();
+        
+        var jobDetailsIcon = UIImageView(image: UIImage(named: ""));
+        var profileIcon = UIImageView(image: UIImage(named: ""));
+        var favouriteIcon = UIImageView(image: UIImage(named: ""));
+        var muteIcon = UIImageView(image: UIImage(named: ""));
+        var archiveIcon = UIImageView(image: UIImage(named: ""));
+        
+    }
     
     func receivedMessagePressed(sender: UIBarButtonItem) {
         // Simulate reciving message
@@ -92,6 +104,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
     }
     
     override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         self.collectionView.collectionViewLayout.springinessEnabled = true
     }
     
@@ -113,9 +126,9 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
         */
         
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
-        //var message = JSQMessage (senderId: senderId, senderDisplayName: senderDisplayName, date: date, text: text)
+        var message = JSQMessage (senderId: senderId, senderDisplayName: senderDisplayName, date: date, text: text)
         
-        //self.demoData.messages.addObject(message)
+        self.messages.addObject(message)
         
         self.finishReceivingMessageAnimated(true)
         
@@ -240,6 +253,11 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
         
         return self.messages.count
         
+    }
+    
+    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        
+        return 1
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {

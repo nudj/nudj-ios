@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JSQMessagesViewController">
             <connections>
                 <outlet property="collectionView" destination="l9u-2b-4LK" id="bLP-6g-CkO"/>
+                <outlet property="customTitleBar" destination="Qgi-uw-S4i" id="l2L-Wz-efc"/>
+                <outlet property="dropDownView" destination="cVg-om-Qyy" id="osp-4k-WJM"/>
                 <outlet property="inputToolbar" destination="BoD-Az-3DM" id="w74-g9-1qA"/>
                 <outlet property="toolbarBottomLayoutGuide" destination="rHs-6q-NX4" id="d6h-iu-VMX"/>
                 <outlet property="toolbarHeightConstraint" destination="HIk-02-qcW" id="jE8-xC-1eD"/>
@@ -19,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="l9u-2b-4LK" customClass="JSQMessagesCollectionView">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <collectionViewLayout key="collectionViewLayout" id="dZl-7C-LHR" customClass="JSQMessagesCollectionViewFlowLayout"/>
                     <cells/>
@@ -31,20 +33,93 @@
                     </constraints>
                     <items/>
                 </toolbar>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qgi-uw-S4i" userLabel="Custom navbar">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Robyn, You" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0aP-9F-3mY">
+                            <rect key="frame" x="25" y="41" width="270" height="21"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
+                            <color key="textColor" red="0.0" green="0.63137254901960782" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="re: Director of Business Development" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVF-Jj-1IO">
+                            <rect key="frame" x="25" y="19" width="270" height="21"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqJ-pX-CdC">
+                            <rect key="frame" x="294" y="33" width="21" height="22"/>
+                            <state key="normal" image="3dots.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dHd-kW-q7g">
+                            <rect key="frame" x="7" y="35" width="9" height="17"/>
+                            <state key="normal" backgroundImage="back_btn@2x-1.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="mVF-Jj-1IO" firstAttribute="top" secondItem="Qgi-uw-S4i" secondAttribute="top" constant="19" id="5Fp-Fb-Y1a"/>
+                        <constraint firstItem="0aP-9F-3mY" firstAttribute="top" secondItem="mVF-Jj-1IO" secondAttribute="bottom" constant="1" id="97g-FS-Nxy"/>
+                        <constraint firstItem="mVF-Jj-1IO" firstAttribute="leading" secondItem="0aP-9F-3mY" secondAttribute="leading" id="Bid-nP-oJF"/>
+                        <constraint firstAttribute="centerY" secondItem="mVF-Jj-1IO" secondAttribute="centerY" constant="2.5" id="XLl-bV-tWH"/>
+                        <constraint firstItem="mVF-Jj-1IO" firstAttribute="trailing" secondItem="0aP-9F-3mY" secondAttribute="trailing" id="jQW-81-Kz3"/>
+                        <constraint firstItem="mVF-Jj-1IO" firstAttribute="centerX" secondItem="Qgi-uw-S4i" secondAttribute="centerX" id="nMU-Xf-aqN"/>
+                        <constraint firstItem="mVF-Jj-1IO" firstAttribute="leading" secondItem="Qgi-uw-S4i" secondAttribute="leading" constant="25" id="qgz-Kr-gNQ"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cVg-om-Qyy">
+                    <rect key="frame" x="0.0" y="64" width="320" height="70"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="job_detail.png" translatesAutoresizingMaskIntoConstraints="NO" id="uhk-Je-Q5I">
+                            <rect key="frame" x="10" y="10" width="53" height="49"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profile.png" translatesAutoresizingMaskIntoConstraints="NO" id="XlP-I7-Xim">
+                            <rect key="frame" x="70" y="10" width="53" height="49"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="favourite.png" translatesAutoresizingMaskIntoConstraints="NO" id="XPP-TU-7oS">
+                            <rect key="frame" x="131" y="9" width="53" height="49"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="archive.png" translatesAutoresizingMaskIntoConstraints="NO" id="5l2-jo-IsD">
+                            <rect key="frame" x="257" y="10" width="53" height="49"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mute.png" translatesAutoresizingMaskIntoConstraints="NO" id="D4S-5v-Xx5">
+                            <rect key="frame" x="193" y="10" width="53" height="49"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="l9u-2b-4LK" firstAttribute="top" secondItem="Qgi-uw-S4i" secondAttribute="bottom" id="3SX-GY-HcP"/>
                 <constraint firstAttribute="trailing" secondItem="BoD-Az-3DM" secondAttribute="trailing" id="7xc-Ha-asg"/>
+                <constraint firstItem="Qgi-uw-S4i" firstAttribute="leading" secondItem="l9u-2b-4LK" secondAttribute="leading" id="EnL-x9-nJv"/>
                 <constraint firstItem="l9u-2b-4LK" firstAttribute="leading" secondItem="mUa-cS-ru4" secondAttribute="leading" id="MmF-oh-Y75"/>
                 <constraint firstAttribute="trailing" secondItem="l9u-2b-4LK" secondAttribute="trailing" id="O9u-TA-A0e"/>
                 <constraint firstAttribute="bottom" secondItem="l9u-2b-4LK" secondAttribute="bottom" id="Re7-WW-UmS"/>
-                <constraint firstItem="l9u-2b-4LK" firstAttribute="top" secondItem="mUa-cS-ru4" secondAttribute="top" id="dCQ-DM-Wdj"/>
+                <constraint firstItem="l9u-2b-4LK" firstAttribute="top" secondItem="mUa-cS-ru4" secondAttribute="top" constant="64" id="dCQ-DM-Wdj"/>
                 <constraint firstAttribute="bottom" secondItem="BoD-Az-3DM" secondAttribute="bottom" id="rHs-6q-NX4"/>
+                <constraint firstItem="Qgi-uw-S4i" firstAttribute="trailing" secondItem="BoD-Az-3DM" secondAttribute="trailing" id="sTh-t1-2SK"/>
                 <constraint firstItem="BoD-Az-3DM" firstAttribute="leading" secondItem="mUa-cS-ru4" secondAttribute="leading" id="ts7-8f-0lH"/>
+                <constraint firstItem="Qgi-uw-S4i" firstAttribute="top" secondItem="mUa-cS-ru4" secondAttribute="top" id="uN6-wO-TPb"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
         </view>
     </objects>
+    <resources>
+        <image name="3dots.png" width="21" height="5"/>
+        <image name="archive.png" width="53" height="49"/>
+        <image name="back_btn@2x-1.png" width="19" height="35"/>
+        <image name="favourite.png" width="53" height="49"/>
+        <image name="job_detail.png" width="53" height="49"/>
+        <image name="mute.png" width="53" height="49"/>
+        <image name="profile.png" width="53" height="49"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -13,29 +14,54 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Robyn McGirl" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6a-99-ma7">
-                        <rect key="frame" x="81" y="10" width="111" height="21"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Yestarday" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCz-yg-BHJ">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yestarday" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCz-yg-BHJ">
                         <rect key="frame" x="262" y="5" width="50" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="1CG-Uq-fDd"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="10"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="user_image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Sy0-Re-C7T">
-                        <rect key="frame" x="8" y="10" width="50" height="50"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Sy0-Re-C7T">
+                        <rect key="frame" x="10" y="10" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="QfC-1u-knc"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="re: Director of business Development at Oracle" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZ2-Z7-SiL">
-                        <rect key="frame" x="81" y="26" width="205" height="43"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="re: Director of business Development at Oracle" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZ2-Z7-SiL">
+                        <rect key="frame" x="88" y="28" width="241" height="15"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Robyn McGirl" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6a-99-ma7">
+                        <rect key="frame" x="88" y="10" width="190" height="21"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="Sy0-Re-C7T" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="Apm-4R-ArW"/>
+                    <constraint firstItem="CCz-yg-BHJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-3" id="DiY-q1-fcS"/>
+                    <constraint firstItem="Sy0-Re-C7T" firstAttribute="top" secondItem="Z6a-99-ma7" secondAttribute="top" id="Gxw-kZ-1wR"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Z6a-99-ma7" secondAttribute="trailing" constant="27" id="PIb-PB-y3A"/>
+                    <constraint firstItem="CZ2-Z7-SiL" firstAttribute="leading" secondItem="Sy0-Re-C7T" secondAttribute="trailing" constant="28" id="W9B-da-3e0"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Sy0-Re-C7T" secondAttribute="bottom" constant="1" id="bRC-AT-xkb"/>
+                    <constraint firstItem="Sy0-Re-C7T" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="br4-Fy-DQL"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Z6a-99-ma7" secondAttribute="bottom" constant="30" id="fWg-d5-Mzd"/>
+                    <constraint firstItem="CCz-yg-BHJ" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="oF4-Q9-Ewv"/>
+                    <constraint firstItem="Z6a-99-ma7" firstAttribute="leading" secondItem="CZ2-Z7-SiL" secondAttribute="leading" id="qja-ZG-GZO"/>
+                    <constraint firstItem="CZ2-Z7-SiL" firstAttribute="top" secondItem="CCz-yg-BHJ" secondAttribute="bottom" constant="11" id="twZ-2Z-qUK"/>
+                </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="jobTitle" destination="CZ2-Z7-SiL" id="Onm-vf-pew"/>
+                <outlet property="profilePicture" destination="Sy0-Re-C7T" id="wMR-A2-uTC"/>
+                <outlet property="timeAgo" destination="CCz-yg-BHJ" id="ksC-Zd-aay"/>
+                <outlet property="userName" destination="Z6a-99-ma7" id="fRT-oq-l6S"/>
+            </connections>
             <point key="canvasLocation" x="361" y="286"/>
         </tableViewCell>
     </objects>

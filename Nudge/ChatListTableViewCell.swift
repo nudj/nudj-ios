@@ -10,9 +10,16 @@ import UIKit
 
 class ChatListTableViewCell: UITableViewCell {
 
+    @IBOutlet var profilePicture: UIImageView!
+    @IBOutlet var userName: UILabel!
+    @IBOutlet var timeAgo: UILabel!
+    @IBOutlet var jobTitle: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
