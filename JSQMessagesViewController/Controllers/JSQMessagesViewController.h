@@ -23,6 +23,11 @@
 #import "JSQMessagesInputToolbar.h"
 #import "JSQMessagesKeyboardController.h"
 
+
+/*@protocol JSQMessagesViewControllerDelegate <NSObject>
+-(void)dropDownSelectedAction:(UIButton *)sender;
+@end*/
+
 /**
  *  The `JSQMessagesViewController` class is an abstract class that represents a view controller whose content consists of
  *  a `JSQMessagesCollectionView` and `JSQMessagesInputToolbar` and is specialized to display a messaging interface.
@@ -33,10 +38,14 @@
                                                          JSQMessagesCollectionViewDelegateFlowLayout,
                                                          UITextViewDelegate>
 
+
+@property (strong, nonatomic) NSString *userToken;
+@property (strong, nonatomic) NSString *chatID;
 /**
  *  Returns the collection view object managed by this view controller.
  *  This view controller is the collection view's data source and delegate.
  */
+
 @property (weak, nonatomic, readonly) JSQMessagesCollectionView *collectionView;
 
 /**
@@ -267,5 +276,6 @@
  *  @param animated Pass `YES` if you want to animate scrolling, `NO` if it should be immediate.
  */
 - (void)scrollToBottomAnimated:(BOOL)animated;
+
 
 @end

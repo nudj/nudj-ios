@@ -25,9 +25,9 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
          self.chatTable.registerNib(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
          self.chatTable.tableFooterView = UIView(frame: CGRectZero)
         
-         self.apiRequest(.GET, path: "chat?params=chat.job,chat.participants,job.title,user.image", closure: { response in
+         self.apiRequest(.GET, path: "chat?params=chat.job,job.favourite,chat.participants,job.title,user.image,user.name,user.contact", closure: { response in
             
-            println("Chatroom request response ->\(response)");
+            println("Chatroom url request response ->\(response)");
         
             for (id, obj) in response["data"] {
                 self.indexes.append(id)
@@ -63,7 +63,6 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
 
         var cell:ChatListTableViewCell = chatTable.dequeueReusableCellWithIdentifier(cellIdentifier) as! ChatListTableViewCell
         
-        
         var title = self.data[indexPath.row]["job"]["title"]
         cell.jobTitle.text = "re:\(title.stringValue)"
         
@@ -78,6 +77,8 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         
         //ChatViewController *chatView  = [ChatViewController messagesViewController];
         //(nibName: "ChatViewController", bundle: nil)
+        
+        vc.chatID = self.data[indexPath.row]["job"]["id"].stringValue;
         self.navigationController?.pushViewController(vc, animated: true)
         
     }

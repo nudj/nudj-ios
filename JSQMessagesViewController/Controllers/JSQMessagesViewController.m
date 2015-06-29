@@ -41,26 +41,37 @@
 #import "UIDevice+JSQMessages.h"
 #import "NSBundle+JSQMessages.h"
 
-
+#import "CPAnimationSequence.h"
 static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObservingContext;
 
 
-
 @interface JSQMessagesViewController () <JSQMessagesInputToolbarDelegate,
-                                         JSQMessagesKeyboardControllerDelegate>
+JSQMessagesKeyboardControllerDelegate>{
+    
+   BOOL filterOpened;
+    
+}
 
 @property (weak, nonatomic) IBOutlet JSQMessagesCollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet JSQMessagesInputToolbar *inputToolbar;
-
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarBottomLayoutGuide;
+
 @property (strong, nonatomic) IBOutlet UIView *customTitleBar;
 @property (strong, nonatomic) IBOutlet UIView *dropDownView;
+@property (strong, nonatomic) IBOutlet UIButton *jobTitle;
+@property (strong, nonatomic) IBOutlet UIButton *profile;
+@property (strong, nonatomic) IBOutlet UIButton *favourite;
+@property (strong, nonatomic) IBOutlet UIButton *mute;
+@property (strong, nonatomic) IBOutlet UIButton *archive;
+
+
+- (IBAction)backAction:(id)sender;
+- (IBAction)dropDownAction:(id)sender;
+- (IBAction)hide_show_dropdown:(id)sender;
 
 @property (weak, nonatomic) UIView *snapshotView;
-
 @property (assign, nonatomic) BOOL jsq_isObserving;
-
 @property (strong, nonatomic) NSIndexPath *selectedIndexPathForMenu;
 
 - (void)jsq_configureMessagesViewController;
@@ -98,6 +109,8 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 
 @implementation JSQMessagesViewController
+@synthesize userToken = _userToken;
+@synthesize chatID = _chatID;
 
 #pragma mark - Class methods
 
@@ -119,6 +132,9 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 {
     self.view.backgroundColor = [UIColor whiteColor];
 
+    filterOpened = NO;
+    [self.dropDownView setFrame:CGRectMake(0, -10, self.view.frame.size.width, 70)];
+    
     self.jsq_isObserving = NO;
 
     self.toolbarHeightConstraint.constant = self.inputToolbar.preferredDefaultHeight;;
@@ -155,8 +171,9 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
                                                                              delegate:self];
     
     
-  
 
+    
+    
 }
 
 - (void)dealloc
@@ -240,7 +257,14 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     [self jsq_configureMessagesViewController];
     [self jsq_registerForNotifications:YES];
     
+ 
+     NSLog(@"Retrieveing ->%@:%@",_userToken, _chatID);
     
+    self.jobTitle.frame = CGRectMake(10, 10, 53, 49);
+    self.profile.frame  = CGRectMake(70, 10, 53, 49);
+    self.favourite.frame  = CGRectMake(142, 10, 53, 49);
+    self.mute.frame  = CGRectMake(200, 10, 53, 49);
+    self.archive.frame  = CGRectMake(260, 10, 53, 49);
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -1063,4 +1087,167 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     }
 }
 
+- (IBAction)dropDownAction:(id)sender {
+    
+    switch (((UIButton *)sender).tag) {
+        case 1:{
+            
+            //go to job details
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UITableViewController *jobController = [storyboard instantiateViewControllerWithIdentifier:@"JobDetailedView"];
+            [self.navigationController pushViewController:jobController animated:YES];
+        
+        }
+            break;
+        case 2:{
+            
+            //go to profile
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UITableViewController *jobController = [storyboard instantiateViewControllerWithIdentifier:@"JobDetailedView"];
+            [self.navigationController pushViewController:jobController animated:YES];
+
+            
+        }   break;
+        case 3:{
+            //Favourite Chat
+            if([(UIButton *)sender isSelected])
+                [self completeRequest:[NSString stringWithFormat:@"jobs/%@/like",_chatID] withType:@"DELETE"];  //PUT USERS/ID/Favourite
+            else
+                [self completeRequest:[NSString stringWithFormat:@"jobs/%@/like",_chatID] withType:@"PUT"];
+            
+            [(UIButton *)sender setSelected:![(UIButton *)sender isSelected]];
+        }
+            break;
+        case 4:{//[self completeRequest:[NSString stringWithFormat:@"contacts/mute/%@",_chatID] withType:@"PUT"];//{@"mute":true}
+            
+            [(UIButton *)sender setSelected:![(UIButton *)sender isSelected]];
+        }
+            break;
+        case 5:{
+            [(UIButton *)sender setSelected:![(UIButton *)sender isSelected]];
+            [self completeRequest:[NSString stringWithFormat:@"chat/archive/%@",_chatID] withType:@"PUT"];
+        }
+            break;
+        default:
+            break;
+    }
+    
+}
+
+
+// MARK - ACTIONS
+
+
+- (IBAction)backAction:(id)sender {
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
+
+
+- (IBAction)hide_show_dropdown:(id)sender {
+
+    if(filterOpened){
+        [self hideFilterMenu];
+    }else{
+        [self showFilterMenu];
+    }
+
+
+}
+
+
+-(void)hideFilterMenu
+{
+    filterOpened = NO;
+    
+    CPAnimationSequence* animationSequence = [CPAnimationSequence sequenceWithSteps:
+                                              
+                                              
+                                              [CPAnimationStep  for:.25 animate:^{
+        [_dropDownView setFrame:CGRectMake(0, 64-64, self.view.frame.size.width, 70)];
+    }], nil];
+    
+    
+    [animationSequence run];
+    
+    
+}
+
+
+-(void)showFilterMenu
+{
+    
+    filterOpened = YES;
+    
+    CPAnimationSequence* animationSequence = [CPAnimationSequence sequenceWithSteps:
+                                              
+                                              
+                                              [CPAnimationStep  for:.25 animate:^{
+        [_dropDownView setFrame:CGRectMake(0, 0+64, self.view.frame.size.width, 70)];
+        
+    }], nil];
+    
+    
+    [animationSequence run];
+    
+}
+
+-(void)completeRequest:(NSString *)url withType:(NSString*)type{
+    
+    NSString *baseUrl = @"http://api.nudj.co/api/v1/";
+    
+    NSURL *requestUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",baseUrl,url]];
+    NSLog(@"REQUEST TYPE:%@ & URL:%@",type, url);
+    
+    NSString *bodyRequest = [[NSString alloc] initWithFormat:@"{\"token\": \"%@\"}",_userToken];
+    NSData * requestData = [bodyRequest dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:requestUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
+    [urlRequest setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",baseUrl,url]]];
+    [urlRequest setHTTPMethod:type];
+    [urlRequest setValue:_userToken forHTTPHeaderField:@"token"];
+    [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    //[urlRequest setValue:[NSString stringWithFormat:@"%d",[bodyRequest length]] forHTTPHeaderField:@"Content-Length"];,
+    
+    NSLog(@"conn: %@", urlRequest);
+    NSHTTPURLResponse *urlResponse = nil;
+    NSError *error = [[NSError alloc] init];
+    
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:urlRequest
+                                                 returningResponse:&urlResponse
+                                                             error:&error];
+    
+    NSString *result = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+    
+    //NSLog(@"Response code: %d", [urlResponse statusCode]);
+    NSLog(@"Response: %@", result);
+    NSData *JSONdata = [result dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *jsonError = nil;
+    if (JSONdata != nil) {
+        //this you need to know json root is NSDictionary or NSArray , you smaple is NSDictionary
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:JSONdata options:0 error:&jsonError];
+        if (jsonError == nil) {
+
+            //every property you must know , what type is
+            
+            if ([dic objectForKey:@"errorMsg"] != [NSNull null]) {
+                if ([[dic objectForKey:@"errorMsg"]length]==0) {}else{
+                    
+                    NSLog(@"%@",[dic objectForKey:@"errorMsg"]);
+         
+                }
+            }
+            
+        }
+    }
+    
+    if ([urlResponse statusCode] >=200 && [urlResponse statusCode] <300)
+    {
+        NSLog(@"Response ==> %@", result);
+        
+    }
+    
+}
 @end

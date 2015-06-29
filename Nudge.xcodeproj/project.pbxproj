@@ -186,8 +186,6 @@
 		A996508C1B38805B00D5A8E9 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A996508A1B38805B00D5A8E9 /* libxml2.dylib */; };
 		A996508E1B38806700D5A8E9 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A996508D1B38806700D5A8E9 /* libresolv.dylib */; };
 		A99650901B39776A00D5A8E9 /* ChatModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A996508F1B39776A00D5A8E9 /* ChatModels.swift */; };
-		A99650941B3C542900D5A8E9 /* ChatDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99650931B3C542900D5A8E9 /* ChatDropDown.swift */; };
-		A99650961B3C546400D5A8E9 /* ChatDropDown.xib in Resources */ = {isa = PBXBuildFile; fileRef = A99650951B3C546400D5A8E9 /* ChatDropDown.xib */; };
 		A99650991B3DB2D100D5A8E9 /* 3dots@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650981B3DB2D100D5A8E9 /* 3dots@2x.png */; };
 		A996509B1B3DB2E300D5A8E9 /* back_btn@2x-1.png in Resources */ = {isa = PBXBuildFile; fileRef = A996509A1B3DB2E300D5A8E9 /* back_btn@2x-1.png */; };
 		A99650A51B3DB3FF00D5A8E9 /* archive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A996509D1B3DB3FF00D5A8E9 /* archive@2x.png */; };
@@ -204,6 +202,10 @@
 		A9C6EC9C1B38447700EC9140 /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC9B1B38447700EC9140 /* ChatListViewController.swift */; };
 		A9C6EC9F1B3853F900EC9140 /* ChatListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC9D1B3853F900EC9140 /* ChatListTableViewCell.swift */; };
 		A9C6ECA01B3853F900EC9140 /* ChatListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9C6EC9E1B3853F900EC9140 /* ChatListTableViewCell.xib */; };
+		A9F333271B41759A00F0D17B /* CPAnimationProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F333241B41759A00F0D17B /* CPAnimationProgram.m */; };
+		A9F333281B41759A00F0D17B /* CPAnimationSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F333251B41759A00F0D17B /* CPAnimationSequence.m */; };
+		A9F333291B41759A00F0D17B /* CPAnimationStep.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F333261B41759A00F0D17B /* CPAnimationStep.m */; };
+		A9F3332C1B41997600F0D17B /* JobDetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F3332B1B41997600F0D17B /* JobDetailedViewController.swift */; };
 		EB000F7C1AB2E0B800E4D385 /* DataTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB000F7B1AB2E0B800E4D385 /* DataTableCell.swift */; };
 		EB000F7F1AB71D6600E4D385 /* ContactsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB000F7E1AB71D6600E4D385 /* ContactsController.swift */; };
 		EB04F6201AA72520002F2677 /* RegistrationInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB04F61F1AA72520002F2677 /* RegistrationInput.swift */; };
@@ -646,8 +648,6 @@
 		A996508A1B38805B00D5A8E9 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		A996508D1B38806700D5A8E9 /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
 		A996508F1B39776A00D5A8E9 /* ChatModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatModels.swift; sourceTree = "<group>"; };
-		A99650931B3C542900D5A8E9 /* ChatDropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatDropDown.swift; sourceTree = "<group>"; };
-		A99650951B3C546400D5A8E9 /* ChatDropDown.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatDropDown.xib; sourceTree = "<group>"; };
 		A99650981B3DB2D100D5A8E9 /* 3dots@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3dots@2x.png"; sourceTree = "<group>"; };
 		A996509A1B3DB2E300D5A8E9 /* back_btn@2x-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_btn@2x-1.png"; sourceTree = "<group>"; };
 		A996509D1B3DB3FF00D5A8E9 /* archive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archive@2x.png"; sourceTree = "<group>"; };
@@ -664,6 +664,13 @@
 		A9C6EC9B1B38447700EC9140 /* ChatListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
 		A9C6EC9D1B3853F900EC9140 /* ChatListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListTableViewCell.swift; sourceTree = "<group>"; };
 		A9C6EC9E1B3853F900EC9140 /* ChatListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatListTableViewCell.xib; sourceTree = "<group>"; };
+		A9F333201B41759A00F0D17B /* CPAnimationProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnimationProgram.h; sourceTree = "<group>"; };
+		A9F333211B41759A00F0D17B /* CPAnimationSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnimationSequence.h; sourceTree = "<group>"; };
+		A9F333221B41759A00F0D17B /* CPAnimationStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnimationStep.h; sourceTree = "<group>"; };
+		A9F333241B41759A00F0D17B /* CPAnimationProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAnimationProgram.m; sourceTree = "<group>"; };
+		A9F333251B41759A00F0D17B /* CPAnimationSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAnimationSequence.m; sourceTree = "<group>"; };
+		A9F333261B41759A00F0D17B /* CPAnimationStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAnimationStep.m; sourceTree = "<group>"; };
+		A9F3332B1B41997600F0D17B /* JobDetailedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobDetailedViewController.swift; sourceTree = "<group>"; };
 		EB000F7B1AB2E0B800E4D385 /* DataTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTableCell.swift; sourceTree = "<group>"; };
 		EB000F7E1AB71D6600E4D385 /* ContactsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsController.swift; sourceTree = "<group>"; };
 		EB04F61F1AA72520002F2677 /* RegistrationInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationInput.swift; sourceTree = "<group>"; };
@@ -1742,13 +1749,40 @@
 			children = (
 				A9C6EC911B381EB000EC9140 /* ChatViewController.swift */,
 				A9C6EC991B38416C00EC9140 /* ChatViewController.xib */,
-				A99650931B3C542900D5A8E9 /* ChatDropDown.swift */,
-				A99650951B3C546400D5A8E9 /* ChatDropDown.xib */,
 				A9C6EC9B1B38447700EC9140 /* ChatListViewController.swift */,
 				A9C6EC9D1B3853F900EC9140 /* ChatListTableViewCell.swift */,
 				A9C6EC9E1B3853F900EC9140 /* ChatListTableViewCell.xib */,
 			);
 			name = ChatView;
+			sourceTree = "<group>";
+		};
+		A9F3331F1B41759A00F0D17B /* AnimStep */ = {
+			isa = PBXGroup;
+			children = (
+				A9F333201B41759A00F0D17B /* CPAnimationProgram.h */,
+				A9F333211B41759A00F0D17B /* CPAnimationSequence.h */,
+				A9F333221B41759A00F0D17B /* CPAnimationStep.h */,
+				A9F333231B41759A00F0D17B /* private */,
+			);
+			path = AnimStep;
+			sourceTree = "<group>";
+		};
+		A9F333231B41759A00F0D17B /* private */ = {
+			isa = PBXGroup;
+			children = (
+				A9F333241B41759A00F0D17B /* CPAnimationProgram.m */,
+				A9F333251B41759A00F0D17B /* CPAnimationSequence.m */,
+				A9F333261B41759A00F0D17B /* CPAnimationStep.m */,
+			);
+			path = private;
+			sourceTree = "<group>";
+		};
+		A9F3332A1B41994A00F0D17B /* Job Details */ = {
+			isa = PBXGroup;
+			children = (
+				A9F3332B1B41997600F0D17B /* JobDetailedViewController.swift */,
+			);
+			name = "Job Details";
 			sourceTree = "<group>";
 		};
 		B24DF65843B49C77F100654A /* Frameworks */ = {
@@ -1931,6 +1965,7 @@
 		EBDD28CC1ACD8AA700956995 /* MainControllers */ = {
 			isa = PBXGroup;
 			children = (
+				A9F3332A1B41994A00F0D17B /* Job Details */,
 				A9C6EC901B381E8800EC9140 /* ChatView */,
 				EBB338391A9F73A5000CAD88 /* Login/Register */,
 				EB000F7D1AB71D4400E4D385 /* Contatcs */,
@@ -1962,6 +1997,7 @@
 		EBF1861A1B21D9D500D8D80D /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				A9F3331F1B41759A00F0D17B /* AnimStep */,
 				A9964E261B387CC700D5A8E9 /* JSQMessagesViewController */,
 				A9964E841B387CC800D5A8E9 /* JSQSystemSoundPlayer */,
 				A9964E871B387CC800D5A8E9 /* XMPPFramework */,
@@ -2081,7 +2117,6 @@
 				A996507A1B387CC800D5A8E9 /* README.txt in Resources */,
 				A9964FFF1B387CC800D5A8E9 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
 				EBA8C3461B32DFF100522167 /* Main.storyboard in Resources */,
-				A99650961B3C546400D5A8E9 /* ChatDropDown.xib in Resources */,
 				A99650AB1B3DB3FF00D5A8E9 /* mute2@2x.png in Resources */,
 				A9964FFD1B387CC800D5A8E9 /* JSQMessagesToolbarContentView.xib in Resources */,
 				A99650991B3DB2D100D5A8E9 /* 3dots@2x.png in Resources */,
@@ -2220,12 +2255,12 @@
 				A99650371B387CC800D5A8E9 /* XMPPvCardAvatarCoreDataStorageObject.m in Sources */,
 				EB000F7F1AB71D6600E4D385 /* ContactsController.swift in Sources */,
 				A9964FF91B387CC800D5A8E9 /* JSQMessagesLoadEarlierHeaderView.m in Sources */,
+				A9F333271B41759A00F0D17B /* CPAnimationProgram.m in Sources */,
 				A99650411B387CC800D5A8E9 /* XMPPvCardTempModule.m in Sources */,
 				A996500E1B387CC800D5A8E9 /* XMPPMessage.m in Sources */,
 				A99650731B387CC800D5A8E9 /* DDAbstractDatabaseLogger.m in Sources */,
 				A996503D1B387CC800D5A8E9 /* XMPPvCardTempAdrTypes.m in Sources */,
 				A996503A1B387CC800D5A8E9 /* XMPPvCardTempCoreDataStorageObject.m in Sources */,
-				A99650941B3C542900D5A8E9 /* ChatDropDown.swift in Sources */,
 				A996503E1B387CC800D5A8E9 /* XMPPvCardTempBase.m in Sources */,
 				A9964FDB1B387CC800D5A8E9 /* UIImage+JSQMessages.m in Sources */,
 				A99650331B387CC800D5A8E9 /* XMPPMessage+XEP0045.m in Sources */,
@@ -2273,6 +2308,7 @@
 				A996500F1B387CC800D5A8E9 /* XMPPModule.m in Sources */,
 				A99650791B387CC800D5A8E9 /* DispatchQueueLogFormatter.m in Sources */,
 				A9964FF01B387CC800D5A8E9 /* JSQMessagesCollectionView.m in Sources */,
+				A9F3332C1B41997600F0D17B /* JobDetailedViewController.swift in Sources */,
 				A996501E1B387CC800D5A8E9 /* XMPPRosterMemoryStorage.m in Sources */,
 				A99650591B387CC800D5A8E9 /* XMPPMessageArchiving.m in Sources */,
 				EBDD28CE1ACD8ADA00956995 /* SettingsController.swift in Sources */,
@@ -2311,6 +2347,7 @@
 				A99650771B387CC800D5A8E9 /* DDTTYLogger.m in Sources */,
 				A99650681B387CC800D5A8E9 /* NSXMLElement+XEP_0297.m in Sources */,
 				A996506A1B387CC800D5A8E9 /* XMPPMessage+XEP_0333.m in Sources */,
+				A9F333291B41759A00F0D17B /* CPAnimationStep.m in Sources */,
 				EBF186231B21DACA00D8D80D /* KSUtils.swift in Sources */,
 				A99650531B387CC800D5A8E9 /* XMPPCapsResourceCoreDataStorageObject.m in Sources */,
 				A9964FDC1B387CC800D5A8E9 /* UIView+JSQMessages.m in Sources */,
@@ -2370,6 +2407,7 @@
 				A99650691B387CC800D5A8E9 /* XMPPMessage+XEP_0308.m in Sources */,
 				A99650301B387CC800D5A8E9 /* XMPPRoomMemoryStorage.m in Sources */,
 				A996506C1B387CC800D5A8E9 /* DDList.m in Sources */,
+				A9F333281B41759A00F0D17B /* CPAnimationSequence.m in Sources */,
 				EBBF42541AB0AF5F0001E8B6 /* JobCellTableViewCell.swift in Sources */,
 				EB2F78091AD288E400B59C0E /* SettingsCell.swift in Sources */,
 				A996504A1B387CC800D5A8E9 /* NSDate+XMPPDateTimeProfiles.m in Sources */,

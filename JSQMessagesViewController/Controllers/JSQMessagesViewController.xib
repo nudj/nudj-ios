@@ -6,10 +6,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JSQMessagesViewController">
             <connections>
+                <outlet property="archive" destination="6Ht-ZG-OMw" id="qaP-TF-pXd"/>
                 <outlet property="collectionView" destination="l9u-2b-4LK" id="bLP-6g-CkO"/>
                 <outlet property="customTitleBar" destination="Qgi-uw-S4i" id="l2L-Wz-efc"/>
                 <outlet property="dropDownView" destination="cVg-om-Qyy" id="osp-4k-WJM"/>
+                <outlet property="favourite" destination="9xf-wu-y6B" id="W9X-MQ-J7e"/>
                 <outlet property="inputToolbar" destination="BoD-Az-3DM" id="w74-g9-1qA"/>
+                <outlet property="jobTitle" destination="OKI-0o-bya" id="rSY-hB-Lea"/>
+                <outlet property="mute" destination="GWO-Fv-2g7" id="PiM-ez-fLV"/>
+                <outlet property="profile" destination="Hrs-Ve-WPK" id="lPN-lO-DVm"/>
                 <outlet property="toolbarBottomLayoutGuide" destination="rHs-6q-NX4" id="d6h-iu-VMX"/>
                 <outlet property="toolbarHeightConstraint" destination="HIk-02-qcW" id="jE8-xC-1eD"/>
                 <outlet property="view" destination="mUa-cS-ru4" id="nki-T1-RTI"/>
@@ -20,7 +25,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="l9u-2b-4LK" customClass="JSQMessagesCollectionView">
+                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="l9u-2b-4LK" customClass="JSQMessagesCollectionView">
                     <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <collectionViewLayout key="collectionViewLayout" id="dZl-7C-LHR" customClass="JSQMessagesCollectionViewFlowLayout"/>
@@ -33,6 +38,60 @@
                     </constraints>
                     <items/>
                 </toolbar>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cVg-om-Qyy" userLabel="dropView">
+                    <rect key="frame" x="0.0" y="-10" width="320" height="70"/>
+                    <subviews>
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OKI-0o-bya">
+                            <rect key="frame" x="25" y="12" width="53" height="49"/>
+                            <state key="normal" image="job_detail.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="bAE-pK-e35"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hrs-Ve-WPK">
+                            <rect key="frame" x="86" y="13" width="53" height="49"/>
+                            <state key="normal" image="profile.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="RbB-OZ-IUe"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GWO-Fv-2g7">
+                            <rect key="frame" x="208" y="13" width="53" height="49"/>
+                            <state key="normal" image="mute.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" image="mute2.png"/>
+                            <connections>
+                                <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="cxk-w1-m5t"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ht-ZG-OMw">
+                            <rect key="frame" x="259" y="13" width="53" height="49"/>
+                            <state key="normal" image="archive.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" image="archive.png"/>
+                            <connections>
+                                <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="BVh-QL-r6A"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9xf-wu-y6B">
+                            <rect key="frame" x="147" y="13" width="53" height="49"/>
+                            <state key="normal" image="favourite.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" image="favourite2.png"/>
+                            <connections>
+                                <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="ew2-Pr-Gg8"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qgi-uw-S4i" userLabel="Custom navbar">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <subviews>
@@ -48,17 +107,23 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqJ-pX-CdC">
-                            <rect key="frame" x="294" y="33" width="21" height="22"/>
-                            <state key="normal" image="3dots.png">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                        </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dHd-kW-q7g">
                             <rect key="frame" x="7" y="35" width="9" height="17"/>
                             <state key="normal" backgroundImage="back_btn@2x-1.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="backAction:" destination="-1" eventType="touchUpInside" id="SLx-vj-d49"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqJ-pX-CdC">
+                            <rect key="frame" x="291" y="33" width="21" height="22"/>
+                            <state key="normal" image="3dots.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="hide_show_dropdown:" destination="-1" eventType="touchUpInside" id="bVP-NB-g7O"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
@@ -67,31 +132,12 @@
                         <constraint firstItem="0aP-9F-3mY" firstAttribute="top" secondItem="mVF-Jj-1IO" secondAttribute="bottom" constant="1" id="97g-FS-Nxy"/>
                         <constraint firstItem="mVF-Jj-1IO" firstAttribute="leading" secondItem="0aP-9F-3mY" secondAttribute="leading" id="Bid-nP-oJF"/>
                         <constraint firstAttribute="centerY" secondItem="mVF-Jj-1IO" secondAttribute="centerY" constant="2.5" id="XLl-bV-tWH"/>
+                        <constraint firstAttribute="trailing" secondItem="aqJ-pX-CdC" secondAttribute="trailing" constant="8" id="ae9-7o-CKg"/>
+                        <constraint firstItem="aqJ-pX-CdC" firstAttribute="top" secondItem="Qgi-uw-S4i" secondAttribute="top" constant="33" id="fEz-0v-9Yj"/>
                         <constraint firstItem="mVF-Jj-1IO" firstAttribute="trailing" secondItem="0aP-9F-3mY" secondAttribute="trailing" id="jQW-81-Kz3"/>
                         <constraint firstItem="mVF-Jj-1IO" firstAttribute="centerX" secondItem="Qgi-uw-S4i" secondAttribute="centerX" id="nMU-Xf-aqN"/>
                         <constraint firstItem="mVF-Jj-1IO" firstAttribute="leading" secondItem="Qgi-uw-S4i" secondAttribute="leading" constant="25" id="qgz-Kr-gNQ"/>
                     </constraints>
-                </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cVg-om-Qyy">
-                    <rect key="frame" x="0.0" y="64" width="320" height="70"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="job_detail.png" translatesAutoresizingMaskIntoConstraints="NO" id="uhk-Je-Q5I">
-                            <rect key="frame" x="10" y="10" width="53" height="49"/>
-                        </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profile.png" translatesAutoresizingMaskIntoConstraints="NO" id="XlP-I7-Xim">
-                            <rect key="frame" x="70" y="10" width="53" height="49"/>
-                        </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="favourite.png" translatesAutoresizingMaskIntoConstraints="NO" id="XPP-TU-7oS">
-                            <rect key="frame" x="131" y="9" width="53" height="49"/>
-                        </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="archive.png" translatesAutoresizingMaskIntoConstraints="NO" id="5l2-jo-IsD">
-                            <rect key="frame" x="257" y="10" width="53" height="49"/>
-                        </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mute.png" translatesAutoresizingMaskIntoConstraints="NO" id="D4S-5v-Xx5">
-                            <rect key="frame" x="193" y="10" width="53" height="49"/>
-                        </imageView>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -116,8 +162,10 @@
         <image name="archive.png" width="53" height="49"/>
         <image name="back_btn@2x-1.png" width="19" height="35"/>
         <image name="favourite.png" width="53" height="49"/>
+        <image name="favourite2.png" width="53" height="49"/>
         <image name="job_detail.png" width="53" height="49"/>
         <image name="mute.png" width="53" height="49"/>
+        <image name="mute2.png" width="53" height="49"/>
         <image name="profile.png" width="53" height="49"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

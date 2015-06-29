@@ -18,6 +18,10 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
     var messages = NSMutableArray();
     
     override func viewDidLoad() {
+        
+        var appGlobalDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        self.userToken = appGlobalDelegate.user?.token;
+
         super.viewDidLoad()
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -51,9 +55,8 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
     
         self.templateImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(UIImage(named: "user_image_placeholder"), diameter: 30)
         
-        var appGlobalDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appGlobalDelegate.chatInst!.delegate = self as ChatModelsDelegate
-        
+        appGlobalDelegate.chatInst!.delegate = self as ChatModelsDelegate        
+
     }
     
     // ACTIONS
