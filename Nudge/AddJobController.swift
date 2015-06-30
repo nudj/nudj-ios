@@ -52,7 +52,7 @@ class AddJobController: UIViewController,UITableViewDataSource,UITableViewDelega
         
        //jobs POST jobs/1
        //['id', 'title', 'description', 'salary', 'status', 'bonus']
-        self.createPopup()
+        //self.createPopup()
         
     }
 
