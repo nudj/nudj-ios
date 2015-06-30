@@ -9,26 +9,37 @@
 import UIKit
 
 @IBDesignable
-class AddJobController: UIViewController,UITableViewDataSource, UITableViewDelegate{
+class AddJobController: UIViewController,UITableViewDataSource,UITableViewDelegate{
 
     @IBOutlet var jobTableView: UITableView!
-
+    var overlayBackground:UIView?;
+    var popupView:UIView?;
+    
     let cellIdentifier = "AddJobCell"
 
     let structure: [AddJobItem] = [
-        AddJobItem(type: AddJobbCellType.Field, image: "second", placeholder: "Job Title"),
-        AddJobItem(type: AddJobbCellType.BigText, image: "second", placeholder: "Job Description (keep it brief)"),
-        AddJobItem(type: AddJobbCellType.Field, image: "second", placeholder: "Add Skills Tags"),
-        AddJobItem(type: AddJobbCellType.Field, image: "second", placeholder: "Salary Details"),
-        AddJobItem(type: AddJobbCellType.Field, image: "second", placeholder: "Employer"),
-        AddJobItem(type: AddJobbCellType.Field, image: "second", placeholder: "Tag Location"),
-        AddJobItem(type: AddJobbCellType.Field, image: "second", placeholder: "Job Status")
+        AddJobItem(type: AddJobbCellType.Field, image: "job_title_active", placeholder: "Job Title"),
+        AddJobItem(type: AddJobbCellType.BigText, image: "job_description_active", placeholder: "Job Description (keep it brief)"),
+        AddJobItem(type: AddJobbCellType.Field, image: "add_skills_active", placeholder: "Add Skills Tags"),
+        AddJobItem(type: AddJobbCellType.Field, image: "salary_details_active", placeholder: "Salary Details"),
+        AddJobItem(type: AddJobbCellType.Field, image: "employer_active", placeholder: "Employer"),
+        AddJobItem(type: AddJobbCellType.Field, image: "tag_location_active", placeholder: "Tag Location"),
+        AddJobItem(type: AddJobbCellType.Field, image: "job_title_active", placeholder: "Job Status"),
+        AddJobItem(type: AddJobbCellType.empty, image: "", placeholder: "")
     ];
     
     override func viewDidLoad() {
         
+        self.navigationController?.tabBarController?.hidesBottomBarWhenPushed = true;
         self.jobTableView.registerNib(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
         self.jobTableView.tableFooterView = UIView(frame: CGRectZero)
+        
+        //-------------------------------New resizing text
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil);
+        
+        overlayBackground? = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height));
+        popupView? = UIView(frame: CGRectMake((self.view.frame.size.width - 250) / 2 , (self.view.frame.size.height - 250) / 2 , 250, 250))
         
     }
     
@@ -40,6 +51,8 @@ class AddJobController: UIViewController,UITableViewDataSource, UITableViewDeleg
     @IBAction func PostAction(sender: AnyObject) {
         
        //jobs POST jobs/1
+       //['id', 'title', 'description', 'salary', 'status', 'bonus']
+        self.createPopup()
         
     }
 
@@ -53,13 +66,15 @@ class AddJobController: UIViewController,UITableViewDataSource, UITableViewDeleg
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return self.structure.count
+        return self.structure.count;
         
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        if(indexPath.row != 1){
+        if(indexPath.row != 1 && indexPath.row != 7){
             return 52;
+        }else if(indexPath.row  == 7){
+            return 90;
         }else{
             return 100;
         }
@@ -69,11 +84,22 @@ class AddJobController: UIViewController,UITableViewDataSource, UITableViewDeleg
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
        
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AddJobCell
-        let data = structure[indexPath.row]
+        let data = structure[indexPath.row];
 
-        cell.setup(data.type, image: data.image, placeholder: data.placeholder)
-
-        return cell
+        cell.setup(data.type, image: data.image, placeholder: data.placeholder);
+        
+        if(indexPath.row == 7){
+            
+            var setReferalLabel : UILabel = UILabel(frame: CGRectMake(0, 30, self.view.frame.width, 30));
+            setReferalLabel.text = "Set Referal Bonus";
+            setReferalLabel.numberOfLines = 0;
+            setReferalLabel.textAlignment = NSTextAlignment.Center;
+            setReferalLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 24);
+            cell.addSubview(setReferalLabel);
+            
+        }
+        
+        return cell;
     }
     
     // MARK: -- UITableViewDelegate -
@@ -82,4 +108,117 @@ class AddJobController: UIViewController,UITableViewDataSource, UITableViewDeleg
         
         
     }
+    
+    
+    //---------------------------------------------------------------------------------
+    //--------------------------- COMMENTS KEYBOARD METHODS
+    
+    // MARK: -- COMMENTS KEYBOARD METHODS
+    func keyboardWillShow(note: NSNotification){
+    
+    /*println("keyboard open");
+    
+    // get keyboard size and loctaion
+    var keyboardBounds :CGRect?
+        
+    note.userInfo.valueForKeyUIKeyboardFrameEndUserInfoKey
+        
+        
+    [[note.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey] getValue: &keyboardBounds];
+    NSNumber *duration = [note.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSNumber *curve = [note.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
+    
+    // Need to translate the bounds to account for rotation.
+    keyboardBounds = [self.view convertRect:keyboardBounds toView:nil];
+    
+    // get a rect for the textView frame
+    CGRect containerFrame = containerView.frame;
+    containerFrame.origin.y = self.view.bounds.size.height - (keyboardBounds.size.height + containerFrame.size.height);
+    // animations settings
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:[duration doubleValue]];
+    [UIView setAnimationCurve:[curve intValue]];
+    
+    // set views with new info
+    containerView.frame = containerFrame;
+    
+    
+    // commit animations
+    [UIView commitAnimations];
+    
+    
+    [_commentsTable setFrame:CGRectMake(0, 64, 320, self.view.frame.size.height-keyboardBounds.size.height-40-64)];
+    
+    [self.view bringSubviewToFront:containerView];
+    
+    
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.commentJson count]-1 inSection:0];
+    
+    if([self.commentJson count] >0)
+    [_commentsTable scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    }
+    */
+    }
+    
+    func keyboardWillHide(note: NSNotification){
+    
+    /*
+    NSLog(@"keyboard closed.");
+    
+    NSNumber *duration = [note.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSNumber *curve = [note.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
+    
+    // get a rect for the textView frame
+    CGRect containerFrame = containerView.frame;
+    containerFrame.origin.y = self.view.bounds.size.height - containerFrame.size.height;
+    
+    // animations settings
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:[duration doubleValue]];
+    [UIView setAnimationCurve:[curve intValue]];
+    
+    // set views with new info
+    containerView.frame = containerFrame;
+    
+    // commit animations
+    [UIView commitAnimations];
+    
+    [_commentsTable setFrame:CGRectMake(0, 64, 320, shareIstance.deviceHeight-40-64)];
+    
+    if([self.commentJson count]!=0)
+    [_commentsTable scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.commentJson count]-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    */
+        
+    }
+    
+    func createPopup(){
+        
+        overlayBackground!.backgroundColor = UIColor.blackColor();
+        overlayBackground!.alpha = 0.7;
+        overlayBackground!.userInteractionEnabled = true;
+        self.view.addSubview(overlayBackground!);
+        
+        var gesture :UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:"dismissPopup");
+        overlayBackground!.addGestureRecognizer(gesture)
+        popupView!.backgroundColor = UIColor.whiteColor();
+        popupView!.layer.cornerRadius = 5;
+        popupView!.layer.masksToBounds = true;
+        
+        var imageView : UIImageView = UIImageView(frame: CGRectMake(4 , 22 , 242, 205))
+        imageView.image = UIImage(named: "this_job_has-been_posted")
+        
+        popupView?.addSubview(imageView)
+        self.view.addSubview(popupView!);
+
+    }
+    
+    func dismissPopup(){
+        
+        overlayBackground!.removeFromSuperview()
+        popupView!.removeFromSuperview()
+    }
+
 }

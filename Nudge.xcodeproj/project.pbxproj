@@ -206,6 +206,23 @@
 		A9F333281B41759A00F0D17B /* CPAnimationSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F333251B41759A00F0D17B /* CPAnimationSequence.m */; };
 		A9F333291B41759A00F0D17B /* CPAnimationStep.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F333261B41759A00F0D17B /* CPAnimationStep.m */; };
 		A9F3332C1B41997600F0D17B /* JobDetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F3332B1B41997600F0D17B /* JobDetailedViewController.swift */; };
+		A9F3334E1B42ACCB00F0D17B /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3334D1B42ACCB00F0D17B /* check.png */; };
+		A9F3335D1B42ACDC00F0D17B /* add_skills_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333501B42ACDC00F0D17B /* add_skills_active@2x.png */; };
+		A9F3335E1B42ACDC00F0D17B /* employer_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333511B42ACDC00F0D17B /* employer_active@2x.png */; };
+		A9F3335F1B42ACDC00F0D17B /* job_description_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333521B42ACDC00F0D17B /* job_description_active@2x.png */; };
+		A9F333601B42ACDC00F0D17B /* job_title_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333531B42ACDC00F0D17B /* job_title_active@2x.png */; };
+		A9F333611B42ACDC00F0D17B /* salary_details_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333541B42ACDC00F0D17B /* salary_details_active@2x.png */; };
+		A9F333621B42ACDC00F0D17B /* tag_location_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333551B42ACDC00F0D17B /* tag_location_active@2x.png */; };
+		A9F333631B42ACDC00F0D17B /* add_skills@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333571B42ACDC00F0D17B /* add_skills@2x.png */; };
+		A9F333641B42ACDC00F0D17B /* employer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333581B42ACDC00F0D17B /* employer@2x.png */; };
+		A9F333651B42ACDC00F0D17B /* job_description@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333591B42ACDC00F0D17B /* job_description@2x.png */; };
+		A9F333661B42ACDC00F0D17B /* job_title@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3335A1B42ACDC00F0D17B /* job_title@2x.png */; };
+		A9F333671B42ACDC00F0D17B /* salary_details@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3335B1B42ACDC00F0D17B /* salary_details@2x.png */; };
+		A9F333681B42ACDC00F0D17B /* tag_location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3335C1B42ACDC00F0D17B /* tag_location@2x.png */; };
+		A9F3336A1B42B0B700F0D17B /* pound_sign@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333691B42B0B700F0D17B /* pound_sign@2x.png */; };
+		A9F3336C1B42BE4B00F0D17B /* this_job_has-been_posted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3336B1B42BE4B00F0D17B /* this_job_has-been_posted@2x.png */; };
+		A9F3336E1B42CD4300F0D17B /* AskReferralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F3336D1B42CD4300F0D17B /* AskReferralViewController.swift */; };
+		A9F333701B42D20C00F0D17B /* close_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3336F1B42D20C00F0D17B /* close_btn@2x.png */; };
 		EB000F7C1AB2E0B800E4D385 /* DataTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB000F7B1AB2E0B800E4D385 /* DataTableCell.swift */; };
 		EB000F7F1AB71D6600E4D385 /* ContactsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB000F7E1AB71D6600E4D385 /* ContactsController.swift */; };
 		EB04F6201AA72520002F2677 /* RegistrationInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB04F61F1AA72520002F2677 /* RegistrationInput.swift */; };
@@ -671,6 +688,23 @@
 		A9F333251B41759A00F0D17B /* CPAnimationSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAnimationSequence.m; sourceTree = "<group>"; };
 		A9F333261B41759A00F0D17B /* CPAnimationStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAnimationStep.m; sourceTree = "<group>"; };
 		A9F3332B1B41997600F0D17B /* JobDetailedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobDetailedViewController.swift; sourceTree = "<group>"; };
+		A9F3334D1B42ACCB00F0D17B /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = check.png; path = add_job_details_images/check.png; sourceTree = "<group>"; };
+		A9F333501B42ACDC00F0D17B /* add_skills_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_skills_active@2x.png"; sourceTree = "<group>"; };
+		A9F333511B42ACDC00F0D17B /* employer_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "employer_active@2x.png"; sourceTree = "<group>"; };
+		A9F333521B42ACDC00F0D17B /* job_description_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "job_description_active@2x.png"; sourceTree = "<group>"; };
+		A9F333531B42ACDC00F0D17B /* job_title_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "job_title_active@2x.png"; sourceTree = "<group>"; };
+		A9F333541B42ACDC00F0D17B /* salary_details_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "salary_details_active@2x.png"; sourceTree = "<group>"; };
+		A9F333551B42ACDC00F0D17B /* tag_location_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tag_location_active@2x.png"; sourceTree = "<group>"; };
+		A9F333571B42ACDC00F0D17B /* add_skills@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_skills@2x.png"; sourceTree = "<group>"; };
+		A9F333581B42ACDC00F0D17B /* employer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "employer@2x.png"; sourceTree = "<group>"; };
+		A9F333591B42ACDC00F0D17B /* job_description@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "job_description@2x.png"; sourceTree = "<group>"; };
+		A9F3335A1B42ACDC00F0D17B /* job_title@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "job_title@2x.png"; sourceTree = "<group>"; };
+		A9F3335B1B42ACDC00F0D17B /* salary_details@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "salary_details@2x.png"; sourceTree = "<group>"; };
+		A9F3335C1B42ACDC00F0D17B /* tag_location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tag_location@2x.png"; sourceTree = "<group>"; };
+		A9F333691B42B0B700F0D17B /* pound_sign@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pound_sign@2x.png"; sourceTree = "<group>"; };
+		A9F3336B1B42BE4B00F0D17B /* this_job_has-been_posted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "this_job_has-been_posted@2x.png"; sourceTree = "<group>"; };
+		A9F3336D1B42CD4300F0D17B /* AskReferralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskReferralViewController.swift; sourceTree = "<group>"; };
+		A9F3336F1B42D20C00F0D17B /* close_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close_btn@2x.png"; sourceTree = "<group>"; };
 		EB000F7B1AB2E0B800E4D385 /* DataTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTableCell.swift; sourceTree = "<group>"; };
 		EB000F7E1AB71D6600E4D385 /* ContactsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsController.swift; sourceTree = "<group>"; };
 		EB04F61F1AA72520002F2677 /* RegistrationInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationInput.swift; sourceTree = "<group>"; };
@@ -1714,6 +1748,7 @@
 		A99650971B3DB23A00D5A8E9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A9F3332E1B42A89600F0D17B /* AddJob */,
 				A99650AD1B3DB40900D5A8E9 /* ChatIcons */,
 				A996509C1B3DB3DE00D5A8E9 /* Common */,
 			);
@@ -1723,6 +1758,8 @@
 		A996509C1B3DB3DE00D5A8E9 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				A9F3336F1B42D20C00F0D17B /* close_btn@2x.png */,
+				A9F3334D1B42ACCB00F0D17B /* check.png */,
 				A996509A1B3DB2E300D5A8E9 /* back_btn@2x-1.png */,
 				A99650981B3DB2D100D5A8E9 /* 3dots@2x.png */,
 			);
@@ -1783,6 +1820,57 @@
 				A9F3332B1B41997600F0D17B /* JobDetailedViewController.swift */,
 			);
 			name = "Job Details";
+			sourceTree = "<group>";
+		};
+		A9F3332D1B42A84500F0D17B /* AddJob */ = {
+			isa = PBXGroup;
+			children = (
+				EBEA9B481AF265150027A2A2 /* AddJobController.swift */,
+				EBEA9B4A1AF26ACB0027A2A2 /* AddJobCell.swift */,
+				EBEA9B4B1AF26ACB0027A2A2 /* AddJobCell.xib */,
+				EBEA9B4E1AF274480027A2A2 /* AddJobItem.swift */,
+				A9F3336D1B42CD4300F0D17B /* AskReferralViewController.swift */,
+			);
+			name = AddJob;
+			sourceTree = "<group>";
+		};
+		A9F3332E1B42A89600F0D17B /* AddJob */ = {
+			isa = PBXGroup;
+			children = (
+				A9F3336B1B42BE4B00F0D17B /* this_job_has-been_posted@2x.png */,
+				A9F3334F1B42ACDC00F0D17B /* active */,
+				A9F333561B42ACDC00F0D17B /* inactive */,
+			);
+			name = AddJob;
+			sourceTree = "<group>";
+		};
+		A9F3334F1B42ACDC00F0D17B /* active */ = {
+			isa = PBXGroup;
+			children = (
+				A9F333691B42B0B700F0D17B /* pound_sign@2x.png */,
+				A9F333501B42ACDC00F0D17B /* add_skills_active@2x.png */,
+				A9F333511B42ACDC00F0D17B /* employer_active@2x.png */,
+				A9F333521B42ACDC00F0D17B /* job_description_active@2x.png */,
+				A9F333531B42ACDC00F0D17B /* job_title_active@2x.png */,
+				A9F333541B42ACDC00F0D17B /* salary_details_active@2x.png */,
+				A9F333551B42ACDC00F0D17B /* tag_location_active@2x.png */,
+			);
+			name = active;
+			path = add_job_details_images/active;
+			sourceTree = "<group>";
+		};
+		A9F333561B42ACDC00F0D17B /* inactive */ = {
+			isa = PBXGroup;
+			children = (
+				A9F333571B42ACDC00F0D17B /* add_skills@2x.png */,
+				A9F333581B42ACDC00F0D17B /* employer@2x.png */,
+				A9F333591B42ACDC00F0D17B /* job_description@2x.png */,
+				A9F3335A1B42ACDC00F0D17B /* job_title@2x.png */,
+				A9F3335B1B42ACDC00F0D17B /* salary_details@2x.png */,
+				A9F3335C1B42ACDC00F0D17B /* tag_location@2x.png */,
+			);
+			name = inactive;
+			path = add_job_details_images/inactive;
 			sourceTree = "<group>";
 		};
 		B24DF65843B49C77F100654A /* Frameworks */ = {
@@ -1986,10 +2074,7 @@
 		EBEA9B471AF264DF0027A2A2 /* ActionControllers */ = {
 			isa = PBXGroup;
 			children = (
-				EBEA9B481AF265150027A2A2 /* AddJobController.swift */,
-				EBEA9B4A1AF26ACB0027A2A2 /* AddJobCell.swift */,
-				EBEA9B4B1AF26ACB0027A2A2 /* AddJobCell.xib */,
-				EBEA9B4E1AF274480027A2A2 /* AddJobItem.swift */,
+				A9F3332D1B42A84500F0D17B /* AddJob */,
 			);
 			name = ActionControllers;
 			sourceTree = "<group>";
@@ -2116,17 +2201,30 @@
 				A9964FDF1B387CC800D5A8E9 /* JSQMessagesViewController.xib in Resources */,
 				A996507A1B387CC800D5A8E9 /* README.txt in Resources */,
 				A9964FFF1B387CC800D5A8E9 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
+				A9F333701B42D20C00F0D17B /* close_btn@2x.png in Resources */,
 				EBA8C3461B32DFF100522167 /* Main.storyboard in Resources */,
+				A9F333651B42ACDC00F0D17B /* job_description@2x.png in Resources */,
+				A9F3336A1B42B0B700F0D17B /* pound_sign@2x.png in Resources */,
 				A99650AB1B3DB3FF00D5A8E9 /* mute2@2x.png in Resources */,
 				A9964FFD1B387CC800D5A8E9 /* JSQMessagesToolbarContentView.xib in Resources */,
 				A99650991B3DB2D100D5A8E9 /* 3dots@2x.png in Resources */,
+				A9F333621B42ACDC00F0D17B /* tag_location_active@2x.png in Resources */,
+				A9F3334E1B42ACCB00F0D17B /* check.png in Resources */,
+				A9F333671B42ACDC00F0D17B /* salary_details@2x.png in Resources */,
 				A99650A61B3DB3FF00D5A8E9 /* arrow@2x.png in Resources */,
 				A996509B1B3DB2E300D5A8E9 /* back_btn@2x-1.png in Resources */,
+				A9F333631B42ACDC00F0D17B /* add_skills@2x.png in Resources */,
 				A9964FD51B387CC800D5A8E9 /* JSQMessagesAssets.bundle in Resources */,
+				A9F3336C1B42BE4B00F0D17B /* this_job_has-been_posted@2x.png in Resources */,
+				A9F333641B42ACDC00F0D17B /* employer@2x.png in Resources */,
+				A9F333661B42ACDC00F0D17B /* job_title@2x.png in Resources */,
 				A99650A71B3DB3FF00D5A8E9 /* favourite@2x.png in Resources */,
 				A99650A51B3DB3FF00D5A8E9 /* archive@2x.png in Resources */,
 				A99650A91B3DB3FF00D5A8E9 /* job_detail@2x.png in Resources */,
 				EB2F780A1AD288E400B59C0E /* SettingsCell.xib in Resources */,
+				A9F3335E1B42ACDC00F0D17B /* employer_active@2x.png in Resources */,
+				A9F333681B42ACDC00F0D17B /* tag_location@2x.png in Resources */,
+				A9F3335F1B42ACDC00F0D17B /* job_description_active@2x.png in Resources */,
 				EB0926DC1A8DE4CB00E1D958 /* LaunchScreen.xib in Resources */,
 				EB0926D91A8DE4CB00E1D958 /* Images.xcassets in Resources */,
 				EBBF42551AB0AF5F0001E8B6 /* JobCellTableViewCell.xib in Resources */,
@@ -2134,7 +2232,10 @@
 				A99650AA1B3DB3FF00D5A8E9 /* mute@2x.png in Resources */,
 				EBEA9B4D1AF26ACB0027A2A2 /* AddJobCell.xib in Resources */,
 				A9964FFA1B387CC800D5A8E9 /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
+				A9F333611B42ACDC00F0D17B /* salary_details_active@2x.png in Resources */,
+				A9F333601B42ACDC00F0D17B /* job_title_active@2x.png in Resources */,
 				A996507F1B387CC800D5A8E9 /* build-libidn.sh in Resources */,
+				A9F3335D1B42ACDC00F0D17B /* add_skills_active@2x.png in Resources */,
 				A99650AC1B3DB3FF00D5A8E9 /* profile@2x.png in Resources */,
 				A9C6EC9A1B38416C00EC9140 /* ChatViewController.xib in Resources */,
 				A9964FF51B387CC800D5A8E9 /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
@@ -2421,6 +2522,7 @@
 				A996505A1B387CC800D5A8E9 /* XMPPvCardAvatarModule.m in Sources */,
 				A996504C1B387CC800D5A8E9 /* XMPPMessage+XEP_0085.m in Sources */,
 				A99650701B387CC800D5A8E9 /* XMPPSRVResolver.m in Sources */,
+				A9F3336E1B42CD4300F0D17B /* AskReferralViewController.swift in Sources */,
 				A99650041B387CC800D5A8E9 /* XMPPDigestMD5Authentication.m in Sources */,
 				A99650481B387CC800D5A8E9 /* XMPPIQ+XEP_0066.m in Sources */,
 				A996506E1B387CC800D5A8E9 /* RFImageToDataTransformer.m in Sources */,

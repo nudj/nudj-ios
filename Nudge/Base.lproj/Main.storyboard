@@ -75,8 +75,29 @@
                                     <outlet property="delegate" destination="FfD-3r-a1P" id="KbQ-GA-Gva"/>
                                 </connections>
                             </tableView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Add Amount" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="784-kH-bbD">
+                                <rect key="frame" x="43" y="652" width="371" height="20"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="pound_sign.png" translatesAutoresizingMaskIntoConstraints="NO" id="DgP-SW-7OY">
+                                <rect key="frame" x="10" y="654" width="13" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="13" id="JCq-Cy-Oy3"/>
+                                    <constraint firstAttribute="height" constant="16" id="qhe-gq-OVc"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="784-kH-bbD" firstAttribute="leading" secondItem="DgP-SW-7OY" secondAttribute="trailing" constant="39" id="5hp-Gz-OAH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="784-kH-bbD" secondAttribute="trailing" constant="-16" id="PhO-Vu-eHJ"/>
+                            <constraint firstItem="cVJ-W3-TGQ" firstAttribute="top" secondItem="784-kH-bbD" secondAttribute="bottom" constant="10" id="UzM-Jd-4pC"/>
+                            <constraint firstItem="DgP-SW-7OY" firstAttribute="leading" secondItem="KFx-AJ-I4Z" secondAttribute="leadingMargin" constant="10" id="Wkh-Y8-txZ"/>
+                            <constraint firstItem="cVJ-W3-TGQ" firstAttribute="top" secondItem="DgP-SW-7OY" secondAttribute="bottom" constant="10" id="qpy-U3-Ger"/>
+                            <constraint firstItem="DgP-SW-7OY" firstAttribute="leading" secondItem="KFx-AJ-I4Z" secondAttribute="leadingMargin" constant="10" id="x1E-s8-kAG"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Job Details" id="6Ro-DX-rEt">
                         <barButtonItem key="backBarButtonItem" title="back" id="opI-Eb-tL8"/>
@@ -90,6 +111,7 @@
                             <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="PostAction:" destination="FfD-3r-a1P" id="0Ku-qd-TFf"/>
+                                <segue destination="l4F-Ih-7ec" kind="push" id="7KJ-5k-VZY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -100,6 +122,30 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lLg-GA-XFy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1804" y="2275"/>
+        </scene>
+        <!--Ask For Referral-->
+        <scene sceneID="2Qq-cM-5Ew">
+            <objects>
+                <viewController storyboardIdentifier="AskReferralView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="l4F-Ih-7ec" customClass="AskReferralViewController" customModule="nudge" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eRp-l7-vkZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="2vb-zw-F13"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LYw-OP-G4h">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Ask For Referral" id="YsP-4A-ztP">
+                        <barButtonItem key="leftBarButtonItem" image="close_btn.png" id="qv7-GZ-4LS"/>
+                        <barButtonItem key="rightBarButtonItem" title="Ask" id="1xq-so-4m4">
+                            <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pmF-e8-vjl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1283" y="2270"/>
         </scene>
         <!--Job Detailed View Controller-->
         <scene sceneID="pVz-Gg-ujC">
@@ -117,7 +163,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l1b-Cw-UAv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-881" y="2397"/>
+            <point key="canvasLocation" x="-659" y="2207"/>
         </scene>
         <!--Network Posts Navigator-->
         <scene sceneID="gnE-5Y-lyK">
@@ -1249,7 +1295,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dof-7s-Qzl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3059" y="2425"/>
+            <point key="canvasLocation" x="-3054" y="2428"/>
         </scene>
         <!--RootNavigationController-->
         <scene sceneID="g1V-Jt-TaA">
@@ -1352,6 +1398,7 @@
         <image name="bio" width="26" height="26"/>
         <image name="bio-active" width="26" height="26"/>
         <image name="chatIcon" width="20" height="20"/>
+        <image name="close_btn.png" width="16" height="16"/>
         <image name="contactsIcon" width="20" height="20"/>
         <image name="email" width="26" height="26"/>
         <image name="email-active" width="26" height="26"/>
@@ -1364,6 +1411,7 @@
         <image name="locationIcon-active" width="24" height="24"/>
         <image name="notificationsIcon" width="20" height="20"/>
         <image name="nudge_small_logo" width="145" height="79"/>
+        <image name="pound_sign.png" width="13" height="19"/>
         <image name="settingsIcon" width="20" height="20"/>
         <image name="silhouette" width="24" height="24"/>
         <image name="silhouette-active" width="24" height="24"/>
@@ -1372,9 +1420,10 @@
         <image name="user_image_placeholder" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="l7l-cF-kYn"/>
-        <segue reference="OxQ-75-aNI"/>
-        <segue reference="g4A-9H-dU3"/>
         <segue reference="BCe-Pt-bFX"/>
+        <segue reference="g4A-9H-dU3"/>
+        <segue reference="l7l-cF-kYn"/>
+        <segue reference="1RO-e0-4AP"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
 </document>

@@ -12,6 +12,7 @@ enum AddJobbCellType {
     case Field
     case BigText
     case Tags
+    case empty
 }
 
 @IBDesignable
@@ -41,15 +42,18 @@ class AddJobCell: UITableViewCell, UITextFieldDelegate, UITextViewDelegate {
     }
 
     func setup(type: AddJobbCellType, image: String, placeholder: String) {
-        self.thumb.image = UIImage(named: "first")
+        self.thumb.image = UIImage(named: image)
         self.thumb.alpha = 0.5
         self.type = type
 
         if (type == AddJobbCellType.Field) {
-            self.textView.removeFromSuperview()
-
+            self.textField.alpha = 0;
+            //self.textView.removeFromSuperview()
             self.textField.placeholder = placeholder
-        } else {
+        }else if(type ==  AddJobbCellType.empty){
+            self.textField.alpha = 0;
+            self.textField.alpha = 0;
+        }else {
             self.textField.placeholder = placeholder
             self.textField.userInteractionEnabled = false
         }

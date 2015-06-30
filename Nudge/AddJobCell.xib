@@ -63,7 +63,7 @@
                 <outlet property="textView" destination="O0I-RP-TAq" id="wfb-Mv-EgW"/>
                 <outlet property="thumb" destination="gjH-0k-DLs" id="lcS-JJ-Yw3"/>
             </connections>
-            <point key="canvasLocation" x="146" y="519"/>
+            <point key="canvasLocation" x="213" y="499"/>
         </tableViewCell>
     </objects>
 </document>
