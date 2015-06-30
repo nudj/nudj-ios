@@ -1125,7 +1125,7 @@ JSQMessagesKeyboardControllerDelegate>{
             break;
         case 5:{
             [(UIButton *)sender setSelected:![(UIButton *)sender isSelected]];
-            [self completeRequest:[NSString stringWithFormat:@"chat/archive/%@",_chatID] withType:@"PUT"];
+            [self completeRequest:[NSString stringWithFormat:@"chat/%@/archive",_chatID] withType:@"PUT"];
         }
             break;
         default:
