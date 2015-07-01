@@ -11,33 +11,23 @@ import UIKit
 class ReferralFilterContent: NSObject {
  
     
-    var name: NSString?;
-    var type: NSString?;
-    var desc: NSString?;
+    var name: String?;
     var glossaryIndex :NSArray?;
     var contactsGlosarry :NSMutableArray?;
     
     override init(){
         
         super.init()
-        
-    }
-    
-    func glossaryContent(){
-        
         self.contactsGlosarry = NSMutableArray();
-        
     }
     
-    func productWithType(name:NSString) -> ReferralFilterContent{
+    
+    func productWithType(name:String) -> ReferralFilterContent{
     
         var newProduct: ReferralFilterContent =  self
-        
-        newProduct.type = type;
         newProduct.name = name;
-        newProduct.desc = desc;
-        
         return newProduct;
+        
     }
     
 

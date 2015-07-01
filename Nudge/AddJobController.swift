@@ -9,11 +9,10 @@
 import UIKit
 
 @IBDesignable
-class AddJobController: UIViewController,UITableViewDataSource,UITableViewDelegate{
+class AddJobController: UIViewController,UITableViewDataSource,UITableViewDelegate, CreatePopupViewDelegate{
 
     @IBOutlet var jobTableView: UITableView!
-    var overlayBackground:UIView?;
-    var popupView:UIView?;
+    var poup :CreatePopupView?;
     
     let cellIdentifier = "AddJobCell"
 
@@ -38,9 +37,10 @@ class AddJobController: UIViewController,UITableViewDataSource,UITableViewDelega
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil);
         
-        overlayBackground? = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height));
-        popupView? = UIView(frame: CGRectMake((self.view.frame.size.width - 250) / 2 , (self.view.frame.size.height - 250) / 2 , 250, 250))
-        
+   
+        //popup = CreatePopupView(x: 0, yCordinate: 0, width: self.View.frame.size.width , height: self.View.frame.size.height, imageName: "");
+        //popup = popup.createPopup();
+
     }
     
     @IBAction func backAction(sender: AnyObject) {
@@ -194,31 +194,7 @@ class AddJobController: UIViewController,UITableViewDataSource,UITableViewDelega
         
     }
     
-    func createPopup(){
-        
-        overlayBackground!.backgroundColor = UIColor.blackColor();
-        overlayBackground!.alpha = 0.7;
-        overlayBackground!.userInteractionEnabled = true;
-        self.view.addSubview(overlayBackground!);
-        
-        var gesture :UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:"dismissPopup");
-        overlayBackground!.addGestureRecognizer(gesture)
-        popupView!.backgroundColor = UIColor.whiteColor();
-        popupView!.layer.cornerRadius = 5;
-        popupView!.layer.masksToBounds = true;
-        
-        var imageView : UIImageView = UIImageView(frame: CGRectMake(4 , 22 , 242, 205))
-        imageView.image = UIImage(named: "this_job_has-been_posted")
-        
-        popupView?.addSubview(imageView)
-        self.view.addSubview(popupView!);
-
+    func dismissPopUp() {
+        //popup.removeFromSuperView();
     }
-    
-    func dismissPopup(){
-        
-        overlayBackground!.removeFromSuperview()
-        popupView!.removeFromSuperview()
-    }
-
 }

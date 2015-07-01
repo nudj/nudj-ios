@@ -224,6 +224,7 @@
 		A9F3336E1B42CD4300F0D17B /* AskReferralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F3336D1B42CD4300F0D17B /* AskReferralViewController.swift */; };
 		A9F333701B42D20C00F0D17B /* close_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3336F1B42D20C00F0D17B /* close_btn@2x.png */; };
 		A9F333721B4302F800F0D17B /* ReferralFilterContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F333711B4302F800F0D17B /* ReferralFilterContent.swift */; };
+		A9F333741B4444D700F0D17B /* CreatePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F333731B4444D700F0D17B /* CreatePopupView.swift */; };
 		EB000F7C1AB2E0B800E4D385 /* DataTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB000F7B1AB2E0B800E4D385 /* DataTableCell.swift */; };
 		EB000F7F1AB71D6600E4D385 /* ContactsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB000F7E1AB71D6600E4D385 /* ContactsController.swift */; };
 		EB04F6201AA72520002F2677 /* RegistrationInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB04F61F1AA72520002F2677 /* RegistrationInput.swift */; };
@@ -707,6 +708,7 @@
 		A9F3336D1B42CD4300F0D17B /* AskReferralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskReferralViewController.swift; sourceTree = "<group>"; };
 		A9F3336F1B42D20C00F0D17B /* close_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close_btn@2x.png"; sourceTree = "<group>"; };
 		A9F333711B4302F800F0D17B /* ReferralFilterContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferralFilterContent.swift; sourceTree = "<group>"; };
+		A9F333731B4444D700F0D17B /* CreatePopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePopupView.swift; sourceTree = "<group>"; };
 		EB000F7B1AB2E0B800E4D385 /* DataTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTableCell.swift; sourceTree = "<group>"; };
 		EB000F7E1AB71D6600E4D385 /* ContactsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsController.swift; sourceTree = "<group>"; };
 		EB04F61F1AA72520002F2677 /* RegistrationInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationInput.swift; sourceTree = "<group>"; };
@@ -1999,6 +2001,7 @@
 				EB9F71DE1B0E0060000C2D9F /* MainTabBar.swift */,
 				EB9F71E01B0E0200000C2D9F /* MainTabItem.swift */,
 				EBE5C3111B25811400CFF7E9 /* TokenView.swift */,
+				A9F333731B4444D700F0D17B /* CreatePopupView.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -2495,6 +2498,7 @@
 				A99650341B387CC800D5A8E9 /* XMPPMUC.m in Sources */,
 				A9964FE71B387CC800D5A8E9 /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,
 				A99650351B387CC800D5A8E9 /* XMPPRoom.m in Sources */,
+				A9F333741B4444D700F0D17B /* CreatePopupView.swift in Sources */,
 				A99650201B387CC800D5A8E9 /* XMPPRoster.m in Sources */,
 				A99650131B387CC800D5A8E9 /* XMPPBandwidthMonitor.m in Sources */,
 				EB313D301AAF4C5A00F008B8 /* StatusPicker.swift in Sources */,
