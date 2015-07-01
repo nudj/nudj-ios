@@ -13,6 +13,7 @@ class AskReferralViewController: UIViewController,UISearchBarDelegate {
     @IBOutlet var messageText: UITextField!
     @IBOutlet var searchBar: UISearchBar!
     var currentContent :NSMutableArray?;
+    var indexes:NSArray?;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,7 @@ class AskReferralViewController: UIViewController,UISearchBarDelegate {
         // Do any additional setup after loading the view.
         
         currentContent = NSMutableArray();
+        indexes = NSArray();
         
         var content :ReferralFilterContent = ReferralFilterContent()
         content.glossaryContent()
@@ -27,10 +29,12 @@ class AskReferralViewController: UIViewController,UISearchBarDelegate {
         
         
         for var i = 0; i < content.glossaryIndex?.count; i++ {
-            //content.glossaryContent.addObject( content.productWithType("", names: content.glossaryIndex[i], description:"") );
+            
+            //content.glossaryContent.addObject( content.productWithType(content.glossaryIndex[i]) );
+            
         }
         
-        // indexes = [[allVals allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+         indexes = content.glossaryIndex?.sortedArrayUsingSelector("localizedCaseInsensitiveCompare:")
     }
 
     override func didReceiveMemoryWarning() {

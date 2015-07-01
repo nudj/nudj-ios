@@ -29,7 +29,7 @@ class ReferralFilterContent: NSObject {
         
     }
     
-    func productWithType(type:NSString, names name:NSString,  description desc:NSString) -> ReferralFilterContent{
+    func productWithType(name:NSString) -> ReferralFilterContent{
     
         var newProduct: ReferralFilterContent =  self
         
