@@ -64,16 +64,16 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-
         
-        if(self.viewType! == 1){
+        
+        if(self.viewType != nil && self.viewType! == 1){
             //Sign up
             //no back button
             
             self.navigationItem.title = "Create Profile"
             self.topLeftButton.image = nil;
             
-        }else if(self.viewType! == 2){
+        }else if(self.viewType != nil && self.viewType! == 2){
             // Others 
             // change next button to favoutite button
             // back button enabled
