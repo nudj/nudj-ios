@@ -1,5 +1,5 @@
 //
-//  InitProfile.swift
+//  GenericProfileViewController.swift
 //  Nudge
 //
 //  Created by Lachezar Todorov on 27.02.15.
@@ -10,10 +10,13 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
+class GenericProfileViewController: BaseController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
 
     let msgTitle = "Choose Image Source"
 
+    @IBOutlet var topLeftButton: UIBarButtonItem!
+    @IBOutlet var topRightButton: UIBarButtonItem!
+    
     @IBOutlet weak var statusButton: StatusButton! {
         didSet {
             statusButton.changeColor(UIColor.lightGrayColor())
@@ -55,12 +58,39 @@ class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePicker
     @IBOutlet weak var aboutMeFieldHeight: NSLayoutConstraint!
 
     var openSpace:CGFloat = 0
-
+    var isEditable :Bool?
+    var viewType :Int?
     var imagePicker = UIImagePickerController()
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
+        
+        if(self.viewType! == 1){
+            //Sign up
+            //no back button
+            
+            self.navigationItem.title = "Create Profile"
+            self.topLeftButton.image = nil;
+            
+        }else if(self.viewType! == 2){
+            // Others 
+            // change next button to favoutite button
+            // back button enabled
+            
+            self.topRightButton.title = ""
+            self.topRightButton.image = UIImage(named:"save");
+            self.navigationItem.title = "Profile"
+            
+        }else{
+            // My profile
+            // no right button
+            // back button enabled
+            
+            self.navigationItem.title = "My Profile"
+            self.topRightButton.title = ""
+        }
+        
         self.registerNotification()
 
         // Get Local Values for the user
@@ -81,6 +111,21 @@ class InitProfile: BaseController, UINavigationControllerDelegate, UIImagePicker
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
+    @IBAction func topRightButtonAction(sender: UIBarButtonItem) {
+        
+        if(self.viewType! == 2){
+        self.topRightButton.image = nil
+        self.topRightButton.image = UIImage(named:"saved");
+        }
+        
+    }
+    
+    @IBAction func topLeftButtonAction(sender: UIBarButtonItem) {
+        
+        self.navigationController?.popViewControllerAnimated(true)
+        
+    }
+    
     func showUserData() {
         UserModel.getCurrent(["user.status", "user.name", "user.image", "user.skills", "user.about"], closure: { user in
             if let status = user.status {

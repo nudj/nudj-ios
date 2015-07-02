@@ -12,7 +12,7 @@ import UIKit
 class AddJobController: UIViewController,UITableViewDataSource,UITableViewDelegate, CreatePopupViewDelegate{
 
     @IBOutlet var jobTableView: UITableView!
-    var poup :CreatePopupView?;
+    var popup :CreatePopupView?;
     
     let cellIdentifier = "AddJobCell"
 
@@ -36,12 +36,9 @@ class AddJobController: UIViewController,UITableViewDataSource,UITableViewDelega
         //-------------------------------New resizing text
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil);
-        
-   
-        //popup = CreatePopupView(x: 0, yCordinate: 0, width: self.View.frame.size.width , height: self.View.frame.size.height, imageName: "");
-        //popup = popup.createPopup();
 
     }
+    
     
     @IBAction func backAction(sender: AnyObject) {
         
@@ -53,6 +50,11 @@ class AddJobController: UIViewController,UITableViewDataSource,UITableViewDelega
        //jobs POST jobs/1
        //['id', 'title', 'description', 'salary', 'status', 'bonus']
         //self.createPopup()
+        
+        popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"this_job_has-been_posted", withText: false);
+        popup?.delegate = self;
+        
+        self.view.addSubview(popup!)
         
     }
 
@@ -195,6 +197,13 @@ class AddJobController: UIViewController,UITableViewDataSource,UITableViewDelega
     }
     
     func dismissPopUp() {
-        //popup.removeFromSuperView();
+        
+        popup!.removeFromSuperview();
+        
+        //Go to ask view
+        let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        var askController: UIViewController = storyboard.instantiateViewControllerWithIdentifier("AskReferralView") as! UIViewController
+        self.navigationController?.pushViewController(askController, animated: true)
+        
     }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableViewDataSource, UITableViewDelegate{
+class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableViewDataSource, UITableViewDelegate, CreatePopupViewDelegate{
     
     @IBOutlet var askTable: UITableView!
     @IBOutlet var messageText: UITextField!
@@ -18,6 +18,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     var searchResult :NSMutableArray?;
     var indexes :NSArray?;
     var isSearchTable :Bool = false
+    var popup :CreatePopupView?;
     
     let cellIdentifier = "ContactsCell"
     
@@ -49,7 +50,6 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
          self.searchResult = self.currentContent!;
          askTable.reloadData();
         
-        askTable.frame = CGRectM
         
     }
 
@@ -154,16 +154,33 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     // MARK: -- UITableViewDelegate --
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        println("Selected")
+        
+        //Go to profile view
+        let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        var genericController = storyboard.instantiateViewControllerWithIdentifier("GenericProfileView") as! GenericProfileViewController
+        genericController.viewType = 2;
+        genericController.isEditable = false;
+        self.navigationController?.pushViewController(genericController, animated: true)
+        
     }
     
     @IBAction func askAction(sender: AnyObject) {
         
-        self.navigationController?.popToRootViewControllerAnimated(true)
+        popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true);
+        popup!.bodyText("You have successfully asked 3 contacts for referral");
+        popup!.delegate = self;
+        self.view.addSubview(popup!);
+        
     }
     
     @IBAction func closeAction(sender: UIBarButtonItem) {
         
+        self.navigationController?.popToRootViewControllerAnimated(true)
+    }
+    
+    func dismissPopUp() {
+        
+        popup!.removeFromSuperview();
         self.navigationController?.popToRootViewControllerAnimated(true)
     }
         

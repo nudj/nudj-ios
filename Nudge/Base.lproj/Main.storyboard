@@ -111,7 +111,6 @@
                             <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="PostAction:" destination="FfD-3r-a1P" id="0Ku-qd-TFf"/>
-                                <segue destination="l4F-Ih-7ec" kind="push" id="7KJ-5k-VZY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -132,18 +131,18 @@
                         <viewControllerLayoutGuide type="bottom" id="2vb-zw-F13"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="LYw-OP-G4h">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rKx-ay-gWi">
-                                <rect key="frame" x="0.0" y="159" width="414" height="1"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rKx-ay-gWi">
+                                <rect key="frame" x="0.0" y="159" width="600" height="1"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="hYE-Fs-kNf"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Select the contacts you would like to ask for a referral." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OV7-Xx-yXT">
-                                <rect key="frame" x="72" y="196" width="270" height="64"/>
+                                <rect key="frame" x="72" y="196" width="456" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="FOt-Xx-gCP"/>
                                 </constraints>
@@ -159,8 +158,8 @@
                                     <outlet property="delegate" destination="l4F-Ih-7ec" id="OJJ-E3-oba"/>
                                 </connections>
                             </tableView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Enter your personalised message" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pCb-4U-zMV">
-                                <rect key="frame" x="11" y="79" width="392" height="60"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Enter your personalised message" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pCb-4U-zMV">
+                                <rect key="frame" x="11" y="79" width="578" height="60"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="yhJ-nx-8Cs"/>
@@ -169,7 +168,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <searchBar contentMode="redraw" misplaced="YES" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="6Sq-g3-IGS">
-                                <rect key="frame" x="0.0" y="265" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="265" width="600" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="g73-QJ-2JI"/>
                                 </constraints>
@@ -231,7 +230,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pmF-e8-vjl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1283" y="2270"/>
+            <point key="canvasLocation" x="-1247" y="2263"/>
         </scene>
         <!--Job Detailed View Controller-->
         <scene sceneID="pVz-Gg-ujC">
@@ -338,7 +337,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="62P-JS-cTz">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="62P-JS-cTz">
                                 <rect key="frame" x="0.0" y="20" width="414" height="716"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -661,7 +660,7 @@
                         <outlet property="activityIndicator" destination="wEH-Xa-xrR" id="Fff-hE-ye8"/>
                         <outlet property="codeField" destination="hKT-kK-LKT" id="h7i-ZC-rWc"/>
                         <outlet property="smsText" destination="NgN-92-Sf5" id="C88-iq-nce"/>
-                        <segue destination="Swg-Up-4oJ" kind="show" identifier="showInitProfile" id="sUd-cH-rSX"/>
+                        <segue destination="Swg-Up-4oJ" kind="show" identifier="showGenericProfileView" id="sUd-cH-rSX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GJO-d0-MNh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1036,7 +1035,7 @@
         <!--Your Profile-->
         <scene sceneID="Aa3-rJ-CkJ">
             <objects>
-                <viewController storyboardIdentifier="initProfile" title="Your Profile" automaticallyAdjustsScrollViewInsets="NO" id="u6h-lK-ytT" customClass="InitProfile" customModule="nudge" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GenericProfileView" title="Your Profile" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="u6h-lK-ytT" customClass="GenericProfileViewController" customModule="nudge" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GSP-Bq-GU9"/>
                         <viewControllerLayoutGuide type="bottom" id="rxt-tZ-phW"/>
@@ -1302,12 +1301,24 @@
                             <constraint firstItem="smp-rK-aNl" firstAttribute="leading" secondItem="JDA-uv-iwQ" secondAttribute="leadingMargin" constant="-16" id="xDI-91-g19"/>
                             <constraint firstItem="smp-rK-aNl" firstAttribute="top" secondItem="MaM-1e-UFb" secondAttribute="bottom" id="yTj-7a-OIW"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="2VM-em-XfD"/>
+                            </mask>
+                        </variation>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Your Profile" id="l9a-ir-nQd">
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="q6p-o6-BJM">
+                        <barButtonItem key="leftBarButtonItem" image="back_btn@2x-1.png" id="QO8-kz-PTa">
+                            <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="continueAct:" destination="u6h-lK-ytT" id="pVU-ee-dUX"/>
+                                <action selector="topLeftButtonAction:" destination="u6h-lK-ytT" id="9Of-85-LB2"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="FOt-1T-78Q">
+                            <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="topRightButtonAction:" destination="u6h-lK-ytT" id="RSV-6l-Ysv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1321,12 +1332,13 @@
                         <outlet property="findMe" destination="1NS-FT-VEm" id="jp5-7l-a8R"/>
                         <outlet property="findMeIcon" destination="spQ-EU-FFP" id="Kqq-XD-fCd"/>
                         <outlet property="nameLabel" destination="Swi-ei-rDt" id="wA4-pv-7uf"/>
-                        <outlet property="nextButton" destination="q6p-o6-BJM" id="6gr-iL-Nmu"/>
                         <outlet property="profilePhoto" destination="GeY-dg-YuP" id="HDQ-rM-g8G"/>
                         <outlet property="scrollView" destination="smp-rK-aNl" id="Fol-TB-Tp6"/>
                         <outlet property="skills" destination="F3t-ez-kh9" id="SbB-vX-DVP"/>
                         <outlet property="skillsIcon" destination="i5r-zg-Q8P" id="jTt-83-ZK2"/>
                         <outlet property="statusButton" destination="xYk-9i-uqx" id="IlW-7K-Wse"/>
+                        <outlet property="topLeftButton" destination="QO8-kz-PTa" id="8w4-xd-YFb"/>
+                        <outlet property="topRightButton" destination="FOt-1T-78Q" id="cpK-qm-oSe"/>
                         <outlet property="topView" destination="MaM-1e-UFb" id="erA-3Y-DB2"/>
                         <segue destination="F3c-zd-gaG" kind="show" identifier="showStatusPicker" id="1RO-e0-4AP"/>
                         <segue destination="49e-Tb-3d3" kind="showDetail" identifier="showMainScreen" id="BCe-Pt-bFX"/>
@@ -1400,7 +1412,7 @@
                     <connections>
                         <segue destination="HUi-qm-vwZ" kind="relationship" relationship="rootViewController" id="l7l-cF-kYn"/>
                         <segue destination="49e-Tb-3d3" kind="show" identifier="showMainScreen" id="vho-Q5-Kri"/>
-                        <segue destination="u6h-lK-ytT" kind="show" identifier="showInitProfile2" id="fbd-Xz-21X"/>
+                        <segue destination="u6h-lK-ytT" kind="show" identifier="showGenericProfileViewControllerAgain" id="fbd-Xz-21X"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tL6-xY-Tir" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1458,7 +1470,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="uDu-kR-FGd">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="uDu-kR-FGd">
                                 <rect key="frame" x="0.0" y="20" width="414" height="716"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -1506,9 +1518,9 @@
         <image name="user_image_placeholder" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vho-Q5-Kri"/>
-        <segue reference="l7l-cF-kYn"/>
+        <segue reference="BCe-Pt-bFX"/>
         <segue reference="fbd-Xz-21X"/>
+        <segue reference="zyP-mc-EMC"/>
         <segue reference="1RO-e0-4AP"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
