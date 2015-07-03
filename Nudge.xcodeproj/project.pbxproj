@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A95798251B46965A006E826E /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95798241B46965A006E826E /* NotificationViewController.swift */; };
 		A9964FD51B387CC800D5A8E9 /* JSQMessagesAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A9964E281B387CC700D5A8E9 /* JSQMessagesAssets.bundle */; };
 		A9964FD61B387CC800D5A8E9 /* JSQSystemSoundPlayer+JSQMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E2B1B387CC700D5A8E9 /* JSQSystemSoundPlayer+JSQMessages.m */; };
 		A9964FD71B387CC800D5A8E9 /* NSBundle+JSQMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E2D1B387CC700D5A8E9 /* NSBundle+JSQMessages.m */; };
@@ -308,6 +309,7 @@
 /* Begin PBXFileReference section */
 		39A67AE42E9231EE2A750094 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		91ACAE069A6F9735FED79A9F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		A95798241B46965A006E826E /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		A9964E281B387CC700D5A8E9 /* JSQMessagesAssets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JSQMessagesAssets.bundle; sourceTree = "<group>"; };
 		A9964E2A1B387CC700D5A8E9 /* JSQSystemSoundPlayer+JSQMessages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSQSystemSoundPlayer+JSQMessages.h"; sourceTree = "<group>"; };
 		A9964E2B1B387CC700D5A8E9 /* JSQSystemSoundPlayer+JSQMessages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JSQSystemSoundPlayer+JSQMessages.m"; sourceTree = "<group>"; };
@@ -811,6 +813,14 @@
 				39A67AE42E9231EE2A750094 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		A95798231B469636006E826E /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				A95798241B46965A006E826E /* NotificationViewController.swift */,
+			);
+			name = Notification;
 			sourceTree = "<group>";
 		};
 		A9964E261B387CC700D5A8E9 /* JSQMessagesViewController */ = {
@@ -2068,6 +2078,7 @@
 		EBDD28CC1ACD8AA700956995 /* MainControllers */ = {
 			isa = PBXGroup;
 			children = (
+				A95798231B469636006E826E /* Notification */,
 				A9F3332A1B41994A00F0D17B /* Job Details */,
 				A9C6EC901B381E8800EC9140 /* ChatView */,
 				EBB338391A9F73A5000CAD88 /* Login/Register */,
@@ -2337,6 +2348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A95798251B46965A006E826E /* NotificationViewController.swift in Sources */,
 				A996502B1B387CC800D5A8E9 /* XMPPRoomOccupantCoreDataStorageObject.m in Sources */,
 				A996502A1B387CC800D5A8E9 /* XMPPRoomMessageCoreDataStorageObject.m in Sources */,
 				A996503F1B387CC800D5A8E9 /* XMPPvCardTempEmail.m in Sources */,
