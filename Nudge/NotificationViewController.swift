@@ -9,6 +9,7 @@
 import UIKit
 
 class NotificationViewController: UIViewController {
+    @IBOutlet var notificationTable: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
