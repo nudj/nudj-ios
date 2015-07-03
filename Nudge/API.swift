@@ -114,7 +114,7 @@ class API {
 
                     let errorJson = JSON(data: errorFromString)
 
-                    let code = errorJson["error"]["error_code"];
+                    let code = errorJson["error"]["code"];
 
                     // Log out user and show Login screen
                     if (code == 10002) {

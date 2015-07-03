@@ -55,10 +55,10 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
 
         self.delegate = self
 
-        backgroundColor = UIColor.whiteColor()
+        backgroundColor = UIColor.clearColor()
         font = UIFont.systemFontOfSize(15)
 
-        _tokenField.backgroundColor = UIColor.whiteColor()
+        _tokenField.backgroundColor = UIColor.clearColor()
 
         searchResultBackgroundColor = UIColor.whiteColor()
         activityIndicatorColor = UIColor.blueColor()
