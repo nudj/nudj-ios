@@ -72,12 +72,20 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     // MARK: -- UITableViewDelegate -
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        /*
+        Example of how to load a viewcontroller from a xib in swift
+        ChatViewController *chatView  = [ChatViewController messagesViewController];
+        (nibName: "ChatViewController", bundle: nil)
+        */
         
+        // Enter chat room and connect
+        var conference :String = self.data[indexPath.row]["id"].stringValue
+        var appGlobalDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appGlobalDelegate.chatInst!.acceptAndJoinChatRoom("\(conference)@conference.chat.nudj.co");
+        
+        
+        //Push View
         var vc:ChatViewController = ChatViewController()
-        
-        //ChatViewController *chatView  = [ChatViewController messagesViewController];
-        //(nibName: "ChatViewController", bundle: nil)
-        
         vc.chatID = self.data[indexPath.row]["job"]["id"].stringValue;
         self.navigationController?.pushViewController(vc, animated: true)
         

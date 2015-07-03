@@ -14,13 +14,14 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
     var outgoingBubbleImageData :JSQMessagesBubbleImage?;
     var incomingBubbleImageData :JSQMessagesBubbleImage?;
     var templateImage :JSQMessagesAvatarImage?;
-    
+    var participants :String?;
     var messages = NSMutableArray();
+    var appGlobalDelegate :AppDelegate?;
     
     override func viewDidLoad() {
         
-        var appGlobalDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        self.userToken = appGlobalDelegate.user?.token;
+        appGlobalDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        self.userToken = appGlobalDelegate!.user?.token;
 
         super.viewDidLoad()
         
@@ -46,16 +47,17 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
         
         /**
         *  Load up our fake data for the demo
-        */
         
-        self.messages = [JSQMessage(senderId:self.senderId, senderDisplayName:self.senderDisplayName, date: NSDate.distantPast() as! NSDate, text: "Hi Robyn. \n\nMy friend Chris at Oracle is looking for a director of Business Development and i  thought i'd ask you. Are you interested?"),JSQMessage(senderId:"3@chat.nudge.co", senderDisplayName:"Robyn", date: NSDate(), text: "Hi Jeremy. all is well\nThis looks interesting. Thanks")];
+        [JSQMessage(senderId:self.senderId, senderDisplayName:self.senderDisplayName, date: NSDate.distantPast() as! NSDate, text: "Hi Robyn. \n\nMy friend Chris at Oracle is looking for a director of Business Development and i  thought i'd ask you. Are you interested?"),JSQMessage(senderId:"3@chat.nudge.co", senderDisplayName:"Robyn", date: NSDate(), text: "Hi Jeremy. all is well\nThis looks interesting. Thanks")];
+        */
 
 
         self.showLoadEarlierMessagesHeader = false
     
         self.templateImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(UIImage(named: "user_image_placeholder"), diameter: 30)
         
-        appGlobalDelegate.chatInst!.delegate = self as ChatModelsDelegate        
+        
+        appGlobalDelegate!.chatInst!.delegate = self as ChatModelsDelegate        
 
     }
     
@@ -128,12 +130,32 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
         *  3. Call `finishSendingMessage`
         */
         
-        JSQSystemSoundPlayer.jsq_playMessageSentSound()
-        var message = JSQMessage (senderId: senderId, senderDisplayName: senderDisplayName, date: date, text: text)
+        println("Send pressed");
         
-        self.messages.addObject(message)
+        if (!text.isEmpty) {
+            
+            self.scrollToBottomAnimated(true);
+            
+            
+            var messanger :JSQMessage = JSQMessage(senderId: self.senderId, senderDisplayName: self.senderDisplayName, date:date, text: text);
+            self.messages.addObject(messanger);
+            
+            var body :DDXMLElement = DDXMLElement(name:"body");
+            body.setStringValue(text);
+            
+            var message :DDXMLElement = DDXMLElement(name:"message");
+            message.addAttributeWithName("type", stringValue:"chat");
+            message.addAttributeWithName("to", stringValue:"2@conference.chat.nudj.co");
+            message.addChild(body);
+            
+            appGlobalDelegate!.chatInst!.xmppStream!.sendElement(message);
         
-        self.finishReceivingMessageAnimated(true)
+            JSQSystemSoundPlayer.jsq_playMessageSentSound()
+            
+            self.finishReceivingMessageAnimated(true)
+        }
+        
+       
         
     }
     
@@ -385,5 +407,6 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
         self.messages.addObject(JSQMessage(senderId:"3@chat.nudge.co", senderDisplayName:"", date:NSDate(), text:msg));
         self.finishReceivingMessageAnimated(true);
     }
+    
 
 }

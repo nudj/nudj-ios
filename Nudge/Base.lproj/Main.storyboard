@@ -1163,35 +1163,6 @@
                                     <constraint firstAttribute="trailing" secondItem="eZj-Gt-ANh" secondAttribute="trailing" id="yvn-CK-YKK"/>
                                     <constraint firstAttribute="centerX" secondItem="ixT-0w-D2z" secondAttribute="centerX" id="yyP-h5-xgF"/>
                                 </constraints>
-<!--
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="JAE-8P-DzL"/>
-                                        <exclude reference="K0I-vD-yoc"/>
-                                        <exclude reference="b0c-qr-Wy4"/>
-                                        <exclude reference="3Kg-Ua-l85"/>
-                                        <exclude reference="8rC-wY-aHg"/>
-                                        <exclude reference="Jnt-Km-BTP"/>
-                                        <exclude reference="MNT-sN-9L9"/>
-                                        <exclude reference="WGz-eI-qgF"/>
-                                        <exclude reference="dBl-St-YCJ"/>
-                                        <exclude reference="mhA-Jb-Qij"/>
-                                        <exclude reference="0Ib-1N-5oY"/>
-                                        <exclude reference="2we-xL-o4s"/>
-                                        <exclude reference="9vf-66-R6D"/>
-                                        <exclude reference="Kdo-gi-d49"/>
-                                        <exclude reference="SXT-Zd-pX9"/>
-                                        <exclude reference="V2B-0u-UzS"/>
-                                        <exclude reference="WvD-Vm-uGJ"/>
-                                        <exclude reference="YdK-Ew-ads"/>
-                                        <exclude reference="vYn-1c-qgd"/>
-                                        <exclude reference="Ofs-Xd-gX8"/>
-                                        <exclude reference="XCU-2T-8Vg"/>
-                                        <exclude reference="bqh-bB-syc"/>
-                                        <exclude reference="fEB-92-XZN"/>
-                                    </mask>
-                                </variation>
--->
                             </scrollView>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MaM-1e-UFb" userLabel="Top View">
                                 <rect key="frame" x="0.0" y="64" width="414" height="120"/>
