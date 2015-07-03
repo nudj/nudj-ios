@@ -9,13 +9,13 @@
 import UIKit
 import SwiftyJSON
 
-class NotificationViewController: BaseController {
+class NotificationViewController: BaseController ,UITableViewDataSource, UITableViewDelegate {
     @IBOutlet var notificationTable: UITableView!
     
     var data:[JSON] = []
     var indexes:[String] = []
     
-    let cellIdentifier = "ChatListTableViewCell"
+    let cellIdentifier = "NotificationCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,7 @@ class NotificationViewController: BaseController {
         self.notificationTable.registerNib(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
         self.notificationTable.tableFooterView = UIView(frame: CGRectZero)
         
-        self.apiRequest(.GET, path: "notifications", closure: { response in
+        self.apiRequest(.GET, path: "notifications?params=notification.user,user.image", closure: { response in
             
             println("Notifications url request response ->\(response)");
             
@@ -34,7 +34,6 @@ class NotificationViewController: BaseController {
             
             self.notificationTable!.reloadData()
         })
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,16 +58,21 @@ class NotificationViewController: BaseController {
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        return 70
+        return 100
         
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell:ChatListTableViewCell = notificationTable.dequeueReusableCellWithIdentifier(cellIdentifier) as! ChatListTableViewCell
+        var cell = notificationTable.dequeueReusableCellWithIdentifier(cellIdentifier) as! NotificationCell
         
-        var title = self.data[indexPath.row]["job"]["title"]
-        cell.jobTitle.text = "re:\(title.stringValue)"
+        if(self.data[indexPath.row]["type"].int == 1){
+            cell.buttonConfig(UIColor.greenColor(), withText:"Message")
+        }else{
+            cell.buttonConfig(UIColor.blueColor(), withText:"Nudge")
+        }
+        
+        cell.descriptionText.text = self.data[indexPath.row]["message"].stringValue
         
         return cell
     }
@@ -77,13 +81,7 @@ class NotificationViewController: BaseController {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        var vc:ChatViewController = ChatViewController()
         
-        //ChatViewController *chatView  = [ChatViewController messagesViewController];
-        //(nibName: "ChatViewController", bundle: nil)
-        
-        vc.chatID = self.data[indexPath.row]["job"]["id"].stringValue;
-        self.navigationController?.pushViewController(vc, animated: true)
         
     }
     
