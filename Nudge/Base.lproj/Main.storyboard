@@ -1544,6 +1544,10 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="uDu-kR-FGd">
                                 <rect key="frame" x="0.0" y="20" width="414" height="716"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Y0L-Mt-gTT" id="qFa-nL-mSk"/>
+                                    <outlet property="delegate" destination="Y0L-Mt-gTT" id="x5T-9a-JGv"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -1555,6 +1559,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Notification" id="2zu-yp-Zsd"/>
+                    <connections>
+                        <outlet property="notificationTable" destination="uDu-kR-FGd" id="2cB-uc-GFC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YXZ-GW-ZbJ" sceneMemberID="firstResponder"/>
             </objects>
