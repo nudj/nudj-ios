@@ -35,9 +35,9 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var backgroundImage: AsyncImage!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var nextButton: UIBarButtonItem!
 
     @IBOutlet weak var skillsIcon: UIImageView!
+    @IBOutlet weak var skillsLabel: UILabel!
     @IBOutlet weak var skills: TokenView! {
         didSet {
             skills.startEditClosure = scrollToSuperView
@@ -45,17 +45,23 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
         }
     }
 
-    @IBOutlet weak var findMeIcon: UIImageView!
-    @IBOutlet weak var findMe: TokenView! {
-        didSet {
-            findMe.startEditClosure = scrollToSuperView
-            findMe.changedClosure = updateFindMe
-        }
-    }
-
     @IBOutlet weak var aboutMeIcon: UIImageView!
     @IBOutlet weak var aboutMeField: UITextView!
     @IBOutlet weak var aboutMeFieldHeight: NSLayoutConstraint!
+    @IBOutlet weak var aboutMeLabel: UILabel!
+
+    @IBOutlet weak var companyIcon: UIImageView!
+    @IBOutlet weak var company: UITextField!
+
+    @IBOutlet weak var location: UITextField!
+    @IBOutlet weak var locationIcon: UIImageView!
+
+    @IBOutlet weak var position: UITextField!
+    @IBOutlet weak var positionIcon: UIImageView!
+
+    @IBOutlet weak var email: UITextField!
+    @IBOutlet weak var emailIcon: UIImageView!
+
 
     var openSpace:CGFloat = 0
     var isEditable :Bool?
@@ -64,8 +70,7 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        
+
         if(self.viewType != nil && self.viewType! == 1){
             //Sign up
             //no back button
@@ -140,13 +145,16 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
             if let skills = user.skills {
                 self.skills.fillTokens(skills)
             }
+
+            self.updateSkillsAssets()
+            self.updateAboutAssets()
         })
     }
 
     func setInitialStatus(status: Bool) {
         if (status) {
             if (self.navigationItem.rightBarButtonItem != nil) {
-                self.navigationItem.rightBarButtonItem = self.nextButton
+//                self.navigationItem.rightBarButtonItem = self.nextButton
             }
         } else {
             self.navigationItem.rightBarButtonItem = nil
@@ -170,16 +178,27 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
 
     }
 
+    // MARK: About
+
     func updateAbout(text: String) -> Void {
+        println(["about": text])
         UserModel.update(["about": text], closure: {response in println(response)})
     }
 
-    // MARK: TokenView Management
+    func updateAboutAssets() {
+        let hasContent = count(aboutMeField.text) > 0
+
+        aboutMeIcon.highlighted = hasContent
+        aboutMeLabel.hidden = hasContent
+    }
+
+    // MARK: Skills
 
     func updateSkills(view:TokenView) {
-        skillsIcon.highlighted = view.tokens()?.count > 0
 
-        if (view.tokens() == nil) {
+        updateSkillsAssets()
+
+        if (view.tokens() == nil || view.tokens()!.count <= 0) {
             UserModel.update(["skills": [String]()])
         } else {
             let skillsArray = view.tokens()!.map({token in return token.title})
@@ -187,24 +206,29 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
         }
     }
 
-    func updateFindMe(view:TokenView) {
-        findMeIcon.highlighted = view.tokens()?.count > 0
+    func updateSkillsAssets() {
+        let hasContent = skills.tokens()?.count > 0
 
-        if (view.tokens() == nil) {
-            UserModel.update(["findme": [String]()])
-        } else {
-            let findArray = view.tokens()!.map({token in return token.title})
-            UserModel.update(["findme": findArray])
-        }
-
-        findMeIcon.highlighted = view.tokens()?.count > 0
+        skillsIcon.highlighted = hasContent
+        skillsLabel.hidden = hasContent
     }
 
     // MARK: TextFieldDelegate
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        self.updateUserName(textField.text)
-        textField.resignFirstResponder()
+        switch textField {
+        case nameLabel:
+            self.updateUserName(textField.text)
+            textField.resignFirstResponder()
+            break;
+
+        case company:
+            println("Update Company")
+            break;
+
+        default:
+            println("Unknown field \(textField)")
+        }
 
         return true
     }
@@ -218,14 +242,28 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
     }
 
     func textViewDidChange(textView: UITextView) {
-        aboutMeIcon.highlighted = count(textView.text) > 0
+        let hasContent = count(textView.text) > 0
+        aboutMeIcon.highlighted = hasContent
+        aboutMeLabel.hidden = hasContent
     }
 
     func textViewShouldEndEditing(textView: UITextView) -> Bool {
         textView.resignFirstResponder()
 
-        updateAbout(textView.text)
+        updateAbout(textView.text!)
 
+        return true
+    }
+
+    // Hide keyboard on Return key and save the content
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            updateAbout(textView.text!)
+            return false
+        }
+
+        updateAboutAssets()
         return true
     }
 

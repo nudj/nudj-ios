@@ -72,7 +72,7 @@ class UserModel: Printable {
                 case "about": self.about = subJson.stringValue
 
                 case "image": self.updateImageFromJson(subJson)
-                case "skills": self.skills = subJson.arrayValue.map({return $0.stringValue})
+                case "skills": self.skills = subJson.arrayValue.map({return $0["name"].stringValue})
 
                 case "completed": self.completed = subJson.boolValue
                 // addressBookAccess is per device, so it should not be updated trough this method
