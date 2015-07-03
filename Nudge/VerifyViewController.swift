@@ -118,7 +118,7 @@ class VerifyViewController: BaseController {
             // Sync contacts
             Contacts().sync()
             
-            self.performSegueWithIdentifier("showGenericProfileViewController", sender: nil)
+            self.performSegueWithIdentifier("showInitProfileView", sender: nil)
         }, errorHandler: {_ in
             self.showCodeField(animated: true)
         })

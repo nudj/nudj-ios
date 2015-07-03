@@ -252,7 +252,6 @@
 		EB9F71E11B0E0200000C2D9F /* MainTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9F71E01B0E0200000C2D9F /* MainTabItem.swift */; };
 		EBA8C3431B30852B00522167 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBA8C3421B30852B00522167 /* Fabric.framework */; };
 		EBA8C3461B32DFF100522167 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBA8C3441B32DFF100522167 /* Main.storyboard */; };
-		EBA8C3481B3548D300522167 /* CompleteProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8C3471B3548D300522167 /* CompleteProfileController.swift */; };
 		EBB337F81A9F53CA000CAD88 /* NudgeData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EBB337F61A9F53CA000CAD88 /* NudgeData.xcdatamodeld */; };
 		EBB3382E1A9F5973000CAD88 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB337FA1A9F581F000CAD88 /* CoreData.framework */; };
 		EBB338301A9F5A44000CAD88 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB3382F1A9F5A44000CAD88 /* UserModel.swift */; };
@@ -745,7 +744,6 @@
 		EB9F71E01B0E0200000C2D9F /* MainTabItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabItem.swift; sourceTree = "<group>"; };
 		EBA8C3421B30852B00522167 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		EBA8C3451B32DFF100522167 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		EBA8C3471B3548D300522167 /* CompleteProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteProfileController.swift; sourceTree = "<group>"; };
 		EBB337F71A9F53CA000CAD88 /* NudgeData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NudgeData.xcdatamodel; sourceTree = "<group>"; };
 		EBB337FA1A9F581F000CAD88 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		EBB3382F1A9F5A44000CAD88 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -2059,7 +2057,6 @@
 				EB313D2D1AAF37FB00F008B8 /* StatusButton.swift */,
 				EB313D2F1AAF4C5A00F008B8 /* StatusPicker.swift */,
 				EBCE12551B2B1D2600C3928C /* CreateProfileController.swift */,
-				EBA8C3471B3548D300522167 /* CompleteProfileController.swift */,
 			);
 			name = Login/Register;
 			sourceTree = "<group>";
@@ -2353,7 +2350,6 @@
 				A996502A1B387CC800D5A8E9 /* XMPPRoomMessageCoreDataStorageObject.m in Sources */,
 				A996503F1B387CC800D5A8E9 /* XMPPvCardTempEmail.m in Sources */,
 				A9964FFB1B387CC800D5A8E9 /* JSQMessagesMediaPlaceholderView.m in Sources */,
-				EBA8C3481B3548D300522167 /* CompleteProfileController.swift in Sources */,
 				A996503C1B387CC800D5A8E9 /* XMPPvCardTempAdr.m in Sources */,
 				A996502F1B387CC800D5A8E9 /* XMPPRoomOccupantHybridMemoryStorageObject.m in Sources */,
 				A9964FEB1B387CC800D5A8E9 /* JSQMessagesAvatarImage.m in Sources */,
