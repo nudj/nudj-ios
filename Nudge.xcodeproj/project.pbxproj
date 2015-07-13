@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A95798251B46965A006E826E /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95798241B46965A006E826E /* NotificationViewController.swift */; };
-		A95798271B469F51006E826E /* NotificationTypeButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95798261B469F51006E826E /* NotificationTypeButtons.swift */; };
-		A957982A1B46A10B006E826E /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95798281B46A10B006E826E /* NotificationCell.swift */; };
-		A957982B1B46A10B006E826E /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A95798291B46A10B006E826E /* NotificationCell.xib */; };
 		A9964FD51B387CC800D5A8E9 /* JSQMessagesAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A9964E281B387CC700D5A8E9 /* JSQMessagesAssets.bundle */; };
 		A9964FD61B387CC800D5A8E9 /* JSQSystemSoundPlayer+JSQMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E2B1B387CC700D5A8E9 /* JSQSystemSoundPlayer+JSQMessages.m */; };
 		A9964FD71B387CC800D5A8E9 /* NSBundle+JSQMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E2D1B387CC700D5A8E9 /* NSBundle+JSQMessages.m */; };
@@ -248,11 +245,12 @@
 		EB313D301AAF4C5A00F008B8 /* StatusPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB313D2F1AAF4C5A00F008B8 /* StatusPicker.swift */; };
 		EB35BBA51AB7288000842E1F /* ContactsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB35BBA31AB7288000842E1F /* ContactsCell.swift */; };
 		EB35BBA61AB7288000842E1F /* ContactsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB35BBA41AB7288000842E1F /* ContactsCell.xib */; };
-		EB62C7B81B4ED17D00265427 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB62C7B61B4ED17D00265427 /* NotificationCell.swift */; };
-		EB62C7B91B4ED17D00265427 /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB62C7B71B4ED17D00265427 /* NotificationCell.xib */; };
 		EB6F22BA1AAF706A007FF1B8 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6F22B91AAF706A007FF1B8 /* AsyncImage.swift */; };
 		EB6F22BC1AB02E7F007FF1B8 /* MainTitleBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6F22BB1AB02E7F007FF1B8 /* MainTitleBar.swift */; };
 		EB6F22BE1AB045C0007FF1B8 /* RBResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6F22BD1AB045C0007FF1B8 /* RBResizer.swift */; };
+		EB866BD91B53EC9700E203CA /* NotificationTypeButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB866BD81B53EC9700E203CA /* NotificationTypeButtons.swift */; };
+		EB866BE01B53EFAE00E203CA /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB866BDE1B53EFAE00E203CA /* NotificationCell.swift */; };
+		EB866BE11B53EFAE00E203CA /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB866BDF1B53EFAE00E203CA /* NotificationCell.xib */; };
 		EB9F71DF1B0E0060000C2D9F /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9F71DE1B0E0060000C2D9F /* MainTabBar.swift */; };
 		EB9F71E11B0E0200000C2D9F /* MainTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9F71E01B0E0200000C2D9F /* MainTabItem.swift */; };
 		EBA8C3431B30852B00522167 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBA8C3421B30852B00522167 /* Fabric.framework */; };
@@ -315,8 +313,6 @@
 		39A67AE42E9231EE2A750094 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		91ACAE069A6F9735FED79A9F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A95798241B46965A006E826E /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
-		A95798261B469F51006E826E /* NotificationTypeButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTypeButtons.swift; sourceTree = "<group>"; };
-		A95798281B46A10B006E826E /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		A95798291B46A10B006E826E /* NotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		A9964E281B387CC700D5A8E9 /* JSQMessagesAssets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JSQMessagesAssets.bundle; sourceTree = "<group>"; };
 		A9964E2A1B387CC700D5A8E9 /* JSQSystemSoundPlayer+JSQMessages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSQSystemSoundPlayer+JSQMessages.h"; sourceTree = "<group>"; };
@@ -745,12 +741,13 @@
 		EB313D2F1AAF4C5A00F008B8 /* StatusPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusPicker.swift; sourceTree = "<group>"; };
 		EB35BBA31AB7288000842E1F /* ContactsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsCell.swift; sourceTree = "<group>"; };
 		EB35BBA41AB7288000842E1F /* ContactsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsCell.xib; sourceTree = "<group>"; };
-		EB62C7B61B4ED17D00265427 /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
-		EB62C7B71B4ED17D00265427 /* NotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		EB6F22B91AAF706A007FF1B8 /* AsyncImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		EB6F22BB1AB02E7F007FF1B8 /* MainTitleBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTitleBar.swift; sourceTree = "<group>"; };
 		EB6F22BD1AB045C0007FF1B8 /* RBResizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RBResizer.swift; sourceTree = "<group>"; };
 		EB7DD82B1B205CEB005332B1 /* KSTokenView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KSTokenView.framework; path = "Pods/../build/Debug-iphoneos/Pods/KSTokenView.framework"; sourceTree = "<group>"; };
+		EB866BD81B53EC9700E203CA /* NotificationTypeButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTypeButtons.swift; sourceTree = "<group>"; };
+		EB866BDE1B53EFAE00E203CA /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		EB866BDF1B53EFAE00E203CA /* NotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		EB9F71DE1B0E0060000C2D9F /* MainTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
 		EB9F71E01B0E0200000C2D9F /* MainTabItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabItem.swift; sourceTree = "<group>"; };
 		EBA8C3421B30852B00522167 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
@@ -828,9 +825,10 @@
 		A95798231B469636006E826E /* Notification */ = {
 			isa = PBXGroup;
 			children = (
+				EB866BD81B53EC9700E203CA /* NotificationTypeButtons.swift */,
 				A95798241B46965A006E826E /* NotificationViewController.swift */,
-				EB62C7B61B4ED17D00265427 /* NotificationCell.swift */,
-				EB62C7B71B4ED17D00265427 /* NotificationCell.xib */,
+				EB866BDE1B53EFAE00E203CA /* NotificationCell.swift */,
+				EB866BDF1B53EFAE00E203CA /* NotificationCell.xib */,
 			);
 			name = Notification;
 			sourceTree = "<group>";
@@ -2239,7 +2237,6 @@
 				A9964FDF1B387CC800D5A8E9 /* JSQMessagesViewController.xib in Resources */,
 				A996507A1B387CC800D5A8E9 /* README.txt in Resources */,
 				A9964FFF1B387CC800D5A8E9 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
-				EB62C7B91B4ED17D00265427 /* NotificationCell.xib in Resources */,
 				A9F333701B42D20C00F0D17B /* close_btn@2x.png in Resources */,
 				EBA8C3461B32DFF100522167 /* Main.storyboard in Resources */,
 				A9F333651B42ACDC00F0D17B /* job_description@2x.png in Resources */,
@@ -2280,6 +2277,7 @@
 				A99650AC1B3DB3FF00D5A8E9 /* profile@2x.png in Resources */,
 				A9C6EC9A1B38416C00EC9140 /* ChatViewController.xib in Resources */,
 				A957982B1B46A10B006E826E /* NotificationCell.xib in Resources */,
+				EB866BE11B53EFAE00E203CA /* NotificationCell.xib in Resources */,
 				A9964FF51B387CC800D5A8E9 /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
 				EB35BBA61AB7288000842E1F /* ContactsCell.xib in Resources */,
 				A9964FF31B387CC800D5A8E9 /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
@@ -2425,6 +2423,7 @@
 				EB0926D01A8DE4CB00E1D958 /* AppDelegate.swift in Sources */,
 				A99650221B387CC800D5A8E9 /* XMPPIQ+JabberRPC.m in Sources */,
 				A996506D1B387CC800D5A8E9 /* GCDMulticastDelegate.m in Sources */,
+				EB866BE01B53EFAE00E203CA /* NotificationCell.swift in Sources */,
 				A9964FF81B387CC800D5A8E9 /* JSQMessagesLabel.m in Sources */,
 				EB0926D21A8DE4CB00E1D958 /* MainFeed.swift in Sources */,
 				A99650161B387CC800D5A8E9 /* XMPPProcessOne.m in Sources */,
@@ -2433,6 +2432,7 @@
 				A996507C1B387CC800D5A8E9 /* DDXMLDocument.m in Sources */,
 				A9964FDA1B387CC800D5A8E9 /* UIDevice+JSQMessages.m in Sources */,
 				A99650281B387CC800D5A8E9 /* XMPPRoom.xcdatamodeld in Sources */,
+				EB866BD91B53EC9700E203CA /* NotificationTypeButtons.swift in Sources */,
 				A99650121B387CC800D5A8E9 /* XMPPStream.m in Sources */,
 				A996505B1B387CC800D5A8E9 /* XMPPMessage+XEP_0172.m in Sources */,
 				EB6F22BC1AB02E7F007FF1B8 /* MainTitleBar.swift in Sources */,
@@ -2460,7 +2460,6 @@
 				A99650561B387CC800D5A8E9 /* XMPPMessageArchiving_Contact_CoreDataObject.m in Sources */,
 				A996500B1B387CC800D5A8E9 /* XMPPElement.m in Sources */,
 				A99650741B387CC800D5A8E9 /* DDASLLogger.m in Sources */,
-				EB62C7B81B4ED17D00265427 /* NotificationCell.swift in Sources */,
 				A996507B1B387CC800D5A8E9 /* NSString+DDXML.m in Sources */,
 				A996506B1B387CC800D5A8E9 /* NSXMLElement+XEP_0335.m in Sources */,
 				A9964FD61B387CC800D5A8E9 /* JSQSystemSoundPlayer+JSQMessages.m in Sources */,
@@ -2476,7 +2475,7 @@
 				A99650051B387CC800D5A8E9 /* XMPPPlainAuthentication.m in Sources */,
 				A9964FE91B387CC800D5A8E9 /* JSQMediaItem.m in Sources */,
 				A996507D1B387CC800D5A8E9 /* DDXMLElement.m in Sources */,
-				A957982A1B46A10B006E826E /* NotificationCell.swift in Sources */,
+				A957982A1B46A10B006E826E /* (null) in Sources */,
 				EBB3383C1A9F73D4000CAD88 /* API.swift in Sources */,
 				A99650431B387CC800D5A8E9 /* NSXMLElement+XEP_0059.m in Sources */,
 				A9964FE01B387CC800D5A8E9 /* JSQMessagesAvatarImageFactory.m in Sources */,
@@ -2525,7 +2524,7 @@
 				A996504E1B387CC800D5A8E9 /* XMPPTransports.m in Sources */,
 				A99650081B387CC800D5A8E9 /* NSData+XMPP.m in Sources */,
 				A99650001B387CC800D5A8E9 /* JSQSystemSoundPlayer.m in Sources */,
-				A95798271B469F51006E826E /* NotificationTypeButtons.swift in Sources */,
+				A95798271B469F51006E826E /* (null) in Sources */,
 				A996502E1B387CC800D5A8E9 /* XMPPRoomMessageHybridCoreDataStorageObject.m in Sources */,
 				EB000F7C1AB2E0B800E4D385 /* DataTableCell.swift in Sources */,
 				A99650761B387CC800D5A8E9 /* DDLog.m in Sources */,

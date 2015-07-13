@@ -77,7 +77,6 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
 
         job.save { error, id in
             if (error != nil) {
-                println(error)
                 return
             }
 
