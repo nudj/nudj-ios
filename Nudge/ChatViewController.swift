@@ -106,7 +106,7 @@ class ChatViewController: JSQMessagesViewController, XMPPRoomDelegate{
 
         xmppRoom?.sendMessageWithBody(text)
 
-        self.finishReceivingMessageAnimated(true)
+        self.finishSendingMessage()
     }
     
     
