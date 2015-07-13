@@ -158,7 +158,7 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
         // showYourProfile
         if (segue.destinationViewController.isKindOfClass(GenericProfileViewController)) {
             if let controller = (segue.destinationViewController as? GenericProfileViewController) {
-                controller.setInitialStatus(false)
+                controller.type = .Own
             }
         }
         // Get the new view controller using [segue destinationViewController].

@@ -9,54 +9,51 @@
 import UIKit
 import Foundation
 
-class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
+class ChatViewController: JSQMessagesViewController, XMPPRoomDelegate{
     
     var outgoingBubbleImageData :JSQMessagesBubbleImage?;
     var incomingBubbleImageData :JSQMessagesBubbleImage?;
     var templateImage :JSQMessagesAvatarImage?;
     
     var messages = NSMutableArray();
+
+    var xmppRoom:XMPPRoom? = nil
     
     override func viewDidLoad() {
         
         var appGlobalDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+
         self.userToken = appGlobalDelegate.user?.token;
 
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        /*NSNotificationCenter.defaultCenter().addObserver(
-            self,
-            selector: "updateContentFunction:",
-            name: "updateContent",
-            object: nil);*/
-        
-        self.title = "Conversation"
+
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage.jsq_defaultTypingIndicatorImage(), style:UIBarButtonItemStyle.Plain, target:self, action:"performAction:");
-        
-        self.senderId = "antonio@chat.nudj.co";
-        self.senderDisplayName = "Antonio";
-        
-        
+
+        let id = appGlobalDelegate.user!.id!
+        self.senderId = String(id) + "@chat.nudj.co";
+        self.senderDisplayName = appGlobalDelegate.user!.name!;
+
         let bubbleFactory : JSQMessagesBubbleImageFactory = JSQMessagesBubbleImageFactory();
         
         self.outgoingBubbleImageData = bubbleFactory.outgoingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleBlueColor());
         self.incomingBubbleImageData = bubbleFactory.incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor());
-        
-        /**
-        *  Load up our fake data for the demo
-        */
-        
-        self.messages = [JSQMessage(senderId:self.senderId, senderDisplayName:self.senderDisplayName, date: NSDate.distantPast() as! NSDate, text: "Hi Robyn. \n\nMy friend Chris at Oracle is looking for a director of Business Development and i  thought i'd ask you. Are you interested?"),JSQMessage(senderId:"3@chat.nudge.co", senderDisplayName:"Robyn", date: NSDate(), text: "Hi Jeremy. all is well\nThis looks interesting. Thanks")];
-
 
         self.showLoadEarlierMessagesHeader = false
     
-        self.templateImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(UIImage(named: "user_image_placeholder"), diameter: 30)
-        
-        appGlobalDelegate.chatInst!.delegate = self as ChatModelsDelegate        
+        self.templateImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(UserModel.getDefaultUserImage(), diameter: 30)
 
+        let chat = appGlobalDelegate.chatInst!
+
+        xmppRoom = chat.getRoomObject("1", delegate: self)
+    }
+
+    func xmppRoom(sender: XMPPRoom!, didReceiveMessage message: XMPPMessage!, fromOccupant occupantJID: XMPPJID!) {
+
+        var jsqMessage = JSQMessage(senderId: message.from().resource, displayName: message.from().resource, text: message.body())
+
+        self.messages.addObject(jsqMessage)
+
+        self.finishReceivingMessageAnimated(false)
     }
     
     // ACTIONS
@@ -72,69 +69,42 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
         var archiveIcon = UIImageView(image: UIImage(named: ""));
         
     }
-    
-    func receivedMessagePressed(sender: UIBarButtonItem) {
-        // Simulate reciving message
-        showTypingIndicator = !showTypingIndicator
-        scrollToBottomAnimated(true)
-    }
-    
+
     func performAction(sender: UIBarButtonItem){
+
+
         
-        self.showTypingIndicator = !self.showTypingIndicator;
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.tabBarController?.tabBar.hidden = true
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
         
-        
-        /**
-        *  Scroll to actually view the indicator
-        */
-        self.scrollToBottomAnimated(true);
-        
-        
-        /**
-        *  Allow typing indicator to show
-        */
-        
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-            Int64(1 * Double(NSEC_PER_SEC)))
-        
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
-            
-            self.finishReceivingMessageAnimated(true);
-            
-        }
-        
-        
+        self.tabBarController?.tabBar.hidden = false
+
+        xmppRoom?.leaveRoom()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+
+        self.finishReceivingMessageAnimated(true)
+
         self.collectionView.collectionViewLayout.springinessEnabled = true
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
+
     // JSQMessagesViewController method overrides
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
-        
-        /**
-        *  Sending a message. Your implementation of this method should do *at least* the following:
-        *
-        *  1. Play sound (optional)
-        *  2. Add new id<JSQMessageData> object to your data source
-        *  3. Call `finishSendingMessage`
-        */
-        
+
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
-        var message = JSQMessage (senderId: senderId, senderDisplayName: senderDisplayName, date: date, text: text)
-        
-        self.messages.addObject(message)
-        
-        self.finishReceivingMessageAnimated(true)
-        
+
+        xmppRoom?.sendMessageWithBody(text)
+
     }
     
     
@@ -364,26 +334,6 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
     override func collectionView(collectionView: JSQMessagesCollectionView!, didTapAvatarImageView avatarImageView: UIImageView!, atIndexPath indexPath: NSIndexPath!) {
         
         println("Tapped avatar!")
-    }
-    
-    
-   // @objc func updateContentFunction(notification: NSNotification){
-        
-   //
-    //}
-
-    func recievedUser(content: NSDictionary) {
-        
-    }
-    
-    func recievedMessage(content:NSDictionary){
-        //do stuff
-        var msg = content["message"] as! String
-    
-        self.scrollToBottomAnimated(true);
-    
-        self.messages.addObject(JSQMessage(senderId:"3@chat.nudge.co", senderDisplayName:"", date:NSDate(), text:msg));
-        self.finishReceivingMessageAnimated(true);
     }
 
 }

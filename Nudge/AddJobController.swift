@@ -9,201 +9,211 @@
 import UIKit
 
 @IBDesignable
-class AddJobController: UIViewController,UITableViewDataSource,UITableViewDelegate, CreatePopupViewDelegate{
+class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDelegate, UITextViewDelegate{
 
-    @IBOutlet var jobTableView: UITableView!
-    var popup :CreatePopupView?;
-    
-    let cellIdentifier = "AddJobCell"
+    var popup :CreatePopupView?
 
-    let structure: [AddJobItem] = [
-        AddJobItem(type: AddJobbCellType.Field, image: "job_title_active", placeholder: "Job Title"),
-        AddJobItem(type: AddJobbCellType.BigText, image: "job_description_active", placeholder: "Job Description (keep it brief)"),
-        AddJobItem(type: AddJobbCellType.Field, image: "add_skills_active", placeholder: "Add Skills Tags"),
-        AddJobItem(type: AddJobbCellType.Field, image: "salary_details_active", placeholder: "Salary Details"),
-        AddJobItem(type: AddJobbCellType.Field, image: "employer_active", placeholder: "Employer"),
-        AddJobItem(type: AddJobbCellType.Field, image: "tag_location_active", placeholder: "Tag Location"),
-        AddJobItem(type: AddJobbCellType.Field, image: "job_title_active", placeholder: "Job Status"),
-        AddJobItem(type: AddJobbCellType.empty, image: "", placeholder: "")
-    ];
-    
+    var jobId:Int?
+
+    @IBOutlet weak var scrollView: UIScrollView!
+    var openSpace:CGFloat = 0;
+
+    // Fields
+
+    @IBOutlet weak var jobTitle: UITextField!
+    @IBOutlet weak var jobIcon: UIImageView!
+
+    @IBOutlet weak var jobDescription: UITextView!
+    @IBOutlet weak var jobDescriptionLabel: UILabel!
+    @IBOutlet weak var jobDescriptionIcon: UIImageView!
+
+    @IBOutlet weak var skills: TokenView!{
+        didSet {
+            skills.startEditClosure = scrollToSuperView
+            skills.changedClosure = { _ in self.updateAssets() }
+        }
+    }
+    @IBOutlet weak var skillsLabel: UILabel!
+    @IBOutlet weak var skillsIcon: UIImageView!
+
+    @IBOutlet weak var salary: UITextField!
+    @IBOutlet weak var salaryIcon: UIImageView!
+
+    @IBOutlet weak var employer: UITextField!
+    @IBOutlet weak var employerIcon: UIImageView!
+
+    @IBOutlet weak var location: UITextField!
+    @IBOutlet weak var locationIcon: UIImageView!
+
+    @IBOutlet weak var activeButton: UIButton!
+    @IBOutlet weak var bonus: UITextField!
+
+
     override func viewDidLoad() {
+
+        self.tabBarController?.tabBar.hidden = true
         
-        self.navigationController?.tabBarController?.hidesBottomBarWhenPushed = true;
-        self.jobTableView.registerNib(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
-        self.jobTableView.tableFooterView = UIView(frame: CGRectZero)
-        
-        //-------------------------------New resizing text
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"keyboardChanged:", name: UIKeyboardDidChangeFrameNotification, object: nil);
 
     }
-    
-    
-    @IBAction func backAction(sender: AnyObject) {
-        
-        self.navigationController?.popViewControllerAnimated(true);
+
+    override func viewWillDisappear(animated: Bool) {
+        self.tabBarController?.tabBar.hidden = false
     }
     
     @IBAction func PostAction(sender: AnyObject) {
-        
-       //jobs POST jobs/1
-       //['id', 'title', 'description', 'salary', 'status', 'bonus']
-        //self.createPopup()
-        
-        popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"this_job_has-been_posted", withText: false);
-        popup?.delegate = self;
-        
-        self.view.addSubview(popup!)
-        
-    }
 
-    // MARK: -- UITableViewDataSource --
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        
-        return 1
-        
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return self.structure.count;
-        
-    }
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        
-        if(indexPath.row != 1 && indexPath.row != 7){
-            return 52;
-        }else if(indexPath.row  == 7){
-            return 90;
-        }else{
-            return 100;
+        var job = JobModel();
+        job.title = jobTitle.text
+        job.description = jobDescription.text
+        job.skills = skills.tokens()!.map({token in return token.title})
+        job.salary = salary.text
+        job.company = employer.text
+        job.location = location.text
+        job.active = activeButton.selected
+        job.bonus = bonus.text
+
+        job.save { error, id in
+            if (error != nil) {
+                println(error)
+                return
+            }
+
+            self.jobId = id
+
+            self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"this_job_has-been_posted", withText: false);
+            self.popup?.delegate = self;
+
+            self.view.addSubview(self.popup!)
         }
+
     }
 
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-       
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AddJobCell
-        let data = structure[indexPath.row];
+    func updateAssets() {
 
-        cell.setup(data.type, image: data.image, placeholder: data.placeholder);
-        
-        if(indexPath.row == 7){
-            
-            var setReferalLabel : UILabel = UILabel(frame: CGRectMake(0, 30, self.view.frame.width, 30));
-            setReferalLabel.text = "Set Referal Bonus";
-            setReferalLabel.numberOfLines = 0;
-            setReferalLabel.textAlignment = NSTextAlignment.Center;
-            setReferalLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 24);
-            cell.addSubview(setReferalLabel);
-            
+        println(skills.tokens())
+        Common.automateUpdatingOfAssets(jobTitle, icon: jobIcon)
+        Common.automateUpdatingOfAssets(jobDescription, icon: jobDescriptionIcon, label: jobDescriptionLabel)
+        Common.automateUpdatingOfAssets(skills, icon: skillsIcon, label: skillsLabel)
+        Common.automateUpdatingOfAssets(salary, icon: salaryIcon)
+        Common.automateUpdatingOfAssets(employer, icon: employerIcon)
+        Common.automateUpdatingOfAssets(location, icon: locationIcon)
+    }
+
+    // MARK: TextViewDelegate
+
+    func textViewShouldBeginEditing(textView: UITextView) -> Bool {
+        scrollToSuperView(textView)
+
+        return true
+    }
+
+    func textViewDidChange(textView: UITextView) {
+        updateAssets()
+    }
+
+    // Hide keyboard on Return key and save the content
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            return false
         }
-        
-        return cell;
+
+        updateAssets()
+        return true
     }
-    
-    // MARK: -- UITableViewDelegate -
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        
+
+    // MARK: TextFieldDelegate
+
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
-    
-    
+
+    func textFieldDidBeginEditing(textField: UITextField) {
+        scrollToSuperView(textField)
+    }
+
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        updateAssets()
+        return true
+    }
+
+    // MARK: Scroll Management
+
+    func keyboardWillBeShown(sender: NSNotification) {
+        let info: NSDictionary = sender.userInfo!
+        let value: NSValue = info.valueForKey(UIKeyboardFrameBeginUserInfoKey) as! NSValue
+        let keyboardSize: CGSize = value.CGRectValue().size
+        let contentInsets: UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0)
+
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+    }
+
+    func keyboardWillBeHidden(sender: NSNotification) {
+        let contentInsets: UIEdgeInsets = UIEdgeInsetsZero
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+        scrollView.layoutIfNeeded()
+    }
+
+    func keyboardChanged(sender: NSNotification) {
+        let info: NSDictionary = sender.userInfo!
+        let value: NSValue = info.valueForKey(UIKeyboardFrameBeginUserInfoKey) as! NSValue
+        let keyboardSize: CGSize = value.CGRectValue().size
+        let contentInsets: UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0)
+
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+
+        self.openSpace = scrollView.contentSize.height - keyboardSize.height;
+    }
+
+    func scrollToSuperView(view: UIView) {
+        if (view.superview == nil) {
+            return;
+        }
+
+        var origin = view.superview!.frame.origin
+
+        // TODO: Refactor this!!!!
+        let maxOffset = scrollView.contentSize.height - self.openSpace - 100
+
+        if (origin.y > maxOffset) {
+            origin.y = maxOffset
+        }
+
+        scrollView.setContentOffset(origin, animated: true)
+    }
+
+    // Active/Inactive button
+
+    @IBAction func toggleActiveStatus(sender: UIButton) {
+        sender.selected = !sender.selected
+    }
+
+
     //---------------------------------------------------------------------------------
     //--------------------------- COMMENTS KEYBOARD METHODS
     
     // MARK: -- COMMENTS KEYBOARD METHODS
-    func keyboardWillShow(note: NSNotification){
+    func keyboardWillShow(note: NSNotification){ }
     
-    /*println("keyboard open");
-    
-    // get keyboard size and loctaion
-    var keyboardBounds :CGRect?
-        
-    note.userInfo.valueForKeyUIKeyboardFrameEndUserInfoKey
-        
-        
-    [[note.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey] getValue: &keyboardBounds];
-    NSNumber *duration = [note.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-    NSNumber *curve = [note.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
-    
-    // Need to translate the bounds to account for rotation.
-    keyboardBounds = [self.view convertRect:keyboardBounds toView:nil];
-    
-    // get a rect for the textView frame
-    CGRect containerFrame = containerView.frame;
-    containerFrame.origin.y = self.view.bounds.size.height - (keyboardBounds.size.height + containerFrame.size.height);
-    // animations settings
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:[duration doubleValue]];
-    [UIView setAnimationCurve:[curve intValue]];
-    
-    // set views with new info
-    containerView.frame = containerFrame;
-    
-    
-    // commit animations
-    [UIView commitAnimations];
-    
-    
-    [_commentsTable setFrame:CGRectMake(0, 64, 320, self.view.frame.size.height-keyboardBounds.size.height-40-64)];
-    
-    [self.view bringSubviewToFront:containerView];
-    
-    
-    
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.commentJson count]-1 inSection:0];
-    
-    if([self.commentJson count] >0)
-    [_commentsTable scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-    }
-    */
-    }
-    
-    func keyboardWillHide(note: NSNotification){
-    
-    /*
-    NSLog(@"keyboard closed.");
-    
-    NSNumber *duration = [note.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-    NSNumber *curve = [note.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
-    
-    // get a rect for the textView frame
-    CGRect containerFrame = containerView.frame;
-    containerFrame.origin.y = self.view.bounds.size.height - containerFrame.size.height;
-    
-    // animations settings
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:[duration doubleValue]];
-    [UIView setAnimationCurve:[curve intValue]];
-    
-    // set views with new info
-    containerView.frame = containerFrame;
-    
-    // commit animations
-    [UIView commitAnimations];
-    
-    [_commentsTable setFrame:CGRectMake(0, 64, 320, shareIstance.deviceHeight-40-64)];
-    
-    if([self.commentJson count]!=0)
-    [_commentsTable scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.commentJson count]-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-    */
-        
-    }
+    func keyboardWillHide(note: NSNotification){ }
     
     func dismissPopUp() {
         
         popup!.removeFromSuperview();
-        
-        //Go to ask view
-        let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        var askController: UIViewController = storyboard.instantiateViewControllerWithIdentifier("AskReferralView") as! UIViewController
-        self.navigationController?.pushViewController(askController, animated: true)
-        
+
+        performSegueWithIdentifier("showAskForReferal", sender: self)
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let refView = segue.destinationViewController as? AskReferralViewController {
+            refView.jobId = self.jobId
+        }
     }
 }

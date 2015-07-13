@@ -14,6 +14,8 @@ class MainFeed: BaseController, DataProviderProtocol {
 
     @IBOutlet weak var table: DataTable!
 
+    var selectedJobData:JSON? = nil
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,12 +24,24 @@ class MainFeed: BaseController, DataProviderProtocol {
         self.table.dataProvider = self as DataProviderProtocol
         self.table.delegate = self.table
         self.table.dataSource = self.table
+        self.table.selectedClosure = goToJob
         self.table.loadData()
     }
 
     func requestData(page: Int, size: Int, listener: (JSON) -> ()) {
-        let url = "jobs?params=job.title,job.salary,job.bonus,job.user,user.name,user.image&sizes=user.profile&page=" + String(page) + "&limit=" + String(size)
+        let url = "jobs/available?params=job.title,job.salary,job.bonus,job.user,job.location,job.company,user.name,user.image&sizes=user.profile&page=" + String(page) + "&limit=" + String(size)
         self.apiRequest(.GET, path: url, closure: listener)
     }
 
+    func goToJob(job:JSON) {
+        selectedJobData = job
+        performSegueWithIdentifier("goToJob", sender: self)
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let askView = segue.destinationViewController as? AskReferralViewController {
+            println(selectedJobData)
+            askView.jobId = selectedJobData!["id"].stringValue.toInt()
+        }
+    }
 }

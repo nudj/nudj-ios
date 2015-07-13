@@ -14,14 +14,11 @@ class Contacts {
 
     var book : ABAddressBook!
 
-    init() {
-        
-    }
+    var cache = [Int:UIImage]()
 
-    static var images = [String: UIImage]()
+    func createAddressBook(force:Bool = false) -> Bool {
 
-    func createAddressBook() -> Bool {
-        if self.book != nil {
+        if (!force && self.book != nil) {
             return true
         }
 
@@ -75,56 +72,8 @@ class Contacts {
         return ABAddressBookGetAuthorizationStatus() == .Authorized
     }
 
-    func getContactNames() {
-        if !self.determineStatus() {
-            println("not authorized")
-            return
-        }
-        let people = ABAddressBookCopyArrayOfAllPeople(self.book).takeRetainedValue() as NSArray as [ABRecord]
-
-
-
-        for person in people {
-            let birthday = ABRecordCopyValue(person, kABPersonBirthdayProperty);
-            let nameRef = ABRecordCopyCompositeName(person)
-
-            if (nameRef == nil || birthday == nil) {
-                continue
-            }
-
-            let name = nameRef.takeRetainedValue()
-//            let socialProfiles: ABMultiValueRef = ABRecordCopyValue(person, kABPersonInstantMessageProperty).takeRetainedValue() as ABMultiValueRef
-            let socialProfiles: ABMultiValueRef = ABRecordCopyValue(person, kABPersonSocialProfileProperty).takeRetainedValue() as ABMultiValueRef
-
-            println("Social Profiles")
-            println(ABMultiValueGetCount(socialProfiles))
-
-            for var index:CFIndex = 0; index < ABMultiValueGetCount(socialProfiles); ++index {
-
-                if let socialProfile: AnyObject = ABMultiValueCopyValueAtIndex(socialProfiles, index).takeRetainedValue() as? NSDictionary {
-
-//                    if (socialProfile["service"] as String == "Facebook") {
-                        println(socialProfile)
-//                    }
-
-                }
-            }
-
-            if (birthday == nil) {
-                println(name, "No Birthday!")
-            } else {
-                let formatter = NSDateFormatter()
-                formatter.dateFormat = "yyyy-MM-dd"
-
-                let date = birthday.takeRetainedValue() as! NSDate
-                println(name, formatter.stringFromDate(date))
-            }
-        }
-    }
-
-    func sync() {
+    func createProjectContact() {
         if (!self.isAuthorized()) {
-            println("not authorized")
             return
         }
 
@@ -132,19 +81,144 @@ class Contacts {
             self.createAddressBook()
         }
 
-        var contacts = [String: String]()
-        let people = ABAddressBookCopyArrayOfAllPeople(self.book).takeRetainedValue() as NSArray as [ABRecord]
-        for person in people {
-            let numbers: ABMultiValueRef = ABRecordCopyValue(person, kABPersonPhoneProperty).takeRetainedValue()
-            if (ABMultiValueGetCount(numbers) > 0) {
+        var newContact:ABRecordRef! = ABPersonCreate().takeRetainedValue()
 
-                if let name = ABRecordCopyCompositeName(person) {
-                    if let phone = ABMultiValueCopyValueAtIndex(numbers, 0) {
-                        contacts.updateValue(name.takeRetainedValue() as String, forKey: phone.takeRetainedValue() as! String)
+        var error: Unmanaged<CFErrorRef>? = nil
+
+        ABRecordSetValue(newContact, kABPersonFirstNameProperty, "Nudj", &error)
+
+//        ABRecordSetValue(newContact, kABPersonPhoneMainLabel, "+442033223966", &error)
+
+        ABAddressBookAddRecord(self.book, newContact, &error)
+        ABAddressBookSave(self.book, &error)
+    }
+
+    func getContactImageDataForId(contactId:Int) -> UIImage?  {
+
+        if let cachedImage = self.cache[contactId] {
+            println("Taken from cache")
+            return cachedImage
+        } else {
+            print("Searching for: \(contactId)")
+        }
+
+        if (!self.isAuthorized()) {
+            return nil
+        }
+
+        if (self.book == nil) {
+            self.createAddressBook()
+        }
+
+        let recordId = ABRecordID(contactId)
+
+        let userRef = ABAddressBookGetPersonWithRecordID(self.book, recordId)
+
+        if (userRef == nil) {
+            return nil
+        }
+
+        let user: ABRecord = userRef.takeRetainedValue()
+
+        if (ABPersonHasImageData(user)) {
+            if let imageRef = ABPersonCopyImageDataWithFormat(user, kABPersonImageFormatThumbnail) {
+                self.cache[contactId] = UIImage(data: imageRef.takeRetainedValue())
+                return self.cache[contactId]
+            }
+        } else {
+            let linkedRef = ABPersonCopyArrayOfAllLinkedPeople(user)
+
+            if (linkedRef == nil) {
+                return nil
+            }
+
+            let linked = linkedRef.takeRetainedValue() as NSArray as [ABRecord]
+
+            if (linked.count <= 0) {
+                return nil
+            }
+
+            for linkedUser: ABRecordRef in linked {
+                if (ABPersonHasImageData(linkedUser)) {
+                    if let imageRef = ABPersonCopyImageDataWithFormat(linkedUser, kABPersonImageFormatThumbnail) {
+                        self.cache[contactId] = UIImage(data: imageRef.takeRetainedValue())
+                        return self.cache[contactId]
+
                     }
                 }
-                
+            }
+        }
 
+        return nil
+    }
+
+    func sync(closure:((Bool)->())? = nil) {
+        if (!self.isAuthorized()) {
+            println("not authorized")
+            determineStatus()
+            return
+        }
+
+        if (self.book == nil) {
+            self.createAddressBook()
+        }
+
+        var contacts = [[String:String]]()
+
+        let people = ABAddressBookCopyArrayOfAllPeople(self.book).takeRetainedValue() as NSArray as [ABRecord]
+        for person in people {
+            let id = ABRecordGetRecordID(person) as Int32
+            let apple_id = Int(id)
+
+            var number = "";
+            var numbers = [String]();
+            let numbersRef: ABMultiValueRef = ABRecordCopyValue(person, kABPersonPhoneProperty).takeRetainedValue()
+            var nameRef = ABRecordCopyCompositeName(person)
+
+            if (nameRef == nil) {
+                continue
+            }
+
+            let name = nameRef.takeRetainedValue() as String
+
+            // TODO: Do foreach
+            if (ABMultiValueGetCount(numbersRef) > 0) {
+
+                if let phone = ABMultiValueCopyValueAtIndex(numbersRef, 0).takeRetainedValue() as? String {
+                    numbers.append(phone)
+                    number = phone
+                }
+
+            }
+
+            contacts.append(["alias": name, "phone": number, "apple_id": String(id)])
+
+            if (ABPersonHasImageData(person)) {
+                if let imageRef = ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail) {
+                    self.cache[apple_id] = UIImage(data: imageRef.takeRetainedValue())
+                } else {
+                    self.cache[apple_id] = UserModel.getDefaultUserImage()
+                }
+            } else {
+                if let linkedRef = ABPersonCopyArrayOfAllLinkedPeople(person) {
+                    let linked = linkedRef.takeRetainedValue() as NSArray as [ABRecord]
+
+                    if (linked.count > 0) {
+                        for linkedUser: ABRecordRef in linked {
+                            if (ABPersonHasImageData(linkedUser)) {
+                                if let imageRef = ABPersonCopyImageDataWithFormat(linkedUser, kABPersonImageFormatThumbnail) {
+                                    self.cache[apple_id] = UIImage(data: imageRef.takeRetainedValue())
+                                    break
+                                }
+                            } else {
+                                self.cache[apple_id] = UserModel.getDefaultUserImage()
+                            }
+                        }
+                    } else {
+                        self.cache[apple_id] = UserModel.getDefaultUserImage()
+                    }
+
+                }
             }
         }
 
@@ -152,8 +226,12 @@ class Contacts {
             return
         }
 
-//        println(contacts)
-
-        UserModel.update(["contacts": contacts], closure: {result in println(result)}, errorHandler: {result in println(result)})
+        UserModel.update(["contacts": contacts], closure: {result in
+            println(result)
+            closure?(true)
+            }, errorHandler: {result in
+                println(result)
+                closure?(false)
+        })
     }
 }

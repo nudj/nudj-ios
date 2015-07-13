@@ -14,7 +14,6 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
 
     let msgTitle = "Choose Image Source"
 
-    @IBOutlet var topLeftButton: UIBarButtonItem!
     @IBOutlet var topRightButton: UIBarButtonItem!
     
     @IBOutlet weak var statusButton: StatusButton! {
@@ -25,15 +24,26 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
     
     @IBOutlet weak var profilePhoto: AsyncImage! {
         didSet {
+            profilePhoto.borderWidth = 3
+            profilePhoto.borderAlpha = 0.2
+            profilePhoto.prepare()
+
             let gesture = UITapGestureRecognizer(target: self, action: "pickLibrary")
             gesture.numberOfTapsRequired = 1
             profilePhoto.addGestureRecognizer(gesture)
         }
     }
 
+    var preloadedName:String? = nil
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet weak var topView: UIView!
-    @IBOutlet weak var backgroundImage: AsyncImage!
+    @IBOutlet weak var backgroundImage: AsyncImage! {
+        didSet {
+            // TODO: Find why this is not working in Designer
+            backgroundImage.backgroundOverlay = 0.3
+            backgroundImage.prepare()
+        }
+    }
     @IBOutlet weak var scrollView: UIScrollView!
 
     @IBOutlet weak var skillsIcon: UIImageView!
@@ -62,50 +72,50 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var emailIcon: UIImageView!
 
+    var isEditable:Bool = true {
+        didSet {
+            nameLabel.enabled = isEditable
+            statusButton.enabled = isEditable
+            skills.editable = isEditable
+            aboutMeField.editable = isEditable
+            company.enabled = isEditable
+            location.enabled = isEditable
+            position.enabled = isEditable
+            email.enabled = isEditable
+        }
+    }
 
     var openSpace:CGFloat = 0
-    var isEditable :Bool?
     var viewType :Int?
     var imagePicker = UIImagePickerController()
+
+    var type:Type = Type.Public
+
+    enum Type {
+        case Own, Public, Initial
+    }
+
+    var userId:Int = 0
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        if(self.viewType != nil && self.viewType! == 1){
-            //Sign up
-            //no back button
-            
-            self.navigationItem.title = "Create Profile"
-            self.topLeftButton.image = nil;
-            
-        }else if(self.viewType != nil && self.viewType! == 2){
-            // Others 
-            // change next button to favoutite button
-            // back button enabled
-            
-            self.topRightButton.title = ""
-            self.topRightButton.image = UIImage(named:"save");
-            self.navigationItem.title = "Profile"
-            
-        }else{
-            // My profile
-            // no right button
-            // back button enabled
-            
-            self.navigationItem.title = "My Profile"
-            self.topRightButton.title = ""
-        }
-        
+        prepareLayout();
+
         self.registerNotification()
 
         // Get Local Values for the user
-        UserModel.getLocal({user in
-            if (user == nil) {
-                return
-            }
+        if (userId <= 0) {
+            UserModel.getLocal({user in
+                if (user == nil) {
+                    return
+                }
 
-            self.nameLabel.text = user!.name
-        })
+                self.nameLabel.text = user!.name
+            })
+        } else if preloadedName != nil {
+            nameLabel.text = preloadedName
+        }
 
         showUserData()
     }
@@ -116,49 +126,89 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
-    @IBAction func topRightButtonAction(sender: UIBarButtonItem) {
-        
-        if(self.viewType! == 2){
-        self.topRightButton.image = nil
-        self.topRightButton.image = UIImage(named:"saved");
+    // Layout
+
+    func prepareLayout() {
+        switch self.type {
+        case Type.Own:
+            self.topRightButton.title = "Save"
+            self.navigationItem.title = "My Profile"
+            isEditable = true;
+            break;
+
+        case Type.Initial:
+            self.navigationItem.setHidesBackButton(true, animated: false)
+            self.topRightButton.title = "OK"
+            self.navigationItem.title = "Create Profile"
+            isEditable = true;
+            break;
+
+        case Type.Public: fallthrough
+        default:
+            self.navigationItem.rightBarButtonItem = nil
+            self.navigationItem.title = "Profile"
+            self.email.superview!.hidden = true
+            isEditable = false;
+            skills.userInteractionEnabled = false
+            profilePhoto.userInteractionEnabled = false
+            break;
         }
-        
     }
-    
-    @IBAction func topLeftButtonAction(sender: UIBarButtonItem) {
-        
-        self.navigationController?.popViewControllerAnimated(true)
-        
+
+    // Navigatiopn Items
+
+    @IBAction func topRightButtonAction(sender: UIBarButtonItem) {
+
+        switch type {
+        case .Initial:
+            self.performSegueWithIdentifier("showMainScreen", sender: nil)
+            break;
+        case .Own:
+            self.navigationController?.popViewControllerAnimated(true)
+            break;
+        default:
+            break;
+        }
+
     }
-    
+
+    // User Data Loding
+
     func showUserData() {
-        UserModel.getCurrent(["user.status", "user.name", "user.image", "user.skills", "user.about"], closure: { user in
+        UserModel.getById(userId, fields: ["user.status", "user.name", "user.image", "user.skills", "user.about", "user.company", "user.address", "user.position", "user.email"], closure: { response in
+
+            let user = UserModel();
+            user.updateFromJson(response["data"])
+
             if let status = user.status {
                 self.statusButton.setTitleByIndex(status)
                 self.statusButton.changeColor(UIColor.whiteColor())
             }
 
-            self.nameLabel.text = user.name
+            if (user.name != nil && count(user.name!) > 0) {
+                self.nameLabel.text = user.name
+            } else if (self.preloadedName != nil) {
+                self.nameLabel.text = self.preloadedName
+                self.nameLabel.textColor = UIColor.blackColor()
+            } else {
+                self.nameLabel.text = ""
+            }
+
+
             self.aboutMeField.text = user.about
+            self.company.text = user.company
+            self.location.text = user.address
+            self.position.text = user.position
+            self.email.text = user.email
+
             self.showUserImage(user.image)
 
             if let skills = user.skills {
                 self.skills.fillTokens(skills)
             }
 
-            self.updateSkillsAssets()
-            self.updateAboutAssets()
+            self.updateAssets()
         })
-    }
-
-    func setInitialStatus(status: Bool) {
-        if (status) {
-            if (self.navigationItem.rightBarButtonItem != nil) {
-//                self.navigationItem.rightBarButtonItem = self.nextButton
-            }
-        } else {
-            self.navigationItem.rightBarButtonItem = nil
-        }
     }
 
     func makeThingsWhite() {
@@ -185,18 +235,20 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
         UserModel.update(["about": text], closure: {response in println(response)})
     }
 
-    func updateAboutAssets() {
-        let hasContent = count(aboutMeField.text) > 0
-
-        aboutMeIcon.highlighted = hasContent
-        aboutMeLabel.hidden = hasContent
+    func updateAssets() {
+        Common.automateUpdatingOfAssets(aboutMeField, icon: aboutMeIcon, label: aboutMeLabel)
+        Common.automateUpdatingOfAssets(skills, icon: skillsIcon, label: skillsLabel)
+        Common.automateUpdatingOfAssets(company, icon: companyIcon)
+        Common.automateUpdatingOfAssets(location, icon: locationIcon)
+        Common.automateUpdatingOfAssets(position, icon: positionIcon)
+        Common.automateUpdatingOfAssets(email, icon: emailIcon)
     }
 
     // MARK: Skills
 
     func updateSkills(view:TokenView) {
 
-        updateSkillsAssets()
+        updateAssets()
 
         if (view.tokens() == nil || view.tokens()!.count <= 0) {
             UserModel.update(["skills": [String]()])
@@ -206,30 +258,63 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
         }
     }
 
-    func updateSkillsAssets() {
-        let hasContent = skills.tokens()?.count > 0
-
-        skillsIcon.highlighted = hasContent
-        skillsLabel.hidden = hasContent
-    }
-
     // MARK: TextFieldDelegate
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         switch textField {
         case nameLabel:
             self.updateUserName(textField.text)
-            textField.resignFirstResponder()
             break;
 
         case company:
-            println("Update Company")
+            UserModel.update(["company": textField.text!], closure: { result in
+                println("company: \(result)")
+                }, errorHandler: { error in
+                    println(error)
+            })
+            break;
+
+        case location:
+            UserModel.update(["address": textField.text!], closure: { result in
+                println("address: \(result)")
+            }, errorHandler: { error in
+                println(error)
+            })
+            break;
+
+        case position:
+            UserModel.update(["position": textField.text!], closure: { result in
+                println("position: \(result)")
+                }, errorHandler: { error in
+                    println(error)
+            })
+            break;
+
+        case email:
+            UserModel.update(["email": textField.text!], closure: { result in
+                println("email: \(result)")
+                }, errorHandler: { error in
+                    println(error)
+            })
             break;
 
         default:
-            println("Unknown field \(textField)")
+            break
         }
 
+        updateAssets()
+        textField.resignFirstResponder()
+
+
+        return true
+    }
+
+    func textFieldDidBeginEditing(textField: UITextField) {
+        scrollToSuperView(textField)
+    }
+
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        updateAssets()
         return true
     }
 
@@ -242,9 +327,7 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
     }
 
     func textViewDidChange(textView: UITextView) {
-        let hasContent = count(textView.text) > 0
-        aboutMeIcon.highlighted = hasContent
-        aboutMeLabel.hidden = hasContent
+        updateAssets()
     }
 
     func textViewShouldEndEditing(textView: UITextView) -> Bool {
@@ -263,7 +346,7 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
             return false
         }
 
-        updateAboutAssets()
+        updateAssets()
         return true
     }
 
@@ -369,20 +452,13 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
 
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-
-    @IBAction func continueAct(sender: AnyObject) {
-        self.performSegueWithIdentifier("showMainScreen", sender: nil)
+        if let vc = segue.destinationViewController as? MainTabBar {
+            vc.navigationItem.setHidesBackButton(true, animated: false)
+        }
     }
 
     @IBAction func showStatusPicker() {
         self.performSegueWithIdentifier("showStatusPicker", sender: self)
-    }
-
-    @IBAction func HideImportView(sender: UIButton) {
-
     }
 
 }

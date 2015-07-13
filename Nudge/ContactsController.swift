@@ -19,8 +19,8 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
 
     let cellIdentifier = "ContactsCell"
 
-    var data:[JSON] = []
-    var indexes:[String] = []
+    var indexes = [String]()
+    var data = [String:[ContactModel]]()
     var refreshControl:UIRefreshControl!
 
     override func viewDidLoad() {
@@ -38,17 +38,37 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
 
     func refresh(sender: AnyObject?) {
 
-        Contacts().sync()
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
 
-        // Load Data
-        self.apiRequest(.GET, path: "contacts?params=contact.alias,contact.user,user.image,user.status&sizes=user.profile", closure: { response in
+        appDelegate.contacts.sync() { success in
+            self.loadData()
+        }
 
-            self.indexes = []
-            self.data = []
+    }
+
+    func loadData() {
+        self.apiRequest(.GET, path: "contacts?params=contact.alias,contact.user,contact.apple_id,user.image,user.status&sizes=user.profile", closure: { response in
+
+            self.data.removeAll(keepCapacity: false)
+            self.indexes.removeAll(keepCapacity: false)
 
             for (id, obj) in response["data"] {
-                self.indexes.append(id)
-                self.data.append(obj)
+                if self.data[id] == nil {
+                    self.indexes.append(id)
+                    self.data[id] = [ContactModel]()
+                }
+
+                for (index: String, subJson: JSON) in obj {
+
+                    var user:UserModel? = nil
+                    if(subJson["user"].type != .Null) {
+                        user = UserModel()
+                        user!.updateFromJson(subJson["user"])
+                    }
+
+                    var contact = ContactModel(id: subJson["id"].intValue, name: subJson["alias"].stringValue, apple_id: subJson["apple_id"].int, user: user)
+                    self.data[id]!.append(contact)
+                }
             }
 
             self.table.reloadData()
@@ -67,14 +87,22 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.data.isEmpty ? 0 : self.data[section].count
+        if let section = self.data[indexes[section]] {
+            return section.count
+        }
+
+        return 0
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell:ContactsCell = table.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath) as! ContactsCell
+        cell.selectable = false
 
-        if (self.data[indexPath.section] != nil) {
-            cell.loadData(self.data[indexPath.section][indexPath.row])
+        let index = indexes[indexPath.section]
+
+        if let section = self.data[index] {
+            let contact = section[indexPath.row]
+            cell.loadData(contact)
         } else {
             println("Strange index in contacts table: ", indexPath)
         }
@@ -85,7 +113,28 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
     // MARK: -- UITableViewDelegate --
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        println("Selected")
+        if let cell = tableView.cellForRowAtIndexPath(indexPath) as? ContactsCell {
+            let index = indexes[indexPath.section]
+
+            if let section = self.data[index] {
+                let contact = section[indexPath.row]
+
+                if let user = contact.user {
+                    //Go to profile view
+                    let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    var genericController = storyboard.instantiateViewControllerWithIdentifier("GenericProfileView") as! GenericProfileViewController
+
+                    genericController.userId = user.id!
+                    genericController.type = .Public
+                    genericController.preloadedName = contact.name
+
+
+                    self.navigationController?.pushViewController(genericController, animated: true)
+                }
+            }
+            
+            cell.setSelected(false, animated: true)
+        }
     }
 
     func sectionIndexTitlesForTableView(tableView: UITableView) -> [AnyObject]! {

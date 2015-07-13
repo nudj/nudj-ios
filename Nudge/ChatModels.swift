@@ -40,6 +40,8 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     
     let  otherUsername = "5@chat.nudj.co";
     let  otherUserPassword = "SKozZ3AuQLUTcHm8FVxSFjxuC3wniMzczWN6g9n5LU6dnAarxXzlPOXIPwtT";
+
+    var testRoom:XMPPRoom? = nil
     
     override init() {
         super.init();
@@ -238,7 +240,6 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         self.goOnline();
         
         println("CLIENT HAS CONNECTED TO JABBER");
-        
     }
     
     
@@ -247,7 +248,6 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         println("Could not authenticate Error \(error)");
         
     }
-    
     
     func xmppStream(sender :XMPPStream, didReceiveMessage message:XMPPMessage) {
         
@@ -265,7 +265,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             
         }else{
 
-            println("Received something from the messages delegate -> \(message.attributesAsDictionary())")
+//            println("Received something from the messages delegate -> \(message.attributesAsDictionary())")
         }
         
         
@@ -273,7 +273,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         
         if msg != nil {
         
-            println("Receiving messages -> \(msg)");
+//            println("Receiving messages -> \(msg)");
             delegate?.recievedMessage(["message":msg])
         
         }
@@ -289,22 +289,22 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         if (roster != nil){
             
             let itemElements = roster.elementsForName("item") as NSArray;
-            println("Recieved a roster for -> \(itemElements)");
-            
+//            println("Recieved a roster for -> \(itemElements)");
+
         }else if(vCard != nil){
             
             //var fullNameQuery = queryElement1.elementForName("from");
-            println("Recieved a vcard for -> \(vCard)");
-            
+//            println("Recieved a vcard for -> \(vCard)");
+
         }else if(conference != nil){
 
             let itemElements = conference.elementsForName("item") as NSArray;
-            println("Recieved conferences -> \(itemElements)");
+//            println("Recieved conferences -> \(itemElements)");
 
             
         }else{
             
-            println("Recieved something i dont know -> \(iq)");
+//            println("Recieved something i dont know -> \(iq)");
         }
         
         
@@ -313,38 +313,69 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
 
     func xmppRoom(sender: XMPPRoom!, didReceiveMessage message: XMPPMessage!, fromOccupant occupantJID: XMPPJID!) {
         
-        println("XMPPROOM Message -> \(message.stringValue())")
-        
+//        println("XMPPROOM Message -> \(message.stringValue())")
+
     }
     
     func xmppRoomDidJoin(sender: XMPPRoom!) {
         
-        println("XMPPROOM JOINED -> \(sender.fetchMembersList())")
+//        println("XMPPROOM JOINED -> \(sender.fetchMembersList())")
         //sender.sendMessageWithBody("i just joined bitches")
         
     }
     
     func xmppRoomDidCreate(sender: XMPPRoom!) {
         
-        println("XMPPROOM CREATED -> \(sender.roomJID)")
-        
+//        println("XMPPROOM CREATED -> \(sender.roomJID)")
+
     }
     
     // MARK: Custom chat room methods
     
     func acceptAndJoinChatRoom(sender:String){
         
-        println("accept and Joined ChatRoom -> \(sender)")
-        
+//        println("accept and Joined ChatRoom -> \(sender)")
+
         var roomJID = XMPPJID.jidWithString(sender);
         var xmppRoom = XMPPRoom(roomStorage: xmppRoomStorage, jid: roomJID, dispatchQueue: dispatch_get_main_queue())
         xmppRoom.activate(xmppStream)
         xmppRoom.addDelegate(self, delegateQueue: dispatch_get_main_queue())
         xmppRoom.joinRoomUsingNickname(jabberUsername, history: nil, password:"")
+
+        xmppRoom.leaveRoom()
         
     }
-    
-    
+
+    func getRoomObject(roomId:String, delegate: XMPPRoomDelegate) -> XMPPRoom {
+
+        var roomJID = XMPPJID.jidWithString(roomId + "@conference.chat.nudj.co");
+
+        var xmppRoom = XMPPRoom(roomStorage: xmppRoomStorage, jid: roomJID, dispatchQueue: dispatch_get_main_queue())
+
+        xmppRoom.addDelegate(delegate, delegateQueue: dispatch_get_main_queue())
+
+        xmppRoom.activate(xmppStream)
+
+        xmppRoom.joinRoomUsingNickname(jabberUsername, history: nil)
+
+        xmppRoom.configureRoomUsingOptions(nil)
+
+        return xmppRoom
+    }
+
+//    var presence = XMPPElement(name: "presence")
+//    presence.addAttributeWithName("from", stringValue: jabberUsername!)
+//    presence.addAttributeWithName("to", stringValue: "\(roomId)@conference.chat.nudj.co")
+//
+//    var history = XMPPElement(name: "history")
+//    history.addAttributeWithName("maxstanzas", stringValue: "100")
+//
+//    var x = XMPPElement(name: "x", xmlns: "http://jabber.org/protocol/muc")
+//
+//    x.addChild(history)
+//
+//    presence.addChild(x)
+
     func retrieveAllChatsList(){
      
         var serverJID = XMPPJID.jidWithString(chatServer)

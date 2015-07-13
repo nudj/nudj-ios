@@ -245,6 +245,8 @@
 		EB313D301AAF4C5A00F008B8 /* StatusPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB313D2F1AAF4C5A00F008B8 /* StatusPicker.swift */; };
 		EB35BBA51AB7288000842E1F /* ContactsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB35BBA31AB7288000842E1F /* ContactsCell.swift */; };
 		EB35BBA61AB7288000842E1F /* ContactsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB35BBA41AB7288000842E1F /* ContactsCell.xib */; };
+		EB62C7B81B4ED17D00265427 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB62C7B61B4ED17D00265427 /* NotificationCell.swift */; };
+		EB62C7B91B4ED17D00265427 /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB62C7B71B4ED17D00265427 /* NotificationCell.xib */; };
 		EB6F22BA1AAF706A007FF1B8 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6F22B91AAF706A007FF1B8 /* AsyncImage.swift */; };
 		EB6F22BC1AB02E7F007FF1B8 /* MainTitleBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6F22BB1AB02E7F007FF1B8 /* MainTitleBar.swift */; };
 		EB6F22BE1AB045C0007FF1B8 /* RBResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6F22BD1AB045C0007FF1B8 /* RBResizer.swift */; };
@@ -271,9 +273,10 @@
 		EBE5C3121B25811400CFF7E9 /* TokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE5C3111B25811400CFF7E9 /* TokenView.swift */; };
 		EBEA9B451AF0D2280027A2A2 /* SettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA9B441AF0D2280027A2A2 /* SettingsItem.swift */; };
 		EBEA9B491AF265150027A2A2 /* AddJobController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA9B481AF265150027A2A2 /* AddJobController.swift */; };
-		EBEA9B4C1AF26ACB0027A2A2 /* AddJobCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA9B4A1AF26ACB0027A2A2 /* AddJobCell.swift */; };
-		EBEA9B4D1AF26ACB0027A2A2 /* AddJobCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBEA9B4B1AF26ACB0027A2A2 /* AddJobCell.xib */; };
-		EBEA9B4F1AF274480027A2A2 /* AddJobItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA9B4E1AF274480027A2A2 /* AddJobItem.swift */; };
+		EBF17A221B4C128100C67657 /* VerifyCodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF17A211B4C128100C67657 /* VerifyCodeTextField.swift */; };
+		EBF17A241B4D538800C67657 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF17A231B4D538800C67657 /* Common.swift */; };
+		EBF17A261B4D76C600C67657 /* JobModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF17A251B4D76C600C67657 /* JobModel.swift */; };
+		EBF17A281B4E641400C67657 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF17A271B4E641400C67657 /* ContactModel.swift */; };
 		EBF186201B21DACA00D8D80D /* KSToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF1861C1B21DACA00D8D80D /* KSToken.swift */; };
 		EBF186211B21DACA00D8D80D /* KSTokenField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF1861D1B21DACA00D8D80D /* KSTokenField.swift */; };
 		EBF186221B21DACA00D8D80D /* KSTokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF1861E1B21DACA00D8D80D /* KSTokenView.swift */; };
@@ -736,6 +739,8 @@
 		EB313D2F1AAF4C5A00F008B8 /* StatusPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusPicker.swift; sourceTree = "<group>"; };
 		EB35BBA31AB7288000842E1F /* ContactsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsCell.swift; sourceTree = "<group>"; };
 		EB35BBA41AB7288000842E1F /* ContactsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsCell.xib; sourceTree = "<group>"; };
+		EB62C7B61B4ED17D00265427 /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		EB62C7B71B4ED17D00265427 /* NotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		EB6F22B91AAF706A007FF1B8 /* AsyncImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		EB6F22BB1AB02E7F007FF1B8 /* MainTitleBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTitleBar.swift; sourceTree = "<group>"; };
 		EB6F22BD1AB045C0007FF1B8 /* RBResizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RBResizer.swift; sourceTree = "<group>"; };
@@ -761,10 +766,11 @@
 		EBE5C3111B25811400CFF7E9 /* TokenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenView.swift; sourceTree = "<group>"; };
 		EBEA9B441AF0D2280027A2A2 /* SettingsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsItem.swift; sourceTree = "<group>"; };
 		EBEA9B481AF265150027A2A2 /* AddJobController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddJobController.swift; sourceTree = "<group>"; };
-		EBEA9B4A1AF26ACB0027A2A2 /* AddJobCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddJobCell.swift; sourceTree = "<group>"; };
-		EBEA9B4B1AF26ACB0027A2A2 /* AddJobCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddJobCell.xib; sourceTree = "<group>"; };
-		EBEA9B4E1AF274480027A2A2 /* AddJobItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddJobItem.swift; sourceTree = "<group>"; };
 		EBF1028F1ADD59D20096FB3C /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/Pods/SwiftyJSON.framework"; sourceTree = "<group>"; };
+		EBF17A211B4C128100C67657 /* VerifyCodeTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyCodeTextField.swift; sourceTree = "<group>"; };
+		EBF17A231B4D538800C67657 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		EBF17A251B4D76C600C67657 /* JobModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobModel.swift; sourceTree = "<group>"; };
+		EBF17A271B4E641400C67657 /* ContactModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
 		EBF1861C1B21DACA00D8D80D /* KSToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSToken.swift; sourceTree = "<group>"; };
 		EBF1861D1B21DACA00D8D80D /* KSTokenField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSTokenField.swift; sourceTree = "<group>"; };
 		EBF1861E1B21DACA00D8D80D /* KSTokenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSTokenView.swift; sourceTree = "<group>"; };
@@ -817,6 +823,8 @@
 			isa = PBXGroup;
 			children = (
 				A95798241B46965A006E826E /* NotificationViewController.swift */,
+				EB62C7B61B4ED17D00265427 /* NotificationCell.swift */,
+				EB62C7B71B4ED17D00265427 /* NotificationCell.xib */,
 			);
 			name = Notification;
 			sourceTree = "<group>";
@@ -1847,9 +1855,6 @@
 			isa = PBXGroup;
 			children = (
 				EBEA9B481AF265150027A2A2 /* AddJobController.swift */,
-				EBEA9B4A1AF26ACB0027A2A2 /* AddJobCell.swift */,
-				EBEA9B4B1AF26ACB0027A2A2 /* AddJobCell.xib */,
-				EBEA9B4E1AF274480027A2A2 /* AddJobItem.swift */,
 				A9F3336D1B42CD4300F0D17B /* AskReferralViewController.swift */,
 				A9F333711B4302F800F0D17B /* ReferralFilterContent.swift */,
 			);
@@ -2010,15 +2015,12 @@
 				EB6F22B91AAF706A007FF1B8 /* AsyncImage.swift */,
 				EB6F22BB1AB02E7F007FF1B8 /* MainTitleBar.swift */,
 				EB6F22BD1AB045C0007FF1B8 /* RBResizer.swift */,
-				EBBF42521AB0AF5F0001E8B6 /* JobCellTableViewCell.swift */,
-				EBBF42531AB0AF5F0001E8B6 /* JobCellTableViewCell.xib */,
-				EBBF42561AB1DEFF0001E8B6 /* DataTable.swift */,
-				EB000F7B1AB2E0B800E4D385 /* DataTableCell.swift */,
 				EBBF42581AB1E55F0001E8B6 /* DataProviderProtocol.swift */,
 				EB9F71DE1B0E0060000C2D9F /* MainTabBar.swift */,
 				EB9F71E01B0E0200000C2D9F /* MainTabItem.swift */,
 				EBE5C3111B25811400CFF7E9 /* TokenView.swift */,
 				A9F333731B4444D700F0D17B /* CreatePopupView.swift */,
+				EBF17A231B4D538800C67657 /* Common.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -2044,6 +2046,8 @@
 			children = (
 				EBB3382F1A9F5A44000CAD88 /* UserModel.swift */,
 				A996508F1B39776A00D5A8E9 /* ChatModels.swift */,
+				EBF17A251B4D76C600C67657 /* JobModel.swift */,
+				EBF17A271B4E641400C67657 /* ContactModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -2057,6 +2061,7 @@
 				EB313D2D1AAF37FB00F008B8 /* StatusButton.swift */,
 				EB313D2F1AAF4C5A00F008B8 /* StatusPicker.swift */,
 				EBCE12551B2B1D2600C3928C /* CreateProfileController.swift */,
+				EBF17A211B4C128100C67657 /* VerifyCodeTextField.swift */,
 			);
 			name = Login/Register;
 			sourceTree = "<group>";
@@ -2089,6 +2094,10 @@
 		EBEA9B461AF2641B0027A2A2 /* MainFeed */ = {
 			isa = PBXGroup;
 			children = (
+				EBBF42561AB1DEFF0001E8B6 /* DataTable.swift */,
+				EB000F7B1AB2E0B800E4D385 /* DataTableCell.swift */,
+				EBBF42521AB0AF5F0001E8B6 /* JobCellTableViewCell.swift */,
+				EBBF42531AB0AF5F0001E8B6 /* JobCellTableViewCell.xib */,
 				EB0926D11A8DE4CB00E1D958 /* MainFeed.swift */,
 			);
 			name = MainFeed;
@@ -2224,6 +2233,7 @@
 				A9964FDF1B387CC800D5A8E9 /* JSQMessagesViewController.xib in Resources */,
 				A996507A1B387CC800D5A8E9 /* README.txt in Resources */,
 				A9964FFF1B387CC800D5A8E9 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
+				EB62C7B91B4ED17D00265427 /* NotificationCell.xib in Resources */,
 				A9F333701B42D20C00F0D17B /* close_btn@2x.png in Resources */,
 				EBA8C3461B32DFF100522167 /* Main.storyboard in Resources */,
 				A9F333651B42ACDC00F0D17B /* job_description@2x.png in Resources */,
@@ -2255,7 +2265,6 @@
 				A9C6ECA01B3853F900EC9140 /* ChatListTableViewCell.xib in Resources */,
 				A9F3337E1B45532F00F0D17B /* success@2x.png in Resources */,
 				A99650AA1B3DB3FF00D5A8E9 /* mute@2x.png in Resources */,
-				EBEA9B4D1AF26ACB0027A2A2 /* AddJobCell.xib in Resources */,
 				A9964FFA1B387CC800D5A8E9 /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
 				A9F333611B42ACDC00F0D17B /* salary_details_active@2x.png in Resources */,
 				A9F333601B42ACDC00F0D17B /* job_title_active@2x.png in Resources */,
@@ -2401,6 +2410,7 @@
 				A99650181B387CC800D5A8E9 /* XMPPGroupCoreDataStorageObject.m in Sources */,
 				A99650621B387CC800D5A8E9 /* XMPPAutoTime.m in Sources */,
 				A996503B1B387CC800D5A8E9 /* XMPPvCardTemp.m in Sources */,
+				EBF17A281B4E641400C67657 /* ContactModel.swift in Sources */,
 				A996504D1B387CC800D5A8E9 /* XMPPSoftwareVersion.m in Sources */,
 				A99650211B387CC800D5A8E9 /* XMPPSystemInputActivityMonitor.m in Sources */,
 				A9964FD91B387CC800D5A8E9 /* UIColor+JSQMessages.m in Sources */,
@@ -2443,12 +2453,14 @@
 				A99650561B387CC800D5A8E9 /* XMPPMessageArchiving_Contact_CoreDataObject.m in Sources */,
 				A996500B1B387CC800D5A8E9 /* XMPPElement.m in Sources */,
 				A99650741B387CC800D5A8E9 /* DDASLLogger.m in Sources */,
+				EB62C7B81B4ED17D00265427 /* NotificationCell.swift in Sources */,
 				A996507B1B387CC800D5A8E9 /* NSString+DDXML.m in Sources */,
 				A996506B1B387CC800D5A8E9 /* NSXMLElement+XEP_0335.m in Sources */,
 				A9964FD61B387CC800D5A8E9 /* JSQSystemSoundPlayer+JSQMessages.m in Sources */,
 				EBF186211B21DACA00D8D80D /* KSTokenField.swift in Sources */,
 				EBE5C3121B25811400CFF7E9 /* TokenView.swift in Sources */,
 				A99650251B387CC800D5A8E9 /* XMPPIQ+LastActivity.m in Sources */,
+				EBF17A241B4D538800C67657 /* Common.swift in Sources */,
 				A996504B1B387CC800D5A8E9 /* XMPPDateTimeProfiles.m in Sources */,
 				A996502D1B387CC800D5A8E9 /* XMPPRoomHybridStorage.m in Sources */,
 				A996507E1B387CC800D5A8E9 /* DDXMLNode.m in Sources */,
@@ -2477,6 +2489,7 @@
 				A9F333291B41759A00F0D17B /* CPAnimationStep.m in Sources */,
 				EBF186231B21DACA00D8D80D /* KSUtils.swift in Sources */,
 				A99650531B387CC800D5A8E9 /* XMPPCapsResourceCoreDataStorageObject.m in Sources */,
+				EBF17A221B4C128100C67657 /* VerifyCodeTextField.swift in Sources */,
 				A9964FDC1B387CC800D5A8E9 /* UIView+JSQMessages.m in Sources */,
 				A99650071B387CC800D5A8E9 /* XMPPXOAuth2Google.m in Sources */,
 				A9964FE11B387CC800D5A8E9 /* JSQMessagesBubbleImageFactory.m in Sources */,
@@ -2489,6 +2502,7 @@
 				A996501B1B387CC800D5A8E9 /* XMPPRosterCoreDataStorage.m in Sources */,
 				A99650711B387CC800D5A8E9 /* XMPPStringPrep.m in Sources */,
 				A99650571B387CC800D5A8E9 /* XMPPMessageArchiving_Message_CoreDataObject.m in Sources */,
+				EBF17A261B4D76C600C67657 /* JobModel.swift in Sources */,
 				A9964FEA1B387CC800D5A8E9 /* JSQMessage.m in Sources */,
 				EB313D2E1AAF37FB00F008B8 /* StatusButton.swift in Sources */,
 				A99650511B387CC800D5A8E9 /* XMPPCapabilitiesCoreDataStorage.m in Sources */,
@@ -2497,7 +2511,6 @@
 				A99650101B387CC800D5A8E9 /* XMPPParser.m in Sources */,
 				EBB337F81A9F53CA000CAD88 /* NudgeData.xcdatamodeld in Sources */,
 				A99650091B387CC800D5A8E9 /* NSNumber+XMPP.m in Sources */,
-				EBEA9B4C1AF26ACB0027A2A2 /* AddJobCell.swift in Sources */,
 				A9964FDD1B387CC800D5A8E9 /* JSQMessagesKeyboardController.m in Sources */,
 				A99650551B387CC800D5A8E9 /* XMPPMessageArchiving.xcdatamodeld in Sources */,
 				A99650271B387CC800D5A8E9 /* XMPPPrivacy.m in Sources */,
@@ -2540,7 +2553,6 @@
 				EBBF42541AB0AF5F0001E8B6 /* JobCellTableViewCell.swift in Sources */,
 				EB2F78091AD288E400B59C0E /* SettingsCell.swift in Sources */,
 				A996504A1B387CC800D5A8E9 /* NSDate+XMPPDateTimeProfiles.m in Sources */,
-				EBEA9B4F1AF274480027A2A2 /* AddJobItem.swift in Sources */,
 				A9964FE31B387CC800D5A8E9 /* JSQMessagesTimestampFormatter.m in Sources */,
 				A9964FEF1B387CC800D5A8E9 /* JSQMessagesCellTextView.m in Sources */,
 				A996504F1B387CC800D5A8E9 /* NSString+XEP_0106.m in Sources */,

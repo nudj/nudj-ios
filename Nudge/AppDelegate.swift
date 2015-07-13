@@ -20,10 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var api: API?
     var chatInst: ChatModels?
     var deviceToken: String?
+    var deviceTokenSynced:Bool = false
+    var contacts = Contacts()
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
-//        Crashlytics.startWithAPIKey("eaeedfb00437f7c323cc45deea4fe92b94dd90bf")
         Fabric.with([Crashlytics()])
 
         // Getting of user details from CoreData
@@ -31,10 +32,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         prepareApi();
         
-        
         if (user != nil && user!.id != nil && user!.completed == false) {
             // User did not passed full registration
-//            self.pushViewControllerWithId("initProfile")
+
+            self.syncContacts()
+
             self.pushViewControllerWithId("createProfile")
 
         } else if (user == nil) {
@@ -42,7 +44,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Proceed to login view
         } else {
             // Valid User, Proceed
-            self.pushViewControllerWithId("mainNavigation")
+
+            self.syncContacts()
+
+            self.changeRootViewController("mainNavigation")
         }
 
         requestNotificationPermission(application)
@@ -76,14 +81,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
 
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        println(userInfo)
+    }
+
+    func syncContacts() {
+        dispatch_async(dispatch_get_main_queue(),{
+            self.contacts.sync()
+        })
+    }
+
     func syncDeviceToken() {
-        if (API.sharedInstance.token != nil) {
+        if (API.sharedInstance.token == nil) {
             return
         }
 
         if self.deviceToken != nil {
             println( "Device token sent -> \(self.deviceToken!)")
-            API.sharedInstance.put("devices", params: ["token":self.deviceToken!], closure:{ _ in });
+            API.sharedInstance.put("devices", params: ["token":self.deviceToken!], closure:{ _ in
+                self.deviceTokenSynced = true
+            });
         }
     }
 
@@ -123,6 +140,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 println("NOT Connected to chat server so will try reconnecting !!!")
                 
             }
+
 
 
         } else {
@@ -204,11 +222,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func pushViewControllerWithId(id: String) {
         println("Go To: " + id)
+
         let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let navigationController:UINavigationController = storyboard.instantiateViewControllerWithIdentifier("mainNavigationController") as! UINavigationController
         let rootViewController:UIViewController = storyboard.instantiateViewControllerWithIdentifier(id) as! UIViewController
         navigationController.viewControllers = [rootViewController]
         self.window?.rootViewController = navigationController
+    }
+
+    func changeRootViewController(id:String) {
+        self.window!.rootViewController = self.window?.rootViewController?.storyboard?.instantiateViewControllerWithIdentifier(id) as? UIViewController
     }
 
     func applicationWillResignActive(application: UIApplication) {

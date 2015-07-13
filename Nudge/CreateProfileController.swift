@@ -32,6 +32,8 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
+        self.navigationItem.hidesBackButton = true
+
         showUserData()
     }
 
@@ -42,7 +44,7 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
                 let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
                 appDelegate.user!.completed = true
                 appDelegate.pushUserData()
-                appDelegate.pushViewControllerWithId("mainNavigation")
+                appDelegate.changeRootViewController("mainNavigation")
             }
 
             if !user.isDefaultImage {
@@ -90,8 +92,13 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
     // MARK: - Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+
         if let popover = segue.destinationViewController as? StatusPicker {
+
             popover.preferredContentSize = CGSize(width: 200, height: 200)
+
+        } else if let vc = segue.destinationViewController as? GenericProfileViewController {
+            vc.type = .Initial
         }
     }
 
@@ -140,8 +147,6 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
 
         UserModel.update(["image": imageData], closure: { response in
 
-            println("Opsa: ")
-            println(response)
             // TODO: Remove this request when right url is returned after upload
             UserModel.getCurrent(["user.image"], closure: { user in
                 self.showUserImage(user.image["profile"]!)
@@ -152,5 +157,7 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
             self.image.stopActivity()
         })
     }
+
+
 
 }

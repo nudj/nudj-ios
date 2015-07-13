@@ -25,6 +25,8 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
     var dataProvider:DataProviderProtocol?
     var data:[JSON] = []
 
+    var selectedClosure:((JSON)->())? = nil
+
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
@@ -105,7 +107,7 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
     // MARK: -- UITableViewDelegate --
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        println("Selected job: " + self.data[indexPath.row]["id"].stringValue + "(" + self.data[indexPath.row]["title"].stringValue + ")")
+        selectedClosure?(self.data[indexPath.row])
     }
 
     func clear()

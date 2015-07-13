@@ -13,49 +13,62 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     @IBOutlet var askTable: UITableView!
     @IBOutlet var messageText: UITextField!
     @IBOutlet var searchBarView: UISearchBar!
-    
-    var currentContent :NSMutableArray?;
-    var searchResult :NSMutableArray?;
-    var indexes :NSArray?;
-    var isSearchTable :Bool = false
+
+    var jobId:Int?
+
+    var currentContent = NSMutableArray();
+    var searchResult = NSMutableArray();
+    var selected = [ContactModel]()
     var popup :CreatePopupView?;
     
     let cellIdentifier = "ContactsCell"
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.tabBarController?.tabBar.hidden = true
+
         self.messageText.frame = CGRectMake(0, 0, messageText.frame.size.width, messageText.frame.size.height);
         // Do any additional setup after loading the view.
         
-        currentContent = NSMutableArray();
-        searchResult = NSMutableArray();
-        indexes = NSArray();
-        
         askTable.registerNib(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
 
-        
-        var content :ReferralFilterContent = ReferralFilterContent()
-        content.contactsGlosarry = ["Andy","Becky","Caroline","David"];
-        
-        //self.searchResult = content.glossaryIndex?.mutableCopy() as? NSMutableArray
-        
-        for var i = 0; i < content.contactsGlosarry!.count; i++ {
-            
-            var temps = content.contactsGlosarry!.objectAtIndex(i) as! String;
-            self.currentContent!.addObject( content.productWithType(temps) );
-            
-        }
-        
-         //indexes = content.glossaryIndex?.sortedArrayUsingSelector("localizedCaseInsensitiveCompare:")
-         self.searchResult = self.currentContent!;
-         askTable.reloadData();
-        
-        
+        self.loadData()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func loadData() {
+        ContactModel.getContacts { status, response in
+            if (!status) {
+                return
+            }
+
+            self.currentContent.removeAllObjects()
+            self.searchResult.removeAllObjects()
+
+            for (id, parentObj) in response["data"] {
+                for (id, obj) in parentObj {
+
+                    var user:UserModel? = nil
+
+                    if(obj["user"].type != .Null) {
+                        user = UserModel()
+                        user!.updateFromJson(obj["user"])
+                    }
+
+                    var contact = ContactModel(id: obj["id"].intValue, name: obj["alias"].stringValue, apple_id: obj["apple_id"].int, user: user)
+                    self.currentContent.addObject(contact)
+                }
+            }
+
+            self.searchResult = self.currentContent
+            self.askTable.reloadData()
+        }
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        self.tabBarController?.tabBar.hidden = false
     }
     
     
@@ -64,15 +77,13 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
         searchBar.showsCancelButton = true;
         
         if(!searchText.isEmpty){
-        println("updated search");
-            
-        self.updateFilteredContentForProductName(searchText);
-        self.askTable.reloadData();
-            
+            println("updated search");
+                
+            self.updateFilteredContentForProductName(searchText);
+            self.askTable.reloadData();
+
         }
-            
-        
-    
+
     }
     
     
@@ -90,7 +101,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
 
     func updateFilteredContentForProductName(productName :String){
     
-        self.searchResult?.removeAllObjects(); // First clear the filtered array.
+        self.searchResult.removeAllObjects(); // First clear the filtered array.
     
         /*  
         
@@ -100,7 +111,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
         
         var product: ReferralFilterContent?
         
-        for product in self.currentContent! {
+        for product in self.currentContent {
             
             println("what products see -> \(product.name)")
             
@@ -109,7 +120,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
             var foundRange =  product.name.substringWithRange(productNameRang) as  String;
             
             if (foundRange == productName) {
-                self.searchResult?.addObject(product);
+                self.searchResult.addObject(product);
             }
         
         }
@@ -125,7 +136,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        
-        return self.searchResult!.count;
+        return self.searchResult.count;
         
     }
     
@@ -138,43 +149,65 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
         
         var cell:ContactsCell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath) as! ContactsCell
         
-        /*if (self.data[indexPath.section] != nil) {
-            cell.loadData(self.data[indexPath.section][indexPath.row])
-        } else {
-            println("Strange index in contacts table: ", indexPath)
-        }*/
-        
-        
-        cell.name.text = self.searchResult!.objectAtIndex(indexPath.row).name as String
-        
-        
+        cell.loadData(self.searchResult.objectAtIndex(indexPath.row) as! ContactModel)
+
         return cell
     }
     
     // MARK: -- UITableViewDelegate --
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        //Go to profile view
-        let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        var genericController = storyboard.instantiateViewControllerWithIdentifier("GenericProfileView") as! GenericProfileViewController
-        genericController.viewType = 2;
-        genericController.isEditable = false;
-        self.navigationController?.pushViewController(genericController, animated: true)
-        
+
+        if let cell = tableView.cellForRowAtIndexPath(indexPath) as? ContactsCell {
+            if let contact = searchResult[indexPath.row] as? ContactModel {
+
+                // TODO: Fix this!!!
+                for (index, value) in enumerate(selected) {
+                    if value.id == contact.id {
+                        selected.removeAtIndex(index)
+                        cell.setSelected(false, animated: true)
+                        checkSelected()
+                        return
+                    }
+                }
+
+                selected.append(contact)
+                cell.setSelected(true, animated: true)
+                checkSelected()
+            }
+        }
+
     }
-    
+
+    func checkSelected() {
+        self.navigationItem.rightBarButtonItem?.enabled = (selected.count > 0)
+    }
+
     @IBAction func askAction(sender: AnyObject) {
-        
-        popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true);
-        popup!.bodyText("You have successfully asked 3 contacts for referral");
-        popup!.delegate = self;
-        self.view.addSubview(popup!);
-        
+
+        let contactIds:[Int] = selected.map { contact in
+            return contact.id
+        }
+
+        let params:[String:AnyObject] = ["job": "\(jobId!)", "contacts": contactIds, "message": messageText.text]
+
+        println("AskForReferal: \(params)")
+
+        API.sharedInstance.put("nudge/ask", params: params, closure: { result in
+
+            self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true);
+            self.popup!.bodyText("You have successfully asked \(contactIds.count) contacts for referral");
+            self.popup!.delegate = self;
+            self.view.addSubview(self.popup!);
+
+            println(result)
+        }) { error in
+            println(error)
+        }
+
     }
-    
-    @IBAction func closeAction(sender: UIBarButtonItem) {
-        
+
+    @IBAction func close(sender: AnyObject) {
         self.navigationController?.popToRootViewControllerAnimated(true)
     }
     

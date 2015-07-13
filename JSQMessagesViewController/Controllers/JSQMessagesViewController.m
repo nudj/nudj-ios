@@ -42,8 +42,12 @@
 #import "NSBundle+JSQMessages.h"
 
 #import "CPAnimationSequence.h"
+
+#import "XMPPLogging.h"
+
 static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObservingContext;
 
+//static const int xmppLogLevel = XMPP_LOG_LEVEL_VERBOSE | XMPP_LOG_FLAG_TRACE;
 
 @interface JSQMessagesViewController () <JSQMessagesInputToolbarDelegate,
 JSQMessagesKeyboardControllerDelegate>{

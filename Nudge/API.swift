@@ -53,8 +53,10 @@ class API {
         } else if self.token != nil {
             manager.session.configuration.HTTPAdditionalHeaders = ["token": self.token!]
         }
-        
-        manager.request(method, (baseURL + path) as String, parameters: params).responseString { // , encoding: .JSON //Removed this ... no Idea why it works without it and some times it does not with it.
+
+        let encoding = method != Alamofire.Method.GET ? Alamofire.ParameterEncoding.JSON : Alamofire.ParameterEncoding.URL
+
+        manager.request(method, (baseURL + path) as String, parameters: params, encoding: encoding).responseString {
             (request, rawResponse, response, error) in
 
             // Try to catch general API errors
@@ -93,9 +95,9 @@ class API {
                     closure(json)
                 }
 
-            } else if(errorHandler != nil) {
+            } else {
 
-                errorHandler!(NSError())
+                errorHandler?(NSError())
 
             }
         }
@@ -117,7 +119,7 @@ class API {
                     let code = errorJson["error"]["code"];
 
                     // Log out user and show Login screen
-                    if (code == 10002) {
+                    if (code == 10401) {
                         println("Unauthorized -> Logout!")
                         self.performLogout()
                         return true
@@ -136,7 +138,7 @@ class API {
     func performLogout() {
         let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
         delegate.logout()
-        delegate.pushViewControllerWithId("loginController")
+        delegate.changeRootViewController("loginController")
     }
 
 }

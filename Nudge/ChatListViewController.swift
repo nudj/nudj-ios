@@ -13,30 +13,36 @@ import SwiftyJSON
 class ChatListViewController: BaseController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet var chatTable: UITableView!
-    let staticRowHeight:CGFloat = 76
+    let staticRowHeight:CGFloat = 70
     let cellIdentifier = "ChatListTableViewCell"
 
     var data:[JSON] = []
-    var indexes:[String] = []
     
     override func viewDidLoad() {
-        self.navigationController?.navigationBar.hidden = true
 
          self.chatTable.registerNib(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
-         self.chatTable.tableFooterView = UIView(frame: CGRectZero)
-        
-         self.apiRequest(.GET, path: "chat?params=chat.job,job.favourite,chat.participants,job.title,user.image,user.name,user.contact", closure: { response in
-            
+
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        requestData()
+    }
+
+    func requestData() {
+        self.apiRequest(.GET, path: "chat?params=chat.job,job.favourite,chat.participants,chat.created,job.title,job.company,user.image,user.name,user.contact", closure: { response in
+
+            self.data.removeAll(keepCapacity: false)
+
             println("Chatroom url request response ->\(response)");
-        
+
             for (id, obj) in response["data"] {
-                self.indexes.append(id)
                 self.data.append(obj)
             }
-            
-            self.chatTable!.reloadData()
+
+            self.chatTable.reloadData()
         })
-        
     }
     
     // MARK: -- UITableViewDataSource --
@@ -49,13 +55,13 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return self.indexes.count
+        return data.count
         
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        return 70
+        return staticRowHeight
         
     }
     
@@ -63,8 +69,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
 
         var cell:ChatListTableViewCell = chatTable.dequeueReusableCellWithIdentifier(cellIdentifier) as! ChatListTableViewCell
         
-        var title = self.data[indexPath.row]["job"]["title"]
-        cell.jobTitle.text = "re:\(title.stringValue)"
+        cell.loadData(self.data[indexPath.row])
         
         return cell
     }
@@ -75,10 +80,15 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         
         var vc:ChatViewController = ChatViewController()
         
-        //ChatViewController *chatView  = [ChatViewController messagesViewController];
+//        ChatViewController *chatView  = [ChatViewController messagesViewController];
         //(nibName: "ChatViewController", bundle: nil)
-        
-        vc.chatID = self.data[indexPath.row]["job"]["id"].stringValue;
+
+        let chat = self.data[indexPath.row]
+
+        vc.chatID = chat["id"].stringValue;
+        vc.title = chat["job"]["title"].stringValue
+
+
         self.navigationController?.pushViewController(vc, animated: true)
         
     }

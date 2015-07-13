@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatListTableViewCell" id="KGk-i7-Jjw" customClass="ChatListTableViewCell" customModule="nudge" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatListTableViewCell" rowHeight="70" id="KGk-i7-Jjw" customClass="ChatListTableViewCell" customModule="nudge" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -15,49 +15,101 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yestarday" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCz-yg-BHJ">
-                        <rect key="frame" x="262" y="5" width="50" height="12"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="50" id="1CG-Uq-fDd"/>
-                        </constraints>
+                        <rect key="frame" x="270" y="8" width="42" height="12"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="10"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Sy0-Re-C7T">
-                        <rect key="frame" x="10" y="10" width="50" height="50"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Sy0-Re-C7T" customClass="AsyncImage" customModule="nudge" customModuleProvider="target">
+                        <rect key="frame" x="8" y="10" width="50" height="50"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="50" id="QfC-1u-knc"/>
+                            <constraint firstAttribute="width" constant="50" id="E5Y-vb-Jf4"/>
+                            <constraint firstAttribute="height" constant="50" id="yD8-sE-vYL"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="circleShape" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="re: Director of business Development at Oracle" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZ2-Z7-SiL">
-                        <rect key="frame" x="88" y="28" width="241" height="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="re:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZ2-Z7-SiL">
+                        <rect key="frame" x="72" y="29" width="15" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="5jG-I6-aip"/>
+                            <constraint firstAttribute="width" constant="15" id="QKc-LY-bI9"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Robyn McGirl" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6a-99-ma7">
-                        <rect key="frame" x="88" y="10" width="190" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="at:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhV-Sf-Scx">
+                        <rect key="frame" x="72" y="46" width="15" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="15" id="TmO-Ce-akm"/>
+                            <constraint firstAttribute="height" constant="15" id="x1v-kG-dYM"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Robyn McGirl" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6a-99-ma7">
+                        <rect key="frame" x="70" y="8" width="242" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="j07-sw-ZFD"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xoQ-tj-A7u">
+                        <rect key="frame" x="87" y="47" width="225" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="OVr-m3-vb7"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                        <color key="textColor" red="0.074533462524414062" green="0.57771205902099609" blue="0.45876827836036682" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ChatListArrow" translatesAutoresizingMaskIntoConstraints="NO" id="fJA-Y8-ksQ">
+                        <rect key="frame" x="298" y="28" width="14" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="A8v-ES-Grq"/>
+                            <constraint firstAttribute="width" constant="14" id="bqn-7s-RTj"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBK-8A-fQf">
+                        <rect key="frame" x="87" y="31" width="225" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="h7I-1i-Upb"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                        <color key="textColor" red="0.074533462524414062" green="0.57771205902099609" blue="0.45876827836036682" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Sy0-Re-C7T" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="Apm-4R-ArW"/>
-                    <constraint firstItem="CCz-yg-BHJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-3" id="DiY-q1-fcS"/>
-                    <constraint firstItem="Sy0-Re-C7T" firstAttribute="top" secondItem="Z6a-99-ma7" secondAttribute="top" id="Gxw-kZ-1wR"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="Z6a-99-ma7" secondAttribute="trailing" constant="27" id="PIb-PB-y3A"/>
-                    <constraint firstItem="CZ2-Z7-SiL" firstAttribute="leading" secondItem="Sy0-Re-C7T" secondAttribute="trailing" constant="28" id="W9B-da-3e0"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="Sy0-Re-C7T" secondAttribute="bottom" constant="1" id="bRC-AT-xkb"/>
-                    <constraint firstItem="Sy0-Re-C7T" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="br4-Fy-DQL"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="Z6a-99-ma7" secondAttribute="bottom" constant="30" id="fWg-d5-Mzd"/>
-                    <constraint firstItem="CCz-yg-BHJ" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="oF4-Q9-Ewv"/>
-                    <constraint firstItem="Z6a-99-ma7" firstAttribute="leading" secondItem="CZ2-Z7-SiL" secondAttribute="leading" id="qja-ZG-GZO"/>
-                    <constraint firstItem="CZ2-Z7-SiL" firstAttribute="top" secondItem="CCz-yg-BHJ" secondAttribute="bottom" constant="11" id="twZ-2Z-qUK"/>
+                    <constraint firstItem="CZ2-Z7-SiL" firstAttribute="top" secondItem="Z6a-99-ma7" secondAttribute="bottom" id="BRl-9G-2MW"/>
+                    <constraint firstAttribute="centerY" secondItem="fJA-Y8-ksQ" secondAttribute="centerY" id="DXx-gP-CaP"/>
+                    <constraint firstItem="xoQ-tj-A7u" firstAttribute="top" secondItem="bBK-8A-fQf" secondAttribute="bottom" constant="2" id="HJg-UI-9Ua"/>
+                    <constraint firstItem="bBK-8A-fQf" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="IOv-XT-Wwp"/>
+                    <constraint firstItem="xoQ-tj-A7u" firstAttribute="leading" secondItem="yhV-Sf-Scx" secondAttribute="trailing" id="LSf-lD-BUt"/>
+                    <constraint firstItem="Z6a-99-ma7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="LVr-Ch-I34"/>
+                    <constraint firstItem="CCz-yg-BHJ" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="PF9-rV-pTg"/>
+                    <constraint firstItem="fJA-Y8-ksQ" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="QMS-eq-8lC"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Z6a-99-ma7" secondAttribute="trailing" id="ace-ew-QL4"/>
+                    <constraint firstItem="yhV-Sf-Scx" firstAttribute="top" secondItem="CZ2-Z7-SiL" secondAttribute="bottom" constant="2" id="cDh-Ya-aZX"/>
+                    <constraint firstItem="Z6a-99-ma7" firstAttribute="leading" secondItem="Sy0-Re-C7T" secondAttribute="trailing" constant="12" id="eqE-EZ-6E9"/>
+                    <constraint firstItem="CZ2-Z7-SiL" firstAttribute="leading" secondItem="Sy0-Re-C7T" secondAttribute="trailing" constant="14" id="iKb-FZ-zou"/>
+                    <constraint firstItem="yhV-Sf-Scx" firstAttribute="leading" secondItem="Sy0-Re-C7T" secondAttribute="trailing" constant="14" id="mbP-aE-ZIX"/>
+                    <constraint firstItem="bBK-8A-fQf" firstAttribute="leading" secondItem="CZ2-Z7-SiL" secondAttribute="trailing" id="nVj-TX-tro"/>
+                    <constraint firstItem="Sy0-Re-C7T" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="nhh-6l-cI5"/>
+                    <constraint firstItem="CCz-yg-BHJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="pF1-ni-PZV"/>
+                    <constraint firstAttribute="centerY" secondItem="Sy0-Re-C7T" secondAttribute="centerY" constant="-0.5" id="wjv-wg-cbC"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="xoQ-tj-A7u" secondAttribute="trailing" id="xYS-8a-mX6"/>
+                    <constraint firstItem="bBK-8A-fQf" firstAttribute="top" secondItem="Z6a-99-ma7" secondAttribute="bottom" constant="2" id="yhT-Ws-EGM"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="jobTitle" destination="CZ2-Z7-SiL" id="Onm-vf-pew"/>
+                <outlet property="jobCompany" destination="xoQ-tj-A7u" id="2iK-nj-vOi"/>
+                <outlet property="jobTitle" destination="bBK-8A-fQf" id="Gh2-iq-9bW"/>
                 <outlet property="profilePicture" destination="Sy0-Re-C7T" id="wMR-A2-uTC"/>
                 <outlet property="timeAgo" destination="CCz-yg-BHJ" id="ksC-Zd-aay"/>
                 <outlet property="userName" destination="Z6a-99-ma7" id="fRT-oq-l6S"/>
@@ -66,6 +118,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="ChatListArrow" width="14" height="14"/>
         <image name="user_image_placeholder" width="40" height="40"/>
     </resources>
 </document>

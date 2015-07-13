@@ -7,25 +7,31 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class ChatListTableViewCell: UITableViewCell {
 
-    @IBOutlet var profilePicture: UIImageView!
+    @IBOutlet var profilePicture: AsyncImage!
     @IBOutlet var userName: UILabel!
     @IBOutlet var timeAgo: UILabel!
-    @IBOutlet var jobTitle: UILabel!
+    @IBOutlet weak var jobCompany: UILabel!
+    @IBOutlet weak var jobTitle: UILabel!
     
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-        
-    }
+    func loadData(data:JSON) {
 
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+        println(data)
 
-        // Configure the view for the selected state
+        let job = data["job"]
+        let user = data["participants"][0]
+
+        profilePicture.downloadImage(user["image"]["profile"].stringValue)
+
+        userName.text = user["name"].string
+        jobTitle.text = job["title"].string
+        jobCompany.text = job["company"].string
+
+        timeAgo.text = data["created"].string
     }
     
 }

@@ -47,7 +47,9 @@ class LoginController: BaseController {
 
         println("Login with phone: " + phoneNumber)
 
-        self.apiRequest(.POST, path: "users", params: ["phone": phoneNumber], closure: {
+        let params: [String: AnyObject] = ["phone": phoneNumber, "country_code": "GB"]
+
+        self.apiRequest(.POST, path: "users", params: params, closure: {
             (json: JSON) in
 
             if (count(json["data"]["code"].stringValue) <= 0) {
@@ -59,7 +61,9 @@ class LoginController: BaseController {
             println("Verification code: " + json["data"]["code"].stringValue)
             self.code = json["data"]["code"].stringValue
 
-            if (!Contacts().isAuthorized()) {
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
+
+            if (appDelegate.contacts.isAuthorized()) {
                 self.askForAddressBookPermission()
             } else {
                 self.proceed(status: true)

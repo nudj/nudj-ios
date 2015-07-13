@@ -23,6 +23,20 @@ class AsyncImage: UIImageView {
     @IBInspectable
     var circleShape:Bool = false
 
+    @IBInspectable
+    var borderWidth:CGFloat = 0
+
+    @IBInspectable
+    var borderAlpha:CGFloat = 0
+
+    @IBInspectable
+    var backgroundOverlay:CGFloat = 0
+
+    @IBInspectable
+    var backgroundOverlayColor:UIColor = UIColor.blackColor()
+
+    var overlay:UIView?
+
     init() {
         super.init(image: nil, highlightedImage: nil)
         self.prepare()
@@ -39,6 +53,16 @@ class AsyncImage: UIImageView {
         if (self.circleShape) {
             self.layer.cornerRadius = self.layer.bounds.width/2
             self.layer.masksToBounds = true
+
+            self.layer.borderColor = UIColor(red: 1, green: 1, blue: 1, alpha: borderAlpha).CGColor
+            self.layer.borderWidth = borderWidth
+        }
+
+        if (self.backgroundOverlay > 0) {
+            self.overlay = UIView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height));
+            self.overlay!.backgroundColor = backgroundOverlayColor;
+            self.overlay!.alpha = backgroundOverlay
+            self.addSubview(self.overlay!)
         }
     }
 
@@ -67,19 +91,29 @@ class AsyncImage: UIImageView {
                     return
                 }
 
-                self.image = UIImage(data: data!)
-
-                if (self.blur && self.image != nil) {
-                    self.image = RBBlurImage(self.image!, self.blurRadius)
-                }
-
-                self.stopActivity()
+                self.setCustomImage(UIImage(data: data!))
 
                 if (completion != nil) {
                     completion!()
                 }
             }
         }
+    }
+
+    func setCustomImage(image:UIImage?) {
+        self.image = image
+
+        if (self.blur && self.image != nil) {
+            self.image = RBBlurImage(self.image!, self.blurRadius)
+        }
+
+        self.stopActivity()
+
+        if (self.overlay != nil) {
+            self.bringSubviewToFront(self.overlay!)
+        }
+
+        self.prepare()
     }
 
     func startActivity() {

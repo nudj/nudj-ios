@@ -14,34 +14,56 @@ class ContactsCell: DataTableCell {
     @IBOutlet weak var profileImage: AsyncImage!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var status: StatusButton!
+    @IBOutlet weak var tick: UIImageView!
 
-    override func loadData(data: JSON?) {
-        println(data)
-        if (data == nil) {
-            return
+    var contactId:Int = 0
+
+    var selectable = true
+
+    override var selected:Bool {
+        didSet {
+            tick.highlighted = selected
         }
+    }
 
-        if (data!["user"] != nil) {
-            profileImage.downloadImage(data!["user"]["image"]["profile"].stringValue)
+    func loadData(contact: ContactModel) {
 
-            let statusId = data!["user"]["status"].intValue
-            
-//            if (status.isValidStatus(statusId)) {
-//                status.setTitleByIndex(statusId)
-//            } else {
+
+        if let user = contact.user {
+            profileImage.downloadImage(user.image["profile"])
+
+            if let statusIndex = user.status {
+                status.setTitleByIndex(statusIndex)
+                self.showStatus()
+            } else {
                 self.hideStatus()
-//            }
+            }
 
         } else {
+            println("Contact: \(contact.apple_id) \(contact.name)")
+            if let apple_id = contact.apple_id {
+                profileImage.setCustomImage(UserModel.getImageByContactId(apple_id))
+            }
+
             self.hideStatus()
         }
 
-        name.text = data!["alias"].stringValue
+        contactId = contact.id
+
+        name.text = contact.name
     }
 
     func hideStatus() {
-        if (status != nil && status.superview != nil) {
-            status.removeFromSuperview()
+        if (status != nil) {
+            status.hidden = true
+            status.userInteractionEnabled = false
+        }
+    }
+
+    func showStatus() {
+        if (status != nil) {
+            status.hidden = false
+            status.userInteractionEnabled = true
         }
     }
 

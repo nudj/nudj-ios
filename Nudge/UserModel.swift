@@ -9,6 +9,7 @@
 import Foundation
 import SwiftyJSON
 import Alamofire
+import AddressBook
 
 class UserModel: Printable {
 
@@ -29,6 +30,11 @@ class UserModel: Printable {
     var description:String {
         return "UserModel: id: \(id), name: \(name), completed: \(completed ? 1 : 0), status: \(status)"
     }
+
+    var company:String?
+    var address:String?
+    var position:String?
+    var email:String?
 
     init() {
         
@@ -64,18 +70,23 @@ class UserModel: Printable {
     func updateFromJson(source: JSON) {
         for (key: String, subJson: JSON) in source {
             switch key {
-                case "id": self.id = subJson.intValue
-                case "status": self.status = subJson.intValue
+            case "id": id = subJson.intValue
+            case "status": status = subJson.intValue
 
-                case "name": self.name = subJson.stringValue
-                case "token": self.token = subJson.stringValue
-                case "about": self.about = subJson.stringValue
+            case "name": name = subJson.stringValue
+            case "token": token = subJson.stringValue
+            case "about": about = subJson.stringValue
 
-                case "image": self.updateImageFromJson(subJson)
-                case "skills": self.skills = subJson.arrayValue.map({return $0["name"].stringValue})
+            case "company": company = subJson.stringValue
+            case "address": address = subJson.stringValue
+            case "position": position = subJson.stringValue
+            case "email": email = subJson.stringValue
 
-                case "completed": self.completed = subJson.boolValue
-                // addressBookAccess is per device, so it should not be updated trough this method
+            case "image": updateImageFromJson(subJson)
+            case "skills": skills = subJson.arrayValue.map({return $0["name"].stringValue})
+
+            case "completed": completed = subJson.boolValue
+            // addressBookAccess is per device, so it should not be updated trough this method
 
             default:
                 println("!!!! Unknown user key: " + key)
@@ -85,9 +96,9 @@ class UserModel: Printable {
 
     func updateImageFromJson(source:JSON) {
         for (key,val) in source.dictionaryValue {
-            println(key, val)
+            
             self.image[key] = val.stringValue;
-            self.isDefaultImage = true
+            self.isDefaultImage = false
         }
     }
 
@@ -111,9 +122,19 @@ class UserModel: Printable {
 
     static func update(fields: [String: AnyObject], closure: ((JSON) -> ())? = nil, errorHandler: ((NSError) -> Void)? = nil) {
         let realClosure = (closure != nil) ? closure! : { _ in }
-        let realErrorHandler = (errorHandler != nil) ? errorHandler! : { error in println(error) }
+        let realErrorHandler = (errorHandler != nil) ? errorHandler! : { error in println("Strange Error: \(error)") }
 
         API.sharedInstance.put("users/me", params: fields, closure: realClosure, errorHandler: realErrorHandler)
+    }
+
+    static func getImageByContactId(contactId:Int) -> UIImage? {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
+
+        return appDelegate.contacts.getContactImageDataForId(contactId)
+    }
+
+    static func getDefaultUserImage() -> UIImage? {
+        return UIImage(named: "user_image_placeholder")
     }
 
 }

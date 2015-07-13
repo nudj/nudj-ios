@@ -18,11 +18,11 @@
 
 #import <UIKit/UIKit.h>
 
+#import "XMPPLogging.h"
 #import "JSQMessagesCollectionView.h"
 #import "JSQMessagesCollectionViewFlowLayout.h"
 #import "JSQMessagesInputToolbar.h"
 #import "JSQMessagesKeyboardController.h"
-
 
 /*@protocol JSQMessagesViewControllerDelegate <NSObject>
 -(void)dropDownSelectedAction:(UIButton *)sender;

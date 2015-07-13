@@ -201,14 +201,14 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
     }
 
     func tokenView(tokenView: KSTokenView, didAddToken token: KSToken) {
-        if (!setupMode && self.changedClosure != nil) {
-            self.changedClosure!(self)
+        if (!setupMode) {
+            self.changedClosure?(self)
         }
     }
 
     func tokenView(tokenView: KSTokenView, didDeleteToken token: KSToken) {
-        if (!setupMode && self.changedClosure != nil) {
-            self.changedClosure!(self)
+        if (!setupMode) {
+            self.changedClosure?(self)
         }
     }
 

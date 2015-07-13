@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -10,30 +11,32 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="RPi-k0-JYX">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageForSplash" translatesAutoresizingMaskIntoConstraints="NO" id="8Jk-8X-a7e">
+                    <rect key="frame" x="50" y="173" width="314" height="191"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="8Jk-8X-a7e" secondAttribute="height" multiplier="341:208" id="FGN-8S-Wl6"/>
+                        <constraint firstAttribute="height" constant="193" id="m9O-05-MXT"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="m9O-05-MXT"/>
+                        </mask>
+                    </variation>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.63137254901960782" blue="0.52941176470588236" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="RPi-k0-JYX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="5Ha-9O-BXT"/>
-                <constraint firstAttribute="bottom" secondItem="RPi-k0-JYX" secondAttribute="bottom" id="BJQ-fY-Q24"/>
-                <constraint firstItem="RPi-k0-JYX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="KkL-3x-jHk"/>
-                <constraint firstAttribute="trailing" secondItem="RPi-k0-JYX" secondAttribute="trailing" id="bQG-98-tO5"/>
-                <constraint firstAttribute="centerX" secondItem="RPi-k0-JYX" secondAttribute="centerX" id="ld9-fB-sjL"/>
-                <constraint firstAttribute="centerY" secondItem="RPi-k0-JYX" secondAttribute="centerY" id="vDm-GV-T9H"/>
+                <constraint firstAttribute="centerY" secondItem="8Jk-8X-a7e" secondAttribute="centerY" constant="100" id="0Vm-UX-Lw2"/>
+                <constraint firstAttribute="centerX" secondItem="8Jk-8X-a7e" secondAttribute="centerX" id="Q8A-Cp-Nif"/>
+                <constraint firstAttribute="trailing" secondItem="8Jk-8X-a7e" secondAttribute="trailing" constant="50" id="UPh-pr-Ja6"/>
+                <constraint firstItem="8Jk-8X-a7e" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="50" id="mZP-hF-9JS"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="vDm-GV-T9H"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="548" y="455"/>
         </view>
     </objects>
     <resources>
-        <image name="launch" width="640" height="960"/>
+        <image name="imageForSplash" width="170" height="104"/>
     </resources>
 </document>

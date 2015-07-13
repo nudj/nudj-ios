@@ -15,7 +15,11 @@ class VerifyViewController: BaseController {
 
     @IBOutlet weak var codeField: UITextField!
 
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView! {
+        didSet {
+            activityIndicator.alpha = 0;
+        }
+    }
 
     @IBOutlet weak var smsText: UILabel!
     var initialSMSText: NSAttributedString? = nil
@@ -46,7 +50,7 @@ class VerifyViewController: BaseController {
         smsText.attributedText = tmp
         smsText.sizeToFit()
 
-        self.showSimpleAlert("Your verification code is: " + self.code);
+//        self.showSimpleAlert("Your verification code is: " + self.code);
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -56,6 +60,10 @@ class VerifyViewController: BaseController {
     }
 
     @IBAction func CodeChanged(sender: UITextField) {
+        if let field = sender as? VerifyCodeTextField {
+            field.layout()
+        }
+
         if (count(sender.text) == codeLength) {
             self.submit()
         }
@@ -93,7 +101,7 @@ class VerifyViewController: BaseController {
 
         self.hideCodeField()
 
-        self.apiRequest(Method.PUT, path: "users/verify", params: ["phone": phoneNumber, "verification": code], closure: {
+        self.apiRequest(Method.PUT, path: "users/verify", params: ["phone": phoneNumber, "verification": code, "country_code": "GB"], closure: {
             (json: JSON) in
             NSLog(json.stringValue)
 
@@ -115,8 +123,13 @@ class VerifyViewController: BaseController {
             // Change user API token
             appDelegate.prepareApi()
 
+            // Sync device token
+            if (!appDelegate.deviceTokenSynced) {
+                appDelegate.syncDeviceToken()
+            }
+
             // Sync contacts
-            Contacts().sync()
+            appDelegate.contacts.sync()
             
             self.performSegueWithIdentifier("showInitProfileView", sender: nil)
         }, errorHandler: {_ in
@@ -128,7 +141,8 @@ class VerifyViewController: BaseController {
         self.activityIndicator.startAnimating()
         
         UIView.animateWithDuration(0.5, animations: { () -> Void in
-            self.codeField.alpha = 0;
+            self.codeField.alpha = 0
+            self.activityIndicator.alpha = 1
         })
     }
 
@@ -137,10 +151,12 @@ class VerifyViewController: BaseController {
 
         if (animated) {
             UIView.animateWithDuration(0.5, animations: { () -> Void in
-                self.codeField.alpha = 1;
+                self.codeField.alpha = 1
+                self.activityIndicator.alpha = 0
             })
         } else {
-            self.codeField.alpha = 1;
+            self.codeField.alpha = 1
+            self.activityIndicator.alpha = 0
         }
     }
 
