@@ -93,7 +93,7 @@ class Contacts {
         ABAddressBookSave(self.book, &error)
     }
 
-    func getContactImageDataForId(contactId:Int) -> UIImage?  {
+    func getContactImageForId(contactId:Int) -> UIImage?  {
 
         if let cachedImage = self.cache[contactId] {
             println("Taken from cache")

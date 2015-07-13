@@ -45,7 +45,7 @@ class ChatViewController: JSQMessagesViewController, XMPPRoomDelegate{
 
         let chat = appGlobalDelegate.chatInst!
 
-        xmppRoom = chat.getRoomObject("1", delegate: self)
+        xmppRoom = chat.getRoomObject(chatID, delegate: self)
     }
 
     func xmppRoom(sender: XMPPRoom!, didReceiveMessage message: XMPPMessage!, fromOccupant occupantJID: XMPPJID!) {

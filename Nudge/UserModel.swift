@@ -130,7 +130,7 @@ class UserModel: Printable {
     static func getImageByContactId(contactId:Int) -> UIImage? {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
 
-        return appDelegate.contacts.getContactImageDataForId(contactId)
+        return appDelegate.contacts.getContactImageForId(contactId)
     }
 
     static func getDefaultUserImage() -> UIImage? {
