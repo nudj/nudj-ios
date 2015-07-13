@@ -1115,6 +1115,7 @@ JSQMessagesKeyboardControllerDelegate>{
         case 3:{
             //Favourite Chat
             if([(UIButton *)sender isSelected])
+                [self completeRequest:[NSString stringWithFormat:@"jobs/%@/like",_chatID] withType:@"DELETE"];
             else
                 [self completeRequest:[NSString stringWithFormat:@"jobs/%@/like",_chatID] withType:@"PUT"];
             
