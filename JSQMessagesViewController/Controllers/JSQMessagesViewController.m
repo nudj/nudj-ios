@@ -135,9 +135,6 @@ JSQMessagesKeyboardControllerDelegate>{
 - (void)jsq_configureMessagesViewController
 {
     self.view.backgroundColor = [UIColor whiteColor];
-
-    filterOpened = NO;
-    [self.dropDownView setFrame:CGRectMake(0, -10, self.view.frame.size.width, 70)];
     
     self.jsq_isObserving = NO;
 
@@ -247,13 +244,6 @@ JSQMessagesKeyboardControllerDelegate>{
     //[self jsq_configureMessagesViewController];
     //[self jsq_registerForNotifications:YES];
     
-    self.customTitleBar.layer.masksToBounds = NO;
-    self.customTitleBar.layer.shadowOffset = CGSizeMake(0, 1);
-    self.customTitleBar.layer.shadowRadius = 2;
-    self.customTitleBar.layer.shadowOpacity = 0.5;
-    
-    [self.dropDownView setFrame:CGRectMake(0, 64, self.view.frame.size.width, 70)];
-    
     [super viewDidLoad];
     [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([JSQMessagesViewController class])
                                   owner:self
@@ -261,7 +251,14 @@ JSQMessagesKeyboardControllerDelegate>{
     [self jsq_configureMessagesViewController];
     [self jsq_registerForNotifications:YES];
     
- 
+    
+    filterOpened = NO;
+    
+    self.customTitleBar.layer.masksToBounds = NO;
+    self.customTitleBar.layer.shadowOffset = CGSizeMake(0, 1);
+    self.customTitleBar.layer.shadowRadius = 2;
+    self.customTitleBar.layer.shadowOpacity = 0.5;
+    
      NSLog(@"Retrieveing ->%@:%@",_userToken, _chatID);
     
     self.jobTitle.frame = CGRectMake(10, 10, 53, 49);

@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 protocol ChatModelsDelegate {
-    func recievedMessage(content:NSDictionary)
+    func recievedMessage(content:JSQMessage)
     func recievedUser(content:NSDictionary)
 }
 
@@ -37,11 +37,10 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     var xmppMessageArchivingStorage :XMPPMessageArchivingCoreDataStorage?;
     var xmppMessageArchivingModule  :XMPPMessageArchiving?;
     var xmppRoomStorage :XMPPRoomCoreDataStorage?;
+    var xmppRoom :XMPPRoom?;
     
     let  otherUsername = "5@chat.nudj.co";
     let  otherUserPassword = "SKozZ3AuQLUTcHm8FVxSFjxuC3wniMzczWN6g9n5LU6dnAarxXzlPOXIPwtT";
-
-    var testRoom:XMPPRoom? = nil
     
     override init() {
         super.init();
@@ -265,18 +264,26 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             
         }else{
 
-//            println("Received something from the messages delegate -> \(message.attributesAsDictionary())")
+            // println("Received something from the messages delegate -> \(message.attributesAsDictionary())")
+        
         }
         
+    /*    
+        Recieve normal messages
         
         var msg = message.elementForName("body") != nil ? message.elementForName("body").stringValue() : nil
+    
         
         if msg != nil {
-        
-//            println("Receiving messages -> \(msg)");
+            
+            
+            
             delegate?.recievedMessage(["message":msg])
-        
+            
         }
+
+    */
+        
     }
     
     func xmppStream(sender:XMPPStream, didReceiveIQ iq:XMPPIQ) -> Bool{
@@ -313,42 +320,47 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
 
     func xmppRoom(sender: XMPPRoom!, didReceiveMessage message: XMPPMessage!, fromOccupant occupantJID: XMPPJID!) {
         
-//        println("XMPPROOM Message -> \(message.stringValue())")
+        if message.body() != nil {
+            
+            println("from ->\(message.from().resource)")
+            println("Message ->\(message.body())")
+            
+            var jsqMessage = JSQMessage(senderId: message.from().resource, senderDisplayName: message.from().resource, date:NSDate(), text: message.body())
+            delegate?.recievedMessage(jsqMessage)
+        }
 
     }
     
     func xmppRoomDidJoin(sender: XMPPRoom!) {
         
-//        println("XMPPROOM JOINED -> \(sender.fetchMembersList())")
-        //sender.sendMessageWithBody("i just joined bitches")
-        
-        self.retrieveStoredChats();
+        println("XMPPROOM JOINED")
         
     }
     
     func xmppRoomDidCreate(sender: XMPPRoom!) {
         
-//        println("XMPPROOM CREATED -> \(sender.roomJID)")
+       println("XMPPROOM CREATED -> \(sender.roomJID)")
 
     }
     
     // MARK: Custom chat room methods
     
     func acceptAndJoinChatRoom(sender:String){
-
+        
         var roomJID = XMPPJID.jidWithString(sender);
-        var xmppRoom = XMPPRoom(roomStorage: xmppRoomStorage, jid: roomJID, dispatchQueue: dispatch_get_main_queue())
+        xmppRoom = XMPPRoom(roomStorage: xmppRoomStorage, jid: roomJID, dispatchQueue: dispatch_get_main_queue())
+
         
         var history:DDXMLElement = DDXMLElement(name:"history");
         history.addAttributeWithName("maxstanzas", stringValue:"100");
         
-        xmppRoom.activate(xmppStream)
-        xmppRoom.addDelegate(self, delegateQueue: dispatch_get_main_queue())
+        xmppRoom!.addDelegate(self, delegateQueue: dispatch_get_main_queue())
+        xmppRoom!.activate(xmppStream)
+        
+        xmppRoom!.joinRoomUsingNickname(jabberUsername, history: nil)
 
-        xmppRoom.joinRoomUsingNickname(jabberUsername, history: nil)
-
-        xmppRoom.leaveRoom()
     }
+    
 
     func getRoomObject(roomId:String, delegate: XMPPRoomDelegate) -> XMPPRoom {
 

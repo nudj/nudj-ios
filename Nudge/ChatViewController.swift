@@ -9,22 +9,19 @@
 import UIKit
 import Foundation
 
-class ChatViewController: JSQMessagesViewController, XMPPRoomDelegate{
+class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
     
     var outgoingBubbleImageData :JSQMessagesBubbleImage?;
     var incomingBubbleImageData :JSQMessagesBubbleImage?;
     var templateImage :JSQMessagesAvatarImage?;
     var participants :String?;
     var messages = NSMutableArray();
-
-    var xmppRoom:XMPPRoom? = nil
+    let appGlobalDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    
     
     override func viewDidLoad() {
         
-        var appGlobalDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-
         self.userToken = appGlobalDelegate.user?.token;
-
 
         super.viewDidLoad()
 
@@ -42,20 +39,10 @@ class ChatViewController: JSQMessagesViewController, XMPPRoomDelegate{
         self.showLoadEarlierMessagesHeader = false
     
         self.templateImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(UserModel.getDefaultUserImage(), diameter: 30)
+        appGlobalDelegate.chatInst!.delegate = self;
 
-        let chat = appGlobalDelegate.chatInst!
-
-        xmppRoom = chat.getRoomObject(chatID, delegate: self)
     }
 
-    func xmppRoom(sender: XMPPRoom!, didReceiveMessage message: XMPPMessage!, fromOccupant occupantJID: XMPPJID!) {
-
-        var jsqMessage = JSQMessage(senderId: message.from().resource, displayName: message.from().resource, text: message.body())
-
-        self.messages.addObject(jsqMessage)
-
-        self.finishReceivingMessageAnimated(false)
-    }
     
     // ACTIONS
     func createDropDownView(){
@@ -88,7 +75,7 @@ class ChatViewController: JSQMessagesViewController, XMPPRoomDelegate{
         
         self.tabBarController?.tabBar.hidden = false
 
-        xmppRoom?.leaveRoom()
+        appGlobalDelegate.chatInst!.xmppRoom?.leaveRoom()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -103,10 +90,11 @@ class ChatViewController: JSQMessagesViewController, XMPPRoomDelegate{
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
 
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
-
-        xmppRoom?.sendMessageWithBody(text)
+        
+        appGlobalDelegate.chatInst!.xmppRoom?.sendMessageWithBody(text);
 
         self.finishSendingMessage()
+    
     }
     
     
@@ -342,14 +330,14 @@ class ChatViewController: JSQMessagesViewController, XMPPRoomDelegate{
         
     }
     
-    func recievedMessage(content:NSDictionary){
-
-        var msg = content["message"] as! String
-    
+    func recievedMessage(content:JSQMessage){
+        
         self.scrollToBottomAnimated(true);
-    
-        self.messages.addObject(JSQMessage(senderId:"3@chat.nudge.co", senderDisplayName:"", date:NSDate(), text:msg));
-        self.finishReceivingMessageAnimated(true);
+
+        self.messages.addObject(content)
+        
+        self.finishReceivingMessageAnimated(false)
+        
     }
 
 

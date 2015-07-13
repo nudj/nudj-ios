@@ -38,8 +38,8 @@
                     </constraints>
                     <items/>
                 </toolbar>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cVg-om-Qyy" userLabel="dropView">
-                    <rect key="frame" x="0.0" y="-10" width="320" height="70"/>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cVg-om-Qyy" userLabel="dropView">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
                     <subviews>
                         <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OKI-0o-bya">
                             <rect key="frame" x="25" y="12" width="53" height="49"/>
@@ -145,10 +145,12 @@
                 <constraint firstItem="l9u-2b-4LK" firstAttribute="top" secondItem="Qgi-uw-S4i" secondAttribute="bottom" id="3SX-GY-HcP"/>
                 <constraint firstAttribute="trailing" secondItem="BoD-Az-3DM" secondAttribute="trailing" id="7xc-Ha-asg"/>
                 <constraint firstItem="Qgi-uw-S4i" firstAttribute="leading" secondItem="l9u-2b-4LK" secondAttribute="leading" id="EnL-x9-nJv"/>
+                <constraint firstItem="cVg-om-Qyy" firstAttribute="leading" secondItem="mUa-cS-ru4" secondAttribute="leading" id="Ktp-9E-gxX"/>
                 <constraint firstItem="l9u-2b-4LK" firstAttribute="leading" secondItem="mUa-cS-ru4" secondAttribute="leading" id="MmF-oh-Y75"/>
                 <constraint firstAttribute="trailing" secondItem="l9u-2b-4LK" secondAttribute="trailing" id="O9u-TA-A0e"/>
                 <constraint firstAttribute="bottom" secondItem="l9u-2b-4LK" secondAttribute="bottom" id="Re7-WW-UmS"/>
                 <constraint firstItem="l9u-2b-4LK" firstAttribute="top" secondItem="mUa-cS-ru4" secondAttribute="top" constant="64" id="dCQ-DM-Wdj"/>
+                <constraint firstAttribute="trailing" secondItem="cVg-om-Qyy" secondAttribute="trailing" id="oWn-og-E3c"/>
                 <constraint firstAttribute="bottom" secondItem="BoD-Az-3DM" secondAttribute="bottom" id="rHs-6q-NX4"/>
                 <constraint firstItem="Qgi-uw-S4i" firstAttribute="trailing" secondItem="BoD-Az-3DM" secondAttribute="trailing" id="sTh-t1-2SK"/>
                 <constraint firstItem="BoD-Az-3DM" firstAttribute="leading" secondItem="mUa-cS-ru4" secondAttribute="leading" id="ts7-8f-0lH"/>
