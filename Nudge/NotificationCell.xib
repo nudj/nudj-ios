@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<<<<<<< HEAD
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+=======
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+>>>>>>> origin/master
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+<<<<<<< HEAD
         <tableViewCell contentMode="scaleToFill" restorationIdentifier="NotificationCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="NotificationCell" rowHeight="131" id="KGk-i7-Jjw" customClass="NotificationCell" customModule="nudge" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="131"/>
+=======
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="NotificationCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="NotificationCell" rowHeight="100" id="KGk-i7-Jjw" customClass="NotificationCell" customModule="nudge" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="110"/>
+>>>>>>> origin/master
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+<<<<<<< HEAD
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZVD-h4-5Ua" customClass="AsyncImage" customModule="nudge" customModuleProvider="target">
                         <rect key="frame" x="8" y="20" width="50" height="50"/>
                         <constraints>
@@ -46,10 +58,52 @@
                                 </attributes>
                             </fragment>
                         </attributedString>
+=======
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="oiC-w2-RRh">
+                        <rect key="frame" x="8" y="8" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="qzn-Qz-NmN"/>
+                            <constraint firstAttribute="width" constant="50" id="sPS-2Y-xts"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ref Bonus : £900" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3t6-2Y-HbM">
+                        <rect key="frame" x="8" y="68" width="95" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="IeR-42-O1Z"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DLS-oe-osA" customClass="NotificationTypeButtons" customModule="nudge" customModuleProvider="target">
+                        <rect key="frame" x="202" y="68" width="110" height="25"/>
+                        <color key="backgroundColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="110" id="3Uk-uS-Ctl"/>
+                            <constraint firstAttribute="height" constant="25" id="WVP-Ya-gy7"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
+                        <state key="normal" title="Details">
+                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="buttonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Bpf-6T-Qlv"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Leon Walker: &quot;Can you help i'm looking for a Tech Start-up CTO&quot;" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QGK-io-BhP">
+                        <rect key="frame" x="68" y="18" width="244" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="6L8-Xj-k24"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+>>>>>>> origin/master
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+<<<<<<< HEAD
                     <constraint firstItem="ZVD-h4-5Ua" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="1nr-h7-sYR"/>
                     <constraint firstItem="kQi-Kf-Zra" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="GbE-Ie-bzS"/>
                     <constraint firstItem="kQi-Kf-Zra" firstAttribute="leading" secondItem="ZVD-h4-5Ua" secondAttribute="trailing" constant="8" id="McV-FZ-3sj"/>
@@ -64,4 +118,41 @@
             <point key="canvasLocation" x="-99" y="220.5"/>
         </tableViewCell>
     </objects>
+=======
+                    <constraint firstItem="QGK-io-BhP" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="5HL-st-YsI"/>
+                    <constraint firstItem="DLS-oe-osA" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="7HW-Wh-f3T"/>
+                    <constraint firstItem="DLS-oe-osA" firstAttribute="leading" secondItem="3t6-2Y-HbM" secondAttribute="trailing" constant="99" id="E30-Fm-w1V"/>
+                    <constraint firstItem="3t6-2Y-HbM" firstAttribute="top" secondItem="oiC-w2-RRh" secondAttribute="bottom" constant="10" id="F88-Ni-nFx"/>
+                    <constraint firstItem="oiC-w2-RRh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="La0-34-yMf"/>
+                    <constraint firstItem="QGK-io-BhP" firstAttribute="leading" secondItem="oiC-w2-RRh" secondAttribute="trailing" constant="10" id="MeX-A5-SbF"/>
+                    <constraint firstItem="3t6-2Y-HbM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Qqk-LV-FGA"/>
+                    <constraint firstItem="3t6-2Y-HbM" firstAttribute="top" secondItem="oiC-w2-RRh" secondAttribute="bottom" constant="10" id="VeO-TY-B0J"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="3t6-2Y-HbM" secondAttribute="bottom" constant="2" id="Xxi-Ez-7zl"/>
+                    <constraint firstItem="QGK-io-BhP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="bjp-CZ-Swc"/>
+                    <constraint firstItem="oiC-w2-RRh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="mZe-jD-fWj"/>
+                    <constraint firstItem="QGK-io-BhP" firstAttribute="leading" secondItem="oiC-w2-RRh" secondAttribute="trailing" constant="10" id="xzC-eI-a3G"/>
+                    <constraint firstItem="oiC-w2-RRh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="yqH-zA-H9L"/>
+                    <constraint firstItem="DLS-oe-osA" firstAttribute="top" secondItem="QGK-io-BhP" secondAttribute="bottom" id="zKf-Pj-1ui"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="La0-34-yMf"/>
+                        <exclude reference="F88-Ni-nFx"/>
+                        <exclude reference="Xxi-Ez-7zl"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="actionButton" destination="DLS-oe-osA" id="mVw-Xk-jFe"/>
+                <outlet property="descriptionText" destination="QGK-io-BhP" id="9lS-de-rzv"/>
+                <outlet property="profileImage" destination="oiC-w2-RRh" id="1Re-tk-Y0N"/>
+                <outlet property="referralBonus" destination="3t6-2Y-HbM" id="era-FV-F4B"/>
+            </connections>
+            <point key="canvasLocation" x="474" y="250"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="user_image_placeholder" width="40" height="40"/>
+    </resources>
+>>>>>>> origin/master
 </document>

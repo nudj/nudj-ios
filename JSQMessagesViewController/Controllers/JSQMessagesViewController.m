@@ -1115,14 +1115,14 @@ JSQMessagesKeyboardControllerDelegate>{
         case 3:{
             //Favourite Chat
             if([(UIButton *)sender isSelected])
-                [self completeRequest:[NSString stringWithFormat:@"jobs/%@/like",_chatID] withType:@"DELETE"];  //PUT USERS/ID/Favourite
             else
                 [self completeRequest:[NSString stringWithFormat:@"jobs/%@/like",_chatID] withType:@"PUT"];
             
             [(UIButton *)sender setSelected:![(UIButton *)sender isSelected]];
         }
             break;
-        case 4:{//[self completeRequest:[NSString stringWithFormat:@"contacts/mute/%@",_chatID] withType:@"PUT"];//{@"mute":true}
+        case 4:{
+            [self completeRequest:[NSString stringWithFormat:@"contacts/%@/mute",_chatID] withType:@"PUT"];
             
             [(UIButton *)sender setSelected:![(UIButton *)sender isSelected]];
         }

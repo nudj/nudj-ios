@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-class NotificationViewController: BaseController {
+class NotificationViewController: BaseController ,UITableViewDataSource, UITableViewDelegate {
     @IBOutlet var notificationTable: UITableView!
     
     var data:[JSON] = []
@@ -21,7 +21,7 @@ class NotificationViewController: BaseController {
         
         self.notificationTable.registerNib(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
         
-        self.apiRequest(.GET, path: "notifications", closure: { response in
+        self.apiRequest(.GET, path: "notifications?params=notification.user,user.image", closure: { response in
             
             println("Notifications url request response ->\(response)");
             
@@ -31,7 +31,6 @@ class NotificationViewController: BaseController {
             
             self.notificationTable!.reloadData()
         })
-
     }
     
     // MARK: -- UITableViewDataSource --
@@ -50,7 +49,7 @@ class NotificationViewController: BaseController {
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        return 70
+        return 100
         
     }
 
@@ -58,7 +57,13 @@ class NotificationViewController: BaseController {
         
         var cell = notificationTable.dequeueReusableCellWithIdentifier(cellIdentifier) as! NotificationCell
 
-
+//        if(self.data[indexPath.row]["type"].int == 1){
+//            cell.buttonConfig(UIColor.greenColor(), withText:"Message")
+//        }else{
+//            cell.buttonConfig(UIColor.blueColor(), withText:"Nudge")
+//        }
+//        
+//        cell.descriptionText.text = self.data[indexPath.row]["message"].stringValue
 
         
         return cell

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		A95798251B46965A006E826E /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95798241B46965A006E826E /* NotificationViewController.swift */; };
+		A95798271B469F51006E826E /* NotificationTypeButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95798261B469F51006E826E /* NotificationTypeButtons.swift */; };
+		A957982A1B46A10B006E826E /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95798281B46A10B006E826E /* NotificationCell.swift */; };
+		A957982B1B46A10B006E826E /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A95798291B46A10B006E826E /* NotificationCell.xib */; };
 		A9964FD51B387CC800D5A8E9 /* JSQMessagesAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A9964E281B387CC700D5A8E9 /* JSQMessagesAssets.bundle */; };
 		A9964FD61B387CC800D5A8E9 /* JSQSystemSoundPlayer+JSQMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E2B1B387CC700D5A8E9 /* JSQSystemSoundPlayer+JSQMessages.m */; };
 		A9964FD71B387CC800D5A8E9 /* NSBundle+JSQMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E2D1B387CC700D5A8E9 /* NSBundle+JSQMessages.m */; };
@@ -312,6 +315,9 @@
 		39A67AE42E9231EE2A750094 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		91ACAE069A6F9735FED79A9F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A95798241B46965A006E826E /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		A95798261B469F51006E826E /* NotificationTypeButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTypeButtons.swift; sourceTree = "<group>"; };
+		A95798281B46A10B006E826E /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		A95798291B46A10B006E826E /* NotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		A9964E281B387CC700D5A8E9 /* JSQMessagesAssets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JSQMessagesAssets.bundle; sourceTree = "<group>"; };
 		A9964E2A1B387CC700D5A8E9 /* JSQSystemSoundPlayer+JSQMessages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSQSystemSoundPlayer+JSQMessages.h"; sourceTree = "<group>"; };
 		A9964E2B1B387CC700D5A8E9 /* JSQSystemSoundPlayer+JSQMessages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JSQSystemSoundPlayer+JSQMessages.m"; sourceTree = "<group>"; };
@@ -2273,6 +2279,7 @@
 				A9F3335D1B42ACDC00F0D17B /* add_skills_active@2x.png in Resources */,
 				A99650AC1B3DB3FF00D5A8E9 /* profile@2x.png in Resources */,
 				A9C6EC9A1B38416C00EC9140 /* ChatViewController.xib in Resources */,
+				A957982B1B46A10B006E826E /* NotificationCell.xib in Resources */,
 				A9964FF51B387CC800D5A8E9 /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
 				EB35BBA61AB7288000842E1F /* ContactsCell.xib in Resources */,
 				A9964FF31B387CC800D5A8E9 /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
@@ -2469,6 +2476,7 @@
 				A99650051B387CC800D5A8E9 /* XMPPPlainAuthentication.m in Sources */,
 				A9964FE91B387CC800D5A8E9 /* JSQMediaItem.m in Sources */,
 				A996507D1B387CC800D5A8E9 /* DDXMLElement.m in Sources */,
+				A957982A1B46A10B006E826E /* NotificationCell.swift in Sources */,
 				EBB3383C1A9F73D4000CAD88 /* API.swift in Sources */,
 				A99650431B387CC800D5A8E9 /* NSXMLElement+XEP_0059.m in Sources */,
 				A9964FE01B387CC800D5A8E9 /* JSQMessagesAvatarImageFactory.m in Sources */,
@@ -2517,6 +2525,7 @@
 				A996504E1B387CC800D5A8E9 /* XMPPTransports.m in Sources */,
 				A99650081B387CC800D5A8E9 /* NSData+XMPP.m in Sources */,
 				A99650001B387CC800D5A8E9 /* JSQSystemSoundPlayer.m in Sources */,
+				A95798271B469F51006E826E /* NotificationTypeButtons.swift in Sources */,
 				A996502E1B387CC800D5A8E9 /* XMPPRoomMessageHybridCoreDataStorageObject.m in Sources */,
 				EB000F7C1AB2E0B800E4D385 /* DataTableCell.swift in Sources */,
 				A99650761B387CC800D5A8E9 /* DDLog.m in Sources */,

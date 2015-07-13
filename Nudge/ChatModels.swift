@@ -322,6 +322,8 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
 //        println("XMPPROOM JOINED -> \(sender.fetchMembersList())")
         //sender.sendMessageWithBody("i just joined bitches")
         
+        self.retrieveStoredChats();
+        
     }
     
     func xmppRoomDidCreate(sender: XMPPRoom!) {
@@ -333,17 +335,19 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     // MARK: Custom chat room methods
     
     func acceptAndJoinChatRoom(sender:String){
-        
-//        println("accept and Joined ChatRoom -> \(sender)")
 
         var roomJID = XMPPJID.jidWithString(sender);
         var xmppRoom = XMPPRoom(roomStorage: xmppRoomStorage, jid: roomJID, dispatchQueue: dispatch_get_main_queue())
+        
+        var history:DDXMLElement = DDXMLElement(name:"history");
+        history.addAttributeWithName("maxstanzas", stringValue:"100");
+        
         xmppRoom.activate(xmppStream)
         xmppRoom.addDelegate(self, delegateQueue: dispatch_get_main_queue())
-        xmppRoom.joinRoomUsingNickname(jabberUsername, history: nil, password:"")
+
+        xmppRoom.joinRoomUsingNickname(jabberUsername, history: nil)
 
         xmppRoom.leaveRoom()
-        
     }
 
     func getRoomObject(roomId:String, delegate: XMPPRoomDelegate) -> XMPPRoom {
@@ -392,6 +396,8 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     
     func retrieveStoredChats (){
         
+        
+         //XMPPMessageArchiving_Message_CoreDataObject
         var moc = xmppMessageArchivingStorage!.mainThreadManagedObjectContext;
         var entityDescription = NSEntityDescription.entityForName("XMPPMessageArchiving_Message_CoreDataObject", inManagedObjectContext: moc);
         var request = NSFetchRequest();
@@ -407,6 +413,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         }
         
     }
+    
     
     
     //self.acceptAndJoinChatRoom("jnaurl@conference.chat.nudj.co")

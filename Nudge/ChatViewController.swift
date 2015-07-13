@@ -14,7 +14,7 @@ class ChatViewController: JSQMessagesViewController, XMPPRoomDelegate{
     var outgoingBubbleImageData :JSQMessagesBubbleImage?;
     var incomingBubbleImageData :JSQMessagesBubbleImage?;
     var templateImage :JSQMessagesAvatarImage?;
-    
+    var participants :String?;
     var messages = NSMutableArray();
 
     var xmppRoom:XMPPRoom? = nil
@@ -24,6 +24,7 @@ class ChatViewController: JSQMessagesViewController, XMPPRoomDelegate{
         var appGlobalDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
         self.userToken = appGlobalDelegate.user?.token;
+
 
         super.viewDidLoad()
 
@@ -105,6 +106,7 @@ class ChatViewController: JSQMessagesViewController, XMPPRoomDelegate{
 
         xmppRoom?.sendMessageWithBody(text)
 
+        self.finishReceivingMessageAnimated(true)
     }
     
     
@@ -335,5 +337,20 @@ class ChatViewController: JSQMessagesViewController, XMPPRoomDelegate{
         
         println("Tapped avatar!")
     }
+
+    func recievedUser(content: NSDictionary) {
+        
+    }
+    
+    func recievedMessage(content:NSDictionary){
+
+        var msg = content["message"] as! String
+    
+        self.scrollToBottomAnimated(true);
+    
+        self.messages.addObject(JSQMessage(senderId:"3@chat.nudge.co", senderDisplayName:"", date:NSDate(), text:msg));
+        self.finishReceivingMessageAnimated(true);
+    }
+
 
 }
