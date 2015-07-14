@@ -1096,6 +1096,9 @@ JSQMessagesKeyboardControllerDelegate>{
     }
 }
 
+
+/* Nudj Custom Methods */
+
 - (IBAction)dropDownAction:(id)sender {
     
     switch (((UIButton *)sender).tag) {
@@ -1128,12 +1131,13 @@ JSQMessagesKeyboardControllerDelegate>{
         }
             break;
         case 4:{
+            // Mute Conversation
             [self completeRequest:[NSString stringWithFormat:@"contacts/%@/mute",_chatID] withType:@"PUT"];
-            
             [(UIButton *)sender setSelected:![(UIButton *)sender isSelected]];
         }
             break;
         case 5:{
+            // Archive Conversation
             [(UIButton *)sender setSelected:![(UIButton *)sender isSelected]];
             [self completeRequest:[NSString stringWithFormat:@"chat/%@/archive",_chatID] withType:@"PUT"];
         }

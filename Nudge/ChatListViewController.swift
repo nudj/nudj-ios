@@ -31,7 +31,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     }
 
     func requestData() {
-        self.apiRequest(.GET, path: "chat?params=chat.job,job.favourite,chat.participants,chat.created,job.title,job.company,job.like,user.image,user.name,user.contact", closure: { response in
+        self.apiRequest(.GET, path: "chat?params=chat.job,job.liked,chat.participants,chat.created,job.title,job.company,job.like,user.image,user.name,user.contact", closure: { response in
 
             self.data.removeAll(keepCapacity: false)
 
@@ -77,20 +77,21 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     // MARK: -- UITableViewDelegate -
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
         /*
+        
         Example of how to load a viewcontroller from a xib in swift
         ChatViewController *chatView  = [ChatViewController messagesViewController];
         (nibName: "ChatViewController", bundle: nil)
+        
         */
         
         // Enter chat room and connect
         var conference :String = self.data[indexPath.row]["id"].stringValue
         var appGlobalDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
+        appGlobalDelegate.chatInst!.acceptAndJoinChatRoom("\(conference)@conference.\(appGlobalDelegate.chatInst!.chatServer)");
         
-        //Note :Replace url with constance in app delegate
-        appGlobalDelegate.chatInst!.acceptAndJoinChatRoom("\(conference)@conference.chat.nudj.co");
-
         var vc:ChatViewController = ChatViewController()
 
         let chat = self.data[indexPath.row]

@@ -70,7 +70,6 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
 
     func performAction(sender: UIBarButtonItem){
 
-
         
     }
 

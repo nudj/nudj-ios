@@ -8,6 +8,8 @@
 
 import Foundation
 import CoreData
+import Alamofire
+import SwiftyJSON
 
 protocol ChatModelsDelegate {
     func recievedMessage(content:JSQMessage)
@@ -24,7 +26,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     let chatServer = "chat.nudj.co";
     let appGlobalDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
-    //XMPP ATTRIBUTES
+    // XMPP ATTRIBUTES
     var xmppStream : XMPPStream?;
     var xmppReconnect :XMPPReconnect?;
     var xmppRosterStorage :XMPPRosterCoreDataStorage?;
@@ -38,9 +40,6 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     var xmppMessageArchivingModule  :XMPPMessageArchiving?;
     var xmppRoomStorage :XMPPRoomCoreDataStorage?;
     var xmppRoom :XMPPRoom?;
-    
-    let  otherUsername = "5@chat.nudj.co";
-    let  otherUserPassword = "SKozZ3AuQLUTcHm8FVxSFjxuC3wniMzczWN6g9n5LU6dnAarxXzlPOXIPwtT";
     
     override init() {
         super.init();
@@ -268,21 +267,6 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         
         }
         
-    /*    
-        Recieve normal messages
-        
-        var msg = message.elementForName("body") != nil ? message.elementForName("body").stringValue() : nil
-    
-        
-        if msg != nil {
-            
-            
-            
-            delegate?.recievedMessage(["message":msg])
-            
-        }
-
-    */
         
     }
     
@@ -296,22 +280,22 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         if (roster != nil){
             
             let itemElements = roster.elementsForName("item") as NSArray;
-//            println("Recieved a roster for -> \(itemElements)");
+            //  println("Recieved a roster for -> \(itemElements)");
 
         }else if(vCard != nil){
             
-            //var fullNameQuery = queryElement1.elementForName("from");
-//            println("Recieved a vcard for -> \(vCard)");
+            //  var fullNameQuery = queryElement1.elementForName("from");
+            //  println("Recieved a vcard for -> \(vCard)");
 
         }else if(conference != nil){
 
             let itemElements = conference.elementsForName("item") as NSArray;
-//            println("Recieved conferences -> \(itemElements)");
+            //  println("Recieved conferences -> \(itemElements)");
 
             
         }else{
             
-//            println("Recieved something i dont know -> \(iq)");
+            //  println("Recieved something i dont know -> \(iq)");
         }
         
         
@@ -325,15 +309,30 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             println("from ->\(message.from().resource)")
             println("Message ->\(message.body())")
             
+            var time : NSDate?
+            
             if(message.elementsForName("delay").count > 0){
                 
                 let delay :DDXMLElement = message.elementForName("delay")
-                let stringTimeStamp = delay.attributeStringValueForName("stamp")
+                var stringTimeStamp = delay.attributeStringValueForName("stamp")
+                
+                stringTimeStamp = stringTimeStamp.stringByReplacingOccurrencesOfString("T", withString: " ")
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSSxxx";
+                time = dateFormatter.dateFromString(stringTimeStamp)
                 println("This is the delay timestamp value \(stringTimeStamp)")
+                
+                if(time == nil){
+                time = NSDate()
+                }
+                
+            }else{
+                
+                time = NSDate();
                 
             }
             
-            var jsqMessage = JSQMessage(senderId: message.from().resource, senderDisplayName: message.from().resource, date:NSDate(), text: message.body())
+            var jsqMessage = JSQMessage(senderId: message.from().resource, senderDisplayName: message.from().resource, date:time!, text: message.body())
             delegate?.recievedMessage(jsqMessage)
         }
 
@@ -349,6 +348,14 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         
        println("XMPPROOM CREATED -> \(sender.roomJID)")
 
+    }
+    
+    
+    
+    func getListOfActiveChatrooms(){
+        
+        //Auto rejoin
+        
     }
     
     // MARK: Custom chat room methods
@@ -387,18 +394,6 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         return xmppRoom
     }
 
-//    var presence = XMPPElement(name: "presence")
-//    presence.addAttributeWithName("from", stringValue: jabberUsername!)
-//    presence.addAttributeWithName("to", stringValue: "\(roomId)@conference.chat.nudj.co")
-//
-//    var history = XMPPElement(name: "history")
-//    history.addAttributeWithName("maxstanzas", stringValue: "100")
-//
-//    var x = XMPPElement(name: "x", xmlns: "http://jabber.org/protocol/muc")
-//
-//    x.addChild(history)
-//
-//    presence.addChild(x)
 
     func retrieveAllChatsList(){
      
@@ -449,4 +444,18 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     }
     */
 
+    
+    
+    //    var presence = XMPPElement(name: "presence")
+    //    presence.addAttributeWithName("from", stringValue: jabberUsername!)
+    //    presence.addAttributeWithName("to", stringValue: "\(roomId)@conference.chat.nudj.co")
+    //
+    //    var history = XMPPElement(name: "history")
+    //    history.addAttributeWithName("maxstanzas", stringValue: "100")
+    //
+    //    var x = XMPPElement(name: "x", xmlns: "http://jabber.org/protocol/muc")
+    //
+    //    x.addChild(history)
+    //
+    //    presence.addChild(x)
 }

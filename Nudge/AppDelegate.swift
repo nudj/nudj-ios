@@ -332,5 +332,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    func handleEjabberedRecievedMessages(){
+        
+        
+    }
+    
 }
 
