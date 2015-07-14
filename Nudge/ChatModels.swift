@@ -325,9 +325,13 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             println("from ->\(message.from().resource)")
             println("Message ->\(message.body())")
             
-            
-            //var remoteTimestamp : NSDate = message.body ();
-
+            if(message.elementsForName("delay").count > 0){
+                
+                let delay :DDXMLElement = message.elementForName("delay")
+                let stringTimeStamp = delay.attributeStringValueForName("stamp")
+                println("This is the delay timestamp value \(stringTimeStamp)")
+                
+            }
             
             var jsqMessage = JSQMessage(senderId: message.from().resource, senderDisplayName: message.from().resource, date:NSDate(), text: message.body())
             delegate?.recievedMessage(jsqMessage)

@@ -24,7 +24,10 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
         
         self.navigationController?.navigationBarHidden = true;
 
-        /*self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage.jsq_defaultTypingIndicatorImage(), style:UIBarButtonItemStyle.Plain, target:self, action:"performAction:");*/
+        /*
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage.jsq_defaultTypingIndicatorImage(), style:UIBarButtonItemStyle.Plain, target:self, action:"performAction:");
+        
+        */
 
         let id = appGlobalDelegate.user!.id!
         self.senderId = String(id) + "@chat.nudj.co";
@@ -38,6 +41,14 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
         self.showLoadEarlierMessagesHeader = false
     
         self.templateImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(UserModel.getDefaultUserImage(), diameter: 30)
+        
+        
+        /*
+        
+        Note to Antonio pass self to the delagete funtion to only allow recieved message for a specific conversation
+        
+        */
+        
         appGlobalDelegate.chatInst!.delegate = self;
 
     }
@@ -338,7 +349,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
 
         self.messages.addObject(content)
         
-        self.finishReceivingMessageAnimated(false)
+        self.finishReceivingMessageAnimated(true)
         
     }
 

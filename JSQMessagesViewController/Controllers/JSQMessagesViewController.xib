@@ -40,11 +40,11 @@
                     </constraints>
                     <items/>
                 </toolbar>
-                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cVg-om-Qyy" userLabel="dropView">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cVg-om-Qyy" userLabel="dropView">
+                    <rect key="frame" x="0.0" y="-7" width="320" height="70"/>
                     <subviews>
-                        <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OKI-0o-bya">
-                            <rect key="frame" x="25" y="12" width="53" height="49"/>
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OKI-0o-bya">
+                            <rect key="frame" x="8" y="13" width="53" height="49"/>
                             <state key="normal" image="job_detail.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -52,8 +52,8 @@
                                 <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="bAE-pK-e35"/>
                             </connections>
                         </button>
-                        <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hrs-Ve-WPK">
-                            <rect key="frame" x="86" y="13" width="53" height="49"/>
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hrs-Ve-WPK">
+                            <rect key="frame" x="69" y="13" width="53" height="49"/>
                             <state key="normal" image="profile.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -61,28 +61,8 @@
                                 <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="RbB-OZ-IUe"/>
                             </connections>
                         </button>
-                        <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GWO-Fv-2g7">
-                            <rect key="frame" x="208" y="13" width="53" height="49"/>
-                            <state key="normal" image="mute.png">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" image="mute2.png"/>
-                            <connections>
-                                <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="cxk-w1-m5t"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ht-ZG-OMw">
-                            <rect key="frame" x="259" y="13" width="53" height="49"/>
-                            <state key="normal" image="archive.png">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" image="archive.png"/>
-                            <connections>
-                                <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="BVh-QL-r6A"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9xf-wu-y6B">
-                            <rect key="frame" x="147" y="13" width="53" height="49"/>
+                        <button opaque="NO" tag="3" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9xf-wu-y6B">
+                            <rect key="frame" x="130" y="13" width="53" height="49"/>
                             <state key="normal" image="favourite.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -91,8 +71,54 @@
                                 <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="ew2-Pr-Gg8"/>
                             </connections>
                         </button>
+                        <button opaque="NO" tag="4" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GWO-Fv-2g7">
+                            <rect key="frame" x="191" y="13" width="53" height="49"/>
+                            <state key="normal" image="mute.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" image="mute2.png"/>
+                            <connections>
+                                <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="cxk-w1-m5t"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="5" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ht-ZG-OMw">
+                            <rect key="frame" x="252" y="13" width="53" height="49"/>
+                            <state key="normal" image="archive.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" image="archive.png"/>
+                            <connections>
+                                <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="BVh-QL-r6A"/>
+                            </connections>
+                        </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="6Ht-ZG-OMw" firstAttribute="height" secondItem="Hrs-Ve-WPK" secondAttribute="height" id="2gp-ni-L8N"/>
+                        <constraint firstItem="GWO-Fv-2g7" firstAttribute="leading" secondItem="9xf-wu-y6B" secondAttribute="trailing" constant="8" id="2sH-H5-6qP"/>
+                        <constraint firstItem="9xf-wu-y6B" firstAttribute="top" secondItem="cVg-om-Qyy" secondAttribute="top" constant="13" id="4JJ-2S-3CD"/>
+                        <constraint firstItem="Hrs-Ve-WPK" firstAttribute="top" secondItem="cVg-om-Qyy" secondAttribute="top" constant="13" id="5TW-qi-isi"/>
+                        <constraint firstAttribute="bottom" secondItem="GWO-Fv-2g7" secondAttribute="bottom" constant="8" id="6Gi-bc-aUR"/>
+                        <constraint firstItem="6Ht-ZG-OMw" firstAttribute="width" secondItem="GWO-Fv-2g7" secondAttribute="width" id="A3b-2S-e4K"/>
+                        <constraint firstItem="9xf-wu-y6B" firstAttribute="leading" secondItem="Hrs-Ve-WPK" secondAttribute="trailing" constant="8" id="Cpw-7X-VsD"/>
+                        <constraint firstAttribute="bottom" secondItem="9xf-wu-y6B" secondAttribute="bottom" constant="8" id="M8J-5M-GIZ"/>
+                        <constraint firstItem="6Ht-ZG-OMw" firstAttribute="leading" secondItem="GWO-Fv-2g7" secondAttribute="trailing" constant="8" id="MPI-gs-bHu"/>
+                        <constraint firstItem="6Ht-ZG-OMw" firstAttribute="width" secondItem="9xf-wu-y6B" secondAttribute="width" id="Oqi-LR-0rn"/>
+                        <constraint firstItem="OKI-0o-bya" firstAttribute="leading" secondItem="cVg-om-Qyy" secondAttribute="leading" constant="8" id="PCg-ml-Fja"/>
+                        <constraint firstItem="6Ht-ZG-OMw" firstAttribute="width" secondItem="OKI-0o-bya" secondAttribute="width" id="SBh-h8-svF"/>
+                        <constraint firstAttribute="trailing" secondItem="6Ht-ZG-OMw" secondAttribute="trailing" constant="8" id="Yiq-Ko-EZd"/>
+                        <constraint firstAttribute="bottom" secondItem="OKI-0o-bya" secondAttribute="bottom" constant="8" id="ZM7-Uu-Yrh"/>
+                        <constraint firstAttribute="bottom" secondItem="6Ht-ZG-OMw" secondAttribute="bottom" constant="8" id="Zx7-ml-DvY"/>
+                        <constraint firstItem="6Ht-ZG-OMw" firstAttribute="height" secondItem="OKI-0o-bya" secondAttribute="height" id="f68-jI-wrR"/>
+                        <constraint firstItem="6Ht-ZG-OMw" firstAttribute="top" secondItem="cVg-om-Qyy" secondAttribute="top" constant="13" id="fBD-Q1-qkx"/>
+                        <constraint firstItem="GWO-Fv-2g7" firstAttribute="top" secondItem="cVg-om-Qyy" secondAttribute="top" constant="13" id="hSZ-I5-dZA"/>
+                        <constraint firstAttribute="bottom" secondItem="Hrs-Ve-WPK" secondAttribute="bottom" constant="8" id="iaj-Wf-Dw5"/>
+                        <constraint firstItem="6Ht-ZG-OMw" firstAttribute="width" secondItem="Hrs-Ve-WPK" secondAttribute="width" id="jrH-UF-bKe"/>
+                        <constraint firstItem="Hrs-Ve-WPK" firstAttribute="leading" secondItem="OKI-0o-bya" secondAttribute="trailing" constant="8" id="mp1-Oj-hh5"/>
+                        <constraint firstItem="OKI-0o-bya" firstAttribute="top" secondItem="cVg-om-Qyy" secondAttribute="top" constant="13" id="nhw-Gy-AFk"/>
+                        <constraint firstItem="6Ht-ZG-OMw" firstAttribute="height" secondItem="9xf-wu-y6B" secondAttribute="height" id="vh1-9j-dy7"/>
+                        <constraint firstItem="6Ht-ZG-OMw" firstAttribute="height" secondItem="GWO-Fv-2g7" secondAttribute="height" id="wJk-Go-OQT"/>
+                    </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qgi-uw-S4i" userLabel="Custom navbar">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
@@ -128,7 +154,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="mVF-Jj-1IO" firstAttribute="top" secondItem="Qgi-uw-S4i" secondAttribute="top" constant="19" id="5Fp-Fb-Y1a"/>
                         <constraint firstItem="0aP-9F-3mY" firstAttribute="top" secondItem="mVF-Jj-1IO" secondAttribute="bottom" constant="1" id="97g-FS-Nxy"/>
@@ -147,6 +173,7 @@
                 <constraint firstItem="l9u-2b-4LK" firstAttribute="top" secondItem="Qgi-uw-S4i" secondAttribute="bottom" id="3SX-GY-HcP"/>
                 <constraint firstAttribute="trailing" secondItem="BoD-Az-3DM" secondAttribute="trailing" id="7xc-Ha-asg"/>
                 <constraint firstItem="Qgi-uw-S4i" firstAttribute="leading" secondItem="l9u-2b-4LK" secondAttribute="leading" id="EnL-x9-nJv"/>
+                <constraint firstItem="cVg-om-Qyy" firstAttribute="top" secondItem="Qgi-uw-S4i" secondAttribute="bottom" constant="-71" id="IwV-dj-3rd"/>
                 <constraint firstItem="cVg-om-Qyy" firstAttribute="leading" secondItem="mUa-cS-ru4" secondAttribute="leading" id="Ktp-9E-gxX"/>
                 <constraint firstItem="l9u-2b-4LK" firstAttribute="leading" secondItem="mUa-cS-ru4" secondAttribute="leading" id="MmF-oh-Y75"/>
                 <constraint firstAttribute="trailing" secondItem="l9u-2b-4LK" secondAttribute="trailing" id="O9u-TA-A0e"/>

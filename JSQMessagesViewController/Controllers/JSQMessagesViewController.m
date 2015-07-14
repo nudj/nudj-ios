@@ -264,12 +264,11 @@ JSQMessagesKeyboardControllerDelegate>{
     self.customTitleBar.layer.shadowRadius = 2;
     self.customTitleBar.layer.shadowOpacity = 0.5;
     
-    self.jobTitle.frame = CGRectMake(10, 10, 53, 49);
-    self.profile.frame  = CGRectMake(70, 10, 53, 49);
-    self.favourite.frame  = CGRectMake(142, 10, 53, 49);
-    self.mute.frame  = CGRectMake(200, 10, 53, 49);
-    self.archive.frame  = CGRectMake(260, 10, 53, 49);
-    
+    self.dropDownView.layer.masksToBounds = NO;
+    self.dropDownView.layer.shadowOffset = CGSizeMake(0, 1);
+    self.dropDownView.layer.shadowRadius = 2;
+    self.dropDownView.layer.shadowOpacity = 0.5;
+
     self.ConvoTitle.text = self.chatTitle;
     self.convoParticipants.text = self.participants;
     
@@ -1176,7 +1175,7 @@ JSQMessagesKeyboardControllerDelegate>{
                                               
                                               
                                               [CPAnimationStep  for:.25 animate:^{
-        [_dropDownView setFrame:CGRectMake(0, 64-64, self.view.frame.size.width, 70)];
+        [_dropDownView setFrame:CGRectMake(0, 64-64 - 7, self.view.frame.size.width, 70)];
     }], nil];
     
     

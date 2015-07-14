@@ -31,7 +31,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     }
 
     func requestData() {
-        self.apiRequest(.GET, path: "chat?params=chat.job,job.favourite,chat.participants,chat.created,job.title,job.company,user.image,user.name,user.contact", closure: { response in
+        self.apiRequest(.GET, path: "chat?params=chat.job,job.favourite,chat.participants,chat.created,job.title,job.company,job.like,user.image,user.name,user.contact", closure: { response in
 
             self.data.removeAll(keepCapacity: false)
 
@@ -86,6 +86,9 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         // Enter chat room and connect
         var conference :String = self.data[indexPath.row]["id"].stringValue
         var appGlobalDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        
+        //Note :Replace url with constance in app delegate
         appGlobalDelegate.chatInst!.acceptAndJoinChatRoom("\(conference)@conference.chat.nudj.co");
 
         var vc:ChatViewController = ChatViewController()
@@ -95,7 +98,8 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         vc.chatID = chat["id"].stringValue;
         vc.participants = chat["participants"][0]["name"].stringValue + ", " + chat["participants"][1]["name"].stringValue
         vc.chatTitle = "re: "+chat["job"]["title"].stringValue
-        vc.jobID = chat["job"]["title"].stringValue
+        vc.jobID = chat["job"]["id"].stringValue
+        vc.userToken = appGlobalDelegate.user?.token
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
