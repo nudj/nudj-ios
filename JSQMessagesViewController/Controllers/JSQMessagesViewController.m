@@ -68,6 +68,8 @@ JSQMessagesKeyboardControllerDelegate>{
 @property (strong, nonatomic) IBOutlet UIButton *favourite;
 @property (strong, nonatomic) IBOutlet UIButton *mute;
 @property (strong, nonatomic) IBOutlet UIButton *archive;
+@property (strong, nonatomic) IBOutlet UILabel *ConvoTitle;
+@property (strong, nonatomic) IBOutlet UILabel *convoParticipants;
 
 
 - (IBAction)backAction:(id)sender;
@@ -115,6 +117,9 @@ JSQMessagesKeyboardControllerDelegate>{
 @implementation JSQMessagesViewController
 @synthesize userToken = _userToken;
 @synthesize chatID = _chatID;
+@synthesize chatTitle = _chatTitle;
+@synthesize participants = _participants;
+@synthesize jobID = _jobID;
 
 #pragma mark - Class methods
 
@@ -259,13 +264,17 @@ JSQMessagesKeyboardControllerDelegate>{
     self.customTitleBar.layer.shadowRadius = 2;
     self.customTitleBar.layer.shadowOpacity = 0.5;
     
-     NSLog(@"Retrieveing ->%@:%@",_userToken, _chatID);
-    
     self.jobTitle.frame = CGRectMake(10, 10, 53, 49);
     self.profile.frame  = CGRectMake(70, 10, 53, 49);
     self.favourite.frame  = CGRectMake(142, 10, 53, 49);
     self.mute.frame  = CGRectMake(200, 10, 53, 49);
     self.archive.frame  = CGRectMake(260, 10, 53, 49);
+    
+    self.ConvoTitle.text = self.chatTitle;
+    self.convoParticipants.text = self.participants;
+    
+    self.inputToolbar.tintColor = NUDGE_COLOR;
+    self.inputToolbar.contentView.rightBarButtonItem.titleLabel.textColor = NUDGE_COLOR;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -1112,9 +1121,9 @@ JSQMessagesKeyboardControllerDelegate>{
         case 3:{
             //Favourite Chat
             if([(UIButton *)sender isSelected])
-                [self completeRequest:[NSString stringWithFormat:@"jobs/%@/like",_chatID] withType:@"DELETE"];
+                [self completeRequest:[NSString stringWithFormat:@"jobs/%@/like",_jobID] withType:@"DELETE"];
             else
-                [self completeRequest:[NSString stringWithFormat:@"jobs/%@/like",_chatID] withType:@"PUT"];
+                [self completeRequest:[NSString stringWithFormat:@"jobs/%@/like",_jobID] withType:@"PUT"];
             
             [(UIButton *)sender setSelected:![(UIButton *)sender isSelected]];
         }
@@ -1148,7 +1157,7 @@ JSQMessagesKeyboardControllerDelegate>{
 
 
 - (IBAction)hide_show_dropdown:(id)sender {
-
+    
     if(filterOpened){
         [self hideFilterMenu];
     }else{
@@ -1179,6 +1188,7 @@ JSQMessagesKeyboardControllerDelegate>{
 
 -(void)showFilterMenu
 {
+    NSLog(@"Drop down");
     
     filterOpened = YES;
     

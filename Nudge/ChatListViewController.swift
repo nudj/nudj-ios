@@ -26,7 +26,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-
+        self.navigationController?.navigationBarHidden = false
         requestData()
     }
 
@@ -93,9 +93,9 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         let chat = self.data[indexPath.row]
 
         vc.chatID = chat["id"].stringValue;
-        vc.title = chat["job"]["title"].stringValue
-
-
+        vc.participants = chat["participants"][0]["name"].stringValue + ", " + chat["participants"][1]["name"].stringValue
+        vc.chatTitle = "re: "+chat["job"]["title"].stringValue
+        vc.jobID = chat["job"]["title"].stringValue
         self.navigationController?.pushViewController(vc, animated: true)
         
     }

@@ -325,6 +325,10 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             println("from ->\(message.from().resource)")
             println("Message ->\(message.body())")
             
+            
+            //var remoteTimestamp : NSDate = message.body ();
+
+            
             var jsqMessage = JSQMessage(senderId: message.from().resource, senderDisplayName: message.from().resource, date:NSDate(), text: message.body())
             delegate?.recievedMessage(jsqMessage)
         }

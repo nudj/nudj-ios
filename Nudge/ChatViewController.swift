@@ -14,18 +14,17 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
     var outgoingBubbleImageData :JSQMessagesBubbleImage?;
     var incomingBubbleImageData :JSQMessagesBubbleImage?;
     var templateImage :JSQMessagesAvatarImage?;
-    var participants :String?;
     var messages = NSMutableArray();
     let appGlobalDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     
     override func viewDidLoad() {
         
-        self.userToken = appGlobalDelegate.user?.token;
+        super.viewDidLoad();
+        
+        self.navigationController?.navigationBarHidden = true;
 
-        super.viewDidLoad()
-
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage.jsq_defaultTypingIndicatorImage(), style:UIBarButtonItemStyle.Plain, target:self, action:"performAction:");
+        /*self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage.jsq_defaultTypingIndicatorImage(), style:UIBarButtonItemStyle.Plain, target:self, action:"performAction:");*/
 
         let id = appGlobalDelegate.user!.id!
         self.senderId = String(id) + "@chat.nudj.co";
@@ -76,6 +75,9 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
         self.tabBarController?.tabBar.hidden = false
 
         appGlobalDelegate.chatInst!.xmppRoom?.leaveRoom()
+        appGlobalDelegate.chatInst!.xmppRoom?.deactivate()
+        appGlobalDelegate.chatInst!.xmppRoom?.removeDelegate(self)
+
     }
     
     override func viewDidAppear(animated: Bool) {

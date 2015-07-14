@@ -6,8 +6,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JSQMessagesViewController">
             <connections>
+                <outlet property="ConvoTitle" destination="mVF-Jj-1IO" id="Rh2-Jv-gLN"/>
                 <outlet property="archive" destination="6Ht-ZG-OMw" id="qaP-TF-pXd"/>
                 <outlet property="collectionView" destination="l9u-2b-4LK" id="bLP-6g-CkO"/>
+                <outlet property="convoParticipants" destination="0aP-9F-3mY" id="T7V-JE-1MU"/>
                 <outlet property="customTitleBar" destination="Qgi-uw-S4i" id="l2L-Wz-efc"/>
                 <outlet property="dropDownView" destination="cVg-om-Qyy" id="osp-4k-WJM"/>
                 <outlet property="favourite" destination="9xf-wu-y6B" id="W9X-MQ-J7e"/>
@@ -103,7 +105,7 @@
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="re: Director of Business Development" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVF-Jj-1IO">
                             <rect key="frame" x="25" y="19" width="270" height="21"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>

@@ -41,6 +41,10 @@
 
 @property (strong, nonatomic) NSString *userToken;
 @property (strong, nonatomic) NSString *chatID;
+@property (strong, nonatomic) NSString *jobID;
+@property (strong, nonatomic) NSString *chatTitle;
+@property (strong, nonatomic) NSString *participants;
+
 /**
  *  Returns the collection view object managed by this view controller.
  *  This view controller is the collection view's data source and delegate.
