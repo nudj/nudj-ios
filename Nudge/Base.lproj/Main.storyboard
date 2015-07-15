@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="7wa-wJ-4AA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="7wa-wJ-4AA">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -1739,7 +1739,7 @@
         <!--Chats-->
         <scene sceneID="7hc-uu-5uL">
             <objects>
-                <viewController title="Chats" automaticallyAdjustsScrollViewInsets="NO" id="qwH-I4-nQ1" customClass="ChatListViewController" customModule="nudge" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatListViewController" title="Chats" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qwH-I4-nQ1" customClass="ChatListViewController" customModule="nudge" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0zw-Tm-HWi"/>
                         <viewControllerLayoutGuide type="bottom" id="Bid-1Q-lVZ"/>
@@ -1834,7 +1834,7 @@
         <!--Chats-->
         <scene sceneID="Fpd-Pk-stb">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Vkr-2N-VXy" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ChatListViewMain" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Vkr-2N-VXy" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Chats" image="chatIcon" id="iDq-Rj-zbl"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="MSw-SI-EaV">

@@ -42,14 +42,8 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
     
         self.templateImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(UserModel.getDefaultUserImage(), diameter: 30)
         
-        
-        /*
-        
-        Note to Antonio pass self to the delagete funtion to only allow recieved message for a specific conversation
-        
-        */
-        
         appGlobalDelegate.chatInst!.delegate = self;
+        self.messages = appGlobalDelegate.chatInst!.retrieveStoredChats(self.chatID);
 
     }
 
@@ -83,19 +77,18 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
         super.viewWillDisappear(animated)
         
         self.tabBarController?.tabBar.hidden = false
-
-        appGlobalDelegate.chatInst!.xmppRoom?.leaveRoom()
-        appGlobalDelegate.chatInst!.xmppRoom?.deactivate()
-        appGlobalDelegate.chatInst!.xmppRoom?.removeDelegate(self)
+        
+        appGlobalDelegate.chatInst!.delegate = appGlobalDelegate;
 
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+        self.collectionView.collectionViewLayout.springinessEnabled = true
 
         self.finishReceivingMessageAnimated(true)
-
-        self.collectionView.collectionViewLayout.springinessEnabled = true
+        
     }
 
     // JSQMessagesViewController method overrides
@@ -343,6 +336,8 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
     }
     
     func recievedMessage(content:JSQMessage){
+        
+        println("Message via chatview -> \(content.text)")
         
         self.scrollToBottomAnimated(true);
 

@@ -90,14 +90,12 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         var conference :String = self.data[indexPath.row]["id"].stringValue
         var appGlobalDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
-        appGlobalDelegate.chatInst!.acceptAndJoinChatRoom("\(conference)@conference.\(appGlobalDelegate.chatInst!.chatServer)");
-        
         var vc:ChatViewController = ChatViewController()
 
         let chat = self.data[indexPath.row]
 
         vc.chatID = chat["id"].stringValue;
-        vc.participants = chat["participants"][0]["name"].stringValue + ", " + chat["participants"][1]["name"].stringValue
+        vc.participants = chat["participants"][0]["name"].stringValue + ", you"
         vc.chatTitle = "re: "+chat["job"]["title"].stringValue
         vc.jobID = chat["job"]["id"].stringValue
         vc.userToken = appGlobalDelegate.user?.token

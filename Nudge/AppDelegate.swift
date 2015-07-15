@@ -13,7 +13,7 @@ import Crashlytics
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
 
     var window: UIWindow?
     var user: UserModel?
@@ -36,7 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // User did not passed full registration
 
             self.syncContacts()
-
             self.pushViewControllerWithId("createProfile")
 
         } else if (user == nil) {
@@ -44,10 +43,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Proceed to login view
         } else {
             // Valid User, Proceed
-
             self.syncContacts()
-
             self.changeRootViewController("mainNavigation")
+        }
+        
+        //Setup XMPP and connect
+        chatInst = ChatModels()
+        chatInst!.delegate = self;
+        
+        if(!chatInst!.connect()){
+            
+            println("NOT Connected to chat server so will try reconnecting !!!")
+            
         }
 
         requestNotificationPermission(application)
@@ -84,6 +91,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         println(userInfo)
     }
+    
 
     func syncContacts() {
         dispatch_async(dispatch_get_main_queue(),{
@@ -131,17 +139,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
 
             println("User: \(self.user)")
-            
-            //Setup XMPP and connect
-            chatInst = ChatModels()
-            
-            if(!chatInst!.connect()){
-                
-                println("NOT Connected to chat server so will try reconnecting !!!")
-                
-            }
-
-
 
         } else {
             println("Could not fetch \(error), \(error!.userInfo)")
@@ -267,6 +264,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
+        
+        self.chatInst!.xmppRoom?.leaveRoom()
+        self.chatInst!.xmppRoom?.deactivate()
+        self.chatInst!.xmppRoom?.removeDelegate(self)
     }
 
     // MARK: - Core Data stack
@@ -330,6 +331,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 abort()
             }
         }
+    }
+    
+    
+    // MARK: JABBER Delegate Methods
+    
+    func recievedUser(content: NSDictionary) {
+       
+        
+    }
+    
+    func recievedMessage(content:JSQMessage){
+        
+        println("Message via Appdelegate -> \(content.text)")
+     
+        // Update badge
+        NSNotificationCenter.defaultCenter().postNotificationName("updateBadgeValue", object: nil)
     }
     
     func handleEjabberedRecievedMessages(){

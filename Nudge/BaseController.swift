@@ -13,10 +13,17 @@ import SwiftyJSON
 
 class BaseController: UIViewController {
 
+    override func viewDidLoad() {
+        
+         NSNotificationCenter.defaultCenter().addObserver(self, selector:"updateBadge", name: "updateBadgeValue", object: nil);
+    
+    }
+    
     func showSimpleAlert(text: String) {
         self.showSimpleAlert(text, action: nil)
     }
 
+    
     func showSimpleAlert(text: String, action: ((UIAlertAction) -> Void)?) {
         var alert = UIAlertController(title: nil, message: text, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel) {
@@ -62,5 +69,14 @@ class BaseController: UIViewController {
 
     func apiUpdateUser(params: [String: AnyObject], closure: ((JSON) -> ())?, errorHandler: ((NSError) -> Void)? = nil) {
         self.apiRequest(.PUT, path: "users", params: params, closure: closure, errorHandler: errorHandler)
+    }
+    
+    func updateBadge(){
+        //(badgeIndex:Int, with value:String)
+            var tabArray = self.tabBarController?.tabBar.items as NSArray!
+            var tabItem = tabArray.objectAtIndex(1) as! UITabBarItem
+            tabItem.badgeValue = "new"
+            println("i heard a notification call")
+        
     }
 }

@@ -26,6 +26,7 @@ class MainFeed: BaseController, DataProviderProtocol {
         self.table.dataSource = self.table
         self.table.selectedClosure = goToJob
         self.table.loadData()
+        
     }
 
     func requestData(page: Int, size: Int, listener: (JSON) -> ()) {
