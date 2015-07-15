@@ -15,7 +15,7 @@ class BaseController: UIViewController {
 
     override func viewDidLoad() {
         
-         NSNotificationCenter.defaultCenter().addObserver(self, selector:"updateBadge", name: "updateBadgeValue", object: nil);
+         NSNotificationCenter.defaultCenter().addObserver(self, selector:"updateBadge:", name: "updateBadgeValue", object: nil);
     
     }
     
@@ -71,11 +71,15 @@ class BaseController: UIViewController {
         self.apiRequest(.PUT, path: "users", params: params, closure: closure, errorHandler: errorHandler)
     }
     
-    func updateBadge(){
-        //(badgeIndex:Int, with value:String)
+    func updateBadge(notification:NSNotification){
+        
+        let userInfo:Dictionary<String,String!> = notification.userInfo as! Dictionary<String,String!>
+        let value = userInfo["value"]
+        let index:Int? = userInfo["index"]!.toInt()
+        
             var tabArray = self.tabBarController?.tabBar.items as NSArray!
-            var tabItem = tabArray.objectAtIndex(1) as! UITabBarItem
-            tabItem.badgeValue = "new"
+            var tabItem = tabArray.objectAtIndex(index!) as! UITabBarItem
+            tabItem.badgeValue = value
             println("i heard a notification call")
         
     }

@@ -346,7 +346,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         println("Message via Appdelegate -> \(content.text)")
      
         // Update badge
-        NSNotificationCenter.defaultCenter().postNotificationName("updateBadgeValue", object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName("updateBadgeValue", object: nil, userInfo: ["value":"1","index":"1"])
+      
     }
     
     func handleEjabberedRecievedMessages(){
