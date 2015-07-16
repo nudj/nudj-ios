@@ -9,3 +9,4 @@
 
 #import "XMPPFramework.h"
 #import "JSQMessages.h"
+#import  "NZLabel.h""

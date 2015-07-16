@@ -7,15 +7,46 @@
 //
 
 import UIKit
+import Foundation
+import SwiftyJSON
 
-class JobDetailedViewController: UIViewController {
+class JobDetailedViewController: BaseController {
+    @IBOutlet var jobTitleText: UILabel!
+    @IBOutlet var authorName: UILabel!
+    @IBOutlet var descriptionText: UITextView!
+    @IBOutlet var employerText: NZLabel!
+    @IBOutlet var locationText: NZLabel!
+    @IBOutlet var salaryText: NZLabel!
+    @IBOutlet var bonusText: NZLabel!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Test property
+        let boldFont = UIFont(name: "HelveticaNeue-Bold", size: 22)
         
-        self.title = "Job Details"
+        bonusText.setFont(boldFont, string: "£900")
+        bonusText.setFontColor(UIColor.blueColor(), string: "£900")
+        
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        super.viewWillAppear(animated);
+        
+        self.requestData()
+
+    }
+    
+    func requestData(){
+        
+        //self.apiRequest(.GET, path:"jobs/7", closure: { json in
+            
+            //println("Data -> " + json["data"])
+            
+        //})
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,7 +54,11 @@ class JobDetailedViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func Nudge(sender: UIButton) {
+    }
 
+    @IBAction func interested(sender: UIButton) {
+    }
     /*
     // MARK: - Navigation
 

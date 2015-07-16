@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A903BAEE1B581C4F00D69863 /* NZLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A903BAED1B581C4F00D69863 /* NZLabel.m */; };
 		A95798251B46965A006E826E /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95798241B46965A006E826E /* NotificationViewController.swift */; };
 		A9964FD51B387CC800D5A8E9 /* JSQMessagesAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A9964E281B387CC700D5A8E9 /* JSQMessagesAssets.bundle */; };
 		A9964FD61B387CC800D5A8E9 /* JSQSystemSoundPlayer+JSQMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E2B1B387CC700D5A8E9 /* JSQSystemSoundPlayer+JSQMessages.m */; };
@@ -313,6 +314,8 @@
 /* Begin PBXFileReference section */
 		39A67AE42E9231EE2A750094 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		91ACAE069A6F9735FED79A9F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		A903BAEC1B581C4F00D69863 /* NZLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NZLabel.h; sourceTree = "<group>"; };
+		A903BAED1B581C4F00D69863 /* NZLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NZLabel.m; sourceTree = "<group>"; };
 		A95798241B46965A006E826E /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		A9964E281B387CC700D5A8E9 /* JSQMessagesAssets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JSQMessagesAssets.bundle; sourceTree = "<group>"; };
 		A9964E2A1B387CC700D5A8E9 /* JSQSystemSoundPlayer+JSQMessages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSQSystemSoundPlayer+JSQMessages.h"; sourceTree = "<group>"; };
@@ -821,6 +824,15 @@
 				39A67AE42E9231EE2A750094 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		A903BAEB1B581C4F00D69863 /* NZLabel */ = {
+			isa = PBXGroup;
+			children = (
+				A903BAEC1B581C4F00D69863 /* NZLabel.h */,
+				A903BAED1B581C4F00D69863 /* NZLabel.m */,
+			);
+			path = NZLabel;
 			sourceTree = "<group>";
 		};
 		A95798231B469636006E826E /* Notification */ = {
@@ -2120,6 +2132,7 @@
 		EBF1861A1B21D9D500D8D80D /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				A903BAEB1B581C4F00D69863 /* NZLabel */,
 				A9F3331F1B41759A00F0D17B /* AnimStep */,
 				A9964E261B387CC700D5A8E9 /* JSQMessagesViewController */,
 				A9964E841B387CC800D5A8E9 /* JSQSystemSoundPlayer */,
@@ -2500,6 +2513,7 @@
 				A9964FDC1B387CC800D5A8E9 /* UIView+JSQMessages.m in Sources */,
 				A99650071B387CC800D5A8E9 /* XMPPXOAuth2Google.m in Sources */,
 				A9964FE11B387CC800D5A8E9 /* JSQMessagesBubbleImageFactory.m in Sources */,
+				A903BAEE1B581C4F00D69863 /* NZLabel.m in Sources */,
 				A99650471B387CC800D5A8E9 /* TURNSocket.m in Sources */,
 				A9964FFC1B387CC800D5A8E9 /* JSQMessagesToolbarContentView.m in Sources */,
 				A99650171B387CC800D5A8E9 /* XMPPReconnect.m in Sources */,
