@@ -248,7 +248,8 @@
 		EB6F22BA1AAF706A007FF1B8 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6F22B91AAF706A007FF1B8 /* AsyncImage.swift */; };
 		EB6F22BC1AB02E7F007FF1B8 /* MainTitleBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6F22BB1AB02E7F007FF1B8 /* MainTitleBar.swift */; };
 		EB6F22BE1AB045C0007FF1B8 /* RBResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6F22BD1AB045C0007FF1B8 /* RBResizer.swift */; };
-		EB866BD91B53EC9700E203CA /* NotificationTypeButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB866BD81B53EC9700E203CA /* NotificationTypeButtons.swift */; };
+		EB72C56A1B578D8100CCBD2E /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB72C5691B578D8100CCBD2E /* Notification.swift */; };
+		EB866BD91B53EC9700E203CA /* NotificationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB866BD81B53EC9700E203CA /* NotificationButton.swift */; };
 		EB866BE01B53EFAE00E203CA /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB866BDE1B53EFAE00E203CA /* NotificationCell.swift */; };
 		EB866BE11B53EFAE00E203CA /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB866BDF1B53EFAE00E203CA /* NotificationCell.xib */; };
 		EB9F71DF1B0E0060000C2D9F /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9F71DE1B0E0060000C2D9F /* MainTabBar.swift */; };
@@ -313,7 +314,6 @@
 		39A67AE42E9231EE2A750094 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		91ACAE069A6F9735FED79A9F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A95798241B46965A006E826E /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
-		A95798291B46A10B006E826E /* NotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		A9964E281B387CC700D5A8E9 /* JSQMessagesAssets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JSQMessagesAssets.bundle; sourceTree = "<group>"; };
 		A9964E2A1B387CC700D5A8E9 /* JSQSystemSoundPlayer+JSQMessages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSQSystemSoundPlayer+JSQMessages.h"; sourceTree = "<group>"; };
 		A9964E2B1B387CC700D5A8E9 /* JSQSystemSoundPlayer+JSQMessages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JSQSystemSoundPlayer+JSQMessages.m"; sourceTree = "<group>"; };
@@ -744,8 +744,9 @@
 		EB6F22B91AAF706A007FF1B8 /* AsyncImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		EB6F22BB1AB02E7F007FF1B8 /* MainTitleBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTitleBar.swift; sourceTree = "<group>"; };
 		EB6F22BD1AB045C0007FF1B8 /* RBResizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RBResizer.swift; sourceTree = "<group>"; };
+		EB72C5691B578D8100CCBD2E /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		EB7DD82B1B205CEB005332B1 /* KSTokenView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KSTokenView.framework; path = "Pods/../build/Debug-iphoneos/Pods/KSTokenView.framework"; sourceTree = "<group>"; };
-		EB866BD81B53EC9700E203CA /* NotificationTypeButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTypeButtons.swift; sourceTree = "<group>"; };
+		EB866BD81B53EC9700E203CA /* NotificationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationButton.swift; sourceTree = "<group>"; };
 		EB866BDE1B53EFAE00E203CA /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		EB866BDF1B53EFAE00E203CA /* NotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		EB9F71DE1B0E0060000C2D9F /* MainTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
@@ -825,7 +826,7 @@
 		A95798231B469636006E826E /* Notification */ = {
 			isa = PBXGroup;
 			children = (
-				EB866BD81B53EC9700E203CA /* NotificationTypeButtons.swift */,
+				EB866BD81B53EC9700E203CA /* NotificationButton.swift */,
 				A95798241B46965A006E826E /* NotificationViewController.swift */,
 				EB866BDE1B53EFAE00E203CA /* NotificationCell.swift */,
 				EB866BDF1B53EFAE00E203CA /* NotificationCell.xib */,
@@ -2052,6 +2053,7 @@
 				A996508F1B39776A00D5A8E9 /* ChatModels.swift */,
 				EBF17A251B4D76C600C67657 /* JobModel.swift */,
 				EBF17A271B4E641400C67657 /* ContactModel.swift */,
+				EB72C5691B578D8100CCBD2E /* Notification.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -2276,7 +2278,6 @@
 				A9F3335D1B42ACDC00F0D17B /* add_skills_active@2x.png in Resources */,
 				A99650AC1B3DB3FF00D5A8E9 /* profile@2x.png in Resources */,
 				A9C6EC9A1B38416C00EC9140 /* ChatViewController.xib in Resources */,
-				A957982B1B46A10B006E826E /* NotificationCell.xib in Resources */,
 				EB866BE11B53EFAE00E203CA /* NotificationCell.xib in Resources */,
 				A9964FF51B387CC800D5A8E9 /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
 				EB35BBA61AB7288000842E1F /* ContactsCell.xib in Resources */,
@@ -2432,7 +2433,7 @@
 				A996507C1B387CC800D5A8E9 /* DDXMLDocument.m in Sources */,
 				A9964FDA1B387CC800D5A8E9 /* UIDevice+JSQMessages.m in Sources */,
 				A99650281B387CC800D5A8E9 /* XMPPRoom.xcdatamodeld in Sources */,
-				EB866BD91B53EC9700E203CA /* NotificationTypeButtons.swift in Sources */,
+				EB866BD91B53EC9700E203CA /* NotificationButton.swift in Sources */,
 				A99650121B387CC800D5A8E9 /* XMPPStream.m in Sources */,
 				A996505B1B387CC800D5A8E9 /* XMPPMessage+XEP_0172.m in Sources */,
 				EB6F22BC1AB02E7F007FF1B8 /* MainTitleBar.swift in Sources */,
@@ -2570,6 +2571,7 @@
 				A99650701B387CC800D5A8E9 /* XMPPSRVResolver.m in Sources */,
 				A9F3336E1B42CD4300F0D17B /* AskReferralViewController.swift in Sources */,
 				A99650041B387CC800D5A8E9 /* XMPPDigestMD5Authentication.m in Sources */,
+				EB72C56A1B578D8100CCBD2E /* Notification.swift in Sources */,
 				A99650481B387CC800D5A8E9 /* XMPPIQ+XEP_0066.m in Sources */,
 				A996506E1B387CC800D5A8E9 /* RFImageToDataTransformer.m in Sources */,
 				A9964FD71B387CC800D5A8E9 /* NSBundle+JSQMessages.m in Sources */,

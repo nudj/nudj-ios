@@ -9,69 +9,58 @@
 import UIKit
 import SwiftyJSON
 
-class NotificationViewController: BaseController ,UITableViewDataSource, UITableViewDelegate {
-    @IBOutlet var notificationTable: UITableView!
-    
-    var data:[JSON] = []
+class NotificationViewController: UITableViewController {
+
+    var data = [Notification]()
     
     let cellIdentifier = "NotificationCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.notificationTable.registerNib(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
-        
-        self.apiRequest(.GET, path: "notifications?params=notification.user,user.image", closure: { response in
+        self.tableView.registerNib(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
+
+        API.sharedInstance.get("notifications?params=notification.user,user.image", closure: { response in
             
             println("Notifications url request response ->\(response)");
             
             for (id, obj) in response["data"] {
-                self.data.append(obj)
+                let notification = Notification.createFromJSON(obj)
             }
             
-            self.notificationTable!.reloadData()
+            self.tableView.reloadData()
+            self.refreshControl?.endRefreshing()
+        }, errorHandler: {error in
+
         })
     }
     
     // MARK: -- UITableViewDataSource --
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
         return 1
         
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return self.data.count
         
     }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        
-        return 100
-        
-    }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell = notificationTable.dequeueReusableCellWithIdentifier(cellIdentifier) as! NotificationCell
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! NotificationCell
 
-//        if(self.data[indexPath.row]["type"].int == 1){
-//            cell.buttonConfig(UIColor.greenColor(), withText:"Message")
-//        }else{
-//            cell.buttonConfig(UIColor.blueColor(), withText:"Nudge")
-//        }
-//        
-//        cell.descriptionText.text = self.data[indexPath.row]["message"].stringValue
 
-        
+
         return cell
     }
     
-    // MARK: -- UITableViewDelegate -
+    // MARK: -- UITableViewDelegate --
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
     }
 

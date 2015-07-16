@@ -10,10 +10,15 @@ import SwiftyJSON
 
 class NotificationCell: UITableViewCell {
 
+    @IBOutlet weak var profileImage: AsyncImage!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var message: UILabel!
 
-    func buttonConfig(color :UIColor, withText text:String){
-        //        self.actionButton.setupCustomButton(text, backgroundColor: color)
-    }
+    @IBOutlet weak var refLabel: UILabel!
+    @IBOutlet weak var refAmount: UILabel!
+
+    @IBOutlet weak var smsButton: UIButton!
+    @IBOutlet weak var callButton: UIButton!
 
     func loadData(data:JSON) {
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="7wa-wJ-4AA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="7wa-wJ-4AA">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -1748,7 +1748,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bfN-ai-G9E">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bfN-ai-G9E">
                                 <rect key="frame" x="0.0" y="64" width="414" height="623"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -1775,40 +1775,24 @@
             <point key="canvasLocation" x="-438" y="1169"/>
         </scene>
         <!--Notifications-->
-        <scene sceneID="xWa-od-QA9">
+        <scene sceneID="gbh-aa-mi7">
             <objects>
-                <viewController storyboardIdentifier="NotificationView" title="Notifications" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y0L-Mt-gTT" customClass="NotificationViewController" customModule="nudge" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="wXP-ng-7ou"/>
-                        <viewControllerLayoutGuide type="bottom" id="ArX-6l-9rG"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="u4t-zc-xS3">
+                <tableViewController id="rNp-eJ-5bA" customClass="NotificationViewController" customModule="nudge" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="1jb-6M-xzD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="uDu-kR-FGd">
-                                <rect key="frame" x="0.0" y="64" width="414" height="623"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="Y0L-Mt-gTT" id="qFa-nL-mSk"/>
-                                    <outlet property="delegate" destination="Y0L-Mt-gTT" id="x5T-9a-JGv"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="uDu-kR-FGd" firstAttribute="top" secondItem="wXP-ng-7ou" secondAttribute="bottom" id="GxZ-Cb-Eup"/>
-                            <constraint firstItem="ArX-6l-9rG" firstAttribute="top" secondItem="uDu-kR-FGd" secondAttribute="bottom" id="HPA-Pk-Pi9"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="uDu-kR-FGd" secondAttribute="trailing" constant="-16" id="RX5-HA-zDm"/>
-                            <constraint firstItem="uDu-kR-FGd" firstAttribute="leading" secondItem="u4t-zc-xS3" secondAttribute="leadingMargin" constant="-16" id="ePg-m1-qQZ"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Notification" id="2zu-yp-Zsd"/>
-                    <connections>
-                        <outlet property="notificationTable" destination="uDu-kR-FGd" id="2cB-uc-GFC"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YXZ-GW-ZbJ" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="rNp-eJ-5bA" id="CrU-az-Cls"/>
+                            <outlet property="delegate" destination="rNp-eJ-5bA" id="OCB-Xz-QdS"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Notifications" id="Vef-zG-GhK"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="hAD-U9-kc8">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1bJ-oy-08m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="15" y="1169"/>
         </scene>
@@ -1824,7 +1808,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Y0L-Mt-gTT" kind="relationship" relationship="rootViewController" id="jGF-IR-GET"/>
+                        <segue destination="rNp-eJ-5bA" kind="relationship" relationship="rootViewController" id="qhK-zA-ZTe"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X1s-XU-IM1" userLabel="First Responder" sceneMemberID="firstResponder"/>
