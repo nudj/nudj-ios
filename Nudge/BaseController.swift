@@ -77,10 +77,13 @@ class BaseController: UIViewController {
         let value = userInfo["value"]
         let index:Int? = userInfo["index"]!.toInt()
         
-            var tabArray = self.tabBarController?.tabBar.items as NSArray!
+        var tabArray = self.tabBarController?.tabBar.items as NSArray!
+        if(tabArray != nil && tabArray.count > 0){
             var tabItem = tabArray.objectAtIndex(index!) as! UITabBarItem
             tabItem.badgeValue = value
-            println("i heard a notification call")
+        }
+        
+        println("i heard a notification call")
         
     }
 }

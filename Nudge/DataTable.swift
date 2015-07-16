@@ -56,7 +56,8 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
         }
 
         self.dataProvider!.requestData(page, size: self.dataSize, listener: { json in
-
+            self.data.removeAll(keepCapacity: false)
+            
             if let next = json["pagination"]["next"].bool {
                 if (next == false) {
                     self.end = true

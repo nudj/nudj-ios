@@ -27,7 +27,9 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBarHidden = false
+        
         requestData()
+        
     }
 
     func requestData() {
@@ -35,13 +37,12 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
 
             self.data.removeAll(keepCapacity: false)
 
-            println("Chatroom url request response ->\(response)");
-
             for (id, obj) in response["data"] {
                 self.data.append(obj)
             }
 
             self.chatTable.reloadData()
+            self.tabBarController?.tabBarItem.badgeValue = "0"
         })
     }
     
@@ -86,7 +87,11 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         
         */
         
-        // Enter chat room and connect
+        // Enter chat room 
+        // connect if not already connected
+        
+        println("Hello")
+        
         var conference :String = self.data[indexPath.row]["id"].stringValue
         var appGlobalDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
@@ -99,6 +104,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         vc.chatTitle = "re: "+chat["job"]["title"].stringValue
         vc.jobID = chat["job"]["id"].stringValue
         vc.userToken = appGlobalDelegate.user?.token
+        
         self.navigationController?.pushViewController(vc, animated: true)
         
     }

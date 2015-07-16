@@ -25,8 +25,14 @@ class MainFeed: BaseController, DataProviderProtocol {
         self.table.delegate = self.table
         self.table.dataSource = self.table
         self.table.selectedClosure = goToJob
-        self.table.loadData()
+       
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+         self.table.loadData()
     }
 
     func requestData(page: Int, size: Int, listener: (JSON) -> ()) {
@@ -36,7 +42,7 @@ class MainFeed: BaseController, DataProviderProtocol {
 
     func goToJob(job:JSON) {
         selectedJobData = job
-        performSegueWithIdentifier("goToJob", sender: self)
+        performSegueWithIdentifier("goToJob", sender: self) 
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
