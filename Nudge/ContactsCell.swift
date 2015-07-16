@@ -40,7 +40,6 @@ class ContactsCell: DataTableCell {
             }
 
         } else {
-            println("Contact: \(contact.apple_id) \(contact.name)")
             if let apple_id = contact.apple_id {
                 profileImage.setCustomImage(UserModel.getImageByContactId(apple_id))
             }

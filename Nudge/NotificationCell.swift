@@ -8,7 +8,18 @@
 import UIKit
 import SwiftyJSON
 
+enum notificationType:Int {
+    case AskToRefer = 1
+    case NewApplication = 2
+    case MatchingContact = 3
+}
+
 class NotificationCell: UITableViewCell {
+
+    var type:Int = 0
+    var messageText = ""
+    var meta:JSON?
+    var user: UserModel?
 
     @IBOutlet weak var profileImage: AsyncImage!
     @IBOutlet weak var dateLabel: UILabel!
@@ -21,7 +32,6 @@ class NotificationCell: UITableViewCell {
     @IBOutlet weak var callButton: UIButton!
 
     func loadData(data:JSON) {
-
         
     }
     

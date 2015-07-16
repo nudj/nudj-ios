@@ -96,10 +96,7 @@ class Contacts {
     func getContactImageForId(contactId:Int) -> UIImage?  {
 
         if let cachedImage = self.cache[contactId] {
-            println("Taken from cache")
             return cachedImage
-        } else {
-            print("Searching for: \(contactId)")
         }
 
         if (!self.isAuthorized()) {
