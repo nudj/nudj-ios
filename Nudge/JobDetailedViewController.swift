@@ -47,10 +47,10 @@ class JobDetailedViewController: BaseController {
     
     func requestData(){
         
-        API.sharedInstance.get("jobs/\(self.jobID!)?params=job.title,job.company,job.liked,job.salary,job.description,job.skills,job.bonus,job.user,job.location,user.image,user.name,user.contact", params: nil, closure: { json in
+        API.sharedInstance.get("jobs/\(self.jobID!)?params=job.title,job.company,job.liked,job.salary,job.active,job.description,job.skills,job.bonus,job.user,job.location,user.image,user.name,user.contact", params: nil, closure: { json in
             
             self.populateView(json["data"])
-        
+            println(json)
             
         }) { error in
             
@@ -70,9 +70,10 @@ class JobDetailedViewController: BaseController {
             
             self.navigationItem.rightBarButtonItem?.title = "Edit"
             
-        }else if(content["liked"].boolValue == true){
+        }else if(content["liked"].boolValue){
         
             self.navigationItem.rightBarButtonItem?.title = "Saved"
+            self.navigationItem.rightBarButtonItem?.enabled = false
             
         }else{
             
@@ -128,7 +129,17 @@ class JobDetailedViewController: BaseController {
     @IBAction func topRightNavAction(sender: UIBarButtonItem) {
         
         if (sender.title == "Save"){
-        
+            
+            API.sharedInstance.put("jobs/\(self.jobID!)/like", params: nil, closure: { json in
+                
+                    println("Job saved \(json)")
+                    self.navigationItem.rightBarButtonItem?.title = "Saved"
+                    self.navigationItem.rightBarButtonItem?.enabled = false
+                
+                }) { error in
+                    
+                    println("Error -> \(error)")
+            }
             
         }else if (sender.title == "Edit"){
         
