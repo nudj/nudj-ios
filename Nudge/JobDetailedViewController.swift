@@ -64,7 +64,6 @@ class JobDetailedViewController: BaseController {
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
         
-        
         // Configure right button
         if(appDelegate.user!.id == content["user"]["id"].intValue){
             

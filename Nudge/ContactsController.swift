@@ -22,6 +22,9 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
     var indexes = [String]()
     var data = [String:[ContactModel]]()
     var refreshControl:UIRefreshControl!
+    
+    let collation = UILocalizedIndexedCollation.currentCollation()
+        as! UILocalizedIndexedCollation
 
     override func viewDidLoad() {
         table.registerNib(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
