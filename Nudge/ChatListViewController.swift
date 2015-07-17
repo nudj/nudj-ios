@@ -43,6 +43,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
 
             self.chatTable.reloadData()
             self.tabBarController?.tabBarItem.badgeValue = "0"
+            self.navigationController?.tabBarItem.badgeValue = "0"
         })
     }
     
@@ -100,7 +101,8 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         let chat = self.data[indexPath.row]
 
         vc.chatID = chat["id"].stringValue;
-        vc.participants = chat["participants"][0]["name"].stringValue + ", you"
+        vc.participants = chat["participants"][0]["name"].stringValue
+        vc.participantsID = chat["participants"][0]["id"].stringValue
         vc.chatTitle = "re: "+chat["job"]["title"].stringValue
         vc.jobID = chat["job"]["id"].stringValue
         vc.userToken = appGlobalDelegate.user?.token

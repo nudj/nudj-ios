@@ -83,7 +83,5 @@ class BaseController: UIViewController {
             tabItem.badgeValue = value
         }
         
-        println("i heard a notification call")
-        
     }
 }

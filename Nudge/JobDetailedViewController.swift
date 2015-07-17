@@ -8,7 +8,7 @@
 
 import UIKit
 import Foundation
-import SwiftyJSON
+import Alamofire
 
 class JobDetailedViewController: BaseController {
     @IBOutlet var jobTitleText: UILabel!
@@ -36,17 +36,19 @@ class JobDetailedViewController: BaseController {
         
         super.viewWillAppear(animated);
         
+        self.navigationController?.navigationBarHidden = false;
+        
         self.requestData()
 
     }
     
     func requestData(){
         
-        //self.apiRequest(.GET, path:"jobs/7", closure: { json in
+        /*self.apiRequest(Alamofire.Method.GET, path:"jobs/7", closure: { json in
             
-            //println("Data -> " + json["data"])
+            println("Data -> " + json["data"])
             
-        //})
+        })*/
     }
 
     override func didReceiveMemoryWarning() {

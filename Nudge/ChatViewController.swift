@@ -22,7 +22,6 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
         
         super.viewDidLoad();
         
-        self.navigationController?.navigationBarHidden = true;
 
         /*
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage.jsq_defaultTypingIndicatorImage(), style:UIBarButtonItemStyle.Plain, target:self, action:"performAction:");
@@ -69,7 +68,8 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-
+        
+        self.navigationController?.navigationBarHidden = true;
         self.tabBarController?.tabBar.hidden = true
     }
 
@@ -77,9 +77,10 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
         super.viewWillDisappear(animated)
         
         self.tabBarController?.tabBar.hidden = false
-        
         appGlobalDelegate.chatInst!.delegate = appGlobalDelegate;
 
+        
+        self.filterOpened = false
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -346,6 +347,64 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
         self.finishReceivingMessageAnimated(true)
         
     }
+    
+    override func dropDownAction(sender: AnyObject!) {
+        
+        let selectedButton = sender as! UIButton
+        
+        switch (selectedButton.tag) {
+        case 1:
+            
+            //go to job details
+            let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            var JobDetailedView = storyboard.instantiateViewControllerWithIdentifier("JobDetailedView") as! JobDetailedViewController
+            
+            self.navigationController?.pushViewController(JobDetailedView, animated:true);
+            
+        break;
+        case 2:
+            
+            //go to profile
+            let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            var GenericProfileView = storyboard.instantiateViewControllerWithIdentifier("GenericProfileView") as! GenericProfileViewController
+            GenericProfileView.userId = self.participantsID.toInt()!
+            GenericProfileView.type = .Public
+            GenericProfileView.preloadedName = self.participants
+            
+            self.navigationController?.pushViewController(GenericProfileView, animated:true);
 
+            
+        break;
+        case 3:
+            //Favourite Chat
+            if(selectedButton.selected){
+                self.completeRequest("jobs/"+self.jobID+"/like", withType: "DELETE")
+            }else{
+                self.completeRequest("jobs/"+self.jobID+"/like", withType: "PUT")
+            }
+            selectedButton.selected = !selectedButton.selected
+        
+        break;
+        case 4:
+            // Mute Conversation
+            //[self completeRequest:[NSString stringWithFormat:@"contacts/%@/mute",_chatID] withType:@"PUT"];
+            
+            selectedButton.selected = !selectedButton.selected
+        
+        break;
+        case 5:
+            // Archive Conversation
+            selectedButton.selected = !selectedButton.selected
+            self.completeRequest("chat/"+self.chatID+"/archive", withType: "PUT")
+        
+        break;
+        default:
+        break;
+        
+        }
+        
+        
+    }
+    
 
 }

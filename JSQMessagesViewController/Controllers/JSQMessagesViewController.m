@@ -52,8 +52,6 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 @interface JSQMessagesViewController () <JSQMessagesInputToolbarDelegate,
 JSQMessagesKeyboardControllerDelegate>{
     
-   BOOL filterOpened;
-    
 }
 
 @property (weak, nonatomic) IBOutlet JSQMessagesCollectionView *collectionView;
@@ -119,7 +117,9 @@ JSQMessagesKeyboardControllerDelegate>{
 @synthesize chatID = _chatID;
 @synthesize chatTitle = _chatTitle;
 @synthesize participants = _participants;
+@synthesize participantsID = _participantsID;
 @synthesize jobID = _jobID;
+@synthesize filterOpened = _filterOpened;
 
 #pragma mark - Class methods
 
@@ -257,7 +257,7 @@ JSQMessagesKeyboardControllerDelegate>{
     [self jsq_registerForNotifications:YES];
     
     
-    filterOpened = NO;
+    _filterOpened = NO;
     
     self.customTitleBar.layer.masksToBounds = NO;
     self.customTitleBar.layer.shadowOffset = CGSizeMake(0, 1);
@@ -270,7 +270,7 @@ JSQMessagesKeyboardControllerDelegate>{
     self.dropDownView.layer.shadowOpacity = 0.5;
 
     self.ConvoTitle.text = self.chatTitle;
-    self.convoParticipants.text = self.participants;
+    self.convoParticipants.text = [NSString stringWithFormat:@"%@, you", self.participants];
     
     self.inputToolbar.tintColor = NUDGE_COLOR;
     self.inputToolbar.contentView.rightBarButtonItem.titleLabel.textColor = NUDGE_COLOR;
@@ -1100,24 +1100,26 @@ JSQMessagesKeyboardControllerDelegate>{
 /* Nudj Custom Methods */
 
 - (IBAction)dropDownAction:(id)sender {
-    
-    switch (((UIButton *)sender).tag) {
+    /*switch (((UIButton *)sender).tag) {
         case 1:{
             
             //go to job details
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             UITableViewController *jobController = [storyboard instantiateViewControllerWithIdentifier:@"JobDetailedView"];
             [self.navigationController pushViewController:jobController animated:YES];
-        
+            
         }
             break;
         case 2:{
             
             //go to profile
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            UITableViewController *jobController = [storyboard instantiateViewControllerWithIdentifier:@"JobDetailedView"];
-            [self.navigationController pushViewController:jobController animated:YES];
-
+            UITableViewController *profileController = [storyboard instantiateViewControllerWithIdentifier:@"GenericProfileView"];
+            //profileController.userID = user.id!
+            //profileController.type = .Public
+            //profileController.preloadedName = _participants
+            [self.navigationController pushViewController:profileController animated:YES];
+            
             
         }   break;
         case 3:{
@@ -1132,7 +1134,8 @@ JSQMessagesKeyboardControllerDelegate>{
             break;
         case 4:{
             // Mute Conversation
-            [self completeRequest:[NSString stringWithFormat:@"contacts/%@/mute",_chatID] withType:@"PUT"];
+            //[self completeRequest:[NSString stringWithFormat:@"contacts/%@/mute",_chatID] withType:@"PUT"];
+            
             [(UIButton *)sender setSelected:![(UIButton *)sender isSelected]];
         }
             break;
@@ -1145,9 +1148,8 @@ JSQMessagesKeyboardControllerDelegate>{
         default:
             break;
     }
-    
+*/
 }
-
 
 // MARK - ACTIONS
 
@@ -1161,7 +1163,7 @@ JSQMessagesKeyboardControllerDelegate>{
 
 - (IBAction)hide_show_dropdown:(id)sender {
     
-    if(filterOpened){
+    if(_filterOpened){
         [self hideFilterMenu];
     }else{
         [self showFilterMenu];
@@ -1173,7 +1175,7 @@ JSQMessagesKeyboardControllerDelegate>{
 
 -(void)hideFilterMenu
 {
-    filterOpened = NO;
+    _filterOpened = NO;
     
     CPAnimationSequence* animationSequence = [CPAnimationSequence sequenceWithSteps:
                                               
@@ -1193,7 +1195,7 @@ JSQMessagesKeyboardControllerDelegate>{
 {
     NSLog(@"Drop down");
     
-    filterOpened = YES;
+    _filterOpened = YES;
     
     CPAnimationSequence* animationSequence = [CPAnimationSequence sequenceWithSteps:
                                               

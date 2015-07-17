@@ -39,11 +39,19 @@
                                                          UITextViewDelegate>
 
 
+// Nudj custom properties
 @property (strong, nonatomic) NSString *userToken;
 @property (strong, nonatomic) NSString *chatID;
 @property (strong, nonatomic) NSString *jobID;
 @property (strong, nonatomic) NSString *chatTitle;
 @property (strong, nonatomic) NSString *participants;
+@property (strong, nonatomic) NSString *participantsID;
+@property BOOL filterOpened;
+
+- (IBAction)dropDownAction:(id)sender;
+- (void)completeRequest:(NSString *)url withType:(NSString*)type;
+
+
 
 /**
  *  Returns the collection view object managed by this view controller.
