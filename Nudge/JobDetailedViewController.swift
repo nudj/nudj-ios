@@ -8,7 +8,7 @@
 
 import UIKit
 import Foundation
-import Alamofire
+//import Alamofire
 
 class JobDetailedViewController: BaseController {
     @IBOutlet var jobTitleText: UILabel!
@@ -43,6 +43,7 @@ class JobDetailedViewController: BaseController {
     }
     
     func requestData(){
+        
         
         /*self.apiRequest(Alamofire.Method.GET, path:"jobs/7", closure: { json in
             
