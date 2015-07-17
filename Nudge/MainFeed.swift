@@ -32,7 +32,9 @@ class MainFeed: BaseController, DataProviderProtocol {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-         self.table.loadData()
+        self.tabBarController?.tabBar.hidden = false
+        
+        self.table.loadData()
     }
 
     func requestData(page: Int, size: Int, listener: (JSON) -> ()) {
@@ -49,6 +51,10 @@ class MainFeed: BaseController, DataProviderProtocol {
         if let askView = segue.destinationViewController as? AskReferralViewController {
             println(selectedJobData)
             askView.jobId = selectedJobData!["id"].stringValue.toInt()
+        }else if let detailsView = segue.destinationViewController as? JobDetailedViewController {
+            detailsView.jobID = selectedJobData!["id"].stringValue
+            println(selectedJobData)
         }
+        
     }
 }

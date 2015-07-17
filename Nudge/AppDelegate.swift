@@ -23,6 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
     var deviceTokenSynced:Bool = false
     var contacts = Contacts()
     
+    let appColor = UIColor(red: 0, green: 0.63, blue: 0.53, alpha: 1)
+    let appBlueColor = UIColor(red:17.0/255.0, green:147.0/255.0, blue:189.0/255.0, alpha: 1)
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         Fabric.with([Crashlytics()])

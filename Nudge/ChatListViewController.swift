@@ -26,7 +26,9 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
         self.navigationController?.navigationBarHidden = false
+        self.tabBarController?.tabBar.hidden = false
         
         requestData()
         
@@ -42,8 +44,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
             }
 
             self.chatTable.reloadData()
-            self.tabBarController?.tabBarItem.badgeValue = "0"
-            self.navigationController?.tabBarItem.badgeValue = "0"
+            self.navigationController?.tabBarItem.badgeValue = nil
         })
     }
     

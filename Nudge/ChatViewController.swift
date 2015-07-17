@@ -357,9 +357,10 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
             
             //go to job details
             let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            var JobDetailedView = storyboard.instantiateViewControllerWithIdentifier("JobDetailedView") as! JobDetailedViewController
+            var jobDetailedView = storyboard.instantiateViewControllerWithIdentifier("JobDetailedView") as! JobDetailedViewController
+            jobDetailedView.jobID = self.jobID
             
-            self.navigationController?.pushViewController(JobDetailedView, animated:true);
+            self.navigationController?.pushViewController(jobDetailedView, animated:true);
             
         break;
         case 2:
