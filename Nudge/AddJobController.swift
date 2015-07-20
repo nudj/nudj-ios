@@ -7,14 +7,15 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 @IBDesignable
 class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDelegate, UITextViewDelegate{
 
     var popup :CreatePopupView?
-
+    var isEditable:Bool?
     var jobId:Int?
-
+    
     @IBOutlet weak var scrollView: UIScrollView!
     var openSpace:CGFloat = 0;
 
@@ -56,6 +57,21 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"keyboardChanged:", name: UIKeyboardDidChangeFrameNotification, object: nil);
+        
+        if(isEditable != nil && isEditable == true){
+                
+                API.sharedInstance.get("jobs/\(self.jobId!)?params=job.title,job.company,job.liked,job.salary,job.active,job.description,job.skills,job.bonus,job.user,job.location,user.image,user.name,user.contact", params: nil, closure: { json in
+                    
+                    self.prefillData(json["data"])
+                    
+                    }) { error in
+                        
+                        println("Error -> \(error)")
+                }
+                
+            
+        }
+        
 
     }
 
@@ -88,6 +104,19 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
             self.view.addSubview(self.popup!)
         }
 
+    }
+    
+    func prefillData(json:JSON){
+     
+        jobTitle.text = json["title"].stringValue
+        jobDescriptionLabel.alpha = 0
+        jobDescription.text = json["description"].stringValue
+        salary.text = json["salary"].stringValue
+        employer.text = json["company"].stringValue
+        location.text = json["location"].stringValue
+        activeButton.selected = !activeButton.selected
+        bonus.text = json["bonus"].stringValue
+        
     }
 
     func updateAssets() {

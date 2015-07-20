@@ -1100,55 +1100,7 @@ JSQMessagesKeyboardControllerDelegate>{
 /* Nudj Custom Methods */
 
 - (IBAction)dropDownAction:(id)sender {
-    /*switch (((UIButton *)sender).tag) {
-        case 1:{
-            
-            //go to job details
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            UITableViewController *jobController = [storyboard instantiateViewControllerWithIdentifier:@"JobDetailedView"];
-            [self.navigationController pushViewController:jobController animated:YES];
-            
-        }
-            break;
-        case 2:{
-            
-            //go to profile
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            UITableViewController *profileController = [storyboard instantiateViewControllerWithIdentifier:@"GenericProfileView"];
-            //profileController.userID = user.id!
-            //profileController.type = .Public
-            //profileController.preloadedName = _participants
-            [self.navigationController pushViewController:profileController animated:YES];
-            
-            
-        }   break;
-        case 3:{
-            //Favourite Chat
-            if([(UIButton *)sender isSelected])
-                [self completeRequest:[NSString stringWithFormat:@"jobs/%@/like",_jobID] withType:@"DELETE"];
-            else
-                [self completeRequest:[NSString stringWithFormat:@"jobs/%@/like",_jobID] withType:@"PUT"];
-            
-            [(UIButton *)sender setSelected:![(UIButton *)sender isSelected]];
-        }
-            break;
-        case 4:{
-            // Mute Conversation
-            //[self completeRequest:[NSString stringWithFormat:@"contacts/%@/mute",_chatID] withType:@"PUT"];
-            
-            [(UIButton *)sender setSelected:![(UIButton *)sender isSelected]];
-        }
-            break;
-        case 5:{
-            // Archive Conversation
-            [(UIButton *)sender setSelected:![(UIButton *)sender isSelected]];
-            [self completeRequest:[NSString stringWithFormat:@"chat/%@/archive",_chatID] withType:@"PUT"];
-        }
-            break;
-        default:
-            break;
-    }
-*/
+   
 }
 
 // MARK - ACTIONS

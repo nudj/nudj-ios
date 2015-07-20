@@ -147,6 +147,8 @@ class JobDetailedViewController: BaseController {
             //Go to EditView
             let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             var addJobView = storyboard.instantiateViewControllerWithIdentifier("AddJobView") as! AddJobController
+            addJobView.jobId = self.jobID?.toInt()
+            addJobView.isEditable = true
             self.navigationController?.pushViewController(addJobView, animated:true);
             
         }
