@@ -68,6 +68,8 @@ class JobDetailedViewController: BaseController {
         if(appDelegate.user!.id == content["user"]["id"].intValue){
             
             self.navigationItem.rightBarButtonItem?.title = "Edit"
+            // interested button
+            // pull value for edit job
             
         }else if(content["liked"].boolValue){
         
@@ -86,7 +88,7 @@ class JobDetailedViewController: BaseController {
         
         var skillsArr:[String] = [];
         
-        for i in content["skills"].array! {
+        for i in content["skills"].arrayValue{
             
             skillsArr.append(i["name"].stringValue)
             

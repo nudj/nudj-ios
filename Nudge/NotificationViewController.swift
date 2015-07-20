@@ -9,22 +9,25 @@
 import UIKit
 import SwiftyJSON
 
-class NotificationViewController: UITableViewController {
+class NotificationViewController: UITableViewController, NotificationCellDelegate {
 
     var data = [Notification]()
     
     let cellIdentifier = "NotificationCell"
     var nextLink:String? = nil
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.tableView.registerNib(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
+        
 
         self.refreshControl?.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
 
         loadData()
     }
+    
 
     func refresh() {
         loadData(append: false, url: nil)
@@ -32,7 +35,7 @@ class NotificationViewController: UITableViewController {
 
     func loadData(append:Bool = true, url:String? = nil) {
 
-        var defaulUrl = "notifications?params=notification.user,user.image&limit=10"
+        var defaulUrl = "notifications?params=notify.user,notify.type,notify.meta,notify.sender,sender.image,sender.name,notify.bonus,notify.read,notify.isNew&limit=10"
 
         API.sharedInstance.get(url == nil ? defaulUrl : url!, closure: {data in
 
@@ -84,15 +87,18 @@ class NotificationViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
         return 120
+    
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! NotificationCell
-
-
-
+        
+        cell.delegate = self
+        cell.setup(self.data[indexPath.row])
+        
         return cell
     }
     
@@ -100,6 +106,22 @@ class NotificationViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
+        //go to job
+        let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        var detailsView = storyboard.instantiateViewControllerWithIdentifier("JobDetailedView") as! JobDetailedViewController
+        detailsView.jobID = self.data[indexPath.row].jobID!
+        self.navigationController?.pushViewController(detailsView, animated: true);
     }
 
+    func didPressDetailButton(cell:NotificationCell) {
+        
+        //go to job
+        let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        var detailsView = storyboard.instantiateViewControllerWithIdentifier("JobDetailedView") as! JobDetailedViewController
+        var indexPath:NSIndexPath = tableView.indexPathForCell(cell)!
+        detailsView.jobID = self.data[indexPath.row].jobID!
+        self.navigationController?.pushViewController(detailsView, animated: true);
+        
+    }
+    
 }

@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
             // User did not passed full registration
 
             self.syncContacts()
-            self.pushViewControllerWithId("createProfile")
+            self.pushViewControllerWithId("createProfile") 
 
         } else if (user == nil) {
             // Invalid user Require Login

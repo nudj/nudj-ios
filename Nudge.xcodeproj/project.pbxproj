@@ -2735,6 +2735,7 @@
 					/usr/include/libxml2,
 				);
 				PRODUCT_NAME = nudge;
+				PROVISIONING_PROFILE = "5741d6f2-4684-40e3-aa5f-604ac029124f";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Nudge/Nudge-Bridging-Header.h";
 			};
 			name = Debug;
@@ -2768,6 +2769,7 @@
 					/usr/include/libxml2,
 				);
 				PRODUCT_NAME = nudge;
+				PROVISIONING_PROFILE = "5741d6f2-4684-40e3-aa5f-604ac029124f";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Nudge/Nudge-Bridging-Header.h";
 			};
 			name = Release;
