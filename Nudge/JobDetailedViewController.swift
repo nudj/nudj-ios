@@ -22,19 +22,22 @@ class JobDetailedViewController: BaseController {
     @IBOutlet var salaryText: NZLabel!
     @IBOutlet var bonusText: NZLabel!
     
+    @IBOutlet weak var interestedBtn: UIButton!
+    
     @IBOutlet weak var skills: TokenView!
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         
-        self.requestData();
+        super.viewDidLoad()
+        self.requestData()
+        
     }
     
     override func viewWillAppear(animated: Bool) {
         
-        super.viewWillAppear(animated);
+        super.viewWillAppear(animated)
         
-        self.navigationController?.navigationBarHidden = false;
+        self.navigationController?.navigationBarHidden = false
         
     }
     
@@ -68,8 +71,7 @@ class JobDetailedViewController: BaseController {
         if(appDelegate.user!.id == content["user"]["id"].intValue){
             
             self.navigationItem.rightBarButtonItem?.title = "Edit"
-            // interested button
-            // pull value for edit job
+            self.interestedBtn.setTitle("Ask for Referral", forState: UIControlState.Normal)
             
         }else if(content["liked"].boolValue){
         

@@ -81,7 +81,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
     
     @IBAction func PostAction(sender: AnyObject) {
 
-        var job = JobModel();
+        /*var job = JobModel();
         job.title = jobTitle.text
         job.description = jobDescription.text
         job.skills = skills.tokens()!.map({token in return token.title})
@@ -102,8 +102,12 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
             self.popup?.delegate = self;
 
             self.view.addSubview(self.popup!)
-        }
-
+        }*/
+        
+        self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"this_job_has-been_posted", withText: false);
+        self.popup?.delegate = self;
+        
+        self.view.addSubview(self.popup!)
     }
     
     func prefillData(json:JSON){

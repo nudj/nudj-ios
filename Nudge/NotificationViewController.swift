@@ -21,7 +21,6 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
         super.viewDidLoad()
         
         self.tableView.registerNib(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
-        
 
         self.refreshControl?.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
 
@@ -35,7 +34,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
 
     func loadData(append:Bool = true, url:String? = nil) {
 
-        var defaulUrl = "notifications?params=notify.user,notify.type,notify.meta,notify.sender,sender.image,sender.name,notify.bonus,notify.read,notify.isNew&limit=10"
+        var defaulUrl = "notifications?params=sender.name,sender.image&limit=10"
 
         API.sharedInstance.get(url == nil ? defaulUrl : url!, closure: {data in
 
@@ -51,7 +50,9 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
             self.refreshControl?.endRefreshing()
         })
     }
-
+    
+    //, referred by who
+    
     func loadNext() {
         if (nextLink == nil) {
             return
@@ -82,7 +83,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return self.data.count
+        return 2 //self.data.count
         
     }
 
@@ -97,7 +98,11 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
         var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! NotificationCell
         
         cell.delegate = self
-        cell.setup(self.data[indexPath.row])
+        
+        if(self.data.count > 0){
+        var ints = self.data.count - (2 - indexPath.row )
+        cell.setup(self.data[ints]) // indexPath.row
+        }
         
         return cell
     }
@@ -106,22 +111,47 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-        //go to job
-        let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        var detailsView = storyboard.instantiateViewControllerWithIdentifier("JobDetailedView") as! JobDetailedViewController
-        detailsView.jobID = self.data[indexPath.row].jobID!
-        self.navigationController?.pushViewController(detailsView, animated: true);
+       //Mark as read
+        
     }
 
-    func didPressDetailButton(cell:NotificationCell) {
+    func didPressRightButton(cell:NotificationCell, action:NotificationType){
         
-        //go to job
-        let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        var detailsView = storyboard.instantiateViewControllerWithIdentifier("JobDetailedView") as! JobDetailedViewController
-        var indexPath:NSIndexPath = tableView.indexPathForCell(cell)!
-        detailsView.jobID = self.data[indexPath.row].jobID!
-        self.navigationController?.pushViewController(detailsView, animated: true);
+        
+        switch action {
+        case .AskToRefer:
+            println("Details")
+            let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            var detailsView = storyboard.instantiateViewControllerWithIdentifier("JobDetailedView") as! JobDetailedViewController
+            var indexPath:NSIndexPath = tableView.indexPathForCell(cell)!
+            detailsView.jobID = self.data[indexPath.row].jobID!
+            self.navigationController?.pushViewController(detailsView, animated: true);
+            break;
+        case .AppApplication:
+            println("message")
+            break;
+        case .WebApplication:
+            println("sms")
+            break;
+        case .MatchingContact:
+            println("Nudge")
+            break;
+        default:
+            break;
+        }
+        
         
     }
     
+    func didPressCallButton(cell: NotificationCell) {
+        
+        println("Call")
+
+    }
+    
+    
+    func markAsRead(){
+    
+        // PUT notifications/{id}/read
+    }
 }

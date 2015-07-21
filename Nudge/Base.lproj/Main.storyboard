@@ -557,41 +557,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rKx-ay-gWi">
-                                <rect key="frame" x="0.0" y="129" width="414" height="1"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="Enter you personalised message" translatesAutoresizingMaskIntoConstraints="NO" id="L8L-bc-XZK">
+                                <rect key="frame" x="93" y="30" width="414" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="hYE-Fs-kNf"/>
+                                    <constraint firstAttribute="height" constant="50" id="Qj1-9P-Jts"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="l4F-Ih-7ec" id="Uv6-CJ-YXR"/>
+                                </connections>
+                            </textView>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rKx-ay-gWi">
+                                <rect key="frame" x="0.0" y="129" width="414" height="100"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Select the contacts you would like to ask for a referral." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OV7-Xx-yXT">
+                                        <rect key="frame" x="16" y="0.0" width="382" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="64" id="FOt-Xx-gCP"/>
+                                            <constraint firstAttribute="height" constant="64" id="XOX-eP-7nQ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="FOt-Xx-gCP"/>
+                                            </mask>
+                                        </variation>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="OV7-Xx-yXT" secondAttribute="bottom" constant="30" id="2nn-p6-q8n"/>
+                                    <constraint firstItem="OV7-Xx-yXT" firstAttribute="leading" secondItem="rKx-ay-gWi" secondAttribute="leading" constant="30" id="hfK-lb-0Lp"/>
+                                    <constraint firstItem="OV7-Xx-yXT" firstAttribute="top" secondItem="rKx-ay-gWi" secondAttribute="top" id="kHa-k8-OKR"/>
+                                    <constraint firstAttribute="trailing" secondItem="OV7-Xx-yXT" secondAttribute="trailing" constant="30" id="z2r-g8-vMR"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Select the contacts you would like to ask for a referral." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OV7-Xx-yXT">
-                                <rect key="frame" x="16" y="142" width="382" height="64"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="FOt-Xx-gCP"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vXR-VJ-TP6">
-                                <rect key="frame" x="0.0" y="262" width="414" height="425"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="l4F-Ih-7ec" id="mtd-99-dHX"/>
-                                    <outlet property="delegate" destination="l4F-Ih-7ec" id="OJJ-E3-oba"/>
-                                </connections>
-                            </tableView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="  Enter your personalised message" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pCb-4U-zMV">
-                                <rect key="frame" x="16" y="79" width="382" height="30"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="yhJ-nx-8Cs"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textField>
                             <searchBar contentMode="redraw" misplaced="YES" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="6Sq-g3-IGS">
-                                <rect key="frame" x="0.0" y="218" width="414" height="44"/>
+                                <rect key="frame" x="93" y="278" width="414" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="g73-QJ-2JI"/>
                                 </constraints>
@@ -601,29 +612,34 @@
                                     <outlet property="delegate" destination="l4F-Ih-7ec" id="XuR-na-Azl"/>
                                 </connections>
                             </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vXR-VJ-TP6">
+                                <rect key="frame" x="0.0" y="262" width="414" height="425"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="l4F-Ih-7ec" id="mtd-99-dHX"/>
+                                    <outlet property="delegate" destination="l4F-Ih-7ec" id="OJJ-E3-oba"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="OV7-Xx-yXT" secondAttribute="trailing" id="1Yi-rw-V0y"/>
-                            <constraint firstItem="6Sq-g3-IGS" firstAttribute="top" secondItem="OV7-Xx-yXT" secondAttribute="bottom" constant="12" id="8Y1-rj-tvo"/>
-                            <constraint firstItem="OV7-Xx-yXT" firstAttribute="top" secondItem="rKx-ay-gWi" secondAttribute="bottom" constant="12" id="Cy6-qU-TQE"/>
+                            <constraint firstItem="6Sq-g3-IGS" firstAttribute="top" secondItem="rKx-ay-gWi" secondAttribute="bottom" id="Bwe-cC-XAg"/>
                             <constraint firstItem="vXR-VJ-TP6" firstAttribute="leading" secondItem="LYw-OP-G4h" secondAttribute="leadingMargin" constant="-16" id="DBc-P2-SGz"/>
-                            <constraint firstItem="pCb-4U-zMV" firstAttribute="top" secondItem="eRp-l7-vkZ" secondAttribute="bottom" constant="15" id="Gfx-JN-utV"/>
-                            <constraint firstItem="pCb-4U-zMV" firstAttribute="trailing" secondItem="LYw-OP-G4h" secondAttribute="trailingMargin" id="I41-bK-t3G"/>
+                            <constraint firstItem="L8L-bc-XZK" firstAttribute="leading" secondItem="LYw-OP-G4h" secondAttribute="leadingMargin" id="JN4-Sn-Bpk"/>
                             <constraint firstItem="rKx-ay-gWi" firstAttribute="leading" secondItem="LYw-OP-G4h" secondAttribute="leadingMargin" constant="-16" id="Lz9-Eb-BPs"/>
-                            <constraint firstItem="pCb-4U-zMV" firstAttribute="leading" secondItem="LYw-OP-G4h" secondAttribute="leadingMargin" id="Z4D-56-IMM"/>
-                            <constraint firstItem="6Sq-g3-IGS" firstAttribute="leading" secondItem="LYw-OP-G4h" secondAttribute="leadingMargin" constant="-16" id="fAZ-o9-TjD"/>
-                            <constraint firstItem="OV7-Xx-yXT" firstAttribute="leading" secondItem="LYw-OP-G4h" secondAttribute="leadingMargin" id="fOf-WF-x86"/>
-                            <constraint firstItem="rKx-ay-gWi" firstAttribute="top" secondItem="pCb-4U-zMV" secondAttribute="bottom" constant="20" id="gzo-0f-qqF"/>
+                            <constraint firstItem="L8L-bc-XZK" firstAttribute="top" secondItem="eRp-l7-vkZ" secondAttribute="bottom" constant="30" id="P2v-jL-sWE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="L8L-bc-XZK" secondAttribute="trailing" id="SXK-B1-brI"/>
+                            <constraint firstItem="vXR-VJ-TP6" firstAttribute="top" secondItem="6Sq-g3-IGS" secondAttribute="bottom" id="TB4-D6-whu"/>
+                            <constraint firstItem="6Sq-g3-IGS" firstAttribute="leading" secondItem="LYw-OP-G4h" secondAttribute="leadingMargin" constant="-16" id="dQf-Qp-giY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rKx-ay-gWi" secondAttribute="trailing" constant="-16" id="hKB-Wl-zys"/>
                             <constraint firstItem="2vb-zw-F13" firstAttribute="top" secondItem="vXR-VJ-TP6" secondAttribute="bottom" id="hgv-vX-4cV"/>
-                            <constraint firstItem="vXR-VJ-TP6" firstAttribute="top" secondItem="6Sq-g3-IGS" secondAttribute="bottom" id="okn-bA-C8Z"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="6Sq-g3-IGS" secondAttribute="trailing" constant="-16" id="qsU-O9-nhd"/>
+                            <constraint firstItem="rKx-ay-gWi" firstAttribute="top" secondItem="L8L-bc-XZK" secondAttribute="bottom" constant="30" id="iGa-by-c62"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vXR-VJ-TP6" secondAttribute="trailing" constant="-16" id="xng-Gl-AA6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6Sq-g3-IGS" secondAttribute="trailing" constant="-16" id="zg5-uf-0Vt"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Ask For Referal" id="tYy-gD-bN1">
-                        <barButtonItem key="leftBarButtonItem" title="X" style="plain" id="JMz-te-aJK">
+                        <barButtonItem key="leftBarButtonItem" image="close_btn.png" style="plain" id="JMz-te-aJK">
                             <connections>
                                 <action selector="close:" destination="l4F-Ih-7ec" id="BcZ-fX-KkP"/>
                             </connections>
@@ -636,13 +652,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="askTable" destination="vXR-VJ-TP6" id="efi-fP-M8z"/>
-                        <outlet property="messageText" destination="pCb-4U-zMV" id="voA-Ib-VhN"/>
+                        <outlet property="messageText" destination="L8L-bc-XZK" id="MBK-Ow-v51"/>
                         <outlet property="searchBarView" destination="6Sq-g3-IGS" id="owk-OV-Fz4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pmF-e8-vjl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1804" y="2945"/>
+            <point key="canvasLocation" x="-1704" y="2924"/>
         </scene>
         <!--Job Details-->
         <scene sceneID="pVz-Gg-ujC">
@@ -877,6 +893,7 @@
                         <outlet property="bonusText" destination="ywj-gV-3hm" id="B3N-bi-bma"/>
                         <outlet property="descriptionText" destination="ThU-Hc-GZM" id="P3G-0o-PGE"/>
                         <outlet property="employerText" destination="vc3-bP-ba6" id="nUx-i5-sO3"/>
+                        <outlet property="interestedBtn" destination="M7K-Zz-jWR" id="GAw-2Z-Qka"/>
                         <outlet property="jobTitleText" destination="6JZ-HT-MOn" id="7lL-wl-dHp"/>
                         <outlet property="locationText" destination="iJy-5F-cqu" id="dQj-KX-hVd"/>
                         <outlet property="salaryText" destination="ftp-qH-abp" id="un8-7d-Ar7"/>
@@ -892,6 +909,7 @@
             <objects>
                 <navigationController title="Network Posts Navigator" automaticallyAdjustsScrollViewInsets="NO" id="RXb-Ol-yaJ" customClass="MainTabItem" customModule="nudge" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Jobs" image="jobsIcon" id="atM-D1-qso"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="t2G-We-sg6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -906,13 +924,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HOt-eq-Op1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1804" y="277"/>
+            <point key="canvasLocation" x="-2024" y="277"/>
         </scene>
         <!--Settings Navigator-->
         <scene sceneID="GJ0-uY-yAh">
             <objects>
                 <navigationController title="Settings Navigator" id="d5t-oh-8QT" customClass="MainTabItem" customModule="nudge" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="settingsIcon" id="cLg-D5-XW4"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ecg-5M-pPv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -923,7 +942,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JIw-hT-7Ay" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1346" y="277"/>
+            <point key="canvasLocation" x="-1586.5" y="276.5"/>
         </scene>
         <!--Settings-->
         <scene sceneID="EIu-L3-8Mv">
@@ -1015,7 +1034,7 @@
             <objects>
                 <tabBarController storyboardIdentifier="mainNavigation" automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="flipHorizontal" id="49e-Tb-3d3" userLabel="Main Screen" customClass="MainTabBar" customModule="nudge" customModuleProvider="target" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -2040,6 +2059,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4bz-fV-glI" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Notifications" image="notificationsIcon" id="904-h4-6bz"/>
                     <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="r87-k6-afw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2051,7 +2071,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X1s-XU-IM1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="288" y="277"/>
+            <point key="canvasLocation" x="-266.5" y="276.5"/>
         </scene>
         <!--Chats-->
         <scene sceneID="Fpd-Pk-stb">
@@ -2059,6 +2079,7 @@
                 <navigationController storyboardIdentifier="ChatListViewMain" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Vkr-2N-VXy" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Chats" image="chatIcon" id="iDq-Rj-zbl"/>
                     <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="MSw-SI-EaV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2070,7 +2091,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W1z-O7-Bsj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-438" y="277"/>
+            <point key="canvasLocation" x="-702.5" y="276.5"/>
         </scene>
         <!--Contacts-->
         <scene sceneID="pX5-Jd-3k0">
@@ -2078,6 +2099,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SyC-B3-YIY" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Contacts" image="contactsIcon" id="cPa-gy-q4n"/>
                     <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Lev-fH-0tH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2089,13 +2111,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ocx-wm-1nQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-891" y="277"/>
+            <point key="canvasLocation" x="-1133.5" y="276.5"/>
         </scene>
     </scenes>
     <resources>
         <image name="bio" width="26" height="26"/>
         <image name="bio-active" width="26" height="26"/>
         <image name="chatIcon" width="20" height="20"/>
+        <image name="close_btn.png" width="16" height="16"/>
         <image name="contactsIcon" width="20" height="20"/>
         <image name="email" width="26" height="26"/>
         <image name="email-active" width="26" height="26"/>

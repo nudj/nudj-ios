@@ -8,16 +8,20 @@
 
 import UIKit
 
-class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableViewDataSource, UITableViewDelegate, CreatePopupViewDelegate{
+class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, CreatePopupViewDelegate{
     
     @IBOutlet var askTable: UITableView!
-    @IBOutlet var messageText: UITextField!
     @IBOutlet var searchBarView: UISearchBar!
+    @IBOutlet weak var messageText: UITextView!
 
     var jobId:Int?
+    
+    var searchActive : Bool = false
+    var data:[String] = []
+    var filtered:[String] = []
 
-    var currentContent = NSMutableArray();
-    var searchResult = NSMutableArray();
+    var currentContent:[ContactModel] = [];
+    var searchResult:[ContactModel]  = [];
     var selected = [ContactModel]()
     var popup :CreatePopupView?;
     
@@ -28,7 +32,6 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
 
         self.tabBarController?.tabBar.hidden = true
 
-        self.messageText.frame = CGRectMake(0, 0, messageText.frame.size.width, messageText.frame.size.height);
         // Do any additional setup after loading the view.
         
         askTable.registerNib(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
@@ -42,9 +45,6 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
                 return
             }
 
-            self.currentContent.removeAllObjects()
-            self.searchResult.removeAllObjects()
-
             for (id, parentObj) in response["data"] {
                 for (id, obj) in parentObj {
 
@@ -56,7 +56,8 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
                     }
 
                     var contact = ContactModel(id: obj["id"].intValue, name: obj["alias"].stringValue, apple_id: obj["apple_id"].int, user: user)
-                    self.currentContent.addObject(contact)
+                    self.data.append(obj["alias"].stringValue)
+                    self.currentContent.append(contact)
                 }
             }
 
@@ -71,61 +72,48 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
         self.tabBarController?.tabBar.hidden = false
     }
     
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        searchActive = true;
+    }
+    
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        searchActive = false;
+        self.askTable.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchActive = false;
+        self.askTable.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchActive = false;
+        self.askTable.reloadData()
+    }
+
     
     func searchBar(searchBar :UISearchBar, textDidChange searchText:String){
         
         searchBar.showsCancelButton = true;
         
         if(!searchText.isEmpty){
-            println("updated search");
-                
-            self.updateFilteredContentForProductName(searchText);
-            self.askTable.reloadData();
-
-        }
-
-    }
-    
-    
-    func updateSearchResultsForSearchController(searchController :UISearchBar){
-    
-        println("Testing typing")
-        
-        var searchString :String = searchController.text;
-        self.updateFilteredContentForProductName(searchString);
-    
-    }
-    
-    
-    //Mark - Content Filtering
-
-    func updateFilteredContentForProductName(productName :String){
-    
-        self.searchResult.removeAllObjects(); // First clear the filtered array.
-    
-        /*  
-        
-        Search the main list for products whose type matches the scope (if selected) and whose name matches searchText; add items that match to the filtered array.
-        
-        */
-        
-        var product: ReferralFilterContent?
-        
-        for product in self.currentContent {
-            
-            println("what products see -> \(product.name)")
-            
-            var searchOptions = NSStringCompareOptions.CaseInsensitiveSearch | NSStringCompareOptions.DiacriticInsensitiveSearch;
-            var productNameRang = Range<String.Index>(start: productName.startIndex, end: productName.endIndex);
-            var foundRange =  product.name.substringWithRange(productNameRang) as  String;
-            
-            if (foundRange == productName) {
-                self.searchResult.addObject(product);
+            filtered = data.filter({ (text) -> Bool in
+                let tmp: NSString = text
+                let range = tmp.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch)
+                return range.location != NSNotFound
+            })
+            if(filtered.count == 0){
+                searchActive = false;
+            } else {
+                searchActive = true;
             }
-        
+            self.askTable.reloadData()
+
         }
-        
+
     }
+    
+
 
     // MARK: -- UITableViewDataSource --
     
@@ -136,6 +124,10 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        
+        if(searchActive) {
+            return filtered.count
+        }
+
         return self.searchResult.count;
         
     }
@@ -149,9 +141,17 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
         
         var cell:ContactsCell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath) as! ContactsCell
         
-        cell.loadData(self.searchResult.objectAtIndex(indexPath.row) as! ContactModel)
+        /*cell.loadData(self.searchResult.objectAtIndex(indexPath.row) as! ContactModel)
 
-        return cell
+        return cell*/
+        
+        if(searchActive){
+            cell.textLabel?.text = filtered[indexPath.row]
+        } else {
+            cell.textLabel?.text = data[indexPath.row];
+        }
+        
+        return cell;
     }
     
     // MARK: -- UITableViewDelegate --
@@ -216,5 +216,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
         popup!.removeFromSuperview();
         self.navigationController?.popToRootViewControllerAnimated(true)
     }
+    
+    
         
 }
