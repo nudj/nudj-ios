@@ -246,6 +246,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let refView = segue.destinationViewController as? AskReferralViewController {
             refView.jobId = self.jobId
+            refView.isNudjRequest = false
         }
     }
 }

@@ -13,8 +13,10 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     @IBOutlet var askTable: UITableView!
     @IBOutlet var searchBarView: UISearchBar!
     @IBOutlet weak var messageText: UITextView!
+    @IBOutlet weak var messageLabel: UILabel!
 
     var jobId:Int?
+    var isNudjRequest:Bool?
     
     var searchActive : Bool = false
     var data:[String] = []
@@ -33,6 +35,11 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
         self.tabBarController?.tabBar.hidden = true
 
         // Do any additional setup after loading the view.
+        
+        if(self.isNudjRequest!){
+            self.title = "Refer Someone"
+            self.messageLabel.text = "Select the contacts that you would like to refer"
+        }
         
         askTable.registerNib(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
 
@@ -141,9 +148,11 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
         
         var cell:ContactsCell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath) as! ContactsCell
         
-        /*cell.loadData(self.searchResult.objectAtIndex(indexPath.row) as! ContactModel)
+        cell.loadData(self.searchResult[indexPath.row] as! ContactModel)
 
-        return cell*/
+       return cell
+        
+        /* Filter
         
         if(searchActive){
             cell.textLabel?.text = filtered[indexPath.row]
@@ -152,6 +161,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
         }
         
         return cell;
+        */
     }
     
     // MARK: -- UITableViewDelegate --
@@ -191,21 +201,42 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
 
         let params:[String:AnyObject] = ["job": "\(jobId!)", "contacts": contactIds, "message": messageText.text]
 
-        println("AskForReferal: \(params)")
-
-        API.sharedInstance.put("nudge/ask", params: params, closure: { result in
-
+        if(self.isNudjRequest!){
+            
+             println("nudge: \(params)")
+            
+            API.sharedInstance.put("nudge", params: params, closure: { result in
+            
             self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true);
-            self.popup!.bodyText("You have successfully asked \(contactIds.count) contacts for referral");
+            self.popup!.bodyText("You have successfully nudged  \(contactIds.count) user");
             self.popup!.delegate = self;
             self.view.addSubview(self.popup!);
-
+            
             println(result)
-        }) { error in
-            println(error)
+            }) { error in
+                println(error)
+            }
+            
+        }else{
+            println("AskForReferal: \(params)")
+            
+            API.sharedInstance.put("nudge/ask", params: params, closure: { result in
+                
+                self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true);
+                self.popup!.bodyText("You have successfully asked \(contactIds.count) contacts for referral");
+                self.popup!.delegate = self;
+                self.view.addSubview(self.popup!);
+                
+                println(result)
+                }) { error in
+                    println(error)
+            }
+
+            
         }
 
     }
+    
 
     @IBAction func close(sender: AnyObject) {
         self.navigationController?.popToRootViewControllerAnimated(true)

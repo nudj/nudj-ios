@@ -44,16 +44,21 @@ class NotificationCell: UITableViewCell {
         self.message.setFont(boldFont, string: data.jobTitle!)
 
         self.refAmount.text = data.jobBonus;
-        //self.dateLabel.text
         self.readStatus(data.notificationReadStatus!)
         
         //go to profile
         //data.senderId = data["sender"]["id"].stringValue
         //
         
-        //data.notificationTime
-        //data.notificationMessage
-  
+        
+        let timestamp:NSTimeInterval =  NSTimeInterval(data.notificationTime!)
+        let date:NSDate = NSDate(timeIntervalSince1970:timestamp)
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "d/M/yy - H:mm"
+        let currentDate  = dateFormatter.stringFromDate(date)
+        
+        self.dateLabel.text = currentDate
         
         self.smsButton.tag = data.notificationType!.rawValue
         self.smsButton.addTarget(self, action: "actions:", forControlEvents:.TouchUpInside)

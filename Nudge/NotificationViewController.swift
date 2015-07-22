@@ -83,7 +83,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 2 //self.data.count
+        return self.data.count
         
     }
 
@@ -99,10 +99,8 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
         
         cell.delegate = self
         
-        if(self.data.count > 0){
-        var ints = self.data.count - (2 - indexPath.row )
-        cell.setup(self.data[ints]) // indexPath.row
-        }
+        cell.setup(self.data[indexPath.row])
+        
         
         return cell
     }

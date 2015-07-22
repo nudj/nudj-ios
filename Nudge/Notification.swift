@@ -22,7 +22,7 @@ class Notification {
     var notificationId:String?
     var notificationType:NotificationType?
     var notificationReadStatus:Bool?
-    var notificationTime:String?
+    var notificationTime:Double?
     var notificationMessage:String?
     
     var jobID:String?
@@ -52,7 +52,7 @@ class Notification {
         
         obj.notificationType = NotificationType(rawValue: data["type"].stringValue.toInt()!)
         obj.notificationReadStatus = data["read"].boolValue
-        obj.notificationTime = data["created"].stringValue
+        obj.notificationTime = data["created"].doubleValue
         obj.notificationMessage = data["message"].stringValue
         obj.notificationId = data["id"].stringValue
         

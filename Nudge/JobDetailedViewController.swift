@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 import SwiftyJSON
 
-class JobDetailedViewController: BaseController {
+class JobDetailedViewController: BaseController, CreatePopupViewDelegate {
     
     var jobID:String?
     
@@ -25,6 +25,7 @@ class JobDetailedViewController: BaseController {
     @IBOutlet weak var interestedBtn: UIButton!
     
     @IBOutlet weak var skills: TokenView!
+    var popup :CreatePopupView?;
     
     override func viewDidLoad() {
         
@@ -160,13 +161,50 @@ class JobDetailedViewController: BaseController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let askView = segue.destinationViewController as? AskReferralViewController {
             askView.jobId = self.jobID!.toInt()
+            askView.isNudjRequest = true
         }
     }
-    
     
     @IBAction func interested(sender: UIButton) {
     
         
+        if(sender.titleLabel?.text == "INTERESTED"){
+            //Go to INTERESTED
+            
+            let params:[String:AnyObject] = ["job_id": "\(self.jobID!)"]
+            
+            API.sharedInstance.put("nudge/apply", params: params, closure: { json in
+                
+                println("Job interested")
+                self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true);
+                self.popup!.bodyText("The hirer has been notified");
+                self.popup!.delegate = self;
+                self.view.addSubview(self.popup!);
+               
+                
+                }) { error in
+                    
+                    println("Error -> \(error)")
+            }
+
+            
+        }else{
+            
+            //Go to EditView
+            let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            var addJobView = storyboard.instantiateViewControllerWithIdentifier("AskReferralView") as! AskReferralViewController
+            addJobView.jobId = self.jobID?.toInt()
+            addJobView.isNudjRequest = false
+            self.navigationController?.pushViewController(addJobView, animated:true);
+            
+        }
+        
+    }
+    
+    func dismissPopUp() {
+        
+        popup!.removeFromSuperview();
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
 
