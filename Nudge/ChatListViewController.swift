@@ -42,6 +42,8 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
             for (id, obj) in response["data"] {
                 self.data.append(obj)
             }
+            
+            println(response)
 
             self.chatTable.reloadData()
             self.navigationController?.tabBarItem.badgeValue = nil
@@ -100,10 +102,11 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         var vc:ChatViewController = ChatViewController()
 
         let chat = self.data[indexPath.row]
+        let user = chat["participants"][0]["id"].intValue == appGlobalDelegate.user!.id ? chat["participants"][1] : chat["participants"][0]
 
         vc.chatID = chat["id"].stringValue;
-        vc.participants = chat["participants"][0]["name"].stringValue
-        vc.participantsID = chat["participants"][0]["id"].stringValue
+        vc.participants =  user["name"].stringValue
+        vc.participantsID = user["id"].stringValue
         vc.chatTitle = "re: "+chat["job"]["title"].stringValue
         vc.jobID = chat["job"]["id"].stringValue
         vc.userToken = appGlobalDelegate.user?.token

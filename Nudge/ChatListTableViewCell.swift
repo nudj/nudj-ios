@@ -19,12 +19,13 @@ class ChatListTableViewCell: UITableViewCell {
     
     
     func loadData(data:JSON) {
-
-        println(data)
-
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
         let job = data["job"]
-        let user = data["participants"][0]
-
+        
+        let user = data["participants"][0]["id"].intValue == appDelegate.user!.id ? data["participants"][1] : data["participants"][0]
+        
         profilePicture.downloadImage(user["image"]["profile"].stringValue)
 
         userName.text = user["name"].string
