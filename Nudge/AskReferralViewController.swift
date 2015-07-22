@@ -201,6 +201,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
         }
 
         let params:[String:AnyObject] = ["job": "\(jobId!)", "contacts": contactIds, "message": messageText.text]
+        self.messageText.resignFirstResponder()
 
         if(self.isNudjRequest!){
             

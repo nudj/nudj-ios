@@ -97,7 +97,9 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
             if (error != nil) {
                 return
             }
-
+            
+            self.jobDescription.resignFirstResponder()
+            
             self.jobId = id
 
             self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"this_job_has-been_posted", withText: false);
