@@ -52,7 +52,9 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
             self.data.removeAll(keepCapacity: false)
             self.indexes.removeAll(keepCapacity: false)
 
-            for (id, obj) in response["data"] {
+            let dictionary = sorted(response["data"]) { $0.0 < $1.0 }
+            
+            for (id, obj) in dictionary {
                 if self.data[id] == nil {
                     self.indexes.append(id)
                     self.data[id] = [ContactModel]()

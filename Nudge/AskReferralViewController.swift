@@ -131,9 +131,9 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        
-        if(searchActive) {
+        /*if(searchActive) {
             return filtered.count
-        }
+        }*/
 
         return self.searchResult.count;
         
@@ -148,7 +148,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
         
         var cell:ContactsCell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath) as! ContactsCell
         
-        cell.loadData(self.searchResult[indexPath.row] as! ContactModel)
+        cell.loadData(self.searchResult[indexPath.row])
 
        return cell
         
@@ -169,6 +169,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
         if let cell = tableView.cellForRowAtIndexPath(indexPath) as? ContactsCell {
+            //TODO: Change search results to array of Optionals
             if let contact = searchResult[indexPath.row] as? ContactModel {
 
                 // TODO: Fix this!!!

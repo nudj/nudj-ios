@@ -90,11 +90,9 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         (nibName: "ChatViewController", bundle: nil)
         
         */
+    
         
-        // Enter chat room 
-        // connect if not already connected
-        
-        println("Hello")
+        println("go to chat")
         
         var conference :String = self.data[indexPath.row]["id"].stringValue
         var appGlobalDelegate = UIApplication.sharedApplication().delegate as! AppDelegate

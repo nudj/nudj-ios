@@ -126,7 +126,24 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
             self.navigationController?.pushViewController(detailsView, animated: true);
             break;
         case .AppApplication:
-            println("message")
+            println("go to chat")
+            /*
+            var conference :String = self.data[indexPath.row]["id"].stringValue
+            var appGlobalDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            
+            var vc:ChatViewController = ChatViewController()
+            
+            let chat = self.data[indexPath.row]
+            let user = chat["participants"][0]["id"].intValue == appGlobalDelegate.user!.id ? chat["participants"][1] : chat["participants"][0]
+            
+            vc.chatID = chat["id"].stringValue;
+            vc.participants =  user["name"].stringValue
+            vc.participantsID = user["id"].stringValue
+            vc.chatTitle = "re: "+chat["job"]["title"].stringValue
+            vc.jobID = chat["job"]["id"].stringValue
+            vc.userToken = appGlobalDelegate.user?.token
+            
+            self.navigationController?.pushViewController(vc, animated: true)*/
             break;
         case .WebApplication:
             println("sms")
