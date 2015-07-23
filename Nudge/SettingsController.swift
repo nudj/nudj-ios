@@ -20,17 +20,18 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
         [
             SettingsItem(name: "My Profile", action: "showYourProfile"),
             SettingsItem(name: "My Status", action: "showStatusPicker"),
-            SettingsItem(name: "Notifications", action: ""),
+            //SettingsItem(name: "Notifications", action: ""),
             SettingsItem(name: "Saved Jobs", action: ""),
-            SettingsItem(name: "Posted Jobs", action: ""),
-            SettingsItem(name: "My Account", action: "")
+            SettingsItem(name: "Posted Jobs", action: "")
+            //SettingsItem(name: "My Account", action: "")
+            //SettingsItem(name: "Archived Chats", action: "")
         ],
         [
             SettingsItem(name: "Linked In", action: ""),
             SettingsItem(name: "Facebook", action: "")
         ],
         [
-            SettingsItem(name: "Invite Friends", action: ""),
+            //SettingsItem(name: "Invite Friends", action: ""),
             SettingsItem(name: "Terms And Conditions", action: ""),
             SettingsItem(name: "Send Feedback", action: "")
         ],

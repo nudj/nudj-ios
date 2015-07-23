@@ -22,7 +22,7 @@ class CreatePopupView: UIView {
     var contentImage :UIImageView?;
     var labl :UILabel?
     
-    init(x:CGFloat, yCordinate y:CGFloat, width w:CGFloat, height h:CGFloat, imageName i:String, withText wt:Bool){
+    init(x:CGFloat, yCordinate y:CGFloat, width w:CGFloat, height h:CGFloat, imageName i:String, withText:Bool){
         super.init(frame: CGRect(x: x, y: y, width: w, height: h))
         
         self.blackBackground = UIView(frame: CGRectMake(x, y, w, h));
@@ -44,7 +44,7 @@ class CreatePopupView: UIView {
         var gestureTwo :UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:"dismissPopup");
         self.whitepopupbox!.addGestureRecognizer(gestureTwo)
         
-        if(wt == true){
+        if(withText == true){
         
             self.contentImage = UIImageView(frame: CGRectMake((self.whitepopupbox!.frame.size.width - 88)/2 , 22 , 88, 88))
             self.contentImage!.image = UIImage(named:i)

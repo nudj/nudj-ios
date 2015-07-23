@@ -198,6 +198,7 @@
 		A99650AA1B3DB3FF00D5A8E9 /* mute@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650A21B3DB3FF00D5A8E9 /* mute@2x.png */; };
 		A99650AB1B3DB3FF00D5A8E9 /* mute2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650A31B3DB3FF00D5A8E9 /* mute2@2x.png */; };
 		A99650AC1B3DB3FF00D5A8E9 /* profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650A41B3DB3FF00D5A8E9 /* profile@2x.png */; };
+		A9977C8A1B6158960005A23C /* FilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9977C891B6158960005A23C /* FilterModel.swift */; };
 		A9C6EC921B381EB000EC9140 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC911B381EB000EC9140 /* ChatViewController.swift */; };
 		A9C6EC981B38273300EC9140 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9C6EC971B38273300EC9140 /* Crashlytics.framework */; };
 		A9C6EC9A1B38416C00EC9140 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9C6EC991B38416C00EC9140 /* ChatViewController.xib */; };
@@ -225,7 +226,6 @@
 		A9F3336C1B42BE4B00F0D17B /* this_job_has-been_posted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3336B1B42BE4B00F0D17B /* this_job_has-been_posted@2x.png */; };
 		A9F3336E1B42CD4300F0D17B /* AskReferralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F3336D1B42CD4300F0D17B /* AskReferralViewController.swift */; };
 		A9F333701B42D20C00F0D17B /* close_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3336F1B42D20C00F0D17B /* close_btn@2x.png */; };
-		A9F333721B4302F800F0D17B /* ReferralFilterContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F333711B4302F800F0D17B /* ReferralFilterContent.swift */; };
 		A9F333741B4444D700F0D17B /* CreatePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F333731B4444D700F0D17B /* CreatePopupView.swift */; };
 		A9F3337E1B45532F00F0D17B /* success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3337D1B45532F00F0D17B /* success@2x.png */; };
 		A9F333811B45972100F0D17B /* save@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3337F1B45972100F0D17B /* save@2x.png */; };
@@ -689,6 +689,7 @@
 		A99650A21B3DB3FF00D5A8E9 /* mute@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mute@2x.png"; sourceTree = "<group>"; };
 		A99650A31B3DB3FF00D5A8E9 /* mute2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mute2@2x.png"; sourceTree = "<group>"; };
 		A99650A41B3DB3FF00D5A8E9 /* profile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile@2x.png"; sourceTree = "<group>"; };
+		A9977C891B6158960005A23C /* FilterModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterModel.swift; sourceTree = "<group>"; };
 		A9C6EC911B381EB000EC9140 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		A9C6EC971B38273300EC9140 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		A9C6EC991B38416C00EC9140 /* ChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
@@ -719,7 +720,6 @@
 		A9F3336B1B42BE4B00F0D17B /* this_job_has-been_posted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "this_job_has-been_posted@2x.png"; sourceTree = "<group>"; };
 		A9F3336D1B42CD4300F0D17B /* AskReferralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskReferralViewController.swift; sourceTree = "<group>"; };
 		A9F3336F1B42D20C00F0D17B /* close_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close_btn@2x.png"; sourceTree = "<group>"; };
-		A9F333711B4302F800F0D17B /* ReferralFilterContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferralFilterContent.swift; sourceTree = "<group>"; };
 		A9F333731B4444D700F0D17B /* CreatePopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePopupView.swift; sourceTree = "<group>"; };
 		A9F3337D1B45532F00F0D17B /* success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "success@2x.png"; sourceTree = "<group>"; };
 		A9F3337F1B45972100F0D17B /* save@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "save@2x.png"; sourceTree = "<group>"; };
@@ -728,7 +728,7 @@
 		EB000F7E1AB71D6600E4D385 /* ContactsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsController.swift; sourceTree = "<group>"; };
 		EB04F61F1AA72520002F2677 /* RegistrationInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationInput.swift; sourceTree = "<group>"; };
 		EB04F6221AAD89AF002F2677 /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
-		EB0926CA1A8DE4CB00E1D958 /* nudge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nudge.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB0926CA1A8DE4CB00E1D958 /* Nudj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nudj.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB0926CE1A8DE4CB00E1D958 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB0926CF1A8DE4CB00E1D958 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB0926D11A8DE4CB00E1D958 /* MainFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeed.swift; sourceTree = "<group>"; };
@@ -1873,7 +1873,6 @@
 			children = (
 				EBEA9B481AF265150027A2A2 /* AddJobController.swift */,
 				A9F3336D1B42CD4300F0D17B /* AskReferralViewController.swift */,
-				A9F333711B4302F800F0D17B /* ReferralFilterContent.swift */,
 			);
 			name = AddJob;
 			sourceTree = "<group>";
@@ -1970,7 +1969,7 @@
 		EB0926CB1A8DE4CB00E1D958 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EB0926CA1A8DE4CB00E1D958 /* nudge.app */,
+				EB0926CA1A8DE4CB00E1D958 /* Nudj.app */,
 				EB0926E11A8DE4CB00E1D958 /* nudgeTests.xctest */,
 			);
 			name = Products;
@@ -2066,6 +2065,7 @@
 				EBF17A251B4D76C600C67657 /* JobModel.swift */,
 				EBF17A271B4E641400C67657 /* ContactModel.swift */,
 				EB72C5691B578D8100CCBD2E /* Notification.swift */,
+				A9977C891B6158960005A23C /* FilterModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -2184,7 +2184,7 @@
 			);
 			name = Nudge;
 			productName = Nudge;
-			productReference = EB0926CA1A8DE4CB00E1D958 /* nudge.app */;
+			productReference = EB0926CA1A8DE4CB00E1D958 /* Nudj.app */;
 			productType = "com.apple.product-type.application";
 		};
 		EB0926E01A8DE4CB00E1D958 /* NudgeTests */ = {
@@ -2484,6 +2484,7 @@
 				A996504B1B387CC800D5A8E9 /* XMPPDateTimeProfiles.m in Sources */,
 				A996502D1B387CC800D5A8E9 /* XMPPRoomHybridStorage.m in Sources */,
 				A996507E1B387CC800D5A8E9 /* DDXMLNode.m in Sources */,
+				A9977C8A1B6158960005A23C /* FilterModel.swift in Sources */,
 				A9964FED1B387CC800D5A8E9 /* JSQPhotoMediaItem.m in Sources */,
 				A99650381B387CC800D5A8E9 /* XMPPvCardCoreDataStorage.m in Sources */,
 				A99650051B387CC800D5A8E9 /* XMPPPlainAuthentication.m in Sources */,
@@ -2547,7 +2548,6 @@
 				A99650491B387CC800D5A8E9 /* XMPPMessage+XEP_0066.m in Sources */,
 				A99650021B387CC800D5A8E9 /* XMPPDeprecatedDigestAuthentication.m in Sources */,
 				A99650111B387CC800D5A8E9 /* XMPPPresence.m in Sources */,
-				A9F333721B4302F800F0D17B /* ReferralFilterContent.swift in Sources */,
 				EBEA9B491AF265150027A2A2 /* AddJobController.swift in Sources */,
 				A99650341B387CC800D5A8E9 /* XMPPMUC.m in Sources */,
 				A9964FE71B387CC800D5A8E9 /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,
@@ -2734,7 +2734,7 @@
 					"$(SDKROOT)/usr/include/libxml2",
 					/usr/include/libxml2,
 				);
-				PRODUCT_NAME = nudge;
+				PRODUCT_NAME = Nudj;
 				PROVISIONING_PROFILE = "5741d6f2-4684-40e3-aa5f-604ac029124f";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Nudge/Nudge-Bridging-Header.h";
 			};
@@ -2768,7 +2768,7 @@
 					"$(SDKROOT)/usr/include/libxml2",
 					/usr/include/libxml2,
 				);
-				PRODUCT_NAME = nudge;
+				PRODUCT_NAME = Nudj;
 				PROVISIONING_PROFILE = "5741d6f2-4684-40e3-aa5f-604ac029124f";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Nudge/Nudge-Bridging-Header.h";
 			};

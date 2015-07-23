@@ -34,12 +34,15 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate {
         
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        
+        self.tabBarController?.tabBar.hidden = false
+        
+    }
+    
     override func viewWillAppear(animated: Bool) {
         
-        super.viewWillAppear(animated)
-        
-        self.navigationController?.navigationBarHidden = false
-        
+        self.tabBarController?.tabBar.hidden = true
     }
     
     

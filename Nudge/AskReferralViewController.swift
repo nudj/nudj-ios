@@ -18,12 +18,8 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     var jobId:Int?
     var isNudjRequest:Bool?
     
-    var searchActive : Bool = false
-    var data:[String] = []
-    var filtered:[String] = []
-
-    var currentContent:[ContactModel] = [];
-    var searchResult:[ContactModel]  = [];
+    var filtering:FilterModel?
+    
     var selected = [ContactModel]()
     var popup :CreatePopupView?;
     
@@ -52,7 +48,10 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
                 return
             }
 
-            for (id, parentObj) in response["data"] {
+            let dictionary = sorted(response["data"]) { $0.0 < $1.0 }
+            var content:[ContactModel] = [];
+            
+            for (id, parentObj) in dictionary {
                 for (id, obj) in parentObj {
 
                     var user:UserModel? = nil
@@ -63,39 +62,68 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
                     }
 
                     var contact = ContactModel(id: obj["id"].intValue, name: obj["alias"].stringValue, apple_id: obj["apple_id"].int, user: user)
-                    self.data.append(obj["alias"].stringValue)
-                    self.currentContent.append(contact)
+                    content.append(contact)
                 }
             }
-
-            self.searchResult = self.currentContent
+            
+            self.filtering = FilterModel(content: content)
             self.askTable.reloadData()
         }
     }
 
+    
     override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-
         self.tabBarController?.tabBar.hidden = false
     }
     
+    override func viewWillAppear(animated: Bool) {
+        
+        self.tabBarController?.tabBar.hidden = true
+    }
+    
+    //MARK: TextView Delegate
+    func textViewDidBeginEditing(textView: UITextView) {
+        
+        if(textView.text == "Enter you personalised message"){
+            textView.text = ""
+        }
+        
+    }
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        
+        return true
+    }
+    
+    
+    //MARK: Search bar Delegates
+    
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        searchActive = true;
+        //searchActive = true;
+        /* if(self.filtering != nil && searchBar.text.isEmpty){
+            self.filtering?.stopFiltering()
+        }*/
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-        searchActive = false;
-        self.askTable.reloadData()
+        //searchActive = false;
+        //self.askTable.reloadData()
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        searchActive = false;
+        if(self.filtering != nil){
+        self.filtering?.stopFiltering()
+        searchBar.text = ""
         self.askTable.reloadData()
+        }
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        searchActive = false;
-        self.askTable.reloadData()
+       
+        searchBar.resignFirstResponder()
     }
 
     
@@ -103,19 +131,10 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
         
         searchBar.showsCancelButton = true;
         
-        if(!searchText.isEmpty){
-            filtered = data.filter({ (text) -> Bool in
-                let tmp: NSString = text
-                let range = tmp.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch)
-                return range.location != NSNotFound
+        if(self.filtering != nil && !searchText.isEmpty){
+            self.filtering!.startFiltering(searchText, completionHandler: { (success) -> Void in
+                self.askTable.reloadData()
             })
-            if(filtered.count == 0){
-                searchActive = false;
-            } else {
-                searchActive = true;
-            }
-            self.askTable.reloadData()
-
         }
 
     }
@@ -130,12 +149,8 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       
-        /*if(searchActive) {
-            return filtered.count
-        }*/
 
-        return self.searchResult.count;
+        return self.filtering != nil ? self.filtering!.filteredContent.count : 0
         
     }
     
@@ -148,20 +163,12 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
         
         var cell:ContactsCell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath) as! ContactsCell
         
-        cell.loadData(self.searchResult[indexPath.row])
-
-       return cell
-        
-        /* Filter
-        
-        if(searchActive){
-            cell.textLabel?.text = filtered[indexPath.row]
-        } else {
-            cell.textLabel?.text = data[indexPath.row];
+        if(self.filtering != nil){
+        cell.loadData(self.filtering!.filteredContent[indexPath.row] as ContactModel)
         }
         
-        return cell;
-        */
+        return cell
+        
     }
     
     // MARK: -- UITableViewDelegate --
@@ -170,7 +177,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
 
         if let cell = tableView.cellForRowAtIndexPath(indexPath) as? ContactsCell {
             //TODO: Change search results to array of Optionals
-            if let contact = searchResult[indexPath.row] as? ContactModel {
+            if let contact = self.filtering!.filteredContent[indexPath.row] as? ContactModel {
 
                 // TODO: Fix this!!!
                 for (index, value) in enumerate(selected) {

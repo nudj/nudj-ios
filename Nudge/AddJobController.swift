@@ -79,10 +79,17 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
         self.tabBarController?.tabBar.hidden = false
     }
     
+    override func viewWillAppear(animated: Bool) {
+        
+        self.tabBarController?.tabBar.hidden = true
+    }
     
     //ToDo :change to camel case
     @IBAction func PostAction(sender: AnyObject) {
 
+        self.resignFirstResponder()
+        self.view.endEditing(true)
+        
         var job = JobModel();
         job.title = jobTitle.text
         job.description = jobDescription.text
@@ -97,8 +104,6 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
             if (error != nil) {
                 return
             }
-            
-            self.jobDescription.resignFirstResponder()
             
             self.jobId = id
 

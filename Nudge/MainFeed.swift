@@ -36,6 +36,7 @@ class MainFeed: BaseController, DataProviderProtocol {
         
         self.table.loadData()
     }
+    
 
     func requestData(page: Int, size: Int, listener: (JSON) -> ()) {
         let url = "jobs/available?params=job.title,job.salary,job.bonus,job.user,job.location,job.company,user.name,user.image&sizes=user.profile&page=" + String(page) + "&limit=" + String(size)

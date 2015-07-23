@@ -124,7 +124,22 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-
+        
+        //self.updateUserName(nameLabel.text)
+        //Save when user press save
+        
+        UserModel.update(["name":nameLabel.text,"email":email.text,"position":position.text!,"address":location.text!,"company":company.text!], closure: { result in
+            println("Save information : \(result)")
+            
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
+                appDelegate.user!.name = self.nameLabel.text
+                appDelegate.pushUserData()
+            
+            
+            }, errorHandler: { error in
+                println(error)
+        })
+        
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 

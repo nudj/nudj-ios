@@ -36,6 +36,12 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
 
         showUserData()
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        
+            self.updateUserName(name.text)
+        
+    }
 
     func showUserData() {
         UserModel.getCurrent(["user.status", "user.name", "user.image", "user.completed"], closure: { user in
@@ -83,7 +89,7 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
     // MARK: TextFieldDelegate
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        updateUserName(textField.text)
+        
         textField.resignFirstResponder()
 
         return true
