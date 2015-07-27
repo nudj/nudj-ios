@@ -66,7 +66,11 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
         println("Notifications url request response ->\(data)");
 
         for (id, obj) in data["data"] {
-            self.data.append(Notification.createFromJSON(obj))
+            
+            if let val = Notification.createFromJSON(obj){
+                self.data.append(val)
+            }
+            
         }
 
         self.tableView.reloadData()
@@ -98,7 +102,6 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
         var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! NotificationCell
         
         cell.delegate = self
-        
         cell.setup(self.data[indexPath.row])
         
         
@@ -113,12 +116,19 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
         
     }
 
-    func didPressRightButton(cell:NotificationCell, action:NotificationType){
+    func didPressRightButton(cell:NotificationCell){
+        
+        if(cell.type == nil){
+            
+            return;
+        }
         
         
-        switch action {
+        switch cell.type! {
         case .AskToRefer:
             println("Details")
+            
+            //TODO: USE Segway
             let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             var detailsView = storyboard.instantiateViewControllerWithIdentifier("JobDetailedView") as! JobDetailedViewController
             var indexPath:NSIndexPath = tableView.indexPathForCell(cell)!
@@ -150,6 +160,12 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
             break;
         case .MatchingContact:
             println("Nudge")
+            break;
+        case .AppApplicationWithNoReferral:
+            println("go to chat")
+            break;
+        case .WebApplicationWithNoReferral:
+            println("sms")
             break;
         default:
             break;

@@ -252,14 +252,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         
         //Connect to the chat server or Reconect if disconnected
-        if ((chatInst) != nil)
+        /*if ((chatInst) != nil)
         {
             if !chatInst!.connect() {
                 
                 println("NOT Connected to chat server so will try reconnecting !!!")
             
             }
-        }
+        }*/
        
     }
 
@@ -268,9 +268,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
         
-        self.chatInst!.xmppRoom?.leaveRoom()
-        self.chatInst!.xmppRoom?.deactivate()
-        self.chatInst!.xmppRoom?.removeDelegate(self)
+//        self.chatInst!.xmppRoom?.leaveRoom()
+//        self.chatInst!.xmppRoom?.deactivate()
+//        self.chatInst!.xmppRoom?.removeDelegate(self)
     }
 
     // MARK: - Core Data stack
@@ -344,9 +344,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         
     }
     
-    func recievedMessage(content:JSQMessage){
+    func recievedMessage(content: JSQMessage, conference: String) {
         
-        println("Message via Appdelegate -> \(content.text)")
+        println("Message via Appdelegate -> \(content.text) from:\(content.senderId) room:\(conference)")
      
         // Update badge
         NSNotificationCenter.defaultCenter().postNotificationName("updateBadgeValue", object: nil, userInfo: ["value":"1","index":"1"])

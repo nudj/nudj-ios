@@ -32,11 +32,11 @@ class FilterModel: NSObject {
         })
         
         
-        if(self.filteredContent.count == 0){
+        /*if(self.filteredContent.count == 0){
             
             self.filteredContent = self.allContent
         
-        }
+        }*/
         
         completionHandler(success:true)
     }

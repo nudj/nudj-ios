@@ -29,8 +29,6 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
         super.viewDidLoad()
 
         self.tabBarController?.tabBar.hidden = true
-
-        // Do any additional setup after loading the view.
         
         if(self.isNudjRequest!){
             self.title = "Refer Someone"
@@ -38,7 +36,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
         }
         
         askTable.registerNib(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
-
+        
         self.loadData()
     }
 
@@ -115,9 +113,13 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         if(self.filtering != nil){
-        self.filtering?.stopFiltering()
-        searchBar.text = ""
-        self.askTable.reloadData()
+            if(searchBar.text == ""){
+                searchBar.resignFirstResponder()
+            }else{
+                self.filtering?.stopFiltering()
+                searchBar.text = ""
+                self.askTable.reloadData()
+            }
         }
     }
     
@@ -131,10 +133,20 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
         
         searchBar.showsCancelButton = true;
         
-        if(self.filtering != nil && !searchText.isEmpty){
-            self.filtering!.startFiltering(searchText, completionHandler: { (success) -> Void in
+        if(self.filtering != nil){
+        
+            if(!searchText.isEmpty){
+                
+                self.filtering!.startFiltering(searchText, completionHandler: { (success) -> Void in
+                    self.askTable.reloadData()
+                })
+                
+            }else {
+                
+                self.filtering!.stopFiltering()
                 self.askTable.reloadData()
-            })
+            }
+        
         }
 
     }

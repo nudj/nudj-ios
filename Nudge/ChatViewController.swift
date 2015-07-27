@@ -21,12 +21,6 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
     override func viewDidLoad() {
         
         super.viewDidLoad();
-        
-
-        /*
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage.jsq_defaultTypingIndicatorImage(), style:UIBarButtonItemStyle.Plain, target:self, action:"performAction:");
-        
-        */
 
         let id = appGlobalDelegate.user!.id!
         self.senderId = String(id) + "@chat.nudj.co";
@@ -77,6 +71,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
         super.viewWillDisappear(animated)
         
         self.tabBarController?.tabBar.hidden = false
+        self.navigationController?.navigationBarHidden = false;
         appGlobalDelegate.chatInst!.delegate = appGlobalDelegate;
 
         
@@ -97,6 +92,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
 
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         
+        //cappGlobalDelegate.chatInst?.xmppRoom.se
         appGlobalDelegate.chatInst!.xmppRoom?.sendMessageWithBody(text);
 
         self.finishSendingMessage()
@@ -336,9 +332,12 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
         
     }
     
-    func recievedMessage(content:JSQMessage){
+    func recievedMessage(content:JSQMessage, conference:String){
         
-        println("Message via chatview -> \(content.text)")
+        println("Message via chat -> \(content.text) from:\(content.senderId) room:\(conference)")
+        var conferenceID = self.chatID+""+appGlobalDelegate.chatInst!.ConferenceUrl
+        
+        if(conferenceID == conference){
         
         self.scrollToBottomAnimated(true);
 
@@ -346,6 +345,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
         
         self.finishReceivingMessageAnimated(true)
         
+        }
     }
     
     override func dropDownAction(sender: AnyObject!) {

@@ -12,7 +12,7 @@ import Alamofire
 import SwiftyJSON
 
 protocol ChatModelsDelegate {
-    func recievedMessage(content:JSQMessage)
+    func recievedMessage(content:JSQMessage, conference:String)
     func recievedUser(content:NSDictionary)
 }
 
@@ -332,7 +332,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             }
             
             var jsqMessage = JSQMessage(senderId: message.from().resource, senderDisplayName: message.from().resource, date:time!, text: message.body())
-            delegate?.recievedMessage(jsqMessage)
+            delegate?.recievedMessage(jsqMessage, conference: sender.roomJID.bare())
         }
 
     }
@@ -362,6 +362,8 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         xmppRoom!.activate(xmppStream)
     
         xmppRoom!.joinRoomUsingNickname(jabberUsername, history:nil)
+        
+        //xmppRoomStorage = XMPPRoomCoreDataStorage.sharedInstance();
 
     }
     
