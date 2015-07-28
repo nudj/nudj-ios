@@ -15,6 +15,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
     var incomingBubbleImageData :JSQMessagesBubbleImage?;
     var templateImage :JSQMessagesAvatarImage?;
     var messages = NSMutableArray();
+    var selectedIndex: Int?
     let appGlobalDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     
@@ -36,7 +37,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
         self.templateImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(UserModel.getDefaultUserImage(), diameter: 30)
         
         appGlobalDelegate.chatInst!.delegate = self;
-        self.messages = appGlobalDelegate.chatInst!.retrieveStoredChats(self.chatID);
+        self.messages = appGlobalDelegate.chatInst!.listOfActiveChatRooms[self.selectedIndex!].retrieveStoredChats()
 
     }
 
@@ -92,8 +93,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
 
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         
-        //cappGlobalDelegate.chatInst?.xmppRoom.se
-        appGlobalDelegate.chatInst!.xmppRoom?.sendMessageWithBody(text);
+        appGlobalDelegate.chatInst!.listOfActiveChatRooms[self.selectedIndex!].xmppRoom!.sendMessageWithBody(text);
 
         self.finishSendingMessage()
     

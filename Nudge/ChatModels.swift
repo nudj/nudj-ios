@@ -22,6 +22,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     
     var jabberUsername:String?;
     var jabberPassword:String?;
+    var listOfActiveChatRooms:[ChatRoomModel] = []
     
     let chatServer = "chat.nudj.co";
     let ConferenceUrl = "@conference.chat.nudj.co";
@@ -41,6 +42,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     var xmppMessageArchivingModule  :XMPPMessageArchiving?;
     var xmppRoomStorage :XMPPRoomCoreDataStorage?;
     var xmppRoom :XMPPRoom?;
+    
     
     override init() {
         super.init();
@@ -262,7 +264,10 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
                 
             println("conference id ->  \(jid)");
             
-            self.acceptAndJoinChatRoom(jid);
+            var chatroom = ChatRoomModel()
+            var roomID = split(jid) {$0 == "@"}
+            chatroom.createChatModule(jid, roomId: roomID[0], with:self.xmppStream!, delegate:self)
+            self.listOfActiveChatRooms.append(chatroom)
             
         }else{
 
@@ -370,6 +375,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     
     func requestRooms(){
         
+        
         let params = [String: AnyObject]()
         
         API.sharedInstance.request(Alamofire.Method.GET, path: "chat", params: params, closure:{
@@ -381,9 +387,13 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
                 
                 for (id, obj) in json["data"]{
                     let data = obj["id"].string
+                   
                     println("Active chatrooms -> \(data!)\(self.ConferenceUrl)")
-                    self.acceptAndJoinChatRoom("\(data!)\(self.ConferenceUrl)");
+                    var chatroom = ChatRoomModel()
+                    chatroom.createChatModule("\(data!)\(self.ConferenceUrl)", roomId: data!, with:self.xmppStream!, delegate:self)
+                    self.listOfActiveChatRooms.append(chatroom)
                 }
+             
                 
             }
             

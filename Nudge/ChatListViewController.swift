@@ -108,6 +108,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         vc.chatTitle = "re: "+chat["job"]["title"].stringValue
         vc.jobID = chat["job"]["id"].stringValue
         vc.userToken = appGlobalDelegate.user?.token
+        vc.selectedIndex = indexPath.row
         
         self.navigationController?.pushViewController(vc, animated: true)
         
