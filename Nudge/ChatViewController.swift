@@ -37,8 +37,10 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
         self.templateImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(UserModel.getDefaultUserImage(), diameter: 30)
         
         appGlobalDelegate.chatInst!.delegate = self;
+        
+        if(appGlobalDelegate.chatInst!.listOfActiveChatRooms.count > selectedIndex){
         self.messages = appGlobalDelegate.chatInst!.listOfActiveChatRooms[self.selectedIndex!].retrieveStoredChats()
-
+        }
     }
 
     

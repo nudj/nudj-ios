@@ -129,18 +129,10 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
         //Save when user press save
 
             switch self.type {
-            case Type.Own:
-        UserModel.update(["name":nameLabel.text,"email":email.text,"position":position.text!,"address":location.text!,"company":company.text!], closure: { result in
-                    println("Save information : \(result)")
-                    
-                    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
-                appDelegate.user!.name = self.nameLabel.text
-                appDelegate.pushUserData()
-                
-            }, errorHandler: { error in
-                println(error)
-            })
-            break;
+            case Type.Own: self.updateAllInformation()
+                break;
+            case Type.Initial: self.updateAllInformation()
+                break;
             default:
             break;
             }
@@ -150,6 +142,7 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
         
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
+ 
 
     // Layout
 
@@ -243,6 +236,23 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
 
     // MARK: User Update functions
 
+    func updateAllInformation(){
+        
+        UserModel.update(["name":nameLabel.text,"email":email.text,"position":position.text!,"address":location.text!,"company":company.text!], closure: { result in
+            println("Save information : \(result)")
+            
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
+            appDelegate.user!.name = self.nameLabel.text
+            appDelegate.pushUserData()
+            
+            }, errorHandler: { error in
+                println(error)
+        })
+        
+        
+    }
+    
+    
     func updateUserName(userName: String) -> Void {
 
         UserModel.update(["name": userName], closure: { result in
@@ -253,6 +263,7 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
 
     }
 
+    
     // MARK: About
 
     func updateAbout(text: String) -> Void {

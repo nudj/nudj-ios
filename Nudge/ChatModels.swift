@@ -266,7 +266,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             
             var chatroom = ChatRoomModel()
             var roomID = split(jid) {$0 == "@"}
-            chatroom.createChatModule(jid, roomId: roomID[0], with:self.xmppStream!, delegate:self)
+            chatroom.prepareChatModel(jid, roomId: roomID[0], with:self.xmppStream!, delegate:self)
             self.listOfActiveChatRooms.append(chatroom)
             
         }else{
@@ -358,23 +358,8 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     
     // MARK: Custom chat room methods
     
-    func acceptAndJoinChatRoom(sender:String){
-        
-        var roomJID = XMPPJID.jidWithString(sender);
-        xmppRoom = XMPPRoom(roomStorage: xmppRoomStorage, jid: roomJID, dispatchQueue: dispatch_get_main_queue())
-        
-        xmppRoom!.addDelegate(self, delegateQueue: dispatch_get_main_queue())
-        xmppRoom!.activate(xmppStream)
-    
-        xmppRoom!.joinRoomUsingNickname(jabberUsername, history:nil)
-        
-        //xmppRoomStorage = XMPPRoomCoreDataStorage.sharedInstance();
-
-    }
-    
     
     func requestRooms(){
-        
         
         let params = [String: AnyObject]()
         
@@ -382,15 +367,20 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             (json: JSON) in
             
             if (json["status"].boolValue != true && json["data"] == nil) {
+                
                 println("ChatRoom Request Error -> \(json)")
-            }else{
+                
+            }
+            else
+            {
+                self.listOfActiveChatRooms.removeAll(keepCapacity: false)
                 
                 for (id, obj) in json["data"]{
                     let data = obj["id"].string
                    
                     println("Active chatrooms -> \(data!)\(self.ConferenceUrl)")
                     var chatroom = ChatRoomModel()
-                    chatroom.createChatModule("\(data!)\(self.ConferenceUrl)", roomId: data!, with:self.xmppStream!, delegate:self)
+                    chatroom.prepareChatModel("\(data!)\(self.ConferenceUrl)", roomId: data!, with:self.xmppStream!, delegate:self)
                     self.listOfActiveChatRooms.append(chatroom)
                 }
              
@@ -401,33 +391,5 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         
     }
 
-
-    func retrieveStoredChats(name:String) -> NSMutableArray{
-        
-        // Core data content
-        var moc = xmppRoomStorage!.mainThreadManagedObjectContext;
-        
-        var entityDescription = NSEntityDescription.entityForName("XMPPRoomMessageCoreDataStorageObject", inManagedObjectContext: moc);
-        var request = NSFetchRequest();
-        request.entity = entityDescription;
-        var error: NSError?;
-        
-        var messages :NSArray = moc.executeFetchRequest(request, error: &error)!;
-        var message:XMPPMessageArchiving_Message_CoreDataObject?;
-        
-        var messageObject = NSMutableArray();
-        
-        // Retrieve all the messages for the current conversation
-        for message in messages {
-            
-            if(message.roomJIDStr == name + self.ConferenceUrl){
-            messageObject.addObject(JSQMessage(senderId: message.nickname(), senderDisplayName: message.nickname(), date:message.localTimestamp(), text: message.body()))
-            }
-            
-        }
-        
-        return messageObject
-    }
-    
 
 }

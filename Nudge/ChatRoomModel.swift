@@ -14,9 +14,9 @@ class ChatRoomModel: NSObject{
     var xmppRoomStorage :XMPPRoomCoreDataStorage?
     var roomID:String?
     
-    func createChatModule(roomName:String, roomId:String, with xmpp:XMPPStream, delegate:XMPPRoomDelegate) -> ChatRoomModel {
-        var obj = ChatRoomModel()
-        obj.roomID = roomId
+    func prepareChatModel(roomName:String, roomId:String, with xmpp:XMPPStream, delegate:XMPPRoomDelegate) {
+        
+        self.roomID = roomId
         
         self.xmppRoomStorage = XMPPRoomCoreDataStorage(databaseFilename:"\(roomId).sqlite", storeOptions: nil)
         
@@ -28,8 +28,6 @@ class ChatRoomModel: NSObject{
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         self.xmppRoom!.joinRoomUsingNickname("\(appDelegate.user!.id!)@\(appDelegate.chatInst!.chatServer)", history:nil)
         
-        return obj
-    
     }
     
     func retrieveStoredChats() -> NSMutableArray{

@@ -530,8 +530,8 @@ static XMPPRoomCoreDataStorage *sharedInstance;
 	XMPPJID *messageJID = [message from];
 	NSString *messageBody = [[message elementForName:@"body"] stringValue];
 	
-	NSDate *minLocalTimestamp = [remoteTimestamp dateByAddingTimeInterval:-60];
-	NSDate *maxLocalTimestamp = [remoteTimestamp dateByAddingTimeInterval: 60];
+	NSDate *minLocalTimestamp = [remoteTimestamp dateByAddingTimeInterval:-120];
+	NSDate *maxLocalTimestamp = [remoteTimestamp dateByAddingTimeInterval: 120];
 	
 	NSString *predicateFormat = @"    body == %@ "
 	                            @"AND jidStr == %@ "
