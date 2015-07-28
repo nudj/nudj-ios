@@ -127,21 +127,26 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
         
         //self.updateUserName(nameLabel.text)
         //Save when user press save
-        
- 
-        
+
+            switch self.type {
+            case Type.Own:
         UserModel.update(["name":nameLabel.text,"email":email.text,"position":position.text!,"address":location.text!,"company":company.text!], closure: { result in
-            println("Save information : \(result)")
-            
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
-            
+                    println("Save information : \(result)")
+                    
+                    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
                 appDelegate.user!.name = self.nameLabel.text
                 appDelegate.pushUserData()
-            
-            
+                
             }, errorHandler: { error in
                 println(error)
-        })
+            })
+            break;
+            default:
+            break;
+            }
+        
+            
+     
         
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
