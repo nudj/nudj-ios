@@ -267,8 +267,8 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             var chatroom = ChatRoomModel()
             var roomID = split(jid) {$0 == "@"}
             chatroom.prepareChatModel(jid, roomId: roomID[0], with:self.xmppStream!, delegate:self)
-            self.listOfActiveChatRooms.append(chatroom)
-            
+            self.listOfActiveChatRooms.insert(chatroom, atIndex: 0)
+
         }else{
 
             // println("Received something from the messages delegate -> \(message.attributesAsDictionary())")

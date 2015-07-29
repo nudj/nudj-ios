@@ -60,8 +60,9 @@ class ChatRoomModel: NSObject{
         // Retrieve all the messages for the current conversation
         for message in messages {
             
+            if (message.nickname() != nil){
                 messageObject.addObject(JSQMessage(senderId: message.nickname(), senderDisplayName: message.nickname(), date:message.localTimestamp(), text: message.body()))
-            
+            }
         }
         
         return messageObject

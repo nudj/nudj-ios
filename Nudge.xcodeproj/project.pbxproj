@@ -200,6 +200,8 @@
 		A99650AB1B3DB3FF00D5A8E9 /* mute2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650A31B3DB3FF00D5A8E9 /* mute2@2x.png */; };
 		A99650AC1B3DB3FF00D5A8E9 /* profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650A41B3DB3FF00D5A8E9 /* profile@2x.png */; };
 		A9977C8A1B6158960005A23C /* FilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9977C891B6158960005A23C /* FilterModel.swift */; };
+		A9ACE1C21B68F401003BD5F2 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACE1C11B68F401003BD5F2 /* TermsViewController.swift */; };
+		A9ACE1C41B68FC0F003BD5F2 /* SendFeedBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACE1C31B68FC0F003BD5F2 /* SendFeedBackViewController.swift */; };
 		A9C6EC921B381EB000EC9140 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC911B381EB000EC9140 /* ChatViewController.swift */; };
 		A9C6EC981B38273300EC9140 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9C6EC971B38273300EC9140 /* Crashlytics.framework */; };
 		A9C6EC9A1B38416C00EC9140 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9C6EC991B38416C00EC9140 /* ChatViewController.xib */; };
@@ -692,6 +694,8 @@
 		A99650A31B3DB3FF00D5A8E9 /* mute2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mute2@2x.png"; sourceTree = "<group>"; };
 		A99650A41B3DB3FF00D5A8E9 /* profile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile@2x.png"; sourceTree = "<group>"; };
 		A9977C891B6158960005A23C /* FilterModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterModel.swift; sourceTree = "<group>"; };
+		A9ACE1C11B68F401003BD5F2 /* TermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
+		A9ACE1C31B68FC0F003BD5F2 /* SendFeedBackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendFeedBackViewController.swift; sourceTree = "<group>"; };
 		A9C6EC911B381EB000EC9140 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		A9C6EC971B38273300EC9140 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		A9C6EC991B38416C00EC9140 /* ChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
@@ -2094,6 +2098,8 @@
 				EB2F78071AD288E400B59C0E /* SettingsCell.swift */,
 				EB2F78081AD288E400B59C0E /* SettingsCell.xib */,
 				EBEA9B441AF0D2280027A2A2 /* SettingsItem.swift */,
+				A9ACE1C11B68F401003BD5F2 /* TermsViewController.swift */,
+				A9ACE1C31B68FC0F003BD5F2 /* SendFeedBackViewController.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -2438,6 +2444,7 @@
 				A9964FD91B387CC800D5A8E9 /* UIColor+JSQMessages.m in Sources */,
 				A99650781B387CC800D5A8E9 /* ContextFilterLogFormatter.m in Sources */,
 				EB0926D01A8DE4CB00E1D958 /* AppDelegate.swift in Sources */,
+				A9ACE1C21B68F401003BD5F2 /* TermsViewController.swift in Sources */,
 				A99650221B387CC800D5A8E9 /* XMPPIQ+JabberRPC.m in Sources */,
 				A996506D1B387CC800D5A8E9 /* GCDMulticastDelegate.m in Sources */,
 				EB866BE01B53EFAE00E203CA /* NotificationCell.swift in Sources */,
@@ -2500,6 +2507,7 @@
 				A9C6EC9F1B3853F900EC9140 /* ChatListTableViewCell.swift in Sources */,
 				EBEA9B451AF0D2280027A2A2 /* SettingsItem.swift in Sources */,
 				A9964FFE1B387CC800D5A8E9 /* JSQMessagesTypingIndicatorFooterView.m in Sources */,
+				A9ACE1C41B68FC0F003BD5F2 /* SendFeedBackViewController.swift in Sources */,
 				A996500D1B387CC800D5A8E9 /* XMPPJID.m in Sources */,
 				EBB338461AA0EA46000CAD88 /* BaseController.swift in Sources */,
 				EBBF42591AB1E55F0001E8B6 /* DataProviderProtocol.swift in Sources */,
