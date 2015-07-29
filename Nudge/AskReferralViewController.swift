@@ -205,6 +205,12 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
                 cell.setSelected(true, animated: true)
                 checkSelected()
             }
+            
+            if(selected.count > 0){
+                self.navigationController?.navigationItem.rightBarButtonItem?.enabled = true
+            }else{
+                self.navigationController?.navigationItem.rightBarButtonItem?.enabled = false
+            }
         }
 
     }

@@ -10,6 +10,7 @@ import UIKit
 
 class SendFeedBackViewController: UIViewController {
 
+    @IBOutlet weak var textView: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,15 +22,18 @@ class SendFeedBackViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(animated: Bool) {
+        
+        self.tabBarController?.tabBar.hidden = true
+        self.textView.becomeFirstResponder()
+        
     }
-    */
+    
+    override func viewWillDisappear(animated: Bool) {
+        
+        self.textView.resignFirstResponder()
+        self.tabBarController?.tabBar.hidden = false
+    }
+
 
 }

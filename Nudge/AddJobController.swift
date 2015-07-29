@@ -124,7 +124,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
         salary.text = json["salary"].stringValue
         employer.text = json["company"].stringValue
         location.text = json["location"].stringValue
-        activeButton.selected = !activeButton.selected
+        //activeButton.selected = !activeButton.selected
         bonus.text = json["bonus"].stringValue
         
     }

@@ -27,6 +27,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         table.registerNib(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
         table.rowHeight = self.staticRowHeight
         
+        table.backgroundColor = UIColor.whiteColor()
 
         refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
@@ -143,4 +144,11 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         return self.indexes
     }
 
+    
+    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        
+        view.tintColor = UIColor.whiteColor()
+        
+    }
+    
 }

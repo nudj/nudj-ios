@@ -15,20 +15,21 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
     var statusButton = StatusButton()
 
     let cellIdentifier = "SettingsCell";
-
+    var jobsSelected:String?;
+    
     let structure: [[SettingsItem]] = [
         [
             SettingsItem(name: "My Profile", action: "showYourProfile"),
             SettingsItem(name: "My Status", action: "showStatusPicker"),
             //SettingsItem(name: "Notifications", action: ""),
-            SettingsItem(name: "Saved Jobs", action: ""),
-            SettingsItem(name: "Posted Jobs", action: "")
+            SettingsItem(name: "Saved Jobs", action: "goToSavedJobs"),
+            SettingsItem(name: "Posted Jobs", action: "goToPostedJobs")
             //SettingsItem(name: "My Account", action: "")
             //SettingsItem(name: "Archived Chats", action: "")
         ],
         [
-            SettingsItem(name: "Linked In", action: ""),
-            SettingsItem(name: "Facebook", action: "")
+            SettingsItem(name: "Linked In", action: "linkedin"),
+            SettingsItem(name: "Facebook", action: "facebook")
         ],
         [
             //SettingsItem(name: "Invite Friends", action: ""),
@@ -85,7 +86,19 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
 
         if (data.action == "showStatusPicker") {
             cell.accessoryView = self.statusButton
-        } else {
+        } else if(data.action == "linkedin"){
+            var imageview = UIImageView(frame: CGRectMake(0, 0, 118, 24))
+            imageview.image = UIImage(named: "connected")
+            cell.accessoryView = imageview
+            cell.imageView!.image = UIImage(named: "linkdin")
+            
+        } else if(data.action == "facebook"){
+            var imageview = UIImageView(frame: CGRectMake(0, 0, 144, 24))
+            imageview.image = UIImage(named: "not_connected")
+            cell.accessoryView = imageview
+            cell.imageView!.image = UIImage(named: "facebook_icon")
+            
+        }else {
             cell.accessoryView = nil
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         }
@@ -108,7 +121,15 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
             return
         }
 
-        performSegueWithIdentifier(action, sender: self)
+        if(action == "linkedin"){
+        
+        }else if(action == "facebook"){
+        
+        }else{
+            
+            self.jobsSelected = action
+            performSegueWithIdentifier(action, sender: self)
+        }
     }
 
 
@@ -162,8 +183,31 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
                 controller.type = .Own
             }
         }
+
+        
+        // saved jobs or posted jobs
+        if (segue.destinationViewController.isKindOfClass(SavedPostedJobs)) {
+            if let controller = (segue.destinationViewController as? SavedPostedJobs) {
+                
+                if(self.jobsSelected == "goToPostedJobs"){
+                    
+                    controller.title = "Posted Jobs"
+                    controller.requestParams = "mine"
+                    
+                }
+                
+                if(self.jobsSelected == "goToSavedJobs"){
+                
+                    controller.title = "Saved Jobs"
+                    controller.requestParams = "liked"
+                
+                }
+                
+            }
+        }
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
     }
 
+    
 }

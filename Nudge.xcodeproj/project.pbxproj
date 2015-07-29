@@ -202,6 +202,11 @@
 		A9977C8A1B6158960005A23C /* FilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9977C891B6158960005A23C /* FilterModel.swift */; };
 		A9ACE1C21B68F401003BD5F2 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACE1C11B68F401003BD5F2 /* TermsViewController.swift */; };
 		A9ACE1C41B68FC0F003BD5F2 /* SendFeedBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACE1C31B68FC0F003BD5F2 /* SendFeedBackViewController.swift */; };
+		A9ACE1CC1B69107A003BD5F2 /* SavedPostedJobs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACE1CB1B69107A003BD5F2 /* SavedPostedJobs.swift */; };
+		A9ACE1D21B6913F9003BD5F2 /* connected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACE1CE1B6913F9003BD5F2 /* connected@2x.png */; };
+		A9ACE1D31B6913F9003BD5F2 /* facebook_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACE1CF1B6913F9003BD5F2 /* facebook_icon@2x.png */; };
+		A9ACE1D41B6913F9003BD5F2 /* linkdin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACE1D01B6913F9003BD5F2 /* linkdin@2x.png */; };
+		A9ACE1D51B6913F9003BD5F2 /* not_connected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACE1D11B6913F9003BD5F2 /* not_connected@2x.png */; };
 		A9C6EC921B381EB000EC9140 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC911B381EB000EC9140 /* ChatViewController.swift */; };
 		A9C6EC981B38273300EC9140 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9C6EC971B38273300EC9140 /* Crashlytics.framework */; };
 		A9C6EC9A1B38416C00EC9140 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9C6EC991B38416C00EC9140 /* ChatViewController.xib */; };
@@ -696,6 +701,11 @@
 		A9977C891B6158960005A23C /* FilterModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterModel.swift; sourceTree = "<group>"; };
 		A9ACE1C11B68F401003BD5F2 /* TermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
 		A9ACE1C31B68FC0F003BD5F2 /* SendFeedBackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendFeedBackViewController.swift; sourceTree = "<group>"; };
+		A9ACE1CB1B69107A003BD5F2 /* SavedPostedJobs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedPostedJobs.swift; sourceTree = "<group>"; };
+		A9ACE1CE1B6913F9003BD5F2 /* connected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "connected@2x.png"; sourceTree = "<group>"; };
+		A9ACE1CF1B6913F9003BD5F2 /* facebook_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook_icon@2x.png"; sourceTree = "<group>"; };
+		A9ACE1D01B6913F9003BD5F2 /* linkdin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linkdin@2x.png"; sourceTree = "<group>"; };
+		A9ACE1D11B6913F9003BD5F2 /* not_connected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "not_connected@2x.png"; sourceTree = "<group>"; };
 		A9C6EC911B381EB000EC9140 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		A9C6EC971B38273300EC9140 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		A9C6EC991B38416C00EC9140 /* ChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
@@ -1797,6 +1807,7 @@
 		A99650971B3DB23A00D5A8E9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A9ACE1CD1B6913E6003BD5F2 /* Settings */,
 				A9F3332E1B42A89600F0D17B /* AddJob */,
 				A99650AD1B3DB40900D5A8E9 /* ChatIcons */,
 				A996509C1B3DB3DE00D5A8E9 /* Common */,
@@ -1831,6 +1842,17 @@
 				A99650A41B3DB3FF00D5A8E9 /* profile@2x.png */,
 			);
 			name = ChatIcons;
+			sourceTree = "<group>";
+		};
+		A9ACE1CD1B6913E6003BD5F2 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A9ACE1CE1B6913F9003BD5F2 /* connected@2x.png */,
+				A9ACE1CF1B6913F9003BD5F2 /* facebook_icon@2x.png */,
+				A9ACE1D01B6913F9003BD5F2 /* linkdin@2x.png */,
+				A9ACE1D11B6913F9003BD5F2 /* not_connected@2x.png */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		A9C6EC901B381E8800EC9140 /* ChatView */ = {
@@ -2100,6 +2122,7 @@
 				EBEA9B441AF0D2280027A2A2 /* SettingsItem.swift */,
 				A9ACE1C11B68F401003BD5F2 /* TermsViewController.swift */,
 				A9ACE1C31B68FC0F003BD5F2 /* SendFeedBackViewController.swift */,
+				A9ACE1CB1B69107A003BD5F2 /* SavedPostedJobs.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -2257,6 +2280,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9ACE1D21B6913F9003BD5F2 /* connected@2x.png in Resources */,
 				A99650A81B3DB3FF00D5A8E9 /* favourite2@2x.png in Resources */,
 				A9964FDF1B387CC800D5A8E9 /* JSQMessagesViewController.xib in Resources */,
 				A996507A1B387CC800D5A8E9 /* README.txt in Resources */,
@@ -2265,6 +2289,7 @@
 				EBA8C3461B32DFF100522167 /* Main.storyboard in Resources */,
 				A9F333651B42ACDC00F0D17B /* job_description@2x.png in Resources */,
 				A9F3336A1B42B0B700F0D17B /* pound_sign@2x.png in Resources */,
+				A9ACE1D31B6913F9003BD5F2 /* facebook_icon@2x.png in Resources */,
 				A99650AB1B3DB3FF00D5A8E9 /* mute2@2x.png in Resources */,
 				A9964FFD1B387CC800D5A8E9 /* JSQMessagesToolbarContentView.xib in Resources */,
 				A99650991B3DB2D100D5A8E9 /* 3dots@2x.png in Resources */,
@@ -2287,6 +2312,7 @@
 				A9F333681B42ACDC00F0D17B /* tag_location@2x.png in Resources */,
 				A9F3335F1B42ACDC00F0D17B /* job_description_active@2x.png in Resources */,
 				EB0926DC1A8DE4CB00E1D958 /* LaunchScreen.xib in Resources */,
+				A9ACE1D51B6913F9003BD5F2 /* not_connected@2x.png in Resources */,
 				EB0926D91A8DE4CB00E1D958 /* Images.xcassets in Resources */,
 				EBBF42551AB0AF5F0001E8B6 /* JobCellTableViewCell.xib in Resources */,
 				A9C6ECA01B3853F900EC9140 /* ChatListTableViewCell.xib in Resources */,
@@ -2297,6 +2323,7 @@
 				A9F333601B42ACDC00F0D17B /* job_title_active@2x.png in Resources */,
 				A996507F1B387CC800D5A8E9 /* build-libidn.sh in Resources */,
 				A9F333821B45972100F0D17B /* saved@2x.png in Resources */,
+				A9ACE1D41B6913F9003BD5F2 /* linkdin@2x.png in Resources */,
 				A9F3335D1B42ACDC00F0D17B /* add_skills_active@2x.png in Resources */,
 				A99650AC1B3DB3FF00D5A8E9 /* profile@2x.png in Resources */,
 				A9C6EC9A1B38416C00EC9140 /* ChatViewController.xib in Resources */,
@@ -2434,6 +2461,7 @@
 				A99650501B387CC800D5A8E9 /* XMPPCapabilities.xcdatamodel in Sources */,
 				A9964FF11B387CC800D5A8E9 /* JSQMessagesCollectionViewCell.m in Sources */,
 				EB35BBA51AB7288000842E1F /* ContactsCell.swift in Sources */,
+				A9ACE1CC1B69107A003BD5F2 /* SavedPostedJobs.swift in Sources */,
 				EBB338401AA0ADB5000CAD88 /* VerifyViewController.swift in Sources */,
 				A99650181B387CC800D5A8E9 /* XMPPGroupCoreDataStorageObject.m in Sources */,
 				A99650621B387CC800D5A8E9 /* XMPPAutoTime.m in Sources */,

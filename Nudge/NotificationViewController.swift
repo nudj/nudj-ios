@@ -21,6 +21,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
         super.viewDidLoad()
         
         self.tableView.registerNib(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
+        self.tableView.tableFooterView = UIView(frame: CGRectZero);
 
         self.refreshControl?.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
 

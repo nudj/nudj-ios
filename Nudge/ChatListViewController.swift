@@ -21,6 +21,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
 
          self.chatTable.registerNib(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
+         self.chatTable.tableFooterView = UIView(frame: CGRectZero);
 
     }
 
