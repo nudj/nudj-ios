@@ -10,10 +10,11 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class SettingsController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SettingsController: UIViewController, UITableViewDataSource, UITableViewDelegate, SocialStatusDelegate {
 
     var statusButton = StatusButton()
-
+    var socialStatuses = [String:Bool]()
+    
     let cellIdentifier = "SettingsCell";
     var jobsSelected:String?;
     
@@ -33,12 +34,12 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
         ],
         [
             //SettingsItem(name: "Invite Friends", action: ""),
-            SettingsItem(name: "Terms And Conditions", action: "goToTerms"),
+            SettingsItem(name: "Terms and Conditions", action: "goToTerms"),
             SettingsItem(name: "Send Feedback", action: "goToFeedBack")
         ],
         [
-            SettingsItem(name: "Log Out", action: "goToLogin"),
-            SettingsItem(name: "DELETE MY ACCOUNT", action: "")
+            //SettingsItem(name: "Log Out", action: "goToLogin"),
+            SettingsItem(name: "DELETE MY ACCOUNT", action: "goToLogin")
         ]
     ];
 
@@ -53,10 +54,12 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        BaseController().apiRequest(Alamofire.Method.GET, path: "users/me?params=user.status", closure: { json in
+        BaseController().apiRequest(Alamofire.Method.GET, path: "users/me?params=user.status,user.facebook,user.linkedin", closure: { json in
             if (json["data"]["status"] != nil && json["data"]["status"].stringValue != "") {
                 self.statusButton.setTitleByIndex(json["data"]["status"].intValue)
             }
+            self.socialStatuses = ["facebook": json["data"]["facebook"].boolValue ,"linkedin":json["data"]["linkedin"].boolValue]
+            self.table.reloadData()
         })
 
         self.statusButton.changeColor(UIColor.blueColor())
@@ -80,25 +83,51 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
 
         if (indexPath.section == 3) {
             cell.alignCenter()
+            cell.textLabel?.textColor = UIColor.redColor()
         } else {
             cell.alignLeft()
         }
 
         if (data.action == "showStatusPicker") {
+            
             cell.accessoryView = self.statusButton
+            cell.accessoryView?.userInteractionEnabled = false
+            
         } else if(data.action == "linkedin"){
-            var imageview = UIImageView(frame: CGRectMake(0, 0, 118, 24))
-            imageview.image = UIImage(named: "connected")
-            cell.accessoryView = imageview
+            
             cell.imageView!.image = UIImage(named: "linkdin")
             
+            if(self.socialStatuses.count > 0){
+                
+                var social = SocialStatus(status: self.socialStatuses["linkedin"]!, and: data.action)
+                social.delegate = self
+                cell.accessoryView = social
+                
+            }else{
+                cell.accessoryView = nil;
+            }
+            
         } else if(data.action == "facebook"){
-            var imageview = UIImageView(frame: CGRectMake(0, 0, 144, 24))
-            imageview.image = UIImage(named: "not_connected")
-            cell.accessoryView = imageview
+            
             cell.imageView!.image = UIImage(named: "facebook_icon")
             
-        }else {
+            if(self.socialStatuses.count > 0){
+                
+                var social = SocialStatus(status: self.socialStatuses["facebook"]!, and: data.action)
+                social.delegate = self
+                cell.accessoryView = social;
+                
+            }else{
+                cell.accessoryView = nil;
+            }
+            
+        }else if(data.action.isEmpty){
+        
+            cell.accessoryView = nil
+            cell.accessoryType = UITableViewCellAccessoryType.None
+            
+        }else{
+            
             cell.accessoryView = nil
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         }
@@ -114,6 +143,15 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
         return section == 0 ? 0.01: 0
     }
 
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        if (indexPath.section == 3) {
+            return 88;
+        }else{
+            return 44;
+        }
+    }
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let action = structure[indexPath.section][indexPath.row].action
 
@@ -209,5 +247,26 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
         // Pass the selected object to the new view controller.
     }
 
+    func didTap(statusIdentifier: String, value:Bool) {
+        
+        if(statusIdentifier == "facebook"){
+            
+            self.socialStatuses["facebook"] = value
+            
+            //PUT/ connect/facebook params = token
+            //DELETE : connect/facebook
+            
+        }
+        
+        if(statusIdentifier == "linkedin"){
+         
+            self.socialStatuses["linkedin"] = value
+            
+            //PUT/DELETE : connect/linkedin params = token
+        }
+        
+        
+        println("new array value \(self.socialStatuses)")
+    }
     
 }

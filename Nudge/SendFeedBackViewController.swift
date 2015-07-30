@@ -8,9 +8,9 @@
 
 import UIKit
 
-class SendFeedBackViewController: UIViewController {
+class SendFeedBackViewController: UIViewController,UITextViewDelegate {
 
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var feedBackTextView: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,15 +25,41 @@ class SendFeedBackViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         
         self.tabBarController?.tabBar.hidden = true
-        self.textView.becomeFirstResponder()
+        self.feedBackTextView.becomeFirstResponder()
         
+    
     }
     
     override func viewWillDisappear(animated: Bool) {
         
-        self.textView.resignFirstResponder()
+        self.feedBackTextView.resignFirstResponder()
         self.tabBarController?.tabBar.hidden = false
     }
+    
+    
+    func textViewDidChange(textView: UITextView) {
+        
 
+    }
+
+    @IBAction func sendFeedBack(sender: UIBarButtonItem) {
+        
+        if(!self.feedBackTextView.text.isEmpty){
+            API.sharedInstance.post("feedback", params: ["feedback":self.feedBackTextView.text], closure: { json in
+                
+                println(json)
+                self.navigationController?.popViewControllerAnimated(true)
+                
+            }, errorHandler: { error in
+                
+                println(error)
+            })
+        }else{
+            
+            var alert:UIAlertView = UIAlertView(title: "No Text!", message: "Please add a comment", delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+            
+        }
+    }
 
 }

@@ -10,6 +10,9 @@ import UIKit
 
 class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    @IBOutlet weak var linkedIn: UIImageView!
+    @IBOutlet weak var faceBookImage: UIImageView!
+    
     let msgTitle = "Choose Image Source"
 
     @IBOutlet weak var image: AsyncImage! {
@@ -29,6 +32,14 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
 
     @IBOutlet weak var nextButton: UIBarButtonItem!
 
+    override func viewDidLoad() {
+        
+        var tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("linkedinAction"))
+        self.linkedIn.userInteractionEnabled = true
+        self.linkedIn.addGestureRecognizer(tapGestureRecognizer)
+        
+        
+    }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -165,5 +176,81 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
     }
 
 
+    
+    func linkedinAction(){
+        
+        
+        //showCreateProfileView
+        /*var session:LISDKSession = LISDKSessionManager.sharedInstance().session
+        
+        if(session.isValid()){
+            println("i already have a valid linkedin session")
+            
+            LISDKAPIHelper.sharedInstance().apiRequest("https://www.linkedin.com/v1/people/~", method: "GET", body: nil, success: { success -> Void in
+                
+                println("linkedin profile success \(success.data)")
+                
+                
+                }, error: { error in
+                    
+                    println("linkedin profile error \(error)")
+                    
+            })
+            
+            API.sharedInstance.put("connect/linkedin", params:["token":session.value()], closure: { json in
+                
+                println("linkedin token store success \(json)")
+                
+                }, errorHandler: { error in
+                    
+                println("linkedin token store error \(error)")
+            })
+
+            
+        }else{*/
+                println("sorry no valid session")
+                
+                LISDKSessionManager.createSessionWithAuth([LISDK_BASIC_PROFILE_PERMISSION, LISDK_EMAILADDRESS_PERMISSION], state: "some state", showGoToAppStoreDialog: true, successBlock: { value in
+                
+                var newsession:LISDKSession = LISDKSessionManager.sharedInstance().session
+                var token = newsession.value()
+                
+                println("linkedin token \(token)")
+                
+                /*API.sharedInstance.put("connect/linkedin", params:["token":token], closure: { json in
+                    
+                    println("linkedin token store success \(json)")
+                    
+                }, errorHandler: { error in
+                
+                    println("linkedin token store error \(error)")
+                })
+                */
+                
+                LISDKAPIHelper.sharedInstance().apiRequest("https://www.linkedin.com/v1/people/~:(id,num-connections,picture-url,skills)", method: "GET", body: nil, success: { success -> Void in
+                    
+                    println("linkedin profile success \(success.data)")
+                    
+                    //self.performSegueWithIdentifier("showCreateProfileView", sender: nil)
+                    
+                    
+                }, error: { error in
+                    
+                    println("linkedin profile error \(error)")
+                
+                })
+
+                
+            }) { error in
+                
+                println("error \(error)")
+            }
+        //}
+        
+    }
+    
+    func facebookAction(){
+        
+    }
 
 }

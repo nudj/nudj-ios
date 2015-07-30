@@ -9,4 +9,5 @@
 
 #import "XMPPFramework.h"
 #import "JSQMessages.h"
-#import  "NZLabel.h""
+#import  "NZLabel.h"
+#import <linkedin-sdk/LISDK.h>

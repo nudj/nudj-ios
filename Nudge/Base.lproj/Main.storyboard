@@ -987,6 +987,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="HrJ-cc-tGk" id="qud-iH-9ny"/>
+                                </connections>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1004,10 +1007,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Send FeedBack" id="byM-g9-Zy7">
-                        <barButtonItem key="rightBarButtonItem" title="Send" id="uaS-nZ-mq4"/>
+                        <barButtonItem key="rightBarButtonItem" title="Send" style="plain" id="uaS-nZ-mq4">
+                            <connections>
+                                <action selector="sendFeedBack:" destination="HrJ-cc-tGk" id="kbi-he-cDB"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="textView" destination="D7M-6w-2AY" id="Yiz-ZG-sor"/>
+                        <outlet property="feedBackTextView" destination="D7M-6w-2AY" id="7QL-ie-hH6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ABT-L0-yQR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1467,7 +1474,7 @@
                                     <constraint firstAttribute="height" constant="45" id="lHM-CT-JID"/>
                                 </constraints>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name=".HelveticaNeueDeskInterface-Regular" family=".Helvetica Neue DeskInterface" pointSize="28"/>
+                                <fontDescription key="fontDescription" name=".HelveticaNeueDeskInterface-Regular" family=".Helvetica Neue DeskInterface" pointSize="32"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="phonePad" returnKeyType="done"/>
                                 <connections>
                                     <action selector="CodeChanged:" destination="eWs-5T-Xez" eventType="editingChanged" id="03d-ta-4kI"/>
@@ -1516,13 +1523,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ePk-UI-di8" userLabel="BottomView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ePk-UI-di8" userLabel="BottomView">
                                 <rect key="frame" x="0.0" y="219" width="414" height="468"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="importBackground" translatesAutoresizingMaskIntoConstraints="NO" id="vQu-IJ-I9x">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="importBackground" translatesAutoresizingMaskIntoConstraints="NO" id="vQu-IJ-I9x">
                                         <rect key="frame" x="-16" y="0.0" width="446" height="468"/>
                                     </imageView>
-                                    <view opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4gl-s2-Pyf" userLabel="ImportContainer">
+                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4gl-s2-Pyf" userLabel="ImportContainer">
                                         <rect key="frame" x="0.0" y="106" width="414" height="257"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Want to save time?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="bLl-4H-wKq">
@@ -1650,7 +1657,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="faceBookImage" destination="0ME-g0-UfJ" id="Lpz-PB-r3c"/>
                         <outlet property="image" destination="VfS-NW-CL3" id="W2e-zF-WrT"/>
+                        <outlet property="linkedIn" destination="mPc-9o-yW5" id="6hm-gP-DT7"/>
                         <outlet property="name" destination="M9N-3D-7HF" id="2Hs-iI-d4k"/>
                         <outlet property="nextButton" destination="3TQ-Jv-l6x" id="QIH-uv-fde"/>
                         <outlet property="status" destination="GFu-bq-lhR" id="WQC-Wn-ULz"/>
@@ -2100,11 +2109,11 @@
                         <viewControllerLayoutGuide type="bottom" id="wdM-kP-MCQ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3a5-IX-tvj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1vZ-hu-yWg">
-                                <rect key="frame" x="16" y="68" width="343" height="162"/>
+                                <rect key="frame" x="16" y="68" width="382" height="162"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="170" id="KFq-Dr-xO6"/>
@@ -2316,11 +2325,11 @@
     <inferredMetricsTieBreakers>
         <segue reference="vho-Q5-Kri"/>
         <segue reference="zyP-mc-EMC"/>
-        <segue reference="H51-O9-Snf"/>
-        <segue reference="m0n-l7-DaR"/>
         <segue reference="oHM-Sk-no8"/>
         <segue reference="6SR-Rm-L27"/>
         <segue reference="eNW-U2-njr"/>
+        <segue reference="H2O-Du-Dkg"/>
+        <segue reference="OxQ-75-aNI"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
 </document>

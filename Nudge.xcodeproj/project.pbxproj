@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A903BAEE1B581C4F00D69863 /* NZLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A903BAED1B581C4F00D69863 /* NZLabel.m */; };
+		A9191EA61B6A402E000F9168 /* SocialStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9191EA51B6A402E000F9168 /* SocialStatus.swift */; };
+		A9191EA81B6A864E000F9168 /* linkedin-sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9191EA71B6A864E000F9168 /* linkedin-sdk.framework */; };
 		A95798251B46965A006E826E /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95798241B46965A006E826E /* NotificationViewController.swift */; };
 		A984E2EE1B67ACA9009F318E /* ChatRoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A984E2ED1B67ACA9009F318E /* ChatRoomModel.swift */; };
 		A9964FD51B387CC800D5A8E9 /* JSQMessagesAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A9964E281B387CC700D5A8E9 /* JSQMessagesAssets.bundle */; };
@@ -324,6 +326,8 @@
 		91ACAE069A6F9735FED79A9F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A903BAEC1B581C4F00D69863 /* NZLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NZLabel.h; sourceTree = "<group>"; };
 		A903BAED1B581C4F00D69863 /* NZLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NZLabel.m; sourceTree = "<group>"; };
+		A9191EA51B6A402E000F9168 /* SocialStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialStatus.swift; sourceTree = "<group>"; };
+		A9191EA71B6A864E000F9168 /* linkedin-sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "linkedin-sdk.framework"; sourceTree = "<group>"; };
 		A95798241B46965A006E826E /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		A984E2ED1B67ACA9009F318E /* ChatRoomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomModel.swift; sourceTree = "<group>"; };
 		A9964E281B387CC700D5A8E9 /* JSQMessagesAssets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JSQMessagesAssets.bundle; sourceTree = "<group>"; };
@@ -808,6 +812,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A996508E1B38806700D5A8E9 /* libresolv.dylib in Frameworks */,
+				A9191EA81B6A864E000F9168 /* linkedin-sdk.framework in Frameworks */,
 				A996508B1B38805B00D5A8E9 /* libxml2.2.dylib in Frameworks */,
 				A996508C1B38805B00D5A8E9 /* libxml2.dylib in Frameworks */,
 				A99650881B38804D00D5A8E9 /* AudioToolbox.framework in Frameworks */,
@@ -1985,6 +1990,7 @@
 			isa = PBXGroup;
 			children = (
 				A9C6EC971B38273300EC9140 /* Crashlytics.framework */,
+				A9191EA71B6A864E000F9168 /* linkedin-sdk.framework */,
 				EBA8C3421B30852B00522167 /* Fabric.framework */,
 				EB0926CC1A8DE4CB00E1D958 /* Nudge */,
 				EB0926E41A8DE4CB00E1D958 /* NudgeTests */,
@@ -2065,6 +2071,7 @@
 				EBE5C3111B25811400CFF7E9 /* TokenView.swift */,
 				A9F333731B4444D700F0D17B /* CreatePopupView.swift */,
 				EBF17A231B4D538800C67657 /* Common.swift */,
+				A9191EA51B6A402E000F9168 /* SocialStatus.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -2428,6 +2435,7 @@
 				A99650661B387CC800D5A8E9 /* XMPPAttentionModule.m in Sources */,
 				A99650361B387CC800D5A8E9 /* XMPPvCard.xcdatamodeld in Sources */,
 				A99650151B387CC800D5A8E9 /* XMPPGoogleSharedStatus.m in Sources */,
+				A9191EA61B6A402E000F9168 /* SocialStatus.swift in Sources */,
 				A99650611B387CC800D5A8E9 /* XMPPPing.m in Sources */,
 				A996501C1B387CC800D5A8E9 /* XMPPUserCoreDataStorageObject.m in Sources */,
 				A996501D1B387CC800D5A8E9 /* XMPPResourceMemoryStorageObject.m in Sources */,

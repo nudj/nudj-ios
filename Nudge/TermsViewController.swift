@@ -16,7 +16,7 @@ class TermsViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        var url = NSURL(string: "http://dev.juxtafeed.com/mobile/terms")
+        var url = NSURL(string: "http://api.nudj.co/html/terms")
         var requestObj:NSURLRequest  = NSURLRequest(URL: url!)
         self.webview.loadRequest(requestObj)
     }

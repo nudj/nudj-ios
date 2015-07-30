@@ -11,7 +11,6 @@ import CoreData
 import Fabric
 import Crashlytics
 
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
 
@@ -65,6 +64,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         return true
     }
 
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+    
+        if(LISDKCallbackHandler.shouldHandleUrl(url)){
+            
+            return LISDKCallbackHandler.application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+        
+        }
+        
+        return true
+    }
+    
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         var characterSet: NSCharacterSet = NSCharacterSet( charactersInString: "<>" )
 
