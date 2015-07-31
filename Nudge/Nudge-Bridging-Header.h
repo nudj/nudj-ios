@@ -11,3 +11,9 @@
 #import "JSQMessages.h"
 #import  "NZLabel.h"
 #import <linkedin-sdk/LISDK.h>
+
+#import "LIALinkedInHttpClient.h"
+#import "LIALinkedInApplication.h"
+
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>

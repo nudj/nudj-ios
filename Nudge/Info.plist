@@ -23,7 +23,8 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>li3926543</string>
+				<string>li3860203</string>
+				<string>fb436716026489484</string>
 			</array>
 		</dict>
 	</array>
@@ -43,8 +44,12 @@
 			</dict>
 		</array>
 	</dict>
+	<key>FacebookAppID</key>
+	<string>436716026489484</string>
+	<key>FacebookDisplayName</key>
+	<string>$(PRODUCT_NAME)</string>
 	<key>LIAppId</key>
-	<string>3926543</string>
+	<string>3860203</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

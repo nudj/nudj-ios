@@ -18,6 +18,8 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
     let cellIdentifier = "SettingsCell";
     var jobsSelected:String?;
     
+    //var socialhander = SocialHandlerModel()
+    
     let structure: [[SettingsItem]] = [
         [
             SettingsItem(name: "My Profile", action: "showYourProfile"),
@@ -55,6 +57,7 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewWillAppear(animated)
 
         BaseController().apiRequest(Alamofire.Method.GET, path: "users/me?params=user.status,user.facebook,user.linkedin", closure: { json in
+            println(json)
             if (json["data"]["status"] != nil && json["data"]["status"].stringValue != "") {
                 self.statusButton.setTitleByIndex(json["data"]["status"].intValue)
             }
@@ -121,7 +124,7 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
                 cell.accessoryView = nil;
             }
             
-        }else if(data.action.isEmpty){
+        }else if(data.action == "goToLogin"){
         
             cell.accessoryView = nil
             cell.accessoryType = UITableViewCellAccessoryType.None
@@ -252,9 +255,16 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
         if(statusIdentifier == "facebook"){
             
             self.socialStatuses["facebook"] = value
-            
-            //PUT/ connect/facebook params = token
-            //DELETE : connect/facebook
+        
+            /*self.socialhander.configureFacebook(value, completionHandler: { success in
+                
+                if(success){
+
+                    var alert = UIAlertView(title: "Success!", message: "Gone through", delegate: nil, cancelButtonTitle: "OK")
+                    alert.show()
+                
+                }
+            })*/
             
         }
         
@@ -262,7 +272,15 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
          
             self.socialStatuses["linkedin"] = value
             
-            //PUT/DELETE : connect/linkedin params = token
+            /*self.socialhander.configureLinkedin(value, completionHandler: { success in
+                
+                if(success){
+                    
+                    var alert = UIAlertView(title: "Success!", message: "Gone through", delegate: nil, cancelButtonTitle: "OK")
+                    alert.show()
+                }
+                
+            })*/
         }
         
         

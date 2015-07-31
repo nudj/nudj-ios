@@ -25,8 +25,10 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
 //            TODO: Find out why this is not working from xcode designer
         }
     }
+    
     var imagePicker = UIImagePickerController()
-
+    var reqClient:LIALinkedInHttpClient?
+    
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var status: StatusButton!
 
@@ -38,8 +40,13 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
         self.linkedIn.userInteractionEnabled = true
         self.linkedIn.addGestureRecognizer(tapGestureRecognizer)
         
+        var tapGestureRecognizer2 = UITapGestureRecognizer(target:self, action:Selector("facebookAction"))
+        self.faceBookImage.userInteractionEnabled = true
+        self.faceBookImage.addGestureRecognizer(tapGestureRecognizer2)
         
+        self.reqClient = self.client()
     }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -175,82 +182,62 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
         })
     }
 
-
+    //MARK: Linkedin
     
     func linkedinAction(){
         
-        
-        //showCreateProfileView
-        /*var session:LISDKSession = LISDKSessionManager.sharedInstance().session
-        
-        if(session.isValid()){
-            println("i already have a valid linkedin session")
+        self.reqClient?.getAuthorizationCode({ code in
             
-            LISDKAPIHelper.sharedInstance().apiRequest("https://www.linkedin.com/v1/people/~", method: "GET", body: nil, success: { success -> Void in
+            self.reqClient?.getAccessToken(code, success: {accessTokenData in
                 
-                println("linkedin profile success \(success.data)")
+               
+                var accessToken = accessTokenData["access_token"] as! String
+                //self.requestMeWithToken(accessToken)
+                println("sucess -> \(accessToken)")
                 
-                
-                }, error: { error in
-                    
-                    println("linkedin profile error \(error)")
-                    
-            })
-            
-            API.sharedInstance.put("connect/linkedin", params:["token":session.value()], closure: { json in
-                
-                println("linkedin token store success \(json)")
-                
-                }, errorHandler: { error in
-                    
-                println("linkedin token store error \(error)")
-            })
-
-            
-        }else{*/
-                println("sorry no valid session")
-                
-                LISDKSessionManager.createSessionWithAuth([LISDK_BASIC_PROFILE_PERMISSION, LISDK_EMAILADDRESS_PERMISSION], state: "some state", showGoToAppStoreDialog: true, successBlock: { value in
-                
-                var newsession:LISDKSession = LISDKSessionManager.sharedInstance().session
-                var token = newsession.value()
-                
-                println("linkedin token \(token)")
-                
-                /*API.sharedInstance.put("connect/linkedin", params:["token":token], closure: { json in
+                API.sharedInstance.put("connect/linkedin", params:["token":accessToken], closure: { json in
                     
                     println("linkedin token store success \(json)")
                     
-                }, errorHandler: { error in
-                
-                    println("linkedin token store error \(error)")
+                    }, errorHandler: { error in
+                        
+                        println("linkedin token store error \(error)")
                 })
-                */
                 
-                LISDKAPIHelper.sharedInstance().apiRequest("https://www.linkedin.com/v1/people/~:(id,num-connections,picture-url,skills)", method: "GET", body: nil, success: { success -> Void in
-                    
-                    println("linkedin profile success \(success.data)")
-                    
-                    //self.performSegueWithIdentifier("showCreateProfileView", sender: nil)
-                    
-                    
-                }, error: { error in
-                    
-                    println("linkedin profile error \(error)")
-                
-                })
-
-                
-            }) { error in
-                
-                println("error \(error)")
-            }
-        //}
+            }, failure: { error in
+                println("Quering accessToken failed \(error)");
+            })
+            
+        }, cancel: { cancel in
+            println("Authorization was cancelled by user")
+        }, failure: { error in
+            println("Authorization failed \(error)");
+        })
         
     }
     
-    func facebookAction(){
+    
+    func requestMeWithToken(accessToken:String){
+
+        self.reqClient?.GET("https://api.linkedin.com/v1/people/~?oauth2_access_token=\(accessToken)&format=json", parameters: nil, success: {result in
+            println("current user \(result)");
+        }, failure: { error in
+            println("failed to fetch current user \(error)");
+        })
         
     }
+    
+    func client() -> LIALinkedInHttpClient{
+        
+        var application = LIALinkedInApplication.applicationWithRedirectURL("http://api.nudj.co", clientId:"77l67v0flc6leq", clientSecret:"PLOAmXuwsl1sSooc", state:"DCEEFWF45453sdffef424", grantedAccess:["r_basicprofile","r_emailaddress"]) as! LIALinkedInApplication
+        
+        return LIALinkedInHttpClient(forApplication: application, presentingViewController: nil)
+    }
+    
+    
+    //MARK: Facebook
+    func facebookAction(){
+        
+           }
 
 }

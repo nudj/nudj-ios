@@ -82,7 +82,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     //MARK: TextView Delegate
     func textViewDidBeginEditing(textView: UITextView) {
         
-        if(textView.text == "Enter you personalised message"){
+        if(textView.text == "Enter your personalised message"){
             textView.text = ""
         }
         

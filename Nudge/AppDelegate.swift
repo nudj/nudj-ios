@@ -61,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
 
         requestNotificationPermission(application)
 
-        return true
+        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
@@ -72,7 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         
         }
         
-        return true
+        return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
     }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
@@ -103,6 +103,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
 
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         println(userInfo)
+        /*Template
+        
+        [aps: {
+            alert = "Matt Hagger is interested for the Chat test position";
+            badge = 0;
+            sound = "bingbong.aiff";
+        }]
+        
+        */
     }
     
 
@@ -270,6 +279,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
             
             }
         }*/
+        
+        FBSDKAppEvents.activateApp()
        
     }
 
