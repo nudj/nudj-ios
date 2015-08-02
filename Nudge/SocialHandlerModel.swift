@@ -14,20 +14,83 @@ class SocialHandlerModel: NSObject {
    
     var reqClient:LIALinkedInHttpClient?
 
-    override init(){
+    init(viewController:UIViewController){
         
-        self.reqClient = LIALinkedInHttpClient()
+        super.init()
+        self.reqClient = self.linkedInClientCongfig(viewController)
+        
     }
     
     //MARK: - Linked in config
     func configureLinkedin(connected:Bool,completionHandler:(success:Bool) -> Void){
         
+        if(connected){
+            
+            self.deleteSocial("linkedin", completionHandler: { result in
+                
+                completionHandler(success:result)
+                
+            })
+            
+        }else{
+            
+            self.reqClient?.getAuthorizationCode({ code in
+                self.reqClient?.getAccessToken(code, success: {accessTokenData in
+                    
+                    var accessToken = accessTokenData["access_token"] as! String
+                    println("Linkedin token -> \(accessToken)")
+    
+                    
+                    self.updateSocial("linkedin", param: accessToken, completionHandler: { request in
+                        
+                        completionHandler(success:request)
+                    })
+                    
+                    
+                    }, failure: { error in
+                        
+                        completionHandler(success:false)
+                        println("Quering accessToken failed \(error)");
+                })
+                
+                }, cancel: { cancel in
+                    
+                    completionHandler(success:false)
+                    println("Authorization was cancelled by user")
+                    
+                }, failure: { error in
+                    
+                    completionHandler(success:false)
+                    println("Authorization failed \(error)");
+            })
+            
+        }
+        
     }
+    
+    
+    func requestMeWithToken(accessToken:String){
+        
+        self.reqClient?.GET("https://api.linkedin.com/v1/people/~?oauth2_access_token=\(accessToken)&format=json", parameters: nil, success: {result in
+            println("current user \(result)");
+            }, failure: { error in
+                println("failed to fetch current user \(error)");
+        })
+        
+    }
+    
+    func linkedInClientCongfig(viewController:UIViewController) -> LIALinkedInHttpClient{
+        
+        var application = LIALinkedInApplication.applicationWithRedirectURL("http://api.nudj.co", clientId:"77l67v0flc6leq", clientSecret:"PLOAmXuwsl1sSooc", state:"DCEEFWF45453sdffef424", grantedAccess:["r_basicprofile","r_emailaddress"]) as! LIALinkedInApplication
+        
+        return LIALinkedInHttpClient(forApplication: application, presentingViewController: viewController)
+    }
+
     
     //MARK: - FaceBook config
     func configureFacebook(connected:Bool,completionHandler:(success:Bool) -> Void){
         
-        if(connected == true){
+        if(connected){
             
             self.deleteSocial("facebook", completionHandler: { result in
                 
@@ -58,6 +121,7 @@ class SocialHandlerModel: NSObject {
                     
                     self.updateSocial("facebook", param: result.token.tokenString, completionHandler: { request in
                         
+                        completionHandler(success:request)
                     })
                 }
                 

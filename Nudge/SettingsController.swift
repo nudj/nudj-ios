@@ -17,8 +17,8 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
     
     let cellIdentifier = "SettingsCell";
     var jobsSelected:String?;
-    
-    //var socialhander = SocialHandlerModel()
+
+    var socialhander:SocialHandlerModel?
     
     let structure: [[SettingsItem]] = [
         [
@@ -51,6 +51,8 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
 
         table.registerNib(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
+        self.socialhander = SocialHandlerModel(viewController: self)
+        
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -250,41 +252,70 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
         // Pass the selected object to the new view controller.
     }
 
-    func didTap(statusIdentifier: String, value:Bool) {
+    func didTap(statusIdentifier: String, parent:SocialStatus) {
+        
+        //Default Message
+        var alert = UIAlertView(title: "", message: "", delegate: nil, cancelButtonTitle: "OK")
+        
         
         if(statusIdentifier == "facebook"){
-            
-            self.socialStatuses["facebook"] = value
         
-            /*self.socialhander.configureFacebook(value, completionHandler: { success in
+            self.socialhander!.configureFacebook(parent.currentStatus!, completionHandler: { success in
                 
                 if(success){
-
-                    var alert = UIAlertView(title: "Success!", message: "Gone through", delegate: nil, cancelButtonTitle: "OK")
+                
+                    parent.updateStatus()
+                    self.socialStatuses["facebook"] = parent.currentStatus!
+                    
+                    
+                    if(parent.currentStatus!){
+                      
+                        alert.title = "\(statusIdentifier) Connected!"
+                        alert.message = "You have successfully connected your \(statusIdentifier) account"
+                        
+                    }else{
+                       
+                        alert.title = "\(statusIdentifier) Disconnected!"
+                        alert.message = "You have successfully disconnected your \(statusIdentifier) account"
+                        
+                    }
+                    
                     alert.show()
                 
                 }
-            })*/
+            })
             
         }
         
         if(statusIdentifier == "linkedin"){
-         
-            self.socialStatuses["linkedin"] = value
-            
-            /*self.socialhander.configureLinkedin(value, completionHandler: { success in
+        
+            self.socialhander!.configureLinkedin(parent.currentStatus!, completionHandler: { success in
                 
                 if(success){
                     
-                    var alert = UIAlertView(title: "Success!", message: "Gone through", delegate: nil, cancelButtonTitle: "OK")
+                    parent.updateStatus()
+                    self.socialStatuses["linkedin"] = parent.currentStatus!
+                    
+                    if(parent.currentStatus!){
+                        
+                        alert.title = "\(statusIdentifier) Connected!"
+                        alert.message = "You have successfully connected your \(statusIdentifier) account"
+                        
+                    }else{
+                        
+                        alert.title = "\(statusIdentifier) Disconnected!"
+                        alert.message = "You have successfully disconnected your \(statusIdentifier) account"
+                        
+                    }
+                    
+
                     alert.show()
+                    self.table.reloadData();
                 }
                 
-            })*/
+            })
         }
         
-        
-        println("new array value \(self.socialStatuses)")
     }
     
 }

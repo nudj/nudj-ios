@@ -10,7 +10,7 @@ import UIKit
 
 protocol SocialStatusDelegate {
     
-    func didTap(statusIdentifier:String, value:Bool)
+    func didTap(statusIdentifier:String, parent:SocialStatus)
     
 }
 
@@ -70,13 +70,14 @@ class SocialStatus: UIImageView {
         if(self.currentStatus != nil){
             
             self.loadStatusContent(!self.currentStatus!)
-            delegate?.didTap(self.statusIdentifier!, value: self.currentStatus!)
+            
         }
     }
     
+    
     func imageTapped(img: AnyObject)
     {
-        self.updateStatus();
+        delegate?.didTap(self.statusIdentifier!, parent: self)
         
     }
         

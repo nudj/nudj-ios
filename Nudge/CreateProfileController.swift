@@ -27,7 +27,7 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
     }
     
     var imagePicker = UIImagePickerController()
-    var reqClient:LIALinkedInHttpClient?
+    var socialhander:SocialHandlerModel?
     
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var status: StatusButton!
@@ -44,7 +44,7 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
         self.faceBookImage.userInteractionEnabled = true
         self.faceBookImage.addGestureRecognizer(tapGestureRecognizer2)
         
-        self.reqClient = self.client()
+        self.socialhander = SocialHandlerModel(viewController: self)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -186,58 +186,39 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
     
     func linkedinAction(){
         
-        self.reqClient?.getAuthorizationCode({ code in
+        self.socialhander!.configureLinkedin(false, completionHandler: { success in
             
-            self.reqClient?.getAccessToken(code, success: {accessTokenData in
+            if(success){
                 
-               
-                var accessToken = accessTokenData["access_token"] as! String
-                //self.requestMeWithToken(accessToken)
-                println("sucess -> \(accessToken)")
+                self.performSegueWithIdentifier("showCreateProfileView", sender: self)
                 
-                API.sharedInstance.put("connect/linkedin", params:["token":accessToken], closure: { json in
-                    
-                    println("linkedin token store success \(json)")
-                    
-                    }, errorHandler: { error in
-                        
-                        println("linkedin token store error \(error)")
-                })
+            }else{
                 
-            }, failure: { error in
-                println("Quering accessToken failed \(error)");
-            })
-            
-        }, cancel: { cancel in
-            println("Authorization was cancelled by user")
-        }, failure: { error in
-            println("Authorization failed \(error)");
+                //Default Message
+                var alert = UIAlertView(title: "Try Again", message: "OOPS, an error occured please try again!", delegate: nil, cancelButtonTitle: "OK")
+                
+            }
         })
-        
-    }
-    
-    
-    func requestMeWithToken(accessToken:String){
-
-        self.reqClient?.GET("https://api.linkedin.com/v1/people/~?oauth2_access_token=\(accessToken)&format=json", parameters: nil, success: {result in
-            println("current user \(result)");
-        }, failure: { error in
-            println("failed to fetch current user \(error)");
-        })
-        
-    }
-    
-    func client() -> LIALinkedInHttpClient{
-        
-        var application = LIALinkedInApplication.applicationWithRedirectURL("http://api.nudj.co", clientId:"77l67v0flc6leq", clientSecret:"PLOAmXuwsl1sSooc", state:"DCEEFWF45453sdffef424", grantedAccess:["r_basicprofile","r_emailaddress"]) as! LIALinkedInApplication
-        
-        return LIALinkedInHttpClient(forApplication: application, presentingViewController: nil)
     }
     
     
     //MARK: Facebook
     func facebookAction(){
         
-           }
+        self.socialhander!.configureFacebook(false, completionHandler: { success in
+            
+            if(success){
+                
+                self.performSegueWithIdentifier("showCreateProfileView", sender: self)
+                
+            }else{
+                
+                //Default Message
+                var alert = UIAlertView(title: "Try Again", message: "OOPS, an error occured please try again!", delegate: nil, cancelButtonTitle: "OK")
+                
+            }
+        })
+        
+    }
 
 }
