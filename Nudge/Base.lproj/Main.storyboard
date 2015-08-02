@@ -1163,6 +1163,9 @@
                                     <segment title="All"/>
                                     <segment title="Favourites"/>
                                 </segments>
+                                <connections>
+                                    <action selector="segmentSelection:" destination="8rJ-Kc-sve" eventType="valueChanged" id="upu-J0-4LA"/>
+                                </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="62P-JS-cTz">
                                 <rect key="frame" x="0.0" y="114" width="375" height="509"/>
@@ -1198,6 +1201,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="segControl" destination="ld6-3T-cZf" id="FOf-4T-AiK"/>
                         <outlet property="table" destination="62P-JS-cTz" id="ywm-VM-F7V"/>
                     </connections>
                 </viewController>

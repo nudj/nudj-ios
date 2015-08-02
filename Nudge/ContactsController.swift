@@ -13,6 +13,7 @@ import SwiftyJSON
 class ContactsController: BaseController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var segControl: UISegmentedControl!
 
     // Hardcoded for performance improvement
     let staticRowHeight:CGFloat = 76
@@ -149,6 +150,18 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         
         view.tintColor = UIColor.whiteColor()
         
+    }
+    @IBAction func segmentSelection(sender: UISegmentedControl) {
+        
+        if segControl.selectedSegmentIndex == 0{
+            
+            
+        }
+        
+        if segControl.selectedSegmentIndex == 1{
+        
+            
+        }
     }
     
 }
