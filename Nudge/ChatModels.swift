@@ -336,8 +336,6 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
                 
                 time = NSDate();
                 appGlobalDelegate.shouldShowBadge = true;
-                sender.roomJID.user
-                
                 
             }
             
