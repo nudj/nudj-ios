@@ -10,21 +10,36 @@ import Foundation
 import UIKit
 import SwiftyJSON
 
-class ContactsController: BaseController, UITableViewDataSource, UITableViewDelegate {
+class ContactsController: BaseController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var segControl: UISegmentedControl!
-
+    
+    @IBOutlet weak var activityIndi: UIActivityIndicatorView!
+    var searchBar =  UISearchBar()
+    var isSearchEnabled:Bool = false
+    
     // Hardcoded for performance improvement
     let staticRowHeight:CGFloat = 76
 
     let cellIdentifier = "ContactsCell"
 
+    var filtering:FilterModel?
     var indexes = [String]()
     var data = [String:[ContactModel]]()
     var refreshControl:UIRefreshControl!
 
     override func viewDidLoad() {
+        
+        self.searchBar.hidden = true
+        self.searchBar.delegate = self;
+        self.searchBar.searchBarStyle = UISearchBarStyle.Default
+        self.searchBar.showsCancelButton = true
+        self.searchBar.showsScopeBar = true
+        self.searchBar.frame = CGRectMake(0, 20, self.view.frame.width, 50)
+        
+        self.view.addSubview(self.searchBar)
+        
         table.registerNib(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
         table.rowHeight = self.staticRowHeight
         
@@ -36,25 +51,39 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         table.addSubview(refreshControl)
 
         self.refresh(nil)
+        
+        self.activityIndi.hidden = false
+        self.table.hidden = true
     }
 
+    override func viewWillAppear(animated: Bool) {
+        
+        if isSearchEnabled == true {
+            
+            self.navigationController?.navigationBarHidden = true;
+            
+        }
+    }
+    
     func refresh(sender: AnyObject?) {
 
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
 
         appDelegate.contacts.sync() { success in
-            self.loadData()
+            self.loadData("contacts")
         }
 
     }
 
-    func loadData() {
-        self.apiRequest(.GET, path: "contacts?params=contact.alias,contact.user,contact.apple_id,user.image,user.status&sizes=user.profile", closure: { response in
+    func loadData(url:String!) {
+
+        self.apiRequest(.GET, path: "\(url!)?params=contact.alias,contact.user,contact.apple_id,user.image,user.status&sizes=user.profile", closure: { response in
 
             self.data.removeAll(keepCapacity: false)
             self.indexes.removeAll(keepCapacity: false)
 
             let dictionary = sorted(response["data"]) { $0.0 < $1.0 }
+            var content:[ContactModel] = [];
             
             for (id, obj) in dictionary {
                 if self.data[id] == nil {
@@ -72,45 +101,84 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
 
                     var contact = ContactModel(id: subJson["id"].intValue, name: subJson["alias"].stringValue, apple_id: subJson["apple_id"].int, user: user)
                     self.data[id]!.append(contact)
+                    content.append(contact)
                 }
             }
-
+            
+            self.filtering = FilterModel(content:content)
             self.table.reloadData()
             self.refreshControl.endRefreshing()
+            
+            self.activityIndi.hidden = true
+            self.table.hidden = false
         })
     }
 
     // MARK: -- UITableViewDataSource --
 
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.indexes[section]
+        if self.isSearchEnabled{
+            
+            return nil
+            
+        }else{
+            
+            return self.indexes[section]
+        
+        }
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return self.indexes.count
+        if self.isSearchEnabled{
+            
+            return 1
+            
+        }else{
+            
+            return self.indexes.count
+            
+        }
+        
+        
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let section = self.data[indexes[section]] {
-            return section.count
-        }
+        if self.isSearchEnabled{
+            
+            return self.filtering!.filteredContent.count
+            
+        }else{
+            
+        
+            if let section = self.data[indexes[section]] {
+                return section.count
+            }
 
-        return 0
+            return 0
+        
+        }
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell:ContactsCell = table.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath) as! ContactsCell
         cell.selectable = false
 
-        let index = indexes[indexPath.section]
+        if(self.isSearchEnabled == true){
+            
+             cell.loadData(self.filtering!.filteredContent[indexPath.row] as ContactModel)
+            
+        }else{
+        
+            let index = indexes[indexPath.section]
 
-        if let section = self.data[index] {
-            let contact = section[indexPath.row]
-            cell.loadData(contact)
-        } else {
-            println("Strange index in contacts table: ", indexPath)
+            if let section = self.data[index] {
+                let contact = section[indexPath.row]
+                cell.loadData(contact)
+            } else {
+                println("Strange index in contacts table: ", indexPath)
+            }
+            
         }
-
         return cell
     }
 
@@ -119,18 +187,25 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let cell = tableView.cellForRowAtIndexPath(indexPath) as? ContactsCell {
             let index = indexes[indexPath.section]
-
+        
             if let section = self.data[index] {
-                let contact = section[indexPath.row]
-
-                if let user = contact.user {
+                
+                var contact :ContactModel?
+                
+                if self.isSearchEnabled == true {
+                    contact = self.filtering!.filteredContent[indexPath.row]
+                }else{
+                    contact = section[indexPath.row]
+                }
+                
+                if let user = contact!.user {
                     //Go to profile view
                     let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     var genericController = storyboard.instantiateViewControllerWithIdentifier("GenericProfileView") as! GenericProfileViewController
 
                     genericController.userId = user.id!
                     genericController.type = .Public
-                    genericController.preloadedName = contact.name
+                    genericController.preloadedName = contact!.name
 
 
                     self.navigationController?.pushViewController(genericController, animated: true)
@@ -142,26 +217,85 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
     }
 
     func sectionIndexTitlesForTableView(tableView: UITableView) -> [AnyObject]! {
+       if self.isSearchEnabled == true {
+        
+        return nil
+        
+       }else{
+       
         return self.indexes
+        
+        }
     }
 
     
     func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        
+        if self.isSearchEnabled == false {
         view.tintColor = UIColor.whiteColor()
-        
+        }
     }
     @IBAction func segmentSelection(sender: UISegmentedControl) {
         
+        self.table.hidden = true;
+        self.activityIndi.hidden = false
+        
         if segControl.selectedSegmentIndex == 0{
             
-            
+            self.loadData("contacts")
         }
         
         if segControl.selectedSegmentIndex == 1{
         
-            
+            self.loadData("contacts")
         }
     }
+    
+    @IBAction func searchButton(sender: UIBarButtonItem) {
+        
+        self.navigationController?.navigationBarHidden = true;
+        self.searchBar.hidden = false
+        self.searchBar.becomeFirstResponder()
+        self.isSearchEnabled = true
+    }
+    
+    
+    //MARK: Searcbar
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        
+            if(searchBar.text == ""){
+                
+                searchBar.resignFirstResponder()
+                self.searchBar.hidden = true
+                self.navigationController?.navigationBarHidden = false;
+                self.isSearchEnabled = false
+                
+            }else{
+                
+                self.filtering?.stopFiltering()
+                searchBar.text = ""
+                self.table.reloadData()
+                
+            }
+       
+        
+    }
+    
+    func searchBar(searchBar :UISearchBar, textDidChange searchText:String){
+        
+            
+            if(!searchText.isEmpty){
+                
+                self.filtering!.startFiltering(searchText, completionHandler: { (success) -> Void in
+                    self.table.reloadData()
+                })
+                
+            }else {
+                
+                self.filtering!.stopFiltering()
+                self.table.reloadData()
+            }
+            
+        }
+        
     
 }
