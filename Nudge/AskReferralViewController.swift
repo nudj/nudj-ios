@@ -180,6 +180,8 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
             cell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier) as? ContactsCell
         }
         
+        cell.setSelected(false, animated: false)
+        
         if(self.filtering != nil){
             var contact = self.filtering!.filteredContent[indexPath.row] as ContactModel
             cell!.loadData(contact)
@@ -187,9 +189,14 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
             if selected.count > 0 {
                 
                 //TODO: Find a better way
+
                 for (index, value) in enumerate(selected) {
                     if value.id == contact.id {
-                        cell!.selected = true
+                        
+                        println("contacts info -> \(contact)")
+                        cell!.setSelected(true, animated: false)
+                        
+                        break
                     }
                 }
                 

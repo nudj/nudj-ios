@@ -17,14 +17,6 @@ class ContactsCell: DataTableCell {
     @IBOutlet weak var tick: UIImageView!
 
     var contactId:Int = 0
-
-    var selectable = true
-
-    override var selected:Bool {
-        didSet {
-            tick.highlighted = selected
-        }
-    }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -33,11 +25,22 @@ class ContactsCell: DataTableCell {
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+    
+    override var selected:Bool {
+        didSet {
+            
+            tick.highlighted = selected
+            println("Overwritting Cell \(selected)");
+            
+        }
+    }
 
     func loadData(contact: ContactModel) {
 
-
+        profileImage.setCustomImage(UserModel.getDefaultUserImage())
+        
         if let user = contact.user {
+            
             profileImage.downloadImage(user.image["profile"])
 
             if let statusIndex = user.status {
@@ -72,6 +75,12 @@ class ContactsCell: DataTableCell {
             status.hidden = false
             status.userInteractionEnabled = true
         }
+    }
+    
+    func removeSelectionStyle(){
+        
+        self.selectionStyle = UITableViewCellSelectionStyle.None;
+        
     }
 
 }

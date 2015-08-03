@@ -28,7 +28,7 @@ class UserModel: Printable {
     var isDefaultImage = true
 
     var description:String {
-        return "UserModel: id: \(id), name: \(name), completed: \(completed ? 1 : 0), status: \(status)"
+        return "UserModel: id: \(id), name: \(name), completed: \(completed ? 1 : 0), status: \(status), image:\(image)"
     }
 
     var company:String?

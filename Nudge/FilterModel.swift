@@ -23,8 +23,6 @@ class FilterModel: NSObject {
     
     func startFiltering(filteringText:String, completionHandler:(success:Bool) -> Void) {
         
-        println("filtering -> \(filteringText)")
-        
         self.filteredContent = self.allContent.filter({ text in
             
             text.name.lowercaseString.hasPrefix(filteringText.lowercaseString)

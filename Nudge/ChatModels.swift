@@ -266,6 +266,8 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             
             var chatroom = ChatRoomModel()
             var roomID = split(jid) {$0 == "@"}
+            
+            appGlobalDelegate.shouldShowBadge = true;
             chatroom.prepareChatModel(jid, roomId: roomID[0], with:self.xmppStream!, delegate:self)
             self.listOfActiveChatRooms.insert(chatroom, atIndex: 0)
 
@@ -333,6 +335,9 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             }else{
                 
                 time = NSDate();
+                appGlobalDelegate.shouldShowBadge = true;
+                sender.roomJID.user
+                
                 
             }
             

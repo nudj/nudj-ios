@@ -16,6 +16,12 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
     var templateImage :JSQMessagesAvatarImage?;
     var messages = NSMutableArray();
     var selectedIndex: Int?
+    
+    var otherUserImage :JSQMessagesAvatarImage?
+    var myImage :JSQMessagesAvatarImage?
+    
+    var otherUserImageUrl: String!
+    
     let appGlobalDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     
@@ -36,13 +42,35 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
     
         self.templateImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(UserModel.getDefaultUserImage(), diameter: 30)
         
-        appGlobalDelegate.chatInst!.delegate = self;
+        appGlobalDelegate.chatInst!.delegate = self
         
         if(appGlobalDelegate.chatInst!.listOfActiveChatRooms.count > selectedIndex){
         self.messages = appGlobalDelegate.chatInst!.listOfActiveChatRooms[self.selectedIndex!].retrieveStoredChats()
         }
+        
+        self.myImage = self.setupAvatarImage(self.appGlobalDelegate.user?.image["profile"])
+        self.otherUserImage = self.setupAvatarImage(self.otherUserImageUrl)
+
+        
     }
 
+    //Custom Image
+    func setupAvatarImage(imageUrl: String!) -> JSQMessagesAvatarImage{
+        
+        if let stringUrl = imageUrl {
+            if let url = NSURL(string: stringUrl) {
+                var data = NSData(contentsOfURL: url)
+                if(data != nil){
+                    let image = UIImage(data: data!)
+                    return JSQMessagesAvatarImageFactory.avatarImageWithImage(image, diameter: 30)
+                }
+            }
+        }
+        
+        //Default
+        return JSQMessagesAvatarImageFactory.avatarImageWithImage(UserModel.getDefaultUserImage(), diameter: 30)
+    }
+    
     
     // ACTIONS
     func createDropDownView(){
@@ -127,46 +155,22 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
     override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageAvatarImageDataSource! {
         
         
-        /**
-        *  Return `nil` here if you do not want avatars.
-        *  If you do return `nil`, be sure to do the following in `viewDidLoad`:
-        *
-        *  self.collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeZero;
-        *  self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero;
-        *
-        *  It is possible to have only outgoing avatars or only incoming avatars, too.
-        */
-        
-        /**
-        *  Return your previously created avatar image data objects.
-        *
-        *  Note: these the avatars will be sized according to these values:
-        *
-        *  self.collectionView.collectionViewLayout.incomingAvatarViewSize
-        *  self.collectionView.collectionViewLayout.outgoingAvatarViewSize
-        *
-        *  Override the defaults in `viewDidLoad`
-        
-        */
-        
-        /*var message = self.demoData.messages.objectAtIndex(indexPath.item) as! JSQMessage
+        var message = self.messages.objectAtIndex(indexPath.item) as! JSQMessage
+        var img:JSQMessagesAvatarImage?
         
         if (message.senderId == self.senderId) {
-        if (!NSUserDefaults.outgoingAvatarSetting()) {
-        return nil;
-        }
-        }
-        else {
-        if (!NSUserDefaults.incomingAvatarSetting()) {
-        return nil;
-        }
-        }*/
         
-        //var dic = self.demoData.avatars as NSDictionary;
+            img = self.myImage!
         
-        return self.templateImage as! JSQMessageAvatarImageDataSource
+        }else {
+            
+            img = self.otherUserImage!
+        }
         
+        return img;
     }
+    
+    
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForCellTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
         

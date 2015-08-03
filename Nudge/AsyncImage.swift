@@ -77,11 +77,13 @@ class AsyncImage: UIImageView {
     }
 
     func downloadImage(url:String?, completion: (() -> Void)? = nil) {
+        
         if (url == nil || count(url!) <= 0) {
             return
         }
 
         self.startActivity()
+        
 
         getDataFromUrl(url!) { data in
             dispatch_async(dispatch_get_main_queue()) {

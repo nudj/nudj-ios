@@ -74,7 +74,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
 
         appDelegate.contacts.sync() { success in
-            self.loadData("contacts")
+            self.loadData("contacts/mine")
         }
 
     }
@@ -164,9 +164,10 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         let cell:ContactsCell = table.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath) as! ContactsCell
-        cell.selectable = false
-
+        cell.removeSelectionStyle()
+        
         if(self.isSearchEnabled == true){
             
              cell.loadData(self.filtering!.filteredContent[indexPath.row] as ContactModel)
@@ -267,12 +268,12 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         
         if segControl.selectedSegmentIndex == 0{
             
-            self.loadData("contacts")
+            self.loadData("contacts/mine")
         }
         
         if segControl.selectedSegmentIndex == 1{
         
-            self.loadData("contacts")
+            self.loadData("contacts/favourited")
         }
     }
     
