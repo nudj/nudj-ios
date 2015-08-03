@@ -48,6 +48,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         table.rowHeight = self.staticRowHeight
         
         table.backgroundColor = UIColor.whiteColor()
+        table.tableFooterView = UIView(frame: CGRectZero)
 
         refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")

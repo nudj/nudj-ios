@@ -37,6 +37,8 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
         
         askTable.registerNib(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
         
+        askTable.tableFooterView = UIView(frame: CGRectZero)
+        
         self.loadData()
     }
 
