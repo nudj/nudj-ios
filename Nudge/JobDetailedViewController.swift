@@ -121,8 +121,8 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate {
         locationText.setFontColor(appDelegate.appColor, string:content["location"].stringValue)
         
         // Salary Property
-        salaryText.text = "Salary: £" + content["salary"].stringValue
-        salaryText.setFontColor(appDelegate.appColor, string:"£" + content["salary"].stringValue)
+        salaryText.text = "Salary: " + content["salary"].stringValue
+        salaryText.setFontColor(appDelegate.appColor, string:content["salary"].stringValue)
         
         
         // Referral Property

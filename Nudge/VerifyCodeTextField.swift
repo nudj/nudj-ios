@@ -14,7 +14,7 @@ class VerifyCodeTextField: UITextField {
 
     let lineWidth:CGFloat = 1.8
 
-    let textFont = UIFont.systemFontOfSize(40)
+    let textFont = UIFont.systemFontOfSize(34)
     let letterSpacing:CGFloat = 23.5;
 
     required init(coder aDecoder: NSCoder) {

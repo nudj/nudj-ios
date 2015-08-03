@@ -173,13 +173,33 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell:ContactsCell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath) as! ContactsCell
+        var cell: ContactsCell! = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier) as? ContactsCell
         
-        if(self.filtering != nil){
-        cell.loadData(self.filtering!.filteredContent[indexPath.row] as ContactModel)
+        if cell == nil {
+            tableView.registerNib(UINib(nibName: "ContactsCell", bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
+            cell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier) as? ContactsCell
         }
         
-        return cell
+        if(self.filtering != nil){
+            var contact = self.filtering!.filteredContent[indexPath.row] as ContactModel
+            cell!.loadData(contact)
+            
+            if selected.count > 0 {
+                
+                //TODO: Find a better way
+                for (index, value) in enumerate(selected) {
+                    if value.id == contact.id {
+                        cell!.selected = true
+                    }
+                }
+                
+
+            }
+            
+            
+        }
+        
+        return cell!
         
     }
     
@@ -206,11 +226,8 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
                 checkSelected()
             }
             
-            if(selected.count > 0){
-                self.navigationController?.navigationItem.rightBarButtonItem?.enabled = true
-            }else{
-                self.navigationController?.navigationItem.rightBarButtonItem?.enabled = false
-            }
+            checkSelected()
+            
         }
 
     }
@@ -220,7 +237,11 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     }
 
     @IBAction func askAction(sender: AnyObject) {
-
+        
+        self.resignFirstResponder()
+        self.view.endEditing(true)
+        
+        
         let contactIds:[Int] = selected.map { contact in
             return contact.id
         }

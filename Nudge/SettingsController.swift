@@ -67,7 +67,7 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
             self.table.reloadData()
         })
 
-        self.statusButton.changeColor(UIColor.blueColor())
+        //self.statusButton.changeColor(UIColor.blueColor())
     }
 
     // MARK: - Table view data source

@@ -49,11 +49,11 @@ class CreatePopupView: UIView {
             self.contentImage = UIImageView(frame: CGRectMake((self.whitepopupbox!.frame.size.width - 88)/2 , 22 , 88, 88))
             self.contentImage!.image = UIImage(named:i)
             
-            labl = UILabel(frame: CGRectMake(10, self.contentImage!.frame.origin.y + self.contentImage!.frame.size.height + 10, self.whitepopupbox!.frame.size.width-10, 60))
-            labl!.font = UIFont(name: "HelveticaNeue", size: 14)
+            labl = UILabel(frame: CGRectMake(10, self.contentImage!.frame.origin.y + self.contentImage!.frame.size.height + 10, self.whitepopupbox!.frame.size.width-20, 80))
+            labl!.font = UIFont(name: "HelveticaNeue", size: 22)
             labl!.textAlignment = NSTextAlignment.Center;
             labl!.textColor = UIColor(red: 0/255, green: 161/255, blue: 135/255, alpha: 1)
-            labl!.numberOfLines = 0;
+            labl!.numberOfLines = 3;
             
             self.whitepopupbox!.addSubview(self.contentImage!)
             self.whitepopupbox!.addSubview(labl!)
