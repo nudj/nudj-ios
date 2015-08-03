@@ -10,12 +10,13 @@ import Foundation
 import UIKit
 import SwiftyJSON
 
-class ContactsController: BaseController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class ContactsController: BaseController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIAlertViewDelegate {
 
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var segControl: UISegmentedControl!
     
     @IBOutlet weak var activityIndi: UIActivityIndicatorView!
+    var alert = UIAlertView()
     var searchBar =  UISearchBar()
     var isSearchEnabled:Bool = false
     
@@ -37,8 +38,11 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         self.searchBar.showsCancelButton = true
         self.searchBar.showsScopeBar = true
         self.searchBar.frame = CGRectMake(0, 20, self.view.frame.width, 50)
-        
         self.view.addSubview(self.searchBar)
+        
+        
+        //Invite pop up config
+        self.alert  = UIAlertView(title: "Invite", message: "", delegate: self, cancelButtonTitle: "NO", otherButtonTitles: "YES")
         
         table.registerNib(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
         table.rowHeight = self.staticRowHeight
@@ -209,6 +213,11 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
 
 
                     self.navigationController?.pushViewController(genericController, animated: true)
+                    
+                }else{
+                    
+                    self.alert.message = "Do you want to invite \(contact!.name)?";
+                    self.alert.show();
                 }
             }
             
@@ -234,6 +243,23 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         view.tintColor = UIColor.whiteColor()
         }
     }
+    
+    
+    
+    //MARK :Invite user
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        
+        if buttonIndex == 0{
+            
+            println("Dissmiss pop up")
+            
+        }else{
+            
+            println("send sms")
+        }
+    }
+    
+    
     @IBAction func segmentSelection(sender: UISegmentedControl) {
         
         self.table.hidden = true;
