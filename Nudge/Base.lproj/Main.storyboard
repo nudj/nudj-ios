@@ -93,7 +93,7 @@
                                                     <constraint firstAttribute="height" constant="25" id="wQQ-Ev-ky0"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Job Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jKm-c0-VgH">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Job Title*" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jKm-c0-VgH">
                                                 <rect key="frame" x="49" y="12" width="357" height="30"/>
                                                 <color key="textColor" red="0.074533462524414062" green="0.57771205902099609" blue="0.45876827836036682" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -131,10 +131,10 @@
                                                     <constraint firstAttribute="width" constant="25" id="tGk-9F-FAd"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job Description (keep it brief)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mks-Km-9Sx">
-                                                <rect key="frame" x="49" y="16" width="250" height="18"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job Description* (keep it brief)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mks-Km-9Sx">
+                                                <rect key="frame" x="49" y="16" width="300" height="18"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="250" id="If7-qi-odm"/>
+                                                    <constraint firstAttribute="width" constant="300" id="If7-qi-odm"/>
                                                     <constraint firstAttribute="height" constant="18" id="WLf-M4-5wP"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -183,7 +183,7 @@
                                                     <constraint firstAttribute="height" constant="25" id="wCI-Il-IgE"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Add Skills Tags" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kSE-5w-9ME">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Add Skills Tags*" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kSE-5w-9ME">
                                                 <rect key="frame" x="49" y="10" width="357" height="29"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="29" id="57M-8q-iQG"/>
@@ -246,7 +246,7 @@
                                                     <constraint firstAttribute="width" constant="25" id="nej-5J-EDW"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Salary Details" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XT5-4e-Sw3">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Salary Details*" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XT5-4e-Sw3">
                                                 <rect key="frame" x="49" y="10" width="357" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="gIQ-pe-ePW"/>
@@ -430,7 +430,7 @@
                                                     <constraint firstAttribute="height" constant="25" id="SOI-78-yy0"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add Amount" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jbw-X4-z9y">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add Amount*" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jbw-X4-z9y">
                                                 <rect key="frame" x="49" y="10" width="354" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="ZgJ-Sx-4RX"/>
@@ -693,11 +693,12 @@
                                     <segue destination="l4F-Ih-7ec" kind="show" id="eNW-U2-njr"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M7K-Zz-jWR">
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="268" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M7K-Zz-jWR">
                                 <rect key="frame" x="16" y="563" width="164" height="40"/>
                                 <color key="backgroundColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="cpw-sS-LmC"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="164" id="zMd-Ub-R2F"/>
                                 </constraints>
                                 <state key="normal" title="INTERESTED">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -831,8 +832,11 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6JZ-HT-MOn">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6JZ-HT-MOn">
                                 <rect key="frame" x="16" y="84" width="343" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="ETm-Xc-x3e"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -863,7 +867,7 @@
                             <constraint firstItem="6JZ-HT-MOn" firstAttribute="top" secondItem="ClY-JK-HuM" secondAttribute="top" constant="-24" id="UdX-Ck-D5r"/>
                             <constraint firstItem="6JZ-HT-MOn" firstAttribute="trailing" secondItem="vov-20-Wq3" secondAttribute="trailingMargin" id="Zil-0j-xM8"/>
                             <constraint firstItem="iJy-5F-cqu" firstAttribute="trailing" secondItem="vov-20-Wq3" secondAttribute="trailingMargin" id="ZwX-bN-MD4"/>
-                            <constraint firstItem="Mji-Gj-fEa" firstAttribute="width" secondItem="M7K-Zz-jWR" secondAttribute="width" id="a4X-di-Xxz"/>
+                            <constraint firstItem="Mji-Gj-fEa" firstAttribute="width" relation="greaterThanOrEqual" secondItem="M7K-Zz-jWR" secondAttribute="width" id="a4X-di-Xxz"/>
                             <constraint firstItem="YAb-uZ-5ne" firstAttribute="trailing" secondItem="vov-20-Wq3" secondAttribute="trailingMargin" id="a4a-yz-wpl"/>
                             <constraint firstItem="Kg2-aW-kNL" firstAttribute="top" secondItem="adi-20-xUa" secondAttribute="bottom" constant="12" id="acI-lv-5B1"/>
                             <constraint firstItem="ftp-qH-abp" firstAttribute="leading" secondItem="ZVX-lB-sgI" secondAttribute="trailing" constant="8" id="dQv-KE-rRX"/>
@@ -888,6 +892,7 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="DTA-Ge-qEV"/>
+                                <exclude reference="a4X-di-Xxz"/>
                             </mask>
                         </variation>
                     </view>
@@ -908,8 +913,10 @@
                         <outlet property="interestedBtn" destination="M7K-Zz-jWR" id="GAw-2Z-Qka"/>
                         <outlet property="jobTitleText" destination="6JZ-HT-MOn" id="7lL-wl-dHp"/>
                         <outlet property="locationText" destination="iJy-5F-cqu" id="dQj-KX-hVd"/>
+                        <outlet property="nudgeBtn" destination="Mji-Gj-fEa" id="CZZ-wa-6r7"/>
                         <outlet property="salaryText" destination="ftp-qH-abp" id="un8-7d-Ar7"/>
                         <outlet property="skills" destination="KXz-hf-wcR" id="gTB-Vc-6B0"/>
+                        <outlet property="spaceBetween" destination="GxX-bp-IOJ" id="4Nc-6e-oSe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l1b-Cw-UAv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2336,13 +2343,13 @@
         <image name="skills-active" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="eNW-U2-njr"/>
-        <segue reference="6SR-Rm-L27"/>
-        <segue reference="oHM-Sk-no8"/>
-        <segue reference="BCe-Pt-bFX"/>
-        <segue reference="fbd-Xz-21X"/>
         <segue reference="l7l-cF-kYn"/>
+        <segue reference="fbd-Xz-21X"/>
         <segue reference="1RO-e0-4AP"/>
+        <segue reference="BCe-Pt-bFX"/>
+        <segue reference="oHM-Sk-no8"/>
+        <segue reference="6SR-Rm-L27"/>
+        <segue reference="eNW-U2-njr"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
 </document>

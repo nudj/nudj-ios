@@ -9,6 +9,8 @@
 import UIKit
 import Foundation
 import Alamofire
+import FBSDKLoginKit
+
 
 class SocialHandlerModel: NSObject {
    

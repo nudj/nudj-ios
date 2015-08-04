@@ -22,7 +22,11 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate {
     @IBOutlet var salaryText: NZLabel!
     @IBOutlet var bonusText: NZLabel!
     
+    
     @IBOutlet weak var interestedBtn: UIButton!
+    @IBOutlet weak var spaceBetween: NSLayoutConstraint!
+    @IBOutlet weak var nudgeBtn: UIButton!
+  
     
     @IBOutlet weak var skills: TokenView!
     var popup :CreatePopupView?;
@@ -76,6 +80,11 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate {
             
             self.navigationItem.rightBarButtonItem?.title = "Edit"
             self.interestedBtn.setTitle("Ask for Referral", forState: UIControlState.Normal)
+            
+            spaceBetween.constant = 0
+            let constraint = NSLayoutConstraint(item: nudgeBtn, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 0)
+            nudgeBtn.addConstraint(constraint)
+            
             
         }else if(content["liked"].boolValue){
         

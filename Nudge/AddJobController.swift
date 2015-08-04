@@ -90,6 +90,11 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
         self.resignFirstResponder()
         self.view.endEditing(true)
         
+        //Scroll back to top
+        scrollView.setContentOffset(CGPointMake(self.scrollView.contentOffset.x, 0), animated: true)
+        
+        if(self.checkFields()){
+        
         var job = JobModel();
         job.title = jobTitle.text
         job.description = jobDescription.text
@@ -113,7 +118,57 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
             self.view.addSubview(self.popup!)
         }
         
+        }else{
+            
+            var alert = UIAlertView(title: "Missing information", message: "Please fill in the required fields", delegate: nil, cancelButtonTitle: "OK")
+            alert.show();
+        }
+        
 
+    }
+    
+    func checkFields() -> Bool{
+        
+        if (jobTitle.text.isEmpty ){
+            
+            jobTitle.placeholder = self.appendRequired(jobTitle.placeholder!)
+            return false
+        }
+        
+        if (jobDescription.text.isEmpty){
+         
+            jobDescriptionLabel.text = self.appendRequired(jobDescriptionLabel.text!)
+            return false
+            
+        }
+        
+        if (skills.tokens()!.count == 0){
+            
+            skillsLabel.text  = self.appendRequired(skillsLabel.text!)
+            return false
+        }
+        
+        
+        if (salary.text.isEmpty){
+            
+            salary.placeholder = self.appendRequired(salary.placeholder!)
+            return false
+        }
+        
+        
+        if (bonus.text.isEmpty){
+         
+            bonus.placeholder = self.appendRequired(bonus.placeholder!)
+            return false
+        }
+        
+        return true
+    }
+    
+    func appendRequired(value:String) -> String{
+        
+        return value + " (Required)"
+        
     }
     
     func prefillData(json:JSON){
@@ -167,6 +222,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        scrollView.setContentOffset(CGPointMake(self.scrollView.contentOffset.x, 0), animated: true)
         return true
     }
 
@@ -218,7 +274,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
         var origin = view.superview!.frame.origin
 
         // TODO: Refactor this!!!!
-        let maxOffset = scrollView.contentSize.height - self.openSpace - 100
+        let maxOffset = scrollView.contentSize.height - self.openSpace - 100 //Was 100
 
         if (origin.y > maxOffset) {
             origin.y = maxOffset

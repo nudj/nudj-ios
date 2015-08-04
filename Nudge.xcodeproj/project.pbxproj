@@ -231,9 +231,6 @@
 		A9C6EC9C1B38447700EC9140 /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC9B1B38447700EC9140 /* ChatListViewController.swift */; };
 		A9C6EC9F1B3853F900EC9140 /* ChatListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC9D1B3853F900EC9140 /* ChatListTableViewCell.swift */; };
 		A9C6ECA01B3853F900EC9140 /* ChatListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9C6EC9E1B3853F900EC9140 /* ChatListTableViewCell.xib */; };
-		A9EFE8621B6B8C1B008553C8 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9EFE85F1B6B8C1B008553C8 /* FBSDKCoreKit.framework */; };
-		A9EFE8631B6B8C1B008553C8 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9EFE8601B6B8C1B008553C8 /* FBSDKLoginKit.framework */; };
-		A9EFE8641B6B8C1B008553C8 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9EFE8611B6B8C1B008553C8 /* FBSDKShareKit.framework */; };
 		A9F333271B41759A00F0D17B /* CPAnimationProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F333241B41759A00F0D17B /* CPAnimationProgram.m */; };
 		A9F333281B41759A00F0D17B /* CPAnimationSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F333251B41759A00F0D17B /* CPAnimationSequence.m */; };
 		A9F333291B41759A00F0D17B /* CPAnimationStep.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F333261B41759A00F0D17B /* CPAnimationStep.m */; };
@@ -765,9 +762,6 @@
 		A9C6EC9B1B38447700EC9140 /* ChatListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
 		A9C6EC9D1B3853F900EC9140 /* ChatListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListTableViewCell.swift; sourceTree = "<group>"; };
 		A9C6EC9E1B3853F900EC9140 /* ChatListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatListTableViewCell.xib; sourceTree = "<group>"; };
-		A9EFE85F1B6B8C1B008553C8 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		A9EFE8601B6B8C1B008553C8 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
-		A9EFE8611B6B8C1B008553C8 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../../FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		A9F333201B41759A00F0D17B /* CPAnimationProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnimationProgram.h; sourceTree = "<group>"; };
 		A9F333211B41759A00F0D17B /* CPAnimationSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnimationSequence.h; sourceTree = "<group>"; };
 		A9F333221B41759A00F0D17B /* CPAnimationStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnimationStep.h; sourceTree = "<group>"; };
@@ -865,7 +859,6 @@
 			files = (
 				A996508E1B38806700D5A8E9 /* libresolv.dylib in Frameworks */,
 				A9191EA81B6A864E000F9168 /* linkedin-sdk.framework in Frameworks */,
-				A9EFE8641B6B8C1B008553C8 /* FBSDKShareKit.framework in Frameworks */,
 				A996508B1B38805B00D5A8E9 /* libxml2.2.dylib in Frameworks */,
 				A996508C1B38805B00D5A8E9 /* libxml2.dylib in Frameworks */,
 				A99650881B38804D00D5A8E9 /* AudioToolbox.framework in Frameworks */,
@@ -874,11 +867,9 @@
 				A99650801B387CC800D5A8E9 /* libidn.a in Frameworks */,
 				EBB3382E1A9F5973000CAD88 /* CoreData.framework in Frameworks */,
 				EBD1073E1AF0B8F800310818 /* Pods.framework in Frameworks */,
-				A9EFE8621B6B8C1B008553C8 /* FBSDKCoreKit.framework in Frameworks */,
 				EBF9DD8A1AE6A8EC00A1A67D /* SwiftyJSON.framework in Frameworks */,
 				EB27E01D1ADD37790023EFB3 /* Alamofire.framework in Frameworks */,
 				A9C6EC981B38273300EC9140 /* Crashlytics.framework in Frameworks */,
-				A9EFE8631B6B8C1B008553C8 /* FBSDKLoginKit.framework in Frameworks */,
 				EBA8C3431B30852B00522167 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2096,9 +2087,6 @@
 		EB0926C11A8DE4CB00E1D958 = {
 			isa = PBXGroup;
 			children = (
-				A9EFE85F1B6B8C1B008553C8 /* FBSDKCoreKit.framework */,
-				A9EFE8601B6B8C1B008553C8 /* FBSDKLoginKit.framework */,
-				A9EFE8611B6B8C1B008553C8 /* FBSDKShareKit.framework */,
 				A9C6EC971B38273300EC9140 /* Crashlytics.framework */,
 				A9191EA71B6A864E000F9168 /* linkedin-sdk.framework */,
 				EBA8C3421B30852B00522167 /* Fabric.framework */,
