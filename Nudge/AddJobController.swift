@@ -59,7 +59,10 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"keyboardChanged:", name: UIKeyboardDidChangeFrameNotification, object: nil);
         
         if(isEditable != nil && isEditable == true){
-                
+            
+            self.navigationItem.rightBarButtonItem?.title = "Update"
+            self.title = "Edit Job"
+            
                 API.sharedInstance.get("jobs/\(self.jobId!)?params=job.title,job.company,job.liked,job.salary,job.active,job.description,job.skills,job.bonus,job.user,job.location,user.image,user.name,user.contact", params: nil, closure: { json in
                     
                     self.prefillData(json["data"])
@@ -104,24 +107,46 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
         job.location = location.text
         job.active = activeButton.selected
         job.bonus = bonus.text
+            
+        var item: UIBarButtonItem = sender as! UIBarButtonItem
+            if(sender.title == "Update"){
+                
+                job.edit(self.jobId!, closure: { result in
+                    if(result == true){
+                        println ("did update")
+                        
+                        self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"this_job_has-been_posted", withText: false);
+                        self.popup?.delegate = self;
+                        
+                        self.view.addSubview(self.popup!)
+                        
+                    }else{
+                        println ("failed to update")
+                    }
+                })
+                
+            }else{
+                
+                job.save { error, id in
+                    if (error != nil) {
+                        return
+                    }
+                    
+                    self.jobId = id
 
-        job.save { error, id in
-            if (error != nil) {
-                return
+                    self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"this_job_has-been_posted", withText: false);
+                    self.popup?.delegate = self;
+
+                    self.view.addSubview(self.popup!)
+                    
+                    }
             }
             
-            self.jobId = id
-
-            self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"this_job_has-been_posted", withText: false);
-            self.popup?.delegate = self;
-
-            self.view.addSubview(self.popup!)
-        }
-        
         }else{
             
             var alert = UIAlertView(title: "Missing information", message: "Please fill in the required fields", delegate: nil, cancelButtonTitle: "OK")
             alert.show();
+            
         }
         
 
@@ -172,16 +197,32 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
     }
     
     func prefillData(json:JSON){
-     
+        
+        
         jobTitle.text = json["title"].stringValue
         jobDescriptionLabel.alpha = 0
         jobDescription.text = json["description"].stringValue
         salary.text = json["salary"].stringValue
         employer.text = json["company"].stringValue
         location.text = json["location"].stringValue
-        //activeButton.selected = !activeButton.selected
-        bonus.text = json["bonus"].stringValue
         
+        // Update skills
+        
+        self.skills.editable = false
+        self.skills.userInteractionEnabled = false
+        
+        var skillsArr:[String] = [];
+        
+        for i in json["skills"].arrayValue{
+            
+            skillsArr.append(i["name"].stringValue)
+            
+        }
+        self.skills.fillTokens(skillsArr)
+
+        activeButton.selected = json["active"].boolValue
+        bonus.text = json["bonus"].stringValue
+        updateAssets()
     }
 
     func updateAssets() {

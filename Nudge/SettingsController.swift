@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class SettingsController: UIViewController, UITableViewDataSource, UITableViewDelegate, SocialStatusDelegate {
+class SettingsController: UIViewController, UITableViewDataSource, UITableViewDelegate, SocialStatusDelegate, UIAlertViewDelegate {
 
     var statusButton = StatusButton()
     var socialStatuses = [String:Bool]()
@@ -18,8 +18,9 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
     let cellIdentifier = "SettingsCell";
     var jobsSelected:String?;
 
-    var socialhander:SocialHandlerModel?
-    
+    var socialhander :SocialHandlerModel?
+    var statusParent :SocialStatus?
+    var alertview :UIAlertView?
     let structure: [[SettingsItem]] = [
         [
             SettingsItem(name: "My Profile", action: "showYourProfile"),
@@ -31,7 +32,7 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
             //SettingsItem(name: "Archived Chats", action: "")
         ],
         [
-            SettingsItem(name: "Linked In", action: "linkedin"),
+            SettingsItem(name: "LinkedIn", action: "linkedin"),
             SettingsItem(name: "Facebook", action: "facebook")
         ],
         [
@@ -52,6 +53,8 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
 
         table.registerNib(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
         self.socialhander = SocialHandlerModel(viewController: self)
+        
+        alertview = UIAlertView(title: "", message: "", delegate:self, cancelButtonTitle: "NO", otherButtonTitles: "YES")
         
     }
 
@@ -174,8 +177,7 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
             performSegueWithIdentifier(action, sender: self)
         }
     }
-
-
+    
     /*
     // Override to support conditional editing of the table view.
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -254,29 +256,60 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
 
     func didTap(statusIdentifier: String, parent:SocialStatus) {
         
+        self.statusParent = parent;
+        
+        if(parent.currentStatus!){
+            
+            self.alertview!.title = "Disconnect \(statusIdentifier)"
+            self.alertview!.message = "Are you sure you want to disconnect \(statusIdentifier)"
+            self.alertview!.tag = statusIdentifier == "facebook" ? 0 : 1
+            self.alertview!.show();
+        
+            
+        }else{
+            
+            self.handleSocialAction(statusIdentifier)
+        }
+        
+        
+    }
+    
+    
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        
+        if(buttonIndex == 1){
+            
+            self.handleSocialAction(alertView.tag ==  0 ? "facebook" : "linkedin")
+            
+        }
+        
+    }
+    
+    
+    func handleSocialAction(statusIdentifier:String){
+        
         //Default Message
         var alert = UIAlertView(title: "", message: "", delegate: nil, cancelButtonTitle: "OK")
         
-        
         if(statusIdentifier == "facebook"){
         
-            self.socialhander!.configureFacebook(parent.currentStatus!, completionHandler: { success in
+            self.socialhander!.configureFacebook(self.statusParent!.currentStatus!, completionHandler: { success in
                 
                 if(success){
                 
-                    parent.updateStatus()
-                    self.socialStatuses["facebook"] = parent.currentStatus!
+                    self.statusParent!.updateStatus()
+                    self.socialStatuses["facebook"] = self.statusParent!.currentStatus!
                     
                     
-                    if(parent.currentStatus!){
+                    if(self.statusParent!.currentStatus!){
                       
-                        alert.title = "\(statusIdentifier) Connected!"
-                        alert.message = "You have successfully connected your \(statusIdentifier) account"
+                        alert.title = "Facebook Connected!"
+                        alert.message = "You have successfully connected your Facebook account"
                         
                     }else{
                        
-                        alert.title = "\(statusIdentifier) Disconnected!"
-                        alert.message = "You have successfully disconnected your \(statusIdentifier) account"
+                        alert.title = "Facebook Disconnected!"
+                        alert.message = "You have successfully disconnected your Facebook account"
                         
                     }
                     
@@ -289,22 +322,22 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
         
         if(statusIdentifier == "linkedin"){
         
-            self.socialhander!.configureLinkedin(parent.currentStatus!, completionHandler: { success in
+            self.socialhander!.configureLinkedin(self.statusParent!.currentStatus!, completionHandler: { success in
                 
                 if(success){
                     
-                    parent.updateStatus()
-                    self.socialStatuses["linkedin"] = parent.currentStatus!
+                    self.statusParent!.updateStatus()
+                    self.socialStatuses["linkedin"] = self.statusParent!.currentStatus!
                     
-                    if(parent.currentStatus!){
+                    if(self.statusParent!.currentStatus!){
                         
-                        alert.title = "\(statusIdentifier) Connected!"
-                        alert.message = "You have successfully connected your \(statusIdentifier) account"
+                        alert.title = "LinkedIn Connected!"
+                        alert.message = "You have successfully connected your LinkedIn account"
                         
                     }else{
                         
-                        alert.title = "\(statusIdentifier) Disconnected!"
-                        alert.message = "You have successfully disconnected your \(statusIdentifier) account"
+                        alert.title = "LinkedIn Disconnected!"
+                        alert.message = "You have successfully disconnected your LinkedIn account"
                         
                     }
                     

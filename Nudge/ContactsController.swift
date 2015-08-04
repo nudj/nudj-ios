@@ -37,7 +37,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         self.searchBar.searchBarStyle = UISearchBarStyle.Default
         self.searchBar.showsCancelButton = true
         self.searchBar.showsScopeBar = true
-        self.searchBar.frame = CGRectMake(0, 20, self.view.frame.width, 50)
+        self.searchBar.frame = CGRectMake(0, 0, self.view.frame.width, 70)
         self.view.addSubview(self.searchBar)
         
         
@@ -281,6 +281,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
     @IBAction func searchButton(sender: UIBarButtonItem) {
         
         self.navigationController?.navigationBarHidden = true;
+        segControl.hidden = true
         self.searchBar.hidden = false
         self.searchBar.becomeFirstResponder()
         self.isSearchEnabled = true
@@ -294,6 +295,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
                 
                 searchBar.resignFirstResponder()
                 self.searchBar.hidden = true
+                segControl.hidden = false
                 self.navigationController?.navigationBarHidden = false;
                 self.isSearchEnabled = false
                 

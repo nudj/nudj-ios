@@ -41,4 +41,26 @@ class JobModel {
             closure(error, 0)
         }
     }
+    
+    func edit(jobID:Int, closure:(Bool) -> ()) {
+        
+        let params:[String: AnyObject] = [
+            "title": self.title,
+            "description": self.description,
+            "salary": self.salary,
+            "company": self.company,
+            "location": self.location,
+            "bonus": self.bonus,
+            "active": self.active ? "1" : "0",
+            "skills": self.skills
+        ]
+        
+        API.sharedInstance.put("jobs/\(jobID)", params: params, closure: { result in
+             closure(true)
+        }, errorHandler: { error in
+             closure(false)
+        })
+         
+    }
+
 }

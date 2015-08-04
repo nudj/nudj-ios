@@ -10,6 +10,8 @@
 		A903BAEE1B581C4F00D69863 /* NZLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A903BAED1B581C4F00D69863 /* NZLabel.m */; };
 		A9191EA61B6A402E000F9168 /* SocialStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9191EA51B6A402E000F9168 /* SocialStatus.swift */; };
 		A9191EA81B6A864E000F9168 /* linkedin-sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9191EA71B6A864E000F9168 /* linkedin-sdk.framework */; };
+		A947CC991B7119B500C9518E /* NoContentPlaceHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A947CC981B7119B500C9518E /* NoContentPlaceHolder.swift */; };
+		A947CC9C1B711CF000C9518E /* no_jobs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A947CC9B1B711CF000C9518E /* no_jobs@2x.png */; };
 		A95798251B46965A006E826E /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95798241B46965A006E826E /* NotificationViewController.swift */; };
 		A984E2EE1B67ACA9009F318E /* ChatRoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A984E2ED1B67ACA9009F318E /* ChatRoomModel.swift */; };
 		A9964FD51B387CC800D5A8E9 /* JSQMessagesAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A9964E281B387CC700D5A8E9 /* JSQMessagesAssets.bundle */; };
@@ -344,6 +346,8 @@
 		A903BAED1B581C4F00D69863 /* NZLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NZLabel.m; sourceTree = "<group>"; };
 		A9191EA51B6A402E000F9168 /* SocialStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialStatus.swift; sourceTree = "<group>"; };
 		A9191EA71B6A864E000F9168 /* linkedin-sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "linkedin-sdk.framework"; sourceTree = "<group>"; };
+		A947CC981B7119B500C9518E /* NoContentPlaceHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoContentPlaceHolder.swift; sourceTree = "<group>"; };
+		A947CC9B1B711CF000C9518E /* no_jobs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_jobs@2x.png"; sourceTree = "<group>"; };
 		A95798241B46965A006E826E /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		A984E2ED1B67ACA9009F318E /* ChatRoomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomModel.swift; sourceTree = "<group>"; };
 		A9964E281B387CC700D5A8E9 /* JSQMessagesAssets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JSQMessagesAssets.bundle; sourceTree = "<group>"; };
@@ -900,6 +904,14 @@
 				A903BAED1B581C4F00D69863 /* NZLabel.m */,
 			);
 			path = NZLabel;
+			sourceTree = "<group>";
+		};
+		A947CC9A1B711CE200C9518E /* Jobs */ = {
+			isa = PBXGroup;
+			children = (
+				A947CC9B1B711CF000C9518E /* no_jobs@2x.png */,
+			);
+			name = Jobs;
 			sourceTree = "<group>";
 		};
 		A95798231B469636006E826E /* Notification */ = {
@@ -1858,6 +1870,7 @@
 		A99650971B3DB23A00D5A8E9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A947CC9A1B711CE200C9518E /* Jobs */,
 				A9ACE1CD1B6913E6003BD5F2 /* Settings */,
 				A9F3332E1B42A89600F0D17B /* AddJob */,
 				A99650AD1B3DB40900D5A8E9 /* ChatIcons */,
@@ -2170,6 +2183,7 @@
 				A9F333731B4444D700F0D17B /* CreatePopupView.swift */,
 				EBF17A231B4D538800C67657 /* Common.swift */,
 				A9191EA51B6A402E000F9168 /* SocialStatus.swift */,
+				A947CC981B7119B500C9518E /* NoContentPlaceHolder.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -2412,6 +2426,7 @@
 				A9F333641B42ACDC00F0D17B /* employer@2x.png in Resources */,
 				A9F333661B42ACDC00F0D17B /* job_title@2x.png in Resources */,
 				A9B577D41B6BC23400CFB474 /* 01-refresh@2x.png in Resources */,
+				A947CC9C1B711CF000C9518E /* no_jobs@2x.png in Resources */,
 				A99650A71B3DB3FF00D5A8E9 /* favourite@2x.png in Resources */,
 				A99650A51B3DB3FF00D5A8E9 /* archive@2x.png in Resources */,
 				A99650A91B3DB3FF00D5A8E9 /* job_detail@2x.png in Resources */,
@@ -2586,6 +2601,7 @@
 				A9B577CF1B6BC23400CFB474 /* LIALinkedInApplication.m in Sources */,
 				A9964FD91B387CC800D5A8E9 /* UIColor+JSQMessages.m in Sources */,
 				A99650781B387CC800D5A8E9 /* ContextFilterLogFormatter.m in Sources */,
+				A947CC991B7119B500C9518E /* NoContentPlaceHolder.swift in Sources */,
 				EB0926D01A8DE4CB00E1D958 /* AppDelegate.swift in Sources */,
 				A9ACE1C21B68F401003BD5F2 /* TermsViewController.swift in Sources */,
 				A99650221B387CC800D5A8E9 /* XMPPIQ+JabberRPC.m in Sources */,

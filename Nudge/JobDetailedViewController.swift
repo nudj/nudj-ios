@@ -34,7 +34,9 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
         self.requestData()
+        
         
     }
     
@@ -66,6 +68,8 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate {
         }) { error in
             
             println("Error -> \(error)")
+            self.navigationController?.popViewControllerAnimated(true)
+            
         }
 
     }
