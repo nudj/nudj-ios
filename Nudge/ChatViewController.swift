@@ -44,12 +44,13 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
         
         appGlobalDelegate.chatInst!.delegate = self
         
-        //if(appGlobalDelegate.chatInst!.listOfActiveChatRooms.count > selectedIndex){
+        self.userToken = appGlobalDelegate.user?.token
         self.messages = appGlobalDelegate.chatInst!.listOfActiveChatRooms[self.chatID]!.retrieveStoredChats()
-        //}
-        
+
         self.myImage = self.setupAvatarImage(self.appGlobalDelegate.user?.image["profile"])
         self.otherUserImage = self.setupAvatarImage(self.otherUserImageUrl)
+        
+        
 
         
     }

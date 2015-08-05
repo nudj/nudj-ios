@@ -90,37 +90,18 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         self.data[indexPath.row].markAsRead()
         cell.isRead(self.data[indexPath.row].isRead!)
         
-        var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        println("clicked chatroom id \(self.data[indexPath.row].chatId!) -> \(appDelegate.chatInst!.listOfActiveChatRooms[self.data[indexPath.row].chatId!]!.retrieveStoredChats())")
+        var chatView:ChatViewController = ChatViewController()
         
-        /*
-        
-        Example of how to load a viewcontroller from a xib in swift
-        ChatViewController *chatView  = [ChatViewController messagesViewController];
-        (nibName: "ChatViewController", bundle: nil)
-        
-        */
-    
-        
-        /*var conference :String = self.data[indexPath.row]["id"].stringValue
-        var appGlobalDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        var vc:ChatViewController = ChatViewController()
-
         let chat = self.data[indexPath.row]
-        let user = chat["participants"][0]["id"].intValue == appGlobalDelegate.user!.id ? chat["participants"][1] : chat["participants"][0]
-        
-        vc.chatID = chat["id"].stringValue;
-        vc.participants =  user["name"].stringValue
-        vc.participantsID = user["id"].stringValue
-        vc.chatTitle = "re: "+chat["job"]["title"].stringValue
-        vc.jobID = chat["job"]["id"].stringValue
-        vc.userToken = appGlobalDelegate.user?.token
-        vc.selectedIndex = indexPath.row
-        vc.otherUserImageUrl = user["image"]["profile"].stringValue
+        chatView.chatID = chat.chatId;
+        chatView.participants =  chat.participantName
+        chatView.participantsID = chat.participantsID
+        chatView.chatTitle = chat.title
+        chatView.jobID = chat.jobID
+        chatView.otherUserImageUrl = chat.image
             
-        self.navigationController?.pushViewController(vc, animated: true)*/
-        
+        self.navigationController?.pushViewController(chatView, animated: true)
+                
     }
     
 
