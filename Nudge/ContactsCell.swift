@@ -14,7 +14,6 @@ class ContactsCell: DataTableCell {
     @IBOutlet weak var profileImage: AsyncImage!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var status: StatusButton!
-    @IBOutlet weak var tick: UIImageView!
 
     var contactId:Int = 0
     
@@ -24,15 +23,6 @@ class ContactsCell: DataTableCell {
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-    }
-    
-    override var selected:Bool {
-        didSet {
-            
-            tick.highlighted = selected
-            println("Overwritting Cell \(selected)");
-            
-        }
     }
 
     func loadData(contact: ContactModel) {

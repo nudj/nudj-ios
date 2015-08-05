@@ -18,7 +18,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     var jobId:Int?
     var isNudjRequest:Bool?
     
-    var filtering:FilterModel?
+    var filtering = FilterModel()
     
     var selected = [ContactModel]()
     var popup :CreatePopupView?;
@@ -49,7 +49,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
             }
 
             let dictionary = sorted(response["data"]) { $0.0 < $1.0 }
-            var content:[ContactModel] = [];
+            var content = [ContactModel?]();
             
             for (id, parentObj) in dictionary {
                 for (id, obj) in parentObj {
@@ -66,7 +66,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
                 }
             }
             
-            self.filtering = FilterModel(content: content)
+            self.filtering.setContent(content)
             self.askTable.reloadData()
         }
     }
@@ -102,29 +102,24 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     //MARK: Search bar Delegates
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        //searchActive = true;
-        /* if(self.filtering != nil && searchBar.text.isEmpty){
-            self.filtering?.stopFiltering()
-        }*/
+
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-        //searchActive = false;
-        //self.askTable.reloadData()
+
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        if(self.filtering != nil){
-            if(searchBar.text == ""){
-                searchBar.resignFirstResponder()
-            }else{
-                self.filtering?.stopFiltering()
-                searchBar.text = ""
-                self.askTable.reloadData()
-            }
+        if(searchBar.text == ""){
+            searchBar.resignFirstResponder()
+            searchBar.setShowsCancelButton(false, animated: true)
+        }else{
+            self.filtering.stopFiltering()
+            searchBar.text = ""
+            self.askTable.reloadData()
         }
     }
-    
+
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
        
         searchBar.resignFirstResponder()
@@ -133,26 +128,20 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     
     func searchBar(searchBar :UISearchBar, textDidChange searchText:String){
         
-        searchBar.showsCancelButton = true;
+        searchBar.setShowsCancelButton(true, animated: true)
         
-        if(self.filtering != nil){
-        
-            if(!searchText.isEmpty){
-                
-                self.filtering!.startFiltering(searchText, completionHandler: { (success) -> Void in
-                    self.askTable.reloadData()
-                })
-                
-            }else {
-                
-                self.filtering!.stopFiltering()
-                self.askTable.reloadData()
-            }
-        
+        if(!searchText.isEmpty){
+
+            self.filtering.startFiltering(searchText, completionHandler: { (success) -> Void in
+            })
+
+        }else {
+            self.filtering.stopFiltering()
         }
 
+        self.askTable.reloadData()
     }
-    
+
 
 
     // MARK: -- UITableViewDataSource --
@@ -164,7 +153,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return self.filtering != nil ? self.filtering!.filteredContent.count : 0
+        return self.filtering.filteredContent.count
         
     }
     
@@ -172,7 +161,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
         
         return 76;
     }
-    
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var cell: ContactsCell! = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier) as? ContactsCell
@@ -181,64 +170,59 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
             tableView.registerNib(UINib(nibName: "ContactsCell", bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
             cell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier) as? ContactsCell
         }
-        
-        cell.setSelected(false, animated: false)
-        
-        if(self.filtering != nil){
-            var contact = self.filtering!.filteredContent[indexPath.row] as ContactModel
-            cell!.loadData(contact)
-            
+
+        if let contact = self.filtering.filteredContent[indexPath.row] {
+            cell.loadData(contact)
+
             if selected.count > 0 {
-                
-                //TODO: Find a better way
 
                 for (index, value) in enumerate(selected) {
                     if value.id == contact.id {
-                        
-                        println("contacts info -> \(contact)")
-                        cell!.setSelected(true, animated: false)
-                        
+                        cell.accessoryType = UITableViewCellAccessoryType.Checkmark
                         break
                     }
                 }
-                
-
             }
-            
-            
         }
-        
-        return cell!
-        
+
+        return cell
     }
-    
+
     // MARK: -- UITableViewDelegate --
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        toggleRowSelection(indexPath)
+    }
 
-        if let cell = tableView.cellForRowAtIndexPath(indexPath) as? ContactsCell {
-            //TODO: Change search results to array of Optionals
-            if let contact = self.filtering!.filteredContent[indexPath.row] as? ContactModel {
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        toggleRowSelection(indexPath)
+    }
 
-                // TODO: Fix this!!!
+    func toggleRowSelection(indexPath: NSIndexPath) {
+        if let cell = askTable.cellForRowAtIndexPath(indexPath) as? ContactsCell {
+
+            if let contact = self.filtering.filteredContent[indexPath.row] {
+
                 for (index, value) in enumerate(selected) {
                     if value.id == contact.id {
                         selected.removeAtIndex(index)
-                        cell.setSelected(false, animated: true)
+
+                        cell.accessoryType = UITableViewCellAccessoryType.None
+
                         checkSelected()
                         return
                     }
                 }
 
                 selected.append(contact)
-                cell.setSelected(true, animated: true)
-                checkSelected()
-            }
-            
-            checkSelected()
-            
-        }
 
+                cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+
+                checkSelected()
+
+                return;
+            }
+        }
     }
 
     func checkSelected() {
@@ -260,8 +244,6 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
 
         if(self.isNudjRequest!){
             
-             println("nudge: \(params)")
-            
             API.sharedInstance.put("nudge", params: params, closure: { result in
             
             self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true);
@@ -275,7 +257,6 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
             }
             
         }else{
-            println("AskForReferal: \(params)")
             
             API.sharedInstance.put("nudge/ask", params: params, closure: { result in
                 
@@ -300,7 +281,6 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     }
     
     func dismissPopUp() {
-        
         popup!.removeFromSuperview();
         self.navigationController?.popToRootViewControllerAnimated(true)
     }

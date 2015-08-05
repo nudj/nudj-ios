@@ -202,8 +202,6 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
     func showUserData() {
         UserModel.getById(userId, fields: ["user.status", "user.name", "user.image", "user.skills", "user.about", "user.company", "user.address", "user.position", "user.email", "user.favourite"], closure: { response in
 
-            println(response)
-
             let user = UserModel()
             user.updateFromJson(response["data"])
             self.user = user
@@ -308,17 +306,12 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
     func updateAllInformation(){
         
         UserModel.update(["name":nameLabel.text,"email":email.text,"position":position.text!,"address":location.text!,"company":company.text!], closure: { result in
-            println("Save information : \(result)")
-            
+
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
             appDelegate.user!.name = self.nameLabel.text
             appDelegate.pushUserData()
             
-            }, errorHandler: { error in
-                println(error)
         })
-        
-        
     }
     
     
@@ -351,10 +344,8 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
                         self.topRightButton.image = self.getFavouriteIcon(user.favourite!)
                     }
                 } else {
-                    println("Favourite: \(result)")
+                    println("Favourite Error: \(result)")
                 }
-            }, errorHandler: { error in
-                println("Favourite: \(error)")
             })
         }
     }
@@ -363,8 +354,7 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
     // MARK: About
 
     func updateAbout(text: String) -> Void {
-        println(["about": text])
-        UserModel.update(["about": text], closure: {response in println(response)})
+        UserModel.update(["about": text], closure: {_ in })
     }
 
     func updateAssets() {
@@ -414,35 +404,19 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
             break;
 
         case company:
-            UserModel.update(["company": textField.text!], closure: { result in
-                println("company: \(result)")
-                }, errorHandler: { error in
-                    println(error)
-            })
+            UserModel.update(["company": textField.text!], closure: {_ in})
             break;
 
         case location:
-            UserModel.update(["address": textField.text!], closure: { result in
-                println("address: \(result)")
-            }, errorHandler: { error in
-                println(error)
-            })
+            UserModel.update(["address": textField.text!], closure: {_ in})
             break;
 
         case position:
-            UserModel.update(["position": textField.text!], closure: { result in
-                println("position: \(result)")
-                }, errorHandler: { error in
-                    println(error)
-            })
+            UserModel.update(["position": textField.text!], closure: {_ in})
             break;
 
         case email:
-            UserModel.update(["email": textField.text!], closure: { result in
-                println("email: \(result)")
-                }, errorHandler: { error in
-                    println(error)
-            })
+            UserModel.update(["email": textField.text!], closure: {_ in})
             break;
 
         default:

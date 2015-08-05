@@ -10,6 +10,11 @@ import Foundation
 import UIKit
 import SwiftyJSON
 
+struct ContactPaths {
+    static let all = "contacts/mine"
+    static let favourites = "users/me/favourites"
+}
+
 class ContactsController: BaseController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIAlertViewDelegate {
 
     @IBOutlet weak var table: UITableView!
@@ -25,10 +30,11 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
 
     let cellIdentifier = "ContactsCell"
 
-    var filtering:FilterModel?
+    var filtering = FilterModel()
     var indexes = [String]()
     var data = [String:[ContactModel]]()
     var refreshControl:UIRefreshControl!
+    var lastSelectedContact:ContactModel?
 
     override func viewDidLoad() {
         
@@ -55,7 +61,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         table.addSubview(refreshControl)
 
-        self.refresh(nil)
+        self.refresh()
         
         self.activityIndi.hidden = false
         self.table.hidden = true
@@ -69,26 +75,34 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
             
         }
     }
-    
+
     func refresh(sender: AnyObject?) {
+        refresh()
+    }
+
+    func refresh() {
 
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
 
         appDelegate.contacts.sync() { success in
-            self.loadData("contacts/mine")
+            self.loadData(self.getContactsUrl())
         }
 
     }
 
-    func loadData(url:String!) {
+    func loadData(url:String) {
 
-        self.apiRequest(.GET, path: "\(url!)?params=contact.alias,contact.user,contact.apple_id,user.image,user.status&sizes=user.profile", closure: { response in
+        let variable = url == ContactPaths.all ? "contact.user" : "user.contact"
+        let path = "\(url)?params=\(variable),contact.alias,contact.apple_id,user.image,user.status,user.name&sizes=user.profile"
+
+        self.apiRequest(.GET, path: path, closure: { response in
+            println(response)
 
             self.data.removeAll(keepCapacity: false)
             self.indexes.removeAll(keepCapacity: false)
 
             let dictionary = sorted(response["data"]) { $0.0 < $1.0 }
-            var content:[ContactModel] = [];
+            var content = [ContactModel?]();
             
             for (id, obj) in dictionary {
                 if self.data[id] == nil {
@@ -98,19 +112,33 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
 
                 for (index: String, subJson: JSON) in obj {
 
+                    var isUser = false
                     var user:UserModel? = nil
-                    if(subJson["user"].type != .Null) {
+                    var userContact:JSON?
+
+                    if(subJson["contact"].type != .Null) {
+                        user = UserModel()
+                        user!.updateFromJson(subJson)
+
+                        userContact = subJson["contact"]
+                        isUser = true
+
+                    } else if(subJson["user"].type != .Null) {
                         user = UserModel()
                         user!.updateFromJson(subJson["user"])
                     }
 
-                    var contact = ContactModel(id: subJson["id"].intValue, name: subJson["alias"].stringValue, apple_id: subJson["apple_id"].int, user: user)
+                    let userId = isUser ? userContact!["id"].intValue : subJson["id"].intValue
+                    let name = isUser ? subJson["name"].stringValue : subJson["alias"].stringValue
+                    let apple_id = isUser ? userContact!["apple_id"].int : subJson["apple_id"].int
+
+                    var contact = ContactModel(id: userId, name: name, apple_id: apple_id, user: user)
                     self.data[id]!.append(contact)
                     content.append(contact)
                 }
             }
             
-            self.filtering = FilterModel(content:content)
+            self.filtering.setContent(content)
             self.table.reloadData()
             self.refreshControl.endRefreshing()
             
@@ -150,7 +178,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.isSearchEnabled{
             
-            return self.filtering!.filteredContent.count
+            return self.filtering.filteredContent.count
             
         }else{
             
@@ -170,8 +198,10 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         cell.removeSelectionStyle()
         
         if(self.isSearchEnabled == true){
-            
-             cell.loadData(self.filtering!.filteredContent[indexPath.row] as ContactModel)
+
+            if let contact = self.filtering.filteredContent[indexPath.row] {
+                cell.loadData(contact)
+            }
             
         }else{
         
@@ -199,12 +229,12 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
                 var contact :ContactModel?
                 
                 if self.isSearchEnabled == true {
-                    contact = self.filtering!.filteredContent[indexPath.row]
+                    contact = self.filtering.filteredContent[indexPath.row]
                 }else{
                     contact = section[indexPath.row]
                 }
                 
-                if let user = contact!.user {
+                if let user = contact?.user {
                     //Go to profile view
                     let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     var genericController = storyboard.instantiateViewControllerWithIdentifier("GenericProfileView") as! GenericProfileViewController
@@ -217,7 +247,8 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
                     self.navigationController?.pushViewController(genericController, animated: true)
                     
                 }else{
-                    
+
+                    lastSelectedContact = contact
                     self.alert.message = "Do you want to invite \(contact!.name)?";
                     self.alert.show();
                 }
@@ -257,7 +288,16 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
             
         }else{
             
-            println("send sms")
+            API.sharedInstance.post("contacts/\(lastSelectedContact?.id)/invite", params: nil, closure: { result in
+                if (result["status"].boolValue) {
+                    self.alert.message = "Contact has been invited";
+                } else {
+                    self.alert.message = "There was a problem inviting your friend";
+                }
+
+                self.alert.show();
+            })
+            
         }
     }
     
@@ -267,15 +307,11 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         self.table.hidden = true;
         self.activityIndi.hidden = false
         
-        if segControl.selectedSegmentIndex == 0{
-            
-            self.loadData("contacts/mine")
-        }
-        
-        if segControl.selectedSegmentIndex == 1{
-        
-            self.loadData("contacts/favourited")
-        }
+        self.loadData(getContactsUrl())
+    }
+
+    func getContactsUrl() -> String {
+        return segControl.selectedSegmentIndex <= 0 ? ContactPaths.all : ContactPaths.favourites
     }
     
     @IBAction func searchButton(sender: UIBarButtonItem) {
@@ -299,12 +335,10 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
                 self.navigationController?.navigationBarHidden = false;
                 self.isSearchEnabled = false
                 
-            }else{
-                
-                self.filtering?.stopFiltering()
+            } else {
+                self.filtering.stopFiltering()
                 searchBar.text = ""
                 self.table.reloadData()
-                
             }
        
         
@@ -315,13 +349,13 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
             
             if(!searchText.isEmpty){
                 
-                self.filtering!.startFiltering(searchText, completionHandler: { (success) -> Void in
+                self.filtering.startFiltering(searchText, completionHandler: { (success) -> Void in
                     self.table.reloadData()
                 })
                 
             }else {
                 
-                self.filtering!.stopFiltering()
+                self.filtering.stopFiltering()
                 self.table.reloadData()
             }
             

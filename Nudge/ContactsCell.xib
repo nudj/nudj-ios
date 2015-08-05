@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" restorationIdentifier="ContactsCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactsCell" rowHeight="76" id="KGk-i7-Jjw" customClass="ContactsCell" customModule="nudge" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="ContactsCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="ContactsCell" rowHeight="76" id="KGk-i7-Jjw" customClass="ContactsCell" customModule="Nudj" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="gnw-Bv-7PT" customClass="AsyncImage" customModule="nudge" customModuleProvider="target">
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="gnw-Bv-7PT" customClass="AsyncImage" customModule="Nudj" customModuleProvider="target">
                         <rect key="frame" x="8" y="8" width="60" height="60"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="mEa-KD-VFq"/>
@@ -34,7 +34,7 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i0R-qq-9aL" customClass="StatusButton" customModule="nudge" customModuleProvider="target">
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i0R-qq-9aL" customClass="StatusButton" customModule="Nudj" customModuleProvider="target">
                         <rect key="frame" x="84" y="40" width="44" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" id="rNj-kL-PUb"/>
@@ -43,19 +43,10 @@
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" highlightedImage="check.png" translatesAutoresizingMaskIntoConstraints="NO" id="NEW-se-qji">
-                        <rect key="frame" x="292" y="28" width="20" height="20"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="20" id="Y5N-WI-KtL"/>
-                            <constraint firstAttribute="width" constant="20" id="fcA-8r-TcQ"/>
-                        </constraints>
-                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="i0R-qq-9aL" firstAttribute="top" secondItem="fTE-Sw-wdT" secondAttribute="bottom" constant="6" id="E1e-Gd-6Od"/>
                     <constraint firstItem="gnw-Bv-7PT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="Qmg-TV-AxC"/>
-                    <constraint firstAttribute="centerY" secondItem="NEW-se-qji" secondAttribute="centerY" id="SFD-rD-PRD"/>
-                    <constraint firstItem="NEW-se-qji" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="VMQ-gb-4XS"/>
                     <constraint firstItem="fTE-Sw-wdT" firstAttribute="leading" secondItem="gnw-Bv-7PT" secondAttribute="trailing" constant="16" id="Wwp-Zt-JKm"/>
                     <constraint firstItem="i0R-qq-9aL" firstAttribute="leading" secondItem="gnw-Bv-7PT" secondAttribute="trailing" constant="16" id="o2K-kj-Po5"/>
                     <constraint firstItem="fTE-Sw-wdT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="qpp-jX-CY5"/>
@@ -66,13 +57,11 @@
                 <outlet property="name" destination="fTE-Sw-wdT" id="awh-hi-NgD"/>
                 <outlet property="profileImage" destination="gnw-Bv-7PT" id="5w7-2D-Mu3"/>
                 <outlet property="status" destination="i0R-qq-9aL" id="okf-z6-SYZ"/>
-                <outlet property="tick" destination="NEW-se-qji" id="JAv-lJ-Pal"/>
             </connections>
             <point key="canvasLocation" x="82" y="267"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="check.png" width="27" height="27"/>
         <image name="user_image_placeholder" width="40" height="40"/>
     </resources>
 </document>
