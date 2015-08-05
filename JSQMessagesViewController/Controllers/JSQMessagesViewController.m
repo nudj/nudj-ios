@@ -274,6 +274,17 @@ JSQMessagesKeyboardControllerDelegate>{
     
     self.inputToolbar.tintColor = NUDGE_COLOR;
     self.inputToolbar.contentView.rightBarButtonItem.titleLabel.textColor = NUDGE_COLOR;
+    
+    self.ConvoTitle.userInteractionEnabled = YES;
+    self.convoParticipants.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(labelsAction:)];
+    [self.ConvoTitle addGestureRecognizer:tapGesture];
+
+}
+
+- (void)labelsAction:(id)sender {
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated

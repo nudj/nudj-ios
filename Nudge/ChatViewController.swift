@@ -355,6 +355,18 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
         }
     }
     
+    
+    override func labelsAction(sender: AnyObject!){
+        
+        //go to job details
+        let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        var jobDetailedView = storyboard.instantiateViewControllerWithIdentifier("JobDetailedView") as! JobDetailedViewController
+        jobDetailedView.jobID = self.jobID
+        
+        self.navigationController?.pushViewController(jobDetailedView, animated:true);
+        
+    }
+    
     override func dropDownAction(sender: AnyObject!) {
         
         let selectedButton = sender as! UIButton

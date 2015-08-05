@@ -49,6 +49,7 @@
 @property BOOL filterOpened;
 
 - (IBAction)dropDownAction:(id)sender;
+- (void)labelsAction:(id)sender;
 - (void)completeRequest:(NSString *)url withType:(NSString*)type;
 
 
