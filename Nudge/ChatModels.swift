@@ -242,6 +242,22 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         
         println("CLIENT HAS CONNECTED TO JABBER");
         
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+       /* if let name: AnyObject = defaults.objectForKey("19")
+        {
+            println("stored -> \(name)")
+            
+        }else{
+            
+            println("Saving 19")
+            
+            var dict = ["isNew":true, "isRead":false]
+            defaults.setObject(dict, forKey:"19")
+            defaults.synchronize()
+            
+        }*/
+        
         self.requestRooms();
     }
     
@@ -266,6 +282,18 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             
             var chatroom = ChatRoomModel()
             var roomID = split(jid) {$0 == "@"}
+            
+            let defaults = NSUserDefaults.standardUserDefaults()
+            
+            print("Saving \(roomID[0])")
+            
+            var dict = ["isNew":true, "isRead":false]
+            defaults.setObject(dict, forKey:roomID[0])
+            defaults.synchronize()
+            
+            //create objects
+            //room id
+            //is new = true
             
             appGlobalDelegate.shouldShowBadge = true;
             chatroom.prepareChatModel(jid, roomId: roomID[0], with:self.xmppStream!, delegate:self)
