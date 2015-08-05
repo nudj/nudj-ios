@@ -269,7 +269,7 @@ JSQMessagesKeyboardControllerDelegate>{
     self.dropDownView.layer.shadowRadius = 2;
     self.dropDownView.layer.shadowOpacity = 0.5;
 
-    self.ConvoTitle.text = self.chatTitle;
+    self.ConvoTitle.text = [NSString stringWithFormat:@"re: %@",self.chatTitle];
     self.convoParticipants.text = [NSString stringWithFormat:@"%@, you", self.participants];
     
     self.inputToolbar.tintColor = NUDGE_COLOR;

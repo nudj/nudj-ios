@@ -233,6 +233,7 @@
 		A9C6EC9C1B38447700EC9140 /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC9B1B38447700EC9140 /* ChatListViewController.swift */; };
 		A9C6EC9F1B3853F900EC9140 /* ChatListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC9D1B3853F900EC9140 /* ChatListTableViewCell.swift */; };
 		A9C6ECA01B3853F900EC9140 /* ChatListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9C6EC9E1B3853F900EC9140 /* ChatListTableViewCell.xib */; };
+		A9EC313C1B72357A00356B1F /* ChatStructModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC313B1B72357A00356B1F /* ChatStructModel.swift */; };
 		A9F333271B41759A00F0D17B /* CPAnimationProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F333241B41759A00F0D17B /* CPAnimationProgram.m */; };
 		A9F333281B41759A00F0D17B /* CPAnimationSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F333251B41759A00F0D17B /* CPAnimationSequence.m */; };
 		A9F333291B41759A00F0D17B /* CPAnimationStep.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F333261B41759A00F0D17B /* CPAnimationStep.m */; };
@@ -766,6 +767,7 @@
 		A9C6EC9B1B38447700EC9140 /* ChatListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
 		A9C6EC9D1B3853F900EC9140 /* ChatListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListTableViewCell.swift; sourceTree = "<group>"; };
 		A9C6EC9E1B3853F900EC9140 /* ChatListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatListTableViewCell.xib; sourceTree = "<group>"; };
+		A9EC313B1B72357A00356B1F /* ChatStructModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatStructModel.swift; sourceTree = "<group>"; };
 		A9F333201B41759A00F0D17B /* CPAnimationProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnimationProgram.h; sourceTree = "<group>"; };
 		A9F333211B41759A00F0D17B /* CPAnimationSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnimationSequence.h; sourceTree = "<group>"; };
 		A9F333221B41759A00F0D17B /* CPAnimationStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnimationStep.h; sourceTree = "<group>"; };
@@ -2215,6 +2217,7 @@
 				A9977C891B6158960005A23C /* FilterModel.swift */,
 				A984E2ED1B67ACA9009F318E /* ChatRoomModel.swift */,
 				A9B577F21B6BD58E00CFB474 /* SocialHandlerModel.swift */,
+				A9EC313B1B72357A00356B1F /* ChatStructModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -2632,6 +2635,7 @@
 				A996500A1B387CC800D5A8E9 /* NSXMLElement+XMPP.m in Sources */,
 				A99650581B387CC800D5A8E9 /* XMPPMessageArchivingCoreDataStorage.m in Sources */,
 				A99650311B387CC800D5A8E9 /* XMPPRoomMessageMemoryStorageObject.m in Sources */,
+				A9EC313C1B72357A00356B1F /* ChatStructModel.swift in Sources */,
 				A9964FE41B387CC800D5A8E9 /* JSQMessagesToolbarButtonFactory.m in Sources */,
 				A99650601B387CC800D5A8E9 /* XMPPAutoPing.m in Sources */,
 				A996500F1B387CC800D5A8E9 /* XMPPModule.m in Sources */,

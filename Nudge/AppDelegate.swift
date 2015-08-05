@@ -369,7 +369,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
     
     func recievedMessage(content: JSQMessage, conference: String) {
         
-        println("Message via Appdelegate -> \(content.text) from:\(content.senderId) room:\(conference)")
+        //println("Message via Appdelegate -> \(content.text) from:\(content.senderId) room:\(conference)")
      
         // Update badge
         if(shouldShowBadge == true){

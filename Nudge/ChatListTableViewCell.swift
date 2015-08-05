@@ -17,22 +17,35 @@ class ChatListTableViewCell: UITableViewCell {
     @IBOutlet weak var jobCompany: UILabel!
     @IBOutlet weak var jobTitle: UILabel!
     
-    
-    func loadData(data:JSON) {
+    func loadData(data:ChatStructModel) {
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
-        let job = data["job"]
+        if let job = data.job{
         
-        let user = data["participants"][0]["id"].intValue == appDelegate.user!.id ? data["participants"][1] : data["participants"][0]
+            userName.text = data.participantName
+            jobTitle.text = job["title"].string
+            jobCompany.text = job["company"].string
+            
+        }
         
-        profilePicture.downloadImage(user["image"]["profile"].stringValue)
-
-        userName.text = user["name"].string
-        jobTitle.text = job["title"].string
-        jobCompany.text = job["company"].string
-
-        timeAgo.text = data["created"].string
+        profilePicture.downloadImage(data.image)
+        timeAgo.text = data.time
+        
+        self.isRead(data.isRead!)
+    }
+    
+    func isRead(value:Bool){
+        
+        if (!value){
+            
+            self.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
+            
+        }else{
+            
+            self.backgroundColor = UIColor.whiteColor();
+        }
+        
     }
     
 }

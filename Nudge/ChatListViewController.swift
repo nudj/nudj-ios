@@ -16,7 +16,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     let staticRowHeight:CGFloat = 70
     let cellIdentifier = "ChatListTableViewCell"
 
-    var data:[JSON] = []
+    var data:[ChatStructModel] = []
     
     override func viewDidLoad() {
 
@@ -41,7 +41,8 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
             self.data.removeAll(keepCapacity: false)
 
             for (id, obj) in response["data"] {
-                self.data.append(obj)
+                var chat = ChatStructModel()
+                self.data.append(chat.createData(obj))
             }
             
             println(response)
@@ -84,6 +85,13 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        var cell = tableView.cellForRowAtIndexPath(indexPath)  as! ChatListTableViewCell
+        self.data[indexPath.row].markAsRead()
+        cell.isRead(self.data[indexPath.row].isRead!)
+        
+        var appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        println("clicked chatroom id \(self.data[indexPath.row].chatId!) -> \(appDelegate.chatInst!.listOfActiveChatRooms[self.data[indexPath.row].chatId!]!.retrieveStoredChats())")
+        
         /*
         
         Example of how to load a viewcontroller from a xib in swift
@@ -93,7 +101,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         */
     
         
-        var conference :String = self.data[indexPath.row]["id"].stringValue
+        /*var conference :String = self.data[indexPath.row]["id"].stringValue
         var appGlobalDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         var vc:ChatViewController = ChatViewController()
@@ -110,7 +118,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         vc.selectedIndex = indexPath.row
         vc.otherUserImageUrl = user["image"]["profile"].stringValue
             
-        self.navigationController?.pushViewController(vc, animated: true)
+        self.navigationController?.pushViewController(vc, animated: true)*/
         
     }
     

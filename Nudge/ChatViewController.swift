@@ -44,9 +44,9 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
         
         appGlobalDelegate.chatInst!.delegate = self
         
-        if(appGlobalDelegate.chatInst!.listOfActiveChatRooms.count > selectedIndex){
-        self.messages = appGlobalDelegate.chatInst!.listOfActiveChatRooms[self.selectedIndex!].retrieveStoredChats()
-        }
+        //if(appGlobalDelegate.chatInst!.listOfActiveChatRooms.count > selectedIndex){
+        self.messages = appGlobalDelegate.chatInst!.listOfActiveChatRooms[self.chatID]!.retrieveStoredChats()
+        //}
         
         self.myImage = self.setupAvatarImage(self.appGlobalDelegate.user?.image["profile"])
         self.otherUserImage = self.setupAvatarImage(self.otherUserImageUrl)
@@ -123,7 +123,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
 
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         
-        appGlobalDelegate.chatInst!.listOfActiveChatRooms[self.selectedIndex!].xmppRoom!.sendMessageWithBody(text);
+        appGlobalDelegate.chatInst!.listOfActiveChatRooms[self.chatID]!.xmppRoom!.sendMessageWithBody(text);
 
         self.finishSendingMessage()
     
