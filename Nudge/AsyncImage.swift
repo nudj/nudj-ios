@@ -31,6 +31,7 @@ class AsyncImage: UIImageView {
 
     @IBInspectable
     var backgroundOverlay:CGFloat = 0
+    var backgroundApplied = false
 
     @IBInspectable
     var backgroundOverlayColor:UIColor = UIColor.blackColor()
@@ -58,11 +59,12 @@ class AsyncImage: UIImageView {
             self.layer.borderWidth = borderWidth
         }
 
-        if (self.backgroundOverlay > 0) {
+        if (self.backgroundOverlay > 0 && !backgroundApplied) {
             self.overlay = UIView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height));
             self.overlay!.backgroundColor = backgroundOverlayColor;
             self.overlay!.alpha = backgroundOverlay
             self.addSubview(self.overlay!)
+            backgroundApplied = true
         }
     }
 
@@ -84,19 +86,20 @@ class AsyncImage: UIImageView {
 
         self.startActivity()
         
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            self.getDataFromUrl(url!) { data in
+                dispatch_async(dispatch_get_main_queue()) {
 
-        getDataFromUrl(url!) { data in
-            dispatch_async(dispatch_get_main_queue()) {
+                    if (data?.length <= self.minimumBytes) {
+                        self.stopActivity()
+                        return
+                    }
 
-                if (data?.length <= self.minimumBytes) {
-                    self.stopActivity()
-                    return
-                }
+                    self.setCustomImage(UIImage(data: data!))
 
-                self.setCustomImage(UIImage(data: data!))
-
-                if (completion != nil) {
-                    completion!()
+                    if (completion != nil) {
+                        completion!()
+                    }
                 }
             }
         }

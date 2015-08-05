@@ -71,10 +71,14 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
 
     func fillTokens(tokens:[String]) {
         setupMode = true
+
+        self.deleteAllTokens()
+
         for t in tokens {
             addTokenWithTitle(t)
         }
         _tokenField.tokenize()
+
         setupMode = false
     }
 

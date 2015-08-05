@@ -36,6 +36,8 @@ class UserModel: Printable {
     var position:String?
     var email:String?
 
+    var favourite:Bool?
+
     init() {
         
     }
@@ -49,6 +51,11 @@ class UserModel: Printable {
     static func getLocal(closure: ((UserModel?) -> ())) {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
         closure(appDelegate.user)
+    }
+
+    static func getLocal() -> UserModel? {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
+        return appDelegate.user
     }
 
     static func getCurrent(fields:[String]?, closure: ((UserModel) -> ())? = nil, errorHandler: ((NSError) -> Void)? = nil) {
@@ -66,7 +73,6 @@ class UserModel: Printable {
 
         }, errorHandler: errorHandler)
     }
-
     func updateFromJson(source: JSON) {
         for (key: String, subJson: JSON) in source {
             switch key {
@@ -88,6 +94,8 @@ class UserModel: Printable {
             case "completed": completed = subJson.boolValue
             // addressBookAccess is per device, so it should not be updated trough this method
 
+            case "favourite": favourite = subJson.boolValue
+
             default:
                 println("!!!! Unknown user key: " + key)
             }
@@ -100,6 +108,18 @@ class UserModel: Printable {
             self.image[key] = val.stringValue;
             self.isDefaultImage = false
         }
+    }
+
+    func toggleFavourite(closure: (JSON) -> (), errorHandler: ((NSError) -> Void)? = nil) {
+        if (id == nil) {
+            println("Invalid User ID!")
+            return;
+        }
+
+        let url = "users/\(id!)/favourite"
+        let method = (favourite == nil || (favourite!) == false) ? Method.PUT : Method.DELETE
+
+        API.sharedInstance.request(method, path: url, params: nil, closure: closure, errorHandler: errorHandler)
     }
 
     static func getById(id: Int, fields:[String]?, closure: ((JSON) -> ())? = nil, errorHandler: ((NSError) -> Void)? = nil ) {

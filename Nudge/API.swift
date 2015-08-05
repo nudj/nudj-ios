@@ -107,8 +107,6 @@ class API {
 
         if (rawResponse != nil && rawResponse!.statusCode >= 400) {
 
-            println("[API Error] rawResponse: \(rawResponse!)")
-
             // Try to get error code
             if (response != nil) {
                 println("[API Error] Response: \(response!)")
@@ -129,6 +127,8 @@ class API {
                         return true
                     }
                 }
+            } else {
+                println("[API Error] rawResponse: \(rawResponse!)")
             }
         }
 

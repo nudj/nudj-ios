@@ -10,6 +10,11 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
+enum UserFavouriteText:String {
+    case Favourite = "Favourite"
+    case unFavourite = "UnFavourite"
+}
+
 class GenericProfileViewController: BaseController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
 
     let msgTitle = "Choose Image Source"
@@ -74,14 +79,14 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
 
     var isEditable:Bool = true {
         didSet {
-            nameLabel.enabled = isEditable
-            statusButton.enabled = isEditable
-            skills.editable = isEditable
-            aboutMeField.editable = isEditable
-            company.enabled = isEditable
-            location.enabled = isEditable
-            position.enabled = isEditable
-            email.enabled = isEditable
+            nameLabel?.enabled = isEditable
+            statusButton?.enabled = isEditable
+            skills?.editable = isEditable
+            aboutMeField?.editable = isEditable
+            company?.enabled = isEditable
+            location?.enabled = isEditable
+            position?.enabled = isEditable
+            email?.enabled = isEditable
         }
     }
 
@@ -96,6 +101,7 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
     }
 
     var userId:Int = 0
+    var user:UserModel?
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -113,6 +119,7 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
                     return
                 }
 
+                self.user = user;
                 self.nameLabel.text = user!.name
             })
         } else if preloadedName != nil {
@@ -124,22 +131,18 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        //self.updateUserName(nameLabel.text)
-        //Save when user press save
 
-            switch self.type {
-            case Type.Own: self.updateAllInformation()
-                break;
-            case Type.Initial: self.updateAllInformation()
-                break;
-            default:
+        switch self.type {
+
+        case Type.Own: fallthrough
+        case Type.Initial:
+            self.updateAllInformation()
+
             break;
-            }
-        
-            
-     
-        
+        default:
+        break;
+        }
+
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
  
@@ -163,11 +166,11 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
 
         case Type.Public: fallthrough
         default:
-            self.navigationItem.rightBarButtonItem = nil
+            self.topRightButton.title = nil
             self.navigationItem.title = "Profile"
-            self.email.superview!.hidden = true
+            self.email?.superview?.hidden = true
             isEditable = false;
-            skills.userInteractionEnabled = false
+            skills?.userInteractionEnabled = false
             profilePhoto.userInteractionEnabled = false
             break;
         }
@@ -184,7 +187,11 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
         case .Own:
             self.navigationController?.popViewControllerAnimated(true)
             break;
+        case Type.Public:
+            toggleFavourite()
+            break;
         default:
+
             break;
         }
 
@@ -193,10 +200,13 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
     // User Data Loding
 
     func showUserData() {
-        UserModel.getById(userId, fields: ["user.status", "user.name", "user.image", "user.skills", "user.about", "user.company", "user.address", "user.position", "user.email"], closure: { response in
+        UserModel.getById(userId, fields: ["user.status", "user.name", "user.image", "user.skills", "user.about", "user.company", "user.address", "user.position", "user.email", "user.favourite"], closure: { response in
 
-            let user = UserModel();
+            println(response)
+
+            let user = UserModel()
             user.updateFromJson(response["data"])
+            self.user = user
 
             if let status = user.status {
                 self.statusButton.setTitleByIndex(status)
@@ -213,16 +223,24 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
             }
 
 
-            self.aboutMeField.text = user.about
-            self.company.text = user.company
-            self.location.text = user.address
-            self.position.text = user.position
+            self.aboutMeField?.text = user.about
+            self.company?.text = user.company
+            self.location?.text = user.address
+            self.position?.text = user.position
             self.email.text = user.email
 
             self.showUserImage(user.image)
 
             if let skills = user.skills {
-                self.skills.fillTokens(skills)
+                self.skills?.fillTokens(skills)
+            }
+
+            if (self.type == Type.Public && user.favourite != nil) {
+                self.topRightButton.image = self.getFavouriteIcon(user.favourite!)
+            }
+
+            if (self.type == Type.Public) {
+                self.hideEmptyViews()
             }
 
             self.updateAssets()
@@ -232,6 +250,57 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
     func makeThingsWhite() {
         nameLabel.textColor = UIColor.whiteColor()
         statusButton.changeColor(UIColor.whiteColor())
+    }
+
+    func getFavouriteIcon(status:Bool) -> UIImage? {
+        return status ? UIImage(named: "favourited") : UIImage(named: "favourite")
+    }
+
+    func hideEmptyViews() {
+        if (skills != nil && (skills.tokens() == nil || skills.tokens()!.count <= 0)) {
+            hideView(skills.superview!)
+        }
+
+        if (aboutMeField != nil && count(aboutMeField.text) <= 0) {
+            hideView(aboutMeField.superview!)
+        }
+
+        if (company != nil && count(company.text) <= 0) {
+            hideView(company.superview!)
+        }
+
+        if (location != nil && count(location.text) <= 0) {
+            hideView(location.superview!)
+        }
+
+        if (position != nil && count(position.text) <= 0) {
+            hideView(position.superview!)
+        }
+    }
+
+    func hideView(object:UIView, hideBorder:Bool = true) {
+        for subView in object.subviews {
+            subView.removeFromSuperview()
+        }
+
+//        hideBorderOfView(object)
+
+        let height = NSLayoutConstraint(item: object, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 0)
+        object.addConstraint(height)
+    }
+
+    func hideBorderOfView(object:UIView) {
+        var found = false
+        for subView in object.superview!.subviews {
+            if (found) {
+                hideView(subView as! UIView, hideBorder: false)
+                return
+            }
+
+            if (subView as! UIView == object) {
+                found = true
+            }
+        }
     }
 
     // MARK: User Update functions
@@ -263,6 +332,33 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
 
     }
 
+    func toggleFavourite() {
+        if (userId != user?.id!) {
+            println("Inconsistency between userId and loaded user!")
+            return
+        }
+
+        if let localUser = UserModel.getLocal() {
+            if (localUser.id! == userId) {
+                println("You can't favourite yourself!")
+                return;
+            }
+
+            user?.toggleFavourite({ result in
+                if (result["status"].boolValue) {
+                    if let user = self.user {
+                        user.favourite = user.favourite == nil ? true : !user.favourite!
+                        self.topRightButton.image = self.getFavouriteIcon(user.favourite!)
+                    }
+                } else {
+                    println("Favourite: \(result)")
+                }
+            }, errorHandler: { error in
+                println("Favourite: \(error)")
+            })
+        }
+    }
+
     
     // MARK: About
 
@@ -272,11 +368,26 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
     }
 
     func updateAssets() {
-        Common.automateUpdatingOfAssets(aboutMeField, icon: aboutMeIcon, label: aboutMeLabel)
-        Common.automateUpdatingOfAssets(skills, icon: skillsIcon, label: skillsLabel)
-        Common.automateUpdatingOfAssets(company, icon: companyIcon)
-        Common.automateUpdatingOfAssets(location, icon: locationIcon)
-        Common.automateUpdatingOfAssets(position, icon: positionIcon)
+        if (aboutMeField != nil) {
+            Common.automateUpdatingOfAssets(aboutMeField, icon: aboutMeIcon, label: aboutMeLabel)
+        }
+
+        if (skills != nil) {
+            Common.automateUpdatingOfAssets(skills, icon: skillsIcon, label: skillsLabel)
+        }
+
+        if (company != nil) {
+            Common.automateUpdatingOfAssets(company, icon: companyIcon)
+        }
+
+        if (location != nil) {
+            Common.automateUpdatingOfAssets(location, icon: locationIcon)
+        }
+
+        if (position != nil) {
+            Common.automateUpdatingOfAssets(position, icon: positionIcon)
+        }
+
         Common.automateUpdatingOfAssets(email, icon: emailIcon)
     }
 
@@ -475,6 +586,10 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
 
         let image = info[UIImagePickerControllerEditedImage] as! UIImage
         let imageData = UIImageJPEGRepresentation(image, 0.8).base64EncodedStringWithOptions(.allZeros)
+
+        // Start activity to show that something is going on
+        self.profilePhoto.startActivity()
+        self.backgroundImage.startActivity()
 
         UserModel.update(["image": imageData], closure: { response in
             UserModel.getCurrent(["user.image"], closure: { user in
