@@ -14,6 +14,7 @@ class ChatStructModel: NSObject {
    
     var chatId:String?
     var time:String?
+    var timeinRawForm:NSDate?
     var image:String?
     var isRead:Bool?
     var isNew:Bool?
@@ -42,7 +43,7 @@ class ChatStructModel: NSObject {
         }else{
             
             //A saved object hasnt been created for this chat because its an old one
-            //So create one
+            //So create one with these defaul properties
             
             var dict = ["isNew":false, "isRead":true]
             var data = NSKeyedArchiver.archivedDataWithRootObject(dict)
@@ -67,15 +68,15 @@ class ChatStructModel: NSObject {
     
         //Mark as read
         if(self.isRead != nil && self.isRead! == false){
+            
             self.isRead = true
             var dict = ["isNew":false, "isRead":true]
             var data = NSKeyedArchiver.archivedDataWithRootObject(dict)
             defaults.setObject(data, forKey:self.chatId!)
             defaults.synchronize()
             println("Marked as read")
-        }else{
             
-            println("not doing anything cause its already read")
+        }else{
             
         }
         
@@ -90,13 +91,24 @@ class ChatStructModel: NSObject {
             
             println("has stored content \(dict)")
             
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "d/M/yy - H:mm"
+            
             //Get time of last message
             let arr = appDelegate.chatInst!.listOfActiveChatRooms[chat.chatId!]!.retrieveStoredChats()
             if arr.count != 0 {
+                
                 let time = arr.lastObject as! JSQMessage
-                let dateFormatter = NSDateFormatter()
-                dateFormatter.dateFormat = "d/M/yy - H:mm"
                 chat.time  = dateFormatter.stringFromDate(time.date)
+                chat.timeinRawForm = time.date
+                
+            }else{
+                
+                //TODO: Fix this
+                //default to right now
+                chat.time  = dateFormatter.stringFromDate(NSDate())
+                chat.timeinRawForm = NSDate()
+                
             }
             
             chat.isRead = dict["isRead"] as? Bool

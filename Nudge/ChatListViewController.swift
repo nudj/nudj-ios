@@ -43,6 +43,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
             for (id, obj) in response["data"] {
                 var chat = ChatStructModel()
                 self.data.append(chat.createData(obj))
+                self.data.sort({ $0.timeinRawForm!.compare($1.timeinRawForm!) == NSComparisonResult.OrderedDescending })
             }
             
             println(response)
