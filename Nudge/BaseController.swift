@@ -14,15 +14,12 @@ import SwiftyJSON
 class BaseController: UIViewController {
 
     override func viewDidLoad() {
-        
          NSNotificationCenter.defaultCenter().addObserver(self, selector:"updateBadge:", name: "updateBadgeValue", object: nil);
-    
     }
     
     func showSimpleAlert(text: String) {
         self.showSimpleAlert(text, action: nil)
     }
-
     
     func showSimpleAlert(text: String, action: ((UIAlertAction) -> Void)?) {
         var alert = UIAlertController(title: nil, message: text, preferredStyle: UIAlertControllerStyle.Alert)

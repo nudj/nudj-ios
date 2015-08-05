@@ -56,16 +56,12 @@ class MainFeed: BaseController, DataProviderProtocol,UISearchBarDelegate {
     
 
     func requestData(page: Int, size: Int, listener: (JSON) -> ()) {
-        var url:String
-        
-        if searchTerm == nil {
-            url = "jobs/available?params=job.title,job.salary,job.bonus,job.user,job.location,job.company,user.name,user.image&sizes=user.profile&page=" + String(page) + "&limit=" + String(size)
-        }else{
-            url = "jobs/search/\(searchTerm!)?params=job.title,job.salary,job.bonus,job.user,job.location,job.company,user.name,user.image&sizes=user.profile&page=" + String(page) + "&limit=" + String(size)
-        }
-        
-        println(url)
-        
+
+        let path = searchTerm == nil ? "available" : "search/\(searchTerm!)"
+        let params = "job.title,job.salary,job.bonus,job.user,job.location,job.company,user.name,user.image&sizes=user.profile"
+
+        let url = "jobs/\(path)?params=\(params)&page=" + String(page) + "&limit=" + String(size)
+
         self.apiRequest(.GET, path: url, closure: listener)
     }
 
@@ -76,11 +72,9 @@ class MainFeed: BaseController, DataProviderProtocol,UISearchBarDelegate {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let askView = segue.destinationViewController as? AskReferralViewController {
-            println(selectedJobData)
             askView.jobId = selectedJobData!["id"].stringValue.toInt()
         }else if let detailsView = segue.destinationViewController as? JobDetailedViewController {
             detailsView.jobID = selectedJobData!["id"].stringValue
-            println(selectedJobData)
         }
         
     }

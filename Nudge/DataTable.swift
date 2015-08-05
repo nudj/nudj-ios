@@ -55,6 +55,11 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
             return
         }
 
+        if (self.loading) {
+            self.refreshControl.endRefreshing()
+            return
+        }
+
         self.dataProvider!.requestData(page, size: self.dataSize, listener: { json in
             self.data.removeAll(keepCapacity: false)
             

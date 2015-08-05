@@ -30,8 +30,6 @@ class JobCellTableViewCell: DataTableCell {
         if (data == nil) {
             return
         }
-
-        println(data)
         
         self.title.text = data!["title"].stringValue
         self.salary.text = data!["salary"].stringValue
