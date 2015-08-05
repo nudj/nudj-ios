@@ -14,6 +14,7 @@ import SwiftyJSON
 protocol ChatModelsDelegate {
     func recievedMessage(content:JSQMessage, conference:String)
     func recievedUser(content:NSDictionary)
+    func isRecievingMessageIndication(user:String)
 }
 
 class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
@@ -318,6 +319,19 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     }
 
     func xmppRoom(sender: XMPPRoom!, didReceiveMessage message: XMPPMessage!, fromOccupant occupantJID: XMPPJID!) {
+        
+        if(message.hasComposingChatState() == true){
+            
+            println("should show typing ")
+            
+        }
+        
+        if(message.hasPausedChatState()){
+            
+            println("should stop typing ")
+            
+        }
+        
         
         if message.body() != nil {
             

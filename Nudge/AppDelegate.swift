@@ -383,5 +383,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         
     }
     
+    func isRecievingMessageIndication(user: String) {
+        
+        
+    }
+    
 }
 

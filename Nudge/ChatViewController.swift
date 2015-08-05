@@ -21,7 +21,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
     var myImage :JSQMessagesAvatarImage?
     
     var otherUserImageUrl: String!
-    
+    var sendOnce:Bool = false;
     let appGlobalDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     
@@ -123,6 +123,8 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
 
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
+        
+        sendOnce = false
         
         appGlobalDelegate.chatInst!.listOfActiveChatRooms[self.chatID]!.xmppRoom!.sendMessageWithBody(text);
 
@@ -422,6 +424,32 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
         break;
         
         }
+        
+        
+    }
+    
+    override func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        
+        // Send The typing indicator
+        if(!sendOnce){
+            
+            var message = DDXMLElement.elementWithName("message");
+            message.addAttributeWithName("type"", stringValue: "chat")
+            //message.addAttributeWithName("to", stringValue: "")
+            
+            var composing = DDXMLElement.elementWithName("composing")
+            composing.addAttributeWithName("xmlns" stringValue:"http://jabber.org/protocol/chatstates")
+            message.addChild(composing)
+            
+            appGlobalDelegate.chatInst!.listOfActiveChatRooms[self.chatID]!.xmppRoom!.sen
+            sendOnce = true;
+            
+            println("Sent The typing indicator");
+        }
+        
+    }
+    
+    func isRecievingMessageIndication(user: String) {
         
         
     }
