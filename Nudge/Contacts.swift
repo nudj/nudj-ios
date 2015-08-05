@@ -69,7 +69,24 @@ class Contacts {
     }
 
     func isAuthorized() -> Bool {
-        return ABAddressBookGetAuthorizationStatus() == .Authorized
+        let status = ABAddressBookGetAuthorizationStatus()
+
+        print("Authorization Status: ")
+        switch status {
+        case .Authorized:
+            println("Authorized")
+
+        case .NotDetermined:
+            println("NotDetermined")
+
+        case .Restricted:
+            println("Restricted")
+
+        case .Denied:
+            println("Denied")
+        }
+
+        return status == .Authorized
     }
 
     func createProjectContact() {

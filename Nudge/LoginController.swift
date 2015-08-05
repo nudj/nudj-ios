@@ -49,27 +49,22 @@ class LoginController: BaseController {
 
         let params: [String: AnyObject] = ["phone": phoneNumber, "country_code": "GB"]
 
-        self.apiRequest(.POST, path: "users", params: params, closure: {
-            (json: JSON) in
+        API.sharedInstance.post("users", params: params, closure: { response in
 
-            if (count(json["data"]["code"].stringValue) <= 0) {
-                println(json)
+            self.code = response["data"]["code"].stringValue
+
+            if (count(self.code) <= 0) {
                 self.showUnknownError()
                 return
             }
 
-            println("Verification code: " + json["data"]["code"].stringValue)
-            self.code = json["data"]["code"].stringValue
-
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
 
             if (appDelegate.contacts.isAuthorized()) {
-                self.askForAddressBookPermission()
-            } else {
                 self.proceed(status: true)
+            } else {
+                self.askForAddressBookPermission()
             }
-        }, errorHandler: { error in
-            self.showUnknownError()
         })
     }
 
