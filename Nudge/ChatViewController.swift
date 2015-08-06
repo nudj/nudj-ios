@@ -348,12 +348,29 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
         
         if(conferenceID == conference){
         
-        self.scrollToBottomAnimated(true);
+            self.scrollToBottomAnimated(true);
 
-        self.messages.addObject(content)
+            self.messages.addObject(content)
+            
+            self.finishReceivingMessageAnimated(true)
         
-        self.finishReceivingMessageAnimated(true)
-        
+        }else{
+            
+            //println("Message via Appdelegate -> \(content.text) from:\(content.senderId) room:\(conference)")
+            var roomID = split(conference) {$0 == "@"}
+            
+            //Store new chat
+            print("Saving \(roomID[0])")
+            let defaults = NSUserDefaults.standardUserDefaults()
+            let outData = defaults.dataForKey(roomID[0])
+            var dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData!) as! NSDictionary
+            
+            //overwrite
+            dict.setValue(false, forKey: "isRead")
+            var data = NSKeyedArchiver.archivedDataWithRootObject(dict)
+            defaults.setObject(data, forKey:roomID[0])
+            defaults.synchronize()
+            
         }
     }
     
@@ -431,11 +448,11 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
     override func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         
         // Send The typing indicator
-        if(!sendOnce){
+        /*if(!sendOnce){
             
             var message = DDXMLElement.elementWithName("message");
-            message.addAttributeWithName("type"", stringValue: "chat")
-            //message.addAttributeWithName("to", stringValue: "")
+            message.addAttributeWithName("type", stringValue: "chat")
+            message.addAttributeWithName("to", stringValue: "\(self.chatID!)")
             
             var composing = DDXMLElement.elementWithName("composing")
             composing.addAttributeWithName("xmlns" stringValue:"http://jabber.org/protocol/chatstates")
@@ -445,7 +462,9 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
             sendOnce = true;
             
             println("Sent The typing indicator");
-        }
+        }*/
+        
+        return true
         
     }
     

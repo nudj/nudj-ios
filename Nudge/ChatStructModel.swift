@@ -95,19 +95,27 @@ class ChatStructModel: NSObject {
             dateFormatter.dateFormat = "d/M/yy - H:mm"
             
             //Get time of last message
+            let storedChatTime = dict["timestamp"] as? NSDate
             let arr = appDelegate.chatInst!.listOfActiveChatRooms[chat.chatId!]!.retrieveStoredChats()
+            
             if arr.count != 0 {
                 
                 let time = arr.lastObject as! JSQMessage
                 chat.time  = dateFormatter.stringFromDate(time.date)
                 chat.timeinRawForm = time.date
                 
+            }else if(storedChatTime != nil){
+                
+                chat.time  = dateFormatter.stringFromDate(storedChatTime!)
+                chat.timeinRawForm = storedChatTime
+                
             }else{
                 
                 //TODO: Fix this
-                //default to right now
-                chat.time  = dateFormatter.stringFromDate(NSDate())
-                chat.timeinRawForm = NSDate()
+                //default to server timestamp
+                //currently pointing to yestarday
+                chat.time  = dateFormatter.stringFromDate(NSDate().dateByAddingTimeInterval(-86400.0))
+                chat.timeinRawForm = NSDate().dateByAddingTimeInterval(-86400.0)
                 
             }
             

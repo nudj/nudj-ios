@@ -268,7 +268,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             //Store new chat
             print("Saving \(roomID[0])")
             let defaults = NSUserDefaults.standardUserDefaults()
-            var dict = ["isNew":true, "isRead":false]
+            var dict = ["isNew":true, "isRead":false, "timestamp":NSDate()]
             var data = NSKeyedArchiver.archivedDataWithRootObject(dict)
             defaults.setObject(data, forKey:roomID[0])
             defaults.synchronize()
@@ -366,7 +366,8 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     
     func xmppRoomDidJoin(sender: XMPPRoom!) {
         
-        println("XMPPROOM JOINED")
+        println("XMPPROOM JOINED)")
+        
         
     }
     
