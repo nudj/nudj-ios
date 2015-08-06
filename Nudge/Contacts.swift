@@ -244,7 +244,6 @@ class Contacts {
             println(result)
             closure?(true)
             }, errorHandler: {result in
-                println(result)
                 closure?(false)
         })
     }

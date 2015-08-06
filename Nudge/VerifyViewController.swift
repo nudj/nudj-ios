@@ -27,7 +27,6 @@ class VerifyViewController: BaseController {
     let codeLength = 4
 
     var phoneNumber = ""
-    var addressBookAccess = false
     var code = ""
 
     override func viewDidLoad() {
@@ -116,7 +115,6 @@ class VerifyViewController: BaseController {
             user.id = json["data"]["id"].intValue
             user.token = json["data"]["token"].stringValue
             user.completed = json["data"]["completed"].boolValue
-            user.addressBookAccess = self.addressBookAccess
 
             appDelegate.pushUserData(user)
 
@@ -130,6 +128,9 @@ class VerifyViewController: BaseController {
 
             // Sync contacts
             appDelegate.contacts.sync()
+
+            // Connect to the chat server
+            appDelegate.chatInst!.connect()
             
             self.performSegueWithIdentifier("showInitProfileView", sender: nil)
         }, errorHandler: {_ in

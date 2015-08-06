@@ -16,8 +16,8 @@ class LoginController: BaseController {
     let msgTitle = "Refer anyone in your phone"
     let msgContent = "you will be able to text and refer anyone in your contacts"
 
-    var addressBookAccess = false
     var code = ""
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
 
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var phoneField: UITextField!
@@ -58,10 +58,8 @@ class LoginController: BaseController {
                 return
             }
 
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
-
-            if (appDelegate.contacts.isAuthorized()) {
-                appDelegate.showContactsAccessView()
+            if (self.appDelegate.contacts.isAuthorized()) {
+                self.proceed()
             } else {
                 self.askForAddressBookPermission()
             }
@@ -89,7 +87,7 @@ class LoginController: BaseController {
 
         alert.addAction(UIAlertAction(title: "Not Now", style: UIAlertActionStyle.Cancel) {
             action -> Void in
-            self.proceed( status: false)
+            self.appDelegate.showContactsAccessView()
             })
 
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) {
@@ -100,19 +98,8 @@ class LoginController: BaseController {
         self.presentViewController(alert, animated: true, completion: nil)
     }
 
-    func proceed(status: Bool = true) {
-        self.markAuthorizationStatus(status)
+    func proceed() {
         self.performSegueWithIdentifier("showVerifyView", sender: self)
-    }
-
-    func proceedWithError() {
-        self.showSimpleAlert("Unable to get Contacts!", action: { (a) -> Void in
-            self.proceed(status: false)
-        })
-    }
-
-    func markAuthorizationStatus(status: Bool) {
-        self.addressBookAccess = status
     }
 
     func getContactListPermission() {
@@ -128,22 +115,22 @@ class LoginController: BaseController {
 
                 dispatch_sync(dispatch_get_main_queue(), { () -> Void in
                     if (success && error == nil) {
-                        self.proceed(status: true)
+                        self.proceed()
                         return
                     }
 
                     NSLog("Unable to request access")
-                    self.proceedWithError()
+                    self.appDelegate.contacts.isAuthorized()
                 })
             })
         }
         else if (authorizationStatus == ABAuthorizationStatus.Denied || authorizationStatus == ABAuthorizationStatus.Restricted) {
             NSLog("access denied")
-            self.proceedWithError()
+            self.appDelegate.contacts.isAuthorized()
         }
         else if (authorizationStatus == ABAuthorizationStatus.Authorized) {
             NSLog("access granted")
-            self.proceed(status: true)
+            self.proceed()
         }
     }
 
@@ -182,7 +169,6 @@ class LoginController: BaseController {
 
         if let verify = segue.destinationViewController as? VerifyViewController {
             verify.setValue(self.getFormattedNumber(), forKey: "phoneNumber")
-            verify.setValue(self.addressBookAccess, forKey: "addressBookAccess")
             verify.code = self.code
         }
     }

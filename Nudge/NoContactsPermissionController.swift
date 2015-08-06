@@ -10,17 +10,30 @@ import UIKit
 
 class NoContactsPermissionController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
+
+        if (appDelegate.contacts.isAuthorized()) {
+            appDelegate.changeRootViewController("mainNavigationController")
+        }
     }
     
+    @IBAction func goToSettings(sender: AnyObject) {
+        let settingsUrl = NSURL(string: UIApplicationOpenSettingsURLString)
+        if let url = settingsUrl {
+            UIApplication.sharedApplication().openURL(url)
+        }
+    }
 
     /*
     // MARK: - Navigation

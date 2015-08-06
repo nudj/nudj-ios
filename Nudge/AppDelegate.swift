@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
     var contacts = Contacts()
     
     var shouldShowBadge = false
+    var appWasInBackground = false
     
     let appColor = UIColor(red: 0, green: 0.63, blue: 0.53, alpha: 1)
     let appBlueColor = UIColor(red:17.0/255.0, green:147.0/255.0, blue:189.0/255.0, alpha: 1)
@@ -37,18 +38,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         prepareApi();
         
         if (user != nil && user!.id != nil && user!.completed == false) {
-            // User did not passed full registration
 
-            self.syncContacts()
-            self.pushViewControllerWithId("createProfile") 
+            if (contacts.isAuthorized()) {
+                // User did not passed full registration
+                self.syncContacts()
+                self.pushViewControllerWithId("createProfile")
+            } else{
+                self.showContactsAccessView()
+            }
 
         } else if (user == nil) {
             // Invalid user Require Login
             // Proceed to login view
         } else {
-            // Valid User, Proceed
-            self.syncContacts()
-            self.changeRootViewController("mainNavigation")
+            if (contacts.isAuthorized()) {
+                // Valid User, Proceed
+                self.syncContacts()
+                self.changeRootViewController("mainNavigation")
+            } else {
+                self.showContactsAccessView()
+            }
         }
         
         //Setup XMPP and connect
@@ -115,7 +124,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         
         */
     }
-    
 
     func syncContacts() {
         dispatch_async(dispatch_get_main_queue(),{
@@ -137,7 +145,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
     }
 
     func showContactsAccessView() {
-        
+        let askForPermission = NoContactsPermissionController(nibName: "NoContactsPermissionController", bundle: nil)
+        self.window!.rootViewController = askForPermission
     }
 
     func fetchUserData() {
@@ -265,8 +274,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        appWasInBackground = true
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -287,7 +295,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         }*/
         
         FBSDKAppEvents.activateApp()
-       
+
+        if (appWasInBackground) {
+            appWasInBackground = false
+
+            if (!contacts.isAuthorized()) {
+                self.showContactsAccessView()
+            }
+        }
     }
 
     func applicationWillTerminate(application: UIApplication) {
