@@ -2210,8 +2210,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bfN-ai-G9E">
-                                <rect key="frame" x="0.0" y="64" width="414" height="623"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="GjD-cl-Lot">
+                                <rect key="frame" x="177" y="324" width="20" height="20"/>
+                                <color key="color" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bfN-ai-G9E">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="qwH-I4-nQ1" id="LtI-ZI-euf"/>
@@ -2222,6 +2226,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Bid-1Q-lVZ" firstAttribute="top" secondItem="bfN-ai-G9E" secondAttribute="bottom" id="BdV-l1-iaB"/>
+                            <constraint firstAttribute="centerY" secondItem="GjD-cl-Lot" secondAttribute="centerY" id="LEo-PM-a0r"/>
+                            <constraint firstAttribute="centerX" secondItem="GjD-cl-Lot" secondAttribute="centerX" id="Sqp-Da-jcS"/>
                             <constraint firstItem="bfN-ai-G9E" firstAttribute="top" secondItem="0zw-Tm-HWi" secondAttribute="bottom" id="W0b-gW-Da1"/>
                             <constraint firstItem="bfN-ai-G9E" firstAttribute="leading" secondItem="FSd-Fl-VSg" secondAttribute="leading" id="dZa-NV-i0N"/>
                             <constraint firstAttribute="trailing" secondItem="bfN-ai-G9E" secondAttribute="trailing" id="w0X-ep-VGZ"/>
@@ -2229,12 +2235,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Chats" id="wOW-Ws-Yr1"/>
                     <connections>
+                        <outlet property="activity" destination="GjD-cl-Lot" id="jiQ-8G-XGg"/>
                         <outlet property="chatTable" destination="bfN-ai-G9E" id="tU4-Jh-u62"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Cv-D5-bDy" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-32" y="1117"/>
+            <point key="canvasLocation" x="-23.5" y="1088.5"/>
         </scene>
         <!--Notifications-->
         <scene sceneID="gbh-aa-mi7">

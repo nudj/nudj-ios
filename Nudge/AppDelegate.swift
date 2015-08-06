@@ -368,11 +368,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
     }
     
     func recievedMessage(content: JSQMessage, conference: String) {
-
+        
         if(shouldShowBadge == true){
-            // Update badge
-            NSNotificationCenter.defaultCenter().postNotificationName("updateBadgeValue", object: nil, userInfo: ["value":"1","index":"1"])
-            
+
             //Store message as its new
             var roomIdPart = split(conference) {$0 == "@"}
             var roomID = roomIdPart[0]
@@ -392,6 +390,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
                     
                 }
             }
+            
+            // Update badge
+            NSNotificationCenter.defaultCenter().postNotificationName("updateBadgeValue", object: nil, userInfo: ["value":"1","index":"1"])
+            
+            // reload table
+            NSNotificationCenter.defaultCenter().postNotificationName("reloadChatTable", object: nil, userInfo:nil)
+            
 
         }else{
             
@@ -413,5 +418,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         
     }
     
+    func saveNSUserDefaultContent(id:String, params:[String:Bool]){
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+            if let outData = defaults.dataForKey(id) {
+                if let dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData) as? [String:Bool] {
+                    var diction = dict
+                    
+                    if(params["isRead"] != nil){
+                    diction["isRead"] = params["isRead"]
+                    }
+                    
+                    if(params["isNew"] != nil){
+                    diction["isNew"] = params["isNew"]
+                    }
+                    
+                    var data = NSKeyedArchiver.archivedDataWithRootObject(diction)
+                    defaults.setObject(data, forKey:id)
+                    defaults.synchronize()
+                    
+                }
+            }
+    
+        
+    }
+    
+    
+    func getNSUserDefaultContent(id:String, value:String) -> Int{
+     
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        if let outData = defaults.dataForKey(id) {
+            
+            if let dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData) as? [String:Bool] {
+                
+                var diction = dict[value]
+                return Int(diction!)
+                
+            }
+        }
+        
+        return 2
+    }
 }
 

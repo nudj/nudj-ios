@@ -365,11 +365,12 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
             let defaults = NSUserDefaults.standardUserDefaults()
             if let outData = defaults.dataForKey(roomID) {
                 
-                if let dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData) as? NSDictionary {
+                if let dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData) as? [String:Bool] {
+                    var diction = dict
                     
                     //overwrite previous data if it exsists
-                    dict.setValue(false, forKey: "isRead")
-                    var data = NSKeyedArchiver.archivedDataWithRootObject(dict)
+                    diction["isRead"] = false
+                    var data = NSKeyedArchiver.archivedDataWithRootObject(diction)
                     defaults.setObject(data, forKey:roomID)
                     defaults.synchronize()
                     

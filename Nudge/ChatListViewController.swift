@@ -16,6 +16,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     let staticRowHeight:CGFloat = 70
     let cellIdentifier = "ChatListTableViewCell"
 
+    @IBOutlet weak var activity: UIActivityIndicatorView!
     var data:[ChatStructModel] = []
     
     override func viewDidLoad() {
@@ -30,12 +31,20 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         
         self.navigationController?.navigationBarHidden = false
         self.tabBarController?.tabBar.hidden = false
-        
         requestData()
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"reload:", name: "reloadChatTable", object: nil);
+        
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "reloadChatTable", object: nil)
     }
 
     func requestData() {
+
+        
         self.apiRequest(.GET, path: "chat?params=chat.job,job.liked,chat.participants,chat.created,job.title,job.company,job.like,user.image,user.name,user.contact", closure: { response in
 
             self.data.removeAll(keepCapacity: false)
@@ -47,7 +56,9 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
             }
             
             println(response)
-
+            
+            self.activity.stopAnimating()
+            self.chatTable.hidden = false;
             self.chatTable.reloadData()
             self.navigationController?.tabBarItem.badgeValue = nil
         })
@@ -104,6 +115,12 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
                 
     }
     
+    func reload(notification:NSNotification){
+        
+        self.requestData()
+        println("reloading data")
+        
+    }
 
 
 }

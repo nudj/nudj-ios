@@ -13,6 +13,8 @@ import SwiftyJSON
 
 class BaseController: UIViewController {
 
+    var counter = 0;
+    
     override func viewDidLoad() {
          NSNotificationCenter.defaultCenter().addObserver(self, selector:"updateBadge:", name: "updateBadgeValue", object: nil);
     }
@@ -71,13 +73,13 @@ class BaseController: UIViewController {
     func updateBadge(notification:NSNotification){
         
         let userInfo:Dictionary<String,String!> = notification.userInfo as! Dictionary<String,String!>
-        let value = userInfo["value"]
+        self.counter += userInfo["value"]!.toInt()!
         let index:Int? = userInfo["index"]!.toInt()
         
         var tabArray = self.tabBarController?.tabBar.items as NSArray!
         if(tabArray != nil && tabArray.count > 0){
             var tabItem = tabArray.objectAtIndex(index!) as! UITabBarItem
-            tabItem.badgeValue = value
+            tabItem.badgeValue = "\(self.counter)"
         }
         
     }
