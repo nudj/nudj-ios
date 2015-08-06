@@ -10,6 +10,7 @@ import UIKit
 import Foundation
 import SwiftyJSON
 
+
 class ChatStructModel: NSObject {
    
     var chatId:String?
@@ -39,13 +40,12 @@ class ChatStructModel: NSObject {
         //set default time to when chatroom was created
         //convert timestamp to NSdate
         let timestamp:NSTimeInterval =  NSTimeInterval(json["created"].doubleValue)
-        let date:NSDate = NSDate(timeIntervalSince1970:timestamp)
+        let date:NSDate = NSDate(timeIntervalSince1970:0)
         chat.timeinRawForm = date
         
         //Convert NSdate to readable date
         let readableFormat = NSDateFormatter()
         readableFormat.dateFormat = "d/M/yy - H:mm"
-        
         chat.time = readableFormat.stringFromDate(chat.timeinRawForm!)
         
         if let outData = NSUserDefaults.standardUserDefaults().dataForKey(chat.chatId!){
@@ -111,8 +111,12 @@ class ChatStructModel: NSObject {
                 
                 // if there is a last message use this instead of the default
                 let time = arr.lastObject as! JSQMessage
-                chat.time  = dateFormatter.stringFromDate(time.date)
                 chat.timeinRawForm = time.date
+                
+                //Convert NSdate to readable date
+                let readableFormat = NSDateFormatter()
+                readableFormat.dateFormat = "d/M/yy - H:mm"
+                chat.time = readableFormat.stringFromDate(chat.timeinRawForm!)
                 
             }
             

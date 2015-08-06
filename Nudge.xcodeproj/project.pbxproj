@@ -2900,7 +2900,7 @@
 			baseConfigurationReference = 91ACAE069A6F9735FED79A9F /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Global Intermedia Limited (BMY483J96G)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods",
@@ -2924,7 +2924,7 @@
 					/usr/include/libxml2,
 				);
 				PRODUCT_NAME = Nudj;
-				PROVISIONING_PROFILE = "5741d6f2-4684-40e3-aa5f-604ac029124f";
+				PROVISIONING_PROFILE = "3624ccfa-cce7-4ca0-9aea-99eac7523e19";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Nudge/Nudge-Bridging-Header.h";
 			};
 			name = Debug;
@@ -2934,8 +2934,8 @@
 			baseConfigurationReference = 39A67AE42E9231EE2A750094 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Global Intermedia Limited (BMY483J96G)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Global Intermedia Limited (BMY483J96G)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods",
@@ -2959,7 +2959,7 @@
 					/usr/include/libxml2,
 				);
 				PRODUCT_NAME = Nudj;
-				PROVISIONING_PROFILE = "5741d6f2-4684-40e3-aa5f-604ac029124f";
+				PROVISIONING_PROFILE = "3624ccfa-cce7-4ca0-9aea-99eac7523e19";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Nudge/Nudge-Bridging-Header.h";
 			};
 			name = Release;

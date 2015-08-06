@@ -7,5 +7,6 @@ pod 'SwiftyJSON', '~> 2.1'
 pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
 pod 'FBSDKShareKit'
+pod 'DateTools'
 
 #pod 'KSTokenView', '~> 1.2'

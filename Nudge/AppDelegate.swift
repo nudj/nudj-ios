@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import Fabric
 import Crashlytics
+import FBSDKLoginKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
@@ -457,6 +458,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
                     defaults.synchronize()
                     
                 }
+            }else{
+            
+                //TODO: Handle this
+                
             }
     
         
