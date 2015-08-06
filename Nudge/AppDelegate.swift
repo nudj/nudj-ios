@@ -374,20 +374,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
             NSNotificationCenter.defaultCenter().postNotificationName("updateBadgeValue", object: nil, userInfo: ["value":"1","index":"1"])
             
             //Store message as its new
-            var roomID = split(conference) {$0 == "@"}
+            var roomIdPart = split(conference) {$0 == "@"}
+            var roomID = roomIdPart[0]
             
-            print("Saving \(roomID[0])")
+            print("Saving \(roomID)")
             let defaults = NSUserDefaults.standardUserDefaults()
-            let outData = defaults.dataForKey(roomID[0])
-                if let var dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData!) as? NSDictionary {
+            if let outData = defaults.dataForKey(roomID) {
+            
+                if let dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData) as? NSDictionary {
                 
                 //overwrite previous data if it exsists
                 dict.setValue(false, forKey: "isRead")
                 var data = NSKeyedArchiver.archivedDataWithRootObject(dict)
-                defaults.setObject(data, forKey:roomID[0])
+                defaults.setObject(data, forKey:roomID)
                 defaults.synchronize()
                     
                 }
+            }
 
         }else{
             
@@ -395,7 +398,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
             println("This message already exsists in my coredata => \(content.text) from:\(content.senderId) room:\(conference))")
             
         }
-
 
 
     }

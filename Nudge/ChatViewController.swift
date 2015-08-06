@@ -357,24 +357,24 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
         }else{
             
             //println("Message via Appdelegate -> \(content.text) from:\(content.senderId) room:\(conference)")
-            var roomID = split(conference) {$0 == "@"}
+            var roomIdPart = split(conference) {$0 == "@"}
+            var roomID = roomIdPart[0]
             
             //Store new chat
-            print("Saving \(roomID[0])")
+            print("Saving \(roomID)")
             let defaults = NSUserDefaults.standardUserDefaults()
-            let outData = defaults.dataForKey(roomID[0])
-            var dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData!) as! NSDictionary
-            
-            if let var dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData!) as? NSDictionary {
+            if let outData = defaults.dataForKey(roomID) {
                 
-                //overwrite previous data if it exsists
-                dict.setValue(false, forKey: "isRead")
-                var data = NSKeyedArchiver.archivedDataWithRootObject(dict)
-                defaults.setObject(data, forKey:roomID[0])
-                defaults.synchronize()
-                
+                if let dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData) as? NSDictionary {
+                    
+                    //overwrite previous data if it exsists
+                    dict.setValue(false, forKey: "isRead")
+                    var data = NSKeyedArchiver.archivedDataWithRootObject(dict)
+                    defaults.setObject(data, forKey:roomID)
+                    defaults.synchronize()
+                    
+                }
             }
-
         }
     }
     
