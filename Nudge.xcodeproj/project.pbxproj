@@ -304,6 +304,8 @@
 		EBE5C3121B25811400CFF7E9 /* TokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE5C3111B25811400CFF7E9 /* TokenView.swift */; };
 		EBEA9B451AF0D2280027A2A2 /* SettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA9B441AF0D2280027A2A2 /* SettingsItem.swift */; };
 		EBEA9B491AF265150027A2A2 /* AddJobController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA9B481AF265150027A2A2 /* AddJobController.swift */; };
+		EBF0E5141B73A3D30021D29B /* NoContactsPermissionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF0E5121B73A3D30021D29B /* NoContactsPermissionController.swift */; };
+		EBF0E5151B73A3D30021D29B /* NoContactsPermissionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBF0E5131B73A3D30021D29B /* NoContactsPermissionController.xib */; };
 		EBF17A221B4C128100C67657 /* VerifyCodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF17A211B4C128100C67657 /* VerifyCodeTextField.swift */; };
 		EBF17A241B4D538800C67657 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF17A231B4D538800C67657 /* Common.swift */; };
 		EBF17A261B4D76C600C67657 /* JobModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF17A251B4D76C600C67657 /* JobModel.swift */; };
@@ -841,6 +843,8 @@
 		EBE5C3111B25811400CFF7E9 /* TokenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenView.swift; sourceTree = "<group>"; };
 		EBEA9B441AF0D2280027A2A2 /* SettingsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsItem.swift; sourceTree = "<group>"; };
 		EBEA9B481AF265150027A2A2 /* AddJobController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddJobController.swift; sourceTree = "<group>"; };
+		EBF0E5121B73A3D30021D29B /* NoContactsPermissionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoContactsPermissionController.swift; sourceTree = "<group>"; };
+		EBF0E5131B73A3D30021D29B /* NoContactsPermissionController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoContactsPermissionController.xib; sourceTree = "<group>"; };
 		EBF17A211B4C128100C67657 /* VerifyCodeTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyCodeTextField.swift; sourceTree = "<group>"; };
 		EBF17A231B4D538800C67657 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		EBF17A251B4D76C600C67657 /* JobModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobModel.swift; sourceTree = "<group>"; };
@@ -2163,6 +2167,7 @@
 		EB6F22B81AAF702F007FF1B8 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				EBF0E50D1B7365170021D29B /* NoContactsPermisson */,
 				EB6F22B91AAF706A007FF1B8 /* AsyncImage.swift */,
 				EB6F22BB1AB02E7F007FF1B8 /* MainTitleBar.swift */,
 				EB6F22BD1AB045C0007FF1B8 /* RBResizer.swift */,
@@ -2270,6 +2275,15 @@
 				A9F3332D1B42A84500F0D17B /* AddJob */,
 			);
 			name = ActionControllers;
+			sourceTree = "<group>";
+		};
+		EBF0E50D1B7365170021D29B /* NoContactsPermisson */ = {
+			isa = PBXGroup;
+			children = (
+				EBF0E5121B73A3D30021D29B /* NoContactsPermissionController.swift */,
+				EBF0E5131B73A3D30021D29B /* NoContactsPermissionController.xib */,
+			);
+			name = NoContactsPermisson;
 			sourceTree = "<group>";
 		};
 		EBF1861A1B21D9D500D8D80D /* Libraries */ = {
@@ -2445,6 +2459,7 @@
 				EB866BE11B53EFAE00E203CA /* NotificationCell.xib in Resources */,
 				A9964FF51B387CC800D5A8E9 /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
 				EB35BBA61AB7288000842E1F /* ContactsCell.xib in Resources */,
+				EBF0E5151B73A3D30021D29B /* NoContactsPermissionController.xib in Resources */,
 				A9964FF31B387CC800D5A8E9 /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2576,6 +2591,7 @@
 				A99650331B387CC800D5A8E9 /* XMPPMessage+XEP0045.m in Sources */,
 				A99650421B387CC800D5A8E9 /* XMPPvCardTempTel.m in Sources */,
 				A99650011B387CC800D5A8E9 /* XMPPAnonymousAuthentication.m in Sources */,
+				EBF0E5141B73A3D30021D29B /* NoContactsPermissionController.swift in Sources */,
 				A99650231B387CC800D5A8E9 /* XMPPIQ+JabberRPCResonse.m in Sources */,
 				A99650501B387CC800D5A8E9 /* XMPPCapabilities.xcdatamodel in Sources */,
 				A9964FF11B387CC800D5A8E9 /* JSQMessagesCollectionViewCell.m in Sources */,

@@ -61,7 +61,7 @@ class LoginController: BaseController {
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
 
             if (appDelegate.contacts.isAuthorized()) {
-                self.proceed(status: true)
+                appDelegate.showContactsAccessView()
             } else {
                 self.askForAddressBookPermission()
             }

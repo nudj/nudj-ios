@@ -136,6 +136,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         }
     }
 
+    func showContactsAccessView() {
+        
+    }
+
     func fetchUserData() {
 
         let managedContext = self.managedObjectContext!
