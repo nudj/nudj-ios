@@ -234,6 +234,7 @@
 		A9C6EC9F1B3853F900EC9140 /* ChatListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC9D1B3853F900EC9140 /* ChatListTableViewCell.swift */; };
 		A9C6ECA01B3853F900EC9140 /* ChatListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9C6EC9E1B3853F900EC9140 /* ChatListTableViewCell.xib */; };
 		A9EC313C1B72357A00356B1F /* ChatStructModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC313B1B72357A00356B1F /* ChatStructModel.swift */; };
+		A9EC313F1B73510F00356B1F /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9EC313E1B73510F00356B1F /* SwiftyJSON.framework */; };
 		A9F333271B41759A00F0D17B /* CPAnimationProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F333241B41759A00F0D17B /* CPAnimationProgram.m */; };
 		A9F333281B41759A00F0D17B /* CPAnimationSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F333251B41759A00F0D17B /* CPAnimationSequence.m */; };
 		A9F333291B41759A00F0D17B /* CPAnimationStep.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F333261B41759A00F0D17B /* CPAnimationStep.m */; };
@@ -313,7 +314,6 @@
 		EBF186211B21DACA00D8D80D /* KSTokenField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF1861D1B21DACA00D8D80D /* KSTokenField.swift */; };
 		EBF186221B21DACA00D8D80D /* KSTokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF1861E1B21DACA00D8D80D /* KSTokenView.swift */; };
 		EBF186231B21DACA00D8D80D /* KSUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF1861F1B21DACA00D8D80D /* KSUtils.swift */; };
-		EBF9DD8A1AE6A8EC00A1A67D /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBF9DD891AE6A8EC00A1A67D /* SwiftyJSON.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -768,6 +768,7 @@
 		A9C6EC9D1B3853F900EC9140 /* ChatListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListTableViewCell.swift; sourceTree = "<group>"; };
 		A9C6EC9E1B3853F900EC9140 /* ChatListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatListTableViewCell.xib; sourceTree = "<group>"; };
 		A9EC313B1B72357A00356B1F /* ChatStructModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatStructModel.swift; sourceTree = "<group>"; };
+		A9EC313E1B73510F00356B1F /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		A9F333201B41759A00F0D17B /* CPAnimationProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnimationProgram.h; sourceTree = "<group>"; };
 		A9F333211B41759A00F0D17B /* CPAnimationSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnimationSequence.h; sourceTree = "<group>"; };
 		A9F333221B41759A00F0D17B /* CPAnimationStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnimationStep.h; sourceTree = "<group>"; };
@@ -845,7 +846,6 @@
 		EBE5C3111B25811400CFF7E9 /* TokenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenView.swift; sourceTree = "<group>"; };
 		EBEA9B441AF0D2280027A2A2 /* SettingsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsItem.swift; sourceTree = "<group>"; };
 		EBEA9B481AF265150027A2A2 /* AddJobController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddJobController.swift; sourceTree = "<group>"; };
-		EBF1028F1ADD59D20096FB3C /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/Pods/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		EBF17A211B4C128100C67657 /* VerifyCodeTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyCodeTextField.swift; sourceTree = "<group>"; };
 		EBF17A231B4D538800C67657 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		EBF17A251B4D76C600C67657 /* JobModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobModel.swift; sourceTree = "<group>"; };
@@ -854,7 +854,6 @@
 		EBF1861D1B21DACA00D8D80D /* KSTokenField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSTokenField.swift; sourceTree = "<group>"; };
 		EBF1861E1B21DACA00D8D80D /* KSTokenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSTokenView.swift; sourceTree = "<group>"; };
 		EBF1861F1B21DACA00D8D80D /* KSUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSUtils.swift; sourceTree = "<group>"; };
-		EBF9DD891AE6A8EC00A1A67D /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/Pods/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		FDD460F204898DA0004C5B93 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -873,8 +872,8 @@
 				A99650801B387CC800D5A8E9 /* libidn.a in Frameworks */,
 				EBB3382E1A9F5973000CAD88 /* CoreData.framework in Frameworks */,
 				EBD1073E1AF0B8F800310818 /* Pods.framework in Frameworks */,
-				EBF9DD8A1AE6A8EC00A1A67D /* SwiftyJSON.framework in Frameworks */,
 				EB27E01D1ADD37790023EFB3 /* Alamofire.framework in Frameworks */,
+				A9EC313F1B73510F00356B1F /* SwiftyJSON.framework in Frameworks */,
 				A9C6EC981B38273300EC9140 /* Crashlytics.framework in Frameworks */,
 				EBA8C3431B30852B00522167 /* Fabric.framework in Frameworks */,
 			);
@@ -2072,8 +2071,7 @@
 				A99650851B38804500D5A8E9 /* CFNetwork.framework */,
 				A99650831B38803A00D5A8E9 /* Security.framework */,
 				EB7DD82B1B205CEB005332B1 /* KSTokenView.framework */,
-				EBF9DD891AE6A8EC00A1A67D /* SwiftyJSON.framework */,
-				EBF1028F1ADD59D20096FB3C /* SwiftyJSON.framework */,
+				A9EC313E1B73510F00356B1F /* SwiftyJSON.framework */,
 				EB27E01C1ADD37790023EFB3 /* Alamofire.framework */,
 				FDD460F204898DA0004C5B93 /* Pods.framework */,
 			);
@@ -2902,6 +2900,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods",
 					"$(PROJECT_DIR)",
 					/Users/antonio/Documents/FacebookSDK,
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Nudge/Nudge-Prefix.pch";
@@ -2937,6 +2936,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods",
 					"$(PROJECT_DIR)",
 					/Users/antonio/Documents/FacebookSDK,
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Nudge/Nudge-Prefix.pch";

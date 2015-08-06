@@ -268,12 +268,13 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             //Store new chat
             print("Saving \(roomID[0])")
             let defaults = NSUserDefaults.standardUserDefaults()
-            var dict = ["isNew":true, "isRead":false, "timestamp":NSDate()]
+            var dict = ["isNew":true, "isRead":false]
             var data = NSKeyedArchiver.archivedDataWithRootObject(dict)
             defaults.setObject(data, forKey:roomID[0])
             defaults.synchronize()
             
             appGlobalDelegate.shouldShowBadge = true;
+            
             chatroom.prepareChatModel(jid, roomId: roomID[0], with:self.xmppStream!, delegate:self)
             self.listOfActiveChatRooms[roomID[0]] = chatroom
             
@@ -348,12 +349,13 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
                 time = dateFormatter.dateFromString(stringTimeStamp)
                 
                 if(time == nil){
-                time = NSDate()
+                    time = NSDate()
                 }
                 
             }else{
                 
                 time = NSDate();
+                
                 appGlobalDelegate.shouldShowBadge = true;
                 
             }

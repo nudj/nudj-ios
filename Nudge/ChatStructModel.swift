@@ -76,8 +76,6 @@ class ChatStructModel: NSObject {
             defaults.synchronize()
             println("Marked as read")
             
-        }else{
-            
         }
         
     }
@@ -95,7 +93,6 @@ class ChatStructModel: NSObject {
             dateFormatter.dateFormat = "d/M/yy - H:mm"
             
             //Get time of last message
-            let storedChatTime = dict["timestamp"] as? NSDate
             let arr = appDelegate.chatInst!.listOfActiveChatRooms[chat.chatId!]!.retrieveStoredChats()
             
             if arr.count != 0 {
@@ -103,11 +100,6 @@ class ChatStructModel: NSObject {
                 let time = arr.lastObject as! JSQMessage
                 chat.time  = dateFormatter.stringFromDate(time.date)
                 chat.timeinRawForm = time.date
-                
-            }else if(storedChatTime != nil){
-                
-                chat.time  = dateFormatter.stringFromDate(storedChatTime!)
-                chat.timeinRawForm = storedChatTime
                 
             }else{
                 

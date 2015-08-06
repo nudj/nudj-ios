@@ -368,33 +368,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
     }
     
     func recievedMessage(content: JSQMessage, conference: String) {
-        
-        //println("Message via Appdelegate -> \(content.text) from:\(content.senderId) room:\(conference)")
-        var roomID = split(conference) {$0 == "@"}
-        
-        //Store new chat
-        print("Saving \(roomID[0])")
-        /*let defaults = NSUserDefaults.standardUserDefaults()
-        let outData = defaults.dataForKey(roomID[0])
-        var dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData!) as! NSDictionary
-        
-        //overwrite
-        dict.setValue(false, forKey: "isRead")
-        var data = NSKeyedArchiver.archivedDataWithRootObject(dict)
-        defaults.setObject(data, forKey:roomID[0])
-        defaults.synchronize()
 
-        // Update badge
         if(shouldShowBadge == true){
-        NSNotificationCenter.defaultCenter().postNotificationName("updateBadgeValue", object: nil, userInfo: ["value":"1","index":"1"])
+            // Update badge
+            NSNotificationCenter.defaultCenter().postNotificationName("updateBadgeValue", object: nil, userInfo: ["value":"1","index":"1"])
+            
+            //Store message as its new
+            var roomID = split(conference) {$0 == "@"}
+            
+            print("Saving \(roomID[0])")
+            let defaults = NSUserDefaults.standardUserDefaults()
+            let outData = defaults.dataForKey(roomID[0])
+                if let var dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData!) as? NSDictionary {
+                
+                //overwrite previous data if it exsists
+                dict.setValue(false, forKey: "isRead")
+                var data = NSKeyedArchiver.archivedDataWithRootObject(dict)
+                defaults.setObject(data, forKey:roomID[0])
+                defaults.synchronize()
+                    
+                }
+
+        }else{
+            
+            //Store message as its new
+            println("This message already exsists in my coredata => \(content.text) from:\(content.senderId) room:\(conference))")
+            
         }
-        */
-        
-        
+
+
+
     }
-    
+
     func handleEjabberedRecievedMessages(){
-        
+
         
     }
     
