@@ -452,21 +452,24 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
     override func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         
         // Send The typing indicator
-        /*if(!sendOnce){
+        if(!sendOnce){
+            var conferenceID = self.chatID+""+appGlobalDelegate.chatInst!.ConferenceUrl
             
-            var message = DDXMLElement.elementWithName("message");
-            message.addAttributeWithName("type", stringValue: "chat")
-            message.addAttributeWithName("to", stringValue: "\(self.chatID!)")
+            var message = DDXMLElement.elementWithName("message") as! DDXMLElement
+            message.addAttributeWithName("type",stringValue:"chat")
+            message.addAttributeWithName("to", stringValue:conferenceID)
             
-            var composing = DDXMLElement.elementWithName("composing")
-            composing.addAttributeWithName("xmlns" stringValue:"http://jabber.org/protocol/chatstates")
+            var composing = DDXMLElement.elementWithName("composing") as! DDXMLElement
+            composing.addAttributeWithName("xmlns", stringValue:"http://jabber.org/protocol/chatstates")
             message.addChild(composing)
             
-            appGlobalDelegate.chatInst!.listOfActiveChatRooms[self.chatID]!.xmppRoom!.sen
+            var mes = XMPPMessage(name:"composing", xmlns: "http://jabber.org/protocol/chatstates")
+            
+            appGlobalDelegate.chatInst!.listOfActiveChatRooms[self.chatID]!.xmppRoom!.sendMessage(mes)
             sendOnce = true;
             
             println("Sent The typing indicator");
-        }*/
+        }
         
         return true
         

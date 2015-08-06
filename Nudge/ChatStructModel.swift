@@ -36,6 +36,18 @@ class ChatStructModel: NSObject {
         chat.jobID = json["job"]["id"].stringValue
         chat.job = json["job"]
         
+        //set default time to when chatroom was created
+        //convert timestamp to NSdate
+        let timestamp:NSTimeInterval =  NSTimeInterval(json["created"].doubleValue)
+        let date:NSDate = NSDate(timeIntervalSince1970:timestamp)
+        chat.timeinRawForm = date
+        
+        //Convert NSdate to readable date
+        let readableFormat = NSDateFormatter()
+        readableFormat.dateFormat = "d/M/yy - H:mm"
+        
+        chat.time = readableFormat.stringFromDate(chat.timeinRawForm!)
+        
         if let outData = NSUserDefaults.standardUserDefaults().dataForKey(chat.chatId!){
         
             self.retrieveStoredContent(chat)
@@ -97,17 +109,10 @@ class ChatStructModel: NSObject {
             
             if arr.count != 0 {
                 
+                // if there is a last message use this instead of the default
                 let time = arr.lastObject as! JSQMessage
                 chat.time  = dateFormatter.stringFromDate(time.date)
                 chat.timeinRawForm = time.date
-                
-            }else{
-                
-                //TODO: Fix this
-                //default to server timestamp
-                //currently pointing to yestarday
-                chat.time  = dateFormatter.stringFromDate(NSDate().dateByAddingTimeInterval(-86400.0))
-                chat.timeinRawForm = NSDate().dateByAddingTimeInterval(-86400.0)
                 
             }
             

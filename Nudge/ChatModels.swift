@@ -266,7 +266,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             var roomID = split(jid) {$0 == "@"}
             
             //Store new chat
-            print("Saving \(roomID[0])")
+            println("Saving \(roomID[0])")
             let defaults = NSUserDefaults.standardUserDefaults()
             var dict = ["isNew":true, "isRead":false]
             var data = NSKeyedArchiver.archivedDataWithRootObject(dict)

@@ -377,17 +377,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
             var roomIdPart = split(conference) {$0 == "@"}
             var roomID = roomIdPart[0]
             
-            print("Saving \(roomID)")
+            println("Saving \(roomID)")
             let defaults = NSUserDefaults.standardUserDefaults()
             if let outData = defaults.dataForKey(roomID) {
             
-                if let dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData) as? NSDictionary {
-                
-                //overwrite previous data if it exsists
-                dict.setValue(false, forKey: "isRead")
-                var data = NSKeyedArchiver.archivedDataWithRootObject(dict)
-                defaults.setObject(data, forKey:roomID)
-                defaults.synchronize()
+                if let dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData) as? [String:Bool] {
+                    var diction = dict
+                    
+                    //overwrite previous data if it exsists
+                    diction["isRead"] = false
+                    var data = NSKeyedArchiver.archivedDataWithRootObject(diction)
+                    defaults.setObject(data, forKey:roomID)
+                    defaults.synchronize()
                     
                 }
             }

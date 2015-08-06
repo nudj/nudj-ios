@@ -29,7 +29,9 @@ class ChatListTableViewCell: UITableViewCell {
             
         }
         
+        profilePicture.setCustomImage(UserModel.getDefaultUserImage())
         profilePicture.downloadImage(data.image)
+        
         timeAgo.text = data.time
         
         self.isRead(data.isRead!)

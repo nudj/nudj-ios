@@ -21,10 +21,11 @@ class ChatRoomModel: NSObject{
         self.xmppRoomStorage = XMPPRoomCoreDataStorage(databaseFilename:"\(roomId).sqlite", storeOptions: nil)
         
         var roomJID = XMPPJID.jidWithString(roomName);
+        println("did generate room jid -> \(roomJID)")
         
-        if(roomJID != nil){
+        if(roomJID != nil && self.xmppRoomStorage != nil){
         
-        self.xmppRoom = XMPPRoom(roomStorage: xmppRoomStorage, jid: roomJID, dispatchQueue: dispatch_get_main_queue())
+        self.xmppRoom = XMPPRoom(roomStorage: self.xmppRoomStorage, jid: roomJID, dispatchQueue: dispatch_get_main_queue())
         self.xmppRoom!.addDelegate(delegate, delegateQueue: dispatch_get_main_queue())
         self.xmppRoom!.activate(xmpp)
         
