@@ -198,8 +198,17 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
     
     func didPressCallButton(cell: NotificationCell) {
         
-        println("Call")
-
+ /*       NSString *phNo = @"+919876543210";
+        NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"telprompt:%@",phNo]];
+        
+        if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
+            [[UIApplication sharedApplication] openURL:phoneUrl];
+        } else
+        {
+            calert = [[UIAlertView alloc]initWithTitle:@"Alert" message:@"Call facility is not available!!!" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+            [calert show];
+        }
+*/
     }
     
 }

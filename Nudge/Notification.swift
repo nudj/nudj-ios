@@ -37,6 +37,9 @@ class Notification {
     var senderId:String?
     var senderName:String?
     var senderImage:String?
+    var senderPhoneNumber:String?
+    
+    var chatId:String?
     
     static func createFromJSON(data:JSON) -> Notification? {
         var type = NotificationType(rawValue: data["type"].stringValue.toInt()!)
@@ -50,6 +53,7 @@ class Notification {
         obj.senderImage = data["sender"]["image"]["profile"].stringValue
         obj.senderId = data["sender"]["id"].stringValue
         obj.senderName = data["sender"]["name"].stringValue
+        obj.senderPhoneNumber = data["sender"]["number"].stringValue
         
         obj.employerName = data["meta"]["employer"].stringValue
         
@@ -64,6 +68,8 @@ class Notification {
         obj.notificationId = data["id"].stringValue
         
         obj.notificationType = type
+        
+        obj.chatId =  data["meta"]["chat_id"].stringValue
         
         return obj
 
