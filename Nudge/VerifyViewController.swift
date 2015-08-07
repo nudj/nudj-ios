@@ -91,6 +91,7 @@ class VerifyViewController: BaseController {
 
     func submit() {
         let code = codeField.text
+        codeField.text = ""
         println("Sending Code: " + code)
 
         if (count(code) != self.codeLength) {
@@ -106,6 +107,8 @@ class VerifyViewController: BaseController {
 
             if (!self.isValidResponse(json)) {
                 self.showCodeField(animated: true)
+                self.showSimpleAlert("This code is invalid.")
+                
                 return;
             }
 
@@ -135,6 +138,7 @@ class VerifyViewController: BaseController {
             self.performSegueWithIdentifier("showInitProfileView", sender: nil)
         }, errorHandler: {_ in
             self.showCodeField(animated: true)
+            self.showSimpleAlert("There was an error in code verification, please try again.")
         })
     }
 
