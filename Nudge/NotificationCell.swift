@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftyJSON
+import DateTools
 
 protocol NotificationCellDelegate {
     func didPressRightButton(cell:NotificationCell)
@@ -50,12 +51,7 @@ class NotificationCell: UITableViewCell {
         
         let timestamp:NSTimeInterval =  NSTimeInterval(data.notificationTime!)
         let date:NSDate = NSDate(timeIntervalSince1970:timestamp)
-        
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "d/M/yy - H:mm"
-        let currentDate  = dateFormatter.stringFromDate(date)
-        
-        self.dateLabel.text = currentDate
+        self.dateLabel.text = date.timeAgoSinceNow()
         
         self.smsButton.addTarget(self, action: "actions:", forControlEvents:.TouchUpInside)
         
