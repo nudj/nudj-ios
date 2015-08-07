@@ -124,6 +124,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         }]
         
         */
+        
+        // Update badge
+        NSNotificationCenter.defaultCenter().postNotificationName("updateBadgeValue", object: nil, userInfo: ["value":"1","index":"3"])
+        
+
     }
 
     func syncContacts() {

@@ -275,8 +275,13 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             
             appGlobalDelegate.shouldShowBadge = true;
             
+            //terminate all room and reconnect
+            //request from server
+            //self.requestRooms();
+            
             chatroom.prepareChatModel(jid, roomId: roomID[0], with:self.xmppStream!, delegate:self)
             self.listOfActiveChatRooms[roomID[0]] = chatroom
+
             
         }else{
 
@@ -333,6 +338,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             
         }
         
+        println("will do something with chat message")
         
         if message.body() != nil {
             

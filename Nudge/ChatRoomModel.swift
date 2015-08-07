@@ -12,11 +12,13 @@ import CoreData
 class ChatRoomModel: NSObject{
     var xmppRoom :XMPPRoom?
     var xmppRoomStorage :XMPPRoomCoreDataStorage?
+    var delegate:XMPPRoomDelegate?
     var roomID:String?
     
     func prepareChatModel(roomName:String, roomId:String, with xmpp:XMPPStream, delegate:XMPPRoomDelegate) {
         
         self.roomID = roomId
+        self.delegate = delegate
         
         self.xmppRoomStorage = XMPPRoomCoreDataStorage(databaseFilename:"\(roomId).sqlite", storeOptions: nil)
         
@@ -73,5 +75,12 @@ class ChatRoomModel: NSObject{
         return messageObject
     }
     
+    
+    func teminateSession(){
+        
+        self.xmppRoom!.leaveRoom()
+        self.xmppRoom!.deactivate()
+        self.xmppRoom!.removeDelegate(self.delegate)
+    }
 
 }

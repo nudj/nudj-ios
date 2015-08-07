@@ -21,7 +21,9 @@ class NotificationCell: UITableViewCell {
     var type:NotificationType?
     var messageText = ""
     var meta:JSON?
+    var isRead:Bool?
     var user: UserModel?
+    var notificationID:String?
 
     @IBOutlet weak var profileImage: AsyncImage!
     @IBOutlet weak var dateLabel: UILabel!
@@ -37,7 +39,9 @@ class NotificationCell: UITableViewCell {
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
+        profileImage.setCustomImage(UserModel.getDefaultUserImage())
         profileImage.downloadImage(data.senderImage, completion:nil)
+        
         self.message.text = data.notificationMessage
         
         let boldFont = UIFont(name: "HelveticaNeue-Bold", size: 13)
@@ -48,6 +52,7 @@ class NotificationCell: UITableViewCell {
         self.readStatus(data.notificationReadStatus!)
         
         self.type = data.notificationType
+        self.notificationID = data.notificationId
         
         let timestamp:NSTimeInterval =  NSTimeInterval(data.notificationTime!)
         let date:NSDate = NSDate(timeIntervalSince1970:timestamp)
@@ -94,13 +99,16 @@ class NotificationCell: UITableViewCell {
     }
     
     func readStatus(read:Bool){
+        
         println("read status -> \(read)")
-
-        /*if(read == false){
-            self.contentView.backgroundColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 1)
+        self.isRead = read
+        
+        if(read == false){
+            self.contentView.backgroundColor =  UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
         }else{
             self.contentView.backgroundColor = UIColor.whiteColor()
-        }*/
+        }
+        
         
     }
     
@@ -116,4 +124,18 @@ class NotificationCell: UITableViewCell {
     }
 
 
+    func markAsRead(){
+        
+        println("mark as read url: notifications/\(self.notificationID!)/read")
+        
+        API.sharedInstance.put("notifications/\(self.notificationID!)/read", params: nil, closure: { json in
+            
+            println("success \(json)")
+            
+        }) { error in
+            
+            println("error \(error)")
+        }
+        
+    }
 }

@@ -35,7 +35,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
 
     func loadData(append:Bool = true, url:String? = nil) {
 
-        var defaulUrl = "notifications?params=sender.name,sender.image&limit=10"
+        var defaulUrl = "notifications?params=chat.id,sender.name,sender.image&limit=10"
 
         API.sharedInstance.get(url == nil ? defaulUrl : url!, closure: {data in
 
@@ -73,7 +73,8 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
             }
             
         }
-
+        
+        self.navigationController?.tabBarItem.badgeValue = nil
         self.tableView.reloadData()
         self.refreshControl?.endRefreshing()
     }
@@ -124,11 +125,16 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
             return;
         }
         
+        if cell.isRead == false {
+            
+            cell.readStatus(true)
+            cell.markAsRead()
+        }
         
         switch cell.type! {
         case .AskToRefer:
-            println("Details")
             
+            println("Details")
             //TODO: USE Segway
             let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             var detailsView = storyboard.instantiateViewControllerWithIdentifier("JobDetailedView") as! JobDetailedViewController
@@ -136,6 +142,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
             detailsView.jobID = self.data[indexPath.row].jobID!
             self.navigationController?.pushViewController(detailsView, animated: true);
             break;
+            
         case .AppApplication:
             println("go to chat")
             /*
@@ -155,6 +162,20 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
             vc.userToken = appGlobalDelegate.user?.token
             
             self.navigationController?.pushViewController(vc, animated: true)*/
+            
+            
+            /*var chatView:ChatViewController = ChatViewController()
+            
+            let chat = self.data[indexPath.row]
+            chatView.chatID = chat.chatId;
+            chatView.participants =  chat.participantName
+            chatView.participantsID = chat.participantsID
+            chatView.chatTitle = chat.title
+            chatView.jobID = chat.jobID
+            chatView.otherUserImageUrl = chat.image
+            
+            self.navigationController?.pushViewController(chatView, animated: true)*/
+            
             break;
         case .WebApplication:
             println("sms")
@@ -181,9 +202,4 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
 
     }
     
-    
-    func markAsRead(){
-    
-        // PUT notifications/{id}/read
-    }
 }
