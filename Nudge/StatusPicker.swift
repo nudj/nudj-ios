@@ -21,7 +21,7 @@ class StatusPicker: BaseController, UIPickerViewDelegate, UIPickerViewDataSource
 
         API.sharedInstance.get("config/status", params: nil, closure: {
             json in
-
+            println(json)
             for (key, value) in json["data"] {
                 self.availableStatuses.updateValue(value.stringValue, forKey: key.toInt()!)
             }
@@ -54,7 +54,7 @@ class StatusPicker: BaseController, UIPickerViewDelegate, UIPickerViewDataSource
 
     //MARK: Delegates
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        return self.availableStatuses[row]
+        return row > availableStatuses.count ? "" : availableStatuses[row+1]
     }
 
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
