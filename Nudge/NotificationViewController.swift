@@ -8,8 +8,9 @@
 
 import UIKit
 import SwiftyJSON
+import MessageUI
 
-class NotificationViewController: UITableViewController, NotificationCellDelegate {
+class NotificationViewController: UITableViewController, NotificationCellDelegate, MFMessageComposeViewControllerDelegate {
 
     var data = [Notification]()
     
@@ -133,61 +134,28 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
         
         switch cell.type! {
         case .AskToRefer:
-            
             println("Details")
-            //TODO: USE Segway
-            let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            var detailsView = storyboard.instantiateViewControllerWithIdentifier("JobDetailedView") as! JobDetailedViewController
-            var indexPath:NSIndexPath = tableView.indexPathForCell(cell)!
-            detailsView.jobID = self.data[indexPath.row].jobID!
-            self.navigationController?.pushViewController(detailsView, animated: true);
+            self.goToView("JobDetailedView", contentId: cell.notificationData!.jobID)
             break;
-            
         case .AppApplication:
             println("go to chat")
-            /*
-            var conference :String = self.data[indexPath.row]["id"].stringValue
-            var appGlobalDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            
-            var vc:ChatViewController = ChatViewController()
-            
-            let chat = self.data[indexPath.row]
-            let user = chat["participants"][0]["id"].intValue == appGlobalDelegate.user!.id ? chat["participants"][1] : chat["participants"][0]
-            
-            vc.chatID = chat["id"].stringValue;
-            vc.participants =  user["name"].stringValue
-            vc.participantsID = user["id"].stringValue
-            vc.chatTitle = "re: "+chat["job"]["title"].stringValue
-            vc.jobID = chat["job"]["id"].stringValue
-            vc.userToken = appGlobalDelegate.user?.token
-            
-            self.navigationController?.pushViewController(vc, animated: true)*/
-            
-            
-            /*var chatView:ChatViewController = ChatViewController()
-            
-            let chat = self.data[indexPath.row]
-            chatView.chatID = chat.chatId;
-            chatView.participants =  chat.participantName
-            chatView.participantsID = chat.participantsID
-            chatView.chatTitle = chat.title
-            chatView.jobID = chat.jobID
-            chatView.otherUserImageUrl = chat.image
-            
-            self.navigationController?.pushViewController(chatView, animated: true)*/
-            
+            self.gotTochat(cell.notificationData!)
             break;
         case .WebApplication:
             println("sms")
+            self.createSms(cell.notificationData!.senderPhoneNumber)
             break;
         case .MatchingContact:
-            println("Nudge")
+            println("nudge")
+            self.nudge(cell.notificationData!.jobID)
             break;
         case .AppApplicationWithNoReferral:
             println("go to chat")
+            self.gotTochat(cell.notificationData!)
             break;
         case .WebApplicationWithNoReferral:
             println("sms")
+             self.createSms(cell.notificationData!.senderPhoneNumber)
             break;
         default:
             break;
@@ -198,17 +166,125 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
     
     func didPressCallButton(cell: NotificationCell) {
         
- /*       NSString *phNo = @"+919876543210";
-        NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"telprompt:%@",phNo]];
-        
-        if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
-            [[UIApplication sharedApplication] openURL:phoneUrl];
-        } else
-        {
-            calert = [[UIAlertView alloc]initWithTitle:@"Alert" message:@"Call facility is not available!!!" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
-            [calert show];
+        if let phonenumber = cell.notificationData?.senderPhoneNumber{
+            
+            if let phoneUrl = NSURL(string: phonenumber){
+                
+                if(UIApplication.sharedApplication().canOpenURL(phoneUrl)){
+                   
+                    UIApplication.sharedApplication().openURL(phoneUrl)
+                    
+                }else{
+                    
+                    var alert = UIAlertView(title: "Cannot initiate a Phone call", message: "Nudj is unable to initiate a phone call right now, please try again later", delegate: nil, cancelButtonTitle: "OK");
+                    alert.show()
+                    
+                }
+                
+            }
+        }else{
+            
+            println("no phonumber")
         }
-*/
     }
+    
+    func createSms(receiver:String?){
+        
+        if let reciverNumber = receiver {
+            if(MFMessageComposeViewController.canSendText()){
+            
+                var messageComposer = MFMessageComposeViewController()
+                messageComposer.messageComposeDelegate = self
+                messageComposer.body = ""
+                messageComposer.recipients = [reciverNumber]
+                self.presentViewController(messageComposer, animated: true, completion: nil)
+                
+            }else{
+                
+                var alert = UIAlertView(title: "Text message services unavailabe", message: "Creating text messages is unavailabe for this device", delegate: nil, cancelButtonTitle: "OK");
+                alert.show()
+                
+            }
+        }else{
+            
+            println("no phonumber")
+        }
+    }
+    
+    func messageComposeViewController(controller: MFMessageComposeViewController!, didFinishWithResult result: MessageComposeResult) {
+  
+        if result.value == MessageComposeResultFailed.value {
+            
+                var alert = UIAlertView(title: "Text message failed", message: "There was an error in sending you message. Please try again", delegate: nil, cancelButtonTitle: "OK");
+                alert.show()
+        
+        }
+        
+        controller.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+
+    func nudge(jobID:String?){
+        
+        self.goToView("AskReferralView", contentId:jobID)
+        
+    }
+    
+    func goToView(viewId: String, contentId:String?){
+        
+        let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if(viewId == "AskReferralView"){
+            
+            if let job  = contentId?.toInt() {
+                var askView = storyboard.instantiateViewControllerWithIdentifier(viewId) as! AskReferralViewController
+                askView.jobId = job
+                askView.isNudjRequest = true
+                self.navigationController?.pushViewController(askView, animated: true);
+            }
+            
+        }else{
+            
+            if let job  = contentId?.toInt() {
+                var detailsView = storyboard.instantiateViewControllerWithIdentifier(viewId) as! JobDetailedViewController
+                detailsView.jobID = contentId
+                self.navigationController?.pushViewController(detailsView, animated: true);
+            }
+            
+        }
+
+    }
+    
+    func gotTochat(chatData:Notification){
+        
+        if chatData.chatId != nil && !chatData.chatId!.isEmpty{
+            
+            //if chat id is in list of active chats go to that message
+            //else generate
+            
+            /*if(){
+                
+            }else{
+                
+            }*/
+            var chatView:ChatViewController = ChatViewController()
+    
+            chatView.chatID = chatData.chatId;
+            chatView.participants =  chatData.senderName
+            chatView.participantsID = chatData.senderId
+            chatView.chatTitle = chatData.jobTitle
+            chatView.jobID = chatData.jobID
+            chatView.otherUserImageUrl = chatData.senderImage
+            
+            self.navigationController?.pushViewController(chatView, animated: true)
+            
+        }else{
+            
+            println("No chat id")
+            
+        }
+     
+    }
+    
     
 }

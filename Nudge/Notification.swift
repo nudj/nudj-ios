@@ -53,7 +53,7 @@ class Notification {
         obj.senderImage = data["sender"]["image"]["profile"].stringValue
         obj.senderId = data["sender"]["id"].stringValue
         obj.senderName = data["sender"]["name"].stringValue
-        obj.senderPhoneNumber = data["sender"]["number"].stringValue
+        obj.senderPhoneNumber = "tel://"+data["sender"]["number"].stringValue
         
         obj.employerName = data["meta"]["employer"].stringValue
         
@@ -71,6 +71,7 @@ class Notification {
         
         obj.chatId =  data["meta"]["chat_id"].stringValue
         
+        println("chat id is -> \(obj.chatId)")
         return obj
 
     }

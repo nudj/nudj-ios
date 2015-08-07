@@ -21,11 +21,9 @@ class StatusPicker: BaseController, UIPickerViewDelegate, UIPickerViewDataSource
 
         API.sharedInstance.get("config/status", params: nil, closure: {
             json in
-
             for (key, value) in json["data"] {
                 self.availableStatuses.updateValue(value.stringValue, forKey: key.toInt()!)
             }
-
             self.picker.reloadAllComponents()
         })
     }

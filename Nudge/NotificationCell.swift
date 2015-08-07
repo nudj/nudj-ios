@@ -22,7 +22,7 @@ class NotificationCell: UITableViewCell {
     var messageText = ""
     var meta:JSON?
     var isRead:Bool?
-    var user: UserModel?
+    var notificationData:Notification?
     var notificationID:String?
 
     @IBOutlet weak var profileImage: AsyncImage!
@@ -37,6 +37,7 @@ class NotificationCell: UITableViewCell {
 
     func setup(data:Notification) {
         
+        self.notificationData = data
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
         profileImage.setCustomImage(UserModel.getDefaultUserImage())
