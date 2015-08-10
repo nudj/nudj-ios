@@ -275,12 +275,20 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             
             appGlobalDelegate.shouldShowBadge = true;
             
-            //terminate all room and reconnect
-            //request from server
-            //self.requestRooms();
-            
+            //terminate room and reconnect
             chatroom.prepareChatModel(jid, roomId: roomID[0], with:self.xmppStream!, delegate:self)
             self.listOfActiveChatRooms[roomID[0]] = chatroom
+
+            /*chatroom.teminateSession()
+            
+            let delay = 6 * Double(NSEC_PER_SEC)
+            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+            dispatch_after(time, dispatch_get_main_queue()) {
+                
+                chatroom.prepareChatModel(jid, roomId: roomID[0], with:self.xmppStream!, delegate:self)
+                self.listOfActiveChatRooms[roomID[0]] = chatroom
+            
+            }*/
 
             
         }else{

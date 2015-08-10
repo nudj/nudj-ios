@@ -144,7 +144,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
             
         }else{
             
-            var alert = UIAlertView(title: "Missing information", message: "Please fill in the required fields", delegate: nil, cancelButtonTitle: "OK")
+            var alert = UIAlertView(title: "Missing information", message: "Please fill in the fields marked with *", delegate: nil, cancelButtonTitle: "OK")
             alert.show();
             
         }
@@ -208,8 +208,8 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
         
         // Update skills
         
-        self.skills.editable = false
-        self.skills.userInteractionEnabled = false
+        self.skills.editable = true
+        self.skills.userInteractionEnabled = true
         
         var skillsArr:[String] = [];
         

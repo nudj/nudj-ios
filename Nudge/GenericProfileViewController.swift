@@ -202,6 +202,7 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
     func showUserData() {
         UserModel.getById(userId, fields: ["user.status", "user.name", "user.image", "user.skills", "user.about", "user.company", "user.address", "user.position", "user.email", "user.favourite"], closure: { response in
 
+            println("->\(response)")
             let user = UserModel()
             user.updateFromJson(response["data"])
             self.user = user

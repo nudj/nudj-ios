@@ -239,6 +239,10 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
             return contact.id
         }
 
+        if(messageText.text == "Enter your personalised message"){
+            messageText.text = ""
+        }
+        
         let params:[String:AnyObject] = ["job": "\(jobId!)", "contacts": contactIds, "message": messageText.text]
         self.messageText.resignFirstResponder()
 

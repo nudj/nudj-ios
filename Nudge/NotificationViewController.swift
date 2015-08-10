@@ -280,7 +280,15 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
             
         }else{
             
-            println("No chat id")
+            var alert = UIAlertView(title: "Coming soon", message: "This feature is currently in development, it will be available in the next update", delegate: nil, cancelButtonTitle: "OK");
+            alert.show()
+            
+            /*var params = ["job_id":chatData.jobID!,"user_id":chatData.senderId!,"message":"testing endpoint"]
+            API.sharedInstance.put("nudge/chat", params:params, closure: { json in
+                println("success \(json)")
+            }, errorHandler: { error in
+                println("error \(error)")
+            })*/
             
         }
      

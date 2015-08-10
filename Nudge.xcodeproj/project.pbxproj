@@ -13,6 +13,12 @@
 		A947CC991B7119B500C9518E /* NoContentPlaceHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A947CC981B7119B500C9518E /* NoContentPlaceHolder.swift */; };
 		A947CC9C1B711CF000C9518E /* no_jobs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A947CC9B1B711CF000C9518E /* no_jobs@2x.png */; };
 		A95798251B46965A006E826E /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95798241B46965A006E826E /* NotificationViewController.swift */; };
+		A9733ECE1B781F49008D6115 /* CountrySelectionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9733ECD1B781F49008D6115 /* CountrySelectionPicker.swift */; };
+		A9733ED81B78220E008D6115 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = A9733ED01B78220E008D6115 /* countries.json */; };
+		A9733ED91B78220E008D6115 /* CountryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9733ED21B78220E008D6115 /* CountryCell.m */; };
+		A9733EDA1B78220E008D6115 /* CountryListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A9733ED41B78220E008D6115 /* CountryListDataSource.m */; };
+		A9733EDB1B78220E008D6115 /* CountryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9733ED61B78220E008D6115 /* CountryListViewController.m */; };
+		A9733EDC1B78220E008D6115 /* CountryListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9733ED71B78220E008D6115 /* CountryListViewController.xib */; };
 		A984E2EE1B67ACA9009F318E /* ChatRoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A984E2ED1B67ACA9009F318E /* ChatRoomModel.swift */; };
 		A9964FD51B387CC800D5A8E9 /* JSQMessagesAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A9964E281B387CC700D5A8E9 /* JSQMessagesAssets.bundle */; };
 		A9964FD61B387CC800D5A8E9 /* JSQSystemSoundPlayer+JSQMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E2B1B387CC700D5A8E9 /* JSQSystemSoundPlayer+JSQMessages.m */; };
@@ -197,8 +203,8 @@
 		A996509B1B3DB2E300D5A8E9 /* back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A996509A1B3DB2E300D5A8E9 /* back_btn@2x.png */; };
 		A99650A51B3DB3FF00D5A8E9 /* archive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A996509D1B3DB3FF00D5A8E9 /* archive@2x.png */; };
 		A99650A61B3DB3FF00D5A8E9 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A996509E1B3DB3FF00D5A8E9 /* arrow@2x.png */; };
-		A99650A71B3DB3FF00D5A8E9 /* favourite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A996509F1B3DB3FF00D5A8E9 /* favourite@2x.png */; };
-		A99650A81B3DB3FF00D5A8E9 /* favourite2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650A01B3DB3FF00D5A8E9 /* favourite2@2x.png */; };
+		A99650A71B3DB3FF00D5A8E9 /* favouriteWText@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A996509F1B3DB3FF00D5A8E9 /* favouriteWText@2x.png */; };
+		A99650A81B3DB3FF00D5A8E9 /* favourite2wText@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650A01B3DB3FF00D5A8E9 /* favourite2wText@2x.png */; };
 		A99650A91B3DB3FF00D5A8E9 /* job_detail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650A11B3DB3FF00D5A8E9 /* job_detail@2x.png */; };
 		A99650AA1B3DB3FF00D5A8E9 /* mute@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650A21B3DB3FF00D5A8E9 /* mute@2x.png */; };
 		A99650AB1B3DB3FF00D5A8E9 /* mute2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650A31B3DB3FF00D5A8E9 /* mute2@2x.png */; };
@@ -350,6 +356,15 @@
 		A947CC981B7119B500C9518E /* NoContentPlaceHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoContentPlaceHolder.swift; sourceTree = "<group>"; };
 		A947CC9B1B711CF000C9518E /* no_jobs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_jobs@2x.png"; sourceTree = "<group>"; };
 		A95798241B46965A006E826E /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		A9733ECD1B781F49008D6115 /* CountrySelectionPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountrySelectionPicker.swift; sourceTree = "<group>"; };
+		A9733ED01B78220E008D6115 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
+		A9733ED11B78220E008D6115 /* CountryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountryCell.h; sourceTree = "<group>"; };
+		A9733ED21B78220E008D6115 /* CountryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryCell.m; sourceTree = "<group>"; };
+		A9733ED31B78220E008D6115 /* CountryListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountryListDataSource.h; sourceTree = "<group>"; };
+		A9733ED41B78220E008D6115 /* CountryListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryListDataSource.m; sourceTree = "<group>"; };
+		A9733ED51B78220E008D6115 /* CountryListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountryListViewController.h; sourceTree = "<group>"; };
+		A9733ED61B78220E008D6115 /* CountryListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryListViewController.m; sourceTree = "<group>"; };
+		A9733ED71B78220E008D6115 /* CountryListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountryListViewController.xib; sourceTree = "<group>"; };
 		A984E2ED1B67ACA9009F318E /* ChatRoomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomModel.swift; sourceTree = "<group>"; };
 		A9964E281B387CC700D5A8E9 /* JSQMessagesAssets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JSQMessagesAssets.bundle; sourceTree = "<group>"; };
 		A9964E2A1B387CC700D5A8E9 /* JSQSystemSoundPlayer+JSQMessages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSQSystemSoundPlayer+JSQMessages.h"; sourceTree = "<group>"; };
@@ -717,8 +732,8 @@
 		A996509A1B3DB2E300D5A8E9 /* back_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_btn@2x.png"; sourceTree = "<group>"; };
 		A996509D1B3DB3FF00D5A8E9 /* archive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archive@2x.png"; sourceTree = "<group>"; };
 		A996509E1B3DB3FF00D5A8E9 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
-		A996509F1B3DB3FF00D5A8E9 /* favourite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favourite@2x.png"; sourceTree = "<group>"; };
-		A99650A01B3DB3FF00D5A8E9 /* favourite2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favourite2@2x.png"; sourceTree = "<group>"; };
+		A996509F1B3DB3FF00D5A8E9 /* favouriteWText@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favouriteWText@2x.png"; sourceTree = "<group>"; };
+		A99650A01B3DB3FF00D5A8E9 /* favourite2wText@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favourite2wText@2x.png"; sourceTree = "<group>"; };
 		A99650A11B3DB3FF00D5A8E9 /* job_detail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "job_detail@2x.png"; sourceTree = "<group>"; };
 		A99650A21B3DB3FF00D5A8E9 /* mute@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mute@2x.png"; sourceTree = "<group>"; };
 		A99650A31B3DB3FF00D5A8E9 /* mute2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mute2@2x.png"; sourceTree = "<group>"; };
@@ -921,6 +936,21 @@
 				EB866BDF1B53EFAE00E203CA /* NotificationCell.xib */,
 			);
 			name = Notification;
+			sourceTree = "<group>";
+		};
+		A9733ECF1B78220E008D6115 /* CountryList */ = {
+			isa = PBXGroup;
+			children = (
+				A9733ED01B78220E008D6115 /* countries.json */,
+				A9733ED11B78220E008D6115 /* CountryCell.h */,
+				A9733ED21B78220E008D6115 /* CountryCell.m */,
+				A9733ED31B78220E008D6115 /* CountryListDataSource.h */,
+				A9733ED41B78220E008D6115 /* CountryListDataSource.m */,
+				A9733ED51B78220E008D6115 /* CountryListViewController.h */,
+				A9733ED61B78220E008D6115 /* CountryListViewController.m */,
+				A9733ED71B78220E008D6115 /* CountryListViewController.xib */,
+			);
+			path = CountryList;
 			sourceTree = "<group>";
 		};
 		A9964E261B387CC700D5A8E9 /* JSQMessagesViewController */ = {
@@ -1896,8 +1926,8 @@
 			children = (
 				A996509D1B3DB3FF00D5A8E9 /* archive@2x.png */,
 				A996509E1B3DB3FF00D5A8E9 /* arrow@2x.png */,
-				A996509F1B3DB3FF00D5A8E9 /* favourite@2x.png */,
-				A99650A01B3DB3FF00D5A8E9 /* favourite2@2x.png */,
+				A996509F1B3DB3FF00D5A8E9 /* favouriteWText@2x.png */,
+				A99650A01B3DB3FF00D5A8E9 /* favourite2wText@2x.png */,
 				A99650A11B3DB3FF00D5A8E9 /* job_detail@2x.png */,
 				A99650A21B3DB3FF00D5A8E9 /* mute@2x.png */,
 				A99650A31B3DB3FF00D5A8E9 /* mute2@2x.png */,
@@ -2179,6 +2209,7 @@
 				EBF17A231B4D538800C67657 /* Common.swift */,
 				A9191EA51B6A402E000F9168 /* SocialStatus.swift */,
 				A947CC981B7119B500C9518E /* NoContentPlaceHolder.swift */,
+				A9733ECD1B781F49008D6115 /* CountrySelectionPicker.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -2289,6 +2320,7 @@
 		EBF1861A1B21D9D500D8D80D /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				A9733ECF1B78220E008D6115 /* CountryList */,
 				A9B577C31B6BC23400CFB474 /* IOSLinkedInAPI */,
 				A903BAEB1B581C4F00D69863 /* NZLabel */,
 				A9F3331F1B41759A00F0D17B /* AnimStep */,
@@ -2407,7 +2439,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9ACE1D21B6913F9003BD5F2 /* connected@2x.png in Resources */,
-				A99650A81B3DB3FF00D5A8E9 /* favourite2@2x.png in Resources */,
+				A99650A81B3DB3FF00D5A8E9 /* favourite2wText@2x.png in Resources */,
 				A9964FDF1B387CC800D5A8E9 /* JSQMessagesViewController.xib in Resources */,
 				A996507A1B387CC800D5A8E9 /* README.txt in Resources */,
 				A9964FFF1B387CC800D5A8E9 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
@@ -2432,7 +2464,8 @@
 				A9F333661B42ACDC00F0D17B /* job_title@2x.png in Resources */,
 				A9B577D41B6BC23400CFB474 /* 01-refresh@2x.png in Resources */,
 				A947CC9C1B711CF000C9518E /* no_jobs@2x.png in Resources */,
-				A99650A71B3DB3FF00D5A8E9 /* favourite@2x.png in Resources */,
+				A9733ED81B78220E008D6115 /* countries.json in Resources */,
+				A99650A71B3DB3FF00D5A8E9 /* favouriteWText@2x.png in Resources */,
 				A99650A51B3DB3FF00D5A8E9 /* archive@2x.png in Resources */,
 				A99650A91B3DB3FF00D5A8E9 /* job_detail@2x.png in Resources */,
 				EB2F780A1AD288E400B59C0E /* SettingsCell.xib in Resources */,
@@ -2460,6 +2493,7 @@
 				A9964FF51B387CC800D5A8E9 /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
 				EB35BBA61AB7288000842E1F /* ContactsCell.xib in Resources */,
 				EBF0E5151B73A3D30021D29B /* NoContactsPermissionController.xib in Resources */,
+				A9733EDC1B78220E008D6115 /* CountryListViewController.xib in Resources */,
 				A9964FF31B387CC800D5A8E9 /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2601,6 +2635,7 @@
 				A99650181B387CC800D5A8E9 /* XMPPGroupCoreDataStorageObject.m in Sources */,
 				A99650621B387CC800D5A8E9 /* XMPPAutoTime.m in Sources */,
 				A996503B1B387CC800D5A8E9 /* XMPPvCardTemp.m in Sources */,
+				A9733ECE1B781F49008D6115 /* CountrySelectionPicker.swift in Sources */,
 				EBF17A281B4E641400C67657 /* ContactModel.swift in Sources */,
 				A996504D1B387CC800D5A8E9 /* XMPPSoftwareVersion.m in Sources */,
 				A9B577F11B6BD00500CFB474 /* AFURLSessionManager.m in Sources */,
@@ -2614,6 +2649,7 @@
 				A99650221B387CC800D5A8E9 /* XMPPIQ+JabberRPC.m in Sources */,
 				A996506D1B387CC800D5A8E9 /* GCDMulticastDelegate.m in Sources */,
 				EB866BE01B53EFAE00E203CA /* NotificationCell.swift in Sources */,
+				A9733ED91B78220E008D6115 /* CountryCell.m in Sources */,
 				A9964FF81B387CC800D5A8E9 /* JSQMessagesLabel.m in Sources */,
 				EB0926D21A8DE4CB00E1D958 /* MainFeed.swift in Sources */,
 				A99650161B387CC800D5A8E9 /* XMPPProcessOne.m in Sources */,
@@ -2662,6 +2698,7 @@
 				A99650251B387CC800D5A8E9 /* XMPPIQ+LastActivity.m in Sources */,
 				EBF17A241B4D538800C67657 /* Common.swift in Sources */,
 				A996504B1B387CC800D5A8E9 /* XMPPDateTimeProfiles.m in Sources */,
+				A9733EDB1B78220E008D6115 /* CountryListViewController.m in Sources */,
 				A996502D1B387CC800D5A8E9 /* XMPPRoomHybridStorage.m in Sources */,
 				A996507E1B387CC800D5A8E9 /* DDXMLNode.m in Sources */,
 				A9B577D11B6BC23400CFB474 /* LIALinkedInHttpClient.m in Sources */,
@@ -2747,6 +2784,7 @@
 				A996505D1B387CC800D5A8E9 /* XMPPMessage+XEP_0184.m in Sources */,
 				A99650391B387CC800D5A8E9 /* XMPPvCardCoreDataStorageObject.m in Sources */,
 				A99650631B387CC800D5A8E9 /* XMPPTime.m in Sources */,
+				A9733EDA1B78220E008D6115 /* CountryListDataSource.m in Sources */,
 				EBF186221B21DACA00D8D80D /* KSTokenView.swift in Sources */,
 				A996505F1B387CC800D5A8E9 /* XMPPBlocking.m in Sources */,
 				A9964FDE1B387CC800D5A8E9 /* JSQMessagesViewController.m in Sources */,
@@ -2924,7 +2962,7 @@
 					/usr/include/libxml2,
 				);
 				PRODUCT_NAME = Nudj;
-				PROVISIONING_PROFILE = "5741d6f2-4684-40e3-aa5f-604ac029124f";
+				PROVISIONING_PROFILE = "2c69344a-f636-4b1e-948c-6f90752c562c";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Nudge/Nudge-Bridging-Header.h";
 			};
 			name = Debug;
@@ -2959,7 +2997,7 @@
 					/usr/include/libxml2,
 				);
 				PRODUCT_NAME = Nudj;
-				PROVISIONING_PROFILE = "5741d6f2-4684-40e3-aa5f-604ac029124f";
+				PROVISIONING_PROFILE = "2c69344a-f636-4b1e-948c-6f90752c562c";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Nudge/Nudge-Bridging-Header.h";
 			};
 			name = Release;

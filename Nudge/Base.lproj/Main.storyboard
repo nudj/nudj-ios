@@ -1428,6 +1428,7 @@
                         <outlet property="countryCode" destination="eqs-tI-vfK" id="TZX-x5-bM2"/>
                         <outlet property="loginButton" destination="tRc-s3-uZE" id="c0S-Xz-3j2"/>
                         <outlet property="phoneField" destination="RWM-Jp-PBz" id="7ri-kM-FZt"/>
+                        <outlet property="selectCountryLabel" destination="0TW-l1-655" id="R9K-3i-nir"/>
                         <segue destination="eWs-5T-Xez" kind="show" identifier="showVerifyView" id="CY4-1X-3MT"/>
                     </connections>
                 </viewController>

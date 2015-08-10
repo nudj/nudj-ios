@@ -11,18 +11,29 @@ import UIKit
 import AddressBook
 import SwiftyJSON
 
-class LoginController: BaseController {
+class LoginController: BaseController, CountrySelectionPickerDelegate {
 
     let msgTitle = "Refer anyone in your phone"
     let msgContent = "you will be able to text and refer anyone in your contacts"
-
-    var code = ""
+    var countrySelectionView = CountrySelectionPicker()
+    var code = "GB"
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
-
+    
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var phoneField: UITextField!
     @IBOutlet weak var countryCode: UITextField!
+    @IBOutlet weak var selectCountryLabel: UILabel!
 
+    override func viewDidLoad() {
+        
+        self.selectCountryLabel.userInteractionEnabled = true
+        var tap = UITapGestureRecognizer(target:self, action:"showCountryList")
+        self.selectCountryLabel.addGestureRecognizer(tap)
+        
+        self.countrySelectionView.delegate = self;
+        
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -32,6 +43,17 @@ class LoginController: BaseController {
         self.changeNavigationBar(true)
     }
 
+    func showCountryList(){
+        
+        self.phoneField.resignFirstResponder()
+        
+        if self.countrySelectionView.isCreated == false{
+            self.view.addSubview(self.countrySelectionView.createDropActionSheet(self.view))
+        }
+        
+        self.countrySelectionView.showAction()
+    }
+    
     @IBAction func loginAct(sender: UIButton) {
 
         // Hide button to prevent multiple clicks
@@ -47,7 +69,7 @@ class LoginController: BaseController {
 
         println("Login with phone: " + phoneNumber)
 
-        let params: [String: AnyObject] = ["phone": phoneNumber, "country_code": "GB"]
+        let params: [String: AnyObject] = ["phone": phoneNumber, "country_code": code]
 
         API.sharedInstance.post("users", params: params, closure: { response in
 
@@ -171,5 +193,20 @@ class LoginController: BaseController {
             verify.setValue(self.getFormattedNumber(), forKey: "phoneNumber")
             verify.code = self.code
         }
+    }
+    
+    func didSelect(selection:[String:String]) {
+        print("selection \(selection)")
+        
+        phoneField.becomeFirstResponder()
+        
+        self.countryCode.text = selection["dial_code"]
+        self.code = selection["code"]!
+        
+        var code = selection["dial_code"]!
+        var name = selection["name"]!
+        
+        self.selectCountryLabel.text = "\(name) (\(code))"
+    
     }
 }

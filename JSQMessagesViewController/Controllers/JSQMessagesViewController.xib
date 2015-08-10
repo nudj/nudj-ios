@@ -63,10 +63,10 @@
                         </button>
                         <button opaque="NO" tag="3" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9xf-wu-y6B">
                             <rect key="frame" x="130" y="13" width="53" height="49"/>
-                            <state key="normal" image="favourite.png">
+                            <state key="normal" image="favouriteWText.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
-                            <state key="selected" image="favourite2.png"/>
+                            <state key="selected" image="favourite2wText.png"/>
                             <connections>
                                 <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="ew2-Pr-Gg8"/>
                             </connections>
@@ -192,8 +192,8 @@
         <image name="3dots.png" width="21" height="5"/>
         <image name="archive.png" width="53" height="49"/>
         <image name="back_btn.png" width="9" height="17"/>
-        <image name="favourite.png" width="53" height="49"/>
-        <image name="favourite2.png" width="53" height="49"/>
+        <image name="favourite2wText.png" width="53" height="49"/>
+        <image name="favouriteWText.png" width="53" height="49"/>
         <image name="job_detail.png" width="53" height="49"/>
         <image name="mute.png" width="53" height="49"/>
         <image name="mute2.png" width="53" height="49"/>

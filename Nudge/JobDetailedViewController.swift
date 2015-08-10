@@ -9,6 +9,7 @@
 import UIKit
 import Foundation
 import SwiftyJSON
+import Alamofire
 
 class JobDetailedViewController: BaseController, CreatePopupViewDelegate {
     
@@ -93,7 +94,7 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate {
         }else if(content["liked"].boolValue){
         
             self.navigationItem.rightBarButtonItem?.title = "Saved"
-            self.navigationItem.rightBarButtonItem?.enabled = false
+            
             
         }else{
             
@@ -154,12 +155,23 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate {
                 
                     println("Job saved \(json)")
                     self.navigationItem.rightBarButtonItem?.title = "Saved"
-                    self.navigationItem.rightBarButtonItem?.enabled = false
                 
                 }) { error in
                     
                     println("Error -> \(error)")
             }
+            
+        }else if(sender.title == "Saved"){
+         
+            API.sharedInstance.request(Alamofire.Method.DELETE, path: "jobs/\(self.jobID!)/like", params: nil, closure: { json in
+                
+                println("un save \(json)")
+                self.navigationItem.rightBarButtonItem?.title = "Save"
+                
+            }, errorHandler: { error in
+                
+                println("Error -> \(error)")
+            })
             
         }else if (sender.title == "Edit"){
         
