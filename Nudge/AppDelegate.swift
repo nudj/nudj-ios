@@ -35,8 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
 
         // Getting of user details from CoreData
         fetchUserData()
-
         prepareApi();
+        
         
         if (user != nil && user!.id != nil && user!.completed == false) {
 

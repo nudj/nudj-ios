@@ -37,7 +37,8 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
         ],
         [
             //SettingsItem(name: "Invite Friends", action: ""),
-            SettingsItem(name: "Terms and Conditions", action: "goToTerms"),
+            SettingsItem(name: "Terms of Use", action: "goToTerms"),
+            SettingsItem(name: "Privacy Policy", action: "goToTerms"),
             SettingsItem(name: "Send Feedback", action: "goToFeedBack")
         ],
         [

@@ -11,12 +11,26 @@ import UIKit
 class TermsViewController: UIViewController {
 
     @IBOutlet weak var webview: UIWebView!
+    var isPrivacy:Bool?
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
+        var url: NSURL?
+        if isPrivacy == nil {
+            isPrivacy = false
+        }
+
         // Do any additional setup after loading the view.
-        var url = NSURL(string: "http://api.nudj.co/html/terms")
+        if(isPrivacy == true){
+            url = NSURL(string: "http://api.nudj.co/html/privacy")
+            self.title = "Privacy Policy"
+        }else{
+            url = NSURL(string: "http://api.nudj.co/html/terms")
+            self.title = "Terms & Condition"
+        }
+        
         var requestObj:NSURLRequest  = NSURLRequest(URL: url!)
         self.webview.loadRequest(requestObj)
     }

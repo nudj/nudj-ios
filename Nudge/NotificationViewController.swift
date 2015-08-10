@@ -168,7 +168,9 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
         
         if let phonenumber = cell.notificationData?.senderPhoneNumber{
             
-            if let phoneUrl = NSURL(string: phonenumber){
+            var phoneNo = "tel://"+phonenumber
+            
+            if let phoneUrl = NSURL(string: phoneNo){
                 
                 if(UIApplication.sharedApplication().canOpenURL(phoneUrl)){
                    
@@ -280,15 +282,17 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
             
         }else{
             
-            var alert = UIAlertView(title: "Coming soon", message: "This feature is currently in development, it will be available in the next update", delegate: nil, cancelButtonTitle: "OK");
+            /*var alert = UIAlertView(title: "Coming soon", message: "This feature is currently in development, it will be available in the next update", delegate: nil, cancelButtonTitle: "OK");
             alert.show()
+            */
             
-            /*var params = ["job_id":chatData.jobID!,"user_id":chatData.senderId!,"message":"testing endpoint"]
+            var params = ["job_id":chatData.jobID!,"user_id":chatData.senderId!,"message":"test","notification_id":chatData.notificationId!]
+            println("params ->\(params)")
             API.sharedInstance.put("nudge/chat", params:params, closure: { json in
                 println("success \(json)")
             }, errorHandler: { error in
                 println("error \(error)")
-            })*/
+            })
             
         }
      

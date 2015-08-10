@@ -49,7 +49,14 @@ class NotificationCell: UITableViewCell {
         self.message.setFont(boldFont, string: data.senderName!)
         self.message.setFont(boldFont, string: data.jobTitle!)
 
-        self.refAmount.text = data.jobBonus;
+        if(data.jobBonus!.isEmpty){
+            self.refAmount.hidden = true
+        }else{
+            self.refAmount.text = data.jobBonus;
+        }
+        
+        
+        
         self.readStatus(data.notificationReadStatus!)
         
         self.type = data.notificationType

@@ -15,14 +15,19 @@ class LoginController: BaseController, CountrySelectionPickerDelegate {
 
     let msgTitle = "Refer anyone in your phone"
     let msgContent = "you will be able to text and refer anyone in your contacts"
+    
     var countrySelectionView = CountrySelectionPicker()
     var code = "GB"
+    var isPrivacy:Bool?
+    
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
     
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var phoneField: UITextField!
     @IBOutlet weak var countryCode: UITextField!
     @IBOutlet weak var selectCountryLabel: UILabel!
+    @IBOutlet weak var termsLiink: UILabel!
+    @IBOutlet weak var privacyLink: UILabel!
 
     override func viewDidLoad() {
         
@@ -31,6 +36,13 @@ class LoginController: BaseController, CountrySelectionPickerDelegate {
         self.selectCountryLabel.addGestureRecognizer(tap)
         
         self.countrySelectionView.delegate = self;
+        
+        var policyTap = UITapGestureRecognizer(target:self, action:"showPolicy")
+        self.privacyLink.addGestureRecognizer(policyTap)
+        
+        
+        var termstap = UITapGestureRecognizer(target:self, action:"showTerms")
+        self.termsLiink.addGestureRecognizer(termstap)
         
     }
     
@@ -53,6 +65,7 @@ class LoginController: BaseController, CountrySelectionPickerDelegate {
         
         self.countrySelectionView.showAction()
     }
+    
     
     @IBAction func loginAct(sender: UIButton) {
 
@@ -123,6 +136,22 @@ class LoginController: BaseController, CountrySelectionPickerDelegate {
     func proceed() {
         self.performSegueWithIdentifier("showVerifyView", sender: self)
     }
+    
+    func showPolicy(){
+        
+        self.performSegueWithIdentifier("GoToPrivacy", sender: self)
+        isPrivacy = true
+        
+    }
+    
+    
+    func showTerms(){
+        
+        self.performSegueWithIdentifier("GoToTerms", sender: self)
+        isPrivacy = false
+    }
+
+    
 
     func getContactListPermission() {
         let authorizationStatus = ABAddressBookGetAuthorizationStatus()
@@ -192,6 +221,12 @@ class LoginController: BaseController, CountrySelectionPickerDelegate {
         if let verify = segue.destinationViewController as? VerifyViewController {
             verify.setValue(self.getFormattedNumber(), forKey: "phoneNumber")
             verify.code = self.code
+        }
+        
+        if let termsView = segue.destinationViewController as? TermsViewController {
+        
+                termsView.isPrivacy = isPrivacy
+            
         }
     }
     

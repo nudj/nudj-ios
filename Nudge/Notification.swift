@@ -53,7 +53,7 @@ class Notification {
         obj.senderImage = data["sender"]["image"]["profile"].stringValue
         obj.senderId = data["sender"]["id"].stringValue
         obj.senderName = data["sender"]["name"].stringValue
-        obj.senderPhoneNumber = "tel://"+data["sender"]["number"].stringValue
+        obj.senderPhoneNumber = data["meta"]["phone"].stringValue
         
         obj.employerName = data["meta"]["employer"].stringValue
         

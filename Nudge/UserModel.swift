@@ -74,6 +74,7 @@ class UserModel: Printable {
         }, errorHandler: errorHandler)
     }
     func updateFromJson(source: JSON) {
+        println("user response -> \(source)")
         for (key: String, subJson: JSON) in source {
             switch key {
             case "id": id = subJson.intValue
