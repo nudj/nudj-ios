@@ -17,6 +17,12 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
     let cellIdentifier = "NotificationCell"
     var nextLink:String? = nil
     
+    override func viewWillAppear(animated: Bool) {
+        
+        self.tabBarController?.tabBar.hidden = false
+        loadData()
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +32,6 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
 
         self.refreshControl?.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
 
-        loadData()
     }
     
 
@@ -36,13 +41,13 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
 
     func loadData(append:Bool = true, url:String? = nil) {
 
-        var defaulUrl = "notifications?params=chat.id,sender.name,sender.image&limit=10"
+        var defaulUrl = "notifications?params=chat.id,sender.name,sender.image&limit=100"
 
         API.sharedInstance.get(url == nil ? defaulUrl : url!, closure: {data in
 
-            if !append {
+            //if !append {
                 self.data.removeAll(keepCapacity: false)
-            }
+            //}
 
             self.nextLink = data["pagination"]["next"].string
 
@@ -261,41 +266,36 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
         
         if chatData.chatId != nil && !chatData.chatId!.isEmpty{
             
-            //if chat id is in list of active chats go to that message
-            //else generate
-            
-            /*if(){
-                
-            }else{
-                
-            }*/
-            var chatView:ChatViewController = ChatViewController()
-    
-            chatView.chatID = chatData.chatId;
-            chatView.participants =  chatData.senderName
-            chatView.participantsID = chatData.senderId
-            chatView.chatTitle = chatData.jobTitle
-            chatView.jobID = chatData.jobID
-            chatView.otherUserImageUrl = chatData.senderImage
-            
-            self.navigationController?.pushViewController(chatView, animated: true)
+            self.gotTochatAction(chatData)
             
         }else{
-            
-            /*var alert = UIAlertView(title: "Coming soon", message: "This feature is currently in development, it will be available in the next update", delegate: nil, cancelButtonTitle: "OK");
-            alert.show()
-            */
             
             var params = ["job_id":chatData.jobID!,"user_id":chatData.senderId!,"message":"test","notification_id":chatData.notificationId!]
             println("params ->\(params)")
             API.sharedInstance.put("nudge/chat", params:params, closure: { json in
                 println("success \(json)")
+                self.gotTochatAction(chatData)
             }, errorHandler: { error in
                 println("error \(error)")
             })
             
         }
      
+    }
+    
+    func gotTochatAction(chatData:Notification){
+    
+        var chatView:ChatViewController = ChatViewController()
+        
+        chatView.chatID = chatData.chatId;
+        chatView.participants =  chatData.senderName
+        chatView.participantsID = chatData.senderId
+        chatView.chatTitle = chatData.jobTitle
+        chatView.jobID = chatData.jobID
+        chatView.otherUserImageUrl = chatData.senderImage
+        
+        self.navigationController?.pushViewController(chatView, animated: true)
+
     }
     
     

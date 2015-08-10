@@ -57,8 +57,9 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
     
     override func viewWillDisappear(animated: Bool) {
         
+        if !name.text.isEmpty {
             self.updateUserName(name.text)
-        
+        }
     }
 
     func showUserData() {

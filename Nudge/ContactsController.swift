@@ -70,10 +70,11 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
     override func viewWillAppear(animated: Bool) {
         
         if isSearchEnabled == true {
-            
             self.navigationController?.navigationBarHidden = true;
-            
         }
+            
+        self.tabBarController?.tabBar.hidden = false
+        
     }
 
     func refresh(sender: AnyObject?) {

@@ -305,14 +305,14 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
     // MARK: User Update functions
 
     func updateAllInformation(){
-        
-        UserModel.update(["name":nameLabel.text,"email":email.text,"position":position.text!,"address":location.text!,"company":company.text!,"completed":true], closure: { result in
- 
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
-            appDelegate.user!.name = self.nameLabel.text
-            appDelegate.user!.completed = true
-            appDelegate.pushUserData()
             
+    UserModel.update(["name":nameLabel.text,"email":email.text,"position":position.text!,"address":location.text!,"company":company.text!,"completed":true], closure: { result in
+     
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
+                appDelegate.user!.name = self.nameLabel.text
+                appDelegate.user!.completed = true
+                appDelegate.pushUserData()
+                
         })
     }
     

@@ -73,7 +73,9 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
 
     
     override func viewWillDisappear(animated: Bool) {
+        
         self.tabBarController?.tabBar.hidden = false
+        
     }
     
     override func viewWillAppear(animated: Bool) {

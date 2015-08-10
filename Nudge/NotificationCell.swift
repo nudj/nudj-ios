@@ -50,6 +50,7 @@ class NotificationCell: UITableViewCell {
         self.message.setFont(boldFont, string: data.jobTitle!)
 
         if(data.jobBonus!.isEmpty){
+            self.refLabel.hidden = true
             self.refAmount.hidden = true
         }else{
             self.refAmount.text = data.jobBonus;

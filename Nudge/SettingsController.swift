@@ -61,6 +61,8 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.tabBarController?.tabBar.hidden = false
 
         BaseController().apiRequest(Alamofire.Method.GET, path: "users/me?params=user.status,user.facebook,user.linkedin", closure: { json in
             println(json)

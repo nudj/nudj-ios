@@ -38,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         prepareApi();
         
         
+        
         if (user != nil && user!.id != nil && user!.completed == false) {
 
             if (contacts.isAuthorized()) {
@@ -179,9 +180,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
                 self.user!.completed = obj.valueForKey("completed") == nil ? false : obj.valueForKey("completed")!.boolValue
                 self.user!.addressBookAccess = obj.valueForKey("addressBookAccess") == nil ? false : obj.valueForKey("addressBookAccess")!.boolValue
                 self.user!.status = obj.valueForKey("status") == nil ? 0 : obj.valueForKey("status") as! Int
+                
             }
 
             println("User: \(self.user)")
+            
+           /* if(user!.name == nil && user!.completed == true){
+                
+                //No name stored so get from API
+                UserModel.getById(0, fields:nil, closure: { response in
+                    
+                    println("userrrr ->\(response)")
+                    //response["data"].name
+                    
+                })
+
+                
+            }*/
 
         } else {
             println("Could not fetch \(error), \(error!.userInfo)")

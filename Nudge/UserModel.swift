@@ -138,6 +138,7 @@ class UserModel: Printable {
             ? "me"
             : "\(id)"
 
+        
         API.sharedInstance.request(Alamofire.Method.GET, path: "users/\(userId)?params=\(userFields)", params: params, closure: closure!, errorHandler: errorHandler)
     }
 
