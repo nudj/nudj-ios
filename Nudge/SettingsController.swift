@@ -70,8 +70,6 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
             self.socialStatuses = ["facebook": json["data"]["facebook"].boolValue ,"linkedin":json["data"]["linkedin"].boolValue]
             self.table.reloadData()
         })
-
-        //self.statusButton.changeColor(UIColor.blueColor())
     }
 
     // MARK: - Table view data source

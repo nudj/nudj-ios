@@ -9,8 +9,8 @@
 import UIKit
 
 struct Status {
-    static let titles = ["Available", "Hiring", "Do not Disturb"]
-    static let colors = [UIColor.lightGrayColor(), UIColor(red: 0, green: 0.63, blue: 0.53, alpha: 1), UIColor(red: 0.63, green: 0, blue: 0, alpha: 1)]
+    static let titles = ["Hiring", "Available", "Do not Disturb"]
+    static let colors = [UIColor(red: 22/255, green: 128/255, blue: 175/255, alpha: 1), UIColor(red: 0, green: 0.63, blue: 0.53, alpha: 1), UIColor(red: 0.63, green: 0, blue: 0, alpha: 1)]
 }
 
 class StatusButton: UIButton {
