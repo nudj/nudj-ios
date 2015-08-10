@@ -48,6 +48,9 @@ class ContactsCell: DataTableCell {
             self.hideStatus()
         }
 
+        // Style
+        accessoryType = UITableViewCellAccessoryType.None
+
         contactId = contact.id
 
         name.text = contact.name
