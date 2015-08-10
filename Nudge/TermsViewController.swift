@@ -18,9 +18,6 @@ class TermsViewController: UIViewController {
         super.viewDidLoad()
         
         var url: NSURL?
-        if isPrivacy == nil {
-            isPrivacy = false
-        }
 
         // Do any additional setup after loading the view.
         if(isPrivacy == true){

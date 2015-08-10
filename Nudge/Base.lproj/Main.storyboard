@@ -1363,7 +1363,7 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="AG6-cr-d38"/>
                                 </constraints>
                                 <attributedString key="attributedText">
-                                    <fragment content="Your number is safe with us and we won’t be spamming ">
+                                    <fragment content="Your number is safe with us and we won’t be ">
                                         <attributes>
                                             <color key="NSColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <font key="NSFont" size="13" name="HelveticaNeue"/>
@@ -1382,38 +1382,29 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="phonePad"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sx9-hJ-VRy">
-                                <rect key="frame" x="251" y="438" width="131" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sx9-hJ-VRy">
+                                <rect key="frame" x="261" y="423" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms of Use" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Xy-AN-fNk">
-                                <rect key="frame" x="274" y="439" width="77" height="16"/>
+                                <rect key="frame" x="276" y="424" width="77" height="16"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                 <color key="textColor" red="0.074509803921568626" green="0.57647058823529407" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Privacy Policy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Zi-4x-9nA">
-                                <rect key="frame" x="239" y="420" width="94" height="16"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="spamming your contacts either. Read" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bk7-Lr-4S3">
+                                <rect key="frame" x="41" y="405" width="240" height="16"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="94" id="AVF-7D-vk9"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                                <color key="textColor" red="0.074509803921568626" green="0.57647058823529407" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="your contacts either. Read" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bk7-Lr-4S3">
-                                <rect key="frame" x="84" y="420" width="161" height="16"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="161" id="5nU-lN-5Gf"/>
+                                    <constraint firstAttribute="width" constant="240" id="5nU-lN-5Gf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                 <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bkR-oa-R2D">
-                                <rect key="frame" x="88" y="439" width="178" height="16"/>
+                                <rect key="frame" x="94" y="424" width="178" height="16"/>
                                 <attributedString key="attributedText">
                                     <fragment content="By signing in, I agree to Nudj's">
                                         <attributes>
@@ -1423,6 +1414,15 @@
                                         </attributes>
                                     </fragment>
                                 </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Privacy Policy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Zi-4x-9nA">
+                                <rect key="frame" x="261" y="405" width="94" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="94" id="AVF-7D-vk9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                <color key="textColor" red="0.074509803921568626" green="0.57647058823529407" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -1442,15 +1442,16 @@
                             <constraint firstItem="bk7-Lr-4S3" firstAttribute="leading" secondItem="QEm-Nc-qfT" secondAttribute="leadingMargin" constant="68" id="E63-ua-Jpy"/>
                             <constraint firstItem="RWM-Jp-PBz" firstAttribute="leading" secondItem="wIK-JR-sf0" secondAttribute="trailing" constant="8" id="E9X-fC-eJm"/>
                             <constraint firstItem="eqs-tI-vfK" firstAttribute="leading" secondItem="QEm-Nc-qfT" secondAttribute="leadingMargin" constant="32" id="G4C-Po-iif"/>
+                            <constraint firstItem="sx9-hJ-VRy" firstAttribute="top" secondItem="9Zi-4x-9nA" secondAttribute="bottom" constant="2" id="IBW-uj-Blz"/>
                             <constraint firstItem="COP-7C-8R7" firstAttribute="leading" secondItem="QEm-Nc-qfT" secondAttribute="leadingMargin" constant="16" id="Ktt-ts-uUX"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bkR-oa-R2D" secondAttribute="trailing" constant="72" id="OJz-jR-cWP"/>
                             <constraint firstItem="nsp-NE-Zsn" firstAttribute="leading" secondItem="QEm-Nc-qfT" secondAttribute="leadingMargin" constant="16" id="QH0-d6-8dE"/>
                             <constraint firstItem="GaB-TN-v0Q" firstAttribute="leading" secondItem="QEm-Nc-qfT" secondAttribute="leading" id="QVg-Wi-hCK"/>
-                            <constraint firstItem="9Zi-4x-9nA" firstAttribute="top" secondItem="fTv-JZ-s7A" secondAttribute="bottom" constant="45" id="RDQ-jh-hSo"/>
-                            <constraint firstItem="5Xy-AN-fNk" firstAttribute="leading" secondItem="bkR-oa-R2D" secondAttribute="trailing" constant="8" id="T5v-HP-Zr5"/>
+                            <constraint firstItem="9Zi-4x-9nA" firstAttribute="top" secondItem="fTv-JZ-s7A" secondAttribute="bottom" constant="30" id="RDQ-jh-hSo"/>
+                            <constraint firstItem="5Xy-AN-fNk" firstAttribute="leading" secondItem="bkR-oa-R2D" secondAttribute="trailing" constant="4" id="T5v-HP-Zr5"/>
                             <constraint firstItem="I8k-a6-dxX" firstAttribute="top" secondItem="fTv-JZ-s7A" secondAttribute="bottom" constant="8" id="TiK-uw-sd6"/>
                             <constraint firstAttribute="trailingMargin" secondItem="RWM-Jp-PBz" secondAttribute="trailing" constant="32" id="XER-O7-8gC"/>
-                            <constraint firstItem="bk7-Lr-4S3" firstAttribute="top" secondItem="fTv-JZ-s7A" secondAttribute="bottom" constant="45" id="aOl-bX-bF5"/>
+                            <constraint firstItem="bk7-Lr-4S3" firstAttribute="top" secondItem="fTv-JZ-s7A" secondAttribute="bottom" constant="30" id="aOl-bX-bF5"/>
                             <constraint firstItem="fTv-JZ-s7A" firstAttribute="leading" secondItem="QEm-Nc-qfT" secondAttribute="leadingMargin" constant="8" id="arK-db-4DH"/>
                             <constraint firstItem="bkR-oa-R2D" firstAttribute="top" secondItem="bk7-Lr-4S3" secondAttribute="bottom" constant="3" id="bEb-Fo-KDZ"/>
                             <constraint firstItem="0TW-l1-655" firstAttribute="top" secondItem="COP-7C-8R7" secondAttribute="bottom" constant="8" id="c1s-Y6-A7f"/>
@@ -1461,22 +1462,27 @@
                             <constraint firstItem="COP-7C-8R7" firstAttribute="top" secondItem="EyJ-Sc-It3" secondAttribute="bottom" constant="8" id="hbI-8h-Snl"/>
                             <constraint firstItem="bkR-oa-R2D" firstAttribute="leading" secondItem="QEm-Nc-qfT" secondAttribute="leadingMargin" constant="52" id="hxP-Ne-lE8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="9Zi-4x-9nA" secondAttribute="trailing" constant="65" id="iuZ-zK-gFj"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="5Xy-AN-fNk" secondAttribute="trailing" constant="47" id="jfk-y0-vDv"/>
-                            <constraint firstItem="9Zi-4x-9nA" firstAttribute="leading" secondItem="bk7-Lr-4S3" secondAttribute="trailing" constant="-6" id="kBA-LX-kgU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5Xy-AN-fNk" secondAttribute="trailing" constant="45" id="jfk-y0-vDv"/>
+                            <constraint firstItem="9Zi-4x-9nA" firstAttribute="leading" secondItem="bk7-Lr-4S3" secondAttribute="trailing" constant="-20" id="kBA-LX-kgU"/>
                             <constraint firstItem="eqs-tI-vfK" firstAttribute="top" secondItem="nsp-NE-Zsn" secondAttribute="bottom" constant="8" id="ogo-sk-yuo"/>
                             <constraint firstItem="bkR-oa-R2D" firstAttribute="top" secondItem="I8k-a6-dxX" secondAttribute="bottom" constant="7" id="pNU-Nr-SxM"/>
                             <constraint firstAttribute="trailingMargin" secondItem="nsp-NE-Zsn" secondAttribute="trailing" constant="16" id="pap-Y1-Bug"/>
                             <constraint firstAttribute="trailingMargin" secondItem="fTv-JZ-s7A" secondAttribute="trailing" constant="8" id="phz-9s-K3T"/>
+                            <constraint firstItem="bk7-Lr-4S3" firstAttribute="leading" secondItem="QEm-Nc-qfT" secondAttribute="leadingMargin" constant="25" id="rNi-6X-KTz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="COP-7C-8R7" secondAttribute="trailing" constant="16" id="tRd-Wk-DBo"/>
                             <constraint firstItem="RWM-Jp-PBz" firstAttribute="top" secondItem="nsp-NE-Zsn" secondAttribute="bottom" constant="8" id="uay-zT-RoO"/>
                             <constraint firstItem="5Xy-AN-fNk" firstAttribute="top" secondItem="9Zi-4x-9nA" secondAttribute="bottom" constant="3" id="xxH-X5-Ksd"/>
+                            <constraint firstItem="9Zi-4x-9nA" firstAttribute="leading" secondItem="sx9-hJ-VRy" secondAttribute="leading" id="y0O-fy-kd1"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="E63-ua-Jpy"/>
                                 <exclude reference="3JZ-kh-cvZ"/>
                                 <exclude reference="OJz-jR-cWP"/>
+                                <exclude reference="bEb-Fo-KDZ"/>
                                 <exclude reference="hxP-Ne-lE8"/>
                                 <exclude reference="pNU-Nr-SxM"/>
+                                <exclude reference="iuZ-zK-gFj"/>
                             </mask>
                         </variation>
                     </view>
