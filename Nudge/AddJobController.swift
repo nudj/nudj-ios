@@ -227,7 +227,6 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
 
     func updateAssets() {
 
-        println(skills.tokens())
         Common.automateUpdatingOfAssets(jobTitle, icon: jobIcon)
         Common.automateUpdatingOfAssets(jobDescription, icon: jobDescriptionIcon, label: jobDescriptionLabel)
         Common.automateUpdatingOfAssets(skills, icon: skillsIcon, label: skillsLabel)

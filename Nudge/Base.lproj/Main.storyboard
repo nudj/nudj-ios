@@ -83,11 +83,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWj-cz-HiY">
-                                <rect key="frame" x="0.0" y="64" width="414" height="623"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWj-cz-HiY">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="opr-g1-88K" userLabel="JobTitle">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="opr-g1-88K" userLabel="JobTitle">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                         <subviews>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="job" highlightedImage="job-active" translatesAutoresizingMaskIntoConstraints="NO" id="Vpv-00-3fl">
                                                 <rect key="frame" x="12" y="12" width="25" height="25"/>
@@ -96,8 +96,8 @@
                                                     <constraint firstAttribute="height" constant="25" id="wQQ-Ev-ky0"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Job Title*" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jKm-c0-VgH">
-                                                <rect key="frame" x="49" y="12" width="357" height="30"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Job Title*" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jKm-c0-VgH">
+                                                <rect key="frame" x="49" y="12" width="318" height="30"/>
                                                 <color key="textColor" red="0.074533462524414062" green="0.57771205902099609" blue="0.45876827836036682" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
@@ -117,15 +117,15 @@
                                             <constraint firstItem="jKm-c0-VgH" firstAttribute="top" secondItem="opr-g1-88K" secondAttribute="top" constant="12" id="qBq-me-S1o"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JhR-es-rEd" userLabel="Separator">
-                                        <rect key="frame" x="0.0" y="51" width="414" height="1"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JhR-es-rEd" userLabel="Separator">
+                                        <rect key="frame" x="0.0" y="51" width="375" height="1"/>
                                         <color key="backgroundColor" red="0.94586116080000004" green="0.94583284850000005" blue="0.94584894180000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="h8h-hc-qG2"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B84-DL-Wmh" userLabel="JobDescription">
-                                        <rect key="frame" x="0.0" y="52" width="414" height="49"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B84-DL-Wmh" userLabel="JobDescription">
+                                        <rect key="frame" x="0.0" y="52" width="375" height="49"/>
                                         <subviews>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="bio" highlightedImage="bio-active" translatesAutoresizingMaskIntoConstraints="NO" id="wRP-fH-Dhr">
                                                 <rect key="frame" x="12" y="12" width="25" height="25"/>
@@ -144,8 +144,8 @@
                                                 <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="veO-5z-IXW">
-                                                <rect key="frame" x="45" y="8" width="361" height="33"/>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="veO-5z-IXW">
+                                                <rect key="frame" x="45" y="8" width="322" height="33"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="Svn-VH-Ror"/>
@@ -169,15 +169,15 @@
                                             <constraint firstAttribute="trailing" secondItem="veO-5z-IXW" secondAttribute="trailing" constant="8" id="zfN-NG-9G6"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yt7-dt-udH" userLabel="Separator 2">
-                                        <rect key="frame" x="0.0" y="101" width="414" height="1"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yt7-dt-udH" userLabel="Separator 2">
+                                        <rect key="frame" x="0.0" y="101" width="375" height="1"/>
                                         <color key="backgroundColor" red="0.94586116080000004" green="0.94583284850000005" blue="0.94584894180000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="r4D-mG-bfT"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eQp-ZT-hYY" userLabel="AddSkills">
-                                        <rect key="frame" x="0.0" y="102" width="414" height="49"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eQp-ZT-hYY" userLabel="AddSkills">
+                                        <rect key="frame" x="0.0" y="102" width="375" height="49"/>
                                         <subviews>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="skills" highlightedImage="skills-active" translatesAutoresizingMaskIntoConstraints="NO" id="boY-Up-4MZ">
                                                 <rect key="frame" x="12" y="12" width="25" height="25"/>
@@ -186,8 +186,8 @@
                                                     <constraint firstAttribute="height" constant="25" id="wCI-Il-IgE"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Add Skills Tags*" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kSE-5w-9ME">
-                                                <rect key="frame" x="49" y="10" width="357" height="29"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Skills Tags*" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kSE-5w-9ME">
+                                                <rect key="frame" x="49" y="10" width="318" height="29"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="29" id="57M-8q-iQG"/>
                                                 </constraints>
@@ -195,8 +195,8 @@
                                                 <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rbf-7S-1NT" customClass="TokenView" customModule="Nudj" customModuleProvider="target">
-                                                <rect key="frame" x="45" y="7" width="361" height="42"/>
+                                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rbf-7S-1NT" customClass="TokenView" customModule="Nudj" customModuleProvider="target">
+                                                <rect key="frame" x="45" y="7" width="322" height="42"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="42" id="JX4-de-rK1"/>
                                                 </constraints>
@@ -219,12 +219,10 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="kSE-5w-9ME" secondAttribute="bottom" constant="10" id="FkG-Al-GK4"/>
                                             <constraint firstItem="boY-Up-4MZ" firstAttribute="top" secondItem="eQp-ZT-hYY" secondAttribute="top" constant="12" id="Mc2-iy-dA5"/>
                                             <constraint firstItem="boY-Up-4MZ" firstAttribute="leading" secondItem="eQp-ZT-hYY" secondAttribute="leading" constant="12" id="SCN-t6-T2k"/>
                                             <constraint firstItem="kSE-5w-9ME" firstAttribute="leading" secondItem="boY-Up-4MZ" secondAttribute="trailing" constant="12" id="dYp-CQ-cgj"/>
                                             <constraint firstItem="rbf-7S-1NT" firstAttribute="top" secondItem="eQp-ZT-hYY" secondAttribute="top" constant="7" id="g7S-eP-zCD"/>
-                                            <constraint firstAttribute="bottom" secondItem="boY-Up-4MZ" secondAttribute="bottom" constant="12" id="hND-kc-gvo"/>
                                             <constraint firstAttribute="trailing" secondItem="rbf-7S-1NT" secondAttribute="trailing" constant="8" id="jOn-P5-SKn"/>
                                             <constraint firstItem="rbf-7S-1NT" firstAttribute="leading" secondItem="boY-Up-4MZ" secondAttribute="trailing" constant="8" id="tS3-ad-wOl"/>
                                             <constraint firstAttribute="trailing" secondItem="kSE-5w-9ME" secondAttribute="trailing" constant="8" id="wOo-k2-o1d"/>
@@ -232,15 +230,15 @@
                                             <constraint firstItem="kSE-5w-9ME" firstAttribute="top" secondItem="eQp-ZT-hYY" secondAttribute="top" constant="10" id="zcb-fw-Cut"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n9y-tt-a8r" userLabel="Separator 3">
-                                        <rect key="frame" x="0.0" y="151" width="414" height="1"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n9y-tt-a8r" userLabel="Separator 3">
+                                        <rect key="frame" x="0.0" y="151" width="375" height="1"/>
                                         <color key="backgroundColor" red="0.94586116080000004" green="0.94583284850000005" blue="0.94584894180000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="sSd-Ry-dHP"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uwf-eo-scB" userLabel="Salary">
-                                        <rect key="frame" x="0.0" y="152" width="414" height="49"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uwf-eo-scB" userLabel="Salary">
+                                        <rect key="frame" x="0.0" y="152" width="375" height="49"/>
                                         <subviews>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="salary" highlightedImage="salary-active" translatesAutoresizingMaskIntoConstraints="NO" id="Hmz-wU-hXX">
                                                 <rect key="frame" x="12" y="12" width="25" height="25"/>
@@ -249,8 +247,8 @@
                                                     <constraint firstAttribute="width" constant="25" id="nej-5J-EDW"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Salary Details*" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XT5-4e-Sw3">
-                                                <rect key="frame" x="49" y="10" width="357" height="30"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Salary Details*" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XT5-4e-Sw3">
+                                                <rect key="frame" x="49" y="10" width="318" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="gIQ-pe-ePW"/>
                                                 </constraints>
@@ -272,15 +270,15 @@
                                             <constraint firstItem="XT5-4e-Sw3" firstAttribute="top" secondItem="uwf-eo-scB" secondAttribute="top" constant="10" id="ZI9-yb-6Vo"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vhg-Cn-ClD" userLabel="Separator 4">
-                                        <rect key="frame" x="0.0" y="201" width="414" height="1"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vhg-Cn-ClD" userLabel="Separator 4">
+                                        <rect key="frame" x="0.0" y="201" width="375" height="1"/>
                                         <color key="backgroundColor" red="0.94586116080000004" green="0.94583284850000005" blue="0.94584894180000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="9SY-xe-Hkr"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="92e-5W-zpI" userLabel="Employer">
-                                        <rect key="frame" x="0.0" y="202" width="414" height="49"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="92e-5W-zpI" userLabel="Employer">
+                                        <rect key="frame" x="0.0" y="202" width="375" height="49"/>
                                         <subviews>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="silhouette" highlightedImage="silhouette-active" translatesAutoresizingMaskIntoConstraints="NO" id="bsb-fG-GhW">
                                                 <rect key="frame" x="12" y="12" width="25" height="25"/>
@@ -289,8 +287,8 @@
                                                     <constraint firstAttribute="width" constant="25" id="hRo-hw-mty"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Employer" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o6K-Fg-nsH">
-                                                <rect key="frame" x="49" y="10" width="357" height="30"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Employer" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o6K-Fg-nsH">
+                                                <rect key="frame" x="49" y="10" width="318" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="Wm9-fW-tns"/>
                                                 </constraints>
@@ -312,15 +310,15 @@
                                             <constraint firstItem="bsb-fG-GhW" firstAttribute="leading" secondItem="92e-5W-zpI" secondAttribute="leading" constant="12" id="zy6-pe-QfF"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q8T-on-1VA" userLabel="Separator 5">
-                                        <rect key="frame" x="0.0" y="251" width="414" height="1"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q8T-on-1VA" userLabel="Separator 5">
+                                        <rect key="frame" x="0.0" y="251" width="375" height="1"/>
                                         <color key="backgroundColor" red="0.94586116080000004" green="0.94583284850000005" blue="0.94584894180000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="qdU-kY-GMg"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c9d-si-gTn" userLabel="TagLocation">
-                                        <rect key="frame" x="0.0" y="252" width="414" height="49"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c9d-si-gTn" userLabel="TagLocation">
+                                        <rect key="frame" x="0.0" y="252" width="375" height="49"/>
                                         <subviews>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="locationIcon" highlightedImage="locationIcon-active" translatesAutoresizingMaskIntoConstraints="NO" id="JPi-JF-ZhJ">
                                                 <rect key="frame" x="12" y="12" width="25" height="25"/>
@@ -329,8 +327,8 @@
                                                     <constraint firstAttribute="height" constant="25" id="ePt-vi-Ree"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tag Location" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V5P-yB-WVQ">
-                                                <rect key="frame" x="49" y="10" width="357" height="30"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tag Location" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V5P-yB-WVQ">
+                                                <rect key="frame" x="49" y="10" width="318" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="QZy-Uj-flG"/>
                                                 </constraints>
@@ -352,15 +350,15 @@
                                             <constraint firstItem="V5P-yB-WVQ" firstAttribute="top" secondItem="c9d-si-gTn" secondAttribute="top" constant="10" id="x0d-HF-gwO"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KC7-Ba-d5b" userLabel="Separator 6">
-                                        <rect key="frame" x="0.0" y="301" width="414" height="1"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KC7-Ba-d5b" userLabel="Separator 6">
+                                        <rect key="frame" x="0.0" y="301" width="375" height="1"/>
                                         <color key="backgroundColor" red="0.94586116080000004" green="0.94583284850000005" blue="0.94584894180000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="FWB-Om-tub"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VdO-fa-Ztk" userLabel="JobStatus">
-                                        <rect key="frame" x="0.0" y="302" width="414" height="49"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VdO-fa-Ztk" userLabel="JobStatus">
+                                        <rect key="frame" x="0.0" y="302" width="375" height="49"/>
                                         <subviews>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="job" highlightedImage="job-active" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lBk-wk-BhG">
                                                 <rect key="frame" x="12" y="12" width="25" height="25"/>
@@ -375,8 +373,8 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" selected="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HL6-yJ-bff">
-                                                <rect key="frame" x="286" y="8" width="120" height="33"/>
+                                            <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HL6-yJ-bff">
+                                                <rect key="frame" x="247" y="8" width="120" height="33"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="120" id="owF-LY-ghn"/>
                                                 </constraints>
@@ -405,11 +403,11 @@
                                             <constraint firstItem="HL6-yJ-bff" firstAttribute="centerY" secondItem="8Wo-nO-lgx" secondAttribute="centerY" id="n1r-fj-bUB"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sEC-9L-VGO" userLabel="ReferalTitle">
-                                        <rect key="frame" x="0.0" y="351" width="414" height="80"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sEC-9L-VGO" userLabel="ReferalTitle">
+                                        <rect key="frame" x="0.0" y="351" width="375" height="80"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Set Referal Bonus" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Jn-gO-n85">
-                                                <rect key="frame" x="136" y="29" width="143" height="21"/>
+                                                <rect key="frame" x="117" y="29" width="143" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -423,8 +421,8 @@
                                             <constraint firstItem="5Jn-gO-n85" firstAttribute="top" secondItem="sEC-9L-VGO" secondAttribute="top" constant="29" id="h9w-D5-Qap"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r4K-kL-nVh" userLabel="ReferalAmount">
-                                        <rect key="frame" x="0.0" y="431" width="411" height="49"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r4K-kL-nVh" userLabel="ReferalAmount">
+                                        <rect key="frame" x="0.0" y="431" width="372" height="49"/>
                                         <subviews>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="pound" highlightedImage="pound-active" translatesAutoresizingMaskIntoConstraints="NO" id="yrl-U5-KWm">
                                                 <rect key="frame" x="12" y="12" width="25" height="25"/>
@@ -433,8 +431,8 @@
                                                     <constraint firstAttribute="height" constant="25" id="SOI-78-yy0"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add Amount*" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jbw-X4-z9y">
-                                                <rect key="frame" x="49" y="10" width="354" height="30"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add Amount*" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jbw-X4-z9y">
+                                                <rect key="frame" x="49" y="10" width="315" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="ZgJ-Sx-4RX"/>
                                                 </constraints>
@@ -1703,6 +1701,7 @@
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
                                         <connections>
+                                            <action selector="textFieldDidChange:" destination="Swg-Up-4oJ" eventType="editingChanged" id="zd0-ov-ljz"/>
                                             <outlet property="delegate" destination="Swg-Up-4oJ" id="Giz-5b-IDW"/>
                                         </connections>
                                     </textField>

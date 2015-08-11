@@ -202,14 +202,12 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
     func showUserData() {
         UserModel.getById(userId, fields: ["user.status", "user.name", "user.image", "user.skills", "user.about", "user.company", "user.address", "user.position", "user.email", "user.favourite"], closure: { response in
 
-            println("->\(response)")
             let user = UserModel()
             user.updateFromJson(response["data"])
             self.user = user
 
             if let status = user.status {
                 self.statusButton.setTitleByIndex(status)
-                self.statusButton.changeColor(UIColor.whiteColor())
             }
 
             if (user.name != nil && count(user.name!) > 0) {
@@ -247,8 +245,10 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
     }
 
     func makeThingsWhite() {
-        nameLabel.textColor = UIColor.whiteColor()
-        statusButton.changeColor(UIColor.whiteColor())
+        if (backgroundImage.image != nil) {
+            nameLabel.textColor = UIColor.whiteColor()
+            statusButton.changeColor(UIColor.whiteColor())
+        }
     }
 
     func getFavouriteIcon(status:Bool) -> UIImage? {
@@ -281,8 +281,6 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
         for subView in object.subviews {
             subView.removeFromSuperview()
         }
-
-//        hideBorderOfView(object)
 
         let height = NSLayoutConstraint(item: object, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 0)
         object.addConstraint(height)
@@ -557,16 +555,13 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         self.dismissViewControllerAnimated(true, completion: { () -> Void in })
 
+        // Start activity to show that something is going on
         self.profilePhoto.startActivity()
         self.backgroundImage.startActivity()
 
         let image = info[UIImagePickerControllerEditedImage] as! UIImage
         let imageData = UIImageJPEGRepresentation(image, 0.8).base64EncodedStringWithOptions(.allZeros)
-
-        // Start activity to show that something is going on
-        self.profilePhoto.startActivity()
-        self.backgroundImage.startActivity()
-
+        
         UserModel.update(["image": imageData], closure: { response in
             UserModel.getCurrent(["user.image"], closure: { user in
                 self.showUserImage(user.image)

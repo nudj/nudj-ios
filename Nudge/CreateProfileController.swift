@@ -110,8 +110,13 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
         textField.resignFirstResponder()
+        checkIfUserMayProceed()
 
         return true
+    }
+
+    @IBAction func textFieldDidChange(sender: AnyObject) {
+        checkIfUserMayProceed()
     }
 
     // MARK: - Navigation
