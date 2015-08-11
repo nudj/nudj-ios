@@ -36,9 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         // Getting of user details from CoreData
         fetchUserData()
         prepareApi();
-        
-        
-        
+
         if (user != nil && user!.id != nil && user!.completed == false) {
 
             if (contacts.isAuthorized()) {
@@ -55,8 +53,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         } else {
             if (contacts.isAuthorized()) {
                 // Valid User, Proceed
-                self.syncContacts()
                 self.changeRootViewController("mainNavigation")
+                self.syncContacts()
             } else {
                 self.showContactsAccessView()
             }
@@ -115,25 +113,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
     }
 
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        println(userInfo)
-        /*Template
-        
-        [aps: {
-            alert = "Matt Hagger is interested for the Chat test position";
-            badge = 0;
-            sound = "bingbong.aiff";
-        }]
-        
-        */
         
         // Update badge
         NSNotificationCenter.defaultCenter().postNotificationName("updateBadgeValue", object: nil, userInfo: ["value":"1","index":"3"])
-        
-
     }
 
     func syncContacts() {
-        dispatch_async(dispatch_get_main_queue(),{
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),{
             self.contacts.sync()
         })
     }
