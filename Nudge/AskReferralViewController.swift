@@ -22,6 +22,8 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     
     var selected = [ContactModel]()
     var popup :CreatePopupView?;
+
+    var messagePlaceholder:String?
     
     let cellIdentifier = "ContactsCell"
 
@@ -34,6 +36,8 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
             self.title = "Refer Someone"
             self.messageLabel.text = "Select the contacts that you would like to refer"
         }
+
+        messagePlaceholder = messageText.text
         
         askTable.registerNib(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
         
@@ -241,13 +245,15 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
             return contact.id
         }
 
-        if(messageText.text == "Enter your personalised message"){
-            messageText.text = ""
+        if(messageText.text == messagePlaceholder){
+            messageText.text = nil
         }
         
         let params:[String:AnyObject] = ["job": "\(jobId!)", "contacts": contactIds, "message": messageText.text]
+
         self.messageText.resignFirstResponder()
 
+        // TODO: Refactor
         if(self.isNudjRequest!){
             
             API.sharedInstance.put("nudge", params: params, closure: { result in
@@ -256,7 +262,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
             self.popup!.bodyText("You have successfully nudged  \(contactIds.count) user");
             self.popup!.delegate = self;
             self.view.addSubview(self.popup!);
-            
+
             println(result)
             }) { error in
                 println(error)

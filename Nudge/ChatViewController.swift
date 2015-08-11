@@ -48,7 +48,10 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
         appGlobalDelegate.chatInst!.delegate = self
         
         self.userToken = appGlobalDelegate.user?.token
-        self.messages = appGlobalDelegate.chatInst!.listOfActiveChatRooms[self.chatID]!.retrieveStoredChats()
+
+        if let chatRoom = appGlobalDelegate.chatInst!.listOfActiveChatRooms[self.chatID] {
+            self.messages = chatRoom.retrieveStoredChats()
+        }
 
         self.myImage = self.setupAvatarImage(self.appGlobalDelegate.user?.image["profile"])
         self.otherUserImage = self.setupAvatarImage(self.otherUserImageUrl)
