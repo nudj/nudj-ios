@@ -51,6 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
             // Invalid user Require Login
             // Proceed to login view
         } else {
+            prefetchUserData()
+
             if (contacts.isAuthorized()) {
                 // Valid User, Proceed
                 self.changeRootViewController("mainNavigation")
@@ -64,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         chatInst = ChatModels()
         chatInst!.delegate = self;
         
-        if(!chatInst!.connect()){
+        if(!chatInst!.connect()) {
             
             println("NOT Connected to chat server so will try reconnecting !!!")
             
@@ -169,25 +171,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
                 
             }
 
-            println("User: \(self.user)")
-            
-           /* if(user!.name == nil && user!.completed == true){
-                
-                //No name stored so get from API
-                UserModel.getById(0, fields:nil, closure: { response in
-                    
-                    println("userrrr ->\(response)")
-                    //response["data"].name
-                    
-                })
-
-                
-            }*/
-
         } else {
             println("Could not fetch \(error), \(error!.userInfo)")
         }
 
+    }
+
+    func prefetchUserData() {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () -> Void in
+            UserModel.getCurrent(["user.name", "user.completed", "user.status"], closure: { userObject in
+                if let source = userObject.source {
+                    self.user!.updateFromJson(source)
+                    self.pushUserData()
+                }
+            })
+        })
     }
 
     func pushUserData() {
@@ -290,17 +288,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        
-        //Connect to the chat server or Reconect if disconnected
-        /*if ((chatInst) != nil)
-        {
-            if !chatInst!.connect() {
-                
-                println("NOT Connected to chat server so will try reconnecting !!!")
-            
-            }
-        }*/
-        
+
         FBSDKAppEvents.activateApp()
 
         if (appWasInBackground) {

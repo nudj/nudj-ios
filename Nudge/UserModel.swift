@@ -38,6 +38,8 @@ class UserModel: Printable {
 
     var favourite:Bool?
 
+    var source:JSON?
+
     init() {
         
     }
@@ -74,6 +76,8 @@ class UserModel: Printable {
         }, errorHandler: errorHandler)
     }
     func updateFromJson(source: JSON) {
+        self.source = source
+        
         for (key: String, subJson: JSON) in source {
             switch key {
             case "id": id = subJson.intValue

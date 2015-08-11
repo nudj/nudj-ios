@@ -304,7 +304,7 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
 
     func updateAllInformation(){
             
-    UserModel.update(["name":nameLabel.text,"email":email.text,"position":position.text!,"address":location.text!,"company":company.text!,"completed":true], closure: { result in
+        UserModel.update(["name":nameLabel.text,"email":email.text,"position":position.text!,"address":location.text!,"company":company.text!,"completed":true], closure: { result in
      
                 let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
                 appDelegate.user!.name = self.nameLabel.text
