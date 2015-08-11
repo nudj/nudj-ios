@@ -60,6 +60,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
             self.activity.stopAnimating()
             self.chatTable.hidden = false;
             self.chatTable.reloadData()
+            self.chatCounter = 0
             self.navigationController?.tabBarItem.badgeValue = nil
         })
     }
