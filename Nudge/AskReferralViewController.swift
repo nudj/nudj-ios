@@ -13,7 +13,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     @IBOutlet var askTable: UITableView!
     @IBOutlet var searchBarView: UISearchBar!
     @IBOutlet weak var messageText: UITextView!
-    @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var messageLabel: NZLabel!
 
     var jobId:Int?
     var isNudjRequest:Bool?
@@ -24,6 +24,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     var popup :CreatePopupView?;
 
     var messagePlaceholder:String?
+    var jobTitle:String?
     
     let cellIdentifier = "ContactsCell"
 
@@ -34,7 +35,14 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
         
         if(self.isNudjRequest!){
             self.title = "Refer Someone"
-            self.messageLabel.text = "Select the contacts that you would like to refer"
+        }else{
+            
+            if let job = self.jobTitle {
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
+                self.messageLabel.text = "Select contacts to ask for referrals, for the \(job) position"
+                self.messageLabel.setFontColor(appDelegate.appColor, string:job)
+            }
+            
         }
 
         messagePlaceholder = messageText.text

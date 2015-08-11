@@ -206,6 +206,8 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
             user.updateFromJson(response["data"])
             self.user = user
 
+            println(response["data"])
+            
             if let status = user.status {
                 self.statusButton.setTitleByIndex(status)
             }

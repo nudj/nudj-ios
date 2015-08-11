@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
+
 protocol CountrySelectionPickerDelegate {
     
     func didSelect(selection:[String:String])
@@ -17,13 +20,14 @@ class CountrySelectionPicker: UIView, UIPickerViewDataSource, UIPickerViewDelega
     
     var delegate : CountrySelectionPickerDelegate?
     var selection = ["dial_code":"+44","name":"United Kingdom","code":"GB"]
-    var data = []
+    var picker:UIPickerView?
+    var data:[AnyObject] = []
     var isCreated:Bool = false;
     
-    func createDropActionSheet(view:UIView) -> UIView{
+    func createDropActionSheet(y:CGFloat,width:CGFloat) -> UIView{
         
         self.backgroundColor = UIColor.whiteColor()
-        self.frame = CGRectMake(0, view.frame.size.height - 220, view.frame.size.width, 220)
+        self.frame = CGRectMake(0,y,width,220)
         
         var topline = UIView(frame: CGRectMake(0, 0, self.frame.size.width , 1))
         topline.backgroundColor = UIColor.lightGrayColor()
@@ -43,10 +47,10 @@ class CountrySelectionPicker: UIView, UIPickerViewDataSource, UIPickerViewDelega
         button.addTarget(self, action: "doneAction", forControlEvents: UIControlEvents.TouchUpInside)
         self.addSubview(button)
         
-        var picker = UIPickerView(frame: CGRectMake(0, 25, self.frame.size.width, 216))
-        picker.delegate = self
-        picker.dataSource = self
-        self.addSubview(picker)
+        picker = UIPickerView(frame: CGRectMake(0, 25, self.frame.size.width, 216))
+        picker!.delegate = self
+        picker!.dataSource = self
+        self.addSubview(picker!)
         
         var bottomline = UIView(frame: CGRectMake(0, 35, self.frame.size.width , 1))
         bottomline.backgroundColor = UIColor.lightGrayColor()
@@ -55,9 +59,7 @@ class CountrySelectionPicker: UIView, UIPickerViewDataSource, UIPickerViewDelega
         self.hidden = true
         self.isCreated = true
         
-        var dataSource = CountryListDataSource()
-        data = dataSource.countries()
-        
+        self.requestCountries()
         
         return self
     
@@ -88,21 +90,16 @@ class CountrySelectionPicker: UIView, UIPickerViewDataSource, UIPickerViewDelega
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
         
-        if let code = data[row].valueForKey("dial_code") as? String {
+        var text = data[row].valueForKey("name") as! String
+        var code = data[row].valueForKey("dial_code") as! String
 
-            var text = data[row].valueForKey("name") as! String
-            return "\(text) (\(code))"
-        
-        }
-        
-            return data[row].valueForKey("name") as! String
+        return "\(text) (\(code))"
 
     }
     
     func showAction(){
         
         self.hidden = false
-        
         //TODO: Animate
         
     }
@@ -115,5 +112,33 @@ class CountrySelectionPicker: UIView, UIPickerViewDataSource, UIPickerViewDelega
         
     }
     
+    
+    func requestCountries() {
+        
+      let url = NSURL(string: "http://api.nudj.co/countries")
+      let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
+            
+                let json = JSON(data: data)
+            
+                if (json.null == nil) {
+                    for (id, obj) in json {
+                    
+                    let dial_code = "+" + obj["code"].stringValue
+                    let name = obj["name"].stringValue
+                    let code = obj["iso2"].stringValue
+                    self.data.append(["dial_code":dial_code,"name":name,"code":code])
+                    
+                    }
+                    
+                    println(self.data)
+                    self.picker!.reloadAllComponents()
+                }
+            }
+        
+        
+        task.resume()
 
+        
+    }
+    
 }

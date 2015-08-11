@@ -24,6 +24,7 @@ class NotificationCell: UITableViewCell {
     var isRead:Bool?
     var notificationData:Notification?
     var notificationID:String?
+    var sender:UIButton?
 
     @IBOutlet weak var profileImage: AsyncImage!
     @IBOutlet weak var dateLabel: UILabel!
@@ -55,8 +56,6 @@ class NotificationCell: UITableViewCell {
         }else{
             self.refAmount.text = data.jobBonus;
         }
-        
-        
         
         self.readStatus(data.notificationReadStatus!)
         
@@ -123,6 +122,7 @@ class NotificationCell: UITableViewCell {
     
     func actions(sender:UIButton){
         
+        self.sender = sender
         delegate?.didPressRightButton(self)
         
     }
@@ -147,4 +147,6 @@ class NotificationCell: UITableViewCell {
         }
         
     }
+    
+
 }

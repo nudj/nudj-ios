@@ -349,6 +349,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
         if let refView = segue.destinationViewController as? AskReferralViewController {
             refView.jobId = self.jobId
             refView.isNudjRequest = false
+            refView.jobTitle = self.jobTitle.text
         }
     }
 }

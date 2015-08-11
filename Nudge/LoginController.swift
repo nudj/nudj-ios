@@ -11,7 +11,7 @@ import UIKit
 import AddressBook
 import SwiftyJSON
 
-class LoginController: BaseController, CountrySelectionPickerDelegate {
+class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFieldDelegate {
 
     let msgTitle = "Refer anyone in your phone"
     let msgContent = "you will be able to text and refer anyone in your contacts"
@@ -60,7 +60,7 @@ class LoginController: BaseController, CountrySelectionPickerDelegate {
         self.phoneField.resignFirstResponder()
         
         if self.countrySelectionView.isCreated == false{
-            self.view.addSubview(self.countrySelectionView.createDropActionSheet(self.view))
+            self.view.addSubview(self.countrySelectionView.createDropActionSheet(self.phoneField.frame.origin.y + self.phoneField.frame.size.height+5, width: view.frame.size.width))
         }
         
         self.countrySelectionView.showAction()
@@ -116,6 +116,17 @@ class LoginController: BaseController, CountrySelectionPickerDelegate {
 
         super.showUnknownError()
     }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        
+        if self.countrySelectionView.isCreated == true && self.countrySelectionView.hidden == false{
+            
+            self.countrySelectionView.doneAction()
+            println("hide picker")
+            
+        }
+        
+    }
 
     func askForAddressBookPermission() {
         var alert = UIAlertController(title: self.msgTitle, message: self.msgContent, preferredStyle: UIAlertControllerStyle.Alert)
@@ -139,16 +150,17 @@ class LoginController: BaseController, CountrySelectionPickerDelegate {
     
     func showPolicy(){
         
-        self.performSegueWithIdentifier("GoToPrivacy", sender: self)
         isPrivacy = true
+        self.performSegueWithIdentifier("GoToPrivacy", sender: self)
         
     }
     
     
     func showTerms(){
         
-        self.performSegueWithIdentifier("GoToTerms", sender: self)
         isPrivacy = false
+        self.performSegueWithIdentifier("GoToTerms", sender: self)
+
     }
 
     
@@ -224,12 +236,14 @@ class LoginController: BaseController, CountrySelectionPickerDelegate {
         }
         
         if let termsView = segue.destinationViewController as? TermsViewController {
-        
+            
                 termsView.isPrivacy = isPrivacy
             
         }
     }
     
+    
+    //CountryPicker Delegate
     func didSelect(selection:[String:String]) {
         print("selection \(selection)")
         

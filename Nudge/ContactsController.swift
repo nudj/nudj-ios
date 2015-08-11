@@ -250,7 +250,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
                 }else{
 
                     lastSelectedContact = contact
-                    self.alert.message = "Do you want to invite \(contact!.name)?";
+                    self.alert.message = "Would you like to tell \(contact!.name) about Nudge?";
                     self.alert.show();
                 }
             }

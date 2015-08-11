@@ -55,6 +55,7 @@ class JobModel {
             "skills": self.skills
         ]
         
+        
         API.sharedInstance.put("jobs/\(jobID)", params: params, closure: { result in
              closure(true)
         }, errorHandler: { error in

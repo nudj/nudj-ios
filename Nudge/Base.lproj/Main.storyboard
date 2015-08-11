@@ -546,7 +546,7 @@
             </objects>
             <point key="canvasLocation" x="-1430.5" y="2152.5"/>
         </scene>
-        <!--Ask For Referal-->
+        <!--Ask For Referral-->
         <scene sceneID="2Qq-cM-5Ew">
             <objects>
                 <viewController storyboardIdentifier="AskReferralView" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="l4F-Ih-7ec" customClass="AskReferralViewController" customModule="Nudj" customModuleProvider="target" sceneMemberID="viewController">
@@ -579,8 +579,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rKx-ay-gWi">
                                 <rect key="frame" x="0.0" y="140" width="375" height="74"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select the contacts you would like to ask for a referral." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OV7-Xx-yXT">
-                                        <rect key="frame" x="30" y="0.0" width="315" height="64"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Select the contacts you would like to refer for this position." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OV7-Xx-yXT" customClass="NZLabel">
+                                        <rect key="frame" x="10" y="0.0" width="355" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="64" id="FOt-Xx-gCP"/>
                                             <constraint firstAttribute="height" constant="64" id="XOX-eP-7nQ"/>
@@ -597,9 +597,9 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="OV7-Xx-yXT" secondAttribute="bottom" constant="10" id="2nn-p6-q8n"/>
-                                    <constraint firstItem="OV7-Xx-yXT" firstAttribute="leading" secondItem="rKx-ay-gWi" secondAttribute="leading" constant="30" id="hfK-lb-0Lp"/>
+                                    <constraint firstItem="OV7-Xx-yXT" firstAttribute="leading" secondItem="rKx-ay-gWi" secondAttribute="leading" constant="10" id="hfK-lb-0Lp"/>
                                     <constraint firstItem="OV7-Xx-yXT" firstAttribute="top" secondItem="rKx-ay-gWi" secondAttribute="top" id="kHa-k8-OKR"/>
-                                    <constraint firstAttribute="trailing" secondItem="OV7-Xx-yXT" secondAttribute="trailing" constant="30" id="z2r-g8-vMR"/>
+                                    <constraint firstAttribute="trailing" secondItem="OV7-Xx-yXT" secondAttribute="trailing" constant="10" id="z2r-g8-vMR"/>
                                 </constraints>
                             </view>
                             <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="6Sq-g3-IGS">
@@ -639,13 +639,13 @@
                             <constraint firstAttribute="trailingMargin" secondItem="6Sq-g3-IGS" secondAttribute="trailing" constant="-16" id="zg5-uf-0Vt"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Ask For Referal" id="tYy-gD-bN1">
+                    <navigationItem key="navigationItem" title="Ask For Referral" id="tYy-gD-bN1">
                         <barButtonItem key="leftBarButtonItem" image="close_btn.png" style="plain" id="JMz-te-aJK">
                             <connections>
                                 <action selector="close:" destination="l4F-Ih-7ec" id="BcZ-fX-KkP"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Ask" style="plain" id="sLk-Wa-E5s">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Refer" style="plain" id="sLk-Wa-E5s">
                             <connections>
                                 <action selector="askAction:" destination="l4F-Ih-7ec" id="bei-VZ-8fx"/>
                             </connections>
@@ -727,7 +727,7 @@
                                 <color key="textColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ThU-Hc-GZM">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ThU-Hc-GZM">
                                 <rect key="frame" x="12" y="132" width="343" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -751,14 +751,19 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="job-active" translatesAutoresizingMaskIntoConstraints="NO" id="eto-4T-Mx8">
                                         <rect key="frame" x="15" y="12" width="25" height="25"/>
                                     </imageView>
-                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbz-Jz-zrO">
+                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbz-Jz-zrO">
                                         <rect key="frame" x="317" y="12" width="43" height="30"/>
                                         <accessibility key="accessibilityConfiguration">
                                             <accessibilityTraits key="traits" none="YES" button="YES" notEnabled="YES"/>
                                             <bool key="isElement" value="NO"/>
                                         </accessibility>
-                                        <state key="normal" title="Active">
+                                        <color key="tintColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Inactive">
+                                            <color key="titleColor" red="0.72156862745098038" green="0.72156862745098038" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" title="Active">
+                                            <color key="titleColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
                                 </subviews>
@@ -897,11 +902,13 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="TextViewHeightConstraint" destination="Za0-Vv-crP" id="5XS-fs-Kjw"/>
                         <outlet property="authorName" destination="YAb-uZ-5ne" id="ytr-0E-YCU"/>
                         <outlet property="bonusText" destination="ywj-gV-3hm" id="B3N-bi-bma"/>
                         <outlet property="descriptionText" destination="ThU-Hc-GZM" id="P3G-0o-PGE"/>
                         <outlet property="employerText" destination="vc3-bP-ba6" id="nUx-i5-sO3"/>
                         <outlet property="interestedBtn" destination="M7K-Zz-jWR" id="GAw-2Z-Qka"/>
+                        <outlet property="jobActive" destination="fbz-Jz-zrO" id="Uyz-Ld-1Lx"/>
                         <outlet property="jobTitleText" destination="6JZ-HT-MOn" id="7lL-wl-dHp"/>
                         <outlet property="locationText" destination="iJy-5F-cqu" id="dQj-KX-hVd"/>
                         <outlet property="nudgeBtn" destination="Mji-Gj-fEa" id="CZZ-wa-6r7"/>
@@ -1365,6 +1372,9 @@
                                 <color key="textColor" red="0.0" green="0.63529411759999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="phonePad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="HUi-qm-vwZ" id="gCP-v3-ips"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sx9-hJ-VRy">
                                 <rect key="frame" x="261" y="423" width="0.0" height="0.0"/>
@@ -2407,14 +2417,14 @@
         <image name="skills-active" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="yTk-h8-BPW"/>
         <segue reference="l7l-cF-kYn"/>
         <segue reference="H2O-Du-Dkg"/>
-        <segue reference="BCe-Pt-bFX"/>
         <segue reference="1RO-e0-4AP"/>
+        <segue reference="BCe-Pt-bFX"/>
         <segue reference="oHM-Sk-no8"/>
         <segue reference="6SR-Rm-L27"/>
         <segue reference="eNW-U2-njr"/>
+        <segue reference="yTk-h8-BPW"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
 </document>

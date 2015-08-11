@@ -144,7 +144,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
             break;
         case .AppApplication:
             println("go to chat")
-            self.gotTochat(cell.notificationData!)
+            self.gotTochat(cell)
             break;
         case .WebApplication:
             println("sms")
@@ -156,7 +156,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
             break;
         case .AppApplicationWithNoReferral:
             println("go to chat")
-            self.gotTochat(cell.notificationData!)
+            self.gotTochat(cell)
             break;
         case .WebApplicationWithNoReferral:
             println("sms")
@@ -262,11 +262,14 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
 
     }
     
-    func gotTochat(chatData:Notification){
+    func gotTochat(cell:NotificationCell){
+        
+        let chatData = cell.notificationData!
+        cell.userInteractionEnabled = false
         
         if chatData.chatId != nil && !chatData.chatId!.isEmpty{
             
-            self.gotTochatAction(chatData)
+            self.gotTochatAction(cell)
             
         }else{
             
@@ -274,7 +277,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
             println("params ->\(params)")
             API.sharedInstance.put("nudge/chat", params:params, closure: { json in
                 println("success \(json)")
-                self.gotTochatAction(chatData)
+                self.gotTochatAction(cell)
             }, errorHandler: { error in
                 println("error \(error)")
             })
@@ -283,8 +286,10 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
      
     }
     
-    func gotTochatAction(chatData:Notification){
-    
+    func gotTochatAction(cell:NotificationCell){
+        
+        let chatData = cell.notificationData!
+        
         var chatView:ChatViewController = ChatViewController()
         
         chatView.chatID = chatData.chatId;
@@ -294,8 +299,9 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
         chatView.jobID = chatData.jobID
         chatView.otherUserImageUrl = chatData.senderImage
         
+        cell.userInteractionEnabled = true
         self.navigationController?.pushViewController(chatView, animated: true)
-
+        
     }
     
     

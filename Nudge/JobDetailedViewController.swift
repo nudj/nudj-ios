@@ -22,7 +22,9 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate {
     @IBOutlet var locationText: NZLabel!
     @IBOutlet var salaryText: NZLabel!
     @IBOutlet var bonusText: NZLabel!
+    @IBOutlet weak var jobActive: UIButton!
     
+    @IBOutlet weak var TextViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var interestedBtn: UIButton!
     @IBOutlet weak var spaceBetween: NSLayoutConstraint!
@@ -117,11 +119,20 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate {
         self.skills.fillTokens(skillsArr)
         
         jobTitleText.text = content["title"].stringValue
+        jobTitleText.numberOfLines = 0
+        jobTitleText.adjustsFontSizeToFitWidth = true
+        jobTitleText.minimumScaleFactor = 0.2
+        
         authorName.text = content["user"]["name"].stringValue
+        
+        descriptionText.scrollEnabled = false
         descriptionText.text = content["description"].stringValue
         
+        var sizeThatFitsTextView:CGSize = descriptionText.sizeThatFits( CGSizeMake(descriptionText.frame.size.width, CGFloat.max) )
+        TextViewHeightConstraint.constant = sizeThatFitsTextView.height;
         
         // Set job active or not active status
+        self.jobActive.selected = content["active"].boolValue
         
         
         /** Using NZLABEL to style a UILabel to have multiple colors and fontsize **/
@@ -223,6 +234,7 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate {
             var addJobView = storyboard.instantiateViewControllerWithIdentifier("AskReferralView") as! AskReferralViewController
             addJobView.jobId = self.jobID?.toInt()
             addJobView.isNudjRequest = false
+            addJobView.jobTitle = self.jobTitleText.text
             self.navigationController?.pushViewController(addJobView, animated:true);
             
         }

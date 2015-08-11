@@ -32,9 +32,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
         let id = appGlobalDelegate.user!.id!
         self.senderId = String(id) + "@chat.nudj.co";
         
-        println(appGlobalDelegate.user!.name)
-        
-        self.senderDisplayName = appGlobalDelegate.user!.name != nil ? appGlobalDelegate.user!.name! : "noname"
+        self.senderDisplayName = appGlobalDelegate.user!.name!
 
         let bubbleFactory : JSQMessagesBubbleImageFactory = JSQMessagesBubbleImageFactory();
         
@@ -53,6 +51,8 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
             self.messages = chatRoom.retrieveStoredChats()
         }
 
+        println(self.appGlobalDelegate.user?.image)
+        
         self.myImage = self.setupAvatarImage(self.appGlobalDelegate.user?.image["profile"])
         self.otherUserImage = self.setupAvatarImage(self.otherUserImageUrl)
         
