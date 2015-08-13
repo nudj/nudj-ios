@@ -18,6 +18,7 @@ class MainFeed: BaseController, DataProviderProtocol,UISearchBarDelegate {
     var searchBar =  UISearchBar()
     var blackBackground = UIView()
     var searchTerm:String?
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,6 +84,7 @@ class MainFeed: BaseController, DataProviderProtocol,UISearchBarDelegate {
         self.searchBar.hidden = false
         self.blackBackground.hidden = false
         self.searchBar.becomeFirstResponder()
+        
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {

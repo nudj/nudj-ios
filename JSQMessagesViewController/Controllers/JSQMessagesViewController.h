@@ -47,6 +47,7 @@
 @property (strong, nonatomic) NSString *participants;
 @property (strong, nonatomic) NSString *participantsID;
 @property BOOL filterOpened;
+@property BOOL dontUpdateButton;
 
 - (IBAction)dropDownAction:(id)sender;
 - (void)labelsAction:(id)sender;

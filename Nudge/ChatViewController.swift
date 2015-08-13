@@ -49,10 +49,22 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
 
         if let chatRoom = appGlobalDelegate.chatInst!.listOfActiveChatRooms[self.chatID] {
             self.messages = chatRoom.retrieveStoredChats()
+            if chatRoom.xmppRoom != nil {
+            
+                println("isChatRoomConnected:\(chatRoom.xmppRoom!.isJoined)");
+            
+            }else{
+                
+                self.dontUpdateButton = true
+                self.inputToolbar.contentView.rightBarButtonItem.enabled = false
+                
+            }
+        }else{
+            
+            self.dontUpdateButton = true
+            self.inputToolbar.contentView.rightBarButtonItem.enabled = false
         }
 
-        println(self.appGlobalDelegate.user?.image)
-        
         self.myImage = self.setupAvatarImage(self.appGlobalDelegate.user?.image["profile"])
         self.otherUserImage = self.setupAvatarImage(self.otherUserImageUrl)
         
@@ -124,14 +136,22 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
 
     // JSQMessagesViewController method overrides
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
-
-        JSQSystemSoundPlayer.jsq_playMessageSentSound()
         
-        sendOnce = false
-        
-        appGlobalDelegate.chatInst!.listOfActiveChatRooms[self.chatID]!.xmppRoom!.sendMessageWithBody(text);
-
-        self.finishSendingMessage()
+        if let chatRoom = appGlobalDelegate.chatInst!.listOfActiveChatRooms[self.chatID] {
+            if chatRoom.xmppRoom != nil {
+                if chatRoom.xmppRoom!.isJoined {
+                    
+                    JSQSystemSoundPlayer.jsq_playMessageSentSound()
+                    sendOnce = false
+                    
+                    chatRoom.xmppRoom!.sendMessageWithBody(text);
+                    println("Sent xmpp message");
+                    self.finishSendingMessage()
+                
+                }
+            }
+            
+        }
     
     }
     
@@ -364,7 +384,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
             var roomID = roomIdPart[0]
             
             //Store new chat
-            print("Saving \(roomID)")
+            print("Saving new message \(roomID)")
             let defaults = NSUserDefaults.standardUserDefaults()
             if let outData = defaults.dataForKey(roomID) {
                 
@@ -456,7 +476,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
     override func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         
         // Send The typing indicator
-        if(!sendOnce){
+        /*if(!sendOnce){
             var conferenceID = self.chatID+""+appGlobalDelegate.chatInst!.ConferenceUrl
             
             var message = DDXMLElement.elementWithName("message") as! DDXMLElement
@@ -473,6 +493,25 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
             sendOnce = true;
             
             println("Sent The typing indicator");
+        }*/
+        if let chatRoom = appGlobalDelegate.chatInst!.listOfActiveChatRooms[self.chatID] {
+            if chatRoom.xmppRoom != nil {
+                
+                if !chatRoom.xmppRoom!.isJoined {
+                
+                    self.dontUpdateButton = true
+                    self.inputToolbar.contentView.rightBarButtonItem.enabled = false
+                
+                }else{
+                 
+                    self.dontUpdateButton = false
+                }
+                
+            }else{
+            
+                self.dontUpdateButton = true
+                self.inputToolbar.contentView.rightBarButtonItem.enabled = false
+            }
         }
         
         return true

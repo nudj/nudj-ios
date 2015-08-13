@@ -26,6 +26,8 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
     var data:[JSON] = []
 
     var selectedClosure:((JSON)->())? = nil
+    var noContentImage = NoContentPlaceHolder()
+    
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -41,6 +43,9 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
         self.addSubview(refreshControl)
 
         self.autoresizingMask = UIViewAutoresizing.FlexibleBottomMargin | UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleHeight
+        var view =  UIView(frame:CGRectMake(0,0,self.frame.size.width,self.frame.size.height))
+        view.addSubview(self.noContentImage.createNoContentPlaceHolder(view, imageTitle: "no_jobs"))
+        self.tableFooterView = view
     }
 
     func asignCellNib(name: String) {
@@ -74,7 +79,16 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
             }
 
             self.setLoadingStatus(false)
-
+            
+            if(self.data.count == 0){
+                
+                self.noContentImage.showPlaceholder()
+                
+            }else{
+                
+                self.noContentImage.hidePlaceholder()
+            }
+            
             self.reloadData()
         })
     }

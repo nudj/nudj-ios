@@ -21,12 +21,12 @@ class ChatRoomModel: NSObject{
         self.delegate = delegate
         
         self.xmppRoomStorage = XMPPRoomCoreDataStorage(databaseFilename:"\(roomId).sqlite", storeOptions: nil)
-        
         var roomJID = XMPPJID.jidWithString(roomName);
-        println("did generate room jid -> \(roomJID)")
         
         if(roomJID != nil && self.xmppRoomStorage != nil){
         
+        println("Preparing to Activating room -> \(roomJID)")
+            
         self.xmppRoom = XMPPRoom(roomStorage: self.xmppRoomStorage, jid: roomJID, dispatchQueue: dispatch_get_main_queue())
         self.xmppRoom!.addDelegate(delegate, delegateQueue: dispatch_get_main_queue())
         self.xmppRoom!.activate(xmpp)
@@ -68,8 +68,14 @@ class ChatRoomModel: NSObject{
         // Retrieve all the messages for the current conversation
         for message in messages {
             
-            if (message.nickname() != nil){
+            if (message.nickname() != nil && message.localTimestamp() != nil){
+                
                 messageObject.addObject(JSQMessage(senderId: message.nickname(), senderDisplayName: message.nickname(), date:message.localTimestamp(), text: message.body()))
+                
+            }else{
+                
+                println("Error getting the Sender of this message or Timestamp")
+                
             }
         }
         
@@ -78,10 +84,31 @@ class ChatRoomModel: NSObject{
     
     
     func teminateSession(){
-        
         self.xmppRoom!.leaveRoom()
         self.xmppRoom!.deactivate()
         self.xmppRoom!.removeDelegate(self.delegate)
+    }
+    
+    
+    func reconnect(){
+        
+        /*self.teminateSession()
+        
+        var roomJID = XMPPJID.jidWithString(roomName);
+        println("did generate room jid -> \(roomJID)")
+        
+        if(roomJID != nil && self.xmppRoomStorage != nil){
+            
+            self.xmppRoom = XMPPRoom(roomStorage: self.xmppRoomStorage, jid: roomJID, dispatchQueue: dispatch_get_main_queue())
+            self.xmppRoom!.addDelegate(delegate, delegateQueue: dispatch_get_main_queue())
+            self.xmppRoom!.activate(xmpp)
+            
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            
+            self.xmppRoom!.joinRoomUsingNickname("\(appDelegate.user!.id!)@\(appDelegate.chatInst!.chatServer)", history:nil)
+            
+        }*/
+     
     }
 
 }

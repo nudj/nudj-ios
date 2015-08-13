@@ -120,6 +120,7 @@ JSQMessagesKeyboardControllerDelegate>{
 @synthesize participantsID = _participantsID;
 @synthesize jobID = _jobID;
 @synthesize filterOpened = _filterOpened;
+@synthesize dontUpdateButton = _dontUpdateButton;
 
 #pragma mark - Class methods
 
@@ -773,11 +774,11 @@ JSQMessagesKeyboardControllerDelegate>{
 - (void)textViewDidChange:(UITextView *)textView
 {
     
-    
     if (textView != self.inputToolbar.contentView.textView) {
         return;
     }
 
+    if( !_dontUpdateButton)
     [self.inputToolbar toggleSendButtonEnabled];
 }
 

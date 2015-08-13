@@ -41,6 +41,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
                 let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
                 self.messageLabel.text = "Select contacts to ask for referrals, for the \(job) position"
                 self.messageLabel.setFontColor(appDelegate.appColor, string:job)
+                self.navigationItem.rightBarButtonItem?.title = "Ask"
             }
             
         }

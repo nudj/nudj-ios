@@ -10,17 +10,13 @@ import UIKit
 
 class NoContentPlaceHolder: UIImageView {
 
-    init(view :UIView, imageTitle:String){
+    func createNoContentPlaceHolder(view :UIView, imageTitle:String) -> NoContentPlaceHolder{
         
-        super.init(frame:CGRectMake((view.frame.size.width/2) - 200/2 , (view.frame.size.height/2) - 149/2, 200,149))
+        self.frame = CGRectMake((view.frame.size.width/2) - 200/2 , (view.frame.size.height/2) - 149/2, 200,149)
         self.image = UIImage(named: imageTitle)
-        self.hidden = true;
+        self.hidden = true
         
-        view.addSubview(self)
-    }
-
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        return self
     }
     
     func showPlaceholder(){
@@ -29,9 +25,14 @@ class NoContentPlaceHolder: UIImageView {
         
     }
     
+    
     func hidePlaceholder(){
         
         self.hidden = true
+    }
+    
+    func refesh(){
+        
     }
 
 }

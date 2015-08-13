@@ -107,6 +107,7 @@ class UserModel: Printable {
     }
 
     func updateImageFromJson(source:JSON) {
+        
         for (key,val) in source.dictionaryValue {
             
             self.image[key] = val.stringValue;

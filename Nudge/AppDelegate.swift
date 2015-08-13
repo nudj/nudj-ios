@@ -179,7 +179,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
 
     func prefetchUserData() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () -> Void in
-            UserModel.getCurrent(["user.name", "user.completed", "user.status"], closure: { userObject in
+            UserModel.getCurrent(["user.name", "user.completed", "user.status", "user.image"], closure: { userObject in
                 if let source = userObject.source {
                     self.user!.updateFromJson(source)
                     self.pushUserData()
@@ -421,7 +421,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
             var roomIdPart = split(conference) {$0 == "@"}
             var roomID = roomIdPart[0]
             
-            println("Saving \(roomID)")
+            println("Saving new message \(roomID)")
             let defaults = NSUserDefaults.standardUserDefaults()
             if let outData = defaults.dataForKey(roomID) {
             
@@ -444,11 +444,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
             NSNotificationCenter.defaultCenter().postNotificationName("reloadChatTable", object: nil, userInfo:nil)
             
 
-        }else{
-            
-            //Store message as its new
-            println("This message already exsists in my coredata => \(content.text) from:\(content.senderId) room:\(conference))")
-            
         }
 
 

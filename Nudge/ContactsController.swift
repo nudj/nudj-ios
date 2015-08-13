@@ -35,7 +35,8 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
     var data = [String:[ContactModel]]()
     var refreshControl:UIRefreshControl!
     var lastSelectedContact:ContactModel?
-
+    var noContentImage = NoContentPlaceHolder()
+    
     override func viewDidLoad() {
         
         self.searchBar.hidden = true
@@ -65,6 +66,8 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         
         self.activityIndi.hidden = false
         self.table.hidden = true
+        
+        self.view.addSubview(self.noContentImage.createNoContentPlaceHolder(self.view, imageTitle: "no_contacts"))
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -145,6 +148,15 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
             
             self.activityIndi.hidden = true
             self.table.hidden = false
+            
+            if(self.filtering.filteredContent.count == 0){
+                
+                self.noContentImage.showPlaceholder()
+                
+            }else{
+                
+                self.noContentImage.hidePlaceholder()
+            }
         })
     }
 
@@ -312,6 +324,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
     }
 
     func getContactsUrl() -> String {
+        self.noContentImage.image = segControl.selectedSegmentIndex <= 0 ? UIImage(named:"no_contacts") : UIImage(named:"no_favourite_contacts")
         return segControl.selectedSegmentIndex <= 0 ? ContactPaths.all : ContactPaths.favourites
     }
     
@@ -322,6 +335,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         self.searchBar.hidden = false
         self.searchBar.becomeFirstResponder()
         self.isSearchEnabled = true
+        
     }
     
     

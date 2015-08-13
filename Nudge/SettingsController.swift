@@ -17,6 +17,7 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
     
     let cellIdentifier = "SettingsCell";
     var jobsSelected:String?;
+    var isPolicy = false;
 
     var socialhander :SocialHandlerModel?
     var statusParent :SocialStatus?
@@ -163,15 +164,22 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let action = structure[indexPath.section][indexPath.row].action
-
+        let name = structure[indexPath.section][indexPath.row].name
         if (count(action) <= 0) {
             return
+        }
+        
+        if(name == "Privacy Policy"){
+            isPolicy = true
+        }else{
+            isPolicy = false
         }
 
         if(action == "linkedin"){
         
         }else if(action == "facebook"){
         
+            
         }else{
             
             self.jobsSelected = action
@@ -251,8 +259,16 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
                 
             }
         }
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+        
+        if(segue.destinationViewController.isKindOfClass(TermsViewController)){
+            if let controller = (segue.destinationViewController as? TermsViewController) {
+                if(isPolicy == true){
+                    controller.isPrivacy = true
+                }
+            }
+            
+        }
+        
     }
 
     func didTap(statusIdentifier: String, parent:SocialStatus) {

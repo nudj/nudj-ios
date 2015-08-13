@@ -18,11 +18,14 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
 
     @IBOutlet weak var activity: UIActivityIndicatorView!
     var data:[ChatStructModel] = []
+    var noContentImage = NoContentPlaceHolder()
     
     override func viewDidLoad() {
 
          self.chatTable.registerNib(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
          self.chatTable.tableFooterView = UIView(frame: CGRectZero);
+        
+         self.view.addSubview(self.noContentImage.createNoContentPlaceHolder(self.view, imageTitle: "no_chats"))
 
     }
 
@@ -55,13 +58,21 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
                 self.data.sort({ $0.timeinRawForm!.compare($1.timeinRawForm!) == NSComparisonResult.OrderedDescending })
             }
             
-            println(response)
             
             self.activity.stopAnimating()
             self.chatTable.hidden = false;
             self.chatTable.reloadData()
             self.chatCounter = 0
             self.navigationController?.tabBarItem.badgeValue = nil
+            
+            if(self.data.count == 0){
+                
+                self.noContentImage.showPlaceholder()
+                
+            }else{
+                
+                self.noContentImage.hidePlaceholder()
+            }
         })
     }
     

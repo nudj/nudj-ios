@@ -266,7 +266,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             var roomID = split(jid) {$0 == "@"}
             
             //Store new chat
-            println("Saving \(roomID[0])")
+            println("Saving new conference \(roomID[0])")
             let defaults = NSUserDefaults.standardUserDefaults()
             var dict = ["isNew":true, "isRead":false]
             var data = NSKeyedArchiver.archivedDataWithRootObject(dict)
@@ -278,17 +278,6 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             //terminate room and reconnect
             chatroom.prepareChatModel(jid, roomId: roomID[0], with:self.xmppStream!, delegate:self)
             self.listOfActiveChatRooms[roomID[0]] = chatroom
-
-            /*chatroom.teminateSession()
-            
-            let delay = 6 * Double(NSEC_PER_SEC)
-            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-            dispatch_after(time, dispatch_get_main_queue()) {
-                
-                chatroom.prepareChatModel(jid, roomId: roomID[0], with:self.xmppStream!, delegate:self)
-                self.listOfActiveChatRooms[roomID[0]] = chatroom
-            
-            }*/
 
             
         }else{
@@ -333,20 +322,19 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     }
 
     func xmppRoom(sender: XMPPRoom!, didReceiveMessage message: XMPPMessage!, fromOccupant occupantJID: XMPPJID!) {
+//Typing indicator
+//        if(message.hasComposingChatState() == true){
+//            
+//            println("should show typing ")
+//            
+//        }
+//        
+//        if(message.hasPausedChatState()){
+//            
+//            println("should stop typing ")
+//            
+//        }
         
-        if(message.hasComposingChatState() == true){
-            
-            println("should show typing ")
-            
-        }
-        
-        if(message.hasPausedChatState()){
-            
-            println("should stop typing ")
-            
-        }
-        
-        println("will do something with chat message")
         
         if message.body() != nil {
             
@@ -369,23 +357,30 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             }else{
                 
                 time = NSDate();
-                
                 appGlobalDelegate.shouldShowBadge = true;
                 
             }
             
-            var jsqMessage = JSQMessage(senderId: message.from().resource, senderDisplayName: message.from().resource, date:time!, text: message.body())
-            delegate?.recievedMessage(jsqMessage, conference: sender.roomJID.bare())
+            if(message.from().resource != nil){
+            
+                var jsqMessage = JSQMessage(senderId: message.from().resource, senderDisplayName: message.from().resource, date:time!, text: message.body())
+                delegate?.recievedMessage(jsqMessage, conference: sender.roomJID.bare())
+            
+            }else{
+                
+                println("Error getting sender of this message")
+            }
         }
 
     }
     
     func xmppRoomDidJoin(sender: XMPPRoom!) {
         
-        println("XMPPROOM JOINED)")
-        
+        println("XMPPROOM JOINED ->  \(sender.roomJID))")
         
     }
+    
+    //
     
     func xmppRoomDidCreate(sender: XMPPRoom!) {
         
@@ -393,6 +388,27 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
 
     }
     
+    func xmppRoomDidLeave(sender: XMPPRoom!) {
+        
+        println("XMPPROOM LEFT -> \(sender.roomJID.description)")
+        var roomID = split(sender.roomJID.description) {$0 == "@"}
+        
+        if let chatRoom = appGlobalDelegate.chatInst!.listOfActiveChatRooms[roomID[0]] {
+            
+            chatRoom.teminateSession()
+            appGlobalDelegate.chatInst!.listOfActiveChatRooms.removeValueForKey(roomID[0])
+            println("removed")
+            
+        }
+    
+    }
+    
+    
+    func xmppRoomDidDestroy(sender: XMPPRoom!) {
+        
+        println("XMPPROOM DESTROYED -> \(sender.roomJID)")
+        
+    }
     
     
     // MARK: Custom chat room methods
@@ -416,8 +432,9 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
                 for (id, obj) in json["data"]{
                     let data = obj["id"].string
                    
-                    println("Active chatrooms -> \(data!)\(self.ConferenceUrl)")
+                    println("Chatroom id -> \(data!)\(self.ConferenceUrl)")
                     var chatroom = ChatRoomModel()
+                    
                     chatroom.prepareChatModel("\(data!)\(self.ConferenceUrl)", roomId: data!, with:self.xmppStream!, delegate:self)
                     self.listOfActiveChatRooms[data!] = chatroom
                 }

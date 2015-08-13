@@ -16,6 +16,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
     
     let cellIdentifier = "NotificationCell"
     var nextLink:String? = nil
+    var noContentImage = NoContentPlaceHolder()
     
     override func viewWillAppear(animated: Bool) {
         
@@ -31,6 +32,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
         self.tableView.tableFooterView = UIView(frame: CGRectZero);
 
         self.refreshControl?.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
+        self.view.addSubview(self.noContentImage.createNoContentPlaceHolder(self.view, imageTitle: "no_notifications"))
 
     }
     
@@ -50,7 +52,6 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
             //}
 
             self.nextLink = data["pagination"]["next"].string
-
             self.populate(data)
 
         }, errorHandler: {error in
@@ -83,6 +84,15 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
         self.navigationController?.tabBarItem.badgeValue = nil
         self.tableView.reloadData()
         self.refreshControl?.endRefreshing()
+        
+        if(self.data.count == 0){
+            
+            self.noContentImage.showPlaceholder()
+            
+        }else{
+            
+            self.noContentImage.hidePlaceholder()
+        }
     }
     
     // MARK: -- UITableViewDataSource --
@@ -273,7 +283,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
             
         }else{
             
-            var params = ["job_id":chatData.jobID!,"user_id":chatData.senderId!,"message":"test","notification_id":chatData.notificationId!]
+            var params = ["job_id":chatData.jobID!,"user_id":chatData.senderId!,"message":"Hi","notification_id":chatData.notificationId!]
             println("params ->\(params)")
             API.sharedInstance.put("nudge/chat", params:params, closure: { json in
                 println("success \(json)")

@@ -101,20 +101,20 @@ class ChatStructModel: NSObject {
             dateFormatter.dateFormat = "d/M/yy - H:mm"
             
             //Get time of last message
-            let arr = appDelegate.chatInst!.listOfActiveChatRooms[chat.chatId!]!.retrieveStoredChats()
-            
-            if arr.count != 0 {
-                
-                // if there is a last message use this instead of the default
-                let time = arr.lastObject as! JSQMessage
-                chat.timeinRawForm = time.date
-                
-                let timestamp = time.date.timeIntervalSince1970
-                chat.time = NSDate(timeIntervalSince1970: timestamp).timeAgoSinceNow()
-                
-                
+            if let arrr = appDelegate.chatInst!.listOfActiveChatRooms[chat.chatId!]{
+                let arr = arrr.retrieveStoredChats()
+                if arr.count != 0 {
+                    
+                    // if there is a last message use this instead of the default
+                    let time = arr.lastObject as! JSQMessage
+                    chat.timeinRawForm = time.date
+                    
+                    let timestamp = time.date.timeIntervalSince1970
+                    chat.time = NSDate(timeIntervalSince1970: timestamp).timeAgoSinceNow()
+                    
+                    
+                }
             }
-            
             chat.isRead = dict["isRead"] as? Bool
             chat.isNew = dict["isNew"]as? Bool
             
