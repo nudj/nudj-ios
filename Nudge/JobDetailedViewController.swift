@@ -14,6 +14,7 @@ import Alamofire
 class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAlertViewDelegate{
     
     var jobID:String?
+    var userId:Int?
     
     @IBOutlet var jobTitleText: UILabel!
     @IBOutlet var authorName: UILabel!
@@ -37,6 +38,8 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        var profileTap = UITapGestureRecognizer(target:self, action:"goToProfile")
+        self.authorName.addGestureRecognizer(profileTap)
 
     }
     
@@ -73,6 +76,12 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
             
         }
 
+    }
+    
+    func goToProfile(){
+        
+        self.performSegueWithIdentifier("GoToProfile", sender: self)
+        
     }
     
     
@@ -122,6 +131,7 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
         jobTitleText.minimumScaleFactor = 0.2
         
         authorName.text = content["user"]["name"].stringValue
+        self.userId = content["user"]["id"].intValue
         
         descriptionText.scrollEnabled = false
         descriptionText.text = content["description"].stringValue
@@ -200,6 +210,13 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
             askView.jobId = self.jobID!.toInt()
             askView.isNudjRequest = true
         }
+        
+        if let profileView = segue.destinationViewController as? GenericProfileViewController {
+            profileView.userId = self.userId!
+            profileView.type = .Public
+            profileView.preloadedName = authorName.text
+        }
+        
     }
     
     @IBAction func interested(sender: UIButton) {

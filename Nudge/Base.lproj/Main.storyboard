@@ -721,7 +721,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAb-uZ-5ne">
+                            <label opaque="NO" contentMode="left" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAb-uZ-5ne">
                                 <rect key="frame" x="75" y="108" width="284" height="14"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                 <color key="textColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -915,11 +915,12 @@
                         <outlet property="salaryText" destination="ftp-qH-abp" id="un8-7d-Ar7"/>
                         <outlet property="skills" destination="KXz-hf-wcR" id="gTB-Vc-6B0"/>
                         <outlet property="spaceBetween" destination="GxX-bp-IOJ" id="4Nc-6e-oSe"/>
+                        <segue destination="u6h-lK-ytT" kind="show" identifier="GoToProfile" id="IbB-SC-7jb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l1b-Cw-UAv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-948.5" y="2152.5"/>
+            <point key="canvasLocation" x="-1043.5" y="2151.5"/>
         </scene>
         <!--Terms and Conditions-->
         <scene sceneID="NjF-g7-JHD">
@@ -956,7 +957,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A0E-zk-VSS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-493.5" y="2152.5"/>
+            <point key="canvasLocation" x="-509" y="2158"/>
         </scene>
         <!--Send FeedBack-->
         <scene sceneID="khT-Ah-3Ew">
@@ -2418,14 +2419,14 @@
         <image name="skills-active" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="l7l-cF-kYn"/>
-        <segue reference="H2O-Du-Dkg"/>
         <segue reference="1RO-e0-4AP"/>
-        <segue reference="BCe-Pt-bFX"/>
-        <segue reference="oHM-Sk-no8"/>
+        <segue reference="IbB-SC-7jb"/>
         <segue reference="6SR-Rm-L27"/>
+        <segue reference="oHM-Sk-no8"/>
+        <segue reference="BCe-Pt-bFX"/>
         <segue reference="eNW-U2-njr"/>
         <segue reference="yTk-h8-BPW"/>
+        <segue reference="l7l-cF-kYn"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
 </document>
