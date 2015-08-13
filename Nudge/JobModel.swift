@@ -55,11 +55,11 @@ class JobModel {
             "skills": self.skills
         ]
         
-        
         API.sharedInstance.put("jobs/\(jobID)", params: params, closure: { result in
-             closure(true)
+            println("jobs success -> /\(result)")
+            closure(true)
         }, errorHandler: { error in
-             closure(false)
+            closure(false)
         })
          
     }

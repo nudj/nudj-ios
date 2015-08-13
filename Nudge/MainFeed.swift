@@ -64,8 +64,6 @@ class MainFeed: BaseController, DataProviderProtocol ,UISearchBarDelegate {
         let params = "job.title,job.salary,job.bonus,job.user,job.location,job.company,user.name,user.image&sizes=user.profile"
 
         let url = "jobs/\(path)?params=\(params)&page=" + String(page) + "&limit=" + String(size)
-        
-        println("request \(url)")
 
         self.apiRequest(.GET, path: url, closure: listener)
     }

@@ -303,7 +303,8 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
             
             var alertview  = UIAlertView(title: "Invite", message: "", delegate: self, cancelButtonTitle: "OK")
             
-            API.sharedInstance.post("contacts/\(lastSelectedContact?.id)/invite", params: nil, closure: { result in
+            
+            API.sharedInstance.post("contacts/\(lastSelectedContact!.id)/invite", params: nil, closure: { result in
             
                 if (result["status"].boolValue) {
                     alertview.title = "Invite Successful"
