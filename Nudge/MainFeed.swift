@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 
 @IBDesignable
-class MainFeed: BaseController, DataProviderProtocol,UISearchBarDelegate {
+class MainFeed: BaseController, DataProviderProtocol ,UISearchBarDelegate {
 
     @IBOutlet weak var table: DataTable!
 
@@ -18,7 +18,7 @@ class MainFeed: BaseController, DataProviderProtocol,UISearchBarDelegate {
     var searchBar =  UISearchBar()
     var blackBackground = UIView()
     var searchTerm:String?
-  
+    var noContentImage = NoContentPlaceHolder()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +44,8 @@ class MainFeed: BaseController, DataProviderProtocol,UISearchBarDelegate {
         self.searchBar.frame = CGRectMake(0, 0, self.view.frame.width, 70)
         self.view.addSubview(self.searchBar)
         
-    
+        self.view.addSubview(self.noContentImage.createNoContentPlaceHolder(self.view, imageTitle: "no_jobs"))
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -59,11 +60,28 @@ class MainFeed: BaseController, DataProviderProtocol,UISearchBarDelegate {
     func requestData(page: Int, size: Int, listener: (JSON) -> ()) {
 
         let path = searchTerm == nil ? "available" : "search/\(searchTerm!)"
+        self.noContentImage.image = searchTerm == nil ? UIImage(named:"no_jobs") : UIImage(named:"no_search_results")
         let params = "job.title,job.salary,job.bonus,job.user,job.location,job.company,user.name,user.image&sizes=user.profile"
 
         let url = "jobs/\(path)?params=\(params)&page=" + String(page) + "&limit=" + String(size)
+        
+        println("request \(url)")
 
         self.apiRequest(.GET, path: url, closure: listener)
+    }
+    
+    func didfinishLoading(count:Int) {
+        
+        
+        if(count == 0){
+            
+            self.noContentImage.showPlaceholder()
+            
+        }else{
+            
+            self.noContentImage.hidePlaceholder()
+        }
+        
     }
 
     func goToJob(job:JSON) {
@@ -90,6 +108,9 @@ class MainFeed: BaseController, DataProviderProtocol,UISearchBarDelegate {
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         
         self.stopSearcAction()
+        searchBar.text = ""
+        self.table.loadData()
+       
         
     }
     
@@ -108,6 +129,6 @@ class MainFeed: BaseController, DataProviderProtocol,UISearchBarDelegate {
         self.blackBackground.hidden = true
         self.searchBar.resignFirstResponder()
         searchTerm = nil
-
+        
     }
 }

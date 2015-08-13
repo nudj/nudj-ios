@@ -121,7 +121,9 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
                         self.view.addSubview(self.popup!)
                         
                     }else{
-                        println ("failed to update")
+                        
+                        var alert = UIAlertView(title: "Failed to update", message: "Oops, something went wrong. Could not update the job details.", delegate: nil, cancelButtonTitle: "OK")
+                        alert.show()
                     }
                 })
                 
@@ -341,8 +343,11 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
     func dismissPopUp() {
         
         popup!.removeFromSuperview();
-
-        performSegueWithIdentifier("showAskForReferal", sender: self)
+        if(self.navigationItem.rightBarButtonItem?.title == "Update"){
+            self.navigationController?.popViewControllerAnimated(true)
+        }else{
+            performSegueWithIdentifier("showAskForReferal", sender: self)
+        }
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

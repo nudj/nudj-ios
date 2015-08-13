@@ -11,7 +11,7 @@ import Foundation
 import SwiftyJSON
 import Alamofire
 
-class JobDetailedViewController: BaseController, CreatePopupViewDelegate {
+class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAlertViewDelegate{
     
     var jobID:String?
     
@@ -37,10 +37,7 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        self.requestData()
-        
-        
+
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -52,6 +49,7 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate {
     override func viewWillAppear(animated: Bool) {
         
         self.tabBarController?.tabBar.hidden = true
+        self.requestData()
     }
     
     
@@ -210,22 +208,9 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate {
         if(sender.titleLabel?.text == "INTERESTED"){
             //Go to INTERESTED
             
-            let params:[String:AnyObject] = ["job_id": "\(self.jobID!)"]
+            var alertview = UIAlertView(title: "Are you sure?", message: "This will send a notification to the Hirer that you are interested in this position", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Send")
+            alertview.show()
             
-            API.sharedInstance.put("nudge/apply", params: params, closure: { json in
-                
-                println("Job interested")
-                self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true);
-                self.popup!.bodyText("The hirer has been notified");
-                self.popup!.delegate = self;
-                self.view.addSubview(self.popup!);
-               
-                
-                }) { error in
-                    
-                    println("Error -> \(error)")
-            }
-
             
         }else{
             
@@ -239,6 +224,36 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate {
             
         }
         
+    }
+    
+    //MARK :Invite user
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+    
+        if buttonIndex == 1 {
+            
+            self.postRequest()
+            
+        }
+    }
+    
+    func postRequest(){
+        
+        let params:[String:AnyObject] = ["job_id": "\(self.jobID!)"]
+        
+        API.sharedInstance.put("nudge/apply", params: params, closure: { json in
+            
+            println("Job interested")
+            self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true);
+            self.popup!.bodyText("The hirer has been notified");
+            self.popup!.delegate = self;
+            self.view.addSubview(self.popup!);
+            
+            
+            }) { error in
+                
+                println("Error -> \(error)")
+        }
+
     }
     
     func dismissPopUp() {

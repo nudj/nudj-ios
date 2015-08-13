@@ -16,7 +16,7 @@ class SavedPostedJobs: BaseController, DataProviderProtocol {
     
     var requestParams:String?
     var selectedJobData:JSON? = nil
-
+    var noContentImage = NoContentPlaceHolder()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +32,7 @@ class SavedPostedJobs: BaseController, DataProviderProtocol {
         self.table.tableFooterView = UIView(frame: CGRectZero);
         
         self.table.loadData()
+        self.view.addSubview(self.noContentImage.createNoContentPlaceHolder(self.view, imageTitle: "no_jobs"))
 
     }
 
@@ -58,6 +59,20 @@ class SavedPostedJobs: BaseController, DataProviderProtocol {
         
         println("jobs request \(url)")
         self.apiRequest(.GET, path: url, closure: listener)
+    }
+    
+    func didfinishLoading(count:Int) {
+        
+        
+        if(count == 0){
+            
+            self.noContentImage.showPlaceholder()
+            
+        }else{
+            
+            self.noContentImage.hidePlaceholder()
+        }
+        
     }
     
     func goToJob(job:JSON) {

@@ -48,7 +48,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     func requestData() {
 
         
-        self.apiRequest(.GET, path: "chat?params=chat.job,job.liked,chat.participants,chat.created,job.title,job.company,job.like,user.image,user.name,user.contact", closure: { response in
+        self.apiRequest(.GET, path: "chat?params=chat.job,job.liked,chat.participants,chat.created,job.title,job.company,job.like,user.image,user.name,user.contact&limit=100", closure: { response in
 
             self.data.removeAll(keepCapacity: false)
 

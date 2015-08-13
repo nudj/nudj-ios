@@ -18,7 +18,7 @@ enum UserFavouriteText:String {
 class GenericProfileViewController: BaseController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
 
     let msgTitle = "Choose Image Source"
-
+    var hiddenFieldsCount = 0
     @IBOutlet var topRightButton: UIBarButtonItem!
     
     @IBOutlet weak var statusButton: StatusButton! {
@@ -103,6 +103,7 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
     var userId:Int = 0
     var user:UserModel?
 
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -199,7 +200,8 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
 
     // User Data Loding
 
-    func showUserData() {
+    func showUserData(){
+        
         UserModel.getById(userId, fields: ["user.status", "user.name", "user.image", "user.skills", "user.about", "user.company", "user.address", "user.position", "user.email", "user.favourite"], closure: { response in
 
             let user = UserModel()
@@ -243,7 +245,11 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
             }
 
             self.updateAssets()
+        }, errorHandler: { error in
+        
+            self.navigationController?.popViewControllerAnimated(true)
         })
+        
     }
 
     func makeThingsWhite() {
@@ -260,22 +266,33 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
     func hideEmptyViews() {
         if (skills != nil && (skills.tokens() == nil || skills.tokens()!.count <= 0)) {
             hideView(skills.superview!)
+            hiddenFieldsCount += 1
         }
 
         if (aboutMeField != nil && count(aboutMeField.text) <= 0) {
             hideView(aboutMeField.superview!)
+            hiddenFieldsCount += 1
         }
 
         if (company != nil && count(company.text) <= 0) {
             hideView(company.superview!)
+            hiddenFieldsCount += 1
         }
 
         if (location != nil && count(location.text) <= 0) {
             hideView(location.superview!)
+            hiddenFieldsCount += 1
         }
 
         if (position != nil && count(position.text) <= 0) {
             hideView(position.superview!)
+            hiddenFieldsCount += 1
+        }
+        
+        if(hiddenFieldsCount == 5){
+            var noContentImage = NoContentPlaceHolder()
+            self.view.addSubview(noContentImage.createNoContentPlaceHolder(self.view, imageTitle: "no_profile_content"))
+            noContentImage.showPlaceholder()
         }
     }
 

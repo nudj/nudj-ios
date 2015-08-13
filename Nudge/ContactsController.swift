@@ -301,15 +301,27 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
             
         }else{
             
+            var alertview  = UIAlertView(title: "Invite", message: "", delegate: self, cancelButtonTitle: "OK")
+            
             API.sharedInstance.post("contacts/\(lastSelectedContact?.id)/invite", params: nil, closure: { result in
+            
                 if (result["status"].boolValue) {
-                    self.alert.message = "Contact has been invited";
+                    alertview.title = "Invite Successful"
+                    alertview.message = "Contact has been invited";
                 } else {
-                    self.alert.message = "There was a problem inviting your friend";
+                    alertview.title = "Invite Failed"
+                    alertview.message = "There was a problem inviting your friend";
                 }
 
-                self.alert.show();
+                
+            },errorHandler: { error in
+                
+                    alertview.title = "Invite Failed"
+                    alertview.message = "There was a problem inviting your friend";
+                    
             })
+            
+            alertview.show();
             
         }
     }

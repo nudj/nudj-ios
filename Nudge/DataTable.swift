@@ -26,7 +26,7 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
     var data:[JSON] = []
 
     var selectedClosure:((JSON)->())? = nil
-    var noContentImage = NoContentPlaceHolder()
+
     
 
     required init(coder aDecoder: NSCoder) {
@@ -41,11 +41,8 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.addSubview(refreshControl)
-
         self.autoresizingMask = UIViewAutoresizing.FlexibleBottomMargin | UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleHeight
-        var view =  UIView(frame:CGRectMake(0,0,self.frame.size.width,self.frame.size.height))
-        view.addSubview(self.noContentImage.createNoContentPlaceHolder(view, imageTitle: "no_jobs"))
-        self.tableFooterView = view
+        self.tableFooterView = UIView(frame: CGRectZero)
     }
 
     func asignCellNib(name: String) {
@@ -80,15 +77,7 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
 
             self.setLoadingStatus(false)
             
-            if(self.data.count == 0){
-                
-                self.noContentImage.showPlaceholder()
-                
-            }else{
-                
-                self.noContentImage.hidePlaceholder()
-            }
-            
+            self.dataProvider!.didfinishLoading(self.data.count)
             self.reloadData()
         })
     }
