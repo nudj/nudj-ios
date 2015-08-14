@@ -212,9 +212,15 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
         }
         
         if let profileView = segue.destinationViewController as? GenericProfileViewController {
-            profileView.userId = self.userId!
-            profileView.type = .Public
-            profileView.preloadedName = authorName.text
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
+            
+            if(self.userId! == appDelegate.user!.id){
+                 profileView.type = .Own
+            }else{
+                profileView.userId = self.userId!
+                profileView.type = .Public
+                profileView.preloadedName = authorName.text
+            }
         }
         
     }

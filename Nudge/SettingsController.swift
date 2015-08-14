@@ -28,9 +28,9 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
             SettingsItem(name: "My Status", action: "showStatusPicker"),
             //SettingsItem(name: "Notifications", action: ""),
             SettingsItem(name: "Saved Jobs", action: "goToSavedJobs"),
-            SettingsItem(name: "Posted Jobs", action: "goToPostedJobs")
+            SettingsItem(name: "Posted Jobs", action: "goToPostedJobs"),
             //SettingsItem(name: "My Account", action: "")
-            //SettingsItem(name: "Archived Chats", action: "")
+            SettingsItem(name: "Archived Chats", action: "goToChats")
         ],
         [
             SettingsItem(name: "LinkedIn", action: "linkedin"),

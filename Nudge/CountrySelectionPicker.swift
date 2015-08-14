@@ -92,9 +92,9 @@ class CountrySelectionPicker: UIView, UIPickerViewDataSource, UIPickerViewDelega
         
         var text = data[row].valueForKey("name") as! String
         var code = data[row].valueForKey("dial_code") as! String
-
+        
         return "\(text) (\(code))"
-
+        
     }
     
     func showAction(){
@@ -115,30 +115,24 @@ class CountrySelectionPicker: UIView, UIPickerViewDataSource, UIPickerViewDelega
     
     func requestCountries() {
         
-      let url = NSURL(string: "http://api.nudj.co/countries")
-      let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
+        Alamofire.request(Alamofire.Method.GET, "http://api.nudj.co/countries").responseJSON{
+            (request, response, data, error) in
+            var json = JSON(data!)
             
-                let json = JSON(data: data)
-            
-                if (json.null == nil) {
-                    for (id, obj) in json {
-                    
-                    let dial_code = "+" + obj["code"].stringValue
-                    let name = obj["name"].stringValue
-                    let code = obj["iso2"].stringValue
-                    self.data.append(["dial_code":dial_code,"name":name,"code":code])
-                    
-                    }
-                    
-                    println(self.data)
-                    self.picker!.reloadAllComponents()
-                }
+            for (id, obj) in json {
+                
+                let dial_code = "+" + obj["code"].stringValue
+                let name = obj["name"].stringValue
+                let code = obj["iso2"].stringValue
+                self.data.append(["dial_code":dial_code,"name":name,"code":code])
+                
             }
-        
-        
-        task.resume()
-
-        
+            
+            self.picker!.reloadAllComponents()
+            
+        }
     }
+    
+    
     
 }

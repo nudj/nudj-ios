@@ -48,7 +48,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     func requestData() {
 
         
-        self.apiRequest(.GET, path: "chat?params=chat.job,job.liked,chat.participants,chat.created,job.title,job.company,job.like,user.image,user.name,user.contact&limit=100", closure: { response in
+        self.apiRequest(.GET, path: "chat?params=chat.job,job.liked,chat.participants,chat.created,job.title,job.company,job.like,user.image,user.name,user.contact,contact.alias&limit=100", closure: { response in
 
             self.data.removeAll(keepCapacity: false)
 
@@ -74,6 +74,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
                 self.noContentImage.hidePlaceholder()
             }
         })
+        
     }
     
     // MARK: -- UITableViewDataSource --
@@ -121,6 +122,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         chatView.participantsID = chat.participantsID
         chatView.chatTitle = chat.title
         chatView.jobID = chat.jobID
+        chatView.isLiked = chat.jobLike
         chatView.otherUserImageUrl = chat.image
             
         self.navigationController?.pushViewController(chatView, animated: true)

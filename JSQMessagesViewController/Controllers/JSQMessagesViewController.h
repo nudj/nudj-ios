@@ -49,6 +49,9 @@
 @property BOOL filterOpened;
 @property BOOL dontUpdateButton;
 
+@property (strong, nonatomic) IBOutlet UIButton *favourite;
+@property (strong, nonatomic) IBOutlet UIButton *mute;
+
 - (IBAction)dropDownAction:(id)sender;
 - (void)labelsAction:(id)sender;
 - (void)completeRequest:(NSString *)url withType:(NSString*)type;

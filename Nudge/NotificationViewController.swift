@@ -33,6 +33,9 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
 
         self.refreshControl?.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
         self.view.addSubview(self.noContentImage.createNoContentPlaceHolder(self.view, imageTitle: "no_notifications"))
+        
+        //Reupdate frame
+        self.noContentImage.frame = CGRectMake((self.view.frame.size.width/2) - 200/2 , ((view.frame.size.height/2) - 149/2) - 64, 200,149)
 
     }
     
@@ -283,7 +286,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
             
         }else{
             
-            var params = ["job_id":chatData.jobID!,"user_id":chatData.senderId!,"message":"Hi","notification_id":chatData.notificationId!]
+            var params = ["job_id":chatData.jobID!,"user_id":chatData.senderId!,"message":"","notification_id":chatData.notificationId!]
             println("params ->\(params)")
             API.sharedInstance.put("nudge/chat", params:params, closure: { json in
                 println("success \(json)")

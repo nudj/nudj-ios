@@ -82,6 +82,40 @@ class ChatRoomModel: NSObject{
         return messageObject
     }
     
+    func deleteStoredChats(){
+
+        if(self.xmppRoomStorage == nil){
+            
+            return
+        }
+        
+        var moc = self.xmppRoomStorage!.mainThreadManagedObjectContext;
+        var entityDescription = NSEntityDescription.entityForName("XMPPRoomMessageCoreDataStorageObject", inManagedObjectContext: moc);
+        var request = NSFetchRequest();
+        request.entity = entityDescription;
+        var error: NSError?;
+        
+        var messages :NSArray = moc.executeFetchRequest(request, error: &error)!;
+        if(messages.count == 0){
+            
+            return
+        }
+        
+        var message:NSManagedObject?
+        
+        // Retrieve all the messages for the current conversation
+        for message in messages {
+        
+            moc.deleteObject(message as! NSManagedObject)
+    
+        }
+        
+        var saveError: NSError?
+        moc.save(&saveError)
+
+        print("core storage deleted for id:\(roomID!)")
+    }
+    
     
     func teminateSession(){
         self.xmppRoom!.leaveRoom()

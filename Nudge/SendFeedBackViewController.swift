@@ -47,6 +47,7 @@ class SendFeedBackViewController: UIViewController,UITextViewDelegate {
         if(!self.feedBackTextView.text.isEmpty){
             API.sharedInstance.post("feedback", params: ["feedback":self.feedBackTextView.text], closure: { json in
                 
+                println(json)
                 self.navigationController?.popViewControllerAnimated(true)
                 
             }, errorHandler: { error in

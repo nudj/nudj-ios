@@ -421,7 +421,7 @@
                                             <constraint firstItem="5Jn-gO-n85" firstAttribute="top" secondItem="sEC-9L-VGO" secondAttribute="top" constant="29" id="h9w-D5-Qap"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r4K-kL-nVh" userLabel="ReferalAmount">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r4K-kL-nVh" userLabel="ReferalAmount">
                                         <rect key="frame" x="0.0" y="431" width="372" height="49"/>
                                         <subviews>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="pound" highlightedImage="pound-active" translatesAutoresizingMaskIntoConstraints="NO" id="yrl-U5-KWm">
@@ -431,7 +431,7 @@
                                                     <constraint firstAttribute="height" constant="25" id="SOI-78-yy0"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add Amount*" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jbw-X4-z9y">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add Amount*" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jbw-X4-z9y">
                                                 <rect key="frame" x="49" y="10" width="315" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="ZgJ-Sx-4RX"/>
@@ -453,14 +453,27 @@
                                             <constraint firstItem="Jbw-X4-z9y" firstAttribute="top" secondItem="r4K-kL-nVh" secondAttribute="top" constant="10" id="n1Y-bg-xNT"/>
                                         </constraints>
                                     </view>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2QY-rP-Ec5">
+                                        <rect key="frame" x="0.0" y="510" width="375" height="38"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
+                                        <state key="normal" title="DELETE THIS JOB">
+                                            <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="deleteAction:" destination="FfD-3r-a1P" eventType="touchUpInside" id="nAP-m9-zq6"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="centerX" secondItem="uwf-eo-scB" secondAttribute="centerX" id="18o-CW-OEc"/>
                                     <constraint firstItem="sEC-9L-VGO" firstAttribute="top" secondItem="VdO-fa-Ztk" secondAttribute="bottom" id="2jA-NG-B8H"/>
+                                    <constraint firstAttribute="trailing" secondItem="2QY-rP-Ec5" secondAttribute="trailing" id="5wq-As-2x6"/>
                                     <constraint firstAttribute="trailing" secondItem="yt7-dt-udH" secondAttribute="trailing" id="82G-jw-YE1"/>
                                     <constraint firstItem="c9d-si-gTn" firstAttribute="top" secondItem="q8T-on-1VA" secondAttribute="bottom" id="8JD-FB-l7Q"/>
                                     <constraint firstItem="eQp-ZT-hYY" firstAttribute="top" secondItem="yt7-dt-udH" secondAttribute="bottom" id="8mV-Nb-mVk"/>
                                     <constraint firstItem="vhg-Cn-ClD" firstAttribute="top" secondItem="uwf-eo-scB" secondAttribute="bottom" id="B05-6x-u1X"/>
+                                    <constraint firstItem="2QY-rP-Ec5" firstAttribute="top" secondItem="r4K-kL-nVh" secondAttribute="bottom" constant="30" id="CRZ-VV-c7i"/>
                                     <constraint firstAttribute="trailing" secondItem="vhg-Cn-ClD" secondAttribute="trailing" id="DFH-SR-LvW"/>
                                     <constraint firstItem="uwf-eo-scB" firstAttribute="leading" secondItem="WWj-cz-HiY" secondAttribute="leading" id="FX4-zy-0px"/>
                                     <constraint firstAttribute="trailing" secondItem="sEC-9L-VGO" secondAttribute="trailing" id="H3K-BQ-zoh"/>
@@ -471,6 +484,7 @@
                                     <constraint firstItem="vhg-Cn-ClD" firstAttribute="leading" secondItem="WWj-cz-HiY" secondAttribute="leading" id="K3P-eC-vC9"/>
                                     <constraint firstItem="n9y-tt-a8r" firstAttribute="top" secondItem="eQp-ZT-hYY" secondAttribute="bottom" id="KrG-G1-dnV"/>
                                     <constraint firstAttribute="trailing" secondItem="VdO-fa-Ztk" secondAttribute="trailing" id="NOQ-TW-afD"/>
+                                    <constraint firstAttribute="bottom" secondItem="2QY-rP-Ec5" secondAttribute="bottom" constant="10" id="OSx-6p-uHu"/>
                                     <constraint firstItem="opr-g1-88K" firstAttribute="top" secondItem="WWj-cz-HiY" secondAttribute="top" id="Qg1-MY-1hD"/>
                                     <constraint firstItem="r4K-kL-nVh" firstAttribute="leading" secondItem="WWj-cz-HiY" secondAttribute="leading" id="RLf-6D-qXQ"/>
                                     <constraint firstItem="92e-5W-zpI" firstAttribute="top" secondItem="vhg-Cn-ClD" secondAttribute="bottom" id="SYQ-yj-AYJ"/>
@@ -489,6 +503,7 @@
                                     <constraint firstAttribute="trailing" secondItem="92e-5W-zpI" secondAttribute="trailing" id="ixd-Tq-5WZ"/>
                                     <constraint firstAttribute="trailing" secondItem="q8T-on-1VA" secondAttribute="trailing" id="j6D-cW-tte"/>
                                     <constraint firstItem="B84-DL-Wmh" firstAttribute="leading" secondItem="WWj-cz-HiY" secondAttribute="leading" id="l8l-JY-pC0"/>
+                                    <constraint firstItem="2QY-rP-Ec5" firstAttribute="leading" secondItem="WWj-cz-HiY" secondAttribute="leading" id="l9I-b3-QiU"/>
                                     <constraint firstAttribute="trailing" secondItem="opr-g1-88K" secondAttribute="trailing" id="lUS-9F-3i3"/>
                                     <constraint firstItem="KC7-Ba-d5b" firstAttribute="leading" secondItem="WWj-cz-HiY" secondAttribute="leading" id="mnt-BR-fib"/>
                                     <constraint firstAttribute="trailing" secondItem="KC7-Ba-d5b" secondAttribute="trailing" id="n1c-bu-H1Y"/>
@@ -503,6 +518,12 @@
                                     <constraint firstAttribute="trailing" secondItem="c9d-si-gTn" secondAttribute="trailing" id="wD9-cW-rn6"/>
                                     <constraint firstItem="JhR-es-rEd" firstAttribute="leading" secondItem="WWj-cz-HiY" secondAttribute="leading" id="xWl-CA-dsK"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="T2R-T0-yMp"/>
+                                        <exclude reference="OSx-6p-uHu"/>
+                                    </mask>
+                                </variation>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -524,6 +545,7 @@
                     <connections>
                         <outlet property="activeButton" destination="HL6-yJ-bff" id="ZHD-Rm-DVg"/>
                         <outlet property="bonus" destination="Jbw-X4-z9y" id="rka-vd-bdz"/>
+                        <outlet property="deleteBtn" destination="2QY-rP-Ec5" id="i0V-zm-mnf"/>
                         <outlet property="employer" destination="o6K-Fg-nsH" id="st8-fc-DU5"/>
                         <outlet property="employerIcon" destination="bsb-fG-GhW" id="gVw-kS-idz"/>
                         <outlet property="jobDescription" destination="veO-5z-IXW" id="h5O-3H-QUK"/>
@@ -1141,6 +1163,7 @@
                         <segue destination="HrJ-cc-tGk" kind="show" identifier="goToFeedBack" id="90M-dj-0pn"/>
                         <segue destination="ALO-Pj-XQZ" kind="show" identifier="goToSavedJobs" id="oHM-Sk-no8"/>
                         <segue destination="ALO-Pj-XQZ" kind="show" identifier="goToPostedJobs" id="oVM-eF-ddZ"/>
+                        <segue destination="qwH-I4-nQ1" kind="show" identifier="goToChats" id="gvE-qy-aNj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KCB-2h-Tcz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2419,14 +2442,15 @@
         <image name="skills-active" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1RO-e0-4AP"/>
-        <segue reference="IbB-SC-7jb"/>
-        <segue reference="6SR-Rm-L27"/>
-        <segue reference="oHM-Sk-no8"/>
         <segue reference="BCe-Pt-bFX"/>
-        <segue reference="eNW-U2-njr"/>
-        <segue reference="yTk-h8-BPW"/>
-        <segue reference="l7l-cF-kYn"/>
+        <segue reference="m0n-l7-DaR"/>
+        <segue reference="H51-O9-Snf"/>
+        <segue reference="zyP-mc-EMC"/>
+        <segue reference="oHM-Sk-no8"/>
+        <segue reference="gvE-qy-aNj"/>
+        <segue reference="Dea-FG-uEg"/>
+        <segue reference="6SR-Rm-L27"/>
+        <segue reference="E5T-Ai-Mhe"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
 </document>

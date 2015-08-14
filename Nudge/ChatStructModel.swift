@@ -23,6 +23,7 @@ class ChatStructModel: NSObject {
     var participantName:String?
     var participantsID:String?
     var jobID:String?
+    var jobLike:Bool?
     var job:JSON?
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -35,7 +36,9 @@ class ChatStructModel: NSObject {
         chat.chatId = json["id"].stringValue
         chat.title = json["job"]["title"].stringValue
         chat.jobID = json["job"]["id"].stringValue
+        chat.jobLike = json["job"]["liked"].boolValue
         chat.job = json["job"]
+        
         
         //set default time to when chatroom was created
         //convert timestamp to NSdate
@@ -63,7 +66,7 @@ class ChatStructModel: NSObject {
         }
         
         let user = json["participants"][0]["id"].intValue == appDelegate.user!.id ? json["participants"][1] : json["participants"][0]
-        chat.participantName =  user["name"].stringValue
+        chat.participantName =  user["name"].stringValue.isEmpty ? user["contact"]["alias"].stringValue : user["name"].stringValue
         chat.participantsID = user["id"].stringValue
         chat.image = user["image"]["profile"].stringValue
         

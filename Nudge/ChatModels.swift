@@ -322,18 +322,18 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     }
 
     func xmppRoom(sender: XMPPRoom!, didReceiveMessage message: XMPPMessage!, fromOccupant occupantJID: XMPPJID!) {
-//Typing indicator
-//        if(message.hasComposingChatState() == true){
-//            
-//            println("should show typing ")
-//            
-//        }
-//        
-//        if(message.hasPausedChatState()){
-//            
-//            println("should stop typing ")
-//            
-//        }
+    //Typing indicator
+    //        if(message.hasComposingChatState() == true){
+    //            
+    //            println("should show typing ")
+    //            
+    //        }
+    //        
+    //        if(message.hasPausedChatState()){
+    //            
+    //            println("should stop typing ")
+    //            
+    //        }
         
         
         if message.body() != nil {
@@ -397,7 +397,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             
             chatRoom.teminateSession()
             appGlobalDelegate.chatInst!.listOfActiveChatRooms.removeValueForKey(roomID[0])
-            println("removed")
+            println("removed from list")
             
         }
     

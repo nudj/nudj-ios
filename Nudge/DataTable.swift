@@ -27,8 +27,6 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
 
     var selectedClosure:((JSON)->())? = nil
 
-    
-
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 

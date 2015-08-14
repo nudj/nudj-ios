@@ -240,44 +240,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
             println("Could not find active user \(error), \(error!.userInfo)")
         }
         
-        /*NSLog(@"LogOut in progress");
-        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-        [user setObject:nil forKey:@"token"];
-        [user setObject:nil forKey:@"userID"];
-        [user setObject:nil forKey:@"userJabberID"];
-        [user setObject:nil forKey:@"userJabberPassword"];
-        [user synchronize];
         
-        [shareIstance deleteUsersData];
-        [shareIstance disconnect:YES];*/
-        //delete chat core storage
-        /*** DELETE ALL ENTRY OF XMPPMessageArchiving_Message_CoreDataObject IN CORE DATA **/
-        
-        /*NSManagedObjectContext *moc = [shareIstance.xmppMessageArchivingStorage mainThreadManagedObjectContext];
-        NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"XMPPMessageArchiving_Message_CoreDataObject"
-        inManagedObjectContext:moc];
-        
-        NSFetchRequest *request = [[NSFetchRequest alloc]init];
-        [request setEntity:entityDescription];
-        NSError *error;
-        
-        NSArray *messages = [moc executeFetchRequest:request error:&error];
-        
-        for (NSManagedObject * car in messages) {
-            [moc deleteObject:car];
-        }
-        NSError *saveError = nil;
-        [moc save:&saveError];*/
-        
-        /*** END DELETE OF CORE DATA FUNCTION ***/
     }
 
     func logout() {
         self.deleteUserData()
+        self.deleteChatData()
         API.sharedInstance.token = nil
         if api != nil {
             api?.token = nil
         }
+        
+    }
+    
+    func deleteChatData(){
+        
+        var chatRoom = self.chatInst!.listOfActiveChatRooms
+        for (id, obj) in  chatRoom {
+            if let chat = chatRoom[id]{
+                
+                chat.teminateSession()
+                chatRoom.removeValueForKey(id)
+                println("removed from list")
+                chat.deleteStoredChats()
+                self.deleteNSuserDefaultContent(id)
+            
+            }
+        }
+        
         
     }
 
@@ -504,6 +494,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         }
         
         return 2
+    }
+    
+    func deleteNSuserDefaultContent(id:String){
+        
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let outData = defaults.dataForKey(id) {
+            
+            defaults.setObject(nil, forKey:id)
+            defaults.synchronize()
+            
+            println("Deleted NSuserDefaultdata id:\(id)")
+        
+        }
+    
     }
 }
 

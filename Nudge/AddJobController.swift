@@ -49,6 +49,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
     @IBOutlet weak var activeButton: UIButton!
     @IBOutlet weak var bonus: UITextField!
 
+    @IBOutlet weak var deleteBtn: UIButton!
 
     override func viewDidLoad() {
 
@@ -62,6 +63,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
             
             self.navigationItem.rightBarButtonItem?.title = "Update"
             self.title = "Edit Job"
+            self.deleteBtn.hidden = false
             
                 API.sharedInstance.get("jobs/\(self.jobId!)?params=job.title,job.company,job.liked,job.salary,job.active,job.description,job.skills,job.bonus,job.user,job.location,user.image,user.name,user.contact", params: nil, closure: { json in
                     
@@ -316,8 +318,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
         var origin = view.superview!.frame.origin
 
         // TODO: Refactor this!!!!
-        let maxOffset = scrollView.contentSize.height - self.openSpace - 100 //Was 100
-
+        let maxOffset = scrollView.contentSize.height - self.openSpace - 100
         if (origin.y > maxOffset) {
             origin.y = maxOffset
         }
@@ -356,5 +357,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
             refView.isNudjRequest = false
             refView.jobTitle = self.jobTitle.text
         }
+    }
+    @IBAction func deleteAction(sender: UIButton) {
     }
 }

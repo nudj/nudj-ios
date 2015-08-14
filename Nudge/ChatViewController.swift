@@ -9,13 +9,13 @@
 import UIKit
 import Foundation
 
-class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
+class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlertViewDelegate{
     
     var outgoingBubbleImageData :JSQMessagesBubbleImage?;
     var incomingBubbleImageData :JSQMessagesBubbleImage?;
     var templateImage :JSQMessagesAvatarImage?;
     var messages = NSMutableArray();
-    var selectedIndex: Int?
+    var isLiked:Bool?
     
     var otherUserImage :JSQMessagesAvatarImage?
     var myImage :JSQMessagesAvatarImage?
@@ -68,6 +68,9 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
         self.myImage = self.setupAvatarImage(self.appGlobalDelegate.user?.image["profile"])
         self.otherUserImage = self.setupAvatarImage(self.otherUserImageUrl)
         
+        
+        self.favourite.selected = isLiked != nil ? isLiked! : false
+       
     }
 
     //Custom Image
@@ -463,6 +466,10 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
             // Archive Conversation
             selectedButton.selected = !selectedButton.selected
             self.completeRequest("chat/"+self.chatID+"/archive", withType: "PUT")
+            
+            var alert = UIAlertView(title: "Chat Archived", message: "Archived chats are stored in Settings.", delegate: self, cancelButtonTitle: "OK")
+            alert.show()
+            
         
         break;
         default:
@@ -520,6 +527,12 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate{
     
     func isRecievingMessageIndication(user: String) {
         
+        
+    }
+    
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        
+        self.navigationController?.popViewControllerAnimated(true)
         
     }
     
