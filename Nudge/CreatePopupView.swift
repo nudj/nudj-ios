@@ -65,7 +65,21 @@ class CreatePopupView: UIView {
             self.whitepopupbox!.addSubview(self.contentImage!)
             
         }
+    
         self.addSubview(self.whitepopupbox!);
+        
+        UIView.animateWithDuration(30, delay: 30, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+            //self.blurBg.alpha = 1
+            
+            println("doning")
+            }, completion: { value in
+                
+                if(value == true){
+                println("done")
+                }
+                //self.hidden = true
+                //self.dismissPopup()
+        })
         
 
     }
@@ -77,6 +91,10 @@ class CreatePopupView: UIView {
     func bodyText(s:String){
         
         self.labl!.text = s;
+        self.labl!.numberOfLines = 0
+        self.labl!.adjustsFontSizeToFitWidth = true
+        self.labl!.minimumScaleFactor = 0.2
+
     }
     
     func dismissPopup(){

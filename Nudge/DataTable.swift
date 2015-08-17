@@ -24,6 +24,7 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
 
     var dataProvider:DataProviderProtocol?
     var data:[JSON] = []
+    var canEdit = false
 
     var selectedClosure:((JSON)->())? = nil
 
@@ -148,6 +149,35 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
             self.loadData(page: self.page)
         }
     }
-
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        
+        return canEdit;
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+            //add code here for when you hit delete
+            println("will delete")
+            self.deletejob(indexPath.row)
+        }
+        
+    }
+    
+    
+    func deletejob(row:Int){
+        
+        self.dataProvider!.deleteData(self.data[row]["id"].intValue) { json in
+            
+            self.data.removeAtIndex(row)
+            self.reloadData()
+            
+            println("done deleting")
+            
+        }
+        
+    }
+    
 
 }

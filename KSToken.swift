@@ -123,7 +123,7 @@ class KSToken : UIControl {
     let drawArea = (borderWidth > 0)
         ? rect //CGRect(x: rect.origin.x, y: rect.origin.y + borderWidth, width: rect.width + borderWidth * 2, height:  rect.height - borderWidth * 2)
         : rect
-
+    
       // fill background
       let rectanglePath = UIBezierPath(roundedRect: drawArea, cornerRadius: 15)
       

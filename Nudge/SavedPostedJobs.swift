@@ -25,6 +25,11 @@ class SavedPostedJobs: BaseController, DataProviderProtocol {
         //self.navigationController?.title = self.headerTitle
         self.table.asignCellNib("JobCellTableViewCell")
         
+        
+        if self.requestParams != nil && self.requestParams! == "mine" {
+            self.table.canEdit = true
+        }
+    
         self.table.dataProvider = self as DataProviderProtocol
         self.table.delegate = self.table
         self.table.dataSource = self.table
@@ -60,6 +65,14 @@ class SavedPostedJobs: BaseController, DataProviderProtocol {
         println("jobs request \(url)")
         self.apiRequest(.GET, path: url, closure: listener)
     }
+    
+    func deleteData(id: Int, listener: (JSON) -> ()) {
+        
+        
+        println("delete id\(id)")
+        self.apiRequest(.DELETE, path: "jobs/\(id)", closure: listener)
+    }
+    
     
     func didfinishLoading(count:Int) {
         

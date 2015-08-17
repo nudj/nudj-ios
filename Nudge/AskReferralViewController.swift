@@ -258,7 +258,9 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
             messageText.text = nil
         }
         
+        
         let params:[String:AnyObject] = ["job": "\(jobId!)", "contacts": contactIds, "message": messageText.text]
+        
 
         self.messageText.resignFirstResponder()
 
@@ -267,14 +269,16 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
             
             API.sharedInstance.put("nudge", params: params, closure: { result in
             
-            self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true);
-            self.popup!.bodyText("You have successfully nudged  \(contactIds.count) user");
-            self.popup!.delegate = self;
-            self.view.addSubview(self.popup!);
+                self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true);
+                
+                let nudjContent = self.selected.count > 1 ? "\(self.selected[0].name) and \(self.selected.count - 1) others" : self.selected[0].name
+                self.popup!.bodyText("You have successfully nudged \(nudjContent)");
+                self.popup!.delegate = self;
+                self.view.addSubview(self.popup!);
 
-            println(result)
-            }) { error in
-                println(error)
+                println(result)
+                }) { error in
+                    println(error)
             }
             
         }else{
@@ -282,7 +286,9 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
             API.sharedInstance.put("nudge/ask", params: params, closure: { result in
                 
                 self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true);
-                self.popup!.bodyText("You have successfully asked \(contactIds.count) contacts for referral");
+                
+                let nudjContent = self.selected.count > 1 ? "\(self.selected[0].name) and \(self.selected.count - 1) others" : self.selected[0].name
+                self.popup!.bodyText("You have successfully asked \(nudjContent) for referral");
                 self.popup!.delegate = self;
                 self.view.addSubview(self.popup!);
                 

@@ -12,4 +12,5 @@ import SwiftyJSON
 protocol DataProviderProtocol {
     func requestData(page:Int, size:Int, listener:(JSON) -> ())
     func didfinishLoading(count:Int)
+    func deleteData(id:Int,listener:(JSON) -> ())
 }

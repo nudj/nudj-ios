@@ -206,6 +206,11 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
 
             let user = UserModel()
             user.updateFromJson(response["data"])
+            
+            /*if self.user != nil {
+                self.user?.skills?.removeAll(keepCapacity: false)
+            }*/
+            
             self.user = user
 
             println(response["data"])
@@ -254,6 +259,13 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
 
     func makeThingsWhite() {
         if (backgroundImage.image != nil) {
+            nameLabel.textColor = UIColor.whiteColor()
+            statusButton.changeColor(UIColor.whiteColor())
+            backgroundImage.backgroundColor = nil
+            
+        }else{
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
+            backgroundImage.backgroundColor = appDelegate.appColor
             nameLabel.textColor = UIColor.whiteColor()
             statusButton.changeColor(UIColor.whiteColor())
         }
@@ -566,9 +578,11 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
         if (images["cover"] != nil && count(images["cover"]!) > 0) {
             self.backgroundImage.blur = true
             self.backgroundImage.downloadImage(images["cover"]!) { _ in
-                self.makeThingsWhite()
+                //self.makeThingsWhite()
             }
         }
+        
+        self.makeThingsWhite()
     }
 
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {

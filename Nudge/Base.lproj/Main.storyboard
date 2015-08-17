@@ -465,8 +465,11 @@
                                             <constraint firstItem="Jbw-X4-z9y" firstAttribute="top" secondItem="r4K-kL-nVh" secondAttribute="top" constant="10" id="n1Y-bg-xNT"/>
                                         </constraints>
                                     </view>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2QY-rP-Ec5">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2QY-rP-Ec5">
                                         <rect key="frame" x="0.0" y="500" width="375" height="54"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="54" id="hNY-GW-r0f"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
                                         <state key="normal" title="DELETE  JOB">
                                             <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -2268,10 +2271,10 @@
                         <viewControllerLayoutGuide type="bottom" id="wdM-kP-MCQ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3a5-IX-tvj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1vZ-hu-yWg">
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1vZ-hu-yWg">
                                 <rect key="frame" x="16" y="68" width="382" height="162"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -2490,15 +2493,15 @@
         <image name="skills-active" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="H51-O9-Snf"/>
-        <segue reference="vho-Q5-Kri"/>
-        <segue reference="l7l-cF-kYn"/>
-        <segue reference="yTk-h8-BPW"/>
+        <segue reference="1RO-e0-4AP"/>
+        <segue reference="IbB-SC-7jb"/>
+        <segue reference="6SR-Rm-L27"/>
+        <segue reference="oHM-Sk-no8"/>
+        <segue reference="BCe-Pt-bFX"/>
         <segue reference="E5T-Ai-Mhe"/>
         <segue reference="gvE-qy-aNj"/>
-        <segue reference="oHM-Sk-no8"/>
-        <segue reference="6SR-Rm-L27"/>
-        <segue reference="IbB-SC-7jb"/>
+        <segue reference="l7l-cF-kYn"/>
+        <segue reference="yTk-h8-BPW"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
 </document>

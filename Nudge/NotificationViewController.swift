@@ -286,7 +286,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
             
         }else{
             
-            var params = ["job_id":chatData.jobID!,"user_id":chatData.senderId!,"message":"","notification_id":chatData.notificationId!]
+            var params = ["job_id":chatData.jobID!,"user_id":chatData.senderId!,"message":"hello","notification_id":chatData.notificationId!]
             println("params ->\(params)")
             API.sharedInstance.put("nudge/chat", params:params, closure: { json in
                 println("success \(json)")

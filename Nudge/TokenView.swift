@@ -32,6 +32,7 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
     var changedClosure:((TokenView)->())? = nil
 
     var setupMode = false
+    var placeholderLabel:UILabel?
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -202,7 +203,12 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
         if (startEditClosure != nil) {
             startEditClosure!(self)
         }
+        
+        if(placeholderLabel != nil){
+            placeholderLabel!.hidden = true
+        }
     }
+    
 
     func tokenView(tokenView: KSTokenView, didAddToken token: KSToken) {
         if (!setupMode) {
@@ -221,6 +227,8 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
             _tokenField.becomeFirstResponder()
             _tokenField.selectToken(token)
         }
+        
+
     }
 
 }

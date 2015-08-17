@@ -68,6 +68,10 @@ class MainFeed: BaseController, DataProviderProtocol ,UISearchBarDelegate {
         self.apiRequest(.GET, path: url, closure: listener)
     }
     
+    func deleteData(id: Int, listener: (JSON) -> ()) {
+        
+    }
+    
     func didfinishLoading(count:Int) {
         
         

@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 
 @IBDesignable
-class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDelegate, UITextViewDelegate{
+class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDelegate, UITextViewDelegate, UIAlertViewDelegate{
 
     var popup :CreatePopupView?
     var isEditable:Bool?
@@ -34,6 +34,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
             skills.changedClosure = { _ in self.updateAssets() }
         }
     }
+    
     @IBOutlet weak var skillsLabel: UILabel!
     @IBOutlet weak var skillsIcon: UIImageView!
 
@@ -54,6 +55,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
     override func viewDidLoad() {
 
         self.tabBarController?.tabBar.hidden = true
+        skills.placeholderLabel = self.skillsLabel
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil);
@@ -248,6 +250,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
     }
 
     func textViewDidChange(textView: UITextView) {
+        
         updateAssets()
     }
 
@@ -359,5 +362,29 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
         }
     }
     @IBAction func deleteAction(sender: UIButton) {
+            
+        var alert =  UIAlertView(title:"Delete job", message: "Are you sure you want to delete this job?", delegate: self, cancelButtonTitle: "NO",  otherButtonTitles: "YES")
+        alert.show()
+        
+    }
+    
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        
+        if buttonIndex == 1 {
+            
+            API.sharedInstance.request(.DELETE, path: "jobs\(self.jobId!)", params: nil, closure: { json in
+                
+                self.navigationController?.popToRootViewControllerAnimated(true)
+                
+            }, errorHandler: { error in
+            
+                var alert = UIAlertView(title: "Error", message:"Error deleting this job", delegate: nil, cancelButtonTitle:"OK")
+                alert.show()
+                
+            })
+
+            
+        }
+        
     }
 }
