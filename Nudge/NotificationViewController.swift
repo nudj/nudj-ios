@@ -17,6 +17,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
     let cellIdentifier = "NotificationCell"
     var nextLink:String? = nil
     var noContentImage = NoContentPlaceHolder()
+    var selectedContent: Notification?
     
     override func viewWillAppear(animated: Bool) {
         
@@ -149,6 +150,8 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
             cell.readStatus(true)
             cell.markAsRead()
         }
+        
+        self.selectedContent = cell.notificationData
         
         switch cell.type! {
         case .AskToRefer:
@@ -286,15 +289,8 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
             
         }else{
             
-            var params = ["job_id":chatData.jobID!,"user_id":chatData.senderId!,"message":"hello","notification_id":chatData.notificationId!]
-            println("params ->\(params)")
-            API.sharedInstance.put("nudge/chat", params:params, closure: { json in
-                println("success \(json)")
-                self.gotTochatAction(cell)
-            }, errorHandler: { error in
-                println("error \(error)")
-            })
-            
+            performSegueWithIdentifier("goToChat", sender: self)
+            cell.userInteractionEnabled = true
         }
      
     }
@@ -317,5 +313,19 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
         
     }
     
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if let destinationNavigationController = segue.destinationViewController as? UINavigationController {
+            let chatView = destinationNavigationController.topViewController as! InitiateChatViewController
+            
+            chatView.jobid = selectedContent!.jobID
+            chatView.userid = selectedContent!.senderId
+            chatView.username = selectedContent!.senderName
+            chatView.notificationid = selectedContent!.notificationId
+        
+        }
+        
+    }
     
 }

@@ -112,6 +112,8 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
         job.active = activeButton.selected
         job.bonus = bonus.text
             
+        println("skills -> \(job.skills)")
+            
         var item: UIBarButtonItem = sender as! UIBarButtonItem
             if(sender.title == "Update"){
                 
@@ -224,6 +226,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
             skillsArr.append(i["name"].stringValue)
             
         }
+        
         self.skills.fillTokens(skillsArr)
 
         activeButton.selected = json["active"].boolValue

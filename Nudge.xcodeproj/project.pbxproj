@@ -213,6 +213,7 @@
 		A99650AB1B3DB3FF00D5A8E9 /* mute2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650A31B3DB3FF00D5A8E9 /* mute2@2x.png */; };
 		A99650AC1B3DB3FF00D5A8E9 /* profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650A41B3DB3FF00D5A8E9 /* profile@2x.png */; };
 		A9977C8A1B6158960005A23C /* FilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9977C891B6158960005A23C /* FilterModel.swift */; };
+		A9A7C4D61B8364000051B1E5 /* InitiateChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A7C4D51B8364000051B1E5 /* InitiateChatViewController.swift */; };
 		A9ACE1C21B68F401003BD5F2 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACE1C11B68F401003BD5F2 /* TermsViewController.swift */; };
 		A9ACE1C41B68FC0F003BD5F2 /* SendFeedBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACE1C31B68FC0F003BD5F2 /* SendFeedBackViewController.swift */; };
 		A9ACE1CC1B69107A003BD5F2 /* SavedPostedJobs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACE1CB1B69107A003BD5F2 /* SavedPostedJobs.swift */; };
@@ -742,6 +743,7 @@
 		A99650A31B3DB3FF00D5A8E9 /* mute2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mute2@2x.png"; sourceTree = "<group>"; };
 		A99650A41B3DB3FF00D5A8E9 /* profile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile@2x.png"; sourceTree = "<group>"; };
 		A9977C891B6158960005A23C /* FilterModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterModel.swift; sourceTree = "<group>"; };
+		A9A7C4D51B8364000051B1E5 /* InitiateChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitiateChatViewController.swift; sourceTree = "<group>"; };
 		A9ACE1C11B68F401003BD5F2 /* TermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
 		A9ACE1C31B68FC0F003BD5F2 /* SendFeedBackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendFeedBackViewController.swift; sourceTree = "<group>"; };
 		A9ACE1CB1B69107A003BD5F2 /* SavedPostedJobs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedPostedJobs.swift; sourceTree = "<group>"; };
@@ -2011,6 +2013,7 @@
 				A9C6EC9B1B38447700EC9140 /* ChatListViewController.swift */,
 				A9C6EC9D1B3853F900EC9140 /* ChatListTableViewCell.swift */,
 				A9C6EC9E1B3853F900EC9140 /* ChatListTableViewCell.xib */,
+				A9A7C4D51B8364000051B1E5 /* InitiateChatViewController.swift */,
 			);
 			name = ChatView;
 			sourceTree = "<group>";
@@ -2584,6 +2587,7 @@
 			files = (
 				A95798251B46965A006E826E /* NotificationViewController.swift in Sources */,
 				A996502B1B387CC800D5A8E9 /* XMPPRoomOccupantCoreDataStorageObject.m in Sources */,
+				A9A7C4D61B8364000051B1E5 /* InitiateChatViewController.swift in Sources */,
 				A996502A1B387CC800D5A8E9 /* XMPPRoomMessageCoreDataStorageObject.m in Sources */,
 				A996503F1B387CC800D5A8E9 /* XMPPvCardTempEmail.m in Sources */,
 				A9964FFB1B387CC800D5A8E9 /* JSQMessagesMediaPlaceholderView.m in Sources */,

@@ -285,6 +285,8 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
         
         var msg = self.messages.objectAtIndex(indexPath.item) as! JSQMessage
         
+        // 105@conference.chat.nudj.co/sys
+        
         
         if (msg.senderId == self.senderId) {
             cell.textView.textColor = UIColor.whiteColor()
