@@ -85,13 +85,13 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
         let params: [String: AnyObject] = ["phone": phoneNumber, "country_code": code]
 
         API.sharedInstance.post("users", params: params, closure: { response in
+            
+            //self.code = response["data"]["code"].stringValue
 
-            self.code = response["data"]["code"].stringValue
-
-            if (count(self.code) <= 0) {
+            /*if (count(self.code) <= 0) {
                 self.showUnknownError()
                 return
-            }
+            }*/
 
             if (self.appDelegate.contacts.isAuthorized()) {
                 self.proceed()

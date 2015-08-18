@@ -208,7 +208,8 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
         return JSQMessagesTimestampFormatter.sharedFormatter().attributedTimestampForDate(message.date)
         }*/
         
-        return nil
+        var message = self.messages.objectAtIndex(indexPath.item) as! JSQMessage
+        return JSQMessagesTimestampFormatter.sharedFormatter().attributedTimestampForDate(message.date)
         
     }
     
@@ -241,8 +242,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForCellBottomLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
         
-        var message = self.messages.objectAtIndex(indexPath.item) as! JSQMessage
-        return JSQMessagesTimestampFormatter.sharedFormatter().attributedTimestampForDate(message.date)
+       return nil
         
     }
     
@@ -304,7 +304,8 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForCellBottomLabelAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
         
-        return kJSQMessagesCollectionViewCellLabelHeightDefault
+        return 0.0
+        
         
     }
     
@@ -315,7 +316,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
         return kJSQMessagesCollectionViewCellLabelHeightDefault;
         }*/
         
-        return 0.0
+        return kJSQMessagesCollectionViewCellLabelHeightDefault
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> CGFloat {

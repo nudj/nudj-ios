@@ -362,8 +362,18 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             }
             
             if(message.from().resource != nil){
-            
-                var jsqMessage = JSQMessage(senderId: message.from().resource, senderDisplayName: message.from().resource, date:time!, text: message.body())
+                
+                //handle system message
+                var sendersId = ""
+                
+                if(message.from().resource.rangeOfString(":") != nil){
+                    let name = split(message.from().resource) {$0 == ":"}
+                    sendersId = name[1]
+                }else{
+                    sendersId = message.from().resource
+                }
+        
+                var jsqMessage = JSQMessage(senderId: sendersId, senderDisplayName: sendersId, date:time!, text: message.body())
                 delegate?.recievedMessage(jsqMessage, conference: sender.roomJID.bare())
             
             }else{
@@ -418,7 +428,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         
         let params = [String: AnyObject]()
         
-        API.sharedInstance.request(Alamofire.Method.GET, path: "chat&limit=100", params: params, closure:{
+        API.sharedInstance.request(Alamofire.Method.GET, path: "chat", params: params, closure:{
             (json: JSON) in
             
             if (json["status"].boolValue != true && json["data"] == nil) {

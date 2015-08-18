@@ -144,8 +144,12 @@
                                 <action selector="backAction:" destination="-1" eventType="touchUpInside" id="SLx-vj-d49"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqJ-pX-CdC">
-                            <rect key="frame" x="291" y="33" width="21" height="22"/>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqJ-pX-CdC">
+                            <rect key="frame" x="282" y="35" width="40" height="29"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="0By-hC-t0k"/>
+                                <constraint firstAttribute="height" constant="30" id="dEm-Vc-8KV"/>
+                            </constraints>
                             <state key="normal" image="3dots.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -160,7 +164,7 @@
                         <constraint firstItem="0aP-9F-3mY" firstAttribute="top" secondItem="mVF-Jj-1IO" secondAttribute="bottom" constant="1" id="97g-FS-Nxy"/>
                         <constraint firstItem="mVF-Jj-1IO" firstAttribute="leading" secondItem="0aP-9F-3mY" secondAttribute="leading" id="Bid-nP-oJF"/>
                         <constraint firstAttribute="centerY" secondItem="mVF-Jj-1IO" secondAttribute="centerY" constant="2.5" id="XLl-bV-tWH"/>
-                        <constraint firstAttribute="trailing" secondItem="aqJ-pX-CdC" secondAttribute="trailing" constant="8" id="ae9-7o-CKg"/>
+                        <constraint firstAttribute="trailing" secondItem="aqJ-pX-CdC" secondAttribute="trailing" id="ae9-7o-CKg"/>
                         <constraint firstItem="aqJ-pX-CdC" firstAttribute="top" secondItem="Qgi-uw-S4i" secondAttribute="top" constant="33" id="fEz-0v-9Yj"/>
                         <constraint firstItem="mVF-Jj-1IO" firstAttribute="trailing" secondItem="0aP-9F-3mY" secondAttribute="trailing" id="jQW-81-Kz3"/>
                         <constraint firstItem="mVF-Jj-1IO" firstAttribute="centerX" secondItem="Qgi-uw-S4i" secondAttribute="centerX" id="nMU-Xf-aqN"/>

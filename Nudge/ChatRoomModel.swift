@@ -69,8 +69,18 @@ class ChatRoomModel: NSObject{
         for message in messages {
             
             if (message.nickname() != nil && message.localTimestamp() != nil){
+                //handle system message
+                var sendersId = ""
                 
-                messageObject.addObject(JSQMessage(senderId: message.nickname(), senderDisplayName: message.nickname(), date:message.localTimestamp(), text: message.body()))
+                if(message.nickname().rangeOfString(":") != nil){
+                    let name = split(message.nickname()) {$0 == ":"}
+                    sendersId = name[1]
+                }else{
+                    sendersId = message.nickname()
+                }
+                
+                println("sender -> \(sendersId)")
+                messageObject.addObject(JSQMessage(senderId: sendersId, senderDisplayName: sendersId, date:message.localTimestamp(), text: message.body()))
                 
             }else{
                 
