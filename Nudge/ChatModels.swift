@@ -263,21 +263,21 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             
             var jid = conferenceInvitation.attributesAsDictionary().valueForKey("jid") as! String
             var chatroom = ChatRoomModel()
-            var roomID = split(jid) {$0 == "@"}
+            var roomID = self.getRoomIdFromJid(jid)
             
             //Store new chat
-            println("Saving new conference \(roomID[0])")
+            println("Saving new conference \(roomID)")
             let defaults = NSUserDefaults.standardUserDefaults()
             var dict = ["isNew":true, "isRead":false]
             var data = NSKeyedArchiver.archivedDataWithRootObject(dict)
-            defaults.setObject(data, forKey:roomID[0])
+            defaults.setObject(data, forKey:roomID)
             defaults.synchronize()
             
             appGlobalDelegate.shouldShowBadge = true;
             
             //terminate room and reconnect
-            chatroom.prepareChatModel(jid, roomId: roomID[0], with:self.xmppStream!, delegate:self)
-            self.listOfActiveChatRooms[roomID[0]] = chatroom
+            chatroom.prepareChatModel(jid, roomId: roomID, with:self.xmppStream!, delegate:self)
+            self.listOfActiveChatRooms[roomID] = chatroom
 
             
         }else{
@@ -401,18 +401,52 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     func xmppRoomDidLeave(sender: XMPPRoom!) {
         
         println("XMPPROOM LEFT -> \(sender.roomJID.description)")
-        var roomID = split(sender.roomJID.description) {$0 == "@"}
+        var roomID = self.getRoomIdFromJid(sender.roomJID.description)
         
-        if let chatRoom = appGlobalDelegate.chatInst!.listOfActiveChatRooms[roomID[0]] {
+        if let chatRoom = appGlobalDelegate.chatInst!.listOfActiveChatRooms[roomID] {
             
             chatRoom.teminateSession()
-            appGlobalDelegate.chatInst!.listOfActiveChatRooms.removeValueForKey(roomID[0])
+            appGlobalDelegate.chatInst!.listOfActiveChatRooms.removeValueForKey(roomID)
             println("removed from list")
             
         }
     
     }
     
+    
+    func xmppRoom(sender: XMPPRoom!, occupantDidJoin occupantJID: XMPPJID!, withPresence presence: XMPPPresence!) {
+        
+        println("occupantDidJoinroom \(presence.type()) \(occupantJID.description)")
+        var roomID = self.getRoomIdFromJid(sender.roomJID.description)
+        
+        if let chatRoom = appGlobalDelegate.chatInst!.listOfActiveChatRooms[roomID] {
+            chatRoom.otherUserPresence = presence.type()
+        }
+        
+        
+    }
+    
+    func xmppRoom(sender: XMPPRoom!, occupantDidUpdate occupantJID: XMPPJID!, withPresence presence: XMPPPresence!) {
+        
+        println("occupantDidUpdateroom \(presence.type()) \(occupantJID.description)")
+        var roomID = self.getRoomIdFromJid(sender.roomJID.description)
+        
+        if let chatRoom = appGlobalDelegate.chatInst!.listOfActiveChatRooms[roomID] {
+            chatRoom.otherUserPresence = presence.type()
+        }
+
+    }
+    
+    func xmppRoom(sender: XMPPRoom!, occupantDidLeave occupantJID: XMPPJID!, withPresence presence: XMPPPresence!) {
+        
+        println("occupantDidLeaveroom \(presence.type()) \(occupantJID.description)")
+        var roomID = self.getRoomIdFromJid(sender.roomJID.description)
+        
+        if let chatRoom = appGlobalDelegate.chatInst!.listOfActiveChatRooms[roomID] {
+            chatRoom.otherUserPresence = presence.type()
+        }
+
+    }
     
     func xmppRoomDidDestroy(sender: XMPPRoom!) {
         
@@ -428,7 +462,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         
         let params = [String: AnyObject]()
         
-        API.sharedInstance.request(Alamofire.Method.GET, path: "chat", params: params, closure:{
+        API.sharedInstance.request(Alamofire.Method.GET, path: "chat/", params: params, closure:{
             (json: JSON) in
             
             if (json["status"].boolValue != true && json["data"] == nil) {
@@ -456,5 +490,12 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         
     }
 
+    
+    func getRoomIdFromJid(jid:String) -> String{
+
+        var roomID = split(jid) {$0 == "@"}
+        return roomID[0]
+        
+    }
 
 }

@@ -86,7 +86,7 @@
                             <state key="normal" image="archive.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
-                            <state key="selected" image="archive.png"/>
+                            <state key="selected" image="archive_active.png"/>
                             <connections>
                                 <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="BVh-QL-r6A"/>
                             </connections>
@@ -195,6 +195,7 @@
     <resources>
         <image name="3dots.png" width="21" height="5"/>
         <image name="archive.png" width="53" height="49"/>
+        <image name="archive_active.png" width="53" height="49"/>
         <image name="back_btn.png" width="9" height="17"/>
         <image name="favourite2wText.png" width="53" height="49"/>
         <image name="favouriteWText.png" width="53" height="49"/>

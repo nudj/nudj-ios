@@ -13,6 +13,7 @@ class ChatRoomModel: NSObject{
     var xmppRoom :XMPPRoom?
     var xmppRoomStorage :XMPPRoomCoreDataStorage?
     var delegate:XMPPRoomDelegate?
+    var otherUserPresence:String?
     var roomID:String?
     
     func prepareChatModel(roomName:String, roomId:String, with xmpp:XMPPStream, delegate:XMPPRoomDelegate) {

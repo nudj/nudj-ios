@@ -15,7 +15,9 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
     var incomingBubbleImageData :JSQMessagesBubbleImage?;
     var templateImage :JSQMessagesAvatarImage?;
     var messages = NSMutableArray();
+    
     var isLiked:Bool?
+    var isArchived:Bool?
     
     var otherUserImage :JSQMessagesAvatarImage?
     var myImage :JSQMessagesAvatarImage?
@@ -70,6 +72,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
         
         
         self.favourite.selected = isLiked != nil ? isLiked! : false
+        self.archive.selected = isArchived != nil ? isArchived! : false
        
     }
 
@@ -150,6 +153,18 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
                     chatRoom.xmppRoom!.sendMessageWithBody(text);
                     println("Sent xmpp message");
                     self.finishSendingMessage()
+                    
+                    if let chatRoomPresence = chatRoom.otherUserPresence {
+                        
+                        println("this user is \(chatRoomPresence)")
+                        if chatRoomPresence == "unavailable"{
+                            self.sendOfflineMessage(text)
+                        }
+                        
+                    }else{
+                        println("this user is unavailable")
+                        self.sendOfflineMessage(text)
+                    }
                 
                 }
             }
@@ -386,8 +401,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
         }else{
             
             //println("Message via Appdelegate -> \(content.text) from:\(content.senderId) room:\(conference)")
-            var roomIdPart = split(conference) {$0 == "@"}
-            var roomID = roomIdPart[0]
+            var roomID = appGlobalDelegate.chatInst!.getRoomIdFromJid(conference)
             
             //Store new chat
             print("Saving new message \(roomID)")
@@ -467,12 +481,21 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
         break;
         case 5:
             // Archive Conversation
+            if(selectedButton.selected){
+                
+                self.completeRequest("chat/"+self.chatID+"/archive", withType: "DELETE")
+                var alert = UIAlertView(title: "Chat restored", message: "Chat successfully restored.", delegate: self, cancelButtonTitle: "OK")
+                alert.show()
+                
+            }else{
+                
+                self.completeRequest("chat/"+self.chatID+"/archive", withType: "PUT")
+                var alert = UIAlertView(title: "Chat Archived", message: "Archived chats are stored in Settings.", delegate: self, cancelButtonTitle: "OK")
+                alert.show()
+            }
+            
+            
             selectedButton.selected = !selectedButton.selected
-            self.completeRequest("chat/"+self.chatID+"/archive", withType: "PUT")
-            
-            var alert = UIAlertView(title: "Chat Archived", message: "Archived chats are stored in Settings.", delegate: self, cancelButtonTitle: "OK")
-            alert.show()
-            
         
         break;
         default:
@@ -504,6 +527,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
             
             println("Sent The typing indicator");
         }*/
+        
         if let chatRoom = appGlobalDelegate.chatInst!.listOfActiveChatRooms[self.chatID] {
             if chatRoom.xmppRoom != nil {
                 
@@ -539,5 +563,20 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
         
     }
     
+    
+    func sendOfflineMessage(message:String){
+        
+        let params = ["chat_id":self.chatID,"user_id":self.participantsID,"message":message]
+        API.sharedInstance.put("chat/notification", params: params, closure: { reponse in
+            
+            println(reponse)
+
+            }, errorHandler: { error in
+        
+            println(error)
+
+        })
+        
+    }
 
 }

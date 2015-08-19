@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import SwiftyJSON
+import Alamofire
 
 class ChatListViewController: BaseController, UITableViewDataSource, UITableViewDelegate {
     
@@ -134,6 +135,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         chatView.jobID = chat.jobID
         chatView.isLiked = chat.jobLike
         chatView.otherUserImageUrl = chat.image
+        chatView.isArchived = isArchive
             
         self.navigationController?.pushViewController(chatView, animated: true)
                 
@@ -158,14 +160,20 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     
     func deleteChat(row:Int){
         
-        /*self.dataProvider!.deleteData(self.data[row]["id"].intValue) { json in
-            
+        println("deleting chat/\(self.data[row].chatId!)")
+        
+        API.sharedInstance.request(.DELETE, path:"chat/\(self.data[row].chatId!)", params: nil, closure: { response in
+        
             self.data.removeAtIndex(row)
-            self.reloadData()
+            self.chatTable.reloadData()
             
             println("done deleting")
             
-        }*/
+        }, errorHandler: { error in
+        
+        
+        })
+
         
     }
     

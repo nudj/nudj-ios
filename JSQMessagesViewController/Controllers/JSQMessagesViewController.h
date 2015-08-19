@@ -51,6 +51,7 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *favourite;
 @property (strong, nonatomic) IBOutlet UIButton *mute;
+@property (strong, nonatomic) IBOutlet UIButton *archive;
 
 - (IBAction)dropDownAction:(id)sender;
 - (void)labelsAction:(id)sender;

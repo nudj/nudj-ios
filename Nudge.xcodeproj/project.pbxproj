@@ -20,6 +20,7 @@
 		A92324D71B7BAE77009C1F0C /* no_search_results@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324CF1B7BAE77009C1F0C /* no_search_results@2x.png */; };
 		A947CC991B7119B500C9518E /* NoContentPlaceHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A947CC981B7119B500C9518E /* NoContentPlaceHolder.swift */; };
 		A947CC9C1B711CF000C9518E /* no_jobs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A947CC9B1B711CF000C9518E /* no_jobs@2x.png */; };
+		A94FE6CC1B84C9E600761F32 /* archive_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A94FE6CB1B84C9E600761F32 /* archive_active@2x.png */; };
 		A95798251B46965A006E826E /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95798241B46965A006E826E /* NotificationViewController.swift */; };
 		A9733ECE1B781F49008D6115 /* CountrySelectionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9733ECD1B781F49008D6115 /* CountrySelectionPicker.swift */; };
 		A984E2EE1B67ACA9009F318E /* ChatRoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A984E2ED1B67ACA9009F318E /* ChatRoomModel.swift */; };
@@ -367,6 +368,7 @@
 		A92324CF1B7BAE77009C1F0C /* no_search_results@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_search_results@2x.png"; sourceTree = "<group>"; };
 		A947CC981B7119B500C9518E /* NoContentPlaceHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoContentPlaceHolder.swift; sourceTree = "<group>"; };
 		A947CC9B1B711CF000C9518E /* no_jobs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_jobs@2x.png"; sourceTree = "<group>"; };
+		A94FE6CB1B84C9E600761F32 /* archive_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archive_active@2x.png"; sourceTree = "<group>"; };
 		A95798241B46965A006E826E /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		A9733ECD1B781F49008D6115 /* CountrySelectionPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountrySelectionPicker.swift; sourceTree = "<group>"; };
 		A984E2ED1B67ACA9009F318E /* ChatRoomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomModel.swift; sourceTree = "<group>"; };
@@ -1930,6 +1932,7 @@
 		A99650AD1B3DB40900D5A8E9 /* ChatIcons */ = {
 			isa = PBXGroup;
 			children = (
+				A94FE6CB1B84C9E600761F32 /* archive_active@2x.png */,
 				A996509D1B3DB3FF00D5A8E9 /* archive@2x.png */,
 				A996509E1B3DB3FF00D5A8E9 /* arrow@2x.png */,
 				A996509F1B3DB3FF00D5A8E9 /* favouriteWText@2x.png */,
@@ -2491,6 +2494,7 @@
 				A9C6ECA01B3853F900EC9140 /* ChatListTableViewCell.xib in Resources */,
 				A9F3337E1B45532F00F0D17B /* success@2x.png in Resources */,
 				A99650AA1B3DB3FF00D5A8E9 /* mute@2x.png in Resources */,
+				A94FE6CC1B84C9E600761F32 /* archive_active@2x.png in Resources */,
 				A9964FFA1B387CC800D5A8E9 /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
 				A9F333611B42ACDC00F0D17B /* salary_details_active@2x.png in Resources */,
 				A9F333601B42ACDC00F0D17B /* job_title_active@2x.png in Resources */,

@@ -117,6 +117,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         
         // Update badge
+        println(userInfo)
+        
+        /*type_id = 8
+        [aps: {
+            alert = "Is it working, Ant?";
+            badge = 0;
+            sound = "bingbong.aiff";
+            }, meta: {
+                "chat_id" = 4;
+        }]*/
         NSNotificationCenter.defaultCenter().postNotificationName("updateBadgeValue", object: nil, userInfo: ["value":"1","index":"3"])
     }
 
@@ -244,12 +254,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
     }
 
     func logout() {
-        self.deleteUserData()
-        self.deleteChatData()
-        API.sharedInstance.token = nil
-        if api != nil {
-            api?.token = nil
-        }
+        
+        API.sharedInstance.request(.DELETE, path: "users/me", params: nil, closure: { response in
+            
+            println("deleted account \(response)")
+            
+            self.deleteUserData()
+            self.deleteChatData()
+            
+            API.sharedInstance.token = nil
+            
+            if self.api != nil {
+                self.api?.token = nil
+            }
+            
+        }, errorHandler: { error in
+            
+            var alert = UIAlertView(title: "Error deleting account", message: "Oops something went wrong.", delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+                
+        })
         
     }
     
@@ -408,8 +432,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         if(shouldShowBadge == true){
 
             //Store message as its new
-            var roomIdPart = split(conference) {$0 == "@"}
-            var roomID = roomIdPart[0]
+            var roomID = self.chatInst!.getRoomIdFromJid(conference)
             
             println("Saving new message \(roomID)")
             let defaults = NSUserDefaults.standardUserDefaults()

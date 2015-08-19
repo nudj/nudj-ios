@@ -63,7 +63,6 @@ JSQMessagesKeyboardControllerDelegate>{
 @property (strong, nonatomic) IBOutlet UIView *dropDownView;
 @property (strong, nonatomic) IBOutlet UIButton *jobTitle;
 @property (strong, nonatomic) IBOutlet UIButton *profile;
-@property (strong, nonatomic) IBOutlet UIButton *archive;
 @property (strong, nonatomic) IBOutlet UILabel *ConvoTitle;
 @property (strong, nonatomic) IBOutlet UILabel *convoParticipants;
 

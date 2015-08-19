@@ -209,6 +209,7 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
         }
     }
     
+    
 
     func tokenView(tokenView: KSTokenView, didAddToken token: KSToken) {
         if (!setupMode) {

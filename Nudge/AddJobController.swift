@@ -50,6 +50,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
     @IBOutlet weak var activeButton: UIButton!
     @IBOutlet weak var bonus: UITextField!
 
+    @IBOutlet weak var topGreyBorder: UIView!
     @IBOutlet weak var deleteBtn: UIButton!
 
     override func viewDidLoad() {
@@ -66,7 +67,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
             self.navigationItem.rightBarButtonItem?.title = "Update"
             self.title = "Edit Job"
             self.deleteBtn.hidden = false
-            
+            self.topGreyBorder.hidden = false
                 API.sharedInstance.get("jobs/\(self.jobId!)?params=job.title,job.company,job.liked,job.salary,job.active,job.description,job.skills,job.bonus,job.user,job.location,user.image,user.name,user.contact", params: nil, closure: { json in
                     
                     self.prefillData(json["data"])
@@ -278,6 +279,10 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
 
     func textFieldDidBeginEditing(textField: UITextField) {
         scrollToSuperView(textField)
+        
+        if skills.tokens()?.count == 0 {
+            skills.placeholderLabel?.hidden = false
+        }
     }
 
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
