@@ -269,6 +269,14 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
             
         }
         
+        if(segue.destinationViewController.isKindOfClass(ChatListViewController)){
+            if let controller = (segue.destinationViewController as? ChatListViewController) {
+                 controller.isArchive = true
+            }
+            
+        }
+        
+        
     }
 
     func didTap(statusIdentifier: String, parent:SocialStatus) {

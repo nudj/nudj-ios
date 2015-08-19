@@ -19,6 +19,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     @IBOutlet weak var activity: UIActivityIndicatorView!
     var data:[ChatStructModel] = []
     var noContentImage = NoContentPlaceHolder()
+    var isArchive:Bool?
     
     override func viewDidLoad() {
 
@@ -40,6 +41,12 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         
     }
     
+    func deleteChat(){
+        
+        
+        
+    }
+    
     override func viewWillDisappear(animated: Bool) {
         
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "reloadChatTable", object: nil)
@@ -47,11 +54,14 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
 
     func requestData() {
 
+        let url = isArchive != nil && isArchive! == true ? "chat/archive":"chat"
         
-        self.apiRequest(.GET, path: "chat?params=chat.job,job.liked,chat.participants,chat.created,job.title,job.company,job.like,user.image,user.name,user.contact,contact.alias&limit=100", closure: { response in
+        println(url)
+        
+        self.apiRequest(.GET, path: "\(url)?params=chat.job,job.liked,chat.participants,chat.created,job.title,job.company,job.like,user.image,user.name,user.contact,contact.alias&limit=100", closure: { response in
 
             self.data.removeAll(keepCapacity: false)
-
+            
             for (id, obj) in response["data"] {
                 var chat = ChatStructModel()
                 self.data.append(chat.createData(obj))
@@ -127,6 +137,36 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
             
         self.navigationController?.pushViewController(chatView, animated: true)
                 
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        
+        return isArchive != nil ? isArchive! : false
+    }
+    
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+            //add code here for when you hit delete
+            println("will delete")
+            self.deleteChat(indexPath.row)
+        }
+        
+    }
+    
+    
+    func deleteChat(row:Int){
+        
+        /*self.dataProvider!.deleteData(self.data[row]["id"].intValue) { json in
+            
+            self.data.removeAtIndex(row)
+            self.reloadData()
+            
+            println("done deleting")
+            
+        }*/
+        
     }
     
     func reload(notification:NSNotification){

@@ -75,6 +75,15 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         if isSearchEnabled == true {
             self.navigationController?.navigationBarHidden = true;
         }
+        
+        
+        if(self.segControl.selectedSegmentIndex == 1 ){
+         
+            self.table.hidden = true;
+            self.activityIndi.hidden = false
+            self.loadData(self.getContactsUrl())
+            
+        }
             
         self.tabBarController?.tabBar.hidden = false
         
