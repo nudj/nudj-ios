@@ -11,6 +11,7 @@ import CoreData
 import Fabric
 import Crashlytics
 import FBSDKLoginKit
+import Mixpanel
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
@@ -26,12 +27,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
     var shouldShowBadge = false
     var appWasInBackground = false
     
+    let MIXPANEL_TOKEN = "29fc1fec9fa6f75efd303f12c8be4acb"
     let appColor = UIColor(red: 0, green: 0.63, blue: 0.53, alpha: 1)
     let appBlueColor = UIColor(red:17.0/255.0, green:147.0/255.0, blue:189.0/255.0, alpha: 1)
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         Fabric.with([Crashlytics()])
+        Mixpanel.sharedInstanceWithToken(MIXPANEL_TOKEN)
+        
+        let mixpanel = Mixpanel.sharedInstance()
+        mixpanel.track("Testing", properties: ["name":"Antonio"])
+        
+        //mixpanel.track("Testing", properties:)
+        
+        //[Mixpanel sharedInstanceWithToken:MIXPANEL_TOKEN];
+        
+        // Later, you can get your instance with
+        //Mixpanel *mixpanel = [Mixpanel sharedInstance];
 
         // Getting of user details from CoreData
         fetchUserData()

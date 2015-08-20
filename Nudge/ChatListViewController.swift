@@ -55,7 +55,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
 
     func requestData() {
 
-        let url = isArchive != nil && isArchive! == true ? "chat/archive":"chat"
+        let url = isArchive != nil && isArchive! == true ? "chat/archived":"chat/active"
         
         println(url)
         
@@ -180,7 +180,6 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     func reload(notification:NSNotification){
         
         self.requestData()
-        println("reloading data")
         
     }
 

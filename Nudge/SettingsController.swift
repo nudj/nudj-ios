@@ -21,7 +21,6 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
 
     var socialhander :SocialHandlerModel?
     var statusParent :SocialStatus?
-    var alertview :UIAlertView?
     let structure: [[SettingsItem]] = [
         [
             SettingsItem(name: "My Profile", action: "showYourProfile"),
@@ -56,7 +55,6 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
         table.registerNib(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
         self.socialhander = SocialHandlerModel(viewController: self)
         
-        alertview = UIAlertView(title: "", message: "", delegate:self, cancelButtonTitle: "NO", otherButtonTitles: "YES")
         
     }
 
@@ -180,10 +178,17 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
         }else if(action == "facebook"){
         
             
+        }else if(action == "goToLogin"){
+            
+            var alertview = UIAlertView(title: "Delete Account", message: "Are you sure you want to parmanently delete your account information, including jobs and chats?", delegate:self, cancelButtonTitle: "Cancel", otherButtonTitles: "Delete")
+            alertview.tag = 3
+            alertview.show();
+            
         }else{
             
             self.jobsSelected = action
             performSegueWithIdentifier(action, sender: self)
+            
         }
     }
     
@@ -285,11 +290,9 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
         
         if(parent.currentStatus!){
             
-            self.alertview!.title = "Disconnect \(statusIdentifier)"
-            self.alertview!.message = "Are you sure you want to disconnect \(statusIdentifier)"
-            self.alertview!.tag = statusIdentifier == "facebook" ? 0 : 1
-            self.alertview!.show();
-        
+            var alertview = UIAlertView(title: "Disconnect \(statusIdentifier)", message:"Are you sure you want to disconnect \(statusIdentifier)", delegate:self, cancelButtonTitle: "NO", otherButtonTitles: "YES")
+            alertview.tag = statusIdentifier == "facebook" ? 0 : 1
+            alertview.show();
             
         }else{
             
@@ -302,11 +305,33 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
         
-        if(buttonIndex == 1){
+        if alertView.tag == 3 {
             
-            self.handleSocialAction(alertView.tag ==  0 ? "facebook" : "linkedin")
+            if(buttonIndex == 1){
+                
+                self.jobsSelected = "goToLogin"
+                performSegueWithIdentifier("goToLogin", sender: self)
+                
+            }else{
+                
+                println("cancelled delete account")
+                
+            }
             
+        }else{
+        
+            if(buttonIndex == 1){
+                
+                self.handleSocialAction(alertView.tag ==  0 ? "facebook" : "linkedin")
+                
+            }else{
+                
+                println("cancelled delete social")
+                
+            }
+        
         }
+  
         
     }
     

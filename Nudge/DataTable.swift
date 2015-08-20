@@ -61,6 +61,7 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
             return
         }
 
+        
         self.dataProvider!.requestData(page, size: self.dataSize, listener: { json in
             self.data.removeAll(keepCapacity: false)
             
@@ -78,6 +79,7 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
             
             self.dataProvider!.didfinishLoading(self.data.count)
             self.reloadData()
+            
         })
     }
 
@@ -91,6 +93,7 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
 
         if (!status) {
             self.refreshControl.endRefreshing()
+            self.loading = false
         }
     }
 
@@ -144,7 +147,7 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
 
         if (!self.loading && !self.end && (maximumOffset - currentOffset) <= self.spaceToScroll) {
             self.setLoadingStatus(true)
-
+            
             self.page += 1
             self.loadData(page: self.page)
         }

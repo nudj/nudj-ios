@@ -8,5 +8,6 @@ pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
 pod 'FBSDKShareKit'
 pod 'DateTools'
+pod 'Mixpanel'
 
 #pod 'KSTokenView', '~> 1.2'

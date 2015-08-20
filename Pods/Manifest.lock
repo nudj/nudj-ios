@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (1.3.0)
+  - Alamofire (1.3.1)
   - Bolts (1.2.0):
     - Bolts/AppLinks (= 1.2.0)
     - Bolts/Tasks (= 1.2.0)
@@ -7,19 +7,22 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.2.0)
   - DateTools (1.6.1)
-  - FBSDKCoreKit (4.4.0):
+  - FBSDKCoreKit (4.5.1):
     - Bolts (~> 1.1)
-    - FBSDKCoreKit/arc (= 4.4.0)
-    - FBSDKCoreKit/no-arc (= 4.4.0)
-  - FBSDKCoreKit/arc (4.4.0):
+    - FBSDKCoreKit/arc (= 4.5.1)
+    - FBSDKCoreKit/no-arc (= 4.5.1)
+  - FBSDKCoreKit/arc (4.5.1):
     - Bolts (~> 1.1)
-  - FBSDKCoreKit/no-arc (4.4.0):
+  - FBSDKCoreKit/no-arc (4.5.1):
     - Bolts (~> 1.1)
     - FBSDKCoreKit/arc
-  - FBSDKLoginKit (4.4.0):
+  - FBSDKLoginKit (4.5.1):
     - FBSDKCoreKit
-  - FBSDKShareKit (4.4.0):
+  - FBSDKShareKit (4.5.1):
     - FBSDKCoreKit
+  - Mixpanel (2.8.2):
+    - Mixpanel/Mixpanel (= 2.8.2)
+  - Mixpanel/Mixpanel (2.8.2)
   - SwiftyJSON (2.2.1)
 
 DEPENDENCIES:
@@ -28,15 +31,17 @@ DEPENDENCIES:
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
+  - Mixpanel
   - SwiftyJSON (~> 2.1)
 
 SPEC CHECKSUMS:
-  Alamofire: 220403a8d5840e0b4c946a6fbaf209dbca124282
+  Alamofire: e4ab637e3195b645c814b87a652373439e59f2a4
   Bolts: d176cb1e0012175589e389a9db49b85e27787576
   DateTools: 9bcc89e4f2f9004d8a7a2bd1b49269cf78968e65
-  FBSDKCoreKit: 75bdd75c980e811db218488d99dd93b7740f4474
-  FBSDKLoginKit: 02a9254a4c132412fa03577b0d53e936d068a7fb
-  FBSDKShareKit: a42865f20ba2d1cc548c4d0f73ad22cff6377ddb
+  FBSDKCoreKit: f335eaf6865e1e1597dee1debfb533045500da47
+  FBSDKLoginKit: 225cc9a388a92916ee3f3bb14422017b6e44b65b
+  FBSDKShareKit: 642034ac9f30793dfd897851b724bb4281750266
+  Mixpanel: f4d71ac2a306e7cda6ad03d4a2be249a0fd7a967
   SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
 
 COCOAPODS: 0.38.2

@@ -462,7 +462,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         
         let params = [String: AnyObject]()
         
-        API.sharedInstance.request(Alamofire.Method.GET, path: "chat/", params: params, closure:{
+        API.sharedInstance.request(Alamofire.Method.GET, path: "chat/all?&limit=100", params: params, closure:{
             (json: JSON) in
             
             if (json["status"].boolValue != true && json["data"] == nil) {
