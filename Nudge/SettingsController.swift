@@ -60,6 +60,7 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        MixPanelHandler.sendData("SettingsTabOpened")
         
         self.tabBarController?.tabBar.hidden = false
 
@@ -309,6 +310,7 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
             
             if(buttonIndex == 1){
                 
+                MixPanelHandler.sendData("DeleteAcountAction")
                 self.jobsSelected = "goToLogin"
                 performSegueWithIdentifier("goToLogin", sender: self)
                 

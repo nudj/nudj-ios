@@ -375,6 +375,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         
                 var jsqMessage = JSQMessage(senderId: sendersId, senderDisplayName: sendersId, date:time!, text: message.body())
                 delegate?.recievedMessage(jsqMessage, conference: sender.roomJID.bare())
+                println("did recieve msg -> \(message.body())")
             
             }else{
                 

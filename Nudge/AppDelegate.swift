@@ -36,16 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         Fabric.with([Crashlytics()])
         Mixpanel.sharedInstanceWithToken(MIXPANEL_TOKEN)
         
-        let mixpanel = Mixpanel.sharedInstance()
-        mixpanel.track("Testing", properties: ["name":"Antonio"])
+        MixPanelHandler.startEventTracking("timeSpentInApplication")
         
-        //mixpanel.track("Testing", properties:)
-        
-        //[Mixpanel sharedInstanceWithToken:MIXPANEL_TOKEN];
-        
-        // Later, you can get your instance with
-        //Mixpanel *mixpanel = [Mixpanel sharedInstance];
-
         // Getting of user details from CoreData
         fetchUserData()
         prepareApi();
@@ -362,6 +354,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
+        
+        MixPanelHandler.stopEventTracking("timeSpentInApplication")
         self.saveContext()
         
 //        self.chatInst!.xmppRoom?.leaveRoom()

@@ -105,8 +105,9 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
 
     
     override func viewWillAppear(animated: Bool) {
+        
         super.viewWillAppear(animated)
-
+        
         self.navigationController?.navigationBarHidden = false
         
         prepareLayout();
@@ -153,12 +154,14 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
     func prepareLayout() {
         switch self.type {
         case Type.Own:
+            MixPanelHandler.sendData("MyProfileOpened")
             self.topRightButton.title = "Save"
             self.navigationItem.title = "My Profile"
             isEditable = true;
             break;
 
         case Type.Initial:
+            MixPanelHandler.sendData("CreateProfileOpened")
             self.navigationItem.setHidesBackButton(true, animated: false)
             self.topRightButton.title = "OK"
             self.navigationItem.title = "Create Profile"
@@ -167,6 +170,7 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
 
         case Type.Public: fallthrough
         default:
+            MixPanelHandler.sendData("ProfileOpened")
             self.topRightButton.title = nil
             self.navigationItem.title = "Profile"
             self.email?.superview?.hidden = true
@@ -186,6 +190,7 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
             self.performSegueWithIdentifier("showMainScreen", sender: nil)
             break;
         case .Own:
+            MixPanelHandler.sendData("MyProfile_SaveButtonClicked")
             self.navigationController?.popViewControllerAnimated(true)
             break;
         case Type.Public:
@@ -373,6 +378,8 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
                     if let user = self.user {
                         user.favourite = user.favourite == nil ? true : !user.favourite!
                         self.topRightButton.image = self.getFavouriteIcon(user.favourite!)
+                        
+                        MixPanelHandler.sendData(user.favourite == true ? "Profile_FavouriteAction" : "Profile_UnfavouriteAction")
                     }
                 } else {
                     println("Favourite Error: \(result)")
@@ -613,6 +620,7 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
     }
 
     @IBAction func showStatusPicker() {
+        MixPanelHandler.sendData("MyProfile_StatusButtonClicked")
         self.performSegueWithIdentifier("showStatusPicker", sender: self)
     }
 

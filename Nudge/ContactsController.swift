@@ -72,6 +72,8 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
 
     override func viewWillAppear(animated: Bool) {
         
+        MixPanelHandler.sendData("ContactsTabOpened")
+        
         if isSearchEnabled == true {
             self.navigationController?.navigationBarHidden = true;
         }
@@ -310,6 +312,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
             
         }else{
             
+            MixPanelHandler.sendData("InviteUserAction")
             var alertview  = UIAlertView(title: "Invite", message: "", delegate: self, cancelButtonTitle: "OK")
             
             

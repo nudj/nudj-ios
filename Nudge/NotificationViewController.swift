@@ -21,6 +21,8 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
     
     override func viewWillAppear(animated: Bool) {
         
+        MixPanelHandler.sendData("NotificationsTabOpened")
+        
         self.tabBarController?.tabBar.hidden = false
         loadData()
         
@@ -156,26 +158,32 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
         switch cell.type! {
         case .AskToRefer:
             println("Details")
+            MixPanelHandler.sendData("Notification_DetailButtonClicked")
             self.goToView("JobDetailedView", contentId: cell.notificationData!.jobID)
             break;
         case .AppApplication:
             println("go to chat")
+            MixPanelHandler.sendData("Notification_MessageButtonClicked")
             self.gotTochat(cell)
             break;
         case .WebApplication:
             println("sms")
+            MixPanelHandler.sendData("Notification_SmsButtonClicked")
             self.createSms(cell.notificationData!.senderPhoneNumber)
             break;
         case .MatchingContact:
             println("nudge")
+            MixPanelHandler.sendData("Notification_ReferButtonClicked")
             self.nudge(cell.notificationData!.jobID)
             break;
         case .AppApplicationWithNoReferral:
             println("go to chat")
+            MixPanelHandler.sendData("Notification_MessageButtonClicked")
             self.gotTochat(cell)
             break;
         case .WebApplicationWithNoReferral:
             println("sms")
+            MixPanelHandler.sendData("Notification_SmsButtonClicked")
              self.createSms(cell.notificationData!.senderPhoneNumber)
             break;
         default:
@@ -186,6 +194,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
     }
     
     func didPressCallButton(cell: NotificationCell) {
+        MixPanelHandler.sendData("Notification_CallButtonClicked")
         
         if let phonenumber = cell.notificationData?.senderPhoneNumber{
             

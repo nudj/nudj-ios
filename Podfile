@@ -9,5 +9,5 @@ pod 'FBSDKLoginKit'
 pod 'FBSDKShareKit'
 pod 'DateTools'
 pod 'Mixpanel'
-
+pod 'ReachabilitySwift', git: 'https://github.com/ashleymills/Reachability.swift'
 #pod 'KSTokenView', '~> 1.2'

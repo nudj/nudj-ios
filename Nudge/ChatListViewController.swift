@@ -33,6 +33,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        MixPanelHandler.sendData("ChatsTabOpened")
         
         self.navigationController?.navigationBarHidden = false
         self.tabBarController?.tabBar.hidden = false

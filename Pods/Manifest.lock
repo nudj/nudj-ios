@@ -23,6 +23,7 @@ PODS:
   - Mixpanel (2.8.2):
     - Mixpanel/Mixpanel (= 2.8.2)
   - Mixpanel/Mixpanel (2.8.2)
+  - ReachabilitySwift (1.1)
   - SwiftyJSON (2.2.1)
 
 DEPENDENCIES:
@@ -32,7 +33,17 @@ DEPENDENCIES:
   - FBSDKLoginKit
   - FBSDKShareKit
   - Mixpanel
+  - ReachabilitySwift (from `https://github.com/ashleymills/Reachability.swift`)
   - SwiftyJSON (~> 2.1)
+
+EXTERNAL SOURCES:
+  ReachabilitySwift:
+    :git: https://github.com/ashleymills/Reachability.swift
+
+CHECKOUT OPTIONS:
+  ReachabilitySwift:
+    :commit: eca2517c69b321e9c4ce464be45c33f3a8dfe14e
+    :git: https://github.com/ashleymills/Reachability.swift
 
 SPEC CHECKSUMS:
   Alamofire: e4ab637e3195b645c814b87a652373439e59f2a4
@@ -42,6 +53,7 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 225cc9a388a92916ee3f3bb14422017b6e44b65b
   FBSDKShareKit: 642034ac9f30793dfd897851b724bb4281750266
   Mixpanel: f4d71ac2a306e7cda6ad03d4a2be249a0fd7a967
+  ReachabilitySwift: 1e53abddb01111deac0d229dabdb8bb043567b18
   SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
 
 COCOAPODS: 0.38.2

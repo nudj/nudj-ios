@@ -13,8 +13,7 @@ import Alamofire
 
 class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAlertViewDelegate{
     
-    var jobID:String?
-    var userId:Int?
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
     
     @IBOutlet var jobTitleText: UILabel!
     @IBOutlet var authorName: UILabel!
@@ -31,9 +30,12 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
     @IBOutlet weak var spaceBetween: NSLayoutConstraint!
     @IBOutlet weak var nudgeBtn: UIButton!
   
-    
     @IBOutlet weak var skills: TokenView!
+   
+    var jobID:String?
+    var userId:Int?
     var popup :CreatePopupView?;
+    var spinner = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         
@@ -51,7 +53,22 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
     
     override func viewWillAppear(animated: Bool) {
         
+        MixPanelHandler.sendData("JobDetailsOpened")
         self.tabBarController?.tabBar.hidden = true
+        
+        if let views = self.view.subviews as? [UIView] {
+        
+            for subView in views {
+                subView.hidden = true;
+            }
+            
+            spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+            spinner.startAnimating()
+            spinner.center = self.view.center
+            spinner.color = appDelegate.appColor
+            self.view.addSubview(spinner)
+        }
+        
         self.requestData()
     }
     
@@ -86,8 +103,6 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
     
     
     func populateView(content:JSON){
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
         
         // Configure right button
         if(appDelegate.user!.id == content["user"]["id"].intValue){
@@ -164,12 +179,23 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
         bonusText.setFont(boldFont, string: "£" + content["bonus"].stringValue)
         bonusText.setFontColor(appDelegate.appBlueColor, string: "£" + content["bonus"].stringValue)
         
+        if let views = self.view.subviews as? [UIView] {
+            
+            spinner.removeFromSuperview()
+            
+            for subView in views {
+                subView.hidden = false;
+            }
+            
+        }
+        
     }
 
     @IBAction func topRightNavAction(sender: UIBarButtonItem) {
         
         if (sender.title == "Save"){
             
+            MixPanelHandler.sendData("SaveJobButtonClicked")
             API.sharedInstance.put("jobs/\(self.jobID!)/like", params: nil, closure: { json in
                 
                     println("Job saved \(json)")
@@ -181,7 +207,8 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
             }
             
         }else if(sender.title == "Saved"){
-         
+            
+            MixPanelHandler.sendData("SavedJobButtonClicked")
             API.sharedInstance.request(Alamofire.Method.DELETE, path: "jobs/\(self.jobID!)/like", params: nil, closure: { json in
                 
                 println("un save \(json)")
@@ -195,6 +222,7 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
         }else if (sender.title == "Edit"){
         
             //Go to EditView
+            MixPanelHandler.sendData("EditJobButtonClicked")
             let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             var addJobView = storyboard.instantiateViewControllerWithIdentifier("AddJobView") as! AddJobController
             addJobView.jobId = self.jobID?.toInt()
@@ -207,12 +235,14 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let askView = segue.destinationViewController as? AskReferralViewController {
+            
+            MixPanelHandler.sendData("ReferButtonClicked")
             askView.jobId = self.jobID!.toInt()
             askView.isNudjRequest = true
+            
         }
         
         if let profileView = segue.destinationViewController as? GenericProfileViewController {
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
             
             if(self.userId! == appDelegate.user!.id){
                  profileView.type = .Own
@@ -231,12 +261,14 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
         if(sender.titleLabel?.text == "INTERESTED"){
             //Go to INTERESTED
             
+            MixPanelHandler.sendData("InterestedButtonClicked")
             var alertview = UIAlertView(title: "Are you sure?", message: "This will send a notification to the Hirer that you are interested in this position", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Send")
             alertview.show()
             
             
         }else{
             
+            MixPanelHandler.sendData("AskForReferalButtonClicked")
             //Go to EditView
             let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             var addJobView = storyboard.instantiateViewControllerWithIdentifier("AskReferralView") as! AskReferralViewController

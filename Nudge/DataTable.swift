@@ -137,6 +137,7 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
         end = false
 
         self.deleteRowsAtIndexPaths(rowsToDelete as [AnyObject], withRowAnimation: UITableViewRowAnimation.Fade)
+        self.setLoadingStatus(false)
     }
 
     //     MARK: -- Scrolling --

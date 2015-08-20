@@ -361,7 +361,9 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
         popup!.removeFromSuperview();
         if(self.navigationItem.rightBarButtonItem?.title == "Update"){
             self.navigationController?.popViewControllerAnimated(true)
+             MixPanelHandler.sendData("JobUpdated")
         }else{
+            MixPanelHandler.sendData("NewJobAdded")
             performSegueWithIdentifier("showAskForReferal", sender: self)
         }
     }
@@ -386,6 +388,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
             
             API.sharedInstance.request(.DELETE, path: "jobs\(self.jobId!)", params: nil, closure: { json in
                 
+                MixPanelHandler.sendData("JobDeleted")
                 self.navigationController?.popToRootViewControllerAnimated(true)
                 
             }, errorHandler: { error in
