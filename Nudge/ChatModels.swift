@@ -240,10 +240,11 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     func xmppStreamDidAuthenticate(sender :XMPPStream) {
         
         self.goOnline();
-        
         println("CLIENT HAS CONNECTED TO JABBER");
         
-        self.requestRooms();
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () -> Void in
+            self.requestRooms();
+        })
     }
     
     
@@ -375,7 +376,6 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         
                 var jsqMessage = JSQMessage(senderId: sendersId, senderDisplayName: sendersId, date:time!, text: message.body())
                 delegate?.recievedMessage(jsqMessage, conference: sender.roomJID.bare())
-                println("did recieve msg -> \(message.body())")
             
             }else{
                 

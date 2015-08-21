@@ -135,7 +135,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         chatView.chatTitle = chat.title
         chatView.jobID = chat.jobID
         chatView.isLiked = chat.jobLike
-        chatView.otherUserImageUrl = chat.image
+        chatView.otherUserImageView = cell.imageView!.image
         chatView.isArchived = isArchive
             
         self.navigationController?.pushViewController(chatView, animated: true)

@@ -193,14 +193,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
     }
 
     func prefetchUserData() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () -> Void in
-            UserModel.getCurrent(["user.name", "user.completed", "user.status", "user.image"], closure: { userObject in
-                if let source = userObject.source {
-                    self.user!.updateFromJson(source)
-                    self.pushUserData()
-                }
-            })
-        })
+        if let user = self.user {
+            if user.token != nil {
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () -> Void in
+                    UserModel.getCurrent(["user.name", "user.completed", "user.status", "user.image"], closure: { userObject in
+                        if let source = userObject.source {
+                            self.user!.updateFromJson(source)
+                            self.pushUserData()
+                        }
+                    })
+                })
+            }else {
+                
+                println(" user has no token")
+                
+            }
+        }else{
+            
+            println("current user deleted")
+        
+        }
     }
 
     func pushUserData() {
@@ -260,23 +272,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
 
     func logout() {
         
+        self.deleteUserData()
+        self.deleteChatData()
+        
+        API.sharedInstance.token = nil
+        
+        if self.api != nil {
+            self.api?.token = nil
+        }
+        
+    }
+    
+    func deleteAccount(){
+        
         API.sharedInstance.request(.DELETE, path: "users/me", params: nil, closure: { response in
             
             println("deleted account \(response)")
             
-            self.deleteUserData()
-            self.deleteChatData()
+            if response["status"].boolValue {
             
-            API.sharedInstance.token = nil
+                self.logout()
             
-            if self.api != nil {
-                self.api?.token = nil
+            }else{
+                
+                var alert = UIAlertView(title: "Error deleting account", message: "We were unable to delete your account, please try again.", delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
+
             }
             
         }, errorHandler: { error in
-            
-            var alert = UIAlertView(title: "Error deleting account", message: "Oops something went wrong.", delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
+                
+                var alert = UIAlertView(title: "Error deleting account", message: "Oops something went wrong.", delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
                 
         })
         

@@ -68,8 +68,9 @@ class SavedPostedJobs: BaseController, DataProviderProtocol {
     
     func deleteData(id: Int, listener: (JSON) -> ()) {
         
-        
         println("delete id\(id)")
+        MixPanelHandler.sendData("JobDeleted")
+        
         self.apiRequest(.DELETE, path: "jobs/\(id)", closure: listener)
     }
     

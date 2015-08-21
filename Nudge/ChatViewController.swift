@@ -22,7 +22,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
     var otherUserImage :JSQMessagesAvatarImage?
     var myImage :JSQMessagesAvatarImage?
     
-    var otherUserImageUrl: String!
+    var otherUserImageView :UIImage!
     var sendOnce:Bool = false;
     let appGlobalDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
@@ -68,8 +68,11 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
         }
 
         self.myImage = self.setupAvatarImage(self.appGlobalDelegate.user?.image["profile"])
-        self.otherUserImage = self.setupAvatarImage(self.otherUserImageUrl)
         
+        var img = UIImage()
+        img = self.otherUserImageView
+        
+        self.otherUserImage =  JSQMessagesAvatarImageFactory.avatarImageWithImage(img, diameter: 30)
         
         self.favourite.selected = isLiked != nil ? isLiked! : false
         self.archive.selected = isArchived != nil ? isArchived! : false

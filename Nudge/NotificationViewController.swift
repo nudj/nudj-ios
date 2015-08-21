@@ -315,7 +315,8 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
         chatView.participantsID = chatData.senderId
         chatView.chatTitle = chatData.jobTitle
         chatView.jobID = chatData.jobID
-        chatView.otherUserImageUrl = chatData.senderImage
+        chatView.otherUserImageView = cell.imageView!.image
+
         
         cell.userInteractionEnabled = true
         self.navigationController?.pushViewController(chatView, animated: true)

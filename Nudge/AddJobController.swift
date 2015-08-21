@@ -386,7 +386,8 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
         
         if buttonIndex == 1 {
             
-            API.sharedInstance.request(.DELETE, path: "jobs\(self.jobId!)", params: nil, closure: { json in
+            API.sharedInstance.request(.DELETE, path: "jobs/\(self.jobId!)", params: nil, closure: { json in
+                println("delete job -> jobs/\(self.jobId!)  -> \(json)")
                 
                 MixPanelHandler.sendData("JobDeleted")
                 self.navigationController?.popToRootViewControllerAnimated(true)

@@ -9,18 +9,46 @@
 import UIKit
 import Foundation
 import Alamofire
+import SwiftyJSON
 import FBSDKLoginKit
 
 
 class SocialHandlerModel: NSObject {
    
     var reqClient:LIALinkedInHttpClient?
-
+    var LinkedinPermission:String?
+    
     init(viewController:UIViewController){
         
         super.init()
-        self.reqClient = self.linkedInClientCongfig(viewController)
+        self.setLinkedInPermission(viewController)
         
+    }
+    
+    func setLinkedInPermission(viewController:UIViewController){
+        
+        API.sharedInstance.get("config/linkedin_permission", params: nil, closure: { response in
+            
+            println(response["data"].stringValue)
+            self.LinkedinPermission = response["data"].stringValue
+            
+            if self.LinkedinPermission!.isEmpty {
+                self.LinkedinPermission = "r_basicprofile"
+            }else{
+                self.LinkedinPermission = response["data"].stringValue
+            }
+            
+            self.reqClient = self.linkedInClientCongfig(viewController)
+
+            
+        }, errorHandler: {error in
+                
+            var alert = UIAlertView(title: "Server Error", message: "Oops, something went wrong. Could not get Linkedin's scope.", delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+            
+        })
+        
+     
     }
     
     //MARK: - Linked in config
@@ -83,7 +111,8 @@ class SocialHandlerModel: NSObject {
     
     func linkedInClientCongfig(viewController:UIViewController) -> LIALinkedInHttpClient{
         
-        var application = LIALinkedInApplication.applicationWithRedirectURL("http://api.nudj.co", clientId:"77l67v0flc6leq", clientSecret:"PLOAmXuwsl1sSooc", state:"DCEEFWF45453sdffef424", grantedAccess:["r_basicprofile","r_emailaddress"]) as! LIALinkedInApplication
+        println("configuring linkedin with \(self.LinkedinPermission!)")
+        var application = LIALinkedInApplication.applicationWithRedirectURL("http://api.nudj.co", clientId:"77l67v0flc6leq", clientSecret:"PLOAmXuwsl1sSooc", state:"DCEEFWF45453sdffef424", grantedAccess:[self.LinkedinPermission!,"r_emailaddress"]) as! LIALinkedInApplication
         
         return LIALinkedInHttpClient(forApplication: application, presentingViewController: viewController)
     }

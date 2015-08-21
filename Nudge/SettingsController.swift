@@ -234,7 +234,7 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
         // goToLogin
         if (segue.destinationViewController.isKindOfClass(LoginController)) {
             let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            delegate.logout()
+            delegate.deleteAccount()
         }
 
         // showYourProfile

@@ -45,13 +45,14 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
         self.faceBookImage.addGestureRecognizer(tapGestureRecognizer2)
         
         self.socialhander = SocialHandlerModel(viewController: self)
+
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-
+        self.tabBarController?.tabBar.hidden = true
+        self.navigationController?.navigationBarHidden = false
         self.navigationItem.hidesBackButton = true
-
         showUserData()
     }
     

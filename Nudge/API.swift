@@ -58,7 +58,7 @@ class API {
 
         manager.request(method, (baseURL + path) as String, parameters: params, encoding: encoding).responseString {
             (request, rawResponse, response, error) in
-
+            
             // Try to catch general API errors
             if (self.tryToCatchAPIError(rawResponse, response: response)) {
                 // We have general error from server and the user should not continue.
