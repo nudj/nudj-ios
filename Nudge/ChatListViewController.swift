@@ -123,9 +123,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         var cell = tableView.cellForRowAtIndexPath(indexPath)  as! ChatListTableViewCell
-        self.data[indexPath.row].markAsRead()
-        cell.isRead(self.data[indexPath.row].isRead!)
-        
+
         var chatView:ChatViewController = ChatViewController()
         
         let chat = self.data[indexPath.row]
@@ -135,10 +133,17 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         chatView.chatTitle = chat.title
         chatView.jobID = chat.jobID
         chatView.isLiked = chat.jobLike
-        chatView.otherUserImageView = cell.imageView!.image
+        
+        var imageData = UIImagePNGRepresentation(cell.profilePicture.image)
+        let base64String = imageData.base64EncodedStringWithOptions(.allZeros)
+        chatView.otherUserBase64Image = base64String
+        
         chatView.isArchived = isArchive
             
         self.navigationController?.pushViewController(chatView, animated: true)
+        
+        self.data[indexPath.row].markAsRead()
+        cell.isRead(self.data[indexPath.row].isRead!)
                 
     }
     

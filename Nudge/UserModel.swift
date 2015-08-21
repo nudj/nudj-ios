@@ -26,7 +26,8 @@ class UserModel: Printable {
     var skills:[String]?
     var image:[String:String] = ["profile": "http://usr-img.doppels.com/place_holder_grey.png"]
     var isDefaultImage = true
-
+    var base64Image:String?
+    
     var description:String {
         return "UserModel: id: \(id), name: \(name), completed: \(completed ? 1 : 0), status: \(status), image:\(image)"
     }
@@ -112,7 +113,18 @@ class UserModel: Printable {
             
             self.image[key] = val.stringValue;
             self.isDefaultImage = false
+            
         }
+        
+        if let url = NSURL(string :self.image["profile"]!){
+            var imageData = NSData(contentsOfURL: url)
+                if imageData != nil {
+                    let base64String = imageData!.base64EncodedStringWithOptions(.allZeros)
+                    self.base64Image = base64String
+                }
+        }
+        println("updated user image")
+        
     }
 
     func toggleFavourite(closure: (JSON) -> (), errorHandler: ((NSError) -> Void)? = nil) {

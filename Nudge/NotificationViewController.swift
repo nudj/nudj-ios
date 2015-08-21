@@ -315,8 +315,10 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
         chatView.participantsID = chatData.senderId
         chatView.chatTitle = chatData.jobTitle
         chatView.jobID = chatData.jobID
-        chatView.otherUserImageView = cell.imageView!.image
-
+        
+        var imageData = UIImagePNGRepresentation(cell.profileImage.image)
+        let base64String = imageData.base64EncodedStringWithOptions(.allZeros)
+        chatView.otherUserBase64Image = base64String
         
         cell.userInteractionEnabled = true
         self.navigationController?.pushViewController(chatView, animated: true)

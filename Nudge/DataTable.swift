@@ -37,7 +37,9 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
         self.dataSource = self
 
         self.refreshControl = UIRefreshControl()
-        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        self.refreshControl.tintColor = appDelegate.appColor
         self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.addSubview(refreshControl)
         self.autoresizingMask = UIViewAutoresizing.FlexibleBottomMargin | UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleHeight
@@ -58,6 +60,11 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
 
         if (self.loading) {
             self.refreshControl.endRefreshing()
+            
+            UIView.animateWithDuration(0.90, delay:0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+                self.alpha = 1
+            }, completion:nil);
+            
             return
         }
 
@@ -80,10 +87,20 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
             self.dataProvider!.didfinishLoading(self.data.count)
             self.reloadData()
             
+            UIView.animateWithDuration(0.90, delay:0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+                self.alpha = 1
+            }, completion:nil);
+
+    
         })
     }
 
     func refresh(sender: AnyObject) {
+        
+        UIView.animateWithDuration(0.25, delay:0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+            self.alpha = 0
+        }, completion:nil);
+        
         self.clear()
         self.loadData()
     }

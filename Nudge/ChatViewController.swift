@@ -22,7 +22,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
     var otherUserImage :JSQMessagesAvatarImage?
     var myImage :JSQMessagesAvatarImage?
     
-    var otherUserImageView :UIImage!
+    var otherUserBase64Image: String!
     var sendOnce:Bool = false;
     let appGlobalDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
@@ -66,30 +66,27 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
             self.dontUpdateButton = true
             self.inputToolbar.contentView.rightBarButtonItem.enabled = false
         }
-
-        self.myImage = self.setupAvatarImage(self.appGlobalDelegate.user?.image["profile"])
         
-        var img = UIImage()
-        img = self.otherUserImageView
         
-        self.otherUserImage =  JSQMessagesAvatarImageFactory.avatarImageWithImage(img, diameter: 30)
+        //Avatar Image
+        self.myImage = self.setupAvatarImage(appGlobalDelegate.user!.base64Image)
+        self.otherUserImage = self.setupAvatarImage(self.otherUserBase64Image)
         
         self.favourite.selected = isLiked != nil ? isLiked! : false
         self.archive.selected = isArchived != nil ? isArchived! : false
        
     }
 
-    //Custom Image
-    func setupAvatarImage(imageUrl: String!) -> JSQMessagesAvatarImage{
+    //Get and convert base64 image
+    func setupAvatarImage(base64Content:String?) -> JSQMessagesAvatarImage{
         
-        if let stringUrl = imageUrl {
-            if let url = NSURL(string: stringUrl) {
-                var data = NSData(contentsOfURL: url)
-                if(data != nil){
-                    let image = UIImage(data: data!)
-                    return JSQMessagesAvatarImageFactory.avatarImageWithImage(image, diameter: 30)
+        if base64Content != nil {
+            let decodedData = NSData(base64EncodedString: base64Content!, options: NSDataBase64DecodingOptions(rawValue: 0))
+                if  decodedData != nil {
+                    var decodedimage :UIImage = UIImage(data: decodedData!)!
+                    return JSQMessagesAvatarImageFactory.avatarImageWithImage(decodedimage, diameter: 30)
                 }
-            }
+       
         }
         
         //Default
@@ -118,6 +115,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        MixPanelHandler.sendData("ChatOpened")
         
         self.navigationController?.navigationBarHidden = true;
         self.tabBarController?.tabBar.hidden = true
@@ -130,7 +128,6 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
         self.navigationController?.navigationBarHidden = false;
         appGlobalDelegate.chatInst!.delegate = appGlobalDelegate;
 
-        
         self.filterOpened = false
     }
     
@@ -467,9 +464,12 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
         break;
         case 3:
             //Favourite Chat
+            
             if(selectedButton.selected){
+                MixPanelHandler.sendData("Chat_UnfavouriteJob")
                 self.completeRequest("jobs/"+self.jobID+"/like", withType: "DELETE")
             }else{
+                MixPanelHandler.sendData("Chat_FavouriteJob")
                 self.completeRequest("jobs/"+self.jobID+"/like", withType: "PUT")
             }
             selectedButton.selected = !selectedButton.selected
@@ -478,7 +478,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
         case 4:
             // Mute Conversation
             //[self completeRequest:[NSString stringWithFormat:@"contacts/%@/mute",_chatID] withType:@"PUT"];
-            
+            MixPanelHandler.sendData("Chat_MuteAction")
             selectedButton.selected = !selectedButton.selected
         
         break;
@@ -486,12 +486,14 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
             // Archive Conversation
             if(selectedButton.selected){
                 
+                MixPanelHandler.sendData("Chat_RestoreFromArchive")
                 self.completeRequest("chat/"+self.chatID+"/archive", withType: "DELETE")
                 var alert = UIAlertView(title: "Chat restored", message: "Chat successfully restored.", delegate: self, cancelButtonTitle: "OK")
                 alert.show()
                 
             }else{
                 
+                MixPanelHandler.sendData("Chat_Archive")
                 self.completeRequest("chat/"+self.chatID+"/archive", withType: "PUT")
                 var alert = UIAlertView(title: "Chat Archived", message: "Archived chats are stored in Settings.", delegate: self, cancelButtonTitle: "OK")
                 alert.show()
