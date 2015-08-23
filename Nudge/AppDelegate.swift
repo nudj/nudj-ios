@@ -12,6 +12,7 @@ import Fabric
 import Crashlytics
 import FBSDKLoginKit
 import Mixpanel
+import ReachabilitySwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
@@ -26,16 +27,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
     
     var shouldShowBadge = false
     var appWasInBackground = false
+    var pushNotificationsPayload :NSDictionary?
     
     let MIXPANEL_TOKEN = "29fc1fec9fa6f75efd303f12c8be4acb"
     let appColor = UIColor(red: 0, green: 0.63, blue: 0.53, alpha: 1)
     let appBlueColor = UIColor(red:17.0/255.0, green:147.0/255.0, blue:189.0/255.0, alpha: 1)
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-
+        //Fabric
         Fabric.with([Crashlytics()])
-        Mixpanel.sharedInstanceWithToken(MIXPANEL_TOKEN)
         
+        //Mixpanel
+        Mixpanel.sharedInstanceWithToken(MIXPANEL_TOKEN)
         MixPanelHandler.startEventTracking("timeSpentInApplication")
         
         // Getting of user details from CoreData
@@ -78,7 +81,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         }
 
         requestNotificationPermission(application)
-
+        //pushNotificationsPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey]
+        if let remoteNotification = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary {
+            pushNotificationsPayload = remoteNotification
+        }
+        
+        
+        if pushNotificationsPayload != nil && pushNotificationsPayload?.count > 0{
+            
+            if let notification: AnyObject = pushNotificationsPayload!.valueForKey("aps") {
+                var notificationCount :Int = notification["badge"] as! Int
+                UIApplication.sharedApplication().applicationIconBadgeNumber = notificationCount
+                NSNotificationCenter.defaultCenter().postNotificationName("updateBadgeValue", object: nil, userInfo: ["value":"\(notificationCount)","index":"3"])
+                pushNotificationsPayload = nil
+            }
+            
+        }
+        
+        //Handle internet connection
+        self.beginInternetConnectionCheck()
+        
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 
@@ -121,9 +143,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
 
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         
-        // Update badge
-        println(userInfo)
-        
         /*type_id = 8
         [aps: {
             alert = "Is it working, Ant?";
@@ -132,7 +151,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
             }, meta: {
                 "chat_id" = 4;
         }]*/
-        NSNotificationCenter.defaultCenter().postNotificationName("updateBadgeValue", object: nil, userInfo: ["value":"1","index":"3"])
+        
+        // Update badge
+        let userinfo = userInfo as NSDictionary
+        println(userinfo)
+        
+        if let notification: AnyObject = userinfo.valueForKey("aps") {
+            
+            var notificationCount :Int =  notification.valueForKey("badge") as! Int
+            UIApplication.sharedApplication().applicationIconBadgeNumber = notificationCount
+            
+            NSNotificationCenter.defaultCenter().postNotificationName("updateBadgeValue", object: nil, userInfo: ["value":"\(notificationCount)","index":"3"])
+            
+        }
+        
+        
+        
     }
 
     func syncContacts() {
@@ -157,6 +191,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
     func showContactsAccessView() {
         let askForPermission = NoContactsPermissionController(nibName: "NoContactsPermissionController", bundle: nil)
         self.window!.rootViewController = askForPermission
+    }
+    
+    func beginInternetConnectionCheck(){
+        
+        let reachability = Reachability.reachabilityForInternetConnection()
+        var view = NoInternetConnectionView(frame: self.window!.frame)
+        
+        reachability.whenUnreachable = { reachability in
+            println("Not reachable")
+            self.window?.addSubview(view)
+        }
+        
+        reachability.whenReachable = { reachability in
+            println("reachable")
+            view.removeFromSuperview()
+        }
+        
+        reachability.startNotifier()
     }
 
     func fetchUserData() {

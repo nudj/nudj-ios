@@ -89,6 +89,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
 
     override func viewWillDisappear(animated: Bool) {
         self.tabBarController?.tabBar.hidden = false
+        self.navigationController?.navigationBarHidden = false
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -98,7 +99,9 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
     
     //ToDo :change to camel case
     @IBAction func PostAction(sender: AnyObject) {
-
+    var item: UIBarButtonItem = sender as! UIBarButtonItem
+    item.enabled = false
+        
         self.resignFirstResponder()
         self.view.endEditing(true)
         
@@ -117,14 +120,13 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
         job.active = activeButton.selected
         job.bonus = bonus.text
             
-        println("skills -> \(job.skills)")
             
-        var item: UIBarButtonItem = sender as! UIBarButtonItem
             if(sender.title == "Update"){
                 
                 job.edit(self.jobId!, closure: { result in
                     if(result == true){
                         println ("did update")
+                        self.navigationController?.navigationBarHidden = true
                         
                         self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"this_job_has-been_posted", withText: false);
                         self.popup?.delegate = self;
@@ -133,6 +135,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
                         
                     }else{
                         
+                        self.navigationController?.navigationBarHidden = false
                         var alert = UIAlertView(title: "Failed to update", message: "Oops, something went wrong. Could not update the job details.", delegate: nil, cancelButtonTitle: "OK")
                         alert.show()
                     }
@@ -146,6 +149,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
                     }
                     
                     self.jobId = id
+                    self.navigationController?.navigationBarHidden = true
 
                     self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"this_job_has-been_posted", withText: false);
                     self.popup?.delegate = self;
@@ -162,6 +166,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
             
         }
         
+        item.enabled = true
 
     }
     
@@ -360,8 +365,8 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
         
         popup!.removeFromSuperview();
         if(self.navigationItem.rightBarButtonItem?.title == "Update"){
-            self.navigationController?.popViewControllerAnimated(true)
              MixPanelHandler.sendData("JobUpdated")
+            self.navigationController?.popViewControllerAnimated(true)
         }else{
             MixPanelHandler.sendData("NewJobAdded")
             performSegueWithIdentifier("showAskForReferal", sender: self)

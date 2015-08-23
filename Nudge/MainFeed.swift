@@ -8,7 +8,7 @@
 
 import UIKit
 import SwiftyJSON
-//import Reachability
+//import ReachabilitySwift
 
 @IBDesignable
 class MainFeed: BaseController, DataProviderProtocol ,UISearchBarDelegate {
@@ -61,13 +61,6 @@ class MainFeed: BaseController, DataProviderProtocol ,UISearchBarDelegate {
 
     func requestData(page: Int, size: Int, listener: (JSON) -> ()) {
         
-       /* let reachability = Reachability.reachabilityForInternetConnection()
-        reachability.whenUnreachable = { reachability in
-            println("Not reachable")
-        }
-        
-        reachability.startNotifier()
-*/
         let path = searchTerm == nil ? "available" : "search/\(searchTerm!)"
         self.noContentImage.image = searchTerm == nil ? UIImage(named:"no_jobs") : UIImage(named:"no_search_results")
         let params = "job.title,job.salary,job.bonus,job.user,job.location,job.company,user.name,user.image&sizes=user.profile"

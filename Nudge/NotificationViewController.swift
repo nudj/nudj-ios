@@ -37,6 +37,11 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
         self.refreshControl?.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
         self.view.addSubview(self.noContentImage.createNoContentPlaceHolder(self.view, imageTitle: "no_notifications"))
         
+        //set badge counter to 0
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+        
+        //mark notifications as read
+        
         //Reupdate frame
         self.noContentImage.frame = CGRectMake((self.view.frame.size.width/2) - 200/2 , ((view.frame.size.height/2) - 149/2) - 64, 200,149)
 

@@ -21,6 +21,8 @@
 		A929E4951B863D3F00AC2A5F /* MixPanelHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A929E4941B863D3F00AC2A5F /* MixPanelHandler.swift */; };
 		A947CC991B7119B500C9518E /* NoContentPlaceHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A947CC981B7119B500C9518E /* NoContentPlaceHolder.swift */; };
 		A947CC9C1B711CF000C9518E /* no_jobs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A947CC9B1B711CF000C9518E /* no_jobs@2x.png */; };
+		A94B49D41B8A7C80008CF762 /* NoInternetConnectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A94B49D31B8A7C80008CF762 /* NoInternetConnectionView.xib */; };
+		A94B49D61B8A8056008CF762 /* NoInternetConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94B49D51B8A8056008CF762 /* NoInternetConnectionView.swift */; };
 		A94FE6CC1B84C9E600761F32 /* archive_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A94FE6CB1B84C9E600761F32 /* archive_active@2x.png */; };
 		A95798251B46965A006E826E /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95798241B46965A006E826E /* NotificationViewController.swift */; };
 		A9733ECE1B781F49008D6115 /* CountrySelectionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9733ECD1B781F49008D6115 /* CountrySelectionPicker.swift */; };
@@ -370,6 +372,8 @@
 		A929E4941B863D3F00AC2A5F /* MixPanelHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MixPanelHandler.swift; sourceTree = "<group>"; };
 		A947CC981B7119B500C9518E /* NoContentPlaceHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoContentPlaceHolder.swift; sourceTree = "<group>"; };
 		A947CC9B1B711CF000C9518E /* no_jobs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_jobs@2x.png"; sourceTree = "<group>"; };
+		A94B49D31B8A7C80008CF762 /* NoInternetConnectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoInternetConnectionView.xib; sourceTree = "<group>"; };
+		A94B49D51B8A8056008CF762 /* NoInternetConnectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoInternetConnectionView.swift; sourceTree = "<group>"; };
 		A94FE6CB1B84C9E600761F32 /* archive_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archive_active@2x.png"; sourceTree = "<group>"; };
 		A95798241B46965A006E826E /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		A9733ECD1B781F49008D6115 /* CountrySelectionPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountrySelectionPicker.swift; sourceTree = "<group>"; };
@@ -2223,6 +2227,8 @@
 				A947CC981B7119B500C9518E /* NoContentPlaceHolder.swift */,
 				A9733ECD1B781F49008D6115 /* CountrySelectionPicker.swift */,
 				A929E4941B863D3F00AC2A5F /* MixPanelHandler.swift */,
+				A94B49D31B8A7C80008CF762 /* NoInternetConnectionView.xib */,
+				A94B49D51B8A8056008CF762 /* NoInternetConnectionView.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -2466,6 +2472,7 @@
 				A92324D41B7BAE77009C1F0C /* no_jobs@2x.png in Resources */,
 				A9964FFD1B387CC800D5A8E9 /* JSQMessagesToolbarContentView.xib in Resources */,
 				A99650991B3DB2D100D5A8E9 /* 3dots@2x.png in Resources */,
+				A94B49D41B8A7C80008CF762 /* NoInternetConnectionView.xib in Resources */,
 				A9F333621B42ACDC00F0D17B /* tag_location_active@2x.png in Resources */,
 				A9F3334E1B42ACCB00F0D17B /* check.png in Resources */,
 				A9F333671B42ACDC00F0D17B /* salary_details@2x.png in Resources */,
@@ -2808,6 +2815,7 @@
 				A99650451B387CC800D5A8E9 /* XMPPIQ+XEP_0060.m in Sources */,
 				A996502C1B387CC800D5A8E9 /* XMPPRoomHybrid.xcdatamodeld in Sources */,
 				A99650651B387CC800D5A8E9 /* XEP_0223.m in Sources */,
+				A94B49D61B8A8056008CF762 /* NoInternetConnectionView.swift in Sources */,
 				A996501F1B387CC800D5A8E9 /* XMPPUserMemoryStorageObject.m in Sources */,
 				A99650691B387CC800D5A8E9 /* XMPPMessage+XEP_0308.m in Sources */,
 				A99650301B387CC800D5A8E9 /* XMPPRoomMemoryStorage.m in Sources */,
