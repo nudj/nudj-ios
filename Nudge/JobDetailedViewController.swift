@@ -224,11 +224,13 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
             //Go to EditView
             MixPanelHandler.sendData("EditJobButtonClicked")
             let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            var addJobView = storyboard.instantiateViewControllerWithIdentifier("AddJobView") as! AddJobController
+            let navController = storyboard.instantiateViewControllerWithIdentifier("addJobNavigationController") as! UINavigationController
+           
+            var addJobView = navController.viewControllers[0] as! AddJobController
             addJobView.jobId = self.jobID?.toInt()
             addJobView.isEditable = true
-            self.navigationController?.pushViewController(addJobView, animated:true);
-            
+            //self.navigationController?.pushViewController(addJobView, animated:true);
+            self.presentViewController(navController, animated: true, completion: nil)
         }
         
     }
@@ -239,6 +241,7 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
             MixPanelHandler.sendData("ReferButtonClicked")
             askView.jobId = self.jobID!.toInt()
             askView.isNudjRequest = true
+            askView.isSlideTransition = true
             
         }
         
@@ -275,6 +278,7 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
             addJobView.jobId = self.jobID?.toInt()
             addJobView.isNudjRequest = false
             addJobView.jobTitle = self.jobTitleText.text
+            addJobView.isSlideTransition = true
             self.navigationController?.pushViewController(addJobView, animated:true);
             
         }
@@ -296,8 +300,10 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
         let params:[String:AnyObject] = ["job_id": "\(self.jobID!)"]
         
         API.sharedInstance.put("nudge/apply", params: params, closure: { json in
+            self.navigationController?.navigationBarHidden = true
             
             println("Job interested")
+            
             self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true);
             self.popup!.bodyText("The hirer has been notified");
             self.popup!.delegate = self;
@@ -313,8 +319,10 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
     
     func dismissPopUp() {
         
-        popup!.removeFromSuperview();
-        self.navigationController?.popToRootViewControllerAnimated(true)
+        self.popup!.removeFromSuperview()
+        self.navigationController?.navigationBarHidden = false
+        
+        
     }
     
 

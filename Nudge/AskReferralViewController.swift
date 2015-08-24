@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CCMPopup
 
 class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, CreatePopupViewDelegate{
     
@@ -17,7 +18,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
 
     var jobId:Int?
     var isNudjRequest:Bool?
-    
+    var isSlideTransition:Bool?
     var filtering = FilterModel()
     
     var selected = [ContactModel]()
@@ -94,6 +95,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     override func viewWillAppear(animated: Bool) {
         
         self.tabBarController?.tabBar.hidden = true
+               
     }
     
     //MARK: TextView Delegate
@@ -268,6 +270,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
         if(self.isNudjRequest!){
             
             API.sharedInstance.put("nudge", params: params, closure: { result in
+                self.navigationController?.navigationBarHidden = true
             
                 self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true);
                 
@@ -275,6 +278,9 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
                 self.popup!.bodyText("You have successfully nudged \(nudjContent)");
                 self.popup!.delegate = self;
                 self.view.addSubview(self.popup!);
+                
+                //self.performSegueWithIdentifier("ShowPopup", sender: self)
+                
 
                 println(result)
                 }) { error in
@@ -284,6 +290,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
         }else{
             
             API.sharedInstance.put("nudge/ask", params: params, closure: { result in
+                self.navigationController?.navigationBarHidden = true
                 
                 self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true);
                 
@@ -291,6 +298,8 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
                 self.popup!.bodyText("You have successfully asked \(nudjContent) for referral");
                 self.popup!.delegate = self;
                 self.view.addSubview(self.popup!);
+                
+                //self.performSegueWithIdentifier("ShowPopup", sender: self)
                 
                 println(result)
                 }) { error in
@@ -302,14 +311,38 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
 
     }
     
-
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+       if segue.isKindOfClass(CCMPopupSegue) {
+            var popupSegue = segue as! CCMPopupSegue
+            popupSegue.destinationBounds = CGRectMake(0, 0, 300, 400);
+            popupSegue.backgroundBlurRadius = 7;
+            popupSegue.backgroundViewAlpha = 0.3;
+            popupSegue.backgroundViewColor = UIColor.blackColor()
+            popupSegue.dismissableByTouchingBackground = true
+        }
+        
+    }
+    
+    
     @IBAction func close(sender: AnyObject) {
-        self.navigationController?.popToRootViewControllerAnimated(true)
+        self.closeCurrentView()
     }
     
     func dismissPopUp() {
+        self.navigationController?.navigationBarHidden = false
+       
         popup!.removeFromSuperview();
-        self.navigationController?.popToRootViewControllerAnimated(true)
+        self.closeCurrentView()
+    }
+    
+    func closeCurrentView(){
+        
+        if isSlideTransition != nil && isSlideTransition == true {
+           self.navigationController?.popViewControllerAnimated(true)
+        }else{
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
     }
     
     

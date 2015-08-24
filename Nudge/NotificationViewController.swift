@@ -277,6 +277,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
                 var askView = storyboard.instantiateViewControllerWithIdentifier(viewId) as! AskReferralViewController
                 askView.jobId = job
                 askView.isNudjRequest = true
+                askView.isSlideTransition = true
                 self.navigationController?.pushViewController(askView, animated: true);
             }
             

@@ -197,15 +197,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         
         let reachability = Reachability.reachabilityForInternetConnection()
         var view = NoInternetConnectionView(frame: self.window!.frame)
+        var isShown = false;
         
         reachability.whenUnreachable = { reachability in
             println("Not reachable")
-            self.window?.addSubview(view)
+            
+            if !isShown {
+                self.window?.addSubview(view)
+                isShown = true
+            }
         }
         
         reachability.whenReachable = { reachability in
             println("reachable")
-            view.removeFromSuperview()
+            if isShown {
+                view.removeFromSuperview()
+                isShown = false
+            }
         }
         
         reachability.startNotifier()

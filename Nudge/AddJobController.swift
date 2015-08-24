@@ -16,6 +16,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
     var isEditable:Bool?
     var jobId:Int?
     
+
     @IBOutlet weak var scrollView: UIScrollView!
     var openSpace:CGFloat = 0;
 
@@ -366,7 +367,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
         popup!.removeFromSuperview();
         if(self.navigationItem.rightBarButtonItem?.title == "Update"){
              MixPanelHandler.sendData("JobUpdated")
-            self.navigationController?.popViewControllerAnimated(true)
+             self.closeCurrentView()
         }else{
             MixPanelHandler.sendData("NewJobAdded")
             performSegueWithIdentifier("showAskForReferal", sender: self)
@@ -395,7 +396,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
                 println("delete job -> jobs/\(self.jobId!)  -> \(json)")
                 
                 MixPanelHandler.sendData("JobDeleted")
-                self.navigationController?.popToRootViewControllerAnimated(true)
+                self.closeCurrentView()
                 
             }, errorHandler: { error in
             
@@ -407,5 +408,13 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
             
         }
         
+    }
+    
+    func closeCurrentView(){
+         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func closeAction(sender: UIBarButtonItem) {
+       self.closeCurrentView()
     }
 }

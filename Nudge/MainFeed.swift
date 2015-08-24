@@ -16,7 +16,8 @@ class MainFeed: BaseController, DataProviderProtocol ,UISearchBarDelegate {
     @IBOutlet weak var table: DataTable!
 
     var selectedJobData:JSON? = nil
-    var searchBar =  UISearchBar()
+
+    @IBOutlet weak var searchBar: UISearchBar!
     var blackBackground = UIView()
     var searchTerm:String?
     var noContentImage = NoContentPlaceHolder()
@@ -37,13 +38,7 @@ class MainFeed: BaseController, DataProviderProtocol ,UISearchBarDelegate {
         self.blackBackground.frame = self.view.frame
         self.view.addSubview(self.blackBackground)
         
-        self.searchBar.hidden = true
-        self.searchBar.delegate = self;
-        self.searchBar.searchBarStyle = UISearchBarStyle.Default
-        self.searchBar.showsCancelButton = true
-        self.searchBar.showsScopeBar = true
-        self.searchBar.frame = CGRectMake(0, 0, self.view.frame.width, 70)
-        self.view.addSubview(self.searchBar)
+        self.view.bringSubviewToFront(self.searchBar)
         
         self.view.addSubview(self.noContentImage.createNoContentPlaceHolder(self.view, imageTitle: "no_jobs"))
         
@@ -51,10 +46,14 @@ class MainFeed: BaseController, DataProviderProtocol ,UISearchBarDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        MixPanelHandler.sendData("JobsTabOpened")
         
+        MixPanelHandler.sendData("JobsTabOpened")
         self.tabBarController?.tabBar.hidden = false
-        self.table.loadData()
+        
+        if(searchTerm == nil){
+            self.table.loadData()
+        }
+        
     
     }
     
@@ -101,21 +100,24 @@ class MainFeed: BaseController, DataProviderProtocol ,UISearchBarDelegate {
         }
         
     }
-    @IBAction func searchAction(sender: UIBarButtonItem) {
-        self.navigationController?.navigationBarHidden = true
-        self.searchBar.hidden = false
-        self.blackBackground.hidden = false
-        self.searchBar.becomeFirstResponder()
-        
-    }
+    
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         
         self.stopSearcAction()
         searchBar.text = ""
+        searchTerm = nil
         self.table.loadData()
        
         
+    }
+    
+    func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
+        
+        //self.blackBackground.hidden = false
+        searchBar.showsCancelButton = true
+        
+        return true
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
@@ -128,11 +130,12 @@ class MainFeed: BaseController, DataProviderProtocol ,UISearchBarDelegate {
     
     func stopSearcAction(){
         
-        self.navigationController?.navigationBarHidden = false
-        self.searchBar.hidden = true
-        self.blackBackground.hidden = true
+        //self.navigationController?.navigationBarHidden = false
+        //self.searchBar.hidden = true
+        
+        searchBar.showsCancelButton = false
         self.searchBar.resignFirstResponder()
-        searchTerm = nil
+        
         
     }
 }

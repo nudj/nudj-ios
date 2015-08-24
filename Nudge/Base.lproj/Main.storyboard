@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ySg-qO-GEI" customClass="DataTable" customModule="Nudj" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="108" width="375" height="510"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -40,30 +40,41 @@
                                     <outlet property="delegate" destination="tsR-hK-woN" id="QG4-Il-ywf"/>
                                 </connections>
                             </tableView>
+                            <searchBar contentMode="redraw" placeholder="Search Jobs" translatesAutoresizingMaskIntoConstraints="NO" id="4VT-eY-0LM">
+                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="9pv-A4-QxB" id="Yxk-2f-lAK"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="4VT-eY-0LM" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-16" id="Cnp-nS-lRV"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="ySg-qO-GEI" secondAttribute="bottom" id="OuD-6Y-txB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="4VT-eY-0LM" secondAttribute="trailing" constant="-16" id="Tat-Ev-4gh"/>
+                            <constraint firstItem="4VT-eY-0LM" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="aki-5M-8iB"/>
                             <constraint firstItem="ySg-qO-GEI" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-16" id="icp-Jk-Khk"/>
-                            <constraint firstItem="ySg-qO-GEI" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="kb9-tq-U8Z"/>
+                            <constraint firstItem="ySg-qO-GEI" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="44" id="kb9-tq-U8Z"/>
+                            <constraint firstItem="ySg-qO-GEI" firstAttribute="top" secondItem="4VT-eY-0LM" secondAttribute="bottom" id="rP1-V0-gOG"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ySg-qO-GEI" secondAttribute="trailing" constant="-16" id="rqN-or-Hlb"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="kb9-tq-U8Z"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Who's Hiring" id="Xds-DF-SN0">
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="search" id="ocI-QI-Ox5">
-                            <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="searchAction:" destination="9pv-A4-QxB" id="AGR-og-h7g"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="xys-7o-jBt">
                             <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="FfD-3r-a1P" kind="push" identifier="" id="ChB-i7-pmy"/>
+                                <segue destination="erZ-w0-oUk" kind="modal" identifier="" id="ChB-i7-pmy"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchBar" destination="4VT-eY-0LM" id="NgB-1W-XDO"/>
                         <outlet property="table" destination="ySg-qO-GEI" id="zCW-kX-zHa"/>
                     </connections>
                 </viewController>
@@ -83,7 +94,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWj-cz-HiY">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWj-cz-HiY">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="opr-g1-88K" userLabel="JobTitle">
@@ -588,6 +599,11 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Add Job Details" id="6Ro-DX-rEt">
+                        <barButtonItem key="leftBarButtonItem" image="close_btn.png" id="uCN-ca-gKY">
+                            <connections>
+                                <action selector="closeAction:" destination="FfD-3r-a1P" id="B7b-2n-o2M"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Post" id="r7j-TX-5L6">
                             <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -621,7 +637,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lLg-GA-XFy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1430.5" y="2152.5"/>
+            <point key="canvasLocation" x="-894.5" y="2151.5"/>
         </scene>
         <!--Ask For Referral-->
         <scene sceneID="2Qq-cM-5Ew">
@@ -733,11 +749,12 @@
                         <outlet property="messageLabel" destination="OV7-Xx-yXT" id="NB5-Tw-6ni"/>
                         <outlet property="messageText" destination="L8L-bc-XZK" id="MBK-Ow-v51"/>
                         <outlet property="searchBarView" destination="6Sq-g3-IGS" id="owk-OV-Fz4"/>
+                        <segue destination="ZWG-g7-idr" kind="custom" identifier="ShowPopup" customClass="CCMPopupSegue" id="E88-IJ-DXY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pmF-e8-vjl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1732.5" y="2963.5"/>
+            <point key="canvasLocation" x="-1683.5" y="3088.5"/>
         </scene>
         <!--Job Details-->
         <scene sceneID="pVz-Gg-ujC">
@@ -997,7 +1014,58 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l1b-Cw-UAv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1043.5" y="2151.5"/>
+            <point key="canvasLocation" x="-400.5" y="2151.5"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="hqD-rJ-cra">
+            <objects>
+                <viewController storyboardIdentifier="popupController" extendedLayoutIncludesOpaqueBars="YES" id="ZWG-g7-idr" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lHw-a9-Aot"/>
+                        <viewControllerLayoutGuide type="bottom" id="ATK-fJ-TBf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hLn-EC-dhA">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="400"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="success.png" translatesAutoresizingMaskIntoConstraints="NO" id="0yX-Si-sY3">
+                                <rect key="frame" x="100" y="150" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="Kpk-ur-x4P"/>
+                                    <constraint firstAttribute="height" constant="100" id="azR-Rd-SE3"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="0yX-Si-sY3" firstAttribute="leading" secondItem="hLn-EC-dhA" secondAttribute="leadingMargin" constant="-16" id="3uT-G4-Nh0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0yX-Si-sY3" secondAttribute="trailing" constant="-16" id="Adt-JO-g0r"/>
+                            <constraint firstAttribute="centerY" secondItem="0yX-Si-sY3" secondAttribute="centerY" id="S5a-Rt-snd"/>
+                            <constraint firstItem="ATK-fJ-TBf" firstAttribute="top" secondItem="0yX-Si-sY3" secondAttribute="bottom" id="VU1-9t-d4x"/>
+                            <constraint firstItem="0yX-Si-sY3" firstAttribute="top" secondItem="lHw-a9-Aot" secondAttribute="bottom" id="fBX-gd-oWv"/>
+                            <constraint firstAttribute="centerX" secondItem="0yX-Si-sY3" secondAttribute="centerX" id="zv2-3s-wZU"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="3uT-G4-Nh0"/>
+                                <exclude reference="Adt-JO-g0r"/>
+                                <exclude reference="fBX-gd-oWv"/>
+                                <exclude reference="VU1-9t-d4x"/>
+                            </mask>
+                        </variation>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="qiW-5V-zRa" appends="YES" id="nHh-nv-U2y"/>
+                        </connections>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="300" height="400"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="74f-ie-LV4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="qiW-5V-zRa"/>
+            </objects>
+            <point key="canvasLocation" x="-1161" y="3089"/>
         </scene>
         <!--Terms and Conditions-->
         <scene sceneID="NjF-g7-JHD">
@@ -1034,7 +1102,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A0E-zk-VSS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-613" y="2260"/>
+            <point key="canvasLocation" x="119" y="2220"/>
         </scene>
         <!--Send FeedBack-->
         <scene sceneID="khT-Ah-3Ew">
@@ -1098,7 +1166,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ABT-L0-yQR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-181.5" y="2254.5"/>
+            <point key="canvasLocation" x="542.5" y="2229.5"/>
         </scene>
         <!--Contact-->
         <scene sceneID="3cQ-2r-CFH">
@@ -1146,7 +1214,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T8H-g6-tGF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="951.5" y="1954.5"/>
+            <point key="canvasLocation" x="1538.5" y="1954.5"/>
         </scene>
         <!--Saved Jobs-->
         <scene sceneID="Wf9-nn-Ahp">
@@ -1185,7 +1253,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QSl-EQ-zJN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1495.5" y="1990.5"/>
+            <point key="canvasLocation" x="2082.5" y="1990.5"/>
         </scene>
         <!--Network Posts Navigator-->
         <scene sceneID="gnE-5Y-lyK">
@@ -2532,15 +2600,33 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dh4-LD-Yra" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="364.5" y="1954.5"/>
+            <point key="canvasLocation" x="951.5" y="1954.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="tit-de-obz">
+            <objects>
+                <navigationController storyboardIdentifier="addJobNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="erZ-w0-oUk" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lHL-Np-V1Q">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="FfD-3r-a1P" kind="relationship" relationship="rootViewController" id="Ihj-rH-0Ko"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AMv-pi-nrQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1683.5" y="2261.5"/>
         </scene>
     </scenes>
     <resources>
         <image name="bio" width="26" height="26"/>
         <image name="bio-active" width="26" height="26"/>
-        <image name="chatIcon" width="20" height="20"/>
+        <image name="chatIcon" width="30" height="30"/>
         <image name="close_btn.png" width="16" height="16"/>
-        <image name="contactsIcon" width="20" height="20"/>
+        <image name="contactsIcon" width="30" height="30"/>
         <image name="email" width="26" height="26"/>
         <image name="email-active" width="26" height="26"/>
         <image name="employer_active.png" width="24" height="24"/>
@@ -2549,32 +2635,33 @@
         <image name="importBackground" width="330" height="383"/>
         <image name="job" width="24" height="24"/>
         <image name="job-active" width="24" height="24"/>
-        <image name="jobsIcon" width="20" height="20"/>
+        <image name="jobsIcon" width="30" height="30"/>
         <image name="linkedIn" width="278" height="43"/>
         <image name="locationIcon" width="24" height="24"/>
         <image name="locationIcon-active" width="24" height="24"/>
-        <image name="notificationsIcon" width="20" height="20"/>
+        <image name="notificationsIcon" width="30" height="30"/>
         <image name="nudge_small_logo" width="145" height="79"/>
         <image name="pound" width="13" height="19"/>
         <image name="pound-active" width="13" height="19"/>
         <image name="salary" width="24" height="24"/>
         <image name="salary-active" width="24" height="24"/>
-        <image name="settingsIcon" width="20" height="20"/>
+        <image name="settingsIcon" width="30" height="30"/>
         <image name="silhouette" width="24" height="24"/>
         <image name="silhouette-active" width="24" height="24"/>
         <image name="skills" width="24" height="24"/>
         <image name="skills-active" width="24" height="24"/>
+        <image name="success.png" width="88" height="88"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="l7l-cF-kYn"/>
-        <segue reference="bRT-wJ-4eb"/>
+        <segue reference="gvE-qy-aNj"/>
         <segue reference="BCe-Pt-bFX"/>
         <segue reference="IbB-SC-7jb"/>
-        <segue reference="6SR-Rm-L27"/>
-        <segue reference="oHM-Sk-no8"/>
-        <segue reference="gvE-qy-aNj"/>
-        <segue reference="eNW-U2-njr"/>
+        <segue reference="TFM-Ac-ZI1"/>
+        <segue reference="E5T-Ai-Mhe"/>
         <segue reference="1RO-e0-4AP"/>
+        <segue reference="oHM-Sk-no8"/>
+        <segue reference="l7l-cF-kYn"/>
+        <segue reference="bRT-wJ-4eb"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
 </document>
