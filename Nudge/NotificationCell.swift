@@ -87,8 +87,8 @@ class NotificationCell: UITableViewCell {
          break;
         case .MatchingContact:
             self.callButton.hidden = true
-            self.smsButton.setTitle("REFER", forState: UIControlState.Normal)
-            self.smsButton.backgroundColor = appDelegate.appBlueColor
+            self.smsButton.setTitle("NUDJ", forState: UIControlState.Normal)
+            self.smsButton.backgroundColor = appDelegate.appColor
             self.refLabel.hidden = false
             self.refAmount.hidden = false
           break;

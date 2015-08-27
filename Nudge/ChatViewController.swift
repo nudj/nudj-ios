@@ -38,7 +38,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
 
         let bubbleFactory : JSQMessagesBubbleImageFactory = JSQMessagesBubbleImageFactory();
         
-        self.outgoingBubbleImageData = bubbleFactory.outgoingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleBlueColor());
+        self.outgoingBubbleImageData = bubbleFactory.outgoingMessagesBubbleImageWithColor(appGlobalDelegate.appColor);
         self.incomingBubbleImageData = bubbleFactory.incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor());
 
         self.showLoadEarlierMessagesHeader = false
