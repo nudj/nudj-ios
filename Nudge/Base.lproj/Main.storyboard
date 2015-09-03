@@ -2653,15 +2653,15 @@
         <image name="success.png" width="88" height="88"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="eNW-U2-njr"/>
-        <segue reference="TFM-Ac-ZI1"/>
         <segue reference="vho-Q5-Kri"/>
         <segue reference="l7l-cF-kYn"/>
         <segue reference="bRT-wJ-4eb"/>
+        <segue reference="H2O-Du-Dkg"/>
+        <segue reference="1RO-e0-4AP"/>
         <segue reference="gvE-qy-aNj"/>
         <segue reference="oHM-Sk-no8"/>
-        <segue reference="IbB-SC-7jb"/>
-        <segue reference="1RO-e0-4AP"/>
+        <segue reference="TFM-Ac-ZI1"/>
+        <segue reference="eNW-U2-njr"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
 </document>

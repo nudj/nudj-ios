@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         // Getting of user details from CoreData
         fetchUserData()
         prepareApi();
-
+        println("usercompleted is  -> \(self.user?.completed)")
         if (user != nil && user!.id != nil && user!.completed == false) {
 
             if (contacts.isAuthorized()) {
@@ -236,11 +236,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
                 }
 
                 let obj = results.first as! NSManagedObject;
+                println(obj.valueForKey("id"))
 
                 self.user!.id = obj.valueForKey("id") == nil ? nil : obj.valueForKey("id") as? Int
                 self.user!.name = obj.valueForKey("name") == nil ? nil : (obj.valueForKey("name") as! String)
                 self.user!.token = obj.valueForKey("token") == nil ? nil : (obj.valueForKey("token") as! String)
-                self.user!.completed = obj.valueForKey("completed") == nil ? false : obj.valueForKey("completed")!.boolValue
+                self.user!.completed = obj.valueForKey("completed") == nil ? false : (obj.valueForKey("completed") as! Bool)
                 self.user!.addressBookAccess = obj.valueForKey("addressBookAccess") == nil ? false : obj.valueForKey("addressBookAccess")!.boolValue
                 self.user!.status = obj.valueForKey("status") == nil ? 0 : obj.valueForKey("status") as! Int
                 
@@ -256,7 +257,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         if let user = self.user {
             if user.token != nil {
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () -> Void in
-                    UserModel.getCurrent(["user.name", "user.completed", "user.status", "user.image"], closure: { userObject in
+                    UserModel.getCurrent(["user.name", "user.completed", "user.status", "user.image","user.settings"], closure: { userObject in
                         if let source = userObject.source {
                             self.user!.updateFromJson(source)
                             self.pushUserData()
@@ -273,6 +274,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
             println("current user deleted")
         
         }
+        
+        
     }
 
     func pushUserData() {
@@ -283,6 +286,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         if (self.user == nil) {
             self.user = user
         }
+        
 
         let managedContext = self.managedObjectContext!
         let entity =  NSEntityDescription.entityForName("User", inManagedObjectContext: managedContext)

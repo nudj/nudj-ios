@@ -65,6 +65,8 @@ class UserModel: Printable {
         UserModel.getById(0, fields: fields, closure: {response in
             let userResponse = response["data"]
 
+            println(userResponse)
+            
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
             var user = appDelegate.user == nil ? UserModel() : appDelegate.user!
 
