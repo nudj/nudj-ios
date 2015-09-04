@@ -49,6 +49,7 @@ class MainFeed: BaseController, DataProviderProtocol ,UISearchBarDelegate, Tutor
             tutorial.delegate = self
             tutorial.starTutorial("tutorial-welcome", view: self.view)
         }
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -148,13 +149,12 @@ class MainFeed: BaseController, DataProviderProtocol ,UISearchBarDelegate, Tutor
     
     func dismissTutorial() {
         
-        //UserModel.update(["settings":["tutorial":["post_job":0,"create_job":0,"open_job":0]]], closure: { result in
-            
+        UserModel.update(["settings":["tutorial":["post_job":false]]], closure: { result in
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
             appDelegate.updateUserObject("AddJobTutorial", with:false)
             appDelegate.shouldShowAddJobTutorial = false
             
-        //})
+        })
     }
     
     
