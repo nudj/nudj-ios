@@ -245,7 +245,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
                 }
 
                 let obj = results.first as! NSManagedObject;
-                println(obj.valueForKey("id"))
+                let value: AnyObject? = obj.valueForKey("completed")
+                println("db value from coredata \(value)")
 
                 self.user!.id = obj.valueForKey("id") == nil ? nil : obj.valueForKey("id") as? Int
                 self.user!.name = obj.valueForKey("name") == nil ? nil : (obj.valueForKey("name") as! String)
@@ -310,11 +311,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         if (self.user == nil) {
             self.user = user
         }
-        
 
         let managedContext = self.managedObjectContext!
         let entity =  NSEntityDescription.entityForName("User", inManagedObjectContext: managedContext)
         let userObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
+        
 
         userObject.setValue(user.id == nil ? nil : NSInteger(user.id!), forKey: "id")
         userObject.setValue(user.name, forKey: "name")
