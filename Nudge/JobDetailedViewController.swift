@@ -344,15 +344,26 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
         
         if(self.navigationItem.rightBarButtonItem?.title == "Edit"){
             
-            appDelegate.updateUserObject("AskForReferralTutorial", with:false)
-            appDelegate.shouldShowAskForReferralTutorial = false
+            
+            UserModel.update(["settings":["tutorial":["create_job":false]]], closure: { result in
+                
+                appDelegate.updateUserObject("AskForReferralTutorial", with:false)
+                appDelegate.shouldShowAskForReferralTutorial = false
+                
+            })
             
         }else{
-
-            appDelegate.updateUserObject("NudjTutorial", with:false)
-            appDelegate.shouldShowNudjTutorial = false
+            
+            UserModel.update(["settings":["tutorial":["open_job":false]]], closure: { result in
+                
+                appDelegate.updateUserObject("NudjTutorial", with:false)
+                appDelegate.shouldShowNudjTutorial = false
+                
+            })
         
         }
+        
+        
     }
     
 

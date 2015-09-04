@@ -2992,7 +2992,7 @@
 					/usr/include/libxml2,
 				);
 				PRODUCT_NAME = Nudj;
-				PROVISIONING_PROFILE = "2c69344a-f636-4b1e-948c-6f90752c562c";
+				PROVISIONING_PROFILE = "58cc2751-37df-4d6d-8ddc-91bc5f4c84a6";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Nudge/Nudge-Bridging-Header.h";
 			};
 			name = Debug;
@@ -3027,7 +3027,7 @@
 					/usr/include/libxml2,
 				);
 				PRODUCT_NAME = Nudj;
-				PROVISIONING_PROFILE = "2c69344a-f636-4b1e-948c-6f90752c562c";
+				PROVISIONING_PROFILE = "58cc2751-37df-4d6d-8ddc-91bc5f4c84a6";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Nudge/Nudge-Bridging-Header.h";
 			};
 			name = Release;
