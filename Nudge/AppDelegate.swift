@@ -13,6 +13,7 @@ import Crashlytics
 import FBSDKLoginKit
 import Mixpanel
 import ReachabilitySwift
+import SwiftyJSON
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
@@ -29,6 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
     var appWasInBackground = false
     var pushNotificationsPayload :NSDictionary?
     
+    //Tutorial options
+    var shouldNotShowAddJobTutorial = false
+    var shouldNotShowNudjTutorial = false
+    var shouldNotShowAskForReferralTutorial = false
+    
+    
+    //Mix panel
     let MIXPANEL_TOKEN = "29fc1fec9fa6f75efd303f12c8be4acb"
     let appColor = UIColor(red: 0, green: 0.63, blue: 0.53, alpha: 1)
     let appBlueColor = UIColor(red:17.0/255.0, green:147.0/255.0, blue:189.0/255.0, alpha: 1)
@@ -45,6 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         fetchUserData()
         prepareApi();
         println("usercompleted is  -> \(self.user?.completed)")
+        
         if (user != nil && user!.id != nil && user!.completed == false) {
 
             if (contacts.isAuthorized()) {
@@ -258,9 +267,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
             if user.token != nil {
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () -> Void in
                     UserModel.getCurrent(["user.name", "user.completed", "user.status", "user.image","user.settings"], closure: { userObject in
-                        if let source = userObject.source {
+                        if let source :JSON = userObject.source {
+                            
+                            if let settings :JSON = userObject.settings {
+                                
+                                self.shouldNotShowAddJobTutorial = settings["tutorial"]["post_job"].boolValue
+                                self.shouldNotShowAskForReferralTutorial = settings["tutorial"]["create_job"].boolValue
+                                self.shouldNotShowNudjTutorial = settings["tutorial"]["open_job"].boolValue
+                                
+                            }
+                            
                             self.user!.updateFromJson(source)
                             self.pushUserData()
+                            
+                            
+                        }else{
+                            
+                            println(" user has no source object")
+                            
                         }
                     })
                 })

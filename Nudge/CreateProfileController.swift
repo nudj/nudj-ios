@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -64,10 +65,17 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
     }
 
     func showUserData() {
-        UserModel.getCurrent(["user.status", "user.name", "user.image", "user.completed"], closure: { user in
-
+        UserModel.getCurrent(["user.status", "user.name", "user.image", "user.completed", "user.settings"], closure: { user in
+        
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
+            
+            if let settings :JSON = user.settings {
+                appDelegate.shouldNotShowAddJobTutorial = settings["tutorial"]["create_job"].boolValue
+                appDelegate.shouldNotShowAskForReferralTutorial = settings["tutorial"]["post_job"].boolValue
+                appDelegate.shouldNotShowNudjTutorial = settings["tutorial"]["open_job"].boolValue
+            }
+            
             if (user.completed) {
-                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
                 appDelegate.user!.completed = true
                 appDelegate.pushUserData()
                 appDelegate.changeRootViewController("mainNavigation")

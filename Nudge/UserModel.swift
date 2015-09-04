@@ -40,6 +40,7 @@ class UserModel: Printable {
     var favourite:Bool?
 
     var source:JSON?
+    var settings:JSON?
 
     init() {
         
@@ -64,8 +65,6 @@ class UserModel: Printable {
     static func getCurrent(fields:[String]?, closure: ((UserModel) -> ())? = nil, errorHandler: ((NSError) -> Void)? = nil) {
         UserModel.getById(0, fields: fields, closure: {response in
             let userResponse = response["data"]
-
-            println(userResponse)
             
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
             var user = appDelegate.user == nil ? UserModel() : appDelegate.user!
@@ -102,6 +101,7 @@ class UserModel: Printable {
             // addressBookAccess is per device, so it should not be updated trough this method
 
             case "favourite": favourite = subJson.boolValue
+            case "settings": settings = subJson
 
             default:
                 println("!!!! Unknown user key: " + key)

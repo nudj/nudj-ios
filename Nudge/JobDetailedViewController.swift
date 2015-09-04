@@ -36,6 +36,7 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
     var userId:Int?
     var popup :CreatePopupView?;
     var spinner = UIActivityIndicatorView()
+    var tutorial = TutorialView()
     
     override func viewDidLoad() {
         
@@ -107,6 +108,10 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
         // Configure right button
         if(appDelegate.user!.id == content["user"]["id"].intValue){
             
+            if !appDelegate.shouldNotShowAskForReferralTutorial  {
+               tutorial.starTutorial("tutorial-ask", view: self.view)
+            }
+            
             self.navigationItem.rightBarButtonItem?.title = "Edit"
             self.interestedBtn.setTitle("Ask for Referral", forState: UIControlState.Normal)
             
@@ -119,10 +124,17 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
         
             self.navigationItem.rightBarButtonItem?.title = "Saved"
             
+            if !appDelegate.shouldNotShowNudjTutorial  {
+                tutorial.starTutorial("tutorial-nudge", view: self.view)
+            }
             
         }else{
             
             self.navigationItem.rightBarButtonItem?.title = "Save"
+            
+            if !appDelegate.shouldNotShowNudjTutorial  {
+                tutorial.starTutorial("tutorial-nudge", view: self.view)
+            }
         }
         
         // Update skills

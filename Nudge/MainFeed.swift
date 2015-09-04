@@ -21,6 +21,7 @@ class MainFeed: BaseController, DataProviderProtocol ,UISearchBarDelegate {
     var blackBackground = UIView()
     var searchTerm:String?
     var noContentImage = NoContentPlaceHolder()
+    var tutorial = TutorialView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +43,12 @@ class MainFeed: BaseController, DataProviderProtocol ,UISearchBarDelegate {
         
         self.view.addSubview(self.noContentImage.createNoContentPlaceHolder(self.view, imageTitle: "no_jobs"))
         
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
+        println("show tutorial => \(appDelegate.shouldNotShowAddJobTutorial)")
+        
+        if !appDelegate.shouldNotShowAddJobTutorial  {
+            tutorial.starTutorial("tutorial-welcome", view: self.view)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
