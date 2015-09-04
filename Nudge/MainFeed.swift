@@ -11,7 +11,7 @@ import SwiftyJSON
 //import ReachabilitySwift
 
 @IBDesignable
-class MainFeed: BaseController, DataProviderProtocol ,UISearchBarDelegate {
+class MainFeed: BaseController, DataProviderProtocol ,UISearchBarDelegate, TutorialViewDelegate{
 
     @IBOutlet weak var table: DataTable!
 
@@ -44,9 +44,9 @@ class MainFeed: BaseController, DataProviderProtocol ,UISearchBarDelegate {
         self.view.addSubview(self.noContentImage.createNoContentPlaceHolder(self.view, imageTitle: "no_jobs"))
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
-        println("show tutorial => \(appDelegate.shouldNotShowAddJobTutorial)")
         
-        if !appDelegate.shouldNotShowAddJobTutorial  {
+        if appDelegate.shouldShowAddJobTutorial  {
+            tutorial.delegate = self
             tutorial.starTutorial("tutorial-welcome", view: self.view)
         }
     }
@@ -145,4 +145,17 @@ class MainFeed: BaseController, DataProviderProtocol ,UISearchBarDelegate {
         
         
     }
+    
+    func dismissTutorial() {
+        
+        //UserModel.update(["settings":["tutorial":["post_job":0,"create_job":0,"open_job":0]]], closure: { result in
+            
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
+            appDelegate.updateUserObject("AddJobTutorial", with:false)
+            appDelegate.shouldShowAddJobTutorial = false
+            
+        //})
+    }
+    
+    
 }

@@ -11,7 +11,7 @@ import Foundation
 import SwiftyJSON
 import Alamofire
 
-class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAlertViewDelegate{
+class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAlertViewDelegate, TutorialViewDelegate{
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
     
@@ -43,6 +43,8 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
         super.viewDidLoad()
         var profileTap = UITapGestureRecognizer(target:self, action:"goToProfile")
         self.authorName.addGestureRecognizer(profileTap)
+        
+        tutorial.delegate = self
 
     }
     
@@ -108,7 +110,7 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
         // Configure right button
         if(appDelegate.user!.id == content["user"]["id"].intValue){
             
-            if !appDelegate.shouldNotShowAskForReferralTutorial  {
+            if appDelegate.shouldShowAskForReferralTutorial  {
                tutorial.starTutorial("tutorial-ask", view: self.view)
             }
             
@@ -124,7 +126,7 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
         
             self.navigationItem.rightBarButtonItem?.title = "Saved"
             
-            if !appDelegate.shouldNotShowNudjTutorial  {
+            if appDelegate.shouldShowNudjTutorial  {
                 tutorial.starTutorial("tutorial-nudge", view: self.view)
             }
             
@@ -132,7 +134,7 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
             
             self.navigationItem.rightBarButtonItem?.title = "Save"
             
-            if !appDelegate.shouldNotShowNudjTutorial  {
+            if appDelegate.shouldShowNudjTutorial  {
                 tutorial.starTutorial("tutorial-nudge", view: self.view)
             }
         }
@@ -335,6 +337,22 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
         self.navigationController?.navigationBarHidden = false
         
         
+    }
+    
+    func dismissTutorial() {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
+        
+        if(self.navigationItem.rightBarButtonItem?.title == "Edit"){
+            
+            appDelegate.updateUserObject("AskForReferralTutorial", with:false)
+            appDelegate.shouldShowAskForReferralTutorial = false
+            
+        }else{
+
+            appDelegate.updateUserObject("NudjTutorial", with:false)
+            appDelegate.shouldShowNudjTutorial = false
+        
+        }
     }
     
 

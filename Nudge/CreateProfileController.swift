@@ -70,13 +70,15 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
             
             if let settings :JSON = user.settings {
-                appDelegate.shouldNotShowAddJobTutorial = settings["tutorial"]["create_job"].boolValue
-                appDelegate.shouldNotShowAskForReferralTutorial = settings["tutorial"]["post_job"].boolValue
-                appDelegate.shouldNotShowNudjTutorial = settings["tutorial"]["open_job"].boolValue
+                println("server -> \( user.settings)")
+                
+                appDelegate.shouldShowAddJobTutorial = settings["tutorial"]["create_job"].boolValue
+                appDelegate.shouldShowAskForReferralTutorial = settings["tutorial"]["post_job"].boolValue
+                appDelegate.shouldShowNudjTutorial = settings["tutorial"]["open_job"].boolValue
                
-                appDelegate.updateUserObject("AddJobTutorial", with: appDelegate.shouldNotShowAddJobTutorial)
-                appDelegate.updateUserObject("AskForReferralTutorial", with: appDelegate.shouldNotShowAskForReferralTutorial)
-                appDelegate.updateUserObject("NudjTutorial", with:  appDelegate.shouldNotShowNudjTutorial)
+                appDelegate.updateUserObject("AddJobTutorial", with: appDelegate.shouldShowAddJobTutorial)
+                appDelegate.updateUserObject("AskForReferralTutorial", with: appDelegate.shouldShowAskForReferralTutorial)
+                appDelegate.updateUserObject("NudjTutorial", with:  appDelegate.shouldShowNudjTutorial)
 
             }
             

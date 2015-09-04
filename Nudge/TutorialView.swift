@@ -8,8 +8,15 @@
 
 import UIKit
 
+protocol TutorialViewDelegate {
+    
+    func dismissTutorial()
+    
+}
+
 class TutorialView: UIImageView {
     
+    var delegate:TutorialViewDelegate?
     
     func starTutorial(name:String, view:UIView){
         
@@ -29,6 +36,7 @@ class TutorialView: UIImageView {
     func stopTutorial(){
         
         self.removeFromSuperview()
+        delegate?.dismissTutorial()
     }
     
     

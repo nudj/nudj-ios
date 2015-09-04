@@ -31,9 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
     var pushNotificationsPayload :NSDictionary?
     
     //Tutorial options
-    var shouldNotShowAddJobTutorial = false
-    var shouldNotShowNudjTutorial = false
-    var shouldNotShowAskForReferralTutorial = false
+    var shouldShowAddJobTutorial = true
+    var shouldShowNudjTutorial = true
+    var shouldShowAskForReferralTutorial = true
     
     
     //Mix panel
@@ -271,14 +271,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
                             
                             if let settings :JSON = userObject.settings {
                                 
-                                self.shouldNotShowAddJobTutorial = settings["tutorial"]["post_job"].boolValue
-                                self.updateUserObject("AddJobTutorial", with: self.shouldNotShowAddJobTutorial)
+                                self.shouldShowAddJobTutorial = settings["tutorial"]["post_job"].boolValue
+                                self.updateUserObject("AddJobTutorial", with: self.shouldShowAddJobTutorial)
                                 
-                                self.shouldNotShowAskForReferralTutorial = settings["tutorial"]["create_job"].boolValue
-                                self.updateUserObject("AskForReferralTutorial", with: self.shouldNotShowAskForReferralTutorial)
+                                self.shouldShowAskForReferralTutorial = settings["tutorial"]["create_job"].boolValue
+                                self.updateUserObject("AskForReferralTutorial", with: self.shouldShowAskForReferralTutorial)
                                 
-                                self.shouldNotShowNudjTutorial = settings["tutorial"]["open_job"].boolValue
-                                self.updateUserObject("NudjTutorial", with:  self.shouldNotShowNudjTutorial)
+                                self.shouldShowNudjTutorial = settings["tutorial"]["open_job"].boolValue
+                                self.updateUserObject("NudjTutorial", with:  self.shouldShowNudjTutorial)
                                 
                             }
                             
@@ -674,7 +674,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         
         let defaults = NSUserDefaults.standardUserDefaults()
         
-        var dict = ["Completed":false, "AddJobTutorial":false, "NudjTutorial":false, "AskForReferralTutorial":false]
+        var dict = ["Completed":false, "AddJobTutorial":true, "NudjTutorial":true, "AskForReferralTutorial":true]
         var data = NSKeyedArchiver.archivedDataWithRootObject(dict)
         
         defaults.setObject(data, forKey:"USER")
@@ -700,11 +700,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
                     self.user!.completed = dict["Completed"]!.boolValue
                 }
                 
-                self.shouldNotShowNudjTutorial =  dict["NudjTutorial"]!.boolValue
+                self.shouldShowNudjTutorial =  dict["NudjTutorial"]!.boolValue
                 
-                self.shouldNotShowAskForReferralTutorial = dict["AskForReferralTutorial"]!.boolValue
+                self.shouldShowAskForReferralTutorial = dict["AskForReferralTutorial"]!.boolValue
                 
-                self.shouldNotShowAddJobTutorial = dict["AddJobTutorial"]!.boolValue
+                self.shouldShowAddJobTutorial = dict["AddJobTutorial"]!.boolValue
                 
             }else{
                 
@@ -726,7 +726,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
             
             if let dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData) as? [String:Bool] {
             
-                 if dict[title] != nil && !dict[title]!.boolValue  {
+                 if dict[title] != nil {
                     
                     var newContent = dict
                     newContent[title] = value
@@ -735,11 +735,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
                     defaults.synchronize()
                     println("Updated \(title) with \(value)")
                     
-                 }else{
-                    
-                    println("Will not update \(title) as its already true")
-                    
-                }
+                 }
             
             }else{
                 
@@ -748,7 +744,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
             
         }else{
             
-            println("NSUserDefaults for USER doesnt exsist")
+            println("Cannot put in USER as it doesnt exsist so let create one")
+            self.createUserObject()
+            
+            println("OK SO user has been created. now let retry putting")
+            updateUserObject(title, with: value)
             
         }
 
@@ -756,10 +756,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
     
     func deleteUserObject(){
         
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let outData = defaults.dataForKey("USER") {
+         
+            defaults.setObject(nil, forKey:"USER")
+            defaults.synchronize()
+
+        
+            println("Deleted userobject")
+        }
         
         
     }
-
-
+    
+    func createTestCaseForUsefinfo(){
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        if let outData = defaults.dataForKey("USER") {
+            
+            if let dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData) as? [String:Bool] {
+                var dic = dict
+                dic["Completed"] = false
+                dic["NudjTutorial"] = false
+                dic["AskForReferralTutorial"] = false
+                dic["AddJobTutorial"] = false
+                var data = NSKeyedArchiver.archivedDataWithRootObject(dic)
+                defaults.setObject(data, forKey:"USER")
+                defaults.synchronize()
+                
+                getUserObject()
+            }
+        }
+    }
 }
 

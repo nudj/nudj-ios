@@ -32,7 +32,7 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
             SettingsItem(name: "Archived Chats", action: "goToChats")
         ],
         [
-            SettingsItem(name: "LinkedIn", action: "linkedin"),
+            //SettingsItem(name: "LinkedIn", action: "linkedin"),
             SettingsItem(name: "Facebook", action: "facebook")
         ],
         [

@@ -1831,7 +1831,7 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="linkedIn" translatesAutoresizingMaskIntoConstraints="NO" id="mPc-9o-yW5">
+                                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="linkedIn" translatesAutoresizingMaskIntoConstraints="NO" id="mPc-9o-yW5">
                                                 <rect key="frame" x="68" y="131" width="278" height="43"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="43" id="0Za-Vi-pJs"/>
@@ -2656,8 +2656,8 @@
         <segue reference="vho-Q5-Kri"/>
         <segue reference="l7l-cF-kYn"/>
         <segue reference="bRT-wJ-4eb"/>
+        <segue reference="OxQ-75-aNI"/>
         <segue reference="H2O-Du-Dkg"/>
-        <segue reference="1RO-e0-4AP"/>
         <segue reference="gvE-qy-aNj"/>
         <segue reference="oHM-Sk-no8"/>
         <segue reference="TFM-Ac-ZI1"/>

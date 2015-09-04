@@ -65,7 +65,7 @@ class UserModel: Printable {
     static func getCurrent(fields:[String]?, closure: ((UserModel) -> ())? = nil, errorHandler: ((NSError) -> Void)? = nil) {
         UserModel.getById(0, fields: fields, closure: {response in
             let userResponse = response["data"]
-            
+
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
             var user = appDelegate.user == nil ? UserModel() : appDelegate.user!
 
@@ -161,11 +161,14 @@ class UserModel: Printable {
     }
 
     static func update(fields: [String: AnyObject], closure: ((JSON) -> ())? = nil, errorHandler: ((NSError) -> Void)? = nil) {
+        
+        println(fields)
         let realClosure = (closure != nil) ? closure! : { _ in }
         let realErrorHandler = (errorHandler != nil) ? errorHandler! : { error in println("Strange Error: \(error)") }
 
         API.sharedInstance.put("users/me", params: fields, closure: realClosure, errorHandler: realErrorHandler)
     }
+    
 
     static func getImageByContactId(contactId:Int) -> UIImage? {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
