@@ -73,6 +73,11 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
                 appDelegate.shouldNotShowAddJobTutorial = settings["tutorial"]["create_job"].boolValue
                 appDelegate.shouldNotShowAskForReferralTutorial = settings["tutorial"]["post_job"].boolValue
                 appDelegate.shouldNotShowNudjTutorial = settings["tutorial"]["open_job"].boolValue
+               
+                appDelegate.updateUserObject("AddJobTutorial", with: appDelegate.shouldNotShowAddJobTutorial)
+                appDelegate.updateUserObject("AskForReferralTutorial", with: appDelegate.shouldNotShowAskForReferralTutorial)
+                appDelegate.updateUserObject("NudjTutorial", with:  appDelegate.shouldNotShowNudjTutorial)
+
             }
             
             if (user.completed) {

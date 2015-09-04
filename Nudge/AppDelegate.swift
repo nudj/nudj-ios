@@ -245,8 +245,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
                 }
 
                 let obj = results.first as! NSManagedObject;
-                let value: AnyObject? = obj.valueForKey("completed")
-                println("db value from coredata \(value)")
 
                 self.user!.id = obj.valueForKey("id") == nil ? nil : obj.valueForKey("id") as? Int
                 self.user!.name = obj.valueForKey("name") == nil ? nil : (obj.valueForKey("name") as! String)
@@ -254,7 +252,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
                 self.user!.completed = obj.valueForKey("completed") == nil ? false : (obj.valueForKey("completed") as! Bool)
                 self.user!.addressBookAccess = obj.valueForKey("addressBookAccess") == nil ? false : obj.valueForKey("addressBookAccess")!.boolValue
                 self.user!.status = obj.valueForKey("status") == nil ? 0 : obj.valueForKey("status") as! Int
-                
+             
+                getUserObject()
             }
 
         } else {
@@ -273,8 +272,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
                             if let settings :JSON = userObject.settings {
                                 
                                 self.shouldNotShowAddJobTutorial = settings["tutorial"]["post_job"].boolValue
+                                self.updateUserObject("AddJobTutorial", with: self.shouldNotShowAddJobTutorial)
+                                
                                 self.shouldNotShowAskForReferralTutorial = settings["tutorial"]["create_job"].boolValue
+                                self.updateUserObject("AskForReferralTutorial", with: self.shouldNotShowAskForReferralTutorial)
+                                
                                 self.shouldNotShowNudjTutorial = settings["tutorial"]["open_job"].boolValue
+                                self.updateUserObject("NudjTutorial", with:  self.shouldNotShowNudjTutorial)
                                 
                             }
                             
@@ -323,6 +327,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         userObject.setValue(user.completed, forKey: "completed")
         userObject.setValue(user.addressBookAccess, forKey: "addressBookAccess")
         userObject.setValue(user.status == nil ? nil : NSInteger(user.status!), forKey: "status")
+        
+        self.updateUserObject("Completed", with: user.completed)
 
         var error: NSError?
         if !managedContext.save(&error) {
@@ -363,6 +369,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         
         self.deleteUserData()
         self.deleteChatData()
+        self.deleteUserObject()
         
         API.sharedInstance.token = nil
         
@@ -595,6 +602,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         
     }
     
+
+    //MARK: - NSUSERDEFAULT
+    //Chat properties
+    
     func saveNSUserDefaultContent(id:String, params:[String:Bool]){
         let defaults = NSUserDefaults.standardUserDefaults()
         
@@ -656,5 +667,99 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         }
     
     }
+    
+    
+    //CURRENT USER
+    func createUserObject(){
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        var dict = ["Completed":false, "AddJobTutorial":false, "NudjTutorial":false, "AskForReferralTutorial":false]
+        var data = NSKeyedArchiver.archivedDataWithRootObject(dict)
+        
+        defaults.setObject(data, forKey:"USER")
+        defaults.synchronize()
+        
+        self.getUserObject()
+        
+        println("Created NSUserDefaults USER")
+        
+    }
+    
+    func getUserObject(){
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        if let outData = defaults.dataForKey("USER") {
+            
+            if let dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData) as? [String:Bool] {
+                
+                println(dict)
+                
+                if dict["Completed"] != nil {
+                    self.user!.completed = dict["Completed"]!.boolValue
+                }
+                
+                self.shouldNotShowNudjTutorial =  dict["NudjTutorial"]!.boolValue
+                
+                self.shouldNotShowAskForReferralTutorial = dict["AskForReferralTutorial"]!.boolValue
+                
+                self.shouldNotShowAddJobTutorial = dict["AddJobTutorial"]!.boolValue
+                
+            }else{
+                
+                println("error in reading NSUserDefaults USER")
+            }
+            
+        }else{
+            
+            self.createUserObject()
+        }
+        
+    }
+    
+    func updateUserObject(title:String, with value:Bool){
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        if let outData = defaults.dataForKey("USER") {
+            
+            if let dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData) as? [String:Bool] {
+            
+                 if dict[title] != nil && !dict[title]!.boolValue  {
+                    
+                    var newContent = dict
+                    newContent[title] = value
+                    var data = NSKeyedArchiver.archivedDataWithRootObject(newContent)
+                    defaults.setObject(data, forKey:"USER")
+                    defaults.synchronize()
+                    println("Updated \(title) with \(value)")
+                    
+                 }else{
+                    
+                    println("Will not update \(title) as its already true")
+                    
+                }
+            
+            }else{
+                
+                println("error in reading NSUserDefaults USER")
+            }
+            
+        }else{
+            
+            println("NSUserDefaults for USER doesnt exsist")
+            
+        }
+
+    }
+    
+    func deleteUserObject(){
+        
+        
+        
+    }
+
+
 }
 
