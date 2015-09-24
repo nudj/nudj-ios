@@ -48,15 +48,36 @@ class API {
         manager.session.configuration.HTTPShouldSetCookies = false
         manager.session.configuration.HTTPMaximumConnectionsPerHost = 8
 
+        var headers:[String:String]?
+        
         if (token != nil) {
-            manager.session.configuration.HTTPAdditionalHeaders = ["token": token!]
+            //manager.session.configuration.HTTPAdditionalHeaders = ["token": token!]
+            
+            //IOS 9 Work around
+             headers = [
+                "token": token!,
+            ]
+            
         } else if self.token != nil {
-            manager.session.configuration.HTTPAdditionalHeaders = ["token": self.token!]
+            //manager.session.configuration.HTTPAdditionalHeaders = ["token": self.token!]
+            
+            //IOS 9 Work around
+            headers = [
+                "token": self.token!,
+            ]
+            
+        }else{
+            
+            headers = [
+                "" : "",
+            ]
+            
         }
 
-        let encoding = method != Alamofire.Method.GET ? Alamofire.ParameterEncoding.JSON : Alamofire.ParameterEncoding.URL
-
-        manager.request(method, (baseURL + path) as String, parameters: params, encoding: encoding).responseString {
+       let encoding = method != Alamofire.Method.GET ? Alamofire.ParameterEncoding.JSON : Alamofire.ParameterEncoding.URL
+        
+        Alamofire.request(method, (baseURL + path) as String, parameters: params, encoding: encoding, headers: headers!).responseString {
+        //manager.request(method, (baseURL + path) as String, parameters: params, encoding: encoding).responseString {
             (request, rawResponse, response, error) in
             
             // Try to catch general API errors
