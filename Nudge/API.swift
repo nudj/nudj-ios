@@ -48,7 +48,7 @@ class API {
         manager.session.configuration.HTTPShouldSetCookies = false
         manager.session.configuration.HTTPMaximumConnectionsPerHost = 8
 
-        var headers:[String:String]?
+        var headers = ["Content-Type":"application/json"]
         
         if (token != nil) {
             //manager.session.configuration.HTTPAdditionalHeaders = ["token": token!]
@@ -66,17 +66,12 @@ class API {
                 "token": self.token!,
             ]
             
-        }else{
-            
-            headers = [
-                "" : "",
-            ]
-            
         }
 
+        
        let encoding = method != Alamofire.Method.GET ? Alamofire.ParameterEncoding.JSON : Alamofire.ParameterEncoding.URL
         
-        Alamofire.request(method, (baseURL + path) as String, parameters: params, encoding: encoding, headers: headers!).responseString {
+        Alamofire.request(method, (baseURL + path) as String, parameters: params, encoding: encoding, headers: headers).responseString {
         //manager.request(method, (baseURL + path) as String, parameters: params, encoding: encoding).responseString {
             (request, rawResponse, response, error) in
             

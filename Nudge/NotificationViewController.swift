@@ -145,6 +145,23 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
         
     }
 
+    func didTapUserImage(cell: NotificationCell) {
+        
+        
+        println("Tapped user image")
+        
+        //go to profile
+        let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        var GenericProfileView = storyboard.instantiateViewControllerWithIdentifier("GenericProfileView") as! GenericProfileViewController
+        GenericProfileView.userId = cell.notificationData!.senderId!.toInt()!
+        GenericProfileView.type = .Public
+        GenericProfileView.preloadedName = cell.notificationData?.senderName
+        
+        self.navigationController?.pushViewController(GenericProfileView, animated:true);
+        
+        
+    }
+    
     func didPressRightButton(cell:NotificationCell){
         
         if(cell.type == nil){

@@ -706,7 +706,11 @@
                                     <outlet property="delegate" destination="l4F-Ih-7ec" id="XuR-na-Azl"/>
                                 </connections>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vXR-VJ-TP6">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="6LG-k0-csB">
+                                <rect key="frame" x="177" y="324" width="20" height="20"/>
+                                <color key="color" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vXR-VJ-TP6">
                                 <rect key="frame" x="0.0" y="258" width="375" height="360"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -719,6 +723,7 @@
                         <constraints>
                             <constraint firstItem="6Sq-g3-IGS" firstAttribute="top" secondItem="rKx-ay-gWi" secondAttribute="bottom" id="Bwe-cC-XAg"/>
                             <constraint firstItem="vXR-VJ-TP6" firstAttribute="leading" secondItem="LYw-OP-G4h" secondAttribute="leadingMargin" constant="-16" id="DBc-P2-SGz"/>
+                            <constraint firstAttribute="centerX" secondItem="6LG-k0-csB" secondAttribute="centerX" id="FKM-s5-4WC"/>
                             <constraint firstItem="L8L-bc-XZK" firstAttribute="leading" secondItem="LYw-OP-G4h" secondAttribute="leadingMargin" id="JN4-Sn-Bpk"/>
                             <constraint firstItem="rKx-ay-gWi" firstAttribute="leading" secondItem="LYw-OP-G4h" secondAttribute="leadingMargin" constant="-16" id="Lz9-Eb-BPs"/>
                             <constraint firstItem="L8L-bc-XZK" firstAttribute="top" secondItem="eRp-l7-vkZ" secondAttribute="bottom" constant="16" id="P2v-jL-sWE"/>
@@ -728,6 +733,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="rKx-ay-gWi" secondAttribute="trailing" constant="-16" id="hKB-Wl-zys"/>
                             <constraint firstItem="2vb-zw-F13" firstAttribute="top" secondItem="vXR-VJ-TP6" secondAttribute="bottom" id="hgv-vX-4cV"/>
                             <constraint firstItem="rKx-ay-gWi" firstAttribute="top" secondItem="L8L-bc-XZK" secondAttribute="bottom" constant="10" id="iGa-by-c62"/>
+                            <constraint firstAttribute="centerY" secondItem="6LG-k0-csB" secondAttribute="centerY" id="tyT-tL-BZG"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vXR-VJ-TP6" secondAttribute="trailing" constant="-16" id="xng-Gl-AA6"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6Sq-g3-IGS" secondAttribute="trailing" constant="-16" id="zg5-uf-0Vt"/>
                         </constraints>
@@ -745,6 +751,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityInd" destination="6LG-k0-csB" id="xyD-LX-hLs"/>
                         <outlet property="askTable" destination="vXR-VJ-TP6" id="efi-fP-M8z"/>
                         <outlet property="messageLabel" destination="OV7-Xx-yXT" id="NB5-Tw-6ni"/>
                         <outlet property="messageText" destination="L8L-bc-XZK" id="MBK-Ow-v51"/>

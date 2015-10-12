@@ -12,6 +12,7 @@ import DateTools
 protocol NotificationCellDelegate {
     func didPressRightButton(cell:NotificationCell)
     func didPressCallButton(cell:NotificationCell)
+    func didTapUserImage(cell:NotificationCell)
 }
 
 
@@ -43,6 +44,9 @@ class NotificationCell: UITableViewCell {
 
         profileImage.setCustomImage(UserModel.getDefaultUserImage())
         profileImage.downloadImage(data.senderImage, completion:nil)
+        
+        let tap = UITapGestureRecognizer(target:self, action:"ImageTap:")
+        profileImage.addGestureRecognizer(tap)
         
         self.message.text = data.notificationMessage
         
@@ -132,6 +136,10 @@ class NotificationCell: UITableViewCell {
          delegate?.didPressCallButton(self)
     }
 
+    @IBAction func ImageTap(sender: UITapGestureRecognizer) {
+        
+        delegate?.didTapUserImage(self)
+    }
 
     func markAsRead(){
         

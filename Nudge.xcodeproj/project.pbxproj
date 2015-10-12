@@ -2422,6 +2422,7 @@
 		EB0926C21A8DE4CB00E1D958 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Lachezar Todorov";
 				TargetAttributes = {
@@ -2992,7 +2993,7 @@
 					/usr/include/libxml2,
 				);
 				PRODUCT_NAME = Nudj;
-				PROVISIONING_PROFILE = "58cc2751-37df-4d6d-8ddc-91bc5f4c84a6";
+				PROVISIONING_PROFILE = "2c69344a-f636-4b1e-948c-6f90752c562c";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Nudge/Nudge-Bridging-Header.h";
 			};
 			name = Debug;
@@ -3027,7 +3028,7 @@
 					/usr/include/libxml2,
 				);
 				PRODUCT_NAME = Nudj;
-				PROVISIONING_PROFILE = "58cc2751-37df-4d6d-8ddc-91bc5f4c84a6";
+				PROVISIONING_PROFILE = "2c69344a-f636-4b1e-948c-6f90752c562c";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Nudge/Nudge-Bridging-Header.h";
 			};
 			name = Release;

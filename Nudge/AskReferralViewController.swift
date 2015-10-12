@@ -15,6 +15,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     @IBOutlet var searchBarView: UISearchBar!
     @IBOutlet weak var messageText: UITextView!
     @IBOutlet weak var messageLabel: NZLabel!
+    @IBOutlet weak var activityInd: UIActivityIndicatorView!
 
     var jobId:Int?
     var isNudjRequest:Bool?
@@ -53,13 +54,22 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
         
         askTable.tableFooterView = UIView(frame: CGRectZero)
         
-        self.loadData()
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () -> Void in
+            
+            self.loadData()
+        })
+        
     }
 
     func loadData() {
+        
         ContactModel.getContacts { status, response in
             if (!status) {
+                
+                self.askTable.hidden = false
+                
                 return
+                
             }
 
             let dictionary = sorted(response["data"]) { $0.0 < $1.0 }
@@ -81,6 +91,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
             }
             
             self.filtering.setContent(content)
+            self.askTable.hidden = false
             self.askTable.reloadData()
         }
     }
@@ -95,7 +106,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     override func viewWillAppear(animated: Bool) {
         
         self.tabBarController?.tabBar.hidden = true
-               
+        
     }
     
     //MARK: TextView Delegate
