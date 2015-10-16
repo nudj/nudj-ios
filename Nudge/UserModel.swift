@@ -24,7 +24,7 @@ class UserModel: Printable {
     var status: Int? = 0
 
     var skills:[String]?
-    var image:[String:String] = ["profile": "http://usr-img.doppels.com/place_holder_grey.png"]
+    var image:[String:String] = ["profile": "http://api.nudj.co/app/placeholder/user.png"]
     var isDefaultImage = true
     var base64Image:String?
     

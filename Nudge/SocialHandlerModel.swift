@@ -43,8 +43,8 @@ class SocialHandlerModel: NSObject {
             
         }, errorHandler: {error in
                 
-            var alert = UIAlertView(title: "Server Error", message: "Oops, something went wrong. Could not get Linkedin's scope.", delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
+            /* var alert = UIAlertView(title: "Server Error", message: "Oops, something went wrong. Could not get Linkedin's scope.", delegate: nil, cancelButtonTitle: "OK")
+            alert.show() */
             
         })
         

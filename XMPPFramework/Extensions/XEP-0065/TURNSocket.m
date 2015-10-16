@@ -841,7 +841,7 @@ static NSMutableArray *proxyCandidates;
 		{
 			NSString *proxyCandidate = [proxyCandidates objectAtIndex:proxyCandidateIndex];
 			//proxyCandidateJID = [XMPPJID jidWithString:proxyCandidate];
-            proxyCandidateJID = [XMPPJID jidWithString:@"chat.doppels.com"];
+            proxyCandidateJID = [XMPPJID jidWithString:@"chat.nudj.co"];
 
 			if (proxyCandidateJID == nil)
 			{
