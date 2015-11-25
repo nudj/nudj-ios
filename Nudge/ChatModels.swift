@@ -181,7 +181,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         jabberUsername = "\(appGlobalDelegate.user!.id!)@\(chatServer)";
         
         
-        println("Connecting to chat server with: \(jabberUsername!) - \(jabberPassword!)");
+        print("Connecting to chat server with: \(jabberUsername!) - \(jabberPassword!)");
         
         if ( jabberUsername!.isEmpty || jabberPassword!.isEmpty) {
             
@@ -231,7 +231,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         
         if (!self.xmppStream!.authenticateWithPassword(jabberPassword, error: &error))
         {
-            println("Error authenticating: \(error)");
+            print("Error authenticating: \(error)");
         }
         
         
@@ -240,7 +240,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     func xmppStreamDidAuthenticate(sender :XMPPStream) {
         
         self.goOnline();
-        println("CLIENT HAS CONNECTED TO JABBER");
+        print("CLIENT HAS CONNECTED TO JABBER");
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () -> Void in
             self.requestRooms();
@@ -250,7 +250,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     
     func xmppStream(sender:XMPPStream, didNotAuthenticate error:DDXMLElement){
         
-        println("Could not authenticate Error \(error)");
+        print("Could not authenticate Error \(error)");
         
     }
     
@@ -260,14 +260,14 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         
         if(conferenceInvitation != nil){
             
-            println("Received conference invite from ->  \(message.fromStr())")
+            print("Received conference invite from ->  \(message.fromStr())")
             
             var jid = conferenceInvitation.attributesAsDictionary().valueForKey("jid") as! String
             var chatroom = ChatRoomModel()
             var roomID = self.getRoomIdFromJid(jid)
             
             //Store new chat
-            println("Saving new conference \(roomID)")
+            print("Saving new conference \(roomID)")
             let defaults = NSUserDefaults.standardUserDefaults()
             var dict = ["isNew":true, "isRead":false]
             var data = NSKeyedArchiver.archivedDataWithRootObject(dict)
@@ -283,7 +283,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             
         }else{
 
-            // println("Received something from the messages delegate -> \(message.attributesAsDictionary())")
+            // print("Received something from the messages delegate -> \(message.attributesAsDictionary())")
         
         }
         
@@ -300,22 +300,22 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         if (roster != nil){
             
             let itemElements = roster.elementsForName("item") as NSArray;
-            //  println("Recieved a roster for -> \(itemElements)");
+            //  print("Recieved a roster for -> \(itemElements)");
 
         }else if(vCard != nil){
             
             //  var fullNameQuery = queryElement1.elementForName("from");
-            //  println("Recieved a vcard for -> \(vCard)");
+            //  print("Recieved a vcard for -> \(vCard)");
 
         }else if(conference != nil){
 
             let itemElements = conference.elementsForName("item") as NSArray;
-            //  println("Recieved conferences -> \(itemElements)");
+            //  print("Recieved conferences -> \(itemElements)");
 
             
         }else{
             
-           //   println("Recieved something i dont know -> \(iq)");
+           //   print("Recieved something i dont know -> \(iq)");
         }
         
         
@@ -326,13 +326,13 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     //Typing indicator
     //        if(message.hasComposingChatState() == true){
     //            
-    //            println("should show typing ")
+    //            print("should show typing ")
     //            
     //        }
     //        
     //        if(message.hasPausedChatState()){
     //            
-    //            println("should stop typing ")
+    //            print("should stop typing ")
     //            
     //        }
         
@@ -379,7 +379,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             
             }else{
                 
-                println("Error getting sender of this message")
+                print("Error getting sender of this message")
             }
         }
 
@@ -387,7 +387,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     
     func xmppRoomDidJoin(sender: XMPPRoom!) {
         
-        println("XMPPROOM JOINED ->  \(sender.roomJID))")
+        print("XMPPROOM JOINED ->  \(sender.roomJID))")
         
     }
     
@@ -395,20 +395,20 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     
     func xmppRoomDidCreate(sender: XMPPRoom!) {
         
-       println("XMPPROOM CREATED -> \(sender.roomJID)")
+       print("XMPPROOM CREATED -> \(sender.roomJID)")
 
     }
     
     func xmppRoomDidLeave(sender: XMPPRoom!) {
         
-        println("XMPPROOM LEFT -> \(sender.roomJID.description)")
+        print("XMPPROOM LEFT -> \(sender.roomJID.description)")
         var roomID = self.getRoomIdFromJid(sender.roomJID.description)
         
         if let chatRoom = appGlobalDelegate.chatInst!.listOfActiveChatRooms[roomID] {
             
             chatRoom.teminateSession()
             appGlobalDelegate.chatInst!.listOfActiveChatRooms.removeValueForKey(roomID)
-            println("removed from list")
+            print("removed from list")
             
         }
     
@@ -417,7 +417,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     
     func xmppRoom(sender: XMPPRoom!, occupantDidJoin occupantJID: XMPPJID!, withPresence presence: XMPPPresence!) {
         
-        println("occupantDidJoinroom \(presence.type()) \(occupantJID.description)")
+        print("occupantDidJoinroom \(presence.type()) \(occupantJID.description)")
         var roomID = self.getRoomIdFromJid(sender.roomJID.description)
         
         if let chatRoom = appGlobalDelegate.chatInst!.listOfActiveChatRooms[roomID] {
@@ -429,7 +429,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     
     func xmppRoom(sender: XMPPRoom!, occupantDidUpdate occupantJID: XMPPJID!, withPresence presence: XMPPPresence!) {
         
-        println("occupantDidUpdateroom \(presence.type()) \(occupantJID.description)")
+        print("occupantDidUpdateroom \(presence.type()) \(occupantJID.description)")
         var roomID = self.getRoomIdFromJid(sender.roomJID.description)
         
         if let chatRoom = appGlobalDelegate.chatInst!.listOfActiveChatRooms[roomID] {
@@ -440,7 +440,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     
     func xmppRoom(sender: XMPPRoom!, occupantDidLeave occupantJID: XMPPJID!, withPresence presence: XMPPPresence!) {
         
-        println("occupantDidLeaveroom \(presence.type()) \(occupantJID.description)")
+        print("occupantDidLeaveroom \(presence.type()) \(occupantJID.description)")
         var roomID = self.getRoomIdFromJid(sender.roomJID.description)
         
         if let chatRoom = appGlobalDelegate.chatInst!.listOfActiveChatRooms[roomID] {
@@ -451,7 +451,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     
     func xmppRoomDidDestroy(sender: XMPPRoom!) {
         
-        println("XMPPROOM DESTROYED -> \(sender.roomJID)")
+        print("XMPPROOM DESTROYED -> \(sender.roomJID)")
         
     }
     
@@ -468,7 +468,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             
             if (json["status"].boolValue != true && json["data"] == nil) {
                 
-                println("ChatRoom Request Error -> \(json)")
+                print("ChatRoom Request Error -> \(json)")
                 
             }
             else
@@ -477,7 +477,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
                 for (id, obj) in json["data"]{
                     let data = obj["id"].string
                    
-                    println("Chatroom id -> \(data!)\(self.ConferenceUrl)")
+                    print("Chatroom id -> \(data!)\(self.ConferenceUrl)")
                     var chatroom = ChatRoomModel()
                     
                     chatroom.prepareChatModel("\(data!)\(self.ConferenceUrl)", roomId: data!, with:self.xmppStream!, delegate:self)

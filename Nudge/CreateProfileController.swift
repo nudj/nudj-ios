@@ -70,7 +70,7 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
             
             if let settings :JSON = user.settings {
-                println("server -> \( user.settings)")
+                print("server -> \( user.settings)")
                 
                 appDelegate.shouldShowAddJobTutorial = settings["tutorial"]["create_job"].boolValue
                 appDelegate.shouldShowAskForReferralTutorial = settings["tutorial"]["post_job"].boolValue
@@ -199,7 +199,7 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
             })
 
         }, errorHandler: {_ in
-            println("Error is catched!")
+            print("Error is catched!")
             self.image.stopActivity()
         })
     }

@@ -47,7 +47,7 @@ class BaseController: UIViewController {
             (json: JSON) in
 
             if (json["status"].boolValue != true && json["data"] == nil) {
-                println(json)
+                print(json)
                 if (json["error"] != nil) {
                     self.showSimpleAlert(json["error"]["message"].stringValue)
                 } else {

@@ -71,7 +71,7 @@ class Notification {
         
         obj.chatId =  data["meta"]["chat_id"].stringValue
         
-        println("chat id is -> \(obj.chatId)")
+        print("chat id is -> \(obj.chatId)")
         return obj
 
     }

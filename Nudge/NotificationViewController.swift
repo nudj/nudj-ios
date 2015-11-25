@@ -82,7 +82,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
 
     func populate(data:JSON) {
 
-        println("Notifications url request response ->\(data)");
+        print("Notifications url request response ->\(data)");
 
         for (id, obj) in data["data"] {
             
@@ -148,7 +148,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
     func didTapUserImage(cell: NotificationCell) {
         
         
-        println("Tapped user image")
+        print("Tapped user image")
         
         //go to profile
         let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -179,32 +179,32 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
         
         switch cell.type! {
         case .AskToRefer:
-            println("Details")
+            print("Details")
             MixPanelHandler.sendData("Notification_DetailButtonClicked")
             self.goToView("JobDetailedView", contentId: cell.notificationData!.jobID)
             break;
         case .AppApplication:
-            println("go to chat")
+            print("go to chat")
             MixPanelHandler.sendData("Notification_MessageButtonClicked")
             self.gotTochat(cell)
             break;
         case .WebApplication:
-            println("sms")
+            print("sms")
             MixPanelHandler.sendData("Notification_SmsButtonClicked")
             self.createSms(cell.notificationData!.senderPhoneNumber)
             break;
         case .MatchingContact:
-            println("nudge")
+            print("nudge")
             MixPanelHandler.sendData("Notification_ReferButtonClicked")
             self.nudge(cell.notificationData!.jobID)
             break;
         case .AppApplicationWithNoReferral:
-            println("go to chat")
+            print("go to chat")
             MixPanelHandler.sendData("Notification_MessageButtonClicked")
             self.gotTochat(cell)
             break;
         case .WebApplicationWithNoReferral:
-            println("sms")
+            print("sms")
             MixPanelHandler.sendData("Notification_SmsButtonClicked")
              self.createSms(cell.notificationData!.senderPhoneNumber)
             break;
@@ -238,7 +238,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
             }
         }else{
             
-            println("no phonumber")
+            print("no phonumber")
         }
     }
     
@@ -261,7 +261,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
             }
         }else{
             
-            println("no phonumber")
+            print("no phonumber")
         }
     }
     

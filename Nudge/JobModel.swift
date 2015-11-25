@@ -56,7 +56,7 @@ class JobModel {
         ]
         
         API.sharedInstance.put("jobs/\(jobID)", params: params, closure: { result in
-            println("jobs success -> /\(result)")
+            print("jobs success -> /\(result)")
             closure(true)
         }, errorHandler: { error in
             closure(false)

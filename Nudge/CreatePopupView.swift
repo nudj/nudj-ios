@@ -71,11 +71,11 @@ class CreatePopupView: UIView {
         UIView.animateWithDuration(30, delay: 30, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
             //self.blurBg.alpha = 1
             
-            println("doning")
+            print("doning")
             }, completion: { value in
                 
                 if(value == true){
-                println("done")
+                print("done")
                 }
                 //self.hidden = true
                 //self.dismissPopup()

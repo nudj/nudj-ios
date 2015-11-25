@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         // Getting of user details from CoreData
         fetchUserData()
         prepareApi();
-        println("usercompleted is  -> \(self.user?.completed)")
+        print("usercompleted is  -> \(self.user?.completed)")
         
         if (user != nil && user!.id != nil && user!.completed == false) {
 
@@ -85,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         
         if(!chatInst!.connect()) {
             
-            println("NOT Connected to chat server so will try reconnecting !!!")
+            print("NOT Connected to chat server so will try reconnecting !!!")
             
         }
 
@@ -135,7 +135,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
     }
 
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        println( "Notification Error: ", error.localizedDescription )
+        print( "Notification Error: ", error.localizedDescription )
     }
 
     func requestNotificationPermission(application: UIApplication) {
@@ -163,7 +163,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         
         // Update badge
         let userinfo = userInfo as NSDictionary
-        println(userinfo)
+        print(userinfo)
         
         if let notification: AnyObject = userinfo.valueForKey("aps") {
             
@@ -190,7 +190,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         }
 
         if self.deviceToken != nil {
-            println( "Device token sent -> \(self.deviceToken!)")
+            print( "Device token sent -> \(self.deviceToken!)")
             API.sharedInstance.put("devices", params: ["token":self.deviceToken!], closure:{ _ in
                 self.deviceTokenSynced = true
             });
@@ -209,7 +209,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         var isShown = false;
         
         reachability.whenUnreachable = { reachability in
-            println("Not reachable")
+            print("Not reachable")
             
             if !isShown {
                 self.window?.addSubview(view)
@@ -218,7 +218,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         }
         
         reachability.whenReachable = { reachability in
-            println("reachable")
+            print("reachable")
             if isShown {
                 view.removeFromSuperview()
                 isShown = false
@@ -257,7 +257,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
             }
 
         } else {
-            println("Could not fetch \(error), \(error!.userInfo)")
+            print("Could not fetch \(error), \(error!.userInfo)")
         }
 
     }
@@ -288,19 +288,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
                             
                         }else{
                             
-                            println(" user has no source object")
+                            print(" user has no source object")
                             
                         }
                     })
                 })
             }else {
                 
-                println(" user has no token")
+                print(" user has no token")
                 
             }
         }else{
             
-            println("current user deleted")
+            print("current user deleted")
         
         }
         
@@ -332,7 +332,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
 
         var error: NSError?
         if !managedContext.save(&error) {
-            println("Could not save \(error), \(error?.userInfo)")
+            print("Could not save \(error), \(error?.userInfo)")
         } else {
             self.user = user
         }
@@ -350,16 +350,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
             if (results.count > 0) {
                 for obj in results {
                     let user = obj as! NSManagedObject
-                    println("Deleted: ", user)
+                    print("Deleted: ", user)
                     managedContext.deleteObject(user)
                 }
 
                 if !managedContext.save(&error) {
-                    println("Could remove user details \(error), \(error?.userInfo)")
+                    print("Could remove user details \(error), \(error?.userInfo)")
                 }
             }
         } else {
-            println("Could not find active user \(error), \(error!.userInfo)")
+            print("Could not find active user \(error), \(error!.userInfo)")
         }
         
         
@@ -383,7 +383,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         
         API.sharedInstance.request(.DELETE, path: "users/me", params: nil, closure: { response in
             
-            println("deleted account \(response)")
+            print("deleted account \(response)")
             
             if response["status"].boolValue {
             
@@ -413,7 +413,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
                 
                 chat.teminateSession()
                 chatRoom.removeValueForKey(id)
-                println("removed from list")
+                print("removed from list")
                 chat.deleteStoredChats()
                 self.deleteNSuserDefaultContent(id)
             
@@ -426,7 +426,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
     func prepareApi() {
         API.sharedInstance.token = self.user?.token
 
-        println("Token: \(API.sharedInstance.token)")
+        print("Token: \(API.sharedInstance.token)")
 
         if (api == nil) {
             api = API()
@@ -434,7 +434,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
     }
 
     func pushViewControllerWithId(id: String) {
-        println("Go To: " + id)
+        print("Go To: " + id)
 
         let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let navigationController:UINavigationController = storyboard.instantiateViewControllerWithIdentifier("mainNavigationController") as! UINavigationController
@@ -564,7 +564,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
             //Store message as its new
             var roomID = self.chatInst!.getRoomIdFromJid(conference)
             
-            println("Saving new message \(roomID)")
+            print("Saving new message \(roomID)")
             let defaults = NSUserDefaults.standardUserDefaults()
             if let outData = defaults.dataForKey(roomID) {
             
@@ -662,7 +662,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
             defaults.setObject(nil, forKey:id)
             defaults.synchronize()
             
-            println("Deleted NSuserDefaultdata id:\(id)")
+            print("Deleted NSuserDefaultdata id:\(id)")
         
         }
     
@@ -682,7 +682,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         
         self.getUserObject()
         
-        println("Created NSUserDefaults USER")
+        print("Created NSUserDefaults USER")
         
     }
     
@@ -694,7 +694,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
             
             if let dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData) as? [String:Bool] {
                 
-                println(dict)
+                print(dict)
                 
                 if dict["Completed"] != nil {
                     self.user!.completed = dict["Completed"]!.boolValue
@@ -708,7 +708,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
                 
             }else{
                 
-                println("error in reading NSUserDefaults USER")
+                print("error in reading NSUserDefaults USER")
             }
             
         }else{
@@ -733,21 +733,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
                     var data = NSKeyedArchiver.archivedDataWithRootObject(newContent)
                     defaults.setObject(data, forKey:"USER")
                     defaults.synchronize()
-                    println("Updated \(title) with \(value)")
+                    print("Updated \(title) with \(value)")
                     
                  }
             
             }else{
                 
-                println("error in reading NSUserDefaults USER")
+                print("error in reading NSUserDefaults USER")
             }
             
         }else{
             
-            println("Cannot put in USER as it doesnt exsist so let create one")
+            print("Cannot put in USER as it doesnt exsist so let create one")
             self.createUserObject()
             
-            println("OK SO user has been created. now let retry putting")
+            print("OK SO user has been created. now let retry putting")
             updateUserObject(title, with: value)
             
         }
@@ -763,7 +763,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
             defaults.synchronize()
 
         
-            println("Deleted userobject")
+            print("Deleted userobject")
         }
         
         

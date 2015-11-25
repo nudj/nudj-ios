@@ -87,11 +87,11 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
         API.sharedInstance.get("jobs/\(self.jobID!)?params=job.title,job.company,job.liked,job.salary,job.active,job.description,job.skills,job.bonus,job.user,job.location,user.image,user.name,user.contact", params: nil, closure: { json in
             
             self.populateView(json["data"])
-            println(json)
+            print(json)
             
         }) { error in
             
-            println("Error -> \(error)")
+            print("Error -> \(error)")
             self.navigationController?.popViewControllerAnimated(true)
             
         }
@@ -212,12 +212,12 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
             MixPanelHandler.sendData("SaveJobButtonClicked")
             API.sharedInstance.put("jobs/\(self.jobID!)/like", params: nil, closure: { json in
                 
-                    println("Job saved \(json)")
+                    print("Job saved \(json)")
                     self.navigationItem.rightBarButtonItem?.title = "Saved"
                 
                 }) { error in
                     
-                    println("Error -> \(error)")
+                    print("Error -> \(error)")
             }
             
         }else if(sender.title == "Saved"){
@@ -225,12 +225,12 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
             MixPanelHandler.sendData("SavedJobButtonClicked")
             API.sharedInstance.request(Alamofire.Method.DELETE, path: "jobs/\(self.jobID!)/like", params: nil, closure: { json in
                 
-                println("un save \(json)")
+                print("un save \(json)")
                 self.navigationItem.rightBarButtonItem?.title = "Save"
                 
             }, errorHandler: { error in
                 
-                println("Error -> \(error)")
+                print("Error -> \(error)")
             })
             
         }else if (sender.title == "Edit"){
@@ -316,7 +316,7 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
         API.sharedInstance.put("nudge/apply", params: params, closure: { json in
             self.navigationController?.navigationBarHidden = true
             
-            println("Job interested")
+            print("Job interested")
             
             self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true);
             self.popup!.bodyText("The hirer has been notified");
@@ -326,7 +326,7 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
             
             }) { error in
                 
-                println("Error -> \(error)")
+                print("Error -> \(error)")
         }
 
     }

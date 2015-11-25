@@ -92,7 +92,6 @@ class VerifyViewController: BaseController {
     func submit() {
         let code = codeField.text
         codeField.text = ""
-        println("Sending Code: " + code)
 
         if (count(code) != self.codeLength) {
             showSimpleAlert("Invalid Code")

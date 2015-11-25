@@ -58,7 +58,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
 
         let url = isArchive != nil && isArchive! == true ? "chat/archived":"chat/active"
         
-        println(url)
+        print(url)
         
         self.apiRequest(.GET, path: "\(url)?params=chat.job,job.liked,chat.participants,chat.created,job.title,job.company,job.like,user.image,user.name,user.contact,contact.alias&limit=100", closure: { response in
 
@@ -157,7 +157,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
             //add code here for when you hit delete
-            println("will delete")
+            print("will delete")
             self.deleteChat(indexPath.row)
         }
         
@@ -166,14 +166,14 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     
     func deleteChat(row:Int){
         
-        println("deleting chat/\(self.data[row].chatId!)")
+        print("deleting chat/\(self.data[row].chatId!)")
         
         API.sharedInstance.request(.DELETE, path:"chat/\(self.data[row].chatId!)", params: nil, closure: { response in
         
             self.data.removeAtIndex(row)
             self.chatTable.reloadData()
             
-            println("done deleting")
+            print("done deleting")
             
         }, errorHandler: { error in
         

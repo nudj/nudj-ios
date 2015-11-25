@@ -85,7 +85,7 @@ class ChatStructModel: NSObject {
             var data = NSKeyedArchiver.archivedDataWithRootObject(dict)
             defaults.setObject(data, forKey:self.chatId!)
             defaults.synchronize()
-            println("Marked as read")
+            print("Marked as read")
             
         }
         
@@ -98,7 +98,7 @@ class ChatStructModel: NSObject {
         
         if dict.count > 0 {
             
-            println("has stored content \(dict)")
+            print("has stored content \(dict)")
             
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "d/M/yy - H:mm"

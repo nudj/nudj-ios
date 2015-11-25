@@ -84,11 +84,11 @@ class API {
             if (error != nil) {
 
                 if (rawResponse != nil) {
-                    println("Response Details: \(rawResponse!.statusCode) \(rawResponse!.description)")
-                    println("Response: \(response!)")
+                    print("Response Details: \(rawResponse!.statusCode) \(rawResponse!.description)")
+                    print("Response: \(response!)")
                 }
 
-                println("[API.request] Error: \(error!)")
+                print("[API.request] Error: \(error!)")
 
                 errorHandler?(NSError())
 
@@ -125,7 +125,7 @@ class API {
 
             // Try to get error code
             if (response != nil) {
-                println("[API Error] Response: \(response!)")
+                print("[API Error] Response: \(response!)")
                 if let errorFromString = response!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
 
                     let errorJson = JSON(data: errorFromString)
@@ -134,17 +134,17 @@ class API {
 
                     // Log out user and show Login screen
                     if (code == 10401) {
-                        println("Unauthorized -> Logout!")
+                        print("Unauthorized -> Logout!")
                         self.performLogout()
                         return true
                     } else if (code == 11101) {
-                        println("Invalid Token -> Logout!")
+                        print("Invalid Token -> Logout!")
                         self.performLogout()
                         return true
                     }
                 }
             } else {
-                println("[API Error] rawResponse: \(rawResponse!)")
+                print("[API Error] rawResponse: \(rawResponse!)")
             }
         }
 

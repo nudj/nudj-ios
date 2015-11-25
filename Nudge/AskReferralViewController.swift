@@ -293,9 +293,9 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
                 //self.performSegueWithIdentifier("ShowPopup", sender: self)
                 
 
-                println(result)
+                print(result)
                 }) { error in
-                    println(error)
+                    print(error)
             }
             
         }else{
@@ -312,9 +312,9 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
                 
                 //self.performSegueWithIdentifier("ShowPopup", sender: self)
                 
-                println(result)
+                print(result)
                 }) { error in
-                    println(error)
+                    print(error)
             }
 
             

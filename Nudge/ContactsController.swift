@@ -111,7 +111,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         let path = "\(url)?params=\(variable),contact.alias,contact.apple_id,user.image,user.status,user.name&sizes=user.profile"
 
         self.apiRequest(.GET, path: path, closure: { response in
-            println(response)
+            print(response)
 
             self.data.removeAll(keepCapacity: false)
             self.indexes.removeAll(keepCapacity: false)
@@ -235,7 +235,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
                 let contact = section[indexPath.row]
                 cell.loadData(contact)
             } else {
-                println("Strange index in contacts table: ", indexPath)
+                print("Strange index in contacts table: ", indexPath)
             }
             
         }
@@ -308,7 +308,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         
         if buttonIndex == 0{
             
-            println("Dissmiss pop up")
+            print("Dissmiss pop up")
             
         }else{
             

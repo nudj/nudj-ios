@@ -30,7 +30,7 @@ class StatusPicker: BaseController, UIPickerViewDelegate, UIPickerViewDataSource
     }
 
     @IBAction func done(sender: UIBarButtonItem) {
-        println(["status": self.selectedStatus])
+        print(["status": self.selectedStatus])
         self.apiUpdateUser(["status": self.selectedStatus], closure: { _ in
             self.hide()
         })

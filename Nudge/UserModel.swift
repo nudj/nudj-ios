@@ -104,7 +104,7 @@ class UserModel: Printable {
             case "settings": settings = subJson
 
             default:
-                println("!!!! Unknown user key: " + key)
+                print("!!!! Unknown user key: " + key)
             }
         }
     }
@@ -125,13 +125,13 @@ class UserModel: Printable {
                     self.base64Image = base64String
                 }
         }
-        println("updated user image")
+        print("updated user image")
         
     }
 
     func toggleFavourite(closure: (JSON) -> (), errorHandler: ((NSError) -> Void)? = nil) {
         if (id == nil) {
-            println("Invalid User ID!")
+            print("Invalid User ID!")
             return;
         }
 
@@ -161,10 +161,10 @@ class UserModel: Printable {
     }
 
     static func update(fields: [String: AnyObject], closure: ((JSON) -> ())? = nil, errorHandler: ((NSError) -> Void)? = nil) {
-        
-        println(fields)
         let realClosure = (closure != nil) ? closure! : { _ in }
-        let realErrorHandler = (errorHandler != nil) ? errorHandler! : { error in println("Strange Error: \(error)") }
+        let realErrorHandler = (errorHandler != nil) ? errorHandler! : { error in 
+            // TODO: handle error
+        }
 
         API.sharedInstance.put("users/me", params: fields, closure: realClosure, errorHandler: realErrorHandler)
     }

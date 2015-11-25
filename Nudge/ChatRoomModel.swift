@@ -26,7 +26,7 @@ class ChatRoomModel: NSObject{
         
         if(roomJID != nil && self.xmppRoomStorage != nil){
         
-        println("Preparing to Activating room -> \(roomJID)")
+        print("Preparing to Activating room -> \(roomJID)")
             
         self.xmppRoom = XMPPRoom(roomStorage: self.xmppRoomStorage, jid: roomJID, dispatchQueue: dispatch_get_main_queue())
         self.xmppRoom!.addDelegate(delegate, delegateQueue: dispatch_get_main_queue())
@@ -80,12 +80,12 @@ class ChatRoomModel: NSObject{
                     sendersId = message.nickname()
                 }
                 
-                println("sender -> \(sendersId)")
+                print("sender -> \(sendersId)")
                 messageObject.addObject(JSQMessage(senderId: sendersId, senderDisplayName: sendersId, date:message.localTimestamp(), text: message.body()))
                 
             }else{
                 
-                println("Error getting the Sender of this message or Timestamp")
+                print("Error getting the Sender of this message or Timestamp")
                 
             }
         }
@@ -140,7 +140,7 @@ class ChatRoomModel: NSObject{
         /*self.teminateSession()
         
         var roomJID = XMPPJID.jidWithString(roomName);
-        println("did generate room jid -> \(roomJID)")
+        print("did generate room jid -> \(roomJID)")
         
         if(roomJID != nil && self.xmppRoomStorage != nil){
             

@@ -218,7 +218,7 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
             
             self.user = user
 
-            println(response["data"])
+            print(response["data"])
             
             if let status = user.status {
                 self.statusButton.setTitleByIndex(status)
@@ -363,13 +363,13 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
 
     func toggleFavourite() {
         if (userId != user?.id!) {
-            println("Inconsistency between userId and loaded user!")
+            print("Inconsistency between userId and loaded user!")
             return
         }
 
         if let localUser = UserModel.getLocal() {
             if (localUser.id! == userId) {
-                println("You can't favourite yourself!")
+                print("You can't favourite yourself!")
                 return;
             }
 
@@ -382,7 +382,7 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
                         MixPanelHandler.sendData(user.favourite == true ? "Profile_FavouriteAction" : "Profile_UnfavouriteAction")
                     }
                 } else {
-                    println("Favourite Error: \(result)")
+                    print("Favourite Error: \(result)")
                 }
             })
         }

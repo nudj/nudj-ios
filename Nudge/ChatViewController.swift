@@ -53,7 +53,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
             self.messages = chatRoom.retrieveStoredChats()
             if chatRoom.xmppRoom != nil {
             
-                println("isChatRoomConnected:\(chatRoom.xmppRoom!.isJoined)");
+                print("isChatRoomConnected:\(chatRoom.xmppRoom!.isJoined)");
             
             }else{
                 
@@ -151,18 +151,18 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
                     sendOnce = false
                     
                     chatRoom.xmppRoom!.sendMessageWithBody(text);
-                    println("Sent xmpp message");
+                    print("Sent xmpp message");
                     self.finishSendingMessage()
                     
                     if let chatRoomPresence = chatRoom.otherUserPresence {
                         
-                        println("this user is \(chatRoomPresence)")
+                        print("this user is \(chatRoomPresence)")
                         if chatRoomPresence == "unavailable"{
                             self.sendOfflineMessage(text)
                         }
                         
                     }else{
-                        println("this user is unavailable")
+                        print("this user is unavailable")
                         self.sendOfflineMessage(text)
                     }
                 
@@ -362,23 +362,23 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, header headerView: JSQMessagesLoadEarlierHeaderView!, didTapLoadEarlierMessagesButton sender: UIButton!) {
         
-        println("Load earlier messages")
+        print("Load earlier messages")
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAtIndexPath indexPath: NSIndexPath!) {
         
-        println("Tapped message bubble!")
+        print("Tapped message bubble!")
         
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, didTapCellAtIndexPath indexPath: NSIndexPath!, touchLocation: CGPoint) {
         
-        println("Tapped cell at \(NSStringFromCGPoint(touchLocation))");
+        print("Tapped cell at \(NSStringFromCGPoint(touchLocation))");
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, didTapAvatarImageView avatarImageView: UIImageView!, atIndexPath indexPath: NSIndexPath!) {
         
-        println("Tapped avatar!")
+        print("Tapped avatar!")
     }
 
     func recievedUser(content: NSDictionary) {
@@ -387,7 +387,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
     
     func recievedMessage(content:JSQMessage, conference:String){
         
-        println("Message via chat -> \(content.text) from:\(content.senderId) room:\(conference)")
+        print("Message via chat -> \(content.text) from:\(content.senderId) room:\(conference)")
         var conferenceID = self.chatID+""+appGlobalDelegate.chatInst!.ConferenceUrl
         
         if(conferenceID == conference){
@@ -400,7 +400,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
         
         }else{
             
-            //println("Message via Appdelegate -> \(content.text) from:\(content.senderId) room:\(conference)")
+            //print("Message via Appdelegate -> \(content.text) from:\(content.senderId) room:\(conference)")
             var roomID = appGlobalDelegate.chatInst!.getRoomIdFromJid(conference)
             
             //Store new chat
@@ -530,7 +530,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
             appGlobalDelegate.chatInst!.listOfActiveChatRooms[self.chatID]!.xmppRoom!.sendMessage(mes)
             sendOnce = true;
             
-            println("Sent The typing indicator");
+            print("Sent The typing indicator");
         }*/
         
         if let chatRoom = appGlobalDelegate.chatInst!.listOfActiveChatRooms[self.chatID] {
@@ -574,11 +574,11 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
         let params = ["chat_id":self.chatID,"user_id":self.participantsID,"message":message]
         API.sharedInstance.put("chat/notification", params: params, closure: { reponse in
             
-            println(reponse)
+            print(reponse)
 
             }, errorHandler: { error in
         
-            println(error)
+            print(error)
 
         })
         

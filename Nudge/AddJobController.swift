@@ -73,19 +73,14 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
             self.topGreyBorder.hidden = false
             self.bottomGreyBorder.hidden = false
             
-                API.sharedInstance.get("jobs/\(self.jobId!)?params=job.title,job.company,job.liked,job.salary,job.active,job.description,job.skills,job.bonus,job.user,job.location,user.image,user.name,user.contact", params: nil, closure: { json in
-                    
-                    self.prefillData(json["data"])
-                    
-                    }) { error in
-                        
-                        println("Error -> \(error)")
-                }
+            API.sharedInstance.get("jobs/\(self.jobId!)?params=job.title,job.company,job.liked,job.salary,job.active,job.description,job.skills,job.bonus,job.user,job.location,user.image,user.name,user.contact", params: nil, closure: { json in
                 
-            
+                self.prefillData(json["data"])
+                
+                }) { error in
+                    // TODO: handle error
+            }
         }
-        
-
     }
 
     override func viewWillDisappear(animated: Bool) {
@@ -126,7 +121,6 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
                 
                 job.edit(self.jobId!, closure: { result in
                     if(result == true){
-                        println ("did update")
                         self.navigationController?.navigationBarHidden = true
                         
                         self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"this_job_has-been_posted", withText: false);
@@ -393,8 +387,6 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
         if buttonIndex == 1 {
             
             API.sharedInstance.request(.DELETE, path: "jobs/\(self.jobId!)", params: nil, closure: { json in
-                println("delete job -> jobs/\(self.jobId!)  -> \(json)")
-                
                 MixPanelHandler.sendData("JobDeleted")
                 self.closeCurrentView()
                 

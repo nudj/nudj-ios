@@ -80,7 +80,7 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
             return;
         }
 
-        println("Login with phone: " + phoneNumber)
+        print("Login with phone: " + phoneNumber)
 
         let params: [String: AnyObject] = ["phone": phoneNumber, "country_code": code]
 
@@ -122,7 +122,7 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
         if self.countrySelectionView.isCreated == true && self.countrySelectionView.hidden == false{
             
             self.countrySelectionView.doneAction()
-            println("hide picker")
+            print("hide picker")
             
         }
         
@@ -174,7 +174,7 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
             var addressBook: ABAddressBook = ABAddressBookCreateWithOptions(emptyDictionary, nil).takeRetainedValue()
 
             ABAddressBookRequestAccessWithCompletion(addressBook, {success, error in
-                println(success, error)
+                print(success, error)
 
                 dispatch_sync(dispatch_get_main_queue(), { () -> Void in
                     if (success && error == nil) {

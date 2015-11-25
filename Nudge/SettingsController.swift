@@ -65,7 +65,7 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
         self.tabBarController?.tabBar.hidden = false
 
         BaseController().apiRequest(Alamofire.Method.GET, path: "users/me?params=user.status,user.facebook,user.linkedin", closure: { json in
-            println(json)
+            print(json)
             if (json["data"]["status"] != nil && json["data"]["status"].stringValue != "") {
                 self.statusButton.setTitleByIndex(json["data"]["status"].intValue)
             }
@@ -316,7 +316,7 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
                 
             }else{
                 
-                println("cancelled delete account")
+                print("cancelled delete account")
                 
             }
             
@@ -328,7 +328,7 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
                 
             }else{
                 
-                println("cancelled delete social")
+                print("cancelled delete social")
                 
             }
         
