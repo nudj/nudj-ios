@@ -11,7 +11,7 @@ import SwiftyJSON
 import Alamofire
 import AddressBook
 
-class UserModel: Printable {
+class UserModel: CustomStringConvertible {
 
     var id: Int?
 
