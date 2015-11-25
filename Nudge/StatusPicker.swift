@@ -16,14 +16,16 @@ class StatusPicker: BaseController, UIPickerViewDelegate, UIPickerViewDataSource
     
     @IBOutlet weak var picker: UIPickerView!
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-
+        // TODO: remove this abuse of the NSCoder protocol
         API.sharedInstance.get("config/status", params: nil, closure: {
             json in
 
             for (key, value) in json["data"] {
-                self.availableStatuses.updateValue(value.stringValue, forKey: key.toInt()!)
+                if let key = Int(key) {
+                    self.availableStatuses[key] = value.stringValue
+                }
             }
             self.picker.reloadAllComponents()
         })
@@ -52,7 +54,7 @@ class StatusPicker: BaseController, UIPickerViewDelegate, UIPickerViewDataSource
     }
 
     //MARK: Delegates
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return row > availableStatuses.count ? "" : availableStatuses[row+1]
     }
 
