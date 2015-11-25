@@ -11,7 +11,6 @@
 #import "CLSLogging.h"
 #import "CLSReport.h"
 #import "CLSStackFrame.h"
-#import "Answers.h"
 
 #define CLS_DEPRECATED(x)  __attribute__ ((deprecated(x)))
 

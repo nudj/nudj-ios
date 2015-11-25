@@ -1,6 +1,5 @@
 framework module Crashlytics {
     header "Crashlytics.h"
-    header "Answers.h"
     header "CLSLogging.h"
     header "CLSReport.h"
     header "CLSStackFrame.h"
