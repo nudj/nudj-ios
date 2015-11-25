@@ -43,7 +43,7 @@ class AsyncImage: UIImageView {
         self.prepare()
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.prepare()
     }

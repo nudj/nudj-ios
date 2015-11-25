@@ -16,7 +16,7 @@ class RegistrationInput: UITextField {
     let prefixBorderAlpha:CGFloat = 0.2
     let prefix = "+44"
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.setupPrefix(self.prefix)
     }

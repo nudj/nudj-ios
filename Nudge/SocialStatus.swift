@@ -20,7 +20,7 @@ class SocialStatus: UIImageView {
     var currentStatus:Bool?
     var statusIdentifier:String?
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
