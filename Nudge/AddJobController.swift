@@ -93,10 +93,10 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
         self.tabBarController?.tabBar.hidden = true
     }
     
-    //ToDo :change to camel case
+    //TODO: change to camel case
     @IBAction func PostAction(sender: AnyObject) {
-    var item: UIBarButtonItem = sender as! UIBarButtonItem
-    item.enabled = false
+        let item: UIBarButtonItem = sender as! UIBarButtonItem
+        item.enabled = false
         
         self.resignFirstResponder()
         self.view.endEditing(true)
@@ -105,20 +105,18 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
         scrollView.setContentOffset(CGPointMake(self.scrollView.contentOffset.x, 0), animated: true)
         
         if(self.checkFields()){
-        
-        var job = JobModel();
-        job.title = jobTitle.text
-        job.description = jobDescription.text
-        job.skills = skills.tokens()!.map({token in return token.title})
-        job.salary = salary.text
-        job.company = employer.text
-        job.location = location.text
-        job.active = activeButton.selected
-        job.bonus = bonus.text
+            let job = JobModel();
+            job.title = jobTitle.text!
+            job.description = jobDescription.text
+            job.skills = skills.tokens()!.map({token in return token.title})
+            job.salary = salary.text!
+            job.company = employer.text!
+            job.location = location.text!
+            job.active = activeButton.selected
+            job.bonus = bonus.text!
             
             
             if(sender.title == "Update"){
-                
                 job.edit(self.jobId!, closure: { result in
                     if(result == true){
                         self.navigationController?.navigationBarHidden = true
@@ -127,17 +125,13 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
                         self.popup?.delegate = self;
                         
                         self.view.addSubview(self.popup!)
-                        
                     }else{
-                        
                         self.navigationController?.navigationBarHidden = false
-                        var alert = UIAlertView(title: "Failed to update", message: "Oops, something went wrong. Could not update the job details.", delegate: nil, cancelButtonTitle: "OK")
+                        let alert = UIAlertView(title: "Failed to update", message: "Oops, something went wrong. Could not update the job details.", delegate: nil, cancelButtonTitle: "OK")
                         alert.show()
                     }
                 })
-                
             }else{
-                
                 job.save { error, id in
                     if (error != nil) {
                         return
@@ -145,57 +139,44 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
                     
                     self.jobId = id
                     self.navigationController?.navigationBarHidden = true
-
+                    
                     self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"this_job_has-been_posted", withText: false);
                     self.popup?.delegate = self;
-
-                    self.view.addSubview(self.popup!)
                     
-                    }
+                    self.view.addSubview(self.popup!)
+                }
             }
-            
         }else{
-            
-            var alert = UIAlertView(title: "Missing information", message: "Please fill in the fields marked with *", delegate: nil, cancelButtonTitle: "OK")
+            let alert = UIAlertView(title: "Missing information", message: "Please fill in the fields marked with *", delegate: nil, cancelButtonTitle: "OK")
             alert.show();
-            
         }
         
         item.enabled = true
-
+        
     }
     
     func checkFields() -> Bool{
-        
-        if (jobTitle.text.isEmpty ){
-            
+        if (jobTitle.text!.isEmpty ){
             jobTitle.placeholder = self.appendRequired(jobTitle.placeholder!)
             return false
         }
         
         if (jobDescription.text.isEmpty){
-         
             jobDescriptionLabel.text = self.appendRequired(jobDescriptionLabel.text!)
             return false
-            
         }
         
         if (skills.tokens()!.count == 0){
-            
             skillsLabel.text  = self.appendRequired(skillsLabel.text!)
             return false
         }
         
-        
-        if (salary.text.isEmpty){
-            
+        if (salary.text!.isEmpty){
             salary.placeholder = self.appendRequired(salary.placeholder!)
             return false
         }
         
-        
-        if (bonus.text.isEmpty){
-         
+        if (bonus.text!.isEmpty){
             bonus.placeholder = self.appendRequired(bonus.placeholder!)
             return false
         }
@@ -204,14 +185,10 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
     }
     
     func appendRequired(value:String) -> String{
-        
         return value + " (Required)"
-        
     }
     
     func prefillData(json:JSON){
-        
-        
         jobTitle.text = json["title"].stringValue
         jobDescriptionLabel.alpha = 0
         jobDescription.text = json["description"].stringValue
@@ -240,7 +217,6 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
     }
 
     func updateAssets() {
-
         Common.automateUpdatingOfAssets(jobTitle, icon: jobIcon)
         Common.automateUpdatingOfAssets(jobDescription, icon: jobDescriptionIcon, label: jobDescriptionLabel)
         Common.automateUpdatingOfAssets(skills, icon: skillsIcon, label: skillsLabel)
