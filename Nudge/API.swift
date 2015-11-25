@@ -20,6 +20,7 @@ class API {
     // Server4u
     // var baseURL = "http://95.87.227.252:8080/nudge/public/index.php/api/v1/"
 
+    // TODO: remove this singleton (NB it isn't even implemented correctly)
     static var sharedInstance = API();
 
 
