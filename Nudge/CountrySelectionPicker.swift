@@ -15,7 +15,7 @@ protocol CountrySelectionPickerDelegate {
 }
 
 class CountrySelectionPicker: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
-    
+    // TODO: localisation
     var delegate : CountrySelectionPickerDelegate?
     var selection = ["dial_code":"+44","name":"United Kingdom","code":"GB"]
     var picker:UIPickerView?
@@ -95,20 +95,27 @@ class CountrySelectionPicker: UIView, UIPickerViewDataSource, UIPickerViewDelega
     }
     
     func requestCountries() {
+        // TODO: API strings
         Alamofire.request(Alamofire.Method.GET, "http://api.nudj.co/countries").responseJSON{
-            (request, response, data, error) in
-            var json = JSON(data!)
-            
-            for (id, obj) in json {
+            (request, response, result) in
+            switch result {
+            case .Success(let value):
+                let json = JSON(value)
                 
-                let dial_code = "+" + obj["code"].stringValue
-                let name = obj["name"].stringValue
-                let code = obj["iso2"].stringValue
-                self.data.append(["dial_code":dial_code,"name":name,"code":code])
+                for (_, obj) in json {
+                    let dial_code = "+" + obj["code"].stringValue
+                    let name = obj["name"].stringValue
+                    let code = obj["iso2"].stringValue
+                    self.data.append(["dial_code":dial_code, "name":name, "code":code])
+                }
                 
+                self.picker!.reloadAllComponents()
+                break
+                
+            case .Failure:
+                //TODO: handle failure
+                break
             }
-            
-            self.picker!.reloadAllComponents()
         }
     }
     

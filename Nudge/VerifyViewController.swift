@@ -100,7 +100,7 @@ class VerifyViewController: BaseController {
 
         self.hideCodeField()
 
-        self.apiRequest(Method.PUT, path: "users/verify", params: ["phone": phoneNumber, "verification": code, "country_code": "GB"], closure: {
+        self.apiRequest(Alamofire.Method.PUT, path: "users/verify", params: ["phone": phoneNumber, "verification": code, "country_code": "GB"], closure: {
             (json: JSON) in
             NSLog(json.stringValue)
 

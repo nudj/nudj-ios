@@ -39,7 +39,8 @@ class BaseController: UIViewController {
         self.showSimpleAlert("Unknown Error Occured.")
     }
 
-    func apiRequest(method: Alamofire.Method, path: String, params: [String: AnyObject]? = nil, closure: ((JSON) -> ())? = nil, errorHandler: ((NSError) -> Void)? = nil ) {
+    func apiRequest(method: Alamofire.Method, path: String, params: [String: AnyObject]? = nil, closure: ((JSON) -> ())? = nil, errorHandler: (ErrorType -> Void)? = nil ) {
+        // TODO: remove this singleton nastiness
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
         let token = API.sharedInstance.token ?? ""
 
@@ -55,7 +56,7 @@ class BaseController: UIViewController {
                 }
 
                 if (errorHandler != nil) {
-                    errorHandler!(NSError())
+                    errorHandler!()
                 }
 
                 return;
@@ -67,8 +68,8 @@ class BaseController: UIViewController {
         }, token: token, errorHandler: errorHandler)
     }
 
-    func apiUpdateUser(params: [String: AnyObject], closure: ((JSON) -> ())?, errorHandler: ((NSError) -> Void)? = nil) {
-        self.apiRequest(.PUT, path: "users", params: params, closure: closure, errorHandler: errorHandler)
+    func apiUpdateUser(params: [String: AnyObject], closure: ((JSON) -> ())?) {
+        self.apiRequest(.PUT, path: "users", params: params, closure: closure)
     }
     
     func updateBadge(notification:NSNotification){

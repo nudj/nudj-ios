@@ -8,7 +8,6 @@
 
 import UIKit
 import SwiftyJSON
-import Alamofire
 
 class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
 
