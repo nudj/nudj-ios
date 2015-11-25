@@ -11,7 +11,7 @@ import Foundation
 import SwiftyJSON
 import Alamofire
 
-class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAlertViewDelegate, TutorialViewDelegate{
+class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAlertViewDelegate, TutorialViewDelegate {
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
     
@@ -39,28 +39,22 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
     var tutorial = TutorialView()
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         var profileTap = UITapGestureRecognizer(target:self, action:"goToProfile")
         self.authorName.addGestureRecognizer(profileTap)
         
         tutorial.delegate = self
-
     }
     
     override func viewWillDisappear(animated: Bool) {
-        
         self.tabBarController?.tabBar.hidden = false
-        
     }
     
     override func viewWillAppear(animated: Bool) {
-        
         MixPanelHandler.sendData("JobDetailsOpened")
         self.tabBarController?.tabBar.hidden = true
         
         if let views = self.view.subviews as? [UIView] {
-        
             for subView in views {
                 subView.hidden = true;
             }
@@ -71,42 +65,32 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
             spinner.color = appDelegate.appColor
             self.view.addSubview(spinner)
         }
-        
         self.requestData()
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    
     func requestData(){
-        
-        API.sharedInstance.get("jobs/\(self.jobID!)?params=job.title,job.company,job.liked,job.salary,job.active,job.description,job.skills,job.bonus,job.user,job.location,user.image,user.name,user.contact", params: nil, closure: { json in
-            
+        API.sharedInstance.get("jobs/\(self.jobID!)?params=job.title,job.company,job.liked,job.salary,job.active,job.description,job.skills,job.bonus,job.user,job.location,user.image,user.name,user.contact", params: nil, closure: { 
+            json in
             self.populateView(json["data"])
             print(json)
             
-        }) { error in
-            
-            print("Error -> \(error)")
-            self.navigationController?.popViewControllerAnimated(true)
-            
+            }) { 
+                error in
+                print("Error -> \(error)")
+                self.navigationController?.popViewControllerAnimated(true)
         }
-
     }
     
     func goToProfile(){
-        
         self.performSegueWithIdentifier("GoToProfile", sender: self)
-        
     }
     
-    
     func populateView(content:JSON){
-        
         // Configure right button
         if(appDelegate.user!.id == content["user"]["id"].intValue){
             
@@ -121,37 +105,25 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
             let constraint = NSLayoutConstraint(item: nudgeBtn, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 0)
             nudgeBtn.addConstraint(constraint)
             
-            
-        }else if(content["liked"].boolValue){
-        
+        } else if(content["liked"].boolValue){
             self.navigationItem.rightBarButtonItem?.title = "Saved"
-            
             if appDelegate.shouldShowNudjTutorial  {
                 tutorial.starTutorial("tutorial-nudge", view: self.view)
             }
-            
-        }else{
-            
+        } else {
             self.navigationItem.rightBarButtonItem?.title = "Save"
-            
             if appDelegate.shouldShowNudjTutorial  {
                 tutorial.starTutorial("tutorial-nudge", view: self.view)
             }
         }
         
         // Update skills
-        
         self.skills.editable = false
         self.skills.userInteractionEnabled = false
-        
         var skillsArr:[String] = [];
-        
         for i in content["skills"].arrayValue{
-            
             skillsArr.append(i["name"].stringValue)
-            
         }
-        
         self.skills.fillTokens(skillsArr)
         
         jobTitleText.text = content["title"].stringValue
@@ -165,7 +137,7 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
         descriptionText.scrollEnabled = false
         descriptionText.text = content["description"].stringValue
         
-        var sizeThatFitsTextView:CGSize = descriptionText.sizeThatFits( CGSizeMake(descriptionText.frame.size.width, CGFloat.max) )
+        let sizeThatFitsTextView:CGSize = descriptionText.sizeThatFits( CGSizeMake(descriptionText.frame.size.width, CGFloat.max) )
         TextViewHeightConstraint.constant = sizeThatFitsTextView.height;
         
         // Set job active or not active status
@@ -193,178 +165,132 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
         bonusText.setFont(boldFont, string: "£" + content["bonus"].stringValue)
         bonusText.setFontColor(appDelegate.appBlueColor, string: "£" + content["bonus"].stringValue)
         
-        if let views = self.view.subviews as? [UIView] {
-            
-            spinner.removeFromSuperview()
-            
-            for subView in views {
-                subView.hidden = false;
-            }
-            
+        spinner.removeFromSuperview()
+        for subView in self.view.subviews {
+            subView.hidden = false;
         }
-        
     }
 
     @IBAction func topRightNavAction(sender: UIBarButtonItem) {
-        
-        if (sender.title == "Save"){
-            
+        if (sender.title == "Save") {
             MixPanelHandler.sendData("SaveJobButtonClicked")
             API.sharedInstance.put("jobs/\(self.jobID!)/like", params: nil, closure: { json in
+                print("Job saved \(json)")
+                self.navigationItem.rightBarButtonItem?.title = "Saved"
                 
-                    print("Job saved \(json)")
-                    self.navigationItem.rightBarButtonItem?.title = "Saved"
-                
-                }) { error in
-                    
+                }) { 
+                    error in
                     print("Error -> \(error)")
             }
-            
-        }else if(sender.title == "Saved"){
-            
+        } else if(sender.title == "Saved") {
             MixPanelHandler.sendData("SavedJobButtonClicked")
-            API.sharedInstance.request(Alamofire.Method.DELETE, path: "jobs/\(self.jobID!)/like", params: nil, closure: { json in
-                
+            API.sharedInstance.request(Alamofire.Method.DELETE, path: "jobs/\(self.jobID!)/like", params: nil, closure: { 
+                json in
                 print("un save \(json)")
                 self.navigationItem.rightBarButtonItem?.title = "Save"
-                
-            }, errorHandler: { error in
-                
-                print("Error -> \(error)")
+                }, errorHandler: { 
+                    error in
+                    print("Error -> \(error)")
             })
+        } else if (sender.title == "Edit"){
             
-        }else if (sender.title == "Edit"){
-        
-            //Go to EditView
+            // Go to EditView
             MixPanelHandler.sendData("EditJobButtonClicked")
             let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let navController = storyboard.instantiateViewControllerWithIdentifier("addJobNavigationController") as! UINavigationController
-           
-            var addJobView = navController.viewControllers[0] as! AddJobController
-            addJobView.jobId = self.jobID?.toInt()
+            
+            let addJobView = navController.viewControllers[0] as! AddJobController
+            addJobView.jobId = Int(self.jobID!)
             addJobView.isEditable = true
-            //self.navigationController?.pushViewController(addJobView, animated:true);
             self.presentViewController(navController, animated: true, completion: nil)
         }
-        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let askView = segue.destinationViewController as? AskReferralViewController {
             
             MixPanelHandler.sendData("ReferButtonClicked")
-            askView.jobId = self.jobID!.toInt()
+            askView.jobId = Int(self.jobID!)
             askView.isNudjRequest = true
             askView.isSlideTransition = true
-            
         }
         
         if let profileView = segue.destinationViewController as? GenericProfileViewController {
-            
-            if(self.userId! == appDelegate.user!.id){
-                 profileView.type = .Own
-            }else{
+            if(self.userId! == appDelegate.user!.id) {
+                profileView.type = .Own
+            } else {
                 profileView.userId = self.userId!
                 profileView.type = .Public
                 profileView.preloadedName = authorName.text
             }
         }
-        
     }
     
     @IBAction func interested(sender: UIButton) {
-    
-        
+        // TODO: localisation
         if(sender.titleLabel?.text == "INTERESTED"){
             //Go to INTERESTED
-            
             MixPanelHandler.sendData("InterestedButtonClicked")
-            var alertview = UIAlertView(title: "Are you sure?", message: "This will send a notification to the Hirer that you are interested in this position", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Send")
+            let alertview = UIAlertView(title: "Are you sure?", message: "This will send a notification to the Hirer that you are interested in this position", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Send")
             alertview.show()
-            
-            
-        }else{
-            
+        } else {
             MixPanelHandler.sendData("AskForReferalButtonClicked")
             //Go to EditView
             let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            var addJobView = storyboard.instantiateViewControllerWithIdentifier("AskReferralView") as! AskReferralViewController
-            addJobView.jobId = self.jobID?.toInt()
+            let addJobView = storyboard.instantiateViewControllerWithIdentifier("AskReferralView") as! AskReferralViewController
+            addJobView.jobId = Int(self.jobID!)
             addJobView.isNudjRequest = false
             addJobView.jobTitle = self.jobTitleText.text
             addJobView.isSlideTransition = true
             self.navigationController?.pushViewController(addJobView, animated:true);
-            
         }
-        
     }
     
-    //MARK :Invite user
+    //MARK: Invite user
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-    
         if buttonIndex == 1 {
-            
             self.postRequest()
-            
         }
     }
     
     func postRequest(){
-        
         let params:[String:AnyObject] = ["job_id": "\(self.jobID!)"]
         
-        API.sharedInstance.put("nudge/apply", params: params, closure: { json in
+        API.sharedInstance.put("nudge/apply", params: params, closure: { 
+            json in
             self.navigationController?.navigationBarHidden = true
             
-            print("Job interested")
-            
-            self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true);
-            self.popup!.bodyText("The hirer has been notified");
-            self.popup!.delegate = self;
-            self.view.addSubview(self.popup!);
-            
-            
-            }) { error in
-                
+            self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true)
+            self.popup!.bodyText("The hirer has been notified")
+            self.popup!.delegate = self
+            self.view.addSubview(self.popup!)
+            }) { 
+                error in
+                // TODO: better error handling
                 print("Error -> \(error)")
         }
-
     }
     
     func dismissPopUp() {
-        
         self.popup!.removeFromSuperview()
         self.navigationController?.navigationBarHidden = false
-        
-        
     }
     
     func dismissTutorial() {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
         
         if(self.navigationItem.rightBarButtonItem?.title == "Edit"){
-            
-            
-            UserModel.update(["settings":["tutorial":["create_job":false]]], closure: { result in
-                
+            UserModel.update(["settings":["tutorial":["create_job":false]]], closure: { 
+                result in
                 appDelegate.updateUserObject("AskForReferralTutorial", with:false)
                 appDelegate.shouldShowAskForReferralTutorial = false
-                
             })
-            
-        }else{
-            
-            UserModel.update(["settings":["tutorial":["open_job":false]]], closure: { result in
-                
+        } else {
+            UserModel.update(["settings":["tutorial":["open_job":false]]], closure: { 
+                result in
                 appDelegate.updateUserObject("NudjTutorial", with:false)
                 appDelegate.shouldShowNudjTutorial = false
-                
             })
-        
         }
-        
-        
     }
-    
-
 }
