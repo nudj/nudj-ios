@@ -198,18 +198,16 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
     }
 
     func getCleanNumber(number: String? = nil) -> String {
-        //TODO: sort this out
-        let value = number ?? phoneField.text ?? ""
-
-        if (value.isEmpty) {
-            return "";
+        //TODO: sort this out and refactor
+        guard let value: String = number ?? phoneField.text else {
+            return ""
         }
         
-        if (value.hasPrefix("0")) {
-            let index = value.startIndex.advancedBy(1)
-            return self.getCleanNumber(value.substringFromIndex(index))
+        var characters = value.characters
+        while characters.first == "0" {
+            characters = characters.dropFirst()
         }
-        return value
+        return String(characters)
     }
 
     func getFormattedNumber() -> String {

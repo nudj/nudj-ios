@@ -45,14 +45,15 @@ class RegistrationInput: UITextField {
     }
 
     func getCleanNumber(number: String? = nil) -> String {
-        let value = number == nil ? self.text : number
-        let index = advance(value.startIndex, 1)
-
-        if (value.substringToIndex(index) == "0") {
-            return self.getCleanNumber(number: value.substringFromIndex(index))
-        } else {
-            return value
+        guard let value: String = number ?? self.text else {
+            return ""
         }
+        
+        var characters = value.characters
+        while characters.first == "0" {
+            characters = characters.dropFirst()
+        }
+        return String(characters)
     }
 
     func getFormattedNumber() -> String {
