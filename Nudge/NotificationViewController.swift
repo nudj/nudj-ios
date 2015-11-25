@@ -49,7 +49,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
     
 
     func refresh() {
-        loadData(append: false, url: nil)
+        loadData(false, url: nil)
     }
 
     func loadData(append:Bool = true, url:String? = nil) {
@@ -77,7 +77,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
             return
         }
 
-        loadData(append: true, url: self.nextLink)
+        loadData(true, url: self.nextLink)
     }
 
     func populate(data:JSON) {
@@ -153,13 +153,11 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
         //go to profile
         let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         var GenericProfileView = storyboard.instantiateViewControllerWithIdentifier("GenericProfileView") as! GenericProfileViewController
-        GenericProfileView.userId = cell.notificationData!.senderId!.toInt()!
+        GenericProfileView.userId = Int(cell.notificationData!.senderId!)!
         GenericProfileView.type = .Public
         GenericProfileView.preloadedName = cell.notificationData?.senderName
         
         self.navigationController?.pushViewController(GenericProfileView, animated:true);
-        
-        
     }
     
     func didPressRightButton(cell:NotificationCell){
@@ -267,7 +265,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
     
     func messageComposeViewController(controller: MFMessageComposeViewController!, didFinishWithResult result: MessageComposeResult) {
   
-        if result.value == MessageComposeResultFailed.value {
+        if result == MessageComposeResultFailed {
             
                 var alert = UIAlertView(title: "Text message failed", message: "There was an error in sending you message. Please try again", delegate: nil, cancelButtonTitle: "OK");
                 alert.show()

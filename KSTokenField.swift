@@ -184,7 +184,7 @@ class KSTokenField: UITextField {
       
       // Fix the bug which doesn't update the UI when _selfFrame is not set.
       // https://github.com/khawars/KSTokenView/issues/11
-      if (count(tokens) > 0) {
+      if (tokens.count > 0) {
          updateLayout()
       }
    }
@@ -222,10 +222,10 @@ class KSTokenField: UITextField {
    :returns: KSToken object
    */
    func addToken(token: KSToken) -> KSToken? {
-      if (count(token.title) == 0) {
+      if (token.title.isEmpty) {
          NSException(name: "", reason: "Title is not valid String", userInfo: nil);
       }
-      if (!contains(tokens, token)) {
+      if (!tokens.contains(token)) {
          token.addTarget(self, action: "tokenTouchDown:", forControlEvents: .TouchDown)
          token.addTarget(self, action: "tokenTouchUpInside:", forControlEvents: .TouchUpInside)
          tokens.append(token)
@@ -298,7 +298,7 @@ class KSTokenField: UITextField {
       }
       token.removeFromSuperview()
       
-      let index = find(tokens, token)
+      let index = tokens.indexOf(token)
       if (index != nil) {
          tokens.removeAtIndex(index!)
       }
@@ -361,7 +361,7 @@ class KSTokenField: UITextField {
          _updateText()
       }
       
-      if _caretPoint != .zeroPoint {
+      if _caretPoint != .zero {
          let tokensMaxY = _caretPoint!.y
          
          if (frame.size.height != tokensMaxY) {
@@ -377,7 +377,7 @@ class KSTokenField: UITextField {
    */
    private func _layoutTokens() -> CGPoint {
       if (_selfFrame == nil) {
-         return .zeroPoint
+         return .zero
       }
       if (_state == .Closed) {
          return CGPoint(x: _marginX!, y: _selfFrame!.size.height)
@@ -482,15 +482,15 @@ class KSTokenField: UITextField {
    */
    
    private func _textRectWithBounds(bounds: CGRect) -> CGRect {
-      if (!_setupCompleted) {return .zeroRect}
+      if (!_setupCompleted) {return .zero}
       if (tokens.count == 0 || _caretPoint == nil) {
-         return CGRect(x: _leftViewRect().width + _marginX!, y: (bounds.size.height - font.lineHeight)*0.5, width: bounds.size.width-5, height: bounds.size.height)
+         return CGRect(x: _leftViewRect().width + _marginX!, y: (bounds.size.height - font!.lineHeight)*0.5, width: bounds.size.width-5, height: bounds.size.height)
       }
       
       if (tokens.count != 0 && _state == .Closed) {
-         return CGRect(x: _leftViewRect().maxX + _marginX!, y: (_caretPoint!.y - font.lineHeight - (_marginY!)), width: (frame.size.width - _caretPoint!.x - _marginX!), height: bounds.size.height)
+         return CGRect(x: _leftViewRect().maxX + _marginX!, y: (_caretPoint!.y - font!.lineHeight - (_marginY!)), width: (frame.size.width - _caretPoint!.x - _marginX!), height: bounds.size.height)
       }
-      return CGRect(x: _caretPoint!.x, y: (_caretPoint!.y - font.lineHeight - (_marginY!)), width: (frame.size.width - _caretPoint!.x - _marginX!), height: bounds.size.height)
+      return CGRect(x: _caretPoint!.x, y: (_caretPoint!.y - font!.lineHeight - (_marginY!)), width: (frame.size.width - _caretPoint!.x - _marginX!), height: bounds.size.height)
    }
    
    override func leftViewRectForBounds(bounds: CGRect) -> CGRect {
@@ -513,7 +513,7 @@ class KSTokenField: UITextField {
       if (leftViewMode == .Never ||
          (leftViewMode == .UnlessEditing && editing) ||
          (leftViewMode == .WhileEditing && !editing)) {
-            return .zeroRect
+            return .zero
       }
       return leftView!.bounds
    }
@@ -522,8 +522,7 @@ class KSTokenField: UITextField {
       if (rightViewMode == .Never ||
          rightViewMode == .UnlessEditing && editing ||
          rightViewMode == .WhileEditing && !editing) {
-            return .zeroRect
-      }
+            return .zero   }
       return rightView!.bounds
    }
    
@@ -531,7 +530,7 @@ class KSTokenField: UITextField {
       if (text != nil) {
          var label = leftView
          if !(label is UILabel) {
-            label = UILabel(frame: .zeroRect)
+            label = UILabel(frame: .zero)
             label?.frame.origin.x += _marginX!
             (label as! UILabel).textColor = promptTextColor
             leftViewMode = .Always
@@ -585,7 +584,8 @@ class KSTokenField: UITextField {
    }
    
    private func _updatePlaceHolderVisibility() {
-      if tokens.count == 0 && (text == KSTextEmpty || text.isEmpty) {
+    // TODO: make Swifty
+    if tokens.count == 0 && (text == nil || text == KSTextEmpty || text!.isEmpty) {
          _placeholderLabel?.text = _placeholderValue!
          _placeholderLabel?.hidden = false
          
@@ -652,7 +652,7 @@ class KSTokenField: UITextField {
       selectToken(token)
    }
    
-   override func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent) -> Bool {
+   func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent) -> Bool {
       if (touch.view == self) {
          deselectSelectedToken()
       }

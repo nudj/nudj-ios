@@ -74,7 +74,7 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
 
         let phoneNumber = self.getFormattedNumber()
 
-        if (count(phoneNumber) <= 8) {
+        if (phoneNumber.isEmpty) {
             showSimpleAlert("Phone field is required.")
             showLoginButton()
             return;
@@ -198,23 +198,22 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
     }
 
     func getCleanNumber(number: String? = nil) -> String {
-        let value = number == nil ? phoneField.text : number
+        //TODO: sort this out
+        let value = number ?? phoneField.text ?? ""
 
-        if (count(value) <= 0) {
+        if (value.isEmpty) {
             return "";
         }
-
-        let index = advance(value.startIndex, 1)
-
-        if (value.substringToIndex(index) == "0") {
-            return self.getCleanNumber(number: value.substringFromIndex(index))
-        } else {
-            return value
+        
+        if (value.hasPrefix("0")) {
+            let index = value.startIndex.advancedBy(1)
+            return self.getCleanNumber(value.substringFromIndex(index))
         }
+        return value
     }
 
     func getFormattedNumber() -> String {
-        return self.countryCode.text + self.getCleanNumber(number: self.phoneField.text)
+        return self.countryCode.text! + self.getCleanNumber(self.phoneField.text)
     }
 
     // MARK: - Navigation bar
