@@ -97,7 +97,7 @@ class SavedPostedJobs: BaseController, DataProviderProtocol {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let askView = segue.destinationViewController as? AskReferralViewController {
             print(selectedJobData)
-            askView.jobId = selectedJobData!["id"].stringValue.toInt()
+            askView.jobId = Int(selectedJobData!["id"].stringValue)
         }else if let detailsView = segue.destinationViewController as? JobDetailedViewController {
             detailsView.jobID = selectedJobData!["id"].stringValue
             print(selectedJobData)
