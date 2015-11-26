@@ -36,48 +36,39 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
         self.tabBarController?.tabBar.hidden = true
         
         if(self.isNudjRequest!){
+            // TODO: localisation
             self.title = "Refer Someone"
-        }else{
-            
+        } else {
             if let job = self.jobTitle {
                 let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
                 self.messageLabel.text = "Select contacts to ask for referrals, for the \(job) position"
                 self.messageLabel.setFontColor(appDelegate.appColor, string:job)
                 self.navigationItem.rightBarButtonItem?.title = "Ask"
             }
-            
         }
 
         messagePlaceholder = messageText.text
-        
         askTable.registerNib(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
-        
         askTable.tableFooterView = UIView(frame: CGRectZero)
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () -> Void in
-            
             self.loadData()
         })
-        
     }
 
     func loadData() {
-        
-        ContactModel.getContacts { status, response in
+        ContactModel.getContacts { 
+            status, response in
             if (!status) {
-                
                 self.askTable.hidden = false
-                
                 return
-                
             }
 
-            let dictionary = sorted(response["data"]) { $0.0 < $1.0 }
+            let dictionary = response["data"].sort{ $0.0 < $1.0 }
             var content = [ContactModel?]();
             
-            for (id, parentObj) in dictionary {
-                for (id, obj) in parentObj {
-
+            for (_, parentObj) in dictionary {
+                for (_, obj) in parentObj {
                     var user:UserModel? = nil
 
                     if(obj["user"].type != .Null) {
@@ -85,7 +76,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
                         user!.updateFromJson(obj["user"])
                     }
 
-                    var contact = ContactModel(id: obj["id"].intValue, name: obj["alias"].stringValue, apple_id: obj["apple_id"].int, user: user)
+                    let contact = ContactModel(id: obj["id"].intValue, name: obj["alias"].stringValue, apple_id: obj["apple_id"].int, user: user)
                     content.append(contact)
                 }
             }
@@ -95,28 +86,23 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
             self.askTable.reloadData()
         }
     }
-
     
     override func viewWillDisappear(animated: Bool) {
-        
         self.tabBarController?.tabBar.hidden = false
-        
     }
     
     override func viewWillAppear(animated: Bool) {
-        
         self.tabBarController?.tabBar.hidden = true
-        
     }
     
     //MARK: TextView Delegate
     func textViewDidBeginEditing(textView: UITextView) {
-        
+        // TODO: Use proper UIKit placeholder
         if(textView.text == "Enter your personalised message"){
             textView.text = ""
         }
-        
     }
+    
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         if(text == "\n") {
             textView.resignFirstResponder()
@@ -126,22 +112,21 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
         return true
     }
     
-    
     //MARK: Search bar Delegates
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-
+        // TODO: do we need this?
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-
+        // TODO: do we need this?
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         if(searchBar.text == ""){
             searchBar.resignFirstResponder()
             searchBar.setShowsCancelButton(false, animated: true)
-        }else{
+        } else {
             self.filtering.stopFiltering()
             searchBar.text = ""
             self.askTable.reloadData()
@@ -149,49 +134,38 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     }
 
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-       
         searchBar.resignFirstResponder()
     }
 
-    
-    func searchBar(searchBar :UISearchBar, textDidChange searchText:String){
-        
+    func searchBar(searchBar :UISearchBar, textDidChange searchText:String) {
         searchBar.setShowsCancelButton(true, animated: true)
         
         if(!searchText.isEmpty){
-
-            self.filtering.startFiltering(searchText, completionHandler: { (success) -> Void in
-            })
-
-        }else {
+            self.filtering.startFiltering(searchText, completionHandler: { _ in })
+        } else {
             self.filtering.stopFiltering()
         }
 
         self.askTable.reloadData()
     }
 
-
-
     // MARK: -- UITableViewDataSource --
-    
+
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1;
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
         return self.filtering.filteredContent.count
-        
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        
+        // TODO: magic number
         return 76;
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
         var cell: ContactsCell! = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier) as? ContactsCell
         
         if cell == nil {
@@ -203,8 +177,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
             cell.loadData(contact)
 
             if selected.count > 0 {
-
-                for (index, value) in enumerate(selected) {
+                for value in selected {
                     if value.id == contact.id {
                         cell.accessoryType = UITableViewCellAccessoryType.Checkmark
                         break
@@ -228,26 +201,21 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
 
     func toggleRowSelection(indexPath: NSIndexPath) {
         if let cell = askTable.cellForRowAtIndexPath(indexPath) as? ContactsCell {
-
             if let contact = self.filtering.filteredContent[indexPath.row] {
-
-                for (index, value) in enumerate(selected) {
-                    if value.id == contact.id {
+                let selectedArray = selected as NSArray
+                for (index, value) in selectedArray.enumerate() {
+                    let contactModel = value as! ContactModel
+                    if contactModel.id == contact.id {
                         selected.removeAtIndex(index)
-
                         cell.accessoryType = UITableViewCellAccessoryType.None
-
                         checkSelected()
                         return
                     }
                 }
 
                 selected.append(contact)
-
                 cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-
                 checkSelected()
-
                 return;
             }
         }
@@ -258,10 +226,8 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     }
 
     @IBAction func askAction(sender: AnyObject) {
-        
         self.resignFirstResponder()
         self.view.endEditing(true)
-        
         
         let contactIds:[Int] = selected.map { contact in
             return contact.id
@@ -271,18 +237,17 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
             messageText.text = nil
         }
         
-        
+        // TODO: API strings
         let params:[String:AnyObject] = ["job": "\(jobId!)", "contacts": contactIds, "message": messageText.text]
         
-
         self.messageText.resignFirstResponder()
 
         // TODO: Refactor
         if(self.isNudjRequest!){
-            
+            // TODO: API strings
             API.sharedInstance.put("nudge", params: params, closure: { result in
                 self.navigationController?.navigationBarHidden = true
-            
+                
                 self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true);
                 
                 let nudjContent = self.selected.count > 1 ? "\(self.selected[0].name) and \(self.selected.count - 1) others" : self.selected[0].name
@@ -292,14 +257,13 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
                 
                 //self.performSegueWithIdentifier("ShowPopup", sender: self)
                 
-
+                
                 print(result)
                 }) { error in
                     print(error)
             }
-            
-        }else{
-            
+        } else {
+            // TODO: API strings
             API.sharedInstance.put("nudge/ask", params: params, closure: { result in
                 self.navigationController?.navigationBarHidden = true
                 
@@ -316,16 +280,13 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
                 }) { error in
                     print(error)
             }
-
-            
         }
-
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-       if segue.isKindOfClass(CCMPopupSegue) {
-            var popupSegue = segue as! CCMPopupSegue
+        if segue.isKindOfClass(CCMPopupSegue) {
+            let popupSegue = segue as! CCMPopupSegue
+            // TODO: magic numbers
             popupSegue.destinationBounds = CGRectMake(0, 0, 300, 400);
             popupSegue.backgroundBlurRadius = 7;
             popupSegue.backgroundViewAlpha = 0.3;
@@ -334,7 +295,6 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
         }
         
     }
-    
     
     @IBAction func close(sender: AnyObject) {
         self.closeCurrentView()
@@ -348,14 +308,10 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     }
     
     func closeCurrentView(){
-        
         if isSlideTransition != nil && isSlideTransition == true {
            self.navigationController?.popViewControllerAnimated(true)
-        }else{
+        } else {
             self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
-    
-    
-        
 }
