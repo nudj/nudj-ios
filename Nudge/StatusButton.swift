@@ -9,12 +9,17 @@
 import UIKit
 
 struct Status {
+    // TODO: localisation
     static let titles = ["Hiring", "Available", "Do not Disturb"]
-    static let colors = [UIColor(red: 22/255, green: 128/255, blue: 175/255, alpha: 1), UIColor(red: 0, green: 0.63, blue: 0.53, alpha: 1), UIColor(red: 0.63, green: 0, blue: 0, alpha: 1)]
+    // TODO: magic numbers
+    static let colors = [
+        UIColor(red: 22.0/255.0, green: 128.0/255.0, blue: 175.0/255.0, alpha: 1.0), 
+        UIColor(red: 0.0, green: 0.63, blue: 0.53, alpha: 1.0), 
+        UIColor(red: 0.63, green: 0.0, blue: 0.0, alpha: 1.0)]
 }
 
 class StatusButton: UIButton {
-
+    // TODO: localisation
     let initialTitle = "SELECT STATUS"
 
     var gray = true
@@ -26,7 +31,7 @@ class StatusButton: UIButton {
         self.setup()
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
@@ -36,12 +41,14 @@ class StatusButton: UIButton {
     }
 
     func setup() {
+        // TODO: magic numbers
         self.titleLabel?.font = self.titleLabel?.font.fontWithSize(10)
         self.setTitle(self.initialTitle, forState: UIControlState.Normal)
 
         self.layer.cornerRadius = 8
         self.layer.borderWidth = 1
 
+        // TODO: magic numbers
         self.contentEdgeInsets = UIEdgeInsets(top: 3, left: 13, bottom: 3, right: 13)
         self.sizeToFit()
     }
@@ -52,7 +59,6 @@ class StatusButton: UIButton {
     }
 
     func setTitleByIndex(title: Int) {
-
         if (!self.isValidStatus(title)) {
             self.setTitle("", forState: UIControlState.Normal)
             isChanged = false
