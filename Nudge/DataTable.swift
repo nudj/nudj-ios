@@ -27,7 +27,7 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
 
     var selectedClosure:((JSON)->())? = nil
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
         self.rowHeight = UITableViewAutomaticDimension
@@ -41,7 +41,7 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
         self.refreshControl.tintColor = appDelegate.appColor
         self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.addSubview(refreshControl)
-        self.autoresizingMask = UIViewAutoresizing.FlexibleBottomMargin | UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleHeight
+        self.autoresizingMask = [.FlexibleBottomMargin, .FlexibleTopMargin, .FlexibleHeight]
         self.tableFooterView = UIView(frame: CGRectZero)
     }
 
@@ -51,7 +51,6 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
     }
 
     func loadData(page: Int = 1) {
-
         if (self.dataProvider == nil) {
             print("No dataProvider!!!")
             return
@@ -59,14 +58,11 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
 
         if (self.loading) {
             self.refreshControl.endRefreshing()
-            
             UIView.animateWithDuration(0.90, delay:0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
                 self.alpha = 1
             }, completion:nil);
-            
             return
         }
-
         
         self.dataProvider!.requestData(page, size: self.dataSize, listener: { json in
             self.data.removeAll(keepCapacity: false)
@@ -89,13 +85,10 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
             UIView.animateWithDuration(0.90, delay:0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
                 self.alpha = 1
             }, completion:nil);
-
-    
         })
     }
 
     func refresh(sender: AnyObject) {
-        
         UIView.animateWithDuration(0.25, delay:0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
             self.alpha = 0
         }, completion:nil);
@@ -106,7 +99,6 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
 
     func setLoadingStatus(status: Bool) {
         self.loading = status
-
         if (!status) {
             self.refreshControl.endRefreshing()
             self.loading = false
@@ -120,15 +112,14 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
         let cell:DataTableCell = self.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath) as! DataTableCell
         cell.loadData(self.data[indexPath.row])
-
         return cell
     }
 
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 129
+        // TODO: magic number
+        return 129.0
     }
 
     // MARK: -- UITableViewDelegate --
@@ -137,22 +128,21 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
         selectedClosure?(self.data[indexPath.row])
     }
 
-    func clear()
-    {
+    func clear() {
         if (data.isEmpty) {
             return
         }
 
-        let rowsToDelete: NSMutableArray = []
+        var rowsToDelete: [NSIndexPath] = []
         for (var i = 0; i < data.count; i++) {
-            rowsToDelete.addObject(NSIndexPath(forRow: i, inSection: 0))
+            rowsToDelete.append(NSIndexPath(forRow: i, inSection: 0))
         }
 
         data = []
         page = 1
         end = false
 
-        self.deleteRowsAtIndexPaths(rowsToDelete as [AnyObject], withRowAnimation: UITableViewRowAnimation.Fade)
+        self.deleteRowsAtIndexPaths(rowsToDelete, withRowAnimation: UITableViewRowAnimation.Fade)
         self.setLoadingStatus(false)
     }
 
@@ -164,40 +154,29 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
 
         if (!self.loading && !self.end && (maximumOffset - currentOffset) <= self.spaceToScroll) {
             self.setLoadingStatus(true)
-            
             self.page += 1
-            self.loadData(page: self.page)
+            self.loadData(self.page)
         }
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        
         return canEdit;
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
             //add code here for when you hit delete
             print("will delete")
             self.deletejob(indexPath.row)
         }
-        
     }
-    
     
     func deletejob(row:Int){
-        
-        self.dataProvider!.deleteData(self.data[row]["id"].intValue) { json in
-            
+        self.dataProvider!.deleteData(self.data[row]["id"].intValue) { 
+            json in
             self.data.removeAtIndex(row)
             self.reloadData()
-            
-            print("done deleting")
-            
         }
-        
     }
     
-
 }
