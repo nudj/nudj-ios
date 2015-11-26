@@ -14,9 +14,9 @@ class Common {
         var hasInput = false
 
         if let textView = field as? UITextView {
-            hasInput = count(textView.text) > 0
+            hasInput = !textView.text.isEmpty
         } else if let textField = field as? UITextField {
-            hasInput = count(textField.text) > 0
+            hasInput = !(textField.text?.isEmpty ?? true)
         } else if let tokenView = field as? TokenView {
             hasInput = tokenView.tokens()?.count > 0
         }
@@ -24,5 +24,4 @@ class Common {
         icon?.highlighted = hasInput
         label?.hidden = hasInput
     }
-
 }
