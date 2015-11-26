@@ -54,8 +54,6 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
 
         table.registerNib(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
         self.socialhander = SocialHandlerModel(viewController: self)
-        
-        
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -98,45 +96,31 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
         }
 
         if (data.action == "showStatusPicker") {
-            
             cell.accessoryView = self.statusButton
             cell.accessoryView?.userInteractionEnabled = false
-            
         } else if(data.action == "linkedin"){
-            
             cell.imageView!.image = UIImage(named: "linkdin")
-            
             if(self.socialStatuses.count > 0){
-                
-                var social = SocialStatus(status: self.socialStatuses["linkedin"]!, and: data.action)
+                let social = SocialStatus(status: self.socialStatuses["linkedin"]!, and: data.action)
                 social.delegate = self
                 cell.accessoryView = social
-                
             }else{
                 cell.accessoryView = nil;
             }
             
         } else if(data.action == "facebook"){
-            
             cell.imageView!.image = UIImage(named: "facebook_icon")
-            
             if(self.socialStatuses.count > 0){
-                
-                var social = SocialStatus(status: self.socialStatuses["facebook"]!, and: data.action)
+                let social = SocialStatus(status: self.socialStatuses["facebook"]!, and: data.action)
                 social.delegate = self
                 cell.accessoryView = social;
-                
             }else{
                 cell.accessoryView = nil;
             }
-            
         }else if(data.action == "goToLogin"){
-        
             cell.accessoryView = nil
             cell.accessoryType = UITableViewCellAccessoryType.None
-            
         }else{
-            
             cell.accessoryView = nil
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         }
@@ -145,15 +129,17 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        // TODO: magic numbers
         return section == structure.count - 1 ? 0.01: 0
     }
 
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        // TODO: magic numbers
         return section == 0 ? 0.01: 0
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        
+        // TODO: magic numbers        
         if (indexPath.section == 3) {
             return 88;
         }else{
@@ -164,7 +150,7 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let action = structure[indexPath.section][indexPath.row].action
         let name = structure[indexPath.section][indexPath.row].name
-        if (count(action) <= 0) {
+        if (action.isEmpty) {
             return
         }
         
@@ -175,21 +161,17 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
         }
 
         if(action == "linkedin"){
-        
+            // nothing
         }else if(action == "facebook"){
-        
-            
+            // nothing
         }else if(action == "goToLogin"){
-            
-            var alertview = UIAlertView(title: "Delete Account", message: "Are you sure you want to parmanently delete your account information, including jobs and chats?", delegate:self, cancelButtonTitle: "Cancel", otherButtonTitles: "Delete")
+            // TODO: localisation
+            let alertview = UIAlertView(title: "Delete Account", message: "Are you sure you want to parmanently delete your account information, including jobs and chats?", delegate:self, cancelButtonTitle: "Cancel", otherButtonTitles: "Delete")
             alertview.tag = 3
             alertview.show();
-            
         }else{
-            
             self.jobsSelected = action
             performSegueWithIdentifier(action, sender: self)
-            
         }
     }
     
@@ -244,25 +226,19 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         }
 
-        
         // saved jobs or posted jobs
         if (segue.destinationViewController.isKindOfClass(SavedPostedJobs)) {
             if let controller = (segue.destinationViewController as? SavedPostedJobs) {
-                
+                // TODO: localisation
                 if(self.jobsSelected == "goToPostedJobs"){
-                    
                     controller.title = "Posted Jobs"
                     controller.requestParams = "mine"
-                    
                 }
                 
                 if(self.jobsSelected == "goToSavedJobs"){
-                
                     controller.title = "Saved Jobs"
                     controller.requestParams = "liked"
-                
                 }
-                
             }
         }
         
@@ -272,135 +248,80 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
                     controller.isPrivacy = true
                 }
             }
-            
         }
         
         if(segue.destinationViewController.isKindOfClass(ChatListViewController)){
             if let controller = (segue.destinationViewController as? ChatListViewController) {
                  controller.isArchive = true
             }
-            
         }
-        
-        
     }
 
     func didTap(statusIdentifier: String, parent:SocialStatus) {
-        
         self.statusParent = parent;
-        
         if(parent.currentStatus!){
-            
-            var alertview = UIAlertView(title: "Disconnect \(statusIdentifier)", message:"Are you sure you want to disconnect \(statusIdentifier)", delegate:self, cancelButtonTitle: "NO", otherButtonTitles: "YES")
+            // TODO: localisation
+            let alertview = UIAlertView(title: "Disconnect \(statusIdentifier)", message:"Are you sure you want to disconnect \(statusIdentifier)", delegate:self, cancelButtonTitle: "NO", otherButtonTitles: "YES")
             alertview.tag = statusIdentifier == "facebook" ? 0 : 1
             alertview.show();
-            
         }else{
-            
             self.handleSocialAction(statusIdentifier)
         }
-        
-        
     }
     
-    
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        
         if alertView.tag == 3 {
-            
             if(buttonIndex == 1){
-                
                 MixPanelHandler.sendData("DeleteAcountAction")
                 self.jobsSelected = "goToLogin"
                 performSegueWithIdentifier("goToLogin", sender: self)
-                
-            }else{
-                
-                print("cancelled delete account")
-                
             }
-            
         }else{
-        
             if(buttonIndex == 1){
-                
                 self.handleSocialAction(alertView.tag ==  0 ? "facebook" : "linkedin")
-                
-            }else{
-                
-                print("cancelled delete social")
-                
             }
-        
         }
-  
-        
     }
     
-    
     func handleSocialAction(statusIdentifier:String){
-        
-        //Default Message
-        var alert = UIAlertView(title: "", message: "", delegate: nil, cancelButtonTitle: "OK")
+        // TODO: localisation
+        let alert = UIAlertView(title: "", message: "", delegate: nil, cancelButtonTitle: "OK")
         
         if(statusIdentifier == "facebook"){
-        
             self.socialhander!.configureFacebook(self.statusParent!.currentStatus!, completionHandler: { success in
                 
                 if(success){
-                
                     self.statusParent!.updateStatus()
                     self.socialStatuses["facebook"] = self.statusParent!.currentStatus!
-                    
-                    
                     if(self.statusParent!.currentStatus!){
-                      
                         alert.title = "Facebook Connected!"
                         alert.message = "You have successfully connected your Facebook account"
-                        
                     }else{
-                       
                         alert.title = "Facebook Disconnected!"
                         alert.message = "You have successfully disconnected your Facebook account"
-                        
                     }
-                    
                     alert.show()
-                
                 }
             })
-            
         }
         
         if(statusIdentifier == "linkedin"){
-        
             self.socialhander!.configureLinkedin(self.statusParent!.currentStatus!, completionHandler: { success in
-                
                 if(success){
-                    
                     self.statusParent!.updateStatus()
                     self.socialStatuses["linkedin"] = self.statusParent!.currentStatus!
-                    
                     if(self.statusParent!.currentStatus!){
-                        
                         alert.title = "LinkedIn Connected!"
                         alert.message = "You have successfully connected your LinkedIn account"
-                        
                     }else{
-                        
                         alert.title = "LinkedIn Disconnected!"
                         alert.message = "You have successfully disconnected your LinkedIn account"
-                        
                     }
-                    
-
                     alert.show()
                     self.table.reloadData();
                 }
                 
             })
         }
-        
     }
-    
 }
