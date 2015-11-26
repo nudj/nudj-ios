@@ -50,7 +50,6 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
         setup()
     }
 
-
     func setup() {
         promptText = "";
 
@@ -94,7 +93,6 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
 
             if (KSUtils.isIpad()) {
                 _popover?.presentPopoverFromRect(_tokenField.frame, inView: _tokenField, permittedArrowDirections: .Up, animated: false)
-
             } else {
                 if let parent = suggestionsParent {
                     parent.addSubview(_searchTableView)
@@ -108,7 +106,6 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
                 _searchTableView.hidden = false
                 resizeSearchTable()
             }
-
         }
     }
 
@@ -135,7 +132,6 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
 
             resizeSearchTable()
         }
-        
     }
 
     func resizeSearchTable() {
@@ -173,7 +169,7 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
     func tokenView(token: KSTokenView, performSearchWithString string: String, completion: ((results: Array<AnyObject>) -> Void)?) {
         if var path = self.autocompleteEndpoint {
 
-            if (count(string) <= 0) {
+            if (string.isEmpty) {
                 return
             }
 
@@ -209,8 +205,6 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
         }
     }
     
-    
-
     func tokenView(tokenView: KSTokenView, didAddToken token: KSToken) {
         if (!setupMode) {
             self.changedClosure?(self)
@@ -228,8 +222,5 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
             _tokenField.becomeFirstResponder()
             _tokenField.selectToken(token)
         }
-        
-
     }
-
 }
