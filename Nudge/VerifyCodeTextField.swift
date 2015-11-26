@@ -9,15 +9,13 @@
 import UIKit
 
 class VerifyCodeTextField: UITextField {
-
+    // TODO: magic numbers
     let padding:CGFloat = 6
-
     let lineWidth:CGFloat = 1.8
-
     let textFont = UIFont.systemFontOfSize(34)
     let letterSpacing:CGFloat = 27;
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
@@ -34,20 +32,19 @@ class VerifyCodeTextField: UITextField {
 
     func setup() {
         leftViewMode = UITextFieldViewMode.Always;
-
         leftView = UIView(frame: CGRect(x: 0, y: 0, width: letterSpacing/2, height: letterSpacing/2))
-
         layout()
     }
 
     func layout() {
-        var newText = NSMutableAttributedString(string: text!)
-
-        let limit = count(text!) > 3 ? 3 : count(text!)
+        let oldText = text ?? ""
+        let newText = NSMutableAttributedString(string: oldText)
+        let numChars = oldText.characters.count
+        let limit = min(3, numChars)
 
         newText.addAttributes([
             NSFontAttributeName: textFont,
-            NSForegroundColorAttributeName: textColor], range: NSRange(location: 0, length: count(text!)))
+            NSForegroundColorAttributeName: textColor!], range: NSRange(location: 0, length: numChars))
 
         newText.addAttribute(NSKernAttributeName, value: letterSpacing, range: NSRange(location: 0, length: limit))
 
@@ -56,28 +53,21 @@ class VerifyCodeTextField: UITextField {
     }
 
     override func drawRect(rect: CGRect) {
-
         UIColor.grayColor().setStroke()
-
         let section = rect.width / 4;
-
-        var border = UIBezierPath(rect: rect);
+        let	 border = UIBezierPath(rect: rect);
         border.lineWidth = lineWidth
         border.stroke()
 
-        var path = UIBezierPath()
-
+        let path = UIBezierPath()
         path.lineWidth = lineWidth
-
         for(var i:CGFloat = 1; i < 4; i++) {
             let meridian:CGFloat = section * i;
             path.moveToPoint(CGPoint(x: meridian, y: padding))
             path.addLineToPoint(CGPoint(x: meridian, y: rect.height - padding))
         }
-
         path.stroke()
+        
         super.drawRect(rect)
-
     }
-
 }
