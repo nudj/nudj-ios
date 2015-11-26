@@ -34,19 +34,17 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
     var setupMode = false
     var placeholderLabel:UILabel?
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
         setup()
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
         setup()
     }
 
