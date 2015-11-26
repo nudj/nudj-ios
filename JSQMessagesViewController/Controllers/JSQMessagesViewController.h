@@ -18,7 +18,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "XMPPLogging.h"
+//#import "XMPPLogging.h"
 #import "JSQMessagesCollectionView.h"
 #import "JSQMessagesCollectionViewFlowLayout.h"
 #import "JSQMessagesInputToolbar.h"
