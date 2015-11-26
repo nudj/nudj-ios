@@ -11,6 +11,8 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
+private struct UnknownError : ErrorType {}
+
 class BaseController: UIViewController {
 
     var chatCounter = 0;
@@ -25,7 +27,7 @@ class BaseController: UIViewController {
     }
     
     func showSimpleAlert(text: String, action: ((UIAlertAction) -> Void)?) {
-        var alert = UIAlertController(title: nil, message: text, preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: nil, message: text, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel) {
             alert in
             if (action != nil) {
@@ -36,6 +38,7 @@ class BaseController: UIViewController {
     }
 
     func showUnknownError() {
+        // TODO: localisation
         self.showSimpleAlert("Unknown Error Occured.")
     }
 
@@ -55,8 +58,9 @@ class BaseController: UIViewController {
                     self.showUnknownError()
                 }
 
+                // TODO: sort this out - we have no error to pass here
                 if (errorHandler != nil) {
-                    errorHandler!()
+                    errorHandler!(UnknownError())
                 }
 
                 return;
@@ -73,26 +77,22 @@ class BaseController: UIViewController {
     }
     
     func updateBadge(notification:NSNotification){
-        
         let userInfo:Dictionary<String,String!> = notification.userInfo as! Dictionary<String,String!>
         
-        let index = userInfo["index"]!.toInt()
-        
+        let index = Int(userInfo["index"]!)
+        let badgeNumber = Int(userInfo["value"]!) ?? 0
         if(index == 1){
-        
-            self.chatCounter += userInfo["value"]!.toInt()!
-        
+            self.chatCounter += badgeNumber
         }else{
-         
-            self.notificationCounter += userInfo["value"]!.toInt()!
-        
+            self.notificationCounter += badgeNumber
         }
         
-        var tabArray = self.tabBarController?.tabBar.items as NSArray!
-        if(tabArray != nil && tabArray.count > 0){
-            var tabItem = tabArray.objectAtIndex(index!) as! UITabBarItem
-            tabItem.badgeValue =  index == 1 ? "\(self.chatCounter)" : "\(self.notificationCounter)"
+        let tabArray = self.tabBarController?.tabBar.items as NSArray?
+        if let tabArray = tabArray {
+            if(tabArray.count > 0){
+                let tabItem = tabArray.objectAtIndex(index!) as! UITabBarItem
+                tabItem.badgeValue =  index == 1 ? "\(self.chatCounter)" : "\(self.notificationCounter)"
+            }
         }
-        
     }
 }
