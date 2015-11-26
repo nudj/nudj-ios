@@ -99,9 +99,9 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     // MARK: -- UITableViewDelegate -
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var cell = tableView.cellForRowAtIndexPath(indexPath)  as! ChatListTableViewCell
+        let cell = tableView.cellForRowAtIndexPath(indexPath)  as! ChatListTableViewCell
 
-        var chatView:ChatViewController = ChatViewController()
+        let chatView:ChatViewController = ChatViewController()
         
         let chat = self.data[indexPath.row]
         chatView.chatID = chat.chatId;
@@ -111,9 +111,11 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         chatView.jobID = chat.jobID
         chatView.isLiked = chat.jobLike
         
-        var imageData = UIImagePNGRepresentation(cell.profilePicture.image)
-        let base64String = imageData.base64EncodedStringWithOptions([])
-        chatView.otherUserBase64Image = base64String
+        if let profileImage = cell.profilePicture.image {
+            let imageData = UIImagePNGRepresentation(profileImage)
+            let base64String = imageData?.base64EncodedStringWithOptions([]) ?? ""
+            chatView.otherUserBase64Image = base64String
+        }
         chatView.isArchived = isArchive
             
         self.navigationController?.pushViewController(chatView, animated: true)
