@@ -63,19 +63,19 @@ class VerifyViewController: BaseController {
             field.layout()
         }
 
-        if (count(sender.text) == codeLength) {
+        if (sender.text?.characters.count == codeLength) {
             self.submit()
         }
     }
 
     @IBAction func resendButton() {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
-
+        // TODO: API strings
         self.apiRequest(.POST, path: "users", params: ["phone": phoneNumber], closure: {
             (json: JSON) in
 
             self.code = json["data"]["code"].stringValue
             
+            // TODO: localisation
             self.showSimpleAlert("Your new code is sent.") { _ in
                 self.showSimpleAlert("Your verification code is: " + self.code);
             }
@@ -90,29 +90,34 @@ class VerifyViewController: BaseController {
     }
 
     func submit() {
-        let code = codeField.text
+        guard let code: String = codeField.text else {
+            return
+        }
         codeField.text = ""
 
-        if (count(code) != self.codeLength) {
+        // TODO: localisation
+        if (code.characters.count != self.codeLength) {
             showSimpleAlert("Invalid Code")
             return;
         }
 
         self.hideCodeField()
 
+        // TODO: API strings
         self.apiRequest(Alamofire.Method.PUT, path: "users/verify", params: ["phone": phoneNumber, "verification": code, "country_code": "GB"], closure: {
             (json: JSON) in
             NSLog(json.stringValue)
 
             if (!self.isValidResponse(json)) {
                 self.showCodeField(animated: true)
+                // TODO: localisation
                 self.showSimpleAlert("This code is invalid.")
-                
                 return;
             }
 
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
 
+            // TODO: API strings
             let user = appDelegate.user == nil ? UserModel() : appDelegate.user!
             user.id = json["data"]["id"].intValue
             user.token = json["data"]["token"].stringValue
@@ -150,7 +155,7 @@ class VerifyViewController: BaseController {
         })
     }
 
-    func showCodeField(animated: Bool = true) {
+    func showCodeField(animated animated: Bool = true) {
         self.activityIndicator.stopAnimating()
 
         if (animated) {
