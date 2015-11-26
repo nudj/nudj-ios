@@ -586,7 +586,7 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
         self.backgroundImage.startActivity()
 
         let image = info[UIImagePickerControllerEditedImage] as! UIImage
-        guard let imageData = UIImageJPEGRepresentation(image, 0.8)?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue:0)) else {
+        guard let imageData = UIImageJPEGRepresentation(image, 0.8)?.base64EncodedStringWithOptions([]) else {
             return
         }
         

@@ -112,7 +112,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         chatView.isLiked = chat.jobLike
         
         var imageData = UIImagePNGRepresentation(cell.profilePicture.image)
-        let base64String = imageData.base64EncodedStringWithOptions(.allZeros)
+        let base64String = imageData.base64EncodedStringWithOptions([])
         chatView.otherUserBase64Image = base64String
         chatView.isArchived = isArchive
             

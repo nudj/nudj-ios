@@ -121,7 +121,7 @@ class UserModel: CustomStringConvertible {
         if let url = NSURL(string :self.image["profile"]!){
             var imageData = NSData(contentsOfURL: url)
                 if imageData != nil {
-                    let base64String = imageData!.base64EncodedStringWithOptions(.allZeros)
+                    let base64String = imageData!.base64EncodedStringWithOptions([])
                     self.base64Image = base64String
                 }
         }

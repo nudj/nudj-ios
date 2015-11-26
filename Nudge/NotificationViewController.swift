@@ -276,7 +276,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
         
         if let image = cell.profileImage.image {
             var imageData = UIImagePNGRepresentation(image)
-            let base64String = imageData?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+            let base64String = imageData?.base64EncodedStringWithOptions([])
             chatView.otherUserBase64Image = base64String
         }
         
