@@ -93,7 +93,7 @@ class KSTokenView: UIView {
    //__________________________________________________________________________________
    //
    var _tokenField: KSTokenField!
-   var _searchTableView: UITableView = UITableView(frame: .zeroRect, style: UITableViewStyle.Plain)
+   var _searchTableView: UITableView = UITableView(frame: .zero, style: UITableViewStyle.Plain)
    var _resultArray = [AnyObject]()
    var _showingSearchResult = false
    var _indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
@@ -143,7 +143,7 @@ class KSTokenView: UIView {
    }
    
    /// Default is (TokenViewWidth, 200)
-   var searchResultSize: CGSize = CGSize.zeroSize {
+   var searchResultSize: CGSize = CGSize.zero {
       didSet {
          if (KSUtils.isIpad()) {
             _popover?.popoverContentSize = searchResultSize
@@ -344,7 +344,7 @@ class KSTokenView: UIView {
    
    :returns: KSTokenView object
    */
-   required init(coder aDecoder: NSCoder) {
+   required init?(coder aDecoder: NSCoder) {
       super.init(coder: aDecoder)
    }
    
@@ -363,7 +363,7 @@ class KSTokenView: UIView {
       _tokenField.enabled = true
       _tokenField.tokenFieldDelegate = self
       _tokenField.placeholder = ""
-      _tokenField.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+      _tokenField.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
       _updateTokenField()
       addSubview(_tokenField)
       
@@ -396,7 +396,7 @@ class KSTokenView: UIView {
    //__________________________________________________________________________________
    //
    override func layoutSubviews() {
-      _tokenField.updateLayout(shouldUpdateText: false)
+      _tokenField.updateLayout(false)
       _searchTableView.frame.size = CGSize(width: frame.width, height: searchResultSize.height)
    }
    
@@ -478,13 +478,15 @@ class KSTokenView: UIView {
    
    :returns: Boolean if token is added
    */
-   func addTokenFromUntokenizedText(tokenField: KSTokenField) -> Bool {
-      if (shouldAddTokenFromTextInput && tokenField.text != nil && tokenField.text != KSTextEmpty) {
-         addTokenWithTitle(tokenField.text)
-         return true
-      }
-      return false
-   }
+    func addTokenFromUntokenizedText(tokenField: KSTokenField) -> Bool {
+        if let text = tokenField.text {
+            if (shouldAddTokenFromTextInput && text != KSTextEmpty) {
+                addTokenWithTitle(text)
+                return true
+            }
+        }
+        return false
+    }
    
    /**
    Creates and add a new KSToken object
@@ -758,7 +760,7 @@ class KSTokenView: UIView {
       }
       
       if (shouldSortResultsAlphabatically) {
-         return sorted(filteredResults, { s1, s2 in return self._sortStringForObject(s1) < self._sortStringForObject(s2) })
+        return filteredResults.sort{self._sortStringForObject($0) < self._sortStringForObject($1)}
       }
       return filteredResults
    }
@@ -821,9 +823,8 @@ extension KSTokenView : KSTokenFieldDelegate {
             self.frame.size.height = height
             
             if (KSUtils.constrainsEnabled(self)) {
-               for index in 0 ... self.constraints().count-1 {
-                  let constraint: NSLayoutConstraint = self.constraints()[index] as! NSLayoutConstraint
-                  
+               for index in 0 ... self.constraints.count-1 {
+                  let constraint: NSLayoutConstraint = self.constraints[index]
                   if (constraint.firstItem as! NSObject == self && constraint.firstAttribute == .Height) {
                      constraint.constant = height
                   }
@@ -845,56 +846,64 @@ extension KSTokenView : KSTokenFieldDelegate {
 //__________________________________________________________________________________
 //
 extension KSTokenView : UITextFieldDelegate {
-   func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-      
-      // If backspace is pressed
-      if (_tokenField.tokens.count > 0 && _tokenField.text == KSTextEmpty && string.isEmpty == true && shouldDeleteTokenOnBackspace) {
-         if (_lastToken() != nil) {
-            if (selectedToken() != nil) {
-               deleteSelectedToken()
-            } else {
-               _tokenField.selectToken(_lastToken()!)
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        // If backspace is pressed
+        if (_tokenField.tokens.count > 0 && _tokenField.text == KSTextEmpty && string.isEmpty == true && shouldDeleteTokenOnBackspace) {
+            if (_lastToken() != nil) {
+                if (selectedToken() != nil) {
+                    deleteSelectedToken()
+                } else {
+                    _tokenField.selectToken(_lastToken()!)
+                }
             }
-         }
-         return false
-      }
-      
-      // Prevent removing KSEmptyString
-      if (string.isEmpty == true && _tokenField.text == KSTextEmpty) {
-         return false
-      }
-      
-      var searchString: String
-      let olderText = _tokenField.text
-      
-      // Check if character is removed at some index
-      // Remove character at that index
-      if (string.isEmpty) {
-         let first: String = olderText.substringToIndex(advance(olderText.startIndex, range.location)) as String
-         let second: String = olderText.substringFromIndex(advance(olderText.startIndex, range.location+1)) as String
-         searchString = first + second
-         
-      }  else { // new character added
-         if (contains(tokenizingCharacters, string) && olderText != KSTextEmpty && olderText.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) != "") {
-            addTokenWithTitle(olderText, tokenObject: nil)
             return false
-         }
-         searchString = olderText+string
-      }
-      
-      // Allow all other characters
-      if (count(searchString) >= minimumCharactersToSearch && searchString != "\n") {
-         _lastSearchString = searchString
-         startSearchWithString(_lastSearchString)
-      }
-      _tokenField.scrollViewScrollToEnd()
-      return true
-   }
-   
-   func textFieldShouldReturn(textField: UITextField) -> Bool {
-      resignFirstResponder()
-      return true
-   }
+        }
+        
+        // Prevent removing KSEmptyString
+        if (string.isEmpty == true && _tokenField.text == KSTextEmpty) {
+            return false
+        }
+        
+        var searchString: String
+        let olderText = _tokenField.text ?? ""
+        
+        // Check if character is removed at some index
+        // Remove character at that index
+        if string.isEmpty {
+            searchString = olderText
+            searchString.removeAtIndex(olderText.startIndex.advancedBy(range.location))
+        } else { // new character added
+            // TODO: use NSCharacterSet for tokenizingCharacters
+            let tokenTestFunc: (String)->Bool = {
+                s in
+                return s.characters.contains({
+                    c in 
+                    return self.tokenizingCharacters.contains(String(c))
+                })
+            }
+            if  olderText != KSTextEmpty 
+                && olderText.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) != "" 
+                && tokenTestFunc(string) {
+                addTokenWithTitle(olderText, tokenObject: nil)
+                return false
+            }
+            searchString = olderText+string
+        }
+        
+        // Allow all other characters
+        if (searchString.characters.count >= minimumCharactersToSearch && searchString != "\n") {
+            _lastSearchString = searchString
+            startSearchWithString(_lastSearchString)
+        }
+        _tokenField.scrollViewScrollToEnd()
+        return true
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        resignFirstResponder()
+        return true
+    }
 }
 
 //MARK: - Extension UITableViewDelegate
@@ -938,7 +947,7 @@ extension KSTokenView : UITableViewDataSource {
       }
       
       let cellIdentifier = "KSSearchTableCell"
-      cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as? UITableViewCell
+      cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
       if (cell == nil) {
          cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellIdentifier)
       }

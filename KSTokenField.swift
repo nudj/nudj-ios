@@ -553,46 +553,39 @@ class KSTokenField: UITextField {
    **************************** Placeholder ****************************
    */
    
-   private func _updateText() {
-      if (!_setupCompleted) {return}
-      _initPlaceholderLabel()
-      
-      switch(_state) {
-      case .Opened:
-         text = KSTextEmpty
-         break
-         
-      case .Closed:
-         if tokens.count == 0 {
+    private func _updateText() {
+        if (!_setupCompleted) {return}
+        _initPlaceholderLabel()
+        
+        switch(_state) {
+        case .Opened:
             text = KSTextEmpty
+            break
             
-         } else {
+        case .Closed:
             var title = KSTextEmpty
             for token: KSToken in tokens {
-               title += "\(token.title)\(_separatorText!)"
+                if title != KSTextEmpty {
+                    title += _separatorText ?? ""
+                }
+                title += token.title
             }
-            
-            if (count(title) > 0) {
-               title = title.substringWithRange(Range<String.Index>(start: advance(title.startIndex, 0), end: advance(title.endIndex, -count(_separatorText!))))
-            }
-            
             text = title
-         }
-         break
-      }
-      _updatePlaceHolderVisibility()
-   }
+            break
+        }
+        _updatePlaceHolderVisibility()
+    }
    
-   private func _updatePlaceHolderVisibility() {
-    // TODO: make Swifty
-    if tokens.count == 0 && (text == nil || text == KSTextEmpty || text!.isEmpty) {
-         _placeholderLabel?.text = _placeholderValue!
-         _placeholderLabel?.hidden = false
-         
-      } else {
-         _placeholderLabel?.hidden = true
-      }
-   }
+    private func _updatePlaceHolderVisibility() {
+        // TODO: make Swifty
+        if tokens.count == 0 && (text == nil || text == KSTextEmpty || text!.isEmpty) {
+            _placeholderLabel?.text = _placeholderValue!
+            _placeholderLabel?.hidden = false
+            
+        } else {
+            _placeholderLabel?.hidden = true
+        }
+    }
    
    private func _initPlaceholderLabel() {
       let xPos = _marginX!
@@ -652,7 +645,7 @@ class KSTokenField: UITextField {
       selectToken(token)
    }
    
-   func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent) -> Bool {
+   override func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
       if (touch.view == self) {
          deselectSelectedToken()
       }
@@ -674,11 +667,7 @@ class KSTokenField: UITextField {
    }
    
    func objects() -> NSArray {
-      var objects = NSMutableArray()
-      for object: AnyObject in tokens {
-         objects.addObject(object)
-      }
-      return objects
+      return tokens
    }
    
    override func becomeFirstResponder() -> Bool {
@@ -715,7 +704,6 @@ extension KSTokenField : UIScrollViewDelegate {
       
       if (scrollOffset + scrollViewHeight < scrollContentSizeHeight - 10) {
          hideCaret()
-         
       } else if (scrollOffset + scrollViewHeight >= scrollContentSizeHeight - 10) {
          showCaret()
       }
