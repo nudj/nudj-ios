@@ -154,11 +154,7 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
             return
         }
         
-        if(name == "Privacy Policy"){
-            isPolicy = true
-        }else{
-            isPolicy = false
-        }
+        isPolicy = (name == "Privacy Policy")
 
         if(action == "linkedin"){
             // nothing
