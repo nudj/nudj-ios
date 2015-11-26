@@ -47,7 +47,6 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         self.searchBar.frame = CGRectMake(0, 0, self.view.frame.width, 70)
         self.view.addSubview(self.searchBar)
         
-        
         //Invite pop up config
         self.alert  = UIAlertView(title: "Invite", message: "", delegate: self, cancelButtonTitle: "NO", otherButtonTitles: "YES")
         
@@ -71,24 +70,19 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
     }
 
     override func viewWillAppear(animated: Bool) {
-        
         MixPanelHandler.sendData("ContactsTabOpened")
         
-        if isSearchEnabled == true {
+        if isSearchEnabled {
             self.navigationController?.navigationBarHidden = true;
         }
         
-        
         if(self.segControl.selectedSegmentIndex == 1 ){
-         
             self.table.hidden = true;
             self.activityIndi.hidden = false
             self.loadData(self.getContactsUrl())
-            
         }
             
         self.tabBarController?.tabBar.hidden = false
-        
     }
 
     func refresh(sender: AnyObject?) {
@@ -96,27 +90,23 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
     }
 
     func refresh() {
-
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
 
         appDelegate.contacts.sync() { success in
             self.loadData(self.getContactsUrl())
         }
-
     }
 
     func loadData(url:String) {
-
+        // API strings
         let variable = url == ContactPaths.all ? "contact.user" : "user.contact"
         let path = "\(url)?params=\(variable),contact.alias,contact.apple_id,user.image,user.status,user.name&sizes=user.profile"
 
         self.apiRequest(.GET, path: path, closure: { response in
-            print(response)
-
             self.data.removeAll(keepCapacity: false)
             self.indexes.removeAll(keepCapacity: false)
 
-            let dictionary = sorted(response["data"]) { $0.0 < $1.0 }
+            let dictionary = response["data"].sort{ $0.0 < $1.0 }
             var content = [ContactModel?]();
             
             for (id, obj) in dictionary {
@@ -125,8 +115,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
                     self.data[id] = [ContactModel]()
                 }
 
-                for (index: String, subJson: JSON) in obj {
-
+                for (_, subJson) in obj {
                     var isUser = false
                     var user:UserModel? = nil
                     var userContact:JSON?
@@ -147,7 +136,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
                     let name = isUser ? subJson["name"].stringValue : subJson["alias"].stringValue
                     let apple_id = isUser ? userContact!["apple_id"].int : subJson["apple_id"].int
 
-                    var contact = ContactModel(id: userId, name: name, apple_id: apple_id, user: user)
+                    let contact = ContactModel(id: userId, name: name, apple_id: apple_id, user: user)
                     self.data[id]!.append(contact)
                     content.append(contact)
                 }
@@ -161,11 +150,8 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
             self.table.hidden = false
             
             if(self.filtering.filteredContent.count == 0){
-                
                 self.noContentImage.showPlaceholder()
-                
             }else{
-                
                 self.noContentImage.hidePlaceholder()
             }
         })
@@ -175,60 +161,39 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
 
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if self.isSearchEnabled{
-            
             return nil
-            
         }else{
-            
             return self.indexes[section]
-        
         }
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if self.isSearchEnabled{
-            
             return 1
-            
         }else{
-            
             return self.indexes.count
-            
         }
-        
-        
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.isSearchEnabled{
-            
             return self.filtering.filteredContent.count
-            
         }else{
-            
-        
             if let section = self.data[indexes[section]] {
                 return section.count
             }
-
             return 0
-        
         }
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
         let cell:ContactsCell = table.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath) as! ContactsCell
         cell.removeSelectionStyle()
-        
         if(self.isSearchEnabled == true){
-
             if let contact = self.filtering.filteredContent[indexPath.row] {
                 cell.loadData(contact)
             }
-            
         }else{
-        
             let index = indexes[indexPath.section]
 
             if let section = self.data[index] {
@@ -237,7 +202,6 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
             } else {
                 print("Strange index in contacts table: ", indexPath)
             }
-            
         }
         return cell
     }
@@ -249,75 +213,49 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
             let index = indexes[indexPath.section]
         
             if let section = self.data[index] {
-                
-                var contact :ContactModel?
-                
-                if self.isSearchEnabled == true {
-                    contact = self.filtering.filteredContent[indexPath.row]
-                }else{
-                    contact = section[indexPath.row]
-                }
+                let contact :ContactModel? = self.isSearchEnabled ? self.filtering.filteredContent[indexPath.row] : section[indexPath.row]
                 
                 if let user = contact?.user {
                     //Go to profile view
                     let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                    var genericController = storyboard.instantiateViewControllerWithIdentifier("GenericProfileView") as! GenericProfileViewController
-
+                    let genericController = storyboard.instantiateViewControllerWithIdentifier("GenericProfileView") as! GenericProfileViewController
                     genericController.userId = user.id!
                     genericController.type = .Public
                     genericController.preloadedName = contact!.name
 
-
                     self.navigationController?.pushViewController(genericController, animated: true)
-                    
-                }else{
-
+                } else {
                     lastSelectedContact = contact
+                    // TODO: localisation
                     self.alert.message = "Would you like to tell \(contact!.name) about Nudge?";
                     self.alert.show();
                 }
             }
-            
             cell.setSelected(false, animated: true)
         }
     }
 
-    func sectionIndexTitlesForTableView(tableView: UITableView) -> [AnyObject]! {
-       if self.isSearchEnabled == true {
-        
-        return nil
-        
-       }else{
-       
-        return self.indexes
-        
-        }
+    func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
+        return self.isSearchEnabled ? nil : self.indexes
     }
 
-    
     func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if self.isSearchEnabled == false {
-        view.tintColor = UIColor.whiteColor()
+            view.tintColor = UIColor.whiteColor()
         }
     }
-    
-    
     
     //MARK :Invite user
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        
+        // TODO: localisation
         if buttonIndex == 0{
-            
-            print("Dissmiss pop up")
-            
-        }else{
-            
+            // TODO: suspicious
+            print("Dismiss pop up")
+        } else {
             MixPanelHandler.sendData("InviteUserAction")
-            var alertview  = UIAlertView(title: "Invite", message: "", delegate: self, cancelButtonTitle: "OK")
-            
-            
-            API.sharedInstance.post("contacts/\(lastSelectedContact!.id)/invite", params: nil, closure: { result in
-            
+            let alertview  = UIAlertView(title: "Invite", message: "", delegate: self, cancelButtonTitle: "OK")
+            API.sharedInstance.post("contacts/\(lastSelectedContact!.id)/invite", params: nil, closure: { 
+                result in
                 if (result["status"].boolValue) {
                     alertview.title = "Invite Successful"
                     alertview.message = "Contact has been invited";
@@ -325,26 +263,19 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
                     alertview.title = "Invite Failed"
                     alertview.message = "There was a problem inviting your friend";
                 }
-
-                
-            },errorHandler: { error in
-                
+                },errorHandler: { 
+                    error in
                     alertview.title = "Invite Failed"
                     alertview.message = "There was a problem inviting your friend";
                     
             })
-            
             alertview.show();
-            
         }
     }
     
-    
     @IBAction func segmentSelection(sender: UISegmentedControl) {
-        
         self.table.hidden = true;
         self.activityIndi.hidden = false
-        
         self.loadData(getContactsUrl())
     }
 
@@ -354,52 +285,36 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
     }
     
     @IBAction func searchButton(sender: UIBarButtonItem) {
-        
         self.navigationController?.navigationBarHidden = true;
         segControl.hidden = true
         self.searchBar.hidden = false
         self.searchBar.becomeFirstResponder()
         self.isSearchEnabled = true
-        
     }
-    
     
     //MARK: Searcbar
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        
-            if(searchBar.text == ""){
-                
-                searchBar.resignFirstResponder()
-                self.searchBar.hidden = true
-                segControl.hidden = false
-                self.navigationController?.navigationBarHidden = false;
-                self.isSearchEnabled = false
-                
-            } else {
-                self.filtering.stopFiltering()
-                searchBar.text = ""
-                self.table.reloadData()
-            }
-       
-        
+        if(searchBar.text?.isEmpty ?? true){
+            searchBar.resignFirstResponder()
+            self.searchBar.hidden = true
+            segControl.hidden = false
+            self.navigationController?.navigationBarHidden = false;
+            self.isSearchEnabled = false
+        } else {
+            self.filtering.stopFiltering()
+            searchBar.text = ""
+            self.table.reloadData()
+        }
     }
     
     func searchBar(searchBar :UISearchBar, textDidChange searchText:String){
-        
-            
-            if(!searchText.isEmpty){
-                
-                self.filtering.startFiltering(searchText, completionHandler: { (success) -> Void in
-                    self.table.reloadData()
-                })
-                
-            }else {
-                
-                self.filtering.stopFiltering()
+        if(!searchText.isEmpty){
+            self.filtering.startFiltering(searchText, completionHandler: { (success) -> Void in
                 self.table.reloadData()
-            }
-            
+            })
+        } else {
+            self.filtering.stopFiltering()
+            self.table.reloadData()
         }
-        
-    
+    }
 }
