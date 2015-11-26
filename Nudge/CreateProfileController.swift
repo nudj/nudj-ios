@@ -36,17 +36,16 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
     @IBOutlet weak var nextButton: UIBarButtonItem!
 
     override func viewDidLoad() {
-        
-        var tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("linkedinAction"))
+        // TODO: do this in Interface Builder
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("linkedinAction"))
         self.linkedIn.userInteractionEnabled = true
         self.linkedIn.addGestureRecognizer(tapGestureRecognizer)
         
-        var tapGestureRecognizer2 = UITapGestureRecognizer(target:self, action:Selector("facebookAction"))
+        let tapGestureRecognizer2 = UITapGestureRecognizer(target:self, action:Selector("facebookAction"))
         self.faceBookImage.userInteractionEnabled = true
         self.faceBookImage.addGestureRecognizer(tapGestureRecognizer2)
         
         self.socialhander = SocialHandlerModel(viewController: self)
-
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -58,15 +57,18 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
     }
     
     override func viewWillDisappear(animated: Bool) {
-        
-        if !name.text.isEmpty {
-            self.updateUserName(name.text)
+        guard let username = name.text else {
+            return
+        }
+        if !username.isEmpty {
+            self.updateUserName(username)
         }
     }
 
     func showUserData() {
-        UserModel.getCurrent(["user.status", "user.name", "user.image", "user.completed", "user.settings"], closure: { user in
-        
+        // TODO: API strings
+        UserModel.getCurrent(["user.status", "user.name", "user.image", "user.completed", "user.settings"], closure: { 
+            user in
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
             
             if let settings :JSON = user.settings {
@@ -75,11 +77,11 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
                 appDelegate.shouldShowAddJobTutorial = settings["tutorial"]["create_job"].boolValue
                 appDelegate.shouldShowAskForReferralTutorial = settings["tutorial"]["post_job"].boolValue
                 appDelegate.shouldShowNudjTutorial = settings["tutorial"]["open_job"].boolValue
-               
+                
                 appDelegate.updateUserObject("AddJobTutorial", with: appDelegate.shouldShowAddJobTutorial)
                 appDelegate.updateUserObject("AskForReferralTutorial", with: appDelegate.shouldShowAskForReferralTutorial)
                 appDelegate.updateUserObject("NudjTutorial", with:  appDelegate.shouldShowNudjTutorial)
-
+                
             }
             
             if (user.completed) {
@@ -87,47 +89,45 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
                 appDelegate.pushUserData()
                 appDelegate.changeRootViewController("mainNavigation")
             }
-
+            
             if !user.isDefaultImage {
                 self.image.downloadImage(user.image["profile"])
             }
-
+            
             if let status = user.status {
                 self.status.setTitleByIndex(status)
             }
-
+            
             self.name.text = user.name
-
+            
             self.checkIfUserMayProceed()
         })
     }
 
     func checkIfUserMayProceed() {
-        let currentStatus = count(name.text) > 0 && status.isSelectedStatus()
+        // TODO: I think this function is misnamed
+        let currentStatus = !(name.text?.isEmpty ?? true) && status.isSelectedStatus()
         nextButton.enabled = currentStatus
     }
-    
 
     // MARK: - Update user fields
 
     func updateUserName(userName: String) -> Void {
-
-        UserModel.update(["name": userName], closure: { result in
+        // TODO: remove singleton access
+        UserModel.update(["name": userName], closure: { 
+            result in
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
             appDelegate.user!.name = userName
             appDelegate.pushUserData()
             self.checkIfUserMayProceed()
         })
-        
     }
 
     // MARK: TextFieldDelegate
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        
         textField.resignFirstResponder()
         checkIfUserMayProceed()
-
         return true
     }
 
@@ -138,11 +138,9 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
     // MARK: - Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-
         if let popover = segue.destinationViewController as? StatusPicker {
-
+            // TODO: magic numbers
             popover.preferredContentSize = CGSize(width: 200, height: 200)
-
         } else if let vc = segue.destinationViewController as? GenericProfileViewController {
             vc.type = .Initial
         }
@@ -151,18 +149,15 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
     // MARK: - Image management
 
     func pickLibrary() {
-        var alert = UIAlertController(title: self.msgTitle, message: nil, preferredStyle: UIAlertControllerStyle.Alert)
-
+        let alert = UIAlertController(title: self.msgTitle, message: nil, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default) {
             action -> Void in
             self.changeProfileImage(UIImagePickerControllerSourceType.Camera)
             })
-
         alert.addAction(UIAlertAction(title: "Library", style: UIAlertActionStyle.Default) {
             action -> Void in
             self.changeProfileImage(UIImagePickerControllerSourceType.SavedPhotosAlbum)
             })
-
         self.presentViewController(alert, animated: true, completion: nil)
     }
 
@@ -177,70 +172,59 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
     }
 
     func showUserImage(url: String) {
-        if (count(url) > 0) {
+        if (!url.isEmpty) {
             self.image.downloadImage(url)
             self.checkIfUserMayProceed()
         }
     }
 
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         self.dismissViewControllerAnimated(true, completion: { () -> Void in })
 
         self.image.startActivity()
 
         let image = info[UIImagePickerControllerEditedImage] as! UIImage
-        let imageData = UIImageJPEGRepresentation(image, 0.8).base64EncodedStringWithOptions(.allZeros)
+        let imageData = UIImageJPEGRepresentation(image, 0.8)?.base64EncodedStringWithOptions([]) ?? ""
 
-        UserModel.update(["image": imageData], closure: { response in
-
+        UserModel.update(["image": imageData], closure: { 
+            response in
             // TODO: Remove this request when right url is returned after upload
-            UserModel.getCurrent(["user.image"], closure: { user in
+            UserModel.getCurrent(["user.image"], closure: { 
+                user in
                 self.showUserImage(user.image["profile"]!)
             })
-
-        }, errorHandler: {_ in
-            print("Error is catched!")
+        }, errorHandler: {
+            error in
+            // TODO: better error handling
+            print("Error caught: \(error)")
             self.image.stopActivity()
         })
     }
 
     //MARK: Linkedin
-    
     func linkedinAction(){
-        
         self.socialhander!.configureLinkedin(false, completionHandler: { success in
-            
             if(success){
-                
                 self.performSegueWithIdentifier("showCreateProfileView", sender: self)
-                
             }else{
-                
-                //Default Message
-                var alert = UIAlertView(title: "Try Again", message: "OOPS, an error occured please try again!", delegate: nil, cancelButtonTitle: "OK")
-                
+                // TODO: localisation
+                let alert = UIAlertView(title: "Try Again", message: "OOPS, an error occured please try again!", delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
             }
         })
     }
-    
     
     //MARK: Facebook
     func facebookAction(){
-        
+        // TODO: refactor with LinkedIn action
         self.socialhander!.configureFacebook(false, completionHandler: { success in
-            
             if(success){
-                
                 self.performSegueWithIdentifier("showCreateProfileView", sender: self)
-                
             }else{
-                
-                //Default Message
-                var alert = UIAlertView(title: "Try Again", message: "OOPS, an error occured please try again!", delegate: nil, cancelButtonTitle: "OK")
-                
+                // TODO: localisation
+                let alert = UIAlertView(title: "Try Again", message: "OOPS, an error occured please try again!", delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
             }
         })
-        
     }
-
 }
