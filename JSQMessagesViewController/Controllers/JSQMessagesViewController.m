@@ -343,7 +343,7 @@ JSQMessagesKeyboardControllerDelegate>{
     return YES;
 }
 
-- (NSUInteger)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         return UIInterfaceOrientationMaskAllButUpsideDown;
@@ -1177,9 +1177,6 @@ JSQMessagesKeyboardControllerDelegate>{
     
     NSURL *requestUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",baseUrl,url]];
     NSLog(@"REQUEST TYPE:%@ & URL:%@",type, url);
-    
-    NSString *bodyRequest = [[NSString alloc] initWithFormat:@"{\"token\": \"%@\"}", _userToken];
-    NSData * requestData = [bodyRequest dataUsingEncoding:NSUTF8StringEncoding];
     
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:requestUrl cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
     [urlRequest setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",baseUrl,url]]];
