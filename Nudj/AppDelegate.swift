@@ -12,6 +12,7 @@ import FBSDKLoginKit
 import Mixpanel
 import ReachabilitySwift
 import SwiftyJSON
+import HockeySDK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
@@ -42,6 +43,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
         //Mixpanel
         Mixpanel.sharedInstanceWithToken(MIXPANEL_TOKEN)
         MixPanelHandler.startEventTracking("timeSpentInApplication")
+        
+        // HockeyApp
+        BITHockeyManager.sharedHockeyManager().configureWithIdentifier("9bb5535d31f24908a06d72757a8e39e9")
+        // Do some additional configuration if needed here
+        BITHockeyManager.sharedHockeyManager().startManager()
+        BITHockeyManager.sharedHockeyManager().authenticator.authenticateInstallation()
         
         // Getting of user details from CoreData
         fetchUserData()
