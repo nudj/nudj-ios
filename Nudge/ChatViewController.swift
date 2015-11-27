@@ -352,7 +352,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
         case 2:
             //go to profile
             let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            var GenericProfileView = storyboard.instantiateViewControllerWithIdentifier("GenericProfileView") as! GenericProfileViewController
+            let GenericProfileView = storyboard.instantiateViewControllerWithIdentifier("GenericProfileView") as! GenericProfileViewController
             GenericProfileView.userId = Int(self.participantsID)!
             GenericProfileView.type = .Public
             GenericProfileView.preloadedName = self.participants
@@ -379,17 +379,17 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
         case 5:
             // Archive Conversation
             if(selectedButton.selected){
-                
+                // TODO: localisation
                 MixPanelHandler.sendData("Chat_RestoreFromArchive")
                 self.completeRequest("chat/"+self.chatID+"/archive", withType: "DELETE")
-                var alert = UIAlertView(title: "Chat restored", message: "Chat successfully restored.", delegate: self, cancelButtonTitle: "OK")
+                let alert = UIAlertView(title: "Chat restored", message: "Chat successfully restored.", delegate: self, cancelButtonTitle: "OK")
                 alert.show()
                 
             }else{
-                
+                // TODO: localisation                
                 MixPanelHandler.sendData("Chat_Archive")
                 self.completeRequest("chat/"+self.chatID+"/archive", withType: "PUT")
-                var alert = UIAlertView(title: "Chat Archived", message: "Archived chats are stored in Settings.", delegate: self, cancelButtonTitle: "OK")
+                let alert = UIAlertView(title: "Chat Archived", message: "Archived chats are stored in Settings.", delegate: self, cancelButtonTitle: "OK")
                 alert.show()
             }
             selectedButton.selected = !selectedButton.selected
