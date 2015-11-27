@@ -127,9 +127,8 @@
 
 #pragma mark - NSCopying
 
-- (instancetype)copyWithZone:(NSZone *)zone
-{
-    JSQPhotoMediaItem *copy = [[[self class] allocWithZone:zone] initWithImage:self.image];
+- (instancetype)copyWithZone:(NSZone *)zone {
+    JSQPhotoMediaItem *copy = [super copyWithZone:zone];
     copy.appliesMediaViewMaskAsOutgoing = self.appliesMediaViewMaskAsOutgoing;
     return copy;
 }
