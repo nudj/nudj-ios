@@ -9,6 +9,8 @@
 import Foundation
 
 class JobModel {
+    // TODO: revisit error handling
+    private struct UnknownError: ErrorType {}
 
     var title:String = ""
     var description: String = ""
@@ -19,7 +21,7 @@ class JobModel {
     var active: Bool = true
     var skills: [String] = []
 
-    func save(closure:(NSError?, Int) -> ()) {
+    func save(closure:(ErrorType?, Int) -> ()) {
         let params:[String: AnyObject] = [
             "title": self.title,
             "description": self.description,
@@ -35,15 +37,15 @@ class JobModel {
             if (result["data"]["id"].intValue > 0) {
                 closure(nil, result["data"]["id"].intValue)
             } else {
-                closure(NSError(), 0)
+                closure(UnknownError(), 0)
             }
-        }) { error in
+        }) { 
+            error in
             closure(error, 0)
         }
     }
     
     func edit(jobID:Int, closure:(Bool) -> ()) {
-        
         let params:[String: AnyObject] = [
             "title": self.title,
             "description": self.description,
@@ -55,10 +57,11 @@ class JobModel {
             "skills": self.skills
         ]
         
-        API.sharedInstance.put("jobs/\(jobID)", params: params, closure: { result in
-            println("jobs success -> /\(result)")
+        API.sharedInstance.put("jobs/\(jobID)", params: params, closure: { 
+            result in
             closure(true)
-        }, errorHandler: { error in
+        }, errorHandler: { 
+            error in
             closure(false)
         })
          

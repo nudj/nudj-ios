@@ -21,7 +21,7 @@ class ContactsCell: DataTableCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 

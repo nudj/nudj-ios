@@ -19,8 +19,6 @@ enum NotificationType:Int {
 }
 
 class Notification {
-    
-    
     var notificationId:String?
     var notificationType:NotificationType?
     var notificationReadStatus:Bool?
@@ -42,13 +40,11 @@ class Notification {
     var chatId:String?
     
     static func createFromJSON(data:JSON) -> Notification? {
-        var type = NotificationType(rawValue: data["type"].stringValue.toInt()!)
-        
-        if(type == nil){
+        guard let rawType = Int(data["type"].stringValue) else {
             return nil
         }
-        
-        var obj = Notification()
+        let type = NotificationType(rawValue: rawType)
+        let obj = Notification()
     
         obj.senderImage = data["sender"]["image"]["profile"].stringValue
         obj.senderId = data["sender"]["id"].stringValue
@@ -71,9 +67,6 @@ class Notification {
         
         obj.chatId =  data["meta"]["chat_id"].stringValue
         
-        println("chat id is -> \(obj.chatId)")
         return obj
-
     }
-
 }

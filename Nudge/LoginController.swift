@@ -74,13 +74,13 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
 
         let phoneNumber = self.getFormattedNumber()
 
-        if (count(phoneNumber) <= 8) {
+        if (phoneNumber.isEmpty) {
             showSimpleAlert("Phone field is required.")
             showLoginButton()
             return;
         }
 
-        println("Login with phone: " + phoneNumber)
+        print("Login with phone: " + phoneNumber)
 
         let params: [String: AnyObject] = ["phone": phoneNumber, "country_code": code]
 
@@ -122,7 +122,7 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
         if self.countrySelectionView.isCreated == true && self.countrySelectionView.hidden == false{
             
             self.countrySelectionView.doneAction()
-            println("hide picker")
+            print("hide picker")
             
         }
         
@@ -174,7 +174,7 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
             var addressBook: ABAddressBook = ABAddressBookCreateWithOptions(emptyDictionary, nil).takeRetainedValue()
 
             ABAddressBookRequestAccessWithCompletion(addressBook, {success, error in
-                println(success, error)
+                print(success, error)
 
                 dispatch_sync(dispatch_get_main_queue(), { () -> Void in
                     if (success && error == nil) {
@@ -198,23 +198,20 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
     }
 
     func getCleanNumber(number: String? = nil) -> String {
-        let value = number == nil ? phoneField.text : number
-
-        if (count(value) <= 0) {
-            return "";
+        //TODO: sort this out and refactor
+        guard let value: String = number ?? phoneField.text else {
+            return ""
         }
-
-        let index = advance(value.startIndex, 1)
-
-        if (value.substringToIndex(index) == "0") {
-            return self.getCleanNumber(number: value.substringFromIndex(index))
-        } else {
-            return value
+        
+        var characters = value.characters
+        while characters.first == "0" {
+            characters = characters.dropFirst()
         }
+        return String(characters)
     }
 
     func getFormattedNumber() -> String {
-        return self.countryCode.text + self.getCleanNumber(number: self.phoneField.text)
+        return self.countryCode.text! + self.getCleanNumber(self.phoneField.text)
     }
 
     // MARK: - Navigation bar

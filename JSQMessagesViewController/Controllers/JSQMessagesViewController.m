@@ -43,7 +43,7 @@
 
 #import "CPAnimationSequence.h"
 
-#import "XMPPLogging.h"
+//#import "XMPPLogging.h"
 
 static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObservingContext;
 

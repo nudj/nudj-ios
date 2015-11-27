@@ -28,10 +28,10 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
     
     
     override func viewDidLoad() {
-        
         super.viewDidLoad();
 
         let id = appGlobalDelegate.user!.id!
+        // TODO: API strings
         self.senderId = String(id) + "@chat.nudj.co";
         
         self.senderDisplayName = appGlobalDelegate.user!.name!
@@ -48,25 +48,20 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
         appGlobalDelegate.chatInst!.delegate = self
         
         self.userToken = appGlobalDelegate.user?.token
-
+        
         if let chatRoom = appGlobalDelegate.chatInst!.listOfActiveChatRooms[self.chatID] {
             self.messages = chatRoom.retrieveStoredChats()
             if chatRoom.xmppRoom != nil {
-            
-                println("isChatRoomConnected:\(chatRoom.xmppRoom!.isJoined)");
-            
-            }else{
-                
+                // TODO: error handling
+                print("isChatRoomConnected:\(chatRoom.xmppRoom!.isJoined)");
+            } else {
                 self.dontUpdateButton = true
-                self.inputToolbar.contentView.rightBarButtonItem.enabled = false
-                
+                self.inputToolbar?.contentView?.rightBarButtonItem?.enabled = false
             }
-        }else{
-            
+        } else {
             self.dontUpdateButton = true
-            self.inputToolbar.contentView.rightBarButtonItem.enabled = false
+            self.inputToolbar?.contentView?.rightBarButtonItem?.enabled = false
         }
-        
         
         //Avatar Image
         self.myImage = self.setupAvatarImage(appGlobalDelegate.user!.base64Image)
@@ -74,19 +69,16 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
         
         self.favourite.selected = isLiked != nil ? isLiked! : false
         self.archive.selected = isArchived != nil ? isArchived! : false
-       
     }
 
     //Get and convert base64 image
     func setupAvatarImage(base64Content:String?) -> JSQMessagesAvatarImage{
-        
         if base64Content != nil {
             let decodedData = NSData(base64EncodedString: base64Content!, options: NSDataBase64DecodingOptions(rawValue: 0))
                 if  decodedData != nil {
-                    var decodedimage :UIImage = UIImage(data: decodedData!)!
+                    let decodedimage :UIImage = UIImage(data: decodedData!)!
                     return JSQMessagesAvatarImageFactory.avatarImageWithImage(decodedimage, diameter: 30)
                 }
-       
         }
         
         //Default
@@ -96,21 +88,13 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
     
     // ACTIONS
     func createDropDownView(){
-        
-        var dropDown = UIView(frame: CGRectMake(0, 0, 320, 50));
+        // TODO: magic numbers    
+        let dropDown = UIView(frame: CGRectMake(0, 0, 320, 50));
         dropDown.backgroundColor = UIColor.whiteColor();
-        
-        var jobDetailsIcon = UIImageView(image: UIImage(named: ""));
-        var profileIcon = UIImageView(image: UIImage(named: ""));
-        var favouriteIcon = UIImageView(image: UIImage(named: ""));
-        var muteIcon = UIImageView(image: UIImage(named: ""));
-        var archiveIcon = UIImageView(image: UIImage(named: ""));
-        
     }
 
     func performAction(sender: UIBarButtonItem){
-
-        
+        // TODO: review
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -133,16 +117,12 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-        self.collectionView.collectionViewLayout.springinessEnabled = true
-
+        self.collectionView?.collectionViewLayout.springinessEnabled = true
         self.finishReceivingMessageAnimated(true)
-        
     }
 
     // JSQMessagesViewController method overrides
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
-        
         if let chatRoom = appGlobalDelegate.chatInst!.listOfActiveChatRooms[self.chatID] {
             if chatRoom.xmppRoom != nil {
                 if chatRoom.xmppRoom!.isJoined {
@@ -151,138 +131,91 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
                     sendOnce = false
                     
                     chatRoom.xmppRoom!.sendMessageWithBody(text);
-                    println("Sent xmpp message");
+                    print("Sent xmpp message");
                     self.finishSendingMessage()
                     
                     if let chatRoomPresence = chatRoom.otherUserPresence {
-                        
-                        println("this user is \(chatRoomPresence)")
+                        print("this user is \(chatRoomPresence)")
                         if chatRoomPresence == "unavailable"{
                             self.sendOfflineMessage(text)
                         }
-                        
                     }else{
-                        println("this user is unavailable")
+                        print("this user is unavailable")
                         self.sendOfflineMessage(text)
                     }
-                
                 }
             }
-            
         }
-    
     }
     
     
     // JSQMessages CollectionView DataSource
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
-        
-        var messages = self.messages.objectAtIndex(indexPath.item) as! JSQMessage
-        
+        let messages = self.messages.objectAtIndex(indexPath.item) as! JSQMessage
         return messages
     }
     
-    
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageBubbleImageDataSource! {
-        
-        var message = self.messages.objectAtIndex(indexPath.item) as! JSQMessage
+        let message = self.messages.objectAtIndex(indexPath.item) as! JSQMessage
         
         if (message.senderId == self.senderId) {
             return self.outgoingBubbleImageData;
         }
         
         return self.incomingBubbleImageData;
-        
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageAvatarImageDataSource! {
-        
-        
-        var message = self.messages.objectAtIndex(indexPath.item) as! JSQMessage
-        var img:JSQMessagesAvatarImage?
-        
-        if (message.senderId == self.senderId) {
-        
-            img = self.myImage!
-        
-        }else {
-            
-            img = self.otherUserImage!
-        }
-        
+        let message = self.messages.objectAtIndex(indexPath.item) as! JSQMessage
+        let img:JSQMessagesAvatarImage = (message.senderId == self.senderId) ? self.myImage! : self.otherUserImage!
         return img;
     }
     
-    
-    
     override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForCellTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
-        
         /*if (indexPath.item % 3 == 0) {
         var message = self.demoData.messages.objectAtIndex(indexPath.item) as! JSQMessage
         return JSQMessagesTimestampFormatter.sharedFormatter().attributedTimestampForDate(message.date)
         }*/
         
-        var message = self.messages.objectAtIndex(indexPath.item) as! JSQMessage
+        let message = self.messages.objectAtIndex(indexPath.item) as! JSQMessage
         return JSQMessagesTimestampFormatter.sharedFormatter().attributedTimestampForDate(message.date)
-        
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
+        let message = self.messages.objectAtIndex(indexPath.item) as! JSQMessage;
         
-        var message = self.messages.objectAtIndex(indexPath.item) as! JSQMessage;
-        
-        /**
-        *  iOS7-style sender name labels
-        */
+        //  iOS7-style sender name labels
         if (message.senderId == self.senderId) {
             return nil;
         }
         
         if (indexPath.item - 1 > 0) {
-            var previousMessage = self.messages.objectAtIndex(indexPath.item - 1) as! JSQMessage
+            let previousMessage = self.messages.objectAtIndex(indexPath.item - 1) as! JSQMessage
             if (previousMessage.senderId == message.senderId) {
                 return nil;
             }
         }
         
-        /**
-        *  Don't specify attributes to use the defaults.
-        */
-        
+        // Don't specify attributes to use the defaults.
         return NSAttributedString(string: message.senderDisplayName)
     }
     
-    
-    
     override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForCellBottomLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
-        
        return nil
-        
     }
-    
-    
     
     // UICollectionView DataSource
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return self.messages.count
-        
     }
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        
         return 1
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
-        
-        /**
-        *  Override point for customizing cells
-        */
-        
-        var cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as! JSQMessagesCollectionViewCell
+        let cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as! JSQMessagesCollectionViewCell
         
         /**
         *  Configure almost *anything* on the cell
@@ -298,44 +231,28 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
         *  Instead, override the properties you want on `self.collectionView.collectionViewLayout` from `viewDidLoad`
         */
         
-        var msg = self.messages.objectAtIndex(indexPath.item) as! JSQMessage
+        let msg = self.messages.objectAtIndex(indexPath.item) as! JSQMessage
         
-        // 105@conference.chat.nudj.co/sys
-        
-        
-        if (msg.senderId == self.senderId) {
-            cell.textView.textColor = UIColor.whiteColor()
-        }else {
-            cell.textView.textColor = UIColor.blackColor()
+        if let textView = cell.textView {
+            let textColor = (msg.senderId == self.senderId) ? UIColor.whiteColor() : UIColor.blackColor()
+            textView.textColor = textColor            
+            let attributes : [String:AnyObject] = [NSForegroundColorAttributeName:textColor, NSUnderlineStyleAttributeName: 1]
+            textView.linkTextAttributes = attributes
         }
         
-        let attributes : [NSObject:AnyObject] = [NSForegroundColorAttributeName:cell.textView.textColor, NSUnderlineStyleAttributeName: 1]
-        cell.textView.linkTextAttributes = attributes
-        
-        
         return cell;
-        
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForCellBottomLabelAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
-        
         return 0.0
-        
-        
     }
     
-    
     override func collectionView(collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForCellTopLabelAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
-        
-        /*if (indexPath.item % 3 == 0) {
-        return kJSQMessagesCollectionViewCellLabelHeightDefault;
-        }*/
-        
         return kJSQMessagesCollectionViewCellLabelHeightDefault
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
-        
+        // TODO: review
         /**
         *  iOS7-style sender name labels
         */
@@ -355,53 +272,43 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
         return kJSQMessagesCollectionViewCellLabelHeightDefault;*/
         
         return 0.0
-        
     }
     
     //pragma mark - Responding to collection view tap events
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, header headerView: JSQMessagesLoadEarlierHeaderView!, didTapLoadEarlierMessagesButton sender: UIButton!) {
-        
-        println("Load earlier messages")
+        // TODO: why not implemented?
+        print("Load earlier messages")
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAtIndexPath indexPath: NSIndexPath!) {
-        
-        println("Tapped message bubble!")
-        
+        // TODO: why not implemented?
+        print("Tapped message bubble!")
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, didTapCellAtIndexPath indexPath: NSIndexPath!, touchLocation: CGPoint) {
-        
-        println("Tapped cell at \(NSStringFromCGPoint(touchLocation))");
+        // TODO: why not implemented?
+        print("Tapped cell at \(NSStringFromCGPoint(touchLocation))");
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, didTapAvatarImageView avatarImageView: UIImageView!, atIndexPath indexPath: NSIndexPath!) {
-        
-        println("Tapped avatar!")
+        // TODO: why not implemented?
+        print("Tapped avatar!")
     }
 
     func recievedUser(content: NSDictionary) {
-        
+        // TODO: why not implemented?
     }
     
     func recievedMessage(content:JSQMessage, conference:String){
-        
-        println("Message via chat -> \(content.text) from:\(content.senderId) room:\(conference)")
-        var conferenceID = self.chatID+""+appGlobalDelegate.chatInst!.ConferenceUrl
+        let conferenceID = self.chatID + "" + appGlobalDelegate.chatInst!.ConferenceUrl
         
         if(conferenceID == conference){
-        
             self.scrollToBottomAnimated(true);
-
             self.messages.addObject(content)
-            
             self.finishReceivingMessageAnimated(true)
-        
-        }else{
-            
-            //println("Message via Appdelegate -> \(content.text) from:\(content.senderId) room:\(conference)")
-            var roomID = appGlobalDelegate.chatInst!.getRoomIdFromJid(conference)
+        } else {
+            let roomID = appGlobalDelegate.chatInst!.getRoomIdFromJid(conference)
             
             //Store new chat
             print("Saving new message \(roomID)")
@@ -413,58 +320,47 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
                     
                     //overwrite previous data if it exsists
                     diction["isRead"] = false
-                    var data = NSKeyedArchiver.archivedDataWithRootObject(diction)
+                    let data = NSKeyedArchiver.archivedDataWithRootObject(diction)
                     defaults.setObject(data, forKey:roomID)
                     defaults.synchronize()
-                    
                 }
             }
         }
     }
     
-    
     override func labelsAction(sender: AnyObject!){
-        
         //go to job details
         let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        var jobDetailedView = storyboard.instantiateViewControllerWithIdentifier("JobDetailedView") as! JobDetailedViewController
+        let jobDetailedView = storyboard.instantiateViewControllerWithIdentifier("JobDetailedView") as! JobDetailedViewController
         jobDetailedView.jobID = self.jobID
         
         self.navigationController?.pushViewController(jobDetailedView, animated:true);
-        
     }
     
     override func dropDownAction(sender: AnyObject!) {
-        
         let selectedButton = sender as! UIButton
-        
+        // TODO: Ugh, get rid of switching on tag
         switch (selectedButton.tag) {
         case 1:
-            
             //go to job details
             let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            var jobDetailedView = storyboard.instantiateViewControllerWithIdentifier("JobDetailedView") as! JobDetailedViewController
+            let jobDetailedView = storyboard.instantiateViewControllerWithIdentifier("JobDetailedView") as! JobDetailedViewController
             jobDetailedView.jobID = self.jobID
             
             self.navigationController?.pushViewController(jobDetailedView, animated:true);
-            
-        break;
+            break;
         case 2:
-            
             //go to profile
             let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             var GenericProfileView = storyboard.instantiateViewControllerWithIdentifier("GenericProfileView") as! GenericProfileViewController
-            GenericProfileView.userId = self.participantsID.toInt()!
+            GenericProfileView.userId = Int(self.participantsID)!
             GenericProfileView.type = .Public
             GenericProfileView.preloadedName = self.participants
             
             self.navigationController?.pushViewController(GenericProfileView, animated:true);
-
-            
-        break;
+            break;
         case 3:
             //Favourite Chat
-            
             if(selectedButton.selected){
                 MixPanelHandler.sendData("Chat_UnfavouriteJob")
                 self.completeRequest("jobs/"+self.jobID+"/like", withType: "DELETE")
@@ -473,15 +369,13 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
                 self.completeRequest("jobs/"+self.jobID+"/like", withType: "PUT")
             }
             selectedButton.selected = !selectedButton.selected
-        
-        break;
+            break;
         case 4:
             // Mute Conversation
             //[self completeRequest:[NSString stringWithFormat:@"contacts/%@/mute",_chatID] withType:@"PUT"];
             MixPanelHandler.sendData("Chat_MuteAction")
             selectedButton.selected = !selectedButton.selected
-        
-        break;
+            break;
         case 5:
             // Archive Conversation
             if(selectedButton.selected){
@@ -498,21 +392,15 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
                 var alert = UIAlertView(title: "Chat Archived", message: "Archived chats are stored in Settings.", delegate: self, cancelButtonTitle: "OK")
                 alert.show()
             }
-            
-            
             selectedButton.selected = !selectedButton.selected
-        
-        break;
+            break;
         default:
-        break;
-        
+            break;
         }
-        
-        
     }
     
     override func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-        
+        // TODO: review and dispose of commented-out code
         // Send The typing indicator
         /*if(!sendOnce){
             var conferenceID = self.chatID+""+appGlobalDelegate.chatInst!.ConferenceUrl
@@ -530,58 +418,46 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
             appGlobalDelegate.chatInst!.listOfActiveChatRooms[self.chatID]!.xmppRoom!.sendMessage(mes)
             sendOnce = true;
             
-            println("Sent The typing indicator");
+            print("Sent The typing indicator");
         }*/
         
         if let chatRoom = appGlobalDelegate.chatInst!.listOfActiveChatRooms[self.chatID] {
             if chatRoom.xmppRoom != nil {
-                
                 if !chatRoom.xmppRoom!.isJoined {
-                
                     self.dontUpdateButton = true
-                    self.inputToolbar.contentView.rightBarButtonItem.enabled = false
-                
+                    self.inputToolbar?.contentView?.rightBarButtonItem?.enabled = false
                 }else{
-                 
                     self.dontUpdateButton = false
                 }
                 
             }else{
-            
                 self.dontUpdateButton = true
-                self.inputToolbar.contentView.rightBarButtonItem.enabled = false
+                self.inputToolbar?.contentView?.rightBarButtonItem?.enabled = false
             }
         }
         
         return true
-        
     }
     
     func isRecievingMessageIndication(user: String) {
-        
-        
+        // TODO: do we nned this?        
     }
     
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        
         self.navigationController?.popViewControllerAnimated(true)
-        
     }
-    
     
     func sendOfflineMessage(message:String){
-        
-        let params = ["chat_id":self.chatID,"user_id":self.participantsID,"message":message]
-        API.sharedInstance.put("chat/notification", params: params, closure: { reponse in
+        // TODO: API strings
+        let params = ["chat_id": self.chatID, "user_id": self.participantsID, "message": message]
+        API.sharedInstance.put("chat/notification", params: params, closure: { 
+            reponse in
+            // TODO: error handling
+            print(reponse)
             
-            println(reponse)
-
-            }, errorHandler: { error in
-        
-            println(error)
-
+            }, errorHandler: {
+                error in
+                print(error)
         })
-        
     }
-
 }

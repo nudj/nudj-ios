@@ -243,7 +243,6 @@
 		A9B577F11B6BD00500CFB474 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A9B577E81B6BD00500CFB474 /* AFURLSessionManager.m */; };
 		A9B577F31B6BD58E00CFB474 /* SocialHandlerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B577F21B6BD58E00CFB474 /* SocialHandlerModel.swift */; };
 		A9C6EC921B381EB000EC9140 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC911B381EB000EC9140 /* ChatViewController.swift */; };
-		A9C6EC981B38273300EC9140 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9C6EC971B38273300EC9140 /* Crashlytics.framework */; };
 		A9C6EC9A1B38416C00EC9140 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9C6EC991B38416C00EC9140 /* ChatViewController.xib */; };
 		A9C6EC9C1B38447700EC9140 /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC9B1B38447700EC9140 /* ChatListViewController.swift */; };
 		A9C6EC9F1B3853F900EC9140 /* ChatListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC9D1B3853F900EC9140 /* ChatListTableViewCell.swift */; };
@@ -298,7 +297,6 @@
 		EB866BE11B53EFAE00E203CA /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB866BDF1B53EFAE00E203CA /* NotificationCell.xib */; };
 		EB9F71DF1B0E0060000C2D9F /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9F71DE1B0E0060000C2D9F /* MainTabBar.swift */; };
 		EB9F71E11B0E0200000C2D9F /* MainTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9F71E01B0E0200000C2D9F /* MainTabItem.swift */; };
-		EBA8C3431B30852B00522167 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBA8C3421B30852B00522167 /* Fabric.framework */; };
 		EBA8C3461B32DFF100522167 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBA8C3441B32DFF100522167 /* Main.storyboard */; };
 		EBB337F81A9F53CA000CAD88 /* NudgeData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EBB337F61A9F53CA000CAD88 /* NudgeData.xcdatamodeld */; };
 		EBB3382E1A9F5973000CAD88 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB337FA1A9F581F000CAD88 /* CoreData.framework */; };
@@ -792,7 +790,6 @@
 		A9B577E81B6BD00500CFB474 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		A9B577F21B6BD58E00CFB474 /* SocialHandlerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialHandlerModel.swift; sourceTree = "<group>"; };
 		A9C6EC911B381EB000EC9140 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
-		A9C6EC971B38273300EC9140 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		A9C6EC991B38416C00EC9140 /* ChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
 		A9C6EC9B1B38447700EC9140 /* ChatListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
 		A9C6EC9D1B3853F900EC9140 /* ChatListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListTableViewCell.swift; sourceTree = "<group>"; };
@@ -854,7 +851,6 @@
 		EB866BDF1B53EFAE00E203CA /* NotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		EB9F71DE1B0E0060000C2D9F /* MainTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
 		EB9F71E01B0E0200000C2D9F /* MainTabItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabItem.swift; sourceTree = "<group>"; };
-		EBA8C3421B30852B00522167 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		EBA8C3451B32DFF100522167 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EBB337F71A9F53CA000CAD88 /* NudgeData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NudgeData.xcdatamodel; sourceTree = "<group>"; };
 		EBB337FA1A9F581F000CAD88 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -901,8 +897,6 @@
 				A99650801B387CC800D5A8E9 /* libidn.a in Frameworks */,
 				EBB3382E1A9F5973000CAD88 /* CoreData.framework in Frameworks */,
 				EBD1073E1AF0B8F800310818 /* Pods.framework in Frameworks */,
-				A9C6EC981B38273300EC9140 /* Crashlytics.framework in Frameworks */,
-				EBA8C3431B30852B00522167 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2142,9 +2136,7 @@
 		EB0926C11A8DE4CB00E1D958 = {
 			isa = PBXGroup;
 			children = (
-				A9C6EC971B38273300EC9140 /* Crashlytics.framework */,
 				A9191EA71B6A864E000F9168 /* linkedin-sdk.framework */,
-				EBA8C3421B30852B00522167 /* Fabric.framework */,
 				EB0926CC1A8DE4CB00E1D958 /* Nudge */,
 				EB0926E41A8DE4CB00E1D958 /* NudgeTests */,
 				EB0926CB1A8DE4CB00E1D958 /* Products */,
@@ -2387,7 +2379,6 @@
 				C751DBEFD9EE0FE3DA600BDB /* Copy Pods Resources */,
 				0A04781945E5FF55A489AEC4 /* Embed Pods Frameworks */,
 				EBD107401AF0B8F900310818 /* Embed Frameworks */,
-				EB6189461B04F6F100CAA623 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2582,19 +2573,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		EB6189461B04F6F100CAA623 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run eaeedfb00437f7c323cc45deea4fe92b94dd90bf 71e2af4f24d2f2a71d200da55b3ee276a79d6c1c8f0f6de8ffd8c216f32ac9a9";
 		};
 /* End PBXShellScriptBuildPhase section */
 

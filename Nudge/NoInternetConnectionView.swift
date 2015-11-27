@@ -14,26 +14,17 @@ class NoInternetConnectionView: UIView {
     var view: UIView!
     
     override init(frame: CGRect) {
-        // 1. setup any properties here
-        
-        // 2. call super.init(frame:)
         super.init(frame: frame)
-        
-        // 3. Setup view from .xib file
         xibSetup()
     }
     
-    required init(coder aDecoder: NSCoder) {
-        // 1. setup any properties here
-        
-        // 2. call super.init(coder:)
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
-        // 3. Setup view from .xib file
         xibSetup()
     }
     
     func xibSetup() {
+        // TODO: JRB: this looks a bit suspect - review
         view = loadViewFromNib()
         
         // use bounds not frame or it'll be offset

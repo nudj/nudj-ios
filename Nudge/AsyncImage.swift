@@ -43,7 +43,7 @@ class AsyncImage: UIImageView {
         self.prepare()
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.prepare()
     }
@@ -84,20 +84,22 @@ class AsyncImage: UIImageView {
         session.configuration.HTTPMaximumConnectionsPerHost = 8
 
         session.dataTaskWithURL(NSURL(string: url)!) { (data, response, error) in
-            completion(data: NSData(data: data))
+            completion(data: data)
         }.resume()
     }
 
     func downloadImage(url:String?, completion: (() -> Void)? = nil) {
-        
-        if (url == nil || count(url!) <= 0) {
+        guard let url = url else {
+            return
+        }
+        guard !url.isEmpty else {
             return
         }
 
         self.startActivity()
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
-            self.getDataFromUrl(url!) { data in
+            self.getDataFromUrl(url) { data in
                 dispatch_async(dispatch_get_main_queue()) {
 
                     if (data?.length <= self.minimumBytes) {
@@ -119,7 +121,7 @@ class AsyncImage: UIImageView {
         self.image = image
 
         if (self.blur && self.image != nil) {
-            self.image = RBBlurImage(self.image!, self.blurRadius)
+            self.image = RBBlurImage(self.image!, radius: self.blurRadius)
         }
 
         self.stopActivity()

@@ -17,116 +17,112 @@ class ChatRoomModel: NSObject{
     var roomID:String?
     
     func prepareChatModel(roomName:String, roomId:String, with xmpp:XMPPStream, delegate:XMPPRoomDelegate) {
-        
         self.roomID = roomId
         self.delegate = delegate
         
         self.xmppRoomStorage = XMPPRoomCoreDataStorage(databaseFilename:"\(roomId).sqlite", storeOptions: nil)
-        var roomJID = XMPPJID.jidWithString(roomName);
+        let roomJID = XMPPJID.jidWithString(roomName);
         
         if(roomJID != nil && self.xmppRoomStorage != nil){
-        
-        println("Preparing to Activating room -> \(roomJID)")
+            self.xmppRoom = XMPPRoom(roomStorage: self.xmppRoomStorage, jid: roomJID, dispatchQueue: dispatch_get_main_queue())
+            self.xmppRoom!.addDelegate(delegate, delegateQueue: dispatch_get_main_queue())
+            self.xmppRoom!.activate(xmpp)
             
-        self.xmppRoom = XMPPRoom(roomStorage: self.xmppRoomStorage, jid: roomJID, dispatchQueue: dispatch_get_main_queue())
-        self.xmppRoom!.addDelegate(delegate, delegateQueue: dispatch_get_main_queue())
-        self.xmppRoom!.activate(xmpp)
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             
-        self.xmppRoom!.joinRoomUsingNickname("\(appDelegate.user!.id!)@\(appDelegate.chatInst!.chatServer)", history:nil)
-        
+            self.xmppRoom!.joinRoomUsingNickname("\(appDelegate.user!.id!)@\(appDelegate.chatInst!.chatServer)", history:nil)
         }
     }
     
     func retrieveStoredChats() -> NSMutableArray{
-        
         if(self.xmppRoomStorage == nil){
-            
             return []
-            
         }
         
-        var moc = self.xmppRoomStorage!.mainThreadManagedObjectContext;
-        
-        var entityDescription = NSEntityDescription.entityForName("XMPPRoomMessageCoreDataStorageObject", inManagedObjectContext: moc);
-        var request = NSFetchRequest();
+        let moc = self.xmppRoomStorage!.mainThreadManagedObjectContext;
+        let entityDescription = NSEntityDescription.entityForName("XMPPRoomMessageCoreDataStorageObject", inManagedObjectContext: moc);
+        let request = NSFetchRequest();
         request.entity = entityDescription;
-        var error: NSError?;
         
-        var messages :NSArray = moc.executeFetchRequest(request, error: &error)!;
-        
-        if(messages.count == 0){
-            
-            return []
-            
-        }
-        
-        var message:XMPPMessageArchiving_Message_CoreDataObject?;
-        
-        var messageObject = NSMutableArray();
-        
-        // Retrieve all the messages for the current conversation
-        for message in messages {
-            
-            if (message.nickname() != nil && message.localTimestamp() != nil){
-                //handle system message
-                var sendersId = ""
-                
-                if(message.nickname().rangeOfString(":") != nil){
-                    let name = split(message.nickname()) {$0 == ":"}
-                    sendersId = name[1]
-                }else{
-                    sendersId = message.nickname()
-                }
-                
-                println("sender -> \(sendersId)")
-                messageObject.addObject(JSQMessage(senderId: sendersId, senderDisplayName: sendersId, date:message.localTimestamp(), text: message.body()))
-                
-            }else{
-                
-                println("Error getting the Sender of this message or Timestamp")
-                
+        do {
+            let messages: NSArray = try moc.executeFetchRequest(request);
+            if(messages.count == 0) {
+                return []
             }
+            
+            // var message:XMPPMessageArchiving_Message_CoreDataObject?;
+            let messageObject = NSMutableArray();
+            
+            // Retrieve all the messages for the current conversation
+            for message in messages {
+                if let nickname: String = message.nickname, timestamp = message.localTimestamp() {
+                    // handle system message
+                    let nicknameParts = nickname.componentsSeparatedByString(":")
+                    let sendersId: String
+                    switch nicknameParts.count {
+                    case 0:
+                        sendersId = ""
+                        break
+                    case 1:
+                        sendersId = nickname
+                        break
+                    default:
+                        sendersId = nicknameParts[1]
+                        break
+                    }
+                    messageObject.addObject(JSQMessage(senderId: sendersId, senderDisplayName: sendersId, date: timestamp, text: message.body()))
+                } else {
+                    // TODO: better error handling
+                    print("Error getting the Sender or Timestamp of this message")
+                }
+            }
+            
+            return messageObject
         }
-        
-        return messageObject
+        catch let error as NSError {
+            // TODO: handle the error
+            print("Error fetching stored chat: \(error)")
+            return []
+        }
     }
     
     func deleteStoredChats(){
-
         if(self.xmppRoomStorage == nil){
-            
             return
         }
         
-        var moc = self.xmppRoomStorage!.mainThreadManagedObjectContext;
-        var entityDescription = NSEntityDescription.entityForName("XMPPRoomMessageCoreDataStorageObject", inManagedObjectContext: moc);
-        var request = NSFetchRequest();
+        let moc = self.xmppRoomStorage!.mainThreadManagedObjectContext;
+        let entityDescription = NSEntityDescription.entityForName("XMPPRoomMessageCoreDataStorageObject", inManagedObjectContext: moc);
+        let request = NSFetchRequest();
         request.entity = entityDescription;
-        var error: NSError?;
         
-        var messages :NSArray = moc.executeFetchRequest(request, error: &error)!;
-        if(messages.count == 0){
+        do {
+            let messages: NSArray = try moc.executeFetchRequest(request);
+            if(messages.count == 0){
+                return
+            }
             
+            // delete all the messages for the current conversation
+            for message in messages {
+                moc.deleteObject(message as! NSManagedObject)
+            }
+        }
+        catch let error as NSError {
+            // TODO: handle the error
+            print("Error fetching stored chat: \(error)")
             return
         }
         
-        var message:NSManagedObject?
-        
-        // Retrieve all the messages for the current conversation
-        for message in messages {
-        
-            moc.deleteObject(message as! NSManagedObject)
-    
+        do {
+            try moc.save()
         }
-        
-        var saveError: NSError?
-        moc.save(&saveError)
+        catch let error as NSError {
+            // TODO: handle the error
+            print("Error saving core data: \(error)")
+        }
 
         print("core storage deleted for id:\(roomID!)")
     }
-    
     
     func teminateSession(){
         self.xmppRoom!.leaveRoom()
@@ -134,13 +130,12 @@ class ChatRoomModel: NSObject{
         self.xmppRoom!.removeDelegate(self.delegate)
     }
     
-    
     func reconnect(){
-        
+        // TODO: review this
         /*self.teminateSession()
         
         var roomJID = XMPPJID.jidWithString(roomName);
-        println("did generate room jid -> \(roomJID)")
+        print("did generate room jid -> \(roomJID)")
         
         if(roomJID != nil && self.xmppRoomStorage != nil){
             
@@ -153,7 +148,6 @@ class ChatRoomModel: NSObject{
             self.xmppRoom!.joinRoomUsingNickname("\(appDelegate.user!.id!)@\(appDelegate.chatInst!.chatServer)", history:nil)
             
         }*/
-     
     }
 
 }

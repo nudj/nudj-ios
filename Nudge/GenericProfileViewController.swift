@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 import SwiftyJSON
 
 enum UserFavouriteText:String {
@@ -105,13 +104,10 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
 
     
     override func viewWillAppear(animated: Bool) {
-        
         super.viewWillAppear(animated)
         
         self.navigationController?.navigationBarHidden = false
-        
         prepareLayout();
-
         self.registerNotification()
 
         // Get Local Values for the user
@@ -135,14 +131,12 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
         super.viewWillDisappear(animated)
 
         switch self.type {
-
         case Type.Own: fallthrough
         case Type.Initial:
             self.updateAllInformation()
-
             break;
         default:
-        break;
+            break;
         }
 
         NSNotificationCenter.defaultCenter().removeObserver(self)
@@ -184,7 +178,6 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
     // Navigatiopn Items
 
     @IBAction func topRightButtonAction(sender: UIBarButtonItem) {
-
         switch type {
         case .Initial:
             self.performSegueWithIdentifier("showMainScreen", sender: nil)
@@ -197,16 +190,13 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
             toggleFavourite()
             break;
         default:
-
             break;
         }
-
     }
 
     // User Data Loding
 
     func showUserData(){
-        
         UserModel.getById(userId, fields: ["user.status", "user.name", "user.image", "user.skills", "user.about", "user.company", "user.address", "user.position", "user.email", "user.favourite"], closure: { response in
 
             let user = UserModel()
@@ -218,13 +208,13 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
             
             self.user = user
 
-            println(response["data"])
+            print(response["data"])
             
             if let status = user.status {
                 self.statusButton.setTitleByIndex(status)
             }
 
-            if (user.name != nil && count(user.name!) > 0) {
+            if (!(user.name?.isEmpty ?? true)) {
                 self.nameLabel.text = user.name
             } else if (self.preloadedName != nil) {
                 self.nameLabel.text = self.preloadedName
@@ -232,7 +222,6 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
             } else {
                 self.nameLabel.text = ""
             }
-
 
             self.aboutMeField?.text = user.about
             self.company?.text = user.company
@@ -255,11 +244,10 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
             }
 
             self.updateAssets()
-        }, errorHandler: { error in
-        
+        }, errorHandler: { 
+            error in
             self.navigationController?.popViewControllerAnimated(true)
         })
-        
     }
 
     func makeThingsWhite() {
@@ -267,7 +255,6 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
             nameLabel.textColor = UIColor.whiteColor()
             statusButton.changeColor(UIColor.whiteColor())
             backgroundImage.backgroundColor = nil
-            
         }else{
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
             backgroundImage.backgroundColor = appDelegate.appColor
@@ -286,28 +273,28 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
             hiddenFieldsCount += 1
         }
 
-        if (aboutMeField != nil && count(aboutMeField.text) <= 0) {
+        if (aboutMeField?.text.isEmpty ?? false) {
             hideView(aboutMeField.superview!)
             hiddenFieldsCount += 1
         }
 
-        if (company != nil && count(company.text) <= 0) {
+        if (company?.text?.isEmpty ?? false) {
             hideView(company.superview!)
             hiddenFieldsCount += 1
         }
 
-        if (location != nil && count(location.text) <= 0) {
+        if (location?.text?.isEmpty ?? false) {
             hideView(location.superview!)
             hiddenFieldsCount += 1
         }
 
-        if (position != nil && count(position.text) <= 0) {
+        if (position?.text?.isEmpty ?? false) {
             hideView(position.superview!)
             hiddenFieldsCount += 1
         }
         
         if(hiddenFieldsCount == 5){
-            var noContentImage = NoContentPlaceHolder()
+            let noContentImage = NoContentPlaceHolder()
             self.view.addSubview(noContentImage.createNoContentPlaceHolder(self.view, imageTitle: "no_profile_content"))
             noContentImage.showPlaceholder()
         }
@@ -326,50 +313,47 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
         var found = false
         for subView in object.superview!.subviews {
             if (found) {
-                hideView(subView as! UIView, hideBorder: false)
+                hideView(subView, hideBorder: false)
                 return
             }
 
-            if (subView as! UIView == object) {
+            if (subView == object) {
                 found = true
             }
         }
     }
 
     // MARK: User Update functions
-
+    
     func updateAllInformation(){
-            
-        UserModel.update(["name":nameLabel.text,"email":email.text,"position":position.text!,"address":location.text!,"company":company.text!,"completed":true], closure: { result in
-     
-                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
-                appDelegate.user!.name = self.nameLabel.text
-                appDelegate.user!.completed = true
-                appDelegate.pushUserData()
-                
+        UserModel.update(["name":nameLabel.text!,"email":email.text!,"position":position.text!,"address":location.text!,"company":company.text!,"completed":true], closure: { 
+            result in
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
+            appDelegate.user!.name = self.nameLabel.text
+            appDelegate.user!.completed = true
+            appDelegate.pushUserData()
         })
     }
     
     
     func updateUserName(userName: String) -> Void {
-
-        UserModel.update(["name": userName], closure: { result in
+        UserModel.update(["name": userName], closure: { 
+            result in
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
             appDelegate.user!.name = userName
             appDelegate.pushUserData()
         })
-
     }
 
     func toggleFavourite() {
         if (userId != user?.id!) {
-            println("Inconsistency between userId and loaded user!")
+            print("Inconsistency between userId and loaded user!")
             return
         }
 
         if let localUser = UserModel.getLocal() {
             if (localUser.id! == userId) {
-                println("You can't favourite yourself!")
+                print("You can't favourite yourself!")
                 return;
             }
 
@@ -382,7 +366,7 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
                         MixPanelHandler.sendData(user.favourite == true ? "Profile_FavouriteAction" : "Profile_UnfavouriteAction")
                     }
                 } else {
-                    println("Favourite Error: \(result)")
+                    print("Favourite Error: \(result)")
                 }
             })
         }
@@ -438,7 +422,7 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         switch textField {
         case nameLabel:
-            self.updateUserName(textField.text)
+            self.updateUserName(textField.text!)
             break;
 
         case company:
@@ -552,7 +536,7 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
     // MARK: - Image management
 
     func pickLibrary() {
-        var alert = UIAlertController(title: self.msgTitle, message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: self.msgTitle, message: nil, preferredStyle: UIAlertControllerStyle.Alert)
 
         alert.addAction(UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default) {
             action -> Void in
@@ -578,29 +562,33 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
     }
 
     func showUserImage(images: [String:String]) {
-        if (images["profile"] != nil && count(images["profile"]!) > 0) {
-            self.profilePhoto.downloadImage(images["profile"]!)
+        if let profileImage = images["profile"] {
+            if (!profileImage.isEmpty) {
+                self.profilePhoto.downloadImage(images["profile"]!)
+            }
         }
 
-        if (images["cover"] != nil && count(images["cover"]!) > 0) {
-            self.backgroundImage.blur = true
-            self.backgroundImage.downloadImage(images["cover"]!) { _ in
-                //self.makeThingsWhite()
+        if let coverImage = images["cover"] {
+            if (!coverImage.isEmpty) {
+                self.backgroundImage.blur = true
+                self.backgroundImage.downloadImage(images["cover"]!)
             }
         }
         
         self.makeThingsWhite()
     }
 
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        self.dismissViewControllerAnimated(true, completion: { () -> Void in })
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        self.dismissViewControllerAnimated(true, completion: nil)
 
         // Start activity to show that something is going on
         self.profilePhoto.startActivity()
         self.backgroundImage.startActivity()
 
         let image = info[UIImagePickerControllerEditedImage] as! UIImage
-        let imageData = UIImageJPEGRepresentation(image, 0.8).base64EncodedStringWithOptions(.allZeros)
+        guard let imageData = UIImageJPEGRepresentation(image, 0.8)?.base64EncodedStringWithOptions([]) else {
+            return
+        }
         
         UserModel.update(["image": imageData], closure: { response in
             UserModel.getCurrent(["user.image"], closure: { user in

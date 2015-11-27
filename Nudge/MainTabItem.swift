@@ -9,10 +9,4 @@
 import UIKit
 
 class MainTabItem: UINavigationController {
-
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-
-    }
-
 }

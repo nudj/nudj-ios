@@ -27,7 +27,6 @@ class MainFeed: BaseController, DataProviderProtocol ,UISearchBarDelegate, Tutor
         super.viewDidLoad()
         
         self.table.asignCellNib("JobCellTableViewCell")
-
         self.table.dataProvider = self as DataProviderProtocol
         self.table.delegate = self.table
         self.table.dataSource = self.table
@@ -40,16 +39,13 @@ class MainFeed: BaseController, DataProviderProtocol ,UISearchBarDelegate, Tutor
         self.view.addSubview(self.blackBackground)
         
         self.view.bringSubviewToFront(self.searchBar)
-        
         self.view.addSubview(self.noContentImage.createNoContentPlaceHolder(self.view, imageTitle: "no_jobs"))
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
-        
         if appDelegate.shouldShowAddJobTutorial  {
             tutorial.delegate = self
             tutorial.starTutorial("tutorial-welcome", view: self.view)
         }
-        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -61,13 +57,10 @@ class MainFeed: BaseController, DataProviderProtocol ,UISearchBarDelegate, Tutor
         if(searchTerm == nil){
             self.table.loadData()
         }
-        
-    
     }
     
-
     func requestData(page: Int, size: Int, listener: (JSON) -> ()) {
-        
+        // TODO: API strings
         let path = searchTerm == nil ? "available" : "search/\(searchTerm!)"
         self.noContentImage.image = searchTerm == nil ? UIImage(named:"no_jobs") : UIImage(named:"no_search_results")
         let params = "job.title,job.salary,job.bonus,job.user,job.location,job.company,user.name,user.image&sizes=user.profile"
@@ -78,21 +71,14 @@ class MainFeed: BaseController, DataProviderProtocol ,UISearchBarDelegate, Tutor
     }
     
     func deleteData(id: Int, listener: (JSON) -> ()) {
-        
     }
     
     func didfinishLoading(count:Int) {
-        
-        
         if(count == 0){
-            
             self.noContentImage.showPlaceholder()
-            
         }else{
-            
             self.noContentImage.hidePlaceholder()
         }
-        
     }
 
     func goToJob(job:JSON) {
@@ -102,53 +88,39 @@ class MainFeed: BaseController, DataProviderProtocol ,UISearchBarDelegate, Tutor
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let askView = segue.destinationViewController as? AskReferralViewController {
-            askView.jobId = selectedJobData!["id"].stringValue.toInt()
+            askView.jobId = Int(selectedJobData!["id"].stringValue)
         }else if let detailsView = segue.destinationViewController as? JobDetailedViewController {
             detailsView.jobID = selectedJobData!["id"].stringValue
         }
-        
     }
     
-    
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        
         self.stopSearcAction()
         searchBar.text = ""
         searchTerm = nil
         self.table.loadData()
-       
-        
     }
     
     func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
-        
         //self.blackBackground.hidden = false
         searchBar.showsCancelButton = true
-        
         return true
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        
         searchTerm = searchBar.text
         self.table.loadData()
         self.stopSearcAction()
-        
     }
     
     func stopSearcAction(){
-        
         //self.navigationController?.navigationBarHidden = false
         //self.searchBar.hidden = true
-        
         searchBar.showsCancelButton = false
         self.searchBar.resignFirstResponder()
-        
-        
     }
     
     func dismissTutorial() {
-        
         UserModel.update(["settings":["tutorial":["post_job":false]]], closure: { result in
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
             appDelegate.updateUserObject("AddJobTutorial", with:false)
@@ -156,6 +128,5 @@ class MainFeed: BaseController, DataProviderProtocol ,UISearchBarDelegate, Tutor
             
         })
     }
-    
     
 }

@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import SwiftyJSON
-import Alamofire
 
 class ChatListViewController: BaseController, UITableViewDataSource, UITableViewDelegate {
     
@@ -23,12 +22,10 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     var isArchive:Bool?
     
     override func viewDidLoad() {
-
          self.chatTable.registerNib(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
          self.chatTable.tableFooterView = UIView(frame: CGRectZero);
         
          self.view.addSubview(self.noContentImage.createNoContentPlaceHolder(self.view, imageTitle: "no_chats"))
-
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -40,27 +37,22 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         requestData()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"reload:", name: "reloadChatTable", object: nil);
-        
     }
     
     func deleteChat(){
-        
-        
-        
+        // TODO: ?
     }
     
     override func viewWillDisappear(animated: Bool) {
-        
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "reloadChatTable", object: nil)
     }
 
     func requestData() {
-
+        // TODO: API strings
         let url = isArchive != nil && isArchive! == true ? "chat/archived":"chat/active"
         
-        println(url)
-        
-        self.apiRequest(.GET, path: "\(url)?params=chat.job,job.liked,chat.participants,chat.created,job.title,job.company,job.like,user.image,user.name,user.contact,contact.alias&limit=100", closure: { response in
+        self.apiRequest(.GET, path: "\(url)?params=chat.job,job.liked,chat.participants,chat.created,job.title,job.company,job.like,user.image,user.name,user.contact,contact.alias&limit=100", closure: { 
+            response in
 
             self.data.removeAll(keepCapacity: false)
             
@@ -70,7 +62,6 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
                 self.data.sort({ $0.timeinRawForm!.compare($1.timeinRawForm!) == NSComparisonResult.OrderedDescending })
             }
             
-            
             self.activity.stopAnimating()
             self.chatTable.hidden = false;
             self.chatTable.reloadData()
@@ -78,53 +69,39 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
             self.navigationController?.tabBarItem.badgeValue = nil
             
             if(self.data.count == 0){
-                
                 self.noContentImage.showPlaceholder()
-                
             }else{
-                
                 self.noContentImage.hidePlaceholder()
             }
         })
-        
     }
     
     // MARK: -- UITableViewDataSource --
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        
         return 1
-        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return data.count
-        
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        
         return staticRowHeight
-        
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
         var cell:ChatListTableViewCell = chatTable.dequeueReusableCellWithIdentifier(cellIdentifier) as! ChatListTableViewCell
-        
         cell.loadData(self.data[indexPath.row])
-        
         return cell
     }
     
     // MARK: -- UITableViewDelegate -
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        var cell = tableView.cellForRowAtIndexPath(indexPath)  as! ChatListTableViewCell
+        let cell = tableView.cellForRowAtIndexPath(indexPath)  as! ChatListTableViewCell
 
-        var chatView:ChatViewController = ChatViewController()
+        let chatView:ChatViewController = ChatViewController()
         
         let chat = self.data[indexPath.row]
         chatView.chatID = chat.chatId;
@@ -134,60 +111,42 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         chatView.jobID = chat.jobID
         chatView.isLiked = chat.jobLike
         
-        var imageData = UIImagePNGRepresentation(cell.profilePicture.image)
-        let base64String = imageData.base64EncodedStringWithOptions(.allZeros)
-        chatView.otherUserBase64Image = base64String
-        
+        if let profileImage = cell.profilePicture.image {
+            let imageData = UIImagePNGRepresentation(profileImage)
+            let base64String = imageData?.base64EncodedStringWithOptions([]) ?? ""
+            chatView.otherUserBase64Image = base64String
+        }
         chatView.isArchived = isArchive
             
         self.navigationController?.pushViewController(chatView, animated: true)
         
         self.data[indexPath.row].markAsRead()
         cell.isRead(self.data[indexPath.row].isRead!)
-                
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        
         return isArchive != nil ? isArchive! : false
     }
     
-    
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
-            //add code here for when you hit delete
-            println("will delete")
+            // TODO: add code here for when you hit delete
             self.deleteChat(indexPath.row)
         }
-        
     }
     
-    
     func deleteChat(row:Int){
-        
-        println("deleting chat/\(self.data[row].chatId!)")
-        
-        API.sharedInstance.request(.DELETE, path:"chat/\(self.data[row].chatId!)", params: nil, closure: { response in
+        API.sharedInstance.request(.DELETE, path:"chat/\(self.data[row].chatId!)", params: nil, closure: { 
+            response in
         
             self.data.removeAtIndex(row)
             self.chatTable.reloadData()
-            
-            println("done deleting")
-            
-        }, errorHandler: { error in
-        
-        
+        }, errorHandler: { 
+            error in
         })
-
-        
     }
     
     func reload(notification:NSNotification){
-        
         self.requestData()
-        
     }
-
-
 }

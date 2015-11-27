@@ -8,15 +8,13 @@
 
 import UIKit
 import CoreData
-import Fabric
-import Crashlytics
 import FBSDKLoginKit
 import Mixpanel
 import ReachabilitySwift
 import SwiftyJSON
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
+class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
 
     var window: UIWindow?
     var user: UserModel?
@@ -35,16 +33,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
     var shouldShowNudjTutorial = true
     var shouldShowAskForReferralTutorial = true
     
-    
     //Mix panel
     let MIXPANEL_TOKEN = "29fc1fec9fa6f75efd303f12c8be4acb"
-    let appColor = UIColor(red: 0, green: 0.63, blue: 0.53, alpha: 1)
-    let appBlueColor = UIColor(red:17.0/255.0, green:147.0/255.0, blue:189.0/255.0, alpha: 1)
+    let appColor = UIColor(red: 0.0, green: 0.63, blue: 0.53, alpha: 1.0)
+    let appBlueColor = UIColor(red:17.0/255.0, green:147.0/255.0, blue:189.0/255.0, alpha: 1.0)
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        //Fabric
-        Fabric.with([Crashlytics()])
-        
         //Mixpanel
         Mixpanel.sharedInstanceWithToken(MIXPANEL_TOKEN)
         MixPanelHandler.startEventTracking("timeSpentInApplication")
@@ -52,18 +46,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         // Getting of user details from CoreData
         fetchUserData()
         prepareApi();
-        println("usercompleted is  -> \(self.user?.completed)")
+        print("usercompleted is  -> \(self.user?.completed)")
         
         if (user != nil && user!.id != nil && user!.completed == false) {
-
             if (contacts.isAuthorized()) {
                 // User did not passed full registration
                 self.syncContacts()
                 self.pushViewControllerWithId("createProfile")
-            } else{
+            } else {
                 self.showContactsAccessView()
             }
-
         } else if (user == nil) {
             // Invalid user Require Login
             // Proceed to login view
@@ -82,11 +74,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         //Setup XMPP and connect
         chatInst = ChatModels()
         chatInst!.delegate = self;
-        
         if(!chatInst!.connect()) {
-            
-            println("NOT Connected to chat server so will try reconnecting !!!")
-            
+            print("NOT Connected to chat server so will try reconnecting")
         }
 
         requestNotificationPermission(application)
@@ -95,12 +84,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
             pushNotificationsPayload = remoteNotification
         }
         
-        
-        if pushNotificationsPayload != nil && pushNotificationsPayload?.count > 0{
-            
+        if pushNotificationsPayload != nil && pushNotificationsPayload!.count > 0 {
             if let notification: AnyObject = pushNotificationsPayload!.valueForKey("aps") {
-                var notificationCount :Int = notification["badge"] as! Int
+                let notificationCount :Int = notification["badge"] as! Int
                 UIApplication.sharedApplication().applicationIconBadgeNumber = notificationCount
+                // TODO: why 3?
                 NSNotificationCenter.defaultCenter().postNotificationName("updateBadgeValue", object: nil, userInfo: ["value":"\(notificationCount)","index":"3"])
                 pushNotificationsPayload = nil
             }
@@ -113,19 +101,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        // TODO: deprecated in iOS 9
         if(LISDKCallbackHandler.shouldHandleUrl(url)){
-            
             return LISDKCallbackHandler.application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
-        
         }
-        
         return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
     }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        var characterSet: NSCharacterSet = NSCharacterSet( charactersInString: "<>" )
+        let characterSet: NSCharacterSet = NSCharacterSet( charactersInString: "<>" )
 
         self.deviceToken = ( deviceToken.description as NSString )
             .stringByTrimmingCharactersInSet( characterSet )
@@ -135,23 +120,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
     }
 
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        println( "Notification Error: ", error.localizedDescription )
+        // TODO: better error handling
+        print( "Notification Error: ", error.localizedDescription )
     }
 
     func requestNotificationPermission(application: UIApplication) {
-        var types: UIUserNotificationType = UIUserNotificationType.Badge |
-            UIUserNotificationType.Alert |
-            UIUserNotificationType.Sound
-
-        var settings: UIUserNotificationSettings = UIUserNotificationSettings( forTypes: types, categories: nil )
-
+        let types: UIUserNotificationType = [.Badge, .Alert, .Sound]
+        let settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: types, categories: nil)
         application.registerUserNotificationSettings( settings )
         application.registerForRemoteNotifications()
-        
     }
 
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        
         /*type_id = 8
         [aps: {
             alert = "Is it working, Ant?";
@@ -163,19 +143,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         
         // Update badge
         let userinfo = userInfo as NSDictionary
-        println(userinfo)
+        print(userinfo)
         
         if let notification: AnyObject = userinfo.valueForKey("aps") {
-            
-            var notificationCount :Int =  notification.valueForKey("badge") as! Int
+            let notificationCount :Int =  notification.valueForKey("badge") as! Int
             UIApplication.sharedApplication().applicationIconBadgeNumber = notificationCount
-            
+            // TODO: why 3?
             NSNotificationCenter.defaultCenter().postNotificationName("updateBadgeValue", object: nil, userInfo: ["value":"\(notificationCount)","index":"3"])
-            
         }
-        
-        
-        
     }
 
     func syncContacts() {
@@ -190,8 +165,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         }
 
         if self.deviceToken != nil {
-            println( "Device token sent -> \(self.deviceToken!)")
-            API.sharedInstance.put("devices", params: ["token":self.deviceToken!], closure:{ _ in
+            print( "Device token sent -> \(self.deviceToken!)")
+            // TODO: API strings
+            API.sharedInstance.put("devices", params: ["token":self.deviceToken!], closure:{ 
+                _ in
                 self.deviceTokenSynced = true
             });
         }
@@ -203,74 +180,81 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
     }
     
     func beginInternetConnectionCheck(){
-        
-        let reachability = Reachability.reachabilityForInternetConnection()
-        var view = NoInternetConnectionView(frame: self.window!.frame)
-        var isShown = false;
-        
-        reachability.whenUnreachable = { reachability in
-            println("Not reachable")
+        // TODO: refactor to a single-responsibility object
+       do {
+            // TODO: audit this for callers and figure out what NoInternetConnectionView is for: it might be overkill
+            let reachability = try Reachability.reachabilityForInternetConnection()
+            let view = NoInternetConnectionView(frame: self.window!.frame)
+            var isShown = false;
             
-            if !isShown {
-                self.window?.addSubview(view)
-                isShown = true
+            reachability.whenUnreachable = { 
+                reachability in
+                print("Not reachable")
+                if !isShown {
+                    self.window?.addSubview(view)
+                    isShown = true
+                }
             }
-        }
-        
-        reachability.whenReachable = { reachability in
-            println("reachable")
-            if isShown {
-                view.removeFromSuperview()
-                isShown = false
+            
+            reachability.whenReachable = { 
+                reachability in
+                print("reachable")
+                if isShown {
+                    view.removeFromSuperview()
+                    isShown = false
+                }
             }
+            
+            try reachability.startNotifier()
         }
-        
-        reachability.startNotifier()
+        catch let error {
+            // TODO: figure out what to do here
+            print("Reachability error: \(error)")
+        }
     }
 
     func fetchUserData() {
-
-        let managedContext = self.managedObjectContext!
-        let fetchRequest = NSFetchRequest(entityName:"User")
-        fetchRequest.fetchLimit = 1;
-
-        var error: NSError?
-
-        let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error)
-
-        if let results = fetchedResults {
+        // TODO: refactor to a single-responsibility object
+        guard let moc = self.managedObjectContext else {
+            // TODO: better error handling
+            print("No managedObjectContext")
+            return
+        }
+        
+        do {
+            let fetchRequest = NSFetchRequest(entityName:"User")
+            fetchRequest.fetchLimit = 1;
+            let results = try moc.executeFetchRequest(fetchRequest)
+            
             if (results.count > 0) {
-                if (self.user == nil) {
-                    self.user = UserModel()
-                }
-
+                let user = self.user ?? UserModel()
                 let obj = results.first as! NSManagedObject;
-
-                self.user!.id = obj.valueForKey("id") == nil ? nil : obj.valueForKey("id") as? Int
-                self.user!.name = obj.valueForKey("name") == nil ? nil : (obj.valueForKey("name") as! String)
-                self.user!.token = obj.valueForKey("token") == nil ? nil : (obj.valueForKey("token") as! String)
-                self.user!.completed = obj.valueForKey("completed") == nil ? false : (obj.valueForKey("completed") as! Bool)
-                self.user!.addressBookAccess = obj.valueForKey("addressBookAccess") == nil ? false : obj.valueForKey("addressBookAccess")!.boolValue
-                self.user!.status = obj.valueForKey("status") == nil ? 0 : obj.valueForKey("status") as! Int
-             
+                
+                user.id = obj.valueForKey("id") == nil ? nil : obj.valueForKey("id") as? Int
+                user.name = obj.valueForKey("name") == nil ? nil : (obj.valueForKey("name") as! String)
+                user.token = obj.valueForKey("token") == nil ? nil : (obj.valueForKey("token") as! String)
+                user.completed = obj.valueForKey("completed") == nil ? false : (obj.valueForKey("completed") as! Bool)
+                user.addressBookAccess = obj.valueForKey("addressBookAccess") == nil ? false : obj.valueForKey("addressBookAccess")!.boolValue
+                user.status = obj.valueForKey("status") == nil ? 0 : obj.valueForKey("status") as! Int
+                
                 getUserObject()
             }
-
-        } else {
-            println("Could not fetch \(error), \(error!.userInfo)")
         }
-
+        catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
     }
 
     func prefetchUserData() {
         if let user = self.user {
             if user.token != nil {
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () -> Void in
-                    UserModel.getCurrent(["user.name", "user.completed", "user.status", "user.image","user.settings"], closure: { userObject in
+                    // TODO: API strings
+                    UserModel.getCurrent(["user.name", "user.completed", "user.status", "user.image","user.settings"], closure: { 
+                        userObject in
                         if let source :JSON = userObject.source {
                             
                             if let settings :JSON = userObject.settings {
-                                
                                 self.shouldShowAddJobTutorial = settings["tutorial"]["post_job"].boolValue
                                 self.updateUserObject("AddJobTutorial", with: self.shouldShowAddJobTutorial)
                                 
@@ -279,32 +263,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
                                 
                                 self.shouldShowNudjTutorial = settings["tutorial"]["open_job"].boolValue
                                 self.updateUserObject("NudjTutorial", with:  self.shouldShowNudjTutorial)
-                                
                             }
-                            
                             self.user!.updateFromJson(source)
                             self.pushUserData()
-                            
-                            
                         }else{
-                            
-                            println(" user has no source object")
-                            
+                            print(" user has no source object")
                         }
                     })
                 })
-            }else {
-                
-                println(" user has no token")
-                
+            } else {
+                print(" user has no token")
             }
-        }else{
-            
-            println("current user deleted")
-        
+        } else {
+            print("current user deleted")
         }
-        
-        
     }
 
     func pushUserData() {
@@ -316,11 +288,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
             self.user = user
         }
 
-        let managedContext = self.managedObjectContext!
-        let entity =  NSEntityDescription.entityForName("User", inManagedObjectContext: managedContext)
-        let userObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
+        let moc = self.managedObjectContext!
+        let entity =  NSEntityDescription.entityForName("User", inManagedObjectContext: moc)
+        let userObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: moc)
         
-
         userObject.setValue(user.id == nil ? nil : NSInteger(user.id!), forKey: "id")
         userObject.setValue(user.name, forKey: "name")
         userObject.setValue(user.token, forKey: "token")
@@ -330,121 +301,99 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         
         self.updateUserObject("Completed", with: user.completed)
 
-        var error: NSError?
-        if !managedContext.save(&error) {
-            println("Could not save \(error), \(error?.userInfo)")
-        } else {
+        do {
+            try moc.save()
             self.user = user
+        }
+        catch let error as NSError {
+            print("Could not save \(error), \(error.userInfo)")
         }
     }
 
     func deleteUserData() {
-        let managedContext = self.managedObjectContext!
+        let moc = self.managedObjectContext!
         let fetchRequest = NSFetchRequest(entityName:"User")
 
-        var error: NSError?
-
-        let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error)
-
-        if let results = fetchedResults {
-            if (results.count > 0) {
-                for obj in results {
-                    let user = obj as! NSManagedObject
-                    println("Deleted: ", user)
-                    managedContext.deleteObject(user)
-                }
-
-                if !managedContext.save(&error) {
-                    println("Could remove user details \(error), \(error?.userInfo)")
-                }
+        do {
+            let fetchedResults = try moc.executeFetchRequest(fetchRequest)
+            for obj in fetchedResults {
+                let user = obj as! NSManagedObject
+                print("Deleting: ", user)
+                moc.deleteObject(user)
             }
-        } else {
-            println("Could not find active user \(error), \(error!.userInfo)")
+            
+            do {
+                try moc.save() 
+            }
+            catch let error as NSError {
+                print("Save error \(error), \(error.userInfo)")
+            }
         }
-        
-        
+        catch let error as NSError {
+            print("Fetch error \(error), \(error.userInfo)")
+        }
     }
 
     func logout() {
-        
         self.deleteUserData()
         self.deleteChatData()
-        self.deleteUserObject()
-        
+        self.deleteUserObject()        
         API.sharedInstance.token = nil
-        
-        if self.api != nil {
-            self.api?.token = nil
-        }
-        
+        self.api?.token = nil
     }
     
     func deleteAccount(){
-        
-        API.sharedInstance.request(.DELETE, path: "users/me", params: nil, closure: { response in
-            
-            println("deleted account \(response)")
-            
+        // TODO: API strings
+        API.sharedInstance.request(.DELETE, path: "users/me", params: nil, closure: { 
+            response in
+            print("deleted account \(response)")
             if response["status"].boolValue {
-            
                 self.logout()
-            
             }else{
-                
-                var alert = UIAlertView(title: "Error deleting account", message: "We were unable to delete your account, please try again.", delegate: nil, cancelButtonTitle: "OK")
+                // TODO: localisation
+                let alert = UIAlertView(title: "Error deleting account", message: "We were unable to delete your account, please try again.", delegate: nil, cancelButtonTitle: "OK")
                 alert.show()
-
             }
             
-        }, errorHandler: { error in
-                
-                var alert = UIAlertView(title: "Error deleting account", message: "Oops something went wrong.", delegate: nil, cancelButtonTitle: "OK")
+            }, 
+            errorHandler: {
+                error in
+                // TODO: localisation
+                let alert = UIAlertView(title: "Error deleting account", message: "Oops something went wrong.", delegate: nil, cancelButtonTitle: "OK")
                 alert.show()
-                
         })
-        
     }
     
     func deleteChatData(){
-        
         var chatRoom = self.chatInst!.listOfActiveChatRooms
-        for (id, obj) in  chatRoom {
+        for (id, _) in  chatRoom {
             if let chat = chatRoom[id]{
-                
                 chat.teminateSession()
                 chatRoom.removeValueForKey(id)
-                println("removed from list")
                 chat.deleteStoredChats()
                 self.deleteNSuserDefaultContent(id)
-            
             }
         }
-        
-        
     }
 
     func prepareApi() {
         API.sharedInstance.token = self.user?.token
-
-        println("Token: \(API.sharedInstance.token)")
-
+        print("Token: \(API.sharedInstance.token)")
         if (api == nil) {
             api = API()
         }
     }
 
     func pushViewControllerWithId(id: String) {
-        println("Go To: " + id)
-
         let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let navigationController:UINavigationController = storyboard.instantiateViewControllerWithIdentifier("mainNavigationController") as! UINavigationController
-        let rootViewController:UIViewController = storyboard.instantiateViewControllerWithIdentifier(id) as! UIViewController
+        let rootViewController:UIViewController = storyboard.instantiateViewControllerWithIdentifier(id) 
         navigationController.viewControllers = [rootViewController]
         self.window?.rootViewController = navigationController
     }
 
     func changeRootViewController(id:String) {
-        self.window!.rootViewController = self.window?.rootViewController?.storyboard?.instantiateViewControllerWithIdentifier(id) as? UIViewController
+        self.window!.rootViewController = self.window?.rootViewController?.storyboard?.instantiateViewControllerWithIdentifier(id)
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -480,18 +429,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         
         MixPanelHandler.stopEventTracking("timeSpentInApplication")
         self.saveContext()
-        
+        // TODO: review the below, why commented out
 //        self.chatInst!.xmppRoom?.leaveRoom()
 //        self.chatInst!.xmppRoom?.deactivate()
 //        self.chatInst!.xmppRoom?.removeDelegate(self)
     }
 
     // MARK: - Core Data stack
+    // TODO: refactor out
 
     lazy var applicationDocumentsDirectory: NSURL = {
-        // The directory the application uses to store the Core Data store file. This code uses a directory named "e-man.NudgeData" in the application's documents Application Support directory.
+        // The directory the application uses to store the Core Data store file.
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-        return urls[urls.count-1] as! NSURL
+        return urls[urls.count-1] 
         }()
 
     lazy var managedObjectModel: NSManagedObjectModel = {
@@ -501,31 +451,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
         }()
 
     lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
-        // The persistent store coordinator for the application. This implementation creates and return a coordinator, having added the store for the application to it. This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
+        // The persistent store coordinator for the application. This implementation creates and return a coordinator, having added the store for the application to it. 
+        // This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
+        // TODO: JRB: No, the above line is rubbish. We must be able to recover from any failure.
         // Create the coordinator and store
         var coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("NudgeData.sqlite")
-        var error: NSError? = nil
+        // TODO: lcoalisation
         var failureReason = "There was an error creating or loading the application's saved data."
-        if coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil, error: &error) == nil {
-            coordinator = nil
+        do {
+            try coordinator?.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
+        } catch let error as NSError {
+            // TODO: this error handling is unsatisfactory
             // Report any error we got.
-            let dict = NSMutableDictionary()
+            var dict = [String: AnyObject]()
             dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
             dict[NSLocalizedFailureReasonErrorKey] = failureReason
+            
             dict[NSUnderlyingErrorKey] = error
-            error = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict as [NSObject : AnyObject])
+            let wrappedError = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
             // Replace this with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            NSLog("Unresolved error \(error), \(error!.userInfo)")
+            NSLog("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
             abort()
         }
-
+        
         return coordinator
         }()
 
     lazy var managedObjectContext: NSManagedObjectContext? = {
-        // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.) This property is optional since there are legitimate error conditions that could cause the creation of the context to fail.
+        // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.) 
+        // This property is optional since there are legitimate error conditions that could cause the creation of the context to fail.
+        // TODO: JRB: No, the above line is rubbish. We must be able to recover from any failure.
         let coordinator = self.persistentStoreCoordinator
         if coordinator == nil {
             return nil
@@ -539,249 +496,189 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate{
 
     func saveContext () {
         if let moc = self.managedObjectContext {
-            var error: NSError? = nil
-            if moc.hasChanges && !moc.save(&error) {
-                // Replace this implementation with code to handle the error appropriately.
-                // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                NSLog("Unresolved error \(error), \(error!.userInfo)")
-                abort()
+            do {
+                try moc.save()
+            }
+            catch let error as NSError {
+                // TODO: error handling
+                print("Save error: \(error)")
             }
         }
     }
     
-    
     // MARK: JABBER Delegate Methods
+    // TODO: refactor JABBER Delegate into spearate object
     
     func recievedUser(content: NSDictionary) {
-       
-        
+        // TODO: determine what to do
     }
     
     func recievedMessage(content: JSQMessage, conference: String) {
-        
-        if(shouldShowBadge == true){
-
-            //Store message as its new
-            var roomID = self.chatInst!.getRoomIdFromJid(conference)
+        if(shouldShowBadge) {
+            //Store message as it's new
+            let roomID = self.chatInst!.getRoomIdFromJid(conference)
             
-            println("Saving new message \(roomID)")
+            print("Saving new message \(roomID)")
             let defaults = NSUserDefaults.standardUserDefaults()
             if let outData = defaults.dataForKey(roomID) {
-            
                 if let dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData) as? [String:Bool] {
                     var diction = dict
                     
                     //overwrite previous data if it exsists
                     diction["isRead"] = false
-                    var data = NSKeyedArchiver.archivedDataWithRootObject(diction)
+                    let data = NSKeyedArchiver.archivedDataWithRootObject(diction)
                     defaults.setObject(data, forKey:roomID)
                     defaults.synchronize()
-                    
                 }
             }
             
             // Update badge
+            // TODO: magic numbers
             NSNotificationCenter.defaultCenter().postNotificationName("updateBadgeValue", object: nil, userInfo: ["value":"1","index":"1"])
             
             // reload table
             NSNotificationCenter.defaultCenter().postNotificationName("reloadChatTable", object: nil, userInfo:nil)
-            
-
         }
-
-
     }
 
     func handleEjabberedRecievedMessages(){
-
-        
+        // TODO: determine what to do
     }
     
     func isRecievingMessageIndication(user: String) {
-        
-        
+        // TODO: determine what to do
     }
     
-
     //MARK: - NSUSERDEFAULT
-    //Chat properties
+    // TODO: refactor Chat properties
     
     func saveNSUserDefaultContent(id:String, params:[String:Bool]){
         let defaults = NSUserDefaults.standardUserDefaults()
-        
-            if let outData = defaults.dataForKey(id) {
-                if let dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData) as? [String:Bool] {
-                    var diction = dict
-                    
-                    if(params["isRead"] != nil){
-                    diction["isRead"] = params["isRead"]
-                    }
-                    
-                    if(params["isNew"] != nil){
-                    diction["isNew"] = params["isNew"]
-                    }
-                    
-                    var data = NSKeyedArchiver.archivedDataWithRootObject(diction)
-                    defaults.setObject(data, forKey:id)
-                    defaults.synchronize()
-                    
-                }
-            }else{
-            
-                //TODO: Handle this
+        if let outData = defaults.dataForKey(id) {
+            if let dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData) as? [String:Bool] {
+                var diction = dict
                 
+                if(params["isRead"] != nil){
+                    diction["isRead"] = params["isRead"]
+                }
+                
+                if(params["isNew"] != nil){
+                    diction["isNew"] = params["isNew"]
+                }
+                
+                let data = NSKeyedArchiver.archivedDataWithRootObject(diction)
+                defaults.setObject(data, forKey:id)
+                defaults.synchronize()
             }
-    
-        
+        } else {
+            //TODO: Handle this
+        }
     }
     
-    
     func getNSUserDefaultContent(id:String, value:String) -> Int{
-     
         let defaults = NSUserDefaults.standardUserDefaults()
-        
         if let outData = defaults.dataForKey(id) {
-            
             if let dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData) as? [String:Bool] {
-                
-                var diction = dict[value]
+                let diction = dict[value]
                 return Int(diction!)
-                
             }
         }
-        
+        // TODO: why 2?
         return 2
     }
     
     func deleteNSuserDefaultContent(id:String){
-        
-        
         let defaults = NSUserDefaults.standardUserDefaults()
-        if let outData = defaults.dataForKey(id) {
-            
+        if let _ = defaults.dataForKey(id) {
             defaults.setObject(nil, forKey:id)
             defaults.synchronize()
-            
-            println("Deleted NSuserDefaultdata id:\(id)")
-        
+            print("Deleted NSuserDefaultdata id:\(id)")
         }
-    
     }
-    
     
     //CURRENT USER
     func createUserObject(){
-        
         let defaults = NSUserDefaults.standardUserDefaults()
         
-        var dict = ["Completed":false, "AddJobTutorial":true, "NudjTutorial":true, "AskForReferralTutorial":true]
-        var data = NSKeyedArchiver.archivedDataWithRootObject(dict)
+        // TODO: magic strings
+        let dict = ["Completed":false, "AddJobTutorial":true, "NudjTutorial":true, "AskForReferralTutorial":true]
+        let data = NSKeyedArchiver.archivedDataWithRootObject(dict)
         
         defaults.setObject(data, forKey:"USER")
         defaults.synchronize()
         
         self.getUserObject()
-        
-        println("Created NSUserDefaults USER")
-        
     }
     
     func getUserObject(){
-        
         let defaults = NSUserDefaults.standardUserDefaults()
-        
+        // TODO: magic strings
         if let outData = defaults.dataForKey("USER") {
-            
             if let dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData) as? [String:Bool] {
-                
-                println(dict)
+                print(dict)
                 
                 if dict["Completed"] != nil {
                     self.user!.completed = dict["Completed"]!.boolValue
                 }
                 
                 self.shouldShowNudjTutorial =  dict["NudjTutorial"]!.boolValue
-                
                 self.shouldShowAskForReferralTutorial = dict["AskForReferralTutorial"]!.boolValue
-                
                 self.shouldShowAddJobTutorial = dict["AddJobTutorial"]!.boolValue
-                
             }else{
-                
-                println("error in reading NSUserDefaults USER")
+                print("error in reading NSUserDefaults USER")
             }
-            
-        }else{
-            
+        } else {
             self.createUserObject()
         }
-        
     }
     
     func updateUserObject(title:String, with value:Bool){
-        
         let defaults = NSUserDefaults.standardUserDefaults()
-        
+        // TODO: magic strings
         if let outData = defaults.dataForKey("USER") {
-            
             if let dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData) as? [String:Bool] {
-            
                  if dict[title] != nil {
-                    
                     var newContent = dict
                     newContent[title] = value
-                    var data = NSKeyedArchiver.archivedDataWithRootObject(newContent)
+                    let data = NSKeyedArchiver.archivedDataWithRootObject(newContent)
                     defaults.setObject(data, forKey:"USER")
                     defaults.synchronize()
-                    println("Updated \(title) with \(value)")
-                    
+                    print("Updated \(title) with \(value)")
                  }
-            
-            }else{
-                
-                println("error in reading NSUserDefaults USER")
+            } else {
+                // TODO: better error handling
+                print("error in reading NSUserDefaults USER")
             }
-            
-        }else{
-            
-            println("Cannot put in USER as it doesnt exsist so let create one")
+        } else {
+            // Cannot put in USER as it doesnt exist so create one
             self.createUserObject()
             
-            println("OK SO user has been created. now let retry putting")
+            // user has been created. now let's retry putting
             updateUserObject(title, with: value)
-            
         }
-
     }
     
     func deleteUserObject(){
-        
+        // TODO: magic strings
         let defaults = NSUserDefaults.standardUserDefaults()
-        if let outData = defaults.dataForKey("USER") {
-         
+        if let _ = defaults.dataForKey("USER") {
             defaults.setObject(nil, forKey:"USER")
             defaults.synchronize()
-
-        
-            println("Deleted userobject")
         }
-        
-        
     }
     
-    func createTestCaseForUsefinfo(){
-        
+    func createTestCaseForUserinfo(){
+        // TODO: move to test suite
+        // TODO: magic strings
         let defaults = NSUserDefaults.standardUserDefaults()
-        
         if let outData = defaults.dataForKey("USER") {
-            
             if let dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData) as? [String:Bool] {
                 var dic = dict
                 dic["Completed"] = false
                 dic["NudjTutorial"] = false
                 dic["AskForReferralTutorial"] = false
                 dic["AddJobTutorial"] = false
-                var data = NSKeyedArchiver.archivedDataWithRootObject(dic)
+                let data = NSKeyedArchiver.archivedDataWithRootObject(dic)
                 defaults.setObject(data, forKey:"USER")
                 defaults.synchronize()
                 
