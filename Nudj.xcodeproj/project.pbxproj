@@ -730,8 +730,8 @@
 		A9964FD21B387CC800D5A8E9 /* libidn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libidn.a; sourceTree = "<group>"; };
 		A9964FD31B387CC800D5A8E9 /* stringprep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stringprep.h; sourceTree = "<group>"; };
 		A9964FD41B387CC800D5A8E9 /* XMPPFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPFramework.h; sourceTree = "<group>"; };
-		A99650811B387D5000D5A8E9 /* Nudge-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nudge-Bridging-Header.h"; sourceTree = "<group>"; };
-		A99650821B387D5000D5A8E9 /* Nudge-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nudge-Prefix.pch"; sourceTree = "<group>"; };
+		A99650811B387D5000D5A8E9 /* Nudj-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nudj-Bridging-Header.h"; sourceTree = "<group>"; };
+		A99650821B387D5000D5A8E9 /* Nudj-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nudj-Prefix.pch"; sourceTree = "<group>"; };
 		A99650831B38803A00D5A8E9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A99650851B38804500D5A8E9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		A99650871B38804D00D5A8E9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -2179,8 +2179,8 @@
 		EB0926CD1A8DE4CB00E1D958 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				A99650811B387D5000D5A8E9 /* Nudge-Bridging-Header.h */,
-				A99650821B387D5000D5A8E9 /* Nudge-Prefix.pch */,
+				A99650811B387D5000D5A8E9 /* Nudj-Bridging-Header.h */,
+				A99650821B387D5000D5A8E9 /* Nudj-Prefix.pch */,
 				EB0926CE1A8DE4CB00E1D958 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -2960,7 +2960,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Nudge/Nudge-Prefix.pch";
+				GCC_PREFIX_HEADER = "Nudj/Nudj-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -2977,7 +2977,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "co.nudj.ios-app.nudj";
 				PRODUCT_NAME = Nudj;
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Nudge/Nudge-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Nudj/Nudj-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -2995,7 +2995,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Nudge/Nudge-Prefix.pch";
+				GCC_PREFIX_HEADER = "Nudj/Nudj-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -3012,7 +3012,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "co.nudj.ios-app.nudj";
 				PRODUCT_NAME = Nudj;
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Nudge/Nudge-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Nudj/Nudj-Bridging-Header.h";
 			};
 			name = Release;
 		};
