@@ -271,7 +271,6 @@
 		A9F333821B45972100F0D17B /* saved@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333801B45972100F0D17B /* saved@2x.png */; };
 		EB000F7C1AB2E0B800E4D385 /* DataTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB000F7B1AB2E0B800E4D385 /* DataTableCell.swift */; };
 		EB000F7F1AB71D6600E4D385 /* ContactsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB000F7E1AB71D6600E4D385 /* ContactsController.swift */; };
-		EB04F6201AA72520002F2677 /* RegistrationInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB04F61F1AA72520002F2677 /* RegistrationInput.swift */; };
 		EB04F6231AAD89AF002F2677 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB04F6221AAD89AF002F2677 /* Contacts.swift */; };
 		EB0926D01A8DE4CB00E1D958 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0926CF1A8DE4CB00E1D958 /* AppDelegate.swift */; };
 		EB0926D21A8DE4CB00E1D958 /* MainFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0926D11A8DE4CB00E1D958 /* MainFeed.swift */; };
@@ -821,7 +820,6 @@
 		A9F333801B45972100F0D17B /* saved@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "saved@2x.png"; sourceTree = "<group>"; };
 		EB000F7B1AB2E0B800E4D385 /* DataTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTableCell.swift; sourceTree = "<group>"; };
 		EB000F7E1AB71D6600E4D385 /* ContactsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsController.swift; sourceTree = "<group>"; };
-		EB04F61F1AA72520002F2677 /* RegistrationInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationInput.swift; sourceTree = "<group>"; };
 		EB04F6221AAD89AF002F2677 /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
 		EB0926CA1A8DE4CB00E1D958 /* Nudj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nudj.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB0926CE1A8DE4CB00E1D958 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -2102,6 +2100,7 @@
 				A996508D1B38806700D5A8E9 /* libresolv.dylib */,
 				A99650891B38805B00D5A8E9 /* libxml2.2.dylib */,
 				A996508A1B38805B00D5A8E9 /* libxml2.dylib */,
+				EBB337FA1A9F581F000CAD88 /* CoreData.framework */,
 				A99650871B38804D00D5A8E9 /* AudioToolbox.framework */,
 				A99650851B38804500D5A8E9 /* CFNetwork.framework */,
 				A99650831B38803A00D5A8E9 /* Security.framework */,
@@ -2134,10 +2133,11 @@
 			isa = PBXGroup;
 			children = (
 				EB0926CC1A8DE4CB00E1D958 /* Nudj */,
+				EBF1861A1B21D9D500D8D80D /* Libraries */,
 				EB0926E41A8DE4CB00E1D958 /* NudjTests */,
-				EB0926CB1A8DE4CB00E1D958 /* Products */,
 				68263C45D8985A9D3857F073 /* Pods */,
 				B24DF65843B49C77F100654A /* Frameworks */,
+				EB0926CB1A8DE4CB00E1D958 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2165,10 +2165,7 @@
 				EB0926D81A8DE4CB00E1D958 /* Images.xcassets */,
 				EB0926DA1A8DE4CB00E1D958 /* LaunchScreen.xib */,
 				EBB337F91A9F5557000CAD88 /* DataModel */,
-				EBF1861A1B21D9D500D8D80D /* Libraries */,
-				EBB337FC1A9F5826000CAD88 /* Frameworks */,
 				EB0926CD1A8DE4CB00E1D958 /* Supporting Files */,
-				EBFB0CFE1AC009F900CCCB35 /* Obsolate */,
 			);
 			path = Nudj;
 			sourceTree = "<group>";
@@ -2230,14 +2227,6 @@
 				EBB337F61A9F53CA000CAD88 /* NudgeData.xcdatamodeld */,
 			);
 			name = DataModel;
-			sourceTree = "<group>";
-		};
-		EBB337FC1A9F5826000CAD88 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				EBB337FA1A9F581F000CAD88 /* CoreData.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		EBB338311A9F5A4A000CAD88 /* Models */ = {
@@ -2339,7 +2328,6 @@
 				EBF1861B1B21D9DE00D8D80D /* KSTokenView */,
 			);
 			name = Libraries;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		EBF1861B1B21D9DE00D8D80D /* KSTokenView */ = {
@@ -2351,14 +2339,6 @@
 				EBF1861F1B21DACA00D8D80D /* KSUtils.swift */,
 			);
 			name = KSTokenView;
-			sourceTree = "<group>";
-		};
-		EBFB0CFE1AC009F900CCCB35 /* Obsolate */ = {
-			isa = PBXGroup;
-			children = (
-				EB04F61F1AA72520002F2677 /* RegistrationInput.swift */,
-			);
-			name = Obsolate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2616,7 +2596,6 @@
 				A99650541B387CC800D5A8E9 /* XMPPCapabilities.m in Sources */,
 				EBF186201B21DACA00D8D80D /* KSToken.swift in Sources */,
 				EB6F22BA1AAF706A007FF1B8 /* AsyncImage.swift in Sources */,
-				EB04F6201AA72520002F2677 /* RegistrationInput.swift in Sources */,
 				A9964FE81B387CC800D5A8E9 /* JSQLocationMediaItem.m in Sources */,
 				A99650371B387CC800D5A8E9 /* XMPPvCardAvatarCoreDataStorageObject.m in Sources */,
 				EB000F7F1AB71D6600E4D385 /* ContactsController.swift in Sources */,
