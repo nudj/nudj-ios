@@ -104,7 +104,6 @@
 		A996501E1B387CC800D5A8E9 /* XMPPRosterMemoryStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EDA1B387CC800D5A8E9 /* XMPPRosterMemoryStorage.m */; };
 		A996501F1B387CC800D5A8E9 /* XMPPUserMemoryStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EDD1B387CC800D5A8E9 /* XMPPUserMemoryStorageObject.m */; };
 		A99650201B387CC800D5A8E9 /* XMPPRoster.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EE01B387CC800D5A8E9 /* XMPPRoster.m */; };
-		A99650211B387CC800D5A8E9 /* XMPPSystemInputActivityMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EE51B387CC800D5A8E9 /* XMPPSystemInputActivityMonitor.m */; };
 		A99650221B387CC800D5A8E9 /* XMPPIQ+JabberRPC.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EE81B387CC800D5A8E9 /* XMPPIQ+JabberRPC.m */; };
 		A99650231B387CC800D5A8E9 /* XMPPIQ+JabberRPCResonse.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EEA1B387CC800D5A8E9 /* XMPPIQ+JabberRPCResonse.m */; };
 		A99650241B387CC800D5A8E9 /* XMPPJabberRPCModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EEC1B387CC800D5A8E9 /* XMPPJabberRPCModule.m */; };
@@ -2648,7 +2647,6 @@
 				EBF17A281B4E641400C67657 /* ContactModel.swift in Sources */,
 				A996504D1B387CC800D5A8E9 /* XMPPSoftwareVersion.m in Sources */,
 				A9B577F11B6BD00500CFB474 /* AFURLSessionManager.m in Sources */,
-				A99650211B387CC800D5A8E9 /* XMPPSystemInputActivityMonitor.m in Sources */,
 				A9B577CF1B6BC23400CFB474 /* LIALinkedInApplication.m in Sources */,
 				A9964FD91B387CC800D5A8E9 /* UIColor+JSQMessages.m in Sources */,
 				A99650781B387CC800D5A8E9 /* ContextFilterLogFormatter.m in Sources */,
