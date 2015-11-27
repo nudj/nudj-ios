@@ -1,0 +1,3 @@
+[submodule "Externals/LoggingPrint"]
+	path = Externals/LoggingPrint
+	url = git@github.com:JungleCandy/LoggingPrint.git
