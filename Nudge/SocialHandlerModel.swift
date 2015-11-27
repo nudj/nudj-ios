@@ -67,7 +67,7 @@ class SocialHandlerModel: NSObject {
             self.reqClient?.getAuthorizationCode({ code in
                 self.reqClient?.getAccessToken(code, success: {accessTokenData in
                     
-                    var accessToken = accessTokenData["access_token"] as! String
+                    let accessToken = accessTokenData["access_token"] as! String
                     print("Linkedin token -> \(accessToken)")
     
                     
@@ -112,7 +112,7 @@ class SocialHandlerModel: NSObject {
     func linkedInClientCongfig(viewController:UIViewController) -> LIALinkedInHttpClient{
         
         print("configuring linkedin with \(self.LinkedinPermission!)")
-        var application = LIALinkedInApplication.applicationWithRedirectURL("http://api.nudj.co", clientId:"77l67v0flc6leq", clientSecret:"PLOAmXuwsl1sSooc", state:"DCEEFWF45453sdffef424", grantedAccess:[self.LinkedinPermission!,"r_emailaddress"]) as! LIALinkedInApplication
+        let application = LIALinkedInApplication.applicationWithRedirectURL("http://api.nudj.co", clientId:"77l67v0flc6leq", clientSecret:"PLOAmXuwsl1sSooc", state:"DCEEFWF45453sdffef424", grantedAccess:[self.LinkedinPermission!,"r_emailaddress"]) as! LIALinkedInApplication
         
         return LIALinkedInHttpClient(forApplication: application, presentingViewController: viewController)
     }

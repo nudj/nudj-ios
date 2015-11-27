@@ -353,7 +353,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
     }
     @IBAction func deleteAction(sender: UIButton) {
             
-        var alert =  UIAlertView(title:"Delete job", message: "Are you sure you want to delete this job?", delegate: self, cancelButtonTitle: "NO",  otherButtonTitles: "YES")
+        let alert =  UIAlertView(title:"Delete job", message: "Are you sure you want to delete this job?", delegate: self, cancelButtonTitle: "NO",  otherButtonTitles: "YES")
         alert.show()
         
     }
@@ -368,7 +368,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
                 
             }, errorHandler: { error in
             
-                var alert = UIAlertView(title: "Error", message:"Error deleting this job", delegate: nil, cancelButtonTitle:"OK")
+                let alert = UIAlertView(title: "Error", message:"Error deleting this job", delegate: nil, cancelButtonTitle:"OK")
                 alert.show()
                 
             })

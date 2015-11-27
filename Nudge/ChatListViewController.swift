@@ -57,7 +57,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
             self.data.removeAll(keepCapacity: false)
             
             for (id, obj) in response["data"] {
-                var chat = ChatStructModel()
+                let chat = ChatStructModel()
                 self.data.append(chat.createData(obj))
                 self.data.sort({ $0.timeinRawForm!.compare($1.timeinRawForm!) == NSComparisonResult.OrderedDescending })
             }
@@ -91,7 +91,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell:ChatListTableViewCell = chatTable.dequeueReusableCellWithIdentifier(cellIdentifier) as! ChatListTableViewCell
+        let cell:ChatListTableViewCell = chatTable.dequeueReusableCellWithIdentifier(cellIdentifier) as! ChatListTableViewCell
         cell.loadData(self.data[indexPath.row])
         return cell
     }
