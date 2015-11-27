@@ -21,12 +21,13 @@ class SocialHandlerModel: NSObject {
     init(viewController:UIViewController){
         
         super.init()
+        // TODO: check that we mean LinkedIn here
         self.setLinkedInPermission(viewController)
         
     }
     
     func setLinkedInPermission(viewController:UIViewController){
-        
+        // TODO: check that we mean LinkedIn here
         API.sharedInstance.get("config/linkedin_permission", params: nil, closure: { response in
             
             print(response["data"].stringValue)
@@ -130,32 +131,22 @@ class SocialHandlerModel: NSObject {
             })
             
         }else{
-        
             let facebookReadPermissions = ["public_profile", "email", "user_friends", "user_about_me", "user_work_history", "user_location", "user_website"]
             let login = FBSDKLoginManager()
-            login.logInWithReadPermissions(facebookReadPermissions, handler:{ (result:FBSDKLoginManagerLoginResult!, error:NSError!) -> Void in
+            login.logInWithReadPermissions(facebookReadPermissions, fromViewController: nil, handler:{ (result:FBSDKLoginManagerLoginResult!, error:NSError!) -> Void in
                 
                 if(error != nil){
-                    
                     print("Facebook login error -> \(error)")
                     completionHandler(success:false)
-                    
                 } else if result.isCancelled {
-                    
                     print("Facebook login cancelled")
                     completionHandler(success:false)
-                    
-                    
                 } else {
-                    
                     print("Facebook access token -> \(result.token.tokenString)")
-                    
                     self.updateSocial("facebook", param: result.token.tokenString, completionHandler: { request in
-                        
                         completionHandler(success:request)
                     })
                 }
-                
             })
         }
     }
