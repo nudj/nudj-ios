@@ -189,8 +189,6 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
         case Type.Public:
             toggleFavourite()
             break;
-        default:
-            break;
         }
     }
 

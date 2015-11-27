@@ -19,14 +19,10 @@ class ChatListTableViewCell: UITableViewCell {
     
     func loadData(data:ChatStructModel) {
         
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
         if let job = data.job{
-        
             userName.text = data.participantName
             jobTitle.text = job["title"].string
             jobCompany.text = job["company"].string
-            
         }
         
         profilePicture.setCustomImage(UserModel.getDefaultUserImage())
@@ -40,14 +36,10 @@ class ChatListTableViewCell: UITableViewCell {
     func isRead(value:Bool){
         
         if (!value){
-            
-            self.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
-            
+            // TODO: magic numbers
+            self.backgroundColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 1.0)
         }else{
-            
             self.backgroundColor = UIColor.whiteColor();
         }
-        
     }
-    
 }

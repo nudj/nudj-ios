@@ -25,7 +25,7 @@ class TutorialView: UIImageView {
         self.image = UIImage(named:name)
         self.userInteractionEnabled = true
         
-        var gesture :UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:"stopTutorial");
+        let gesture :UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:"stopTutorial");
         self.addGestureRecognizer(gesture)
         
         window!.addSubview(self)

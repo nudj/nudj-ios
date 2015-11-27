@@ -210,7 +210,7 @@ class KSTokenField: UITextField {
    :returns: KSToken object
    */
    func addTokenWithTitle(title: String, tokenObject: AnyObject?) -> KSToken? {
-      var token = KSToken(title: title, object: tokenObject)
+      let token = KSToken(title: title, object: tokenObject)
       return addToken(token)
    }
    
@@ -223,7 +223,8 @@ class KSTokenField: UITextField {
    */
    func addToken(token: KSToken) -> KSToken? {
       if (token.title.isEmpty) {
-         NSException(name: "", reason: "Title is not valid String", userInfo: nil);
+        // TODO: localisation, also do we really want to raise an NSException here?
+         NSException(name: "", reason: "Title is not valid String", userInfo: nil).raise();
       }
       if (!tokens.contains(token)) {
          token.addTarget(self, action: "tokenTouchDown:", forControlEvents: .TouchDown)
@@ -418,7 +419,7 @@ class KSTokenField: UITextField {
          tokenPosition.y += (tokenHeight + _marginY!);
       }
       
-      var positionY = (lineNumber == 1 && tokens.count == 0) ? _selfFrame!.size.height: (tokenPosition.y + tokenHeight + _marginY!)
+      let positionY = (lineNumber == 1 && tokens.count == 0) ? _selfFrame!.size.height: (tokenPosition.y + tokenHeight + _marginY!)
 
 //      _scrollView.contentSize = CGSize(width: _scrollView.frame.width, height: positionY)
 
@@ -440,7 +441,6 @@ class KSTokenField: UITextField {
    */
    private func _layoutTokensHorizontally() -> CGPoint {
       let leftMargin = _leftViewRect().width
-      let rightMargin = _rightViewRect().width
       let tokenHeight = _font!.lineHeight + _paddingY!;
       
       var tokenPosition = CGPoint(x: _marginX!, y: _marginY!)
@@ -455,10 +455,6 @@ class KSTokenField: UITextField {
          }
       }
       
-      let offsetWidth = ((tokenPosition.x + _marginX! + _leftViewRect().width) > (frame.width - _minWidthForInput)) ? _minWidthForInput : 0
-//      _scrollView.contentSize = CGSize(width: max(_scrollView.frame.width, tokenPosition.x + offsetWidth), height: frame.height)
-//      scrollViewScrollToEnd()
-
       return CGPoint(x: min(tokenPosition.x + leftMargin, frame.width - _minWidthForInput), y: frame.height)
    }
    

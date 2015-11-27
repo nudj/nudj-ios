@@ -32,16 +32,16 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
     override func viewDidLoad() {
         
         self.selectCountryLabel.userInteractionEnabled = true
-        var tap = UITapGestureRecognizer(target:self, action:"showCountryList")
+        let tap = UITapGestureRecognizer(target:self, action:"showCountryList")
         self.selectCountryLabel.addGestureRecognizer(tap)
         
         self.countrySelectionView.delegate = self;
         
-        var policyTap = UITapGestureRecognizer(target:self, action:"showPolicy")
+        let policyTap = UITapGestureRecognizer(target:self, action:"showPolicy")
         self.privacyLink.addGestureRecognizer(policyTap)
         
         
-        var termstap = UITapGestureRecognizer(target:self, action:"showTerms")
+        let termstap = UITapGestureRecognizer(target:self, action:"showTerms")
         self.termsLiink.addGestureRecognizer(termstap)
         
     }
@@ -129,7 +129,7 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
     }
 
     func askForAddressBookPermission() {
-        var alert = UIAlertController(title: self.msgTitle, message: self.msgContent, preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: self.msgTitle, message: self.msgContent, preferredStyle: UIAlertControllerStyle.Alert)
 
         alert.addAction(UIAlertAction(title: "Not Now", style: UIAlertActionStyle.Cancel) {
             action -> Void in
@@ -170,8 +170,8 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
         if (authorizationStatus == ABAuthorizationStatus.NotDetermined)
         {
             NSLog("requesting access...")
-            var emptyDictionary: CFDictionaryRef?
-            var addressBook: ABAddressBook = ABAddressBookCreateWithOptions(emptyDictionary, nil).takeRetainedValue()
+            let emptyDictionary = [:]
+            let addressBook: ABAddressBook = ABAddressBookCreateWithOptions(emptyDictionary, nil).takeRetainedValue()
 
             ABAddressBookRequestAccessWithCompletion(addressBook, {success, error in
                 print(success, error)
@@ -249,8 +249,8 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
         self.countryCode.text = selection["dial_code"]
         self.code = selection["code"]!
         
-        var code = selection["dial_code"]!
-        var name = selection["name"]!
+        let code = selection["dial_code"]!
+        let name = selection["name"]!
         
         self.selectCountryLabel.text = "\(name) (\(code))"
     

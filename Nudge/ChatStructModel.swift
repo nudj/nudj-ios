@@ -31,7 +31,7 @@ class ChatStructModel: NSObject {
    
     func createData(json:JSON) -> ChatStructModel{
         
-        var chat = ChatStructModel()
+        let chat = ChatStructModel()
         
         chat.chatId = json["id"].stringValue
         chat.title = json["job"]["title"].stringValue
@@ -47,22 +47,17 @@ class ChatStructModel: NSObject {
         chat.timeinRawForm = date
         chat.time = date.timeAgoSinceNow()
         
-        if let outData = NSUserDefaults.standardUserDefaults().dataForKey(chat.chatId!){
-        
+        if let _ = NSUserDefaults.standardUserDefaults().dataForKey(chat.chatId!){
             self.retrieveStoredContent(chat)
-            
-        }else{
-            
+        } else {
             //A saved object hasnt been created for this chat because its an old one
             //So create one with these defaul properties
-            
-            var dict = ["isNew":false, "isRead":true]
-            var data = NSKeyedArchiver.archivedDataWithRootObject(dict)
+            let dict = ["isNew":false, "isRead":true]
+            let data = NSKeyedArchiver.archivedDataWithRootObject(dict)
             defaults.setObject(data, forKey:chat.chatId!)
             defaults.synchronize()
             
             self.retrieveStoredContent(chat)
-            
         }
         
         let user = json["participants"][0]["id"].intValue == appDelegate.user!.id ? json["participants"][1] : json["participants"][0]
@@ -76,25 +71,21 @@ class ChatStructModel: NSObject {
     
     
     func markAsRead(){
-    
         //Mark as read
         if(self.isRead != nil && self.isRead! == false){
-            
             self.isRead = true
-            var dict = ["isNew":false, "isRead":true]
-            var data = NSKeyedArchiver.archivedDataWithRootObject(dict)
+            let dict = ["isNew":false, "isRead":true]
+            let data = NSKeyedArchiver.archivedDataWithRootObject(dict)
             defaults.setObject(data, forKey:self.chatId!)
             defaults.synchronize()
             print("Marked as read")
-            
         }
-        
     }
     
     func retrieveStoredContent(chat:ChatStructModel){
         
         let outData = NSUserDefaults.standardUserDefaults().dataForKey(chat.chatId!)
-        var dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData!) as! NSDictionary
+        let dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData!) as! NSDictionary
         
         if dict.count > 0 {
             

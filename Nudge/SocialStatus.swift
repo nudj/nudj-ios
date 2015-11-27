@@ -40,7 +40,7 @@ class SocialStatus: UIImageView {
         self.currentStatus = status
         self.statusIdentifier = statusID
         
-        var tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
         self.userInteractionEnabled = true
         self.addGestureRecognizer(tapGestureRecognizer)
         

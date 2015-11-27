@@ -176,8 +176,6 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
             MixPanelHandler.sendData("Notification_SmsButtonClicked")
              self.createSms(cell.notificationData!.senderPhoneNumber)
             break;
-        default:
-            break;
         }
     }
     
@@ -267,7 +265,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
     func gotTochatAction(cell:NotificationCell){
         let chatData = cell.notificationData!
         
-        var chatView:ChatViewController = ChatViewController()
+        let chatView:ChatViewController = ChatViewController()
         chatView.chatID = chatData.chatId;
         chatView.participants =  chatData.senderName
         chatView.participantsID = chatData.senderId
@@ -275,7 +273,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
         chatView.jobID = chatData.jobID
         
         if let image = cell.profileImage.image {
-            var imageData = UIImagePNGRepresentation(image)
+            let imageData = UIImagePNGRepresentation(image)
             let base64String = imageData?.base64EncodedStringWithOptions([])
             chatView.otherUserBase64Image = base64String
         }

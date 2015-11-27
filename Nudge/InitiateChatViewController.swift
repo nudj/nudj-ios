@@ -42,7 +42,7 @@ class InitiateChatViewController: UIViewController, CreatePopupViewDelegate {
     @IBAction func sendAction(sender: UIBarButtonItem) {
         
         if(!textview.text.isEmpty){
-            var params = ["job_id":self.jobid!,"user_id":self.userid!,"notification_id":self.notificationid!,"message":textview.text]
+            let params = ["job_id":self.jobid!,"user_id":self.userid!,"notification_id":self.notificationid!,"message":textview.text]
             
             print("params ->\(params)")
             API.sharedInstance.put("nudge/chat", params:params, closure: { json in

@@ -40,7 +40,7 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var profileTap = UITapGestureRecognizer(target:self, action:"goToProfile")
+        let profileTap = UITapGestureRecognizer(target:self, action:"goToProfile")
         self.authorName.addGestureRecognizer(profileTap)
         
         tutorial.delegate = self
@@ -54,17 +54,15 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
         MixPanelHandler.sendData("JobDetailsOpened")
         self.tabBarController?.tabBar.hidden = true
         
-        if let views = self.view.subviews as? [UIView] {
-            for subView in views {
-                subView.hidden = true;
-            }
-            
-            spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-            spinner.startAnimating()
-            spinner.center = self.view.center
-            spinner.color = appDelegate.appColor
-            self.view.addSubview(spinner)
+        for subView in self.view.subviews {
+            subView.hidden = true;
         }
+        
+        spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        spinner.startAnimating()
+        spinner.center = self.view.center
+        spinner.color = appDelegate.appColor
+        self.view.addSubview(spinner)
         self.requestData()
     }
     

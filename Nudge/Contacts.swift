@@ -98,7 +98,7 @@ class Contacts {
             self.createAddressBook()
         }
 
-        var newContact:ABRecordRef! = ABPersonCreate().takeRetainedValue()
+        let newContact:ABRecordRef! = ABPersonCreate().takeRetainedValue()
 
         var error: Unmanaged<CFErrorRef>? = nil
 
@@ -187,7 +187,7 @@ class Contacts {
             var number = "";
             var numbers = [String]();
             let numbersRef: ABMultiValueRef = ABRecordCopyValue(person, kABPersonPhoneProperty).takeRetainedValue()
-            var nameRef = ABRecordCopyCompositeName(person)
+            let nameRef = ABRecordCopyCompositeName(person)
 
             if (nameRef == nil) {
                 continue

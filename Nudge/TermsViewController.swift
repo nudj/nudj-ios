@@ -28,7 +28,7 @@ class TermsViewController: UIViewController {
             self.title = "Terms & Condition"
         }
         
-        var requestObj:NSURLRequest  = NSURLRequest(URL: url!)
+        let requestObj:NSURLRequest  = NSURLRequest(URL: url!)
         self.webview.loadRequest(requestObj)
     }
     

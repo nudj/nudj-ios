@@ -75,37 +75,35 @@ class NotificationCell: UITableViewCell {
         
         switch(data.notificationType!){
         case .AskToRefer:
-             self.callButton.hidden = true
-             self.smsButton.setTitle("Details", forState: UIControlState.Normal)
-             self.refLabel.hidden = false
-             self.refAmount.hidden = false
-             
-         break;
+            self.callButton.hidden = true
+            self.smsButton.setTitle("Details", forState: UIControlState.Normal)
+            self.refLabel.hidden = false
+            self.refAmount.hidden = false
+            
+            break;
         case .AppApplication:
             self.callButton.hidden = true
             self.smsButton.setTitle("Message", forState: UIControlState.Normal)
             self.refLabel.hidden = false
             self.refAmount.hidden = false
-         break;
+            break;
         case .WebApplication:
-         break;
+            break;
         case .MatchingContact:
             self.callButton.hidden = true
             self.smsButton.setTitle("NUDJ", forState: UIControlState.Normal)
             self.smsButton.backgroundColor = appDelegate.appColor
             self.refLabel.hidden = false
             self.refAmount.hidden = false
-          break;
+            break;
         case .AppApplicationWithNoReferral:
             self.callButton.hidden = true
             self.smsButton.setTitle("Message", forState: UIControlState.Normal)
             self.refLabel.hidden = false
             self.refAmount.hidden = false
-          break;
+            break;
         case .WebApplicationWithNoReferral:
-          break;
-        default:
-         break;
+            break;
         }
         
     }
