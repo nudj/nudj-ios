@@ -8,7 +8,6 @@
 
 import Foundation
 import SwiftyJSON
-import Alamofire
 import AddressBook
 
 class UserModel: CustomStringConvertible {
@@ -128,7 +127,7 @@ class UserModel: CustomStringConvertible {
 
         // TODO: API strings
         let url = "users/\(id!)/favourite"
-        let method = (favourite ?? false) ? Method.DELETE : Method.PUT;
+        let method = (favourite ?? false) ? API.Method.DELETE : API.Method.PUT;
 
         API.sharedInstance.request(method, path: url, params: nil, closure: closure, errorHandler: errorHandler)
     }
@@ -140,7 +139,7 @@ class UserModel: CustomStringConvertible {
             ? "me"
             : "\(id)"
         // TODO: API strings
-        API.sharedInstance.request(Alamofire.Method.GET, path: "users/\(userId)?params=\(userFields)", params: params, closure: closure!, errorHandler: errorHandler)
+        API.sharedInstance.request(API.Method.GET, path: "users/\(userId)?params=\(userFields)", params: params, closure: closure!, errorHandler: errorHandler)
     }
 
     static func update(fields: [String: AnyObject], closure: ((JSON) -> ())? = nil, errorHandler: ErrorHandler? = nil) {

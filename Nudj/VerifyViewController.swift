@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import SwiftyJSON
-import Alamofire
 
 class VerifyViewController: BaseController {
 
@@ -104,7 +103,7 @@ class VerifyViewController: BaseController {
         self.hideCodeField()
 
         // TODO: API strings
-        self.apiRequest(Alamofire.Method.PUT, path: "users/verify", params: ["phone": phoneNumber, "verification": code, "country_code": "GB"], closure: {
+        self.apiRequest(API.Method.PUT, path: "users/verify", params: ["phone": phoneNumber, "verification": code, "country_code": "GB"], closure: {
             (json: JSON) in
             NSLog(json.stringValue)
 

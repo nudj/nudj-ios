@@ -10,8 +10,8 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-
 class API {
+    typealias Method = Alamofire.Method
 
     // Production
     // TODO: API strings
@@ -22,7 +22,7 @@ class API {
     static var sharedInstance = API();
 
     // Standard Call without specifying token
-    func request(method: Alamofire.Method, path: String, params: [String: AnyObject]? = nil, closure: (JSON) -> (), errorHandler: ((ErrorType) -> Void)? ) {
+    func request(method: Method, path: String, params: [String: AnyObject]? = nil, closure: (JSON) -> (), errorHandler: ((ErrorType) -> Void)? ) {
         self.request(method, path: path, params: params, closure: closure, token: nil, errorHandler: errorHandler)
     }
 
@@ -41,7 +41,7 @@ class API {
 
     // MARK: General request
 
-    func request(method: Alamofire.Method, path: String, params: [String: AnyObject]? = nil, closure: (JSON) -> (), token: String?, errorHandler: ((ErrorType) -> Void)? ) {
+    func request(method: Method, path: String, params: [String: AnyObject]? = nil, closure: (JSON) -> (), token: String?, errorHandler: ((ErrorType) -> Void)? ) {
         let manager = Manager.sharedInstance
         manager.session.configuration.HTTPShouldSetCookies = false
         manager.session.configuration.HTTPMaximumConnectionsPerHost = 8
@@ -64,7 +64,7 @@ class API {
             ]
         }
         
-       let encoding = (method != Alamofire.Method.GET) ? Alamofire.ParameterEncoding.JSON : Alamofire.ParameterEncoding.URL
+       let encoding = (method != Method.GET) ? Alamofire.ParameterEncoding.JSON : Alamofire.ParameterEncoding.URL
         
         Alamofire.request(method, (baseURL + path) as String, parameters: params, encoding: encoding, headers: headers).responseJSON {
             (request, response, result) in

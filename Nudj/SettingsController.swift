@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 import SwiftyJSON
 
 class SettingsController: UIViewController, UITableViewDataSource, UITableViewDelegate, SocialStatusDelegate, UIAlertViewDelegate {
@@ -62,7 +61,7 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
         
         self.tabBarController?.tabBar.hidden = false
 
-        BaseController().apiRequest(Alamofire.Method.GET, path: "users/me?params=user.status,user.facebook,user.linkedin", closure: { json in
+        BaseController().apiRequest(API.Method.GET, path: "users/me?params=user.status,user.facebook,user.linkedin", closure: { json in
             loggingPrint(json)
             if (json["data"]["status"] != nil && json["data"]["status"].stringValue != "") {
                 self.statusButton.setTitleByIndex(json["data"]["status"].intValue)

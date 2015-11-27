@@ -8,7 +8,6 @@
 
 import UIKit
 import Foundation
-import Alamofire
 import SwiftyJSON
 import FBSDKLoginKit
 
@@ -172,7 +171,7 @@ class SocialHandlerModel: NSObject {
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
-        API.sharedInstance.request(Alamofire.Method.DELETE, path: "connect/\(path)", params: nil, closure: { json in
+        API.sharedInstance.request(API.Method.DELETE, path: "connect/\(path)", params: nil, closure: { json in
             
             loggingPrint("\(path) token deleted successfully -> \(json)")
             completionHandler(success:true)

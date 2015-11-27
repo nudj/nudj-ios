@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import Alamofire
 import SwiftyJSON
 
 private struct UnknownError : ErrorType {}
@@ -42,7 +41,7 @@ class BaseController: UIViewController {
         self.showSimpleAlert("Unknown Error Occured.")
     }
 
-    func apiRequest(method: Alamofire.Method, path: String, params: [String: AnyObject]? = nil, closure: ((JSON) -> ())? = nil, errorHandler: (ErrorType -> Void)? = nil ) {
+    func apiRequest(method: API.Method, path: String, params: [String: AnyObject]? = nil, closure: ((JSON) -> ())? = nil, errorHandler: (ErrorType -> Void)? = nil ) {
         // TODO: remove this singleton nastiness
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
         let token = API.sharedInstance.token ?? ""

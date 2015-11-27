@@ -9,7 +9,6 @@
 import UIKit
 import Foundation
 import SwiftyJSON
-import Alamofire
 
 class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAlertViewDelegate, TutorialViewDelegate {
     
@@ -182,7 +181,7 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
             }
         } else if(sender.title == "Saved") {
             MixPanelHandler.sendData("SavedJobButtonClicked")
-            API.sharedInstance.request(Alamofire.Method.DELETE, path: "jobs/\(self.jobID!)/like", params: nil, closure: { 
+            API.sharedInstance.request(API.Method.DELETE, path: "jobs/\(self.jobID!)/like", params: nil, closure: { 
                 json in
                 loggingPrint("un save \(json)")
                 self.navigationItem.rightBarButtonItem?.title = "Save"

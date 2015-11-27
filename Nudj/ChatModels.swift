@@ -8,7 +8,6 @@
 
 import Foundation
 import CoreData
-import Alamofire
 import SwiftyJSON
 
 protocol ChatModelsDelegate {
@@ -361,7 +360,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     
     func requestRooms(){
         let params = [String: AnyObject]()
-        API.sharedInstance.request(Alamofire.Method.GET, path: "chat/all?&limit=100", params: params, closure:{
+        API.sharedInstance.request(API.Method.GET, path: "chat/all?&limit=100", params: params, closure:{
             (json: JSON) in
             if (json["status"].boolValue != true && json["data"] == nil) {
                 // TODO: better error handling
