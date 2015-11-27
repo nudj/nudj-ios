@@ -2367,9 +2367,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EB0926C91A8DE4CB00E1D958 /* Nudge */ = {
+		EB0926C91A8DE4CB00E1D958 /* Nudj */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EB0926EB1A8DE4CB00E1D958 /* Build configuration list for PBXNativeTarget "Nudge" */;
+			buildConfigurationList = EB0926EB1A8DE4CB00E1D958 /* Build configuration list for PBXNativeTarget "Nudj" */;
 			buildPhases = (
 				30F2C7085A8ADC56610FB4A5 /* Check Pods Manifest.lock */,
 				EB0926C61A8DE4CB00E1D958 /* Sources */,
@@ -2383,14 +2383,14 @@
 			);
 			dependencies = (
 			);
-			name = Nudge;
+			name = Nudj;
 			productName = Nudge;
 			productReference = EB0926CA1A8DE4CB00E1D958 /* Nudj.temp_caseinsensitive_rename.app */;
 			productType = "com.apple.product-type.application";
 		};
-		EB0926E01A8DE4CB00E1D958 /* NudgeTests */ = {
+		EB0926E01A8DE4CB00E1D958 /* NudjTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EB0926EE1A8DE4CB00E1D958 /* Build configuration list for PBXNativeTarget "NudgeTests" */;
+			buildConfigurationList = EB0926EE1A8DE4CB00E1D958 /* Build configuration list for PBXNativeTarget "NudjTests" */;
 			buildPhases = (
 				EB0926DD1A8DE4CB00E1D958 /* Sources */,
 				EB0926DE1A8DE4CB00E1D958 /* Frameworks */,
@@ -2401,7 +2401,7 @@
 			dependencies = (
 				EB0926E31A8DE4CB00E1D958 /* PBXTargetDependency */,
 			);
-			name = NudgeTests;
+			name = NudjTests;
 			productName = NudgeTests;
 			productReference = EB0926E11A8DE4CB00E1D958 /* nudgeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -2440,8 +2440,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EB0926C91A8DE4CB00E1D958 /* Nudge */,
-				EB0926E01A8DE4CB00E1D958 /* NudgeTests */,
+				EB0926C91A8DE4CB00E1D958 /* Nudj */,
+				EB0926E01A8DE4CB00E1D958 /* NudjTests */,
 			);
 		};
 /* End PBXProject section */
@@ -2839,7 +2839,7 @@
 /* Begin PBXTargetDependency section */
 		EB0926E31A8DE4CB00E1D958 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EB0926C91A8DE4CB00E1D958 /* Nudge */;
+			target = EB0926C91A8DE4CB00E1D958 /* Nudj */;
 			targetProxy = EB0926E21A8DE4CB00E1D958 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -3061,7 +3061,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EB0926EB1A8DE4CB00E1D958 /* Build configuration list for PBXNativeTarget "Nudge" */ = {
+		EB0926EB1A8DE4CB00E1D958 /* Build configuration list for PBXNativeTarget "Nudj" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EB0926EC1A8DE4CB00E1D958 /* Debug */,
@@ -3070,7 +3070,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EB0926EE1A8DE4CB00E1D958 /* Build configuration list for PBXNativeTarget "NudgeTests" */ = {
+		EB0926EE1A8DE4CB00E1D958 /* Build configuration list for PBXNativeTarget "NudjTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EB0926EF1A8DE4CB00E1D958 /* Debug */,
