@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -2412,9 +2412,10 @@
 		EB0926C21A8DE4CB00E1D958 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = Nudj;
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0630;
-				ORGANIZATIONNAME = "Lachezar Todorov";
+				ORGANIZATIONNAME = "Nudge I.T. Limited";
 				TargetAttributes = {
 					EB0926C91A8DE4CB00E1D958 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -2427,7 +2428,7 @@
 				};
 			};
 			buildConfigurationList = EB0926C51A8DE4CB00E1D958 /* Build configuration list for PBXProject "Nudge" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
