@@ -354,7 +354,7 @@
 		A903BAEC1B581C4F00D69863 /* NZLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NZLabel.h; sourceTree = "<group>"; };
 		A903BAED1B581C4F00D69863 /* NZLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NZLabel.m; sourceTree = "<group>"; };
 		A9191EA51B6A402E000F9168 /* SocialStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialStatus.swift; sourceTree = "<group>"; };
-		A9191EA71B6A864E000F9168 /* linkedin-sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "linkedin-sdk.framework"; sourceTree = "<group>"; };
+		A9191EA71B6A864E000F9168 /* linkedin-sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "linkedin-sdk.framework"; path = "Externals/LinkedIn/linkedin-sdk.framework"; sourceTree = "<group>"; };
 		A92324C81B7BAE77009C1F0C /* no_chats@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_chats@2x.png"; sourceTree = "<group>"; };
 		A92324C91B7BAE77009C1F0C /* no_contacts@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_contacts@2x.png"; sourceTree = "<group>"; };
 		A92324CA1B7BAE77009C1F0C /* no_favourite_contacts@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_favourite_contacts@2x.png"; sourceTree = "<group>"; };
@@ -2133,7 +2133,7 @@
 			isa = PBXGroup;
 			children = (
 				EB0926CC1A8DE4CB00E1D958 /* Nudj */,
-				EBF1861A1B21D9D500D8D80D /* Libraries */,
+				EBF1861A1B21D9D500D8D80D /* Externals */,
 				EB0926E41A8DE4CB00E1D958 /* NudjTests */,
 				68263C45D8985A9D3857F073 /* Pods */,
 				B24DF65843B49C77F100654A /* Frameworks */,
@@ -2316,18 +2316,18 @@
 			name = NoContactsPermisson;
 			sourceTree = "<group>";
 		};
-		EBF1861A1B21D9D500D8D80D /* Libraries */ = {
+		EBF1861A1B21D9D500D8D80D /* Externals */ = {
 			isa = PBXGroup;
 			children = (
-				A9B577C31B6BC23400CFB474 /* IOSLinkedInAPI */,
-				A903BAEB1B581C4F00D69863 /* NZLabel */,
 				A9F3331F1B41759A00F0D17B /* AnimStep */,
+				A9B577C31B6BC23400CFB474 /* IOSLinkedInAPI */,
 				A9964E261B387CC700D5A8E9 /* JSQMessagesViewController */,
 				A9964E841B387CC800D5A8E9 /* JSQSystemSoundPlayer */,
-				A9964E871B387CC800D5A8E9 /* XMPPFramework */,
 				EBF1861B1B21D9DE00D8D80D /* KSTokenView */,
+				A903BAEB1B581C4F00D69863 /* NZLabel */,
+				A9964E871B387CC800D5A8E9 /* XMPPFramework */,
 			);
-			name = Libraries;
+			path = Externals;
 			sourceTree = "<group>";
 		};
 		EBF1861B1B21D9DE00D8D80D /* KSTokenView */ = {
@@ -2338,7 +2338,7 @@
 				EBF1861E1B21DACA00D8D80D /* KSTokenView.swift */,
 				EBF1861F1B21DACA00D8D80D /* KSUtils.swift */,
 			);
-			name = KSTokenView;
+			path = KSTokenView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2941,7 +2941,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/XMPPFramework/Vendor/libidn",
+					"$(PROJECT_DIR)/Externals/XMPPFramework/Vendor/libidn",
 					"$(SDKROOT)/usr/include/libxml2",
 					/usr/include/libxml2,
 				);
@@ -2974,7 +2974,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/XMPPFramework/Vendor/libidn",
+					"$(PROJECT_DIR)/Externals/XMPPFramework/Vendor/libidn",
 					"$(SDKROOT)/usr/include/libxml2",
 					/usr/include/libxml2,
 				);
