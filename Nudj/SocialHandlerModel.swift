@@ -30,7 +30,7 @@ class SocialHandlerModel: NSObject {
         // TODO: check that we mean LinkedIn here
         API.sharedInstance.get("config/linkedin_permission", params: nil, closure: { response in
             
-            print(response["data"].stringValue)
+            loggingPrint(response["data"].stringValue)
             self.LinkedinPermission = response["data"].stringValue
             
             if self.LinkedinPermission!.isEmpty {
@@ -69,7 +69,7 @@ class SocialHandlerModel: NSObject {
                 self.reqClient?.getAccessToken(code, success: {accessTokenData in
                     
                     let accessToken = accessTokenData["access_token"] as! String
-                    print("Linkedin token -> \(accessToken)")
+                    loggingPrint("Linkedin token -> \(accessToken)")
     
                     
                     self.updateSocial("linkedin", param: accessToken, completionHandler: { request in
@@ -81,18 +81,18 @@ class SocialHandlerModel: NSObject {
                     }, failure: { error in
                         
                         completionHandler(success:false)
-                        print("Quering accessToken failed \(error)");
+                        loggingPrint("Quering accessToken failed \(error)");
                 })
                 
                 }, cancel: { cancel in
                     
                     completionHandler(success:false)
-                    print("Authorization was cancelled by user")
+                    loggingPrint("Authorization was cancelled by user")
                     
                 }, failure: { error in
                     
                     completionHandler(success:false)
-                    print("Authorization failed \(error)");
+                    loggingPrint("Authorization failed \(error)");
             })
             
         }
@@ -103,16 +103,16 @@ class SocialHandlerModel: NSObject {
     func requestMeWithToken(accessToken:String){
         
         self.reqClient?.GET("https://api.linkedin.com/v1/people/~?oauth2_access_token=\(accessToken)&format=json", parameters: nil, success: {result in
-            print("current user \(result)");
+            loggingPrint("current user \(result)");
             }, failure: { error in
-                print("failed to fetch current user \(error)");
+                loggingPrint("failed to fetch current user \(error)");
         })
         
     }
     
     func linkedInClientCongfig(viewController:UIViewController) -> LIALinkedInHttpClient{
         
-        print("configuring linkedin with \(self.LinkedinPermission!)")
+        loggingPrint("configuring linkedin with \(self.LinkedinPermission!)")
         let application = LIALinkedInApplication.applicationWithRedirectURL("http://api.nudj.co", clientId:"77l67v0flc6leq", clientSecret:"PLOAmXuwsl1sSooc", state:"DCEEFWF45453sdffef424", grantedAccess:[self.LinkedinPermission!,"r_emailaddress"]) as! LIALinkedInApplication
         
         return LIALinkedInHttpClient(forApplication: application, presentingViewController: viewController)
@@ -136,13 +136,13 @@ class SocialHandlerModel: NSObject {
             login.logInWithReadPermissions(facebookReadPermissions, fromViewController: nil, handler:{ (result:FBSDKLoginManagerLoginResult!, error:NSError!) -> Void in
                 
                 if(error != nil){
-                    print("Facebook login error -> \(error)")
+                    loggingPrint("Facebook login error -> \(error)")
                     completionHandler(success:false)
                 } else if result.isCancelled {
-                    print("Facebook login cancelled")
+                    loggingPrint("Facebook login cancelled")
                     completionHandler(success:false)
                 } else {
-                    print("Facebook access token -> \(result.token.tokenString)")
+                    loggingPrint("Facebook access token -> \(result.token.tokenString)")
                     self.updateSocial("facebook", param: result.token.tokenString, completionHandler: { request in
                         completionHandler(success:request)
                     })
@@ -157,12 +157,12 @@ class SocialHandlerModel: NSObject {
      
         API.sharedInstance.put("connect/\(path)", params:["token":param], closure: { json in
             
-            print("\(path) token stored successfully -> \(json)")
+            loggingPrint("\(path) token stored successfully -> \(json)")
             completionHandler(success:true)
             
             }, errorHandler: { error in
                 
-            print("error in storing \(path) token -> \(error)")
+            loggingPrint("error in storing \(path) token -> \(error)")
             completionHandler(success:false)
         })
         
@@ -174,12 +174,12 @@ class SocialHandlerModel: NSObject {
         
         API.sharedInstance.request(Alamofire.Method.DELETE, path: "connect/\(path)", params: nil, closure: { json in
             
-            print("\(path) token deleted successfully -> \(json)")
+            loggingPrint("\(path) token deleted successfully -> \(json)")
             completionHandler(success:true)
 
         }, token: appDelegate.user?.token, errorHandler: { error in
             
-            print("error in deleting \(path) token -> \(error)")
+            loggingPrint("error in deleting \(path) token -> \(error)")
             completionHandler(success:false)
         
         });

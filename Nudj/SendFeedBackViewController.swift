@@ -37,7 +37,7 @@ class SendFeedBackViewController: UIViewController,UITextViewDelegate {
                 self.navigationController?.popViewControllerAnimated(true)
             }, errorHandler: { error in
                 // TODO: eror handling    
-                print(error)
+                loggingPrint(error)
             })
         } else {
             let alert:UIAlertView = UIAlertView(title: "No Text!", message: "Please add a comment", delegate: nil, cancelButtonTitle: "OK")

@@ -62,13 +62,13 @@ class SavedPostedJobs: BaseController, DataProviderProtocol {
         
         let url = "jobs/\(self.requestParams!)?params=job.title,job.salary,job.bonus,job.user,job.location,job.company,user.name,user.image&sizes=user.profile&page=" + String(page) + "&limit=" + String(size)
         
-        print("jobs request \(url)")
+        loggingPrint("jobs request \(url)")
         self.apiRequest(.GET, path: url, closure: listener)
     }
     
     func deleteData(id: Int, listener: (JSON) -> ()) {
         
-        print("delete id\(id)")
+        loggingPrint("delete id\(id)")
         MixPanelHandler.sendData("JobDeleted")
         
         self.apiRequest(.DELETE, path: "jobs/\(id)", closure: listener)
@@ -96,11 +96,11 @@ class SavedPostedJobs: BaseController, DataProviderProtocol {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let askView = segue.destinationViewController as? AskReferralViewController {
-            print(selectedJobData)
+            loggingPrint(selectedJobData)
             askView.jobId = Int(selectedJobData!["id"].stringValue)
         }else if let detailsView = segue.destinationViewController as? JobDetailedViewController {
             detailsView.jobID = selectedJobData!["id"].stringValue
-            print(selectedJobData)
+            loggingPrint(selectedJobData)
         }
         
     }

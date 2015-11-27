@@ -73,7 +73,7 @@ class ChatRoomModel: NSObject{
                     messageObject.addObject(JSQMessage(senderId: sendersId, senderDisplayName: sendersId, date: timestamp, text: message.body()))
                 } else {
                     // TODO: better error handling
-                    print("Error getting the Sender or Timestamp of this message")
+                    loggingPrint("Error getting the Sender or Timestamp of this message")
                 }
             }
             
@@ -81,7 +81,7 @@ class ChatRoomModel: NSObject{
         }
         catch let error as NSError {
             // TODO: handle the error
-            print("Error fetching stored chat: \(error)")
+            loggingPrint("Error fetching stored chat: \(error)")
             return []
         }
     }
@@ -109,7 +109,7 @@ class ChatRoomModel: NSObject{
         }
         catch let error as NSError {
             // TODO: handle the error
-            print("Error fetching stored chat: \(error)")
+            loggingPrint("Error fetching stored chat: \(error)")
             return
         }
         
@@ -118,10 +118,10 @@ class ChatRoomModel: NSObject{
         }
         catch let error as NSError {
             // TODO: handle the error
-            print("Error saving core data: \(error)")
+            loggingPrint("Error saving core data: \(error)")
         }
 
-        print("core storage deleted for id:\(roomID!)")
+        loggingPrint("core storage deleted for id:\(roomID!)")
     }
     
     func teminateSession(){
@@ -135,7 +135,7 @@ class ChatRoomModel: NSObject{
         /*self.teminateSession()
         
         var roomJID = XMPPJID.jidWithString(roomName);
-        print("did generate room jid -> \(roomJID)")
+        loggingPrint("did generate room jid -> \(roomJID)")
         
         if(roomJID != nil && self.xmppRoomStorage != nil){
             

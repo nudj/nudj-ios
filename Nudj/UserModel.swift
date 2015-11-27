@@ -101,7 +101,7 @@ class UserModel: CustomStringConvertible {
 
             default:
                 // TODO: better error handling
-                print("!!!! Unknown user key: " + key)
+                loggingPrint("!!!! Unknown user key: " + key)
             }
         }
     }
@@ -122,7 +122,7 @@ class UserModel: CustomStringConvertible {
 
     func toggleFavourite(closure: (JSON) -> (), errorHandler:ErrorHandler? = nil) {
         if (id == nil) {
-            print("Invalid User ID!")
+            loggingPrint("Invalid User ID!")
             return;
         }
 

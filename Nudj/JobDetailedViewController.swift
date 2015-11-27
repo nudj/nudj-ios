@@ -75,11 +75,11 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
         API.sharedInstance.get("jobs/\(self.jobID!)?params=job.title,job.company,job.liked,job.salary,job.active,job.description,job.skills,job.bonus,job.user,job.location,user.image,user.name,user.contact", params: nil, closure: { 
             json in
             self.populateView(json["data"])
-            print(json)
+            loggingPrint(json)
             
             }) { 
                 error in
-                print("Error -> \(error)")
+                loggingPrint("Error -> \(error)")
                 self.navigationController?.popViewControllerAnimated(true)
         }
     }
@@ -173,22 +173,22 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
         if (sender.title == "Save") {
             MixPanelHandler.sendData("SaveJobButtonClicked")
             API.sharedInstance.put("jobs/\(self.jobID!)/like", params: nil, closure: { json in
-                print("Job saved \(json)")
+                loggingPrint("Job saved \(json)")
                 self.navigationItem.rightBarButtonItem?.title = "Saved"
                 
                 }) { 
                     error in
-                    print("Error -> \(error)")
+                    loggingPrint("Error -> \(error)")
             }
         } else if(sender.title == "Saved") {
             MixPanelHandler.sendData("SavedJobButtonClicked")
             API.sharedInstance.request(Alamofire.Method.DELETE, path: "jobs/\(self.jobID!)/like", params: nil, closure: { 
                 json in
-                print("un save \(json)")
+                loggingPrint("un save \(json)")
                 self.navigationItem.rightBarButtonItem?.title = "Save"
                 }, errorHandler: { 
                     error in
-                    print("Error -> \(error)")
+                    loggingPrint("Error -> \(error)")
             })
         } else if (sender.title == "Edit"){
             
@@ -265,7 +265,7 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
             }) { 
                 error in
                 // TODO: better error handling
-                print("Error -> \(error)")
+                loggingPrint("Error -> \(error)")
         }
     }
     

@@ -103,18 +103,18 @@ class API {
             
             // Log out user and show Login screen
             if (code == 10401) {
-                print("Unauthorized -> Logout!")
+                loggingPrint("Unauthorized -> Logout!")
                 self.performLogout()
                 return true
             } else if (code == 11101) {
-                print("Invalid Token -> Logout!")
+                loggingPrint("Invalid Token -> Logout!")
                 self.performLogout()
             }
             break
             
         case .Failure(_, let error):
             // TODO: improve error handling here
-            print("[API Error] rawResponse: \(rawResponse) Error: \(error)")
+            loggingPrint("[API Error] rawResponse: \(rawResponse) Error: \(error)")
             break
         }
 

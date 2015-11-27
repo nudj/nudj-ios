@@ -25,7 +25,7 @@ class Contacts {
         var err : Unmanaged<CFError>? = nil
         let book : ABAddressBook? = ABAddressBookCreateWithOptions(nil, &err).takeRetainedValue()
         if book == nil {
-            print(err)
+            loggingPrint(err)
             self.book = nil
             return false
         }
@@ -71,19 +71,19 @@ class Contacts {
     func isAuthorized() -> Bool {
         let status = ABAddressBookGetAuthorizationStatus()
 
-        print("Authorization Status: ")
+        loggingPrint("Authorization Status: ")
         switch status {
         case .Authorized:
-            print("Authorized")
+            loggingPrint("Authorized")
 
         case .NotDetermined:
-            print("NotDetermined")
+            loggingPrint("NotDetermined")
 
         case .Restricted:
-            print("Restricted")
+            loggingPrint("Restricted")
 
         case .Denied:
-            print("Denied")
+            loggingPrint("Denied")
         }
 
         return status == .Authorized
@@ -168,7 +168,7 @@ class Contacts {
 
     func sync(closure:((Bool)->())? = nil) {
         if (!self.isAuthorized()) {
-            print("not authorized")
+            loggingPrint("not authorized")
             determineStatus()
             return
         }
@@ -241,7 +241,7 @@ class Contacts {
         }
 
         UserModel.update(["contacts": contacts], closure: {result in
-            print(result)
+            loggingPrint(result)
             closure?(true)
             }, errorHandler: {result in
                 closure?(false)

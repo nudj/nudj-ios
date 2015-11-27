@@ -110,7 +110,7 @@ class NotificationCell: UITableViewCell {
     
     func readStatus(read:Bool){
         
-        print("read status -> \(read)")
+        loggingPrint("read status -> \(read)")
         self.isRead = read
         
         if(read == false){
@@ -141,15 +141,15 @@ class NotificationCell: UITableViewCell {
 
     func markAsRead(){
         
-        print("mark as read url: notifications/\(self.notificationID!)/read")
+        loggingPrint("mark as read url: notifications/\(self.notificationID!)/read")
         
         API.sharedInstance.put("notifications/\(self.notificationID!)/read", params: nil, closure: { json in
             
-            print("success \(json)")
+            loggingPrint("success \(json)")
             
         }) { error in
             
-            print("error \(error)")
+            loggingPrint("error \(error)")
         }
         
     }

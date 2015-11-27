@@ -258,9 +258,9 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
                 //self.performSegueWithIdentifier("ShowPopup", sender: self)
                 
                 
-                print(result)
+                loggingPrint(result)
                 }) { error in
-                    print(error)
+                    loggingPrint(error)
             }
         } else {
             // TODO: API strings
@@ -276,9 +276,9 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
                 
                 //self.performSegueWithIdentifier("ShowPopup", sender: self)
                 
-                print(result)
+                loggingPrint(result)
                 }) { error in
-                    print(error)
+                    loggingPrint(error)
             }
         }
     }

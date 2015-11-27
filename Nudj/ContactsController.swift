@@ -200,7 +200,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
                 let contact = section[indexPath.row]
                 cell.loadData(contact)
             } else {
-                print("Strange index in contacts table: ", indexPath)
+                loggingPrint("Strange index in contacts table: ", indexPath)
             }
         }
         return cell
@@ -250,7 +250,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         // TODO: localisation
         if buttonIndex == 0{
             // TODO: suspicious
-            print("Dismiss pop up")
+            loggingPrint("Dismiss pop up")
         } else {
             MixPanelHandler.sendData("InviteUserAction")
             let alertview  = UIAlertView(title: "Invite", message: "", delegate: self, cancelButtonTitle: "OK")

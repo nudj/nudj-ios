@@ -53,7 +53,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
             self.messages = chatRoom.retrieveStoredChats()
             if chatRoom.xmppRoom != nil {
                 // TODO: error handling
-                print("isChatRoomConnected:\(chatRoom.xmppRoom!.isJoined)");
+                loggingPrint("isChatRoomConnected:\(chatRoom.xmppRoom!.isJoined)");
             } else {
                 self.dontUpdateButton = true
                 self.inputToolbar?.contentView?.rightBarButtonItem?.enabled = false
@@ -131,16 +131,16 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
                     sendOnce = false
                     
                     chatRoom.xmppRoom!.sendMessageWithBody(text);
-                    print("Sent xmpp message");
+                    loggingPrint("Sent xmpp message");
                     self.finishSendingMessage()
                     
                     if let chatRoomPresence = chatRoom.otherUserPresence {
-                        print("this user is \(chatRoomPresence)")
+                        loggingPrint("this user is \(chatRoomPresence)")
                         if chatRoomPresence == "unavailable"{
                             self.sendOfflineMessage(text)
                         }
                     }else{
-                        print("this user is unavailable")
+                        loggingPrint("this user is unavailable")
                         self.sendOfflineMessage(text)
                     }
                 }
@@ -278,22 +278,22 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, header headerView: JSQMessagesLoadEarlierHeaderView!, didTapLoadEarlierMessagesButton sender: UIButton!) {
         // TODO: why not implemented?
-        print("Load earlier messages")
+        loggingPrint("Load earlier messages")
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAtIndexPath indexPath: NSIndexPath!) {
         // TODO: why not implemented?
-        print("Tapped message bubble!")
+        loggingPrint("Tapped message bubble!")
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, didTapCellAtIndexPath indexPath: NSIndexPath!, touchLocation: CGPoint) {
         // TODO: why not implemented?
-        print("Tapped cell at \(NSStringFromCGPoint(touchLocation))");
+        loggingPrint("Tapped cell at \(NSStringFromCGPoint(touchLocation))");
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, didTapAvatarImageView avatarImageView: UIImageView!, atIndexPath indexPath: NSIndexPath!) {
         // TODO: why not implemented?
-        print("Tapped avatar!")
+        loggingPrint("Tapped avatar!")
     }
 
     func recievedUser(content: NSDictionary) {
@@ -311,7 +311,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
             let roomID = appGlobalDelegate.chatInst!.getRoomIdFromJid(conference)
             
             //Store new chat
-            print("Saving new message \(roomID)")
+            loggingPrint("Saving new message \(roomID)")
             let defaults = NSUserDefaults.standardUserDefaults()
             if let outData = defaults.dataForKey(roomID) {
                 
@@ -418,7 +418,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
             appGlobalDelegate.chatInst!.listOfActiveChatRooms[self.chatID]!.xmppRoom!.sendMessage(mes)
             sendOnce = true;
             
-            print("Sent The typing indicator");
+            loggingPrint("Sent The typing indicator");
         }*/
         
         if let chatRoom = appGlobalDelegate.chatInst!.listOfActiveChatRooms[self.chatID] {
@@ -453,11 +453,11 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
         API.sharedInstance.put("chat/notification", params: params, closure: { 
             reponse in
             // TODO: error handling
-            print(reponse)
+            loggingPrint(reponse)
             
             }, errorHandler: {
                 error in
-                print(error)
+                loggingPrint(error)
         })
     }
 }

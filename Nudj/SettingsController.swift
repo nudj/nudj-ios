@@ -63,7 +63,7 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
         self.tabBarController?.tabBar.hidden = false
 
         BaseController().apiRequest(Alamofire.Method.GET, path: "users/me?params=user.status,user.facebook,user.linkedin", closure: { json in
-            print(json)
+            loggingPrint(json)
             if (json["data"]["status"] != nil && json["data"]["status"].stringValue != "") {
                 self.statusButton.setTitleByIndex(json["data"]["status"].intValue)
             }

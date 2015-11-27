@@ -52,7 +52,7 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
 
     func loadData(page: Int = 1) {
         if (self.dataProvider == nil) {
-            print("No dataProvider!!!")
+            loggingPrint("No dataProvider!!!")
             return
         }
 
@@ -166,7 +166,7 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
             //add code here for when you hit delete
-            print("will delete")
+            loggingPrint("will delete")
             self.deletejob(indexPath.row)
         }
     }

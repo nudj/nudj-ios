@@ -44,9 +44,9 @@ class InitiateChatViewController: UIViewController, CreatePopupViewDelegate {
         if(!textview.text.isEmpty){
             let params = ["job_id":self.jobid!,"user_id":self.userid!,"notification_id":self.notificationid!,"message":textview.text]
             
-            print("params ->\(params)")
+            loggingPrint("params ->\(params)")
             API.sharedInstance.put("nudge/chat", params:params, closure: { json in
-                print("success \(json)")
+                loggingPrint("success \(json)")
                 
                 self.textview.resignFirstResponder()
                 self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true);
@@ -55,7 +55,7 @@ class InitiateChatViewController: UIViewController, CreatePopupViewDelegate {
                 self.view.addSubview(self.popup!)
 
             }, errorHandler: { error in
-                print("error \(error)")
+                loggingPrint("error \(error)")
             })
          
         }

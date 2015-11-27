@@ -147,32 +147,32 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
         
         switch cell.type! {
         case .AskToRefer:
-            print("Details")
+            loggingPrint("Details")
             MixPanelHandler.sendData("Notification_DetailButtonClicked")
             self.goToView("JobDetailedView", contentId: cell.notificationData!.jobID)
             break;
         case .AppApplication:
-            print("go to chat")
+            loggingPrint("go to chat")
             MixPanelHandler.sendData("Notification_MessageButtonClicked")
             self.gotTochat(cell)
             break;
         case .WebApplication:
-            print("sms")
+            loggingPrint("sms")
             MixPanelHandler.sendData("Notification_SmsButtonClicked")
             self.createSms(cell.notificationData!.senderPhoneNumber)
             break;
         case .MatchingContact:
-            print("nudge")
+            loggingPrint("nudge")
             MixPanelHandler.sendData("Notification_ReferButtonClicked")
             self.nudge(cell.notificationData!.jobID)
             break;
         case .AppApplicationWithNoReferral:
-            print("go to chat")
+            loggingPrint("go to chat")
             MixPanelHandler.sendData("Notification_MessageButtonClicked")
             self.gotTochat(cell)
             break;
         case .WebApplicationWithNoReferral:
-            print("sms")
+            loggingPrint("sms")
             MixPanelHandler.sendData("Notification_SmsButtonClicked")
              self.createSms(cell.notificationData!.senderPhoneNumber)
             break;
@@ -195,7 +195,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
             }
         } else {
             // TODO: improve error handling
-            print("no phonumber")
+            loggingPrint("no phonumber")
         }
     }
     
@@ -213,7 +213,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
             }
         } else {
             // TODO: better error handling
-            print("no phone number")
+            loggingPrint("no phone number")
         }
     }
     
