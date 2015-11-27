@@ -826,7 +826,7 @@
 		EB000F7E1AB71D6600E4D385 /* ContactsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsController.swift; sourceTree = "<group>"; };
 		EB04F61F1AA72520002F2677 /* RegistrationInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationInput.swift; sourceTree = "<group>"; };
 		EB04F6221AAD89AF002F2677 /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
-		EB0926CA1A8DE4CB00E1D958 /* Nudj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nudj.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB0926CA1A8DE4CB00E1D958 /* Nudj.temp_caseinsensitive_rename.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nudj.temp_caseinsensitive_rename.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB0926CE1A8DE4CB00E1D958 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB0926CF1A8DE4CB00E1D958 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB0926D11A8DE4CB00E1D958 /* MainFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeed.swift; sourceTree = "<group>"; };
@@ -2147,7 +2147,7 @@
 		EB0926CB1A8DE4CB00E1D958 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EB0926CA1A8DE4CB00E1D958 /* Nudj.app */,
+				EB0926CA1A8DE4CB00E1D958 /* Nudj.temp_caseinsensitive_rename.app */,
 				EB0926E11A8DE4CB00E1D958 /* nudgeTests.xctest */,
 			);
 			name = Products;
@@ -2385,7 +2385,7 @@
 			);
 			name = Nudge;
 			productName = Nudge;
-			productReference = EB0926CA1A8DE4CB00E1D958 /* Nudj.app */;
+			productReference = EB0926CA1A8DE4CB00E1D958 /* Nudj.temp_caseinsensitive_rename.app */;
 			productType = "com.apple.product-type.application";
 		};
 		EB0926E01A8DE4CB00E1D958 /* NudgeTests */ = {
@@ -2427,7 +2427,7 @@
 					};
 				};
 			};
-			buildConfigurationList = EB0926C51A8DE4CB00E1D958 /* Build configuration list for PBXProject "Nudge" */;
+			buildConfigurationList = EB0926C51A8DE4CB00E1D958 /* Build configuration list for PBXProject "Nudj" */;
 			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -2971,7 +2971,7 @@
 					/usr/include/libxml2,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "co.nudj.ios-app.nudj";
-				PRODUCT_NAME = Nudj;
+				PRODUCT_NAME = Nudj.temp_caseinsensitive_rename;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Nudge/Nudge-Bridging-Header.h";
 			};
@@ -3007,7 +3007,7 @@
 					/usr/include/libxml2,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "co.nudj.ios-app.nudj";
-				PRODUCT_NAME = Nudj;
+				PRODUCT_NAME = Nudj.temp_caseinsensitive_rename;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Nudge/Nudge-Bridging-Header.h";
 			};
@@ -3052,7 +3052,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EB0926C51A8DE4CB00E1D958 /* Build configuration list for PBXProject "Nudge" */ = {
+		EB0926C51A8DE4CB00E1D958 /* Build configuration list for PBXProject "Nudj" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EB0926E91A8DE4CB00E1D958 /* Debug */,
