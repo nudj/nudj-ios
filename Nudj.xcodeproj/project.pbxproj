@@ -191,12 +191,10 @@
 		A99650771B387CC800D5A8E9 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FBB1B387CC800D5A8E9 /* DDTTYLogger.m */; };
 		A99650781B387CC800D5A8E9 /* ContextFilterLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FBE1B387CC800D5A8E9 /* ContextFilterLogFormatter.m */; };
 		A99650791B387CC800D5A8E9 /* DispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FC01B387CC800D5A8E9 /* DispatchQueueLogFormatter.m */; };
-		A996507A1B387CC800D5A8E9 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = A9964FC11B387CC800D5A8E9 /* README.txt */; };
 		A996507B1B387CC800D5A8E9 /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FC51B387CC800D5A8E9 /* NSString+DDXML.m */; };
 		A996507C1B387CC800D5A8E9 /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FC81B387CC800D5A8E9 /* DDXMLDocument.m */; };
 		A996507D1B387CC800D5A8E9 /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FCA1B387CC800D5A8E9 /* DDXMLElement.m */; };
 		A996507E1B387CC800D5A8E9 /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FCC1B387CC800D5A8E9 /* DDXMLNode.m */; };
-		A996507F1B387CC800D5A8E9 /* build-libidn.sh in Resources */ = {isa = PBXBuildFile; fileRef = A9964FD01B387CC800D5A8E9 /* build-libidn.sh */; };
 		A99650801B387CC800D5A8E9 /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9964FD21B387CC800D5A8E9 /* libidn.a */; };
 		A99650841B38803A00D5A8E9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A99650831B38803A00D5A8E9 /* Security.framework */; };
 		A99650861B38804500D5A8E9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A99650851B38804500D5A8E9 /* CFNetwork.framework */; };
@@ -2458,7 +2456,6 @@
 				A9ACE1D21B6913F9003BD5F2 /* connected@2x.png in Resources */,
 				A99650A81B3DB3FF00D5A8E9 /* favourite2wText@2x.png in Resources */,
 				A9964FDF1B387CC800D5A8E9 /* JSQMessagesViewController.xib in Resources */,
-				A996507A1B387CC800D5A8E9 /* README.txt in Resources */,
 				A92324D21B7BAE77009C1F0C /* no_favourite_contacts@2x.png in Resources */,
 				A9964FFF1B387CC800D5A8E9 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
 				A9F333701B42D20C00F0D17B /* close_btn@2x.png in Resources */,
@@ -2506,7 +2503,6 @@
 				A9964FFA1B387CC800D5A8E9 /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
 				A9F333611B42ACDC00F0D17B /* salary_details_active@2x.png in Resources */,
 				A9F333601B42ACDC00F0D17B /* job_title_active@2x.png in Resources */,
-				A996507F1B387CC800D5A8E9 /* build-libidn.sh in Resources */,
 				A9F333821B45972100F0D17B /* saved@2x.png in Resources */,
 				A9ACE1D41B6913F9003BD5F2 /* linkdin@2x.png in Resources */,
 				A9F3335D1B42ACDC00F0D17B /* add_skills_active@2x.png in Resources */,
