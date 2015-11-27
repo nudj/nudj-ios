@@ -8,8 +8,6 @@
 
 import UIKit
 import CoreData
-import Fabric
-import Crashlytics
 import FBSDKLoginKit
 import Mixpanel
 import ReachabilitySwift
@@ -41,9 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
     let appBlueColor = UIColor(red:17.0/255.0, green:147.0/255.0, blue:189.0/255.0, alpha: 1.0)
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        //Fabric
-        Fabric.with([Crashlytics()])
-        
         //Mixpanel
         Mixpanel.sharedInstanceWithToken(MIXPANEL_TOKEN)
         MixPanelHandler.startEventTracking("timeSpentInApplication")
