@@ -826,7 +826,7 @@
 		EB000F7E1AB71D6600E4D385 /* ContactsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsController.swift; sourceTree = "<group>"; };
 		EB04F61F1AA72520002F2677 /* RegistrationInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationInput.swift; sourceTree = "<group>"; };
 		EB04F6221AAD89AF002F2677 /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
-		EB0926CA1A8DE4CB00E1D958 /* Nudj.temp_caseinsensitive_rename.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nudj.temp_caseinsensitive_rename.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB0926CA1A8DE4CB00E1D958 /* Nudj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nudj.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB0926CE1A8DE4CB00E1D958 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB0926CF1A8DE4CB00E1D958 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB0926D11A8DE4CB00E1D958 /* MainFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeed.swift; sourceTree = "<group>"; };
@@ -2147,7 +2147,7 @@
 		EB0926CB1A8DE4CB00E1D958 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EB0926CA1A8DE4CB00E1D958 /* Nudj.temp_caseinsensitive_rename.app */,
+				EB0926CA1A8DE4CB00E1D958 /* Nudj.app */,
 				EB0926E11A8DE4CB00E1D958 /* nudgeTests.xctest */,
 			);
 			name = Products;
@@ -2385,7 +2385,7 @@
 			);
 			name = Nudj;
 			productName = Nudge;
-			productReference = EB0926CA1A8DE4CB00E1D958 /* Nudj.temp_caseinsensitive_rename.app */;
+			productReference = EB0926CA1A8DE4CB00E1D958 /* Nudj.app */;
 			productType = "com.apple.product-type.application";
 		};
 		EB0926E01A8DE4CB00E1D958 /* NudjTests */ = {
@@ -2420,6 +2420,11 @@
 					EB0926C91A8DE4CB00E1D958 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = A5R558S6UR;
+						SystemCapabilities = {
+							com.apple.DataProtection = {
+								enabled = 1;
+							};
+						};
 					};
 					EB0926E01A8DE4CB00E1D958 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -2961,8 +2966,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SDKROOT)/usr/include/libxml2",
 				);
-				INFOPLIST_FILE = Nudge/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				INFOPLIST_FILE = "$(SRCROOT)/Nudj/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2971,7 +2975,7 @@
 					/usr/include/libxml2,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "co.nudj.ios-app.nudj";
-				PRODUCT_NAME = Nudj.temp_caseinsensitive_rename;
+				PRODUCT_NAME = Nudj;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Nudge/Nudge-Bridging-Header.h";
 			};
@@ -2997,8 +3001,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SDKROOT)/usr/include/libxml2",
 				);
-				INFOPLIST_FILE = Nudge/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				INFOPLIST_FILE = "$(SRCROOT)/Nudj/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3007,7 +3010,7 @@
 					/usr/include/libxml2,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "co.nudj.ios-app.nudj";
-				PRODUCT_NAME = Nudj.temp_caseinsensitive_rename;
+				PRODUCT_NAME = Nudj;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Nudge/Nudge-Bridging-Header.h";
 			};
