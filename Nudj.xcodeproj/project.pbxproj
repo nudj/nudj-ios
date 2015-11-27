@@ -20,7 +20,6 @@
 		A92324D71B7BAE77009C1F0C /* no_search_results@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324CF1B7BAE77009C1F0C /* no_search_results@2x.png */; };
 		A929E4951B863D3F00AC2A5F /* MixPanelHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A929E4941B863D3F00AC2A5F /* MixPanelHandler.swift */; };
 		A947CC991B7119B500C9518E /* NoContentPlaceHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A947CC981B7119B500C9518E /* NoContentPlaceHolder.swift */; };
-		A947CC9C1B711CF000C9518E /* no_jobs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A947CC9B1B711CF000C9518E /* no_jobs@2x.png */; };
 		A94B49D41B8A7C80008CF762 /* NoInternetConnectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A94B49D31B8A7C80008CF762 /* NoInternetConnectionView.xib */; };
 		A94B49D61B8A8056008CF762 /* NoInternetConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94B49D51B8A8056008CF762 /* NoInternetConnectionView.swift */; };
 		A94FE6CC1B84C9E600761F32 /* archive_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A94FE6CB1B84C9E600761F32 /* archive_active@2x.png */; };
@@ -2486,7 +2485,6 @@
 				A9F333661B42ACDC00F0D17B /* job_title@2x.png in Resources */,
 				A92324D11B7BAE77009C1F0C /* no_contacts@2x.png in Resources */,
 				A9B577D41B6BC23400CFB474 /* 01-refresh@2x.png in Resources */,
-				A947CC9C1B711CF000C9518E /* no_jobs@2x.png in Resources */,
 				A92324D31B7BAE77009C1F0C /* no_internet_conection@2x.png in Resources */,
 				A99650A71B3DB3FF00D5A8E9 /* favouriteWText@2x.png in Resources */,
 				A99650A51B3DB3FF00D5A8E9 /* archive@2x.png in Resources */,
