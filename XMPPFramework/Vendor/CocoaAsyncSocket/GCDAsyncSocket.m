@@ -5832,7 +5832,7 @@ enum GCDAsyncSocketConfig
 	{
 		BOOL canUseSecureTransport = YES;
 		
-		#if TARGET_OS_IPHONE
+		#if 0 && TARGET_OS_IPHONE // JRB stop disabling of TLS
 		{
 			GCDAsyncSpecialPacket *tlsPacket = (GCDAsyncSpecialPacket *)currentRead;
             

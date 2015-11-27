@@ -13,7 +13,7 @@
 
 // Log levels: off, error, warn, info, verbose
 #if DEBUG
-  static const int xmppLogLevel = XMPP_LOG_LEVEL_VERBOSE;
+  // static const int xmppLogLevel = XMPP_LOG_LEVEL_VERBOSE;
 #else
   static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 #endif
