@@ -200,7 +200,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
                 let contact = section[indexPath.row]
                 cell.loadData(contact)
             } else {
-                loggingPrint("Strange index in contacts table: ", indexPath)
+                loggingPrint("Strange index in contacts table: ", indexPath.debugDescription)
             }
         }
         return cell

@@ -318,7 +318,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
             let fetchedResults = try moc.executeFetchRequest(fetchRequest)
             for obj in fetchedResults {
                 let user = obj as! NSManagedObject
-                loggingPrint("Deleting: ", user)
+                loggingPrint("Deleting: ", user.debugDescription)
                 moc.deleteObject(user)
             }
             

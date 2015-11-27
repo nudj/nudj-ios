@@ -174,15 +174,11 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
             let addressBook: ABAddressBook = ABAddressBookCreateWithOptions(emptyDictionary, nil).takeRetainedValue()
 
             ABAddressBookRequestAccessWithCompletion(addressBook, {success, error in
-                loggingPrint(success, error)
-
                 dispatch_sync(dispatch_get_main_queue(), { () -> Void in
                     if (success && error == nil) {
                         self.proceed()
                         return
                     }
-
-                    NSLog("Unable to request access")
                     self.appDelegate.contacts.isAuthorized()
                 })
             })
