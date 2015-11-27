@@ -2136,8 +2136,8 @@
 		EB0926C11A8DE4CB00E1D958 = {
 			isa = PBXGroup;
 			children = (
-				EB0926CC1A8DE4CB00E1D958 /* Nudge */,
-				EB0926E41A8DE4CB00E1D958 /* NudgeTests */,
+				EB0926CC1A8DE4CB00E1D958 /* Nudj */,
+				EB0926E41A8DE4CB00E1D958 /* NudjTests */,
 				EB0926CB1A8DE4CB00E1D958 /* Products */,
 				68263C45D8985A9D3857F073 /* Pods */,
 				B24DF65843B49C77F100654A /* Frameworks */,
@@ -2153,7 +2153,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		EB0926CC1A8DE4CB00E1D958 /* Nudge */ = {
+		EB0926CC1A8DE4CB00E1D958 /* Nudj */ = {
 			isa = PBXGroup;
 			children = (
 				A99650971B3DB23A00D5A8E9 /* Images */,
@@ -2173,7 +2173,7 @@
 				EB0926CD1A8DE4CB00E1D958 /* Supporting Files */,
 				EBFB0CFE1AC009F900CCCB35 /* Obsolate */,
 			);
-			path = Nudge;
+			path = Nudj;
 			sourceTree = "<group>";
 		};
 		EB0926CD1A8DE4CB00E1D958 /* Supporting Files */ = {
@@ -2186,13 +2186,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		EB0926E41A8DE4CB00E1D958 /* NudgeTests */ = {
+		EB0926E41A8DE4CB00E1D958 /* NudjTests */ = {
 			isa = PBXGroup;
 			children = (
 				EB0926E71A8DE4CB00E1D958 /* NudgeTests.swift */,
 				EB0926E51A8DE4CB00E1D958 /* Supporting Files */,
 			);
-			path = NudgeTests;
+			path = NudjTests;
 			sourceTree = "<group>";
 		};
 		EB0926E51A8DE4CB00E1D958 /* Supporting Files */ = {
