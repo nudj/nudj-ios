@@ -56,10 +56,10 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
 
             self.data.removeAll(keepCapacity: false)
             
-            for (id, obj) in response["data"] {
+            for (_, obj) in response["data"] {
                 let chat = ChatStructModel()
                 self.data.append(chat.createData(obj))
-                self.data.sort({ $0.timeinRawForm!.compare($1.timeinRawForm!) == NSComparisonResult.OrderedDescending })
+                self.data.sortInPlace{ $0.timeinRawForm!.compare($1.timeinRawForm!) == NSComparisonResult.OrderedDescending }
             }
             
             self.activity.stopAnimating()
