@@ -133,6 +133,11 @@ JSQMessagesKeyboardControllerDelegate>{
                                           bundle:[NSBundle bundleForClass:[JSQMessagesViewController class]]];
 }
 
++ (UIColor *)nudjTextColor {
+    // TODO: move to IB or similar
+    return [UIColor colorWithRed:0.0 green:161.0/255.0 blue:135.0/255.0 alpha:1.0];
+}
+
 #pragma mark - Initialization
 
 - (void)jsq_configureMessagesViewController
@@ -267,11 +272,12 @@ JSQMessagesKeyboardControllerDelegate>{
     self.dropDownView.layer.shadowRadius = 2;
     self.dropDownView.layer.shadowOpacity = 0.5;
 
+    // TODO: localisation
     self.ConvoTitle.text = [NSString stringWithFormat:@"re: %@",self.chatTitle];
     self.convoParticipants.text = [NSString stringWithFormat:@"%@, you", self.participants];
     
-    self.inputToolbar.tintColor = NUDGE_COLOR;
-    self.inputToolbar.contentView.rightBarButtonItem.titleLabel.textColor = NUDGE_COLOR;
+    self.inputToolbar.tintColor = [JSQMessagesViewController nudjTextColor];
+    self.inputToolbar.contentView.rightBarButtonItem.titleLabel.textColor = [JSQMessagesViewController nudjTextColor];
     
     self.ConvoTitle.userInteractionEnabled = YES;
     self.convoParticipants.userInteractionEnabled = YES;
