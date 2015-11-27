@@ -2418,7 +2418,7 @@
 				TargetAttributes = {
 					EB0926C91A8DE4CB00E1D958 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = BMY483J96G;
+						DevelopmentTeam = A5R558S6UR;
 					};
 					EB0926E01A8DE4CB00E1D958 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -2945,7 +2945,7 @@
 			baseConfigurationReference = 91ACAE069A6F9735FED79A9F /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods",
@@ -2968,6 +2968,7 @@
 					"$(SDKROOT)/usr/include/libxml2",
 					/usr/include/libxml2,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "co.nudj.ios-app.nudj";
 				PRODUCT_NAME = Nudj;
 				PROVISIONING_PROFILE = "2c69344a-f636-4b1e-948c-6f90752c562c";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Nudge/Nudge-Bridging-Header.h";
@@ -2979,7 +2980,7 @@
 			baseConfigurationReference = 39A67AE42E9231EE2A750094 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3003,6 +3004,7 @@
 					"$(SDKROOT)/usr/include/libxml2",
 					/usr/include/libxml2,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "co.nudj.ios-app.nudj";
 				PRODUCT_NAME = Nudj;
 				PROVISIONING_PROFILE = "2c69344a-f636-4b1e-948c-6f90752c562c";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Nudge/Nudge-Bridging-Header.h";
