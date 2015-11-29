@@ -1,0 +1,9 @@
+//
+//  Nudj.debug.xcconfig
+//  Nudj
+//
+//  Copyright © 2015 Nudge I.T. Limited. All rights reserved.
+//
+
+#include "../Pods/Target Support Files/Pods/Pods.debug.xcconfig"
+//#include "Warnings.xcconfig"
