@@ -841,7 +841,7 @@
 		EB0926D11A8DE4CB00E1D958 /* MainFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MainFeed.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB0926D81A8DE4CB00E1D958 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EB0926DB1A8DE4CB00E1D958 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		EB0926E11A8DE4CB00E1D958 /* nudgeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nudgeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB0926E11A8DE4CB00E1D958 /* nudjTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nudjTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB0926E61A8DE4CB00E1D958 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB0926E71A8DE4CB00E1D958 /* NudgeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NudgeTests.swift; sourceTree = "<group>"; };
 		EB2F78071AD288E400B59C0E /* SettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SettingsCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -2195,7 +2195,7 @@
 			isa = PBXGroup;
 			children = (
 				EB0926CA1A8DE4CB00E1D958 /* Nudj.app */,
-				EB0926E11A8DE4CB00E1D958 /* nudgeTests.xctest */,
+				EB0926E11A8DE4CB00E1D958 /* nudjTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2432,7 +2432,7 @@
 			);
 			name = NudjTests;
 			productName = NudgeTests;
-			productReference = EB0926E11A8DE4CB00E1D958 /* nudgeTests.xctest */;
+			productReference = EB0926E11A8DE4CB00E1D958 /* nudjTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -3070,14 +3070,10 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = NudjTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = nudgeTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nudge.app/Nudge";
+				PRODUCT_NAME = nudjTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nudj.app/Nudj";
 			};
 			name = Debug;
 		};
@@ -3092,8 +3088,8 @@
 				);
 				INFOPLIST_FILE = NudjTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = nudgeTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nudge.app/Nudge";
+				PRODUCT_NAME = nudjTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nudj.app/Nudj";
 			};
 			name = Release;
 		};
