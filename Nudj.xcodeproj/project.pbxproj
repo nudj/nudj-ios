@@ -2163,6 +2163,17 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		C8A661E11C0B64A00088355D /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				EB0926D81A8DE4CB00E1D958 /* Images.xcassets */,
+				A99650971B3DB23A00D5A8E9 /* Images */,
+				EB0926DA1A8DE4CB00E1D958 /* LaunchScreen.xib */,
+				EBA8C3441B32DFF100522167 /* Main.storyboard */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
 		EB000F7D1AB71D4400E4D385 /* Contatcs */ = {
 			isa = PBXGroup;
 			children = (
@@ -2206,7 +2217,6 @@
 		EB0926CC1A8DE4CB00E1D958 /* Nudj */ = {
 			isa = PBXGroup;
 			children = (
-				A99650971B3DB23A00D5A8E9 /* Images */,
 				EBEA9B471AF264DF0027A2A2 /* ActionControllers */,
 				EBDD28CC1ACD8AA700956995 /* MainControllers */,
 				EB6F22B81AAF702F007FF1B8 /* Common */,
@@ -2214,10 +2224,8 @@
 				EBB338311A9F5A4A000CAD88 /* Models */,
 				EB0926CF1A8DE4CB00E1D958 /* AppDelegate.swift */,
 				EBB338451AA0EA46000CAD88 /* BaseController.swift */,
-				EBA8C3441B32DFF100522167 /* Main.storyboard */,
-				EB0926D81A8DE4CB00E1D958 /* Images.xcassets */,
-				EB0926DA1A8DE4CB00E1D958 /* LaunchScreen.xib */,
 				EBB337F91A9F5557000CAD88 /* DataModel */,
+				C8A661E11C0B64A00088355D /* UI */,
 				EB0926CD1A8DE4CB00E1D958 /* Supporting Files */,
 			);
 			path = Nudj;
