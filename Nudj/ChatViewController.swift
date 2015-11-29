@@ -1,9 +1,9 @@
 //
 //  ChatViewController.swift
-//  Nudge
+//  Nudj
 //
 //  Created by Antonio on 22/06/2015.
-//  Copyright (c) 2015 Lachezar Todorov. All rights reserved.
+//  Copyright (c) 2015 Nudge I.T. Limited. All rights reserved.
 //
 
 import UIKit

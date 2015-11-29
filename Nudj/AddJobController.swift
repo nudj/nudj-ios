@@ -1,9 +1,9 @@
 //
 //  AddJobController.swift
-//  Nudge
+//  Nudj
 //
 //  Created by Lachezar Todorov on 30.04.15.
-//  Copyright (c) 2015 г. Lachezar Todorov. All rights reserved.
+//  Copyright (c) 2015 Nudge I.T. Limited. All rights reserved.
 //
 
 import UIKit
