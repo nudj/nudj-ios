@@ -2,7 +2,6 @@
 //  ChatDropDown.swift
 //  Nudj
 //
-//  Created by Antonio on 25/06/2015.
 //  Copyright (c) 2015 Nudge I.T. Limited. All rights reserved.
 //
 

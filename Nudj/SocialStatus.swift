@@ -2,7 +2,6 @@
 //  SocialStatus.swift
 //  Nudj
 //
-//  Created by Antonio on 30/07/2015.
 //  Copyright (c) 2015 Nudge I.T. Limited. All rights reserved.
 //
 

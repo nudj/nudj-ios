@@ -2,7 +2,6 @@
 //  CreatePopupView.swift
 //  Nudj
 //
-//  Created by Antonio on 01/07/2015.
 //  Copyright (c) 2015 Nudge I.T. Limited. All rights reserved.
 //
 

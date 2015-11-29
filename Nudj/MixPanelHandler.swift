@@ -2,7 +2,6 @@
 //  MixPanelHandler.swift
 //  Nudj
 //
-//  Created by Antonio on 20/08/2015.
 //  Copyright (c) 2015 Nudge I.T. Limited. All rights reserved.
 //
 
