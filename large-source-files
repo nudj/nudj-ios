@@ -1,0 +1,4 @@
+#! /bin/sh
+
+DIR=`dirname "$0"`
+find "./$DIR/Nudj" -name "*.swift" -exec wc -l "{}" \; | sort -n -r
