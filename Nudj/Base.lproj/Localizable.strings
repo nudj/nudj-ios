@@ -4,3 +4,7 @@
 
   Copyright © 2015 Nudge I.T. Limited. All rights reserved.
 */
+
+// Access to contacts
+"contacts.access.request.title" = "Refer anyone in your phone";
+"contacts.access.request.body" = "you will be able to text and refer anyone in your contacts";

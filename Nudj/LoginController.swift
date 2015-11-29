@@ -12,8 +12,8 @@ import SwiftyJSON
 
 class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFieldDelegate {
 
-    let msgTitle = "Refer anyone in your phone"
-    let msgContent = "you will be able to text and refer anyone in your contacts"
+    let msgTitle = NSLocalizedString("contacts.access.request.title", comment: "")
+    let msgContent = NSLocalizedString("contacts.access.request.body", comment: "")
     
     var countrySelectionView = CountrySelectionPicker()
     var code = "GB"
