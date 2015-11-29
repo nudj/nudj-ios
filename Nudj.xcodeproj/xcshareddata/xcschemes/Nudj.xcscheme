@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EB0926E01A8DE4CB00E1D958"
-               BuildableName = "nudgeTests.xctest"
+               BuildableName = "nudjTests.xctest"
                BlueprintName = "NudjTests"
                ReferencedContainer = "container:Nudj.xcodeproj">
             </BuildableReference>
