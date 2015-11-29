@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Script to create a new version, tag and commit it.
+# Requires there to be no uncommitted files in Git.
+# Optional argument: the new marketing version as a dotted triad, such as "1.2.3".
+# In any case, the build number will be incremented.
+
+cd "$( dirname $0 )"
+
+# bail if we have uncommitted files in Git
+git_status=$(git status --porcelain)
+if [ -n "${git_status}" ]; then
+	echo "Cannot proceed while you have uncommitted files:"
+	echo "$git_status"
+	exit 1
+fi
+
+# If no new marketing version is supplied, leave it as is.
+newVersion=$1
+if [ -z $newVersion ]; then
+    newVersion=$(agvtool mvers -terse1)
+fi
+
+# Use agvtool to set the marketing version and bump the internal version
+agvtool bump -all
+agvtool new-marketing-version ${newVersion}
+build=$(agvtool vers -terse)
+gitVersion=${newVersion}-${build}
+
+# Add and commit the changed files and create a permanent tag.
+git add .
+git commit -m "New version ${newVersion} (${build})"
+git tag -a Release/${gitVersion} -m "New version ${newVersion} (${build})"
