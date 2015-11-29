@@ -6,5 +6,5 @@
 */
 
 // Access to contacts
-"contacts.access.request.title" = "Refer anyone in your phone";
-"contacts.access.request.body" = "you will be able to text and refer anyone in your contacts";
+"contacts.access.request.title" = "Nudj would like to access your address book";
+"contacts.access.request.body" = "This will let you send texts and job referrals to anyone in your address book.\n\nNudj will never send messages without your explicit permission.";
