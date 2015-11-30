@@ -104,7 +104,7 @@ class VerifyViewController: BaseController {
         // TODO: API strings
         self.apiRequest(API.Method.PUT, path: "users/verify", params: ["phone": phoneNumber, "verification": code, "country_code": "GB"], closure: {
             (json: JSON) in
-            NSLog(json.stringValue)
+            loggingPrint(json.stringValue)
 
             if (!self.isValidResponse(json)) {
                 self.showCodeField(animated: true)

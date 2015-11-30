@@ -168,7 +168,7 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
         let authorizationStatus = ABAddressBookGetAuthorizationStatus()
         if (authorizationStatus == ABAuthorizationStatus.NotDetermined)
         {
-            NSLog("requesting access...")
+            loggingPrint("requesting access...")
             let emptyDictionary = [:]
             let addressBook: ABAddressBook = ABAddressBookCreateWithOptions(emptyDictionary, nil).takeRetainedValue()
 
@@ -183,11 +183,11 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
             })
         }
         else if (authorizationStatus == ABAuthorizationStatus.Denied || authorizationStatus == ABAuthorizationStatus.Restricted) {
-            NSLog("access denied")
+            loggingPrint("access denied")
             self.appDelegate.contacts.isAuthorized()
         }
         else if (authorizationStatus == ABAuthorizationStatus.Authorized) {
-            NSLog("access granted")
+            loggingPrint("access granted")
             self.proceed()
         }
     }
