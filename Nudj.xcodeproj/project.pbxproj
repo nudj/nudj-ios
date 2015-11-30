@@ -3148,7 +3148,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "co.nudj.ios-app.nudj";
 				PRODUCT_NAME = Nudj;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7bbbb056-d2e4-4809-b47b-f36c34b76e21";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Nudj/Nudj-Bridging-Header.h";
 			};
 			name = Release;
