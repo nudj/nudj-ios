@@ -2,9 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/richardbuckle/dev/nudj/nudj-ios/Nudj.xcodeproj">
+      location = "container:Nudj.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Pods/Pods.xcodeproj">
+      location = "container:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>
