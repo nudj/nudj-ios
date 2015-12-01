@@ -5,7 +5,7 @@
     // Xcode build configuration to check (String)
     "buildConfig": "Release",
     // Rules to apply (Array of strings)
-    //"rules": [],
+    "rules": ["DefaultInExhaustiveSwitch"],
     // Rules to apply only (Array of strings)
     //"onlyRules": [],
     // Rule tags to apply (Array of strings)
@@ -15,7 +15,7 @@
     // Prefixes of files to exclude (Array of strings)
     //"fileExclusionPrefixes": [],
     // Xcode groups to exclude (Array of strings)
-    //"fileExclusionXcodeGroups": ["Vendor"],
+    "fileExclusionXcodeGroups": ["Externals","Pods","Vendor"],
     // Regexes for files to exclude (Array of regular expression strings)
     //"fileExclusionRegexes": [],
     // Minimum diagnostic severity to return nonzero exit status ("Concern" /
