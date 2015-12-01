@@ -129,6 +129,9 @@ static void AFNetworkReachabilityReleaseCallback(const void *info) {
     SCNetworkReachabilityRef reachability = SCNetworkReachabilityCreateWithName(kCFAllocatorDefault, [domain UTF8String]);
 
     AFNetworkReachabilityManager *manager = [[self alloc] initWithReachability:reachability];
+    if (reachability) {
+        CFRelease(reachability);
+    }
     manager.networkReachabilityAssociation = AFNetworkReachabilityForName;
 
     return manager;
@@ -138,6 +141,9 @@ static void AFNetworkReachabilityReleaseCallback(const void *info) {
     SCNetworkReachabilityRef reachability = SCNetworkReachabilityCreateWithAddress(kCFAllocatorDefault, (const struct sockaddr *)address);
 
     AFNetworkReachabilityManager *manager = [[self alloc] initWithReachability:reachability];
+    if (reachability) {
+        CFRelease(reachability);
+    }
     manager.networkReachabilityAssociation = AFNetworkReachabilityForAddress;
 
     return manager;
@@ -166,6 +172,17 @@ static void AFNetworkReachabilityReleaseCallback(const void *info) {
     if (_networkReachability) {
         CFRelease(_networkReachability);
         _networkReachability = NULL;
+    }
+}
+
+- (void)setNetworkReachability:(SCNetworkReachabilityRef)networkReachability {
+    SCNetworkReachabilityRef oldRef = self->_networkReachability;
+    if (networkReachability) {
+        CFRetain(networkReachability);
+    }
+    self->_networkReachability = networkReachability;
+    if (oldRef) {
+        CFRelease(oldRef);
     }
 }
 
