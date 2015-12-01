@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>Nightly Nudj build for QA.</description>
+  <logRotator class="hudson.tasks.LogRotator">
+    <daysToKeep>-1</daysToKeep>
+    <numToKeep>50</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@1.5.0">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <name>github</name>
+        <refspec></refspec>
+        <url>git@github.com:Nudj/nudj-ios.git</url>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>development</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <localBranch>development</localBranch>
+    <disableSubmodules>false</disableSubmodules>
+    <recursiveSubmodules>true</recursiveSubmodules>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <authorOrCommitter>false</authorOrCommitter>
+    <clean>true</clean>
+    <wipeOutWorkspace>true</wipeOutWorkspace>
+    <pruneBranches>true</pruneBranches>
+    <remotePoll>false</remotePoll>
+    <ignoreNotifyCommit>false</ignoreNotifyCommit>
+    <useShallowClone>false</useShallowClone>
+    <buildChooser class="hudson.plugins.git.util.DefaultBuildChooser"/>
+    <gitTool>Default</gitTool>
+    <submoduleCfg class="list"/>
+    <relativeTargetDir></relativeTargetDir>
+    <reference></reference>
+    <excludedRegions></excludedRegions>
+    <excludedUsers>BuildBot</excludedUsers>
+    <gitConfigName>BuildBot</gitConfigName>
+    <gitConfigEmail>buildbot@sailmaker.co.uk</gitConfigEmail>
+    <skipTag>true</skipTag>
+    <includedRegions></includedRegions>
+    <scmName></scmName>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers>
+    <hudson.triggers.SCMTrigger>
+      <spec>@midnight</spec>
+      <ignorePostCommitHooks>false</ignorePostCommitHooks>
+    </hudson.triggers.SCMTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command># local vars
+Workspace=&quot;Nudj.xcworkspace&quot;
+MainScheme=&quot;Nudj&quot;
+
+# set the desired version of Xcode
+set DEVELOPER_DIR=&quot;/Applications/Xcode.app/Contents/Developer&quot;
+export DEVELOPER_DIR
+
+# leave the marketing version as is but bump the build number
+./newVersion
+
+xcodebuild -workspace &quot;${Workspace}&quot; -scheme &quot;${MainScheme}&quot; -configuration Release -sdk iphoneos CONFIGURATION_BUILD_DIR=&quot;${WORKSPACE}/BuildProducts&quot; clean build
+
+cd &quot;${WORKSPACE}&quot;
+zip -qr &quot;${BUILD_TAG}&quot; BuildProducts
+
+cd BuildProducts
+zip -r ../Nudj.dSYM.zip &quot;Nudj.app.dSYM&quot;
+cd &quot;${WORKSPACE}&quot;
+
+/usr/bin/xcrun -sdk iphoneos PackageApplication &quot;${WORKSPACE}/BuildProducts/Nudj.app&quot; -o &quot;${WORKSPACE}/Nudj.ipa&quot;
+
+# make release notes
+./make-qa-log.py &gt; changelog.markdown
+
+# upload to Hockey App -- the plugin writes the Jenkins build number into the dSYM so we use puck
+/usr/local/bin/puck \
+-dsym_path=&quot;${WORKSPACE}/Nudj.dSYM.zip&quot; \
+-build_server_url=&quot;${BUILD_URL}&quot; \
+-source_path=&quot;${WORKSPACE}&quot; \
+-notes_path=&quot;${WORKSPACE}/changelog.markdown&quot; \
+-notes_type=markdown \
+-submit=auto \
+-download=true \
+-mandatory=false \
+-notify=true \
+-tags=internal \
+-release_type=beta \
+-api_token= d9291554f8c18616decd8528a06337d5 \
+-app_id= 9bb5535d31f24908a06d72757a8e39e9 \
+&quot;${WORKSPACE}/Nudj.ipa&quot;
+
+rm -f changelog.markdown
+
+git push --all github
+git push --tags github</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers>
+    <hudson.tasks.ArtifactArchiver>
+      <artifacts>*.ipa,*.zip</artifacts>
+      <latestOnly>false</latestOnly>
+      <allowEmptyArchive>false</allowEmptyArchive>
+    </hudson.tasks.ArtifactArchiver>
+    <hudson.plugins.git.GitPublisher plugin="git@1.5.0">
+      <configVersion>2</configVersion>
+      <pushMerge>false</pushMerge>
+      <pushOnlyIfSuccess>true</pushOnlyIfSuccess>
+      <branchesToPush>
+        <hudson.plugins.git.GitPublisher_-BranchToPush>
+          <targetRepoName>github</targetRepoName>
+          <branchName>development</branchName>
+        </hudson.plugins.git.GitPublisher_-BranchToPush>
+      </branchesToPush>
+    </hudson.plugins.git.GitPublisher>
+    <hudson.tasks.Mailer plugin="mailer@1.5">
+      <recipients>richardb@sailmaker.co.uk</recipients>
+      <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
+      <sendToIndividuals>true</sendToIndividuals>
+    </hudson.tasks.Mailer>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.locksandlatches.LockWrapper plugin="locks-and-latches@0.6">
+      <locks>
+        <hudson.plugins.locksandlatches.LockWrapper_-LockWaitConfig>
+          <name>iOS-sim</name>
+        </hudson.plugins.locksandlatches.LockWrapper_-LockWaitConfig>
+      </locks>
+    </hudson.plugins.locksandlatches.LockWrapper>
+  </buildWrappers>
+</project>
