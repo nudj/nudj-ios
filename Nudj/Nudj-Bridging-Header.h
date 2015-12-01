@@ -12,4 +12,4 @@
 #import <linkedin-sdk/LISDK.h>
 #import "LIALinkedInHttpClient.h"
 #import "LIALinkedInApplication.h"
-#import <CCMPopup/CCMPopupSegue.h>
+#import "CCMPopup/CCMPopupSegue.h"
