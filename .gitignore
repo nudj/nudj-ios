@@ -20,6 +20,7 @@ VersionX-revision.h
 # build products
 build/
 *.[oa]
+DerivedData/
 
 # Other source repository archive directories (protects when importing)
 .hg
@@ -27,6 +28,7 @@ build/
 CVS
 
 # automatic backup files
+*.moved-aside
 *~.nib
 *.swp
 *~
