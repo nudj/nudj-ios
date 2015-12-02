@@ -66,35 +66,35 @@ class API {
        let encoding = (method != Method.GET) ? Alamofire.ParameterEncoding.JSON : Alamofire.ParameterEncoding.URL
         
         Alamofire.request(method, (baseURL + path) as String, parameters: params, encoding: encoding, headers: headers).responseJSON {
-            (request, response, result) in
+            response in
             // Try to catch general API errors
-            if (self.tryToCatchAPIError(response, result: result)) {
+            if (self.tryToCatchAPIError(response)) {
                 // We have general error from server and the user should not continue.
                 return
             }
 
-            switch result {
+            switch response.result {
             case .Success(let value):
                 let json = JSON(value)
                 closure(json)
                 break
                 
-            case .Failure(_, let error):
+            case .Failure(let error):
                 errorHandler?(error)
                 break
             }
         }
     }
 
-    func tryToCatchAPIError(rawResponse: NSHTTPURLResponse?, result: Result<AnyObject>) -> Bool {
-        guard let rawResponse = rawResponse else {
+    func tryToCatchAPIError(response: Alamofire.Response<AnyObject, NSError>) -> Bool {
+        guard let rawResponse: NSHTTPURLResponse = response.response else {
             return false
         }
         guard rawResponse.statusCode >= 400 else {
             return false
         }
         
-        switch result {
+        switch response.result {
         case .Success(let value):
             // Try to get error code from the JSON
             let errorJson = JSON(value)
@@ -111,7 +111,7 @@ class API {
             }
             break
             
-        case .Failure(_, let error):
+        case .Failure(let error):
             // TODO: improve error handling here
             loggingPrint("[API Error] rawResponse: \(rawResponse) Error: \(error)")
             break
