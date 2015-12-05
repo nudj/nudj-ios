@@ -7,6 +7,7 @@
 
 // General
 "general.button.ok" = "OK";;
+"general.button.cancel" = "Cancel";
 "general.button.notnow" = "Not Now";
 "general.button.done" = "Done";
 
@@ -33,6 +34,33 @@
 "sms.unavailable.body" = "This device cannot send text messages.";
 "sms.failed.title" = "Text message failed";
 "sms.failed.body" = "Your message could not be sent. Please try again.";
+
+// Settings
+"settings.title.profile" = "Your Profile";
+"settings.title.status" = "Your Status";
+"settings.title.saved-jobs" = "Saved Jobs";
+"settings.title.posted-jobs" = "Posted Jobs";
+"settings.title.chats" = "Archived Chats";
+"settings.title.facebook" = "Facebook";
+"settings.title.terms" = "Terms of Use";
+"settings.title.privacy" = "Privacy Policy";
+"settings.title.feedback" = "Send Feedback";
+"settings.title.delete-account" = "Delete Your Account";
+"settings.delete.title" = "Delete Account";
+"settings.delete.body" = "Are you sure you want to permanently delete your account information, including jobs and chats?";
+"settings.delete.button" = "Delete Account";
+"settings.disconnect.button" = "Disconnect";
+"settings.disconnect.title.format" = "Disconnect %@";
+"settings.disconnect.title.body" = "Are you sure you want to disconnect %@?";
+"settings.facebook.connected.title" = "Facebook Connected":
+"settings.facebook.connected.body" = "You have successfully connected your Facebook account.":
+"settings.facebook.disconnected.title" = "Facebook Disconnected":
+"settings.facebook.disconnected.body" = "You have successfully disconnected your Facebook account.":
+"settings.linkedin.connected.title" = "LinkedIn Connected":
+"settings.linkedin.connected.body" = "You have successfully connected your LinkedIn account.":
+"settings.linkedin.disconnected.title" = "LinkedIn Disconnected":
+"settings.linkedin.disconnected.body" = "You have successfully disconnected your LinkedIn account.":
+
 
 // User status
 "userstatus.unknown" = "SELECT STATUS";

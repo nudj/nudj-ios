@@ -21,27 +21,25 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
     var statusParent :SocialStatus?
     let structure: [[SettingsItem]] = [
         [
-            SettingsItem(name: "My Profile", action: "showYourProfile"),
-            SettingsItem(name: "My Status", action: "showStatusPicker"),
-            //SettingsItem(name: "Notifications", action: ""),
-            SettingsItem(name: "Saved Jobs", action: "goToSavedJobs"),
-            SettingsItem(name: "Posted Jobs", action: "goToPostedJobs"),
-            //SettingsItem(name: "My Account", action: "")
-            SettingsItem(name: "Archived Chats", action: "goToChats")
+            SettingsItem(name: NSLocalizedString("settings.title.profile", comment: ""), action: "showYourProfile"),
+            SettingsItem(name: NSLocalizedString("settings.title.status", comment: ""), action: "showStatusPicker"),
+            SettingsItem(name: NSLocalizedString("settings.title.saved-jobs", comment: ""), action: "goToSavedJobs"),
+            SettingsItem(name: NSLocalizedString("settings.title.posted-jobs", comment: ""), action: "goToPostedJobs"),
+            SettingsItem(name: NSLocalizedString("settings.title.chats", comment: ""), action: "goToChats")
         ],
         [
             //SettingsItem(name: "LinkedIn", action: "linkedin"),
-            SettingsItem(name: "Facebook", action: "facebook")
+            SettingsItem(name: NSLocalizedString("settings.title.facebook", comment: ""), action: "facebook")
         ],
         [
             //SettingsItem(name: "Invite Friends", action: ""),
-            SettingsItem(name: "Terms of Use", action: "goToTerms"),
-            SettingsItem(name: "Privacy Policy", action: "goToTerms"),
-            SettingsItem(name: "Send Feedback", action: "goToFeedBack")
+            SettingsItem(name: NSLocalizedString("settings.title.terms", comment: ""), action: "goToTerms"),
+            SettingsItem(name: NSLocalizedString("settings.title.privacy", comment: ""), action: "goToTerms"), // TODO: check this
+            SettingsItem(name: NSLocalizedString("settings.title.feedback", comment: ""), action: "goToFeedBack")
         ],
         [
             //SettingsItem(name: "Log Out", action: "goToLogin"),
-            SettingsItem(name: "DELETE MY ACCOUNT", action: "goToLogin")
+            SettingsItem(name: NSLocalizedString("settings.title.delete-account", comment: ""), action: "goToLogin") // TODO: check this
         ]
     ];
 
@@ -60,6 +58,8 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
         
         self.tabBarController?.tabBar.hidden = false
 
+        // TODO: Ugh fix this singleton mess
+        // TODO: API strings
         BaseController().apiRequest(API.Method.GET, path: "users/me?params=user.status,user.facebook,user.linkedin", closure: { json in
             loggingPrint(json)
             if (json["data"]["status"] != nil && json["data"]["status"].stringValue != "") {
@@ -152,15 +152,21 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
             return
         }
         
-        isPolicy = (name == "Privacy Policy")
+        // TODO: this is too fragile use a flag property
+        isPolicy = (name == NSLocalizedString("settings.title.privacy", comment: ""))
 
         if(action == "linkedin"){
             // nothing
         }else if(action == "facebook"){
             // nothing
         }else if(action == "goToLogin"){
-            // TODO: localisation
-            let alertview = UIAlertView(title: "Delete Account", message: "Are you sure you want to parmanently delete your account information, including jobs and chats?", delegate:self, cancelButtonTitle: "Cancel", otherButtonTitles: "Delete")
+            // TODO: move to UIAlertController
+            let alertview = UIAlertView(title: NSLocalizedString("settings.delete.title", comment: ""),
+                message: NSLocalizedString("settings.delete.body", comment: ""),
+                delegate:self,
+                cancelButtonTitle: NSLocalizedString("general.button.cancel", comment: ""),
+                otherButtonTitles: NSLocalizedString("settings.delete.button", comment: ""))
+            // TODO: why 3?
             alertview.tag = 3
             alertview.show();
         }else{
@@ -169,41 +175,6 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-    /*
-    // Override to support conditional editing of the table view.
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
@@ -223,14 +194,13 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
         // saved jobs or posted jobs
         if (segue.destinationViewController.isKindOfClass(SavedPostedJobs)) {
             if let controller = (segue.destinationViewController as? SavedPostedJobs) {
-                // TODO: localisation
                 if(self.jobsSelected == "goToPostedJobs"){
-                    controller.title = "Posted Jobs"
+                    controller.title = NSLocalizedString("settings.title.posted-jobs", comment: "")
                     controller.requestParams = "mine"
                 }
                 
                 if(self.jobsSelected == "goToSavedJobs"){
-                    controller.title = "Saved Jobs"
+                    controller.title = NSLocalizedString("settings.title.saved-jobs", comment: "")
                     controller.requestParams = "liked"
                 }
             }
@@ -254,8 +224,10 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
     func didTap(statusIdentifier: String, parent:SocialStatus) {
         self.statusParent = parent;
         if(parent.currentStatus!){
-            // TODO: localisation
-            let alertview = UIAlertView(title: "Disconnect \(statusIdentifier)", message:"Are you sure you want to disconnect \(statusIdentifier)", delegate:self, cancelButtonTitle: "NO", otherButtonTitles: "YES")
+            // TODO: move to UIAlertController
+            let title = String.localizedStringWithFormat(NSLocalizedString("settings.disconnect.title.format", comment: ""), statusIdentifier)
+            let message = String.localizedStringWithFormat(NSLocalizedString("settings.disconnect.title.body", comment: ""), statusIdentifier)
+            let alertview = UIAlertView(title: title, message:message, delegate:self, cancelButtonTitle: NSLocalizedString("general.button.cancel", comment: ""), otherButtonTitles: NSLocalizedString("settings.disconnect.button", comment: ""))
             alertview.tag = statusIdentifier == "facebook" ? 0 : 1
             alertview.show();
         }else{
@@ -264,6 +236,7 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        // TODO: these magic tags should be an enum
         if alertView.tag == 3 {
             if(buttonIndex == 1){
                 MixPanelHandler.sendData("DeleteAcountAction")
@@ -278,8 +251,8 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func handleSocialAction(statusIdentifier:String){
-        // TODO: localisation
-        let alert = UIAlertView(title: "", message: "", delegate: nil, cancelButtonTitle: "OK")
+        // TODO: refactor and move to UIAlertController
+        let alert = UIAlertView(title: "", message: "", delegate: nil, cancelButtonTitle: NSLocalizedString("general.button.ok", comment: ""))
         
         if(statusIdentifier == "facebook"){
             self.socialhander!.configureFacebook(self.statusParent!.currentStatus!, completionHandler: { success in
@@ -288,11 +261,11 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
                     self.statusParent!.updateStatus()
                     self.socialStatuses["facebook"] = self.statusParent!.currentStatus!
                     if(self.statusParent!.currentStatus!){
-                        alert.title = "Facebook Connected!"
-                        alert.message = "You have successfully connected your Facebook account"
+                        alert.title = NSLocalizedString("settings.facebook.connected.title", comment: "")
+                        alert.message = NSLocalizedString("settings.facebook.connected.body", comment: "")
                     }else{
-                        alert.title = "Facebook Disconnected!"
-                        alert.message = "You have successfully disconnected your Facebook account"
+                        alert.title = NSLocalizedString("settings.facebook.disconnected.title", comment: "")
+                        alert.message = NSLocalizedString("settings.facebook.disconnected.body", comment: "")
                     }
                     alert.show()
                 }
@@ -305,16 +278,15 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
                     self.statusParent!.updateStatus()
                     self.socialStatuses["linkedin"] = self.statusParent!.currentStatus!
                     if(self.statusParent!.currentStatus!){
-                        alert.title = "LinkedIn Connected!"
-                        alert.message = "You have successfully connected your LinkedIn account"
+                        alert.title = NSLocalizedString("settings.linkedin.connected.title", comment: "")
+                        alert.message = NSLocalizedString("settings.linkedin.connected.body", comment: "")
                     }else{
-                        alert.title = "LinkedIn Disconnected!"
-                        alert.message = "You have successfully disconnected your LinkedIn account"
+                        alert.title = NSLocalizedString("settings.linkedin.disconnected.title", comment: "")
+                        alert.message = NSLocalizedString("settings.linkedin.disconnected.body", comment: "")
                     }
                     alert.show()
                     self.table.reloadData();
                 }
-                
             })
         }
     }
