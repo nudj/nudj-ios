@@ -6,7 +6,8 @@
 */
 
 // General
-"general.button.ok" = "OK";
+"general.button.ok" = "OK";;
+"general.button.notnow" = "Not Now";
 
 // Server
 "server.error.unknown" = "There was an unexpected error communicating with the server.";
