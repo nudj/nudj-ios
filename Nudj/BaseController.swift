@@ -20,11 +20,9 @@ class BaseController: UIViewController {
          NSNotificationCenter.defaultCenter().addObserver(self, selector:"updateBadge:", name: "updateBadgeValue", object: nil);
     }
     
-    func showSimpleAlert(text: String) {
-        self.showSimpleAlert(text, action: nil)
-    }
-    
-    func showSimpleAlert(text: String, action: ((UIAlertAction) -> Void)?) {
+    func showSimpleAlert(text: String, action: ((UIAlertAction) -> Void)? = nil) {
+        // TODO: localisation
+        // TODO: replace this with something more flexible
         let alert = UIAlertController(title: nil, message: text, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel) {
             alert in
