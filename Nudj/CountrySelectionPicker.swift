@@ -14,9 +14,11 @@ protocol CountrySelectionPickerDelegate {
 }
 
 class CountrySelectionPicker: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
-    // TODO: localisation
+    // TODO: API strings
     var delegate : CountrySelectionPickerDelegate?
-    var selection = ["dial_code":"+44","name":"United Kingdom","code":"GB"]
+    var selection = ["dial_code": NSLocalizedString("country.default.dialcode", comment: ""),
+        "name": NSLocalizedString("country.default.name", comment: ""),
+        "code": NSLocalizedString("country.default.code", comment: "")]
     var picker:UIPickerView?
     var data:[AnyObject] = []
     var isCreated:Bool = false;
@@ -33,13 +35,13 @@ class CountrySelectionPicker: UIView, UIPickerViewDataSource, UIPickerViewDelega
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         let title = UILabel(frame: CGRectMake(0, 5, self.frame.size.width, 30))
-        title.text = "Choose your country"
+        title.text = NSLocalizedString("country.choose.label", comment: "")
         title.textAlignment = NSTextAlignment.Center
         title.textColor = appDelegate.appColor
         self.addSubview(title)
         
         let button = UIButton(frame: CGRectMake(self.frame.size.width - 70, 5, 60, 30))
-        button.setTitle("Done", forState: UIControlState.Normal)
+        button.setTitle(NSLocalizedString("general.button.done", comment: ""), forState: UIControlState.Normal)
         button.setTitleColor(appDelegate.appColor, forState: UIControlState.Normal)
         button.addTarget(self, action: "doneAction", forControlEvents: UIControlEvents.TouchUpInside)
         self.addSubview(button)
@@ -77,6 +79,7 @@ class CountrySelectionPicker: UIView, UIPickerViewDataSource, UIPickerViewDelega
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        // TODO: API strings
         let text = data[row].valueForKey("name") as! String
         let code = data[row].valueForKey("dial_code") as! String
         return "\(text) (\(code))"
@@ -101,7 +104,6 @@ class CountrySelectionPicker: UIView, UIPickerViewDataSource, UIPickerViewDelega
             switch response.result {
             case .Success(let value):
                 let json = JSON(value)
-                
                 for (_, obj) in json {
                     let dial_code = "+" + obj["code"].stringValue
                     let name = obj["name"].stringValue
@@ -113,10 +115,9 @@ class CountrySelectionPicker: UIView, UIPickerViewDataSource, UIPickerViewDelega
                 break
                 
             case .Failure:
-                //TODO: handle failure
+                // TODO: handle failure
                 break
             }
         }
     }
-    
 }

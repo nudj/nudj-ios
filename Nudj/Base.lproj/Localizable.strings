@@ -8,6 +8,13 @@
 // General
 "general.button.ok" = "OK";;
 "general.button.notnow" = "Not Now";
+"general.button.done" = "Done";
+
+// Country selection
+"country.default.dialcode" = "+44";
+"country.default.name" = "United Kingdom";
+"country.default.code" = "GB";
+"country.choose.label" = "Choose your country";
 
 // Server
 "server.error.unknown" = "There was an unexpected error communicating with the server.";
