@@ -70,6 +70,7 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
     }
     
     func requestData(){
+        // TODO: API strings
         API.sharedInstance.get("jobs/\(self.jobID!)?params=job.title,job.company,job.liked,job.salary,job.active,job.description,job.skills,job.bonus,job.user,job.location,user.image,user.name,user.contact", params: nil, closure: { 
             json in
             self.populateView(json["data"])
@@ -88,12 +89,14 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
     
     func populateView(content:JSON){
         // Configure right button
+        // TODO: API strings
         if(appDelegate.user!.id == content["user"]["id"].intValue){
             
             if appDelegate.shouldShowAskForReferralTutorial  {
                tutorial.starTutorial("tutorial-ask", view: self.view)
             }
             
+            // TODO: localisation
             self.navigationItem.rightBarButtonItem?.title = "Edit"
             self.interestedBtn.setTitle("Ask for Referral", forState: UIControlState.Normal)
             
@@ -142,6 +145,7 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
         
         /** Using NZLABEL to style a UILabel to have multiple colors and fontsize **/
         
+        // TODO: API localisation
         // Employer Property
         employerText.text = "Employer: " + content["company"].stringValue
         employerText.setFontColor(appDelegate.appColor, string:content["company"].stringValue)
@@ -168,6 +172,8 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
     }
 
     @IBAction func topRightNavAction(sender: UIBarButtonItem) {
+        // TODO: API strings
+        // TODO: localisation
         if (sender.title == "Save") {
             MixPanelHandler.sendData("SaveJobButtonClicked")
             API.sharedInstance.put("jobs/\(self.jobID!)/like", params: nil, closure: { json in
@@ -252,12 +258,14 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
     func postRequest(){
         let params:[String:AnyObject] = ["job_id": "\(self.jobID!)"]
         
-        API.sharedInstance.put("nudge/apply", params: params, closure: { 
+        // TODO: API strings
+        API.sharedInstance.put("nudge/apply", params: params, closure: {
             json in
             self.navigationController?.navigationBarHidden = true
             
             self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true)
-            self.popup!.bodyText("The hirer has been notified")
+            // TODO: localisation
+           self.popup!.bodyText("The hirer has been notified")
             self.popup!.delegate = self
             self.view.addSubview(self.popup!)
             }) { 
@@ -275,6 +283,8 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
     func dismissTutorial() {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
         
+        // TODO: API strings
+        // TODO: localisation
         if(self.navigationItem.rightBarButtonItem?.title == "Edit"){
             UserModel.update(["settings":["tutorial":["create_job":false]]], closure: { 
                 result in

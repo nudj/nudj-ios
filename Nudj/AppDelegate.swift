@@ -463,7 +463,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
         // Create the coordinator and store
         var coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("NudgeData.sqlite")
-        // TODO: lcoalisation
+        // TODO: localisation
         var failureReason = "There was an error creating or loading the application's saved data."
         do {
             try coordinator?.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
