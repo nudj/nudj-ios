@@ -2460,7 +2460,7 @@
 			attributes = {
 				CLASSPREFIX = Nudj;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Nudge I.T. Limited";
 				TargetAttributes = {
 					EB0926C91A8DE4CB00E1D958 = {
