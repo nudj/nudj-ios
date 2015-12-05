@@ -8,8 +8,11 @@
 import UIKit
 
 struct Status {
-    // TODO: localisation
-    static let titles = ["Hiring", "Available", "Do not Disturb"]
+    static let titles = [
+        NSLocalizedString("userstatus.hiring", comment: ""),
+        NSLocalizedString("userstatus.available", comment: ""),
+        NSLocalizedString("userstatus.do-not-disturb", comment: "")
+    ]
     // TODO: magic numbers
     static let colors = [
         UIColor(red: 22.0/255.0, green: 128.0/255.0, blue: 175.0/255.0, alpha: 1.0), 
@@ -18,8 +21,7 @@ struct Status {
 }
 
 class StatusButton: UIButton {
-    // TODO: localisation
-    let initialTitle = "SELECT STATUS"
+    let initialTitle = NSLocalizedString("userstatus.unknown", comment: "")
 
     var gray = true
     var isChanged = false
