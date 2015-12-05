@@ -74,7 +74,8 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
         let phoneNumber = self.getFormattedNumber()
 
         if (phoneNumber.isEmpty) {
-            showSimpleAlert("Phone field is required.")
+            // TODO: localisation
+            showSimpleAlert(NSLocalizedString("login.phone-number.required", comment: ""))
             showLoginButton()
             return;
         }
@@ -84,14 +85,6 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
         let params: [String: AnyObject] = ["phone": phoneNumber, "country_code": code]
 
         API.sharedInstance.post("users", params: params, closure: { response in
-            
-            //self.code = response["data"]["code"].stringValue
-
-            /*if (count(self.code) <= 0) {
-                self.showUnknownError()
-                return
-            }*/
-
             if (self.appDelegate.contacts.isAuthorized()) {
                 self.proceed()
             } else {
@@ -110,12 +103,6 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
         self.loginButton.enabled = false
     }
 
-    override func showUnknownError() {
-        self.showLoginButton()
-
-        super.showUnknownError()
-    }
-    
     func textFieldDidBeginEditing(textField: UITextField) {
         
         if self.countrySelectionView.isCreated == true && self.countrySelectionView.hidden == false{

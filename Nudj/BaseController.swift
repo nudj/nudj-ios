@@ -20,22 +20,12 @@ class BaseController: UIViewController {
          NSNotificationCenter.defaultCenter().addObserver(self, selector:"updateBadge:", name: "updateBadgeValue", object: nil);
     }
     
-    func showSimpleAlert(text: String, action: ((UIAlertAction) -> Void)? = nil) {
-        // TODO: localisation
-        // TODO: replace this with something more flexible
+    func showSimpleAlert(text: String) {
+        // TODO: supply a title
         let alert = UIAlertController(title: nil, message: text, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel) {
-            alert in
-            if (action != nil) {
-                action!(alert)
-            }
-        })
+        let okButtonTitle = NSLocalizedString("general.button.ok", comment: "")
+        alert.addAction(UIAlertAction(title: okButtonTitle, style: UIAlertActionStyle.Cancel, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
-    }
-
-    func showUnknownError() {
-        // TODO: localisation
-        self.showSimpleAlert("Unknown Error Occured.")
     }
 
     func apiRequest(method: API.Method, path: String, params: [String: AnyObject]? = nil, closure: ((JSON) -> ())? = nil, errorHandler: (ErrorType -> Void)? = nil ) {
@@ -51,7 +41,7 @@ class BaseController: UIViewController {
                 if (json["error"] != nil) {
                     self.showSimpleAlert(json["error"]["message"].stringValue)
                 } else {
-                    self.showUnknownError()
+                    self.showSimpleAlert(NSLocalizedString("server.error.unknown", comment: ""))
                 }
 
                 // TODO: sort this out - we have no error to pass here

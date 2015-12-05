@@ -46,8 +46,6 @@ class VerifyViewController: BaseController {
 
         smsText.attributedText = tmp
         smsText.sizeToFit()
-
-//        self.showSimpleAlert("Your verification code is: " + self.code);
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -72,11 +70,8 @@ class VerifyViewController: BaseController {
             (json: JSON) in
 
             self.code = json["data"]["code"].stringValue
-            
-            // TODO: localisation
-            self.showSimpleAlert("Your new code is sent.") { _ in
-                self.showSimpleAlert("Your verification code is: " + self.code);
-            }
+            let verificationCodeMessage = String.localizedStringWithFormat(NSLocalizedString("verification.code.alert.format", comment: ""), self.code)
+            self.showSimpleAlert(verificationCodeMessage)
         })
     }
 
@@ -93,10 +88,9 @@ class VerifyViewController: BaseController {
         }
         codeField.text = ""
 
-        // TODO: localisation
         if (code.characters.count != self.codeLength) {
-            showSimpleAlert("Invalid Code")
-            return;
+            showSimpleAlert(NSLocalizedString("verification.code.invalid", comment: ""))
+            return
         }
 
         self.hideCodeField()
@@ -108,9 +102,8 @@ class VerifyViewController: BaseController {
 
             if (!self.isValidResponse(json)) {
                 self.showCodeField(animated: true)
-                // TODO: localisation
-                self.showSimpleAlert("This code is invalid.")
-                return;
+                self.showSimpleAlert(NSLocalizedString("verification.code.invalid", comment: ""))
+                return
             }
 
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
@@ -140,7 +133,7 @@ class VerifyViewController: BaseController {
             self.performSegueWithIdentifier("showInitProfileView", sender: nil)
         }, errorHandler: {_ in
             self.showCodeField(animated: true)
-            self.showSimpleAlert("There was an error in code verification, please try again.")
+            self.showSimpleAlert(NSLocalizedString("verification.code.error", comment: ""))
         })
     }
 

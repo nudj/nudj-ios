@@ -5,12 +5,26 @@
   Copyright © 2015 Nudge I.T. Limited. All rights reserved.
 */
 
+// General
+"general.button.ok" = "OK";
+
+// Server
+"server.error.unknown" = "There was an unexpected error communicating with the server.";
+
 // Access to contacts
 "contacts.access.request.title" = "Nudj would like to access your address book";
 "contacts.access.request.body" = "This will let you send texts and job referrals to anyone in your address book.\n\nNudj will never send messages without your explicit permission.";
+
+// Login
+"login.phone-number.required" == "You must supply a phone number to log in.";
 
 // User status
 "userstatus.unknown" = "SELECT STATUS";
 "userstatus.hiring" = "Hiring";
 "userstatus.available" = "Available";
 "userstatus.do-not-disturb" = "Do Not Disturb";
+
+// Verification
+"verification.code.alert.format" = "Your verification code is %@.";
+"verification.code.invalid" = "That verification code is invalid.";
+"verification.code.error" = "There was an error in code verification, please try again.";
