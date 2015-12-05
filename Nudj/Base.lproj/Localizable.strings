@@ -19,6 +19,14 @@
 // Login
 "login.phone-number.required" == "You must supply a phone number to log in.";
 
+// Phone and SMS
+"phone.unavailable.title" = "Phone unavailable";
+"phone.unavailable.body" = "This device cannot make phone calls.";
+"sms.unavailable.title" = "Text messages unavailable";
+"sms.unavailable.body" = "This device cannot send text messages.";
+"sms.failed.title" = "Text message failed";
+"sms.failed.body" = "Your message could not be sent. Please try again.";
+
 // User status
 "userstatus.unknown" = "SELECT STATUS";
 "userstatus.hiring" = "Hiring";

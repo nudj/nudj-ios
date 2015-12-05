@@ -117,7 +117,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
     // MARK: -- UITableViewDelegate --
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-       //Mark as read
+       // TODO: Mark as read
     }
 
     func didTapUserImage(cell: NotificationCell) {
@@ -181,25 +181,29 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
     func didPressCallButton(cell: NotificationCell) {
         MixPanelHandler.sendData("Notification_CallButtonClicked")
         
+        // TODO: instead of failing and showing an alert, do not enable the call button if it is not available
         if let phonenumber = cell.notificationData?.senderPhoneNumber {
             let phoneNo = "tel://" + phonenumber
             if let phoneUrl = NSURL(string: phoneNo){
                 if(UIApplication.sharedApplication().canOpenURL(phoneUrl)){
                     UIApplication.sharedApplication().openURL(phoneUrl)
                 } else {
-                    // TODO: localisation
-                    let alert = UIAlertView(title: "Cannot initiate a Phone call", message: "Nudj is unable to initiate a phone call right now, please try again later", delegate: nil, cancelButtonTitle: "OK");
+                    let alert = UIAlertView(title: NSLocalizedString("phone.unavailable.title", comment: ""),
+                        message: NSLocalizedString("phone.unavailable.body", comment: ""),
+                        delegate: nil,
+                        cancelButtonTitle: NSLocalizedString("general.button.ok", comment: ""));
                     alert.show()
                 }
             }
         } else {
             // TODO: improve error handling
-            loggingPrint("no phonumber")
+            loggingPrint("no phone number")
         }
     }
     
     func createSms(receiver:String?){
         if let reciverNumber = receiver {
+            // TODO: instead of failing and showing an alert, do not enable the SMS feature if it is not available
             if(MFMessageComposeViewController.canSendText()){
                 let messageComposer = MFMessageComposeViewController()
                 messageComposer.messageComposeDelegate = self
@@ -207,7 +211,10 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
                 messageComposer.recipients = [reciverNumber]
                 self.presentViewController(messageComposer, animated: true, completion: nil)
             } else {
-                let alert = UIAlertView(title: "Text message services unavailabe", message: "Creating text messages is unavailabe for this device", delegate: nil, cancelButtonTitle: "OK");
+                let alert = UIAlertView(title: NSLocalizedString("sms.unavailable.title", comment: ""),
+                    message: NSLocalizedString("sms.unavailable.body", comment: ""),
+                    delegate: nil,
+                    cancelButtonTitle: NSLocalizedString("general.button.ok", comment: ""));
                 alert.show()
             }
         } else {
@@ -218,8 +225,10 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
     
     func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult) {
         if result == MessageComposeResultFailed {
-            // TODO: localisation
-            let alert = UIAlertView(title: "Text message failed", message: "There was an error in sending your message. Please try again", delegate: nil, cancelButtonTitle: "OK");
+            let alert = UIAlertView(title: NSLocalizedString("sms.failed.title", comment: ""),
+                message: NSLocalizedString("sms.failed.body", comment: ""),
+                delegate: nil,
+                cancelButtonTitle: NSLocalizedString("general.button.ok", comment: ""));
             alert.show()
         }
         
