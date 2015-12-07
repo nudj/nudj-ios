@@ -295,7 +295,6 @@
 		EB313D301AAF4C5A00F008B8 /* StatusPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB313D2F1AAF4C5A00F008B8 /* StatusPicker.swift */; };
 		EB35BBA51AB7288000842E1F /* ContactsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB35BBA31AB7288000842E1F /* ContactsCell.swift */; };
 		EB6F22BA1AAF706A007FF1B8 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6F22B91AAF706A007FF1B8 /* AsyncImage.swift */; };
-		EB6F22BC1AB02E7F007FF1B8 /* MainTitleBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6F22BB1AB02E7F007FF1B8 /* MainTitleBar.swift */; };
 		EB6F22BE1AB045C0007FF1B8 /* RBResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6F22BD1AB045C0007FF1B8 /* RBResizer.swift */; };
 		EB72C56A1B578D8100CCBD2E /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB72C5691B578D8100CCBD2E /* Notification.swift */; };
 		EB866BD91B53EC9700E203CA /* NotificationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB866BD81B53EC9700E203CA /* NotificationButton.swift */; };
@@ -859,7 +858,6 @@
 		EB313D2F1AAF4C5A00F008B8 /* StatusPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StatusPicker.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB35BBA31AB7288000842E1F /* ContactsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ContactsCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB6F22B91AAF706A007FF1B8 /* AsyncImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AsyncImage.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		EB6F22BB1AB02E7F007FF1B8 /* MainTitleBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MainTitleBar.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB6F22BD1AB045C0007FF1B8 /* RBResizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RBResizer.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB72C5691B578D8100CCBD2E /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Notification.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB866BD81B53EC9700E203CA /* NotificationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NotificationButton.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -2269,7 +2267,6 @@
 			children = (
 				EBF0E50D1B7365170021D29B /* NoContactsPermisson */,
 				EB6F22B91AAF706A007FF1B8 /* AsyncImage.swift */,
-				EB6F22BB1AB02E7F007FF1B8 /* MainTitleBar.swift */,
 				EB6F22BD1AB045C0007FF1B8 /* RBResizer.swift */,
 				EBBF42581AB1E55F0001E8B6 /* DataProviderProtocol.swift */,
 				EB9F71DE1B0E0060000C2D9F /* MainTabBar.swift */,
@@ -2732,7 +2729,6 @@
 				EB866BD91B53EC9700E203CA /* NotificationButton.swift in Sources */,
 				A99650121B387CC800D5A8E9 /* XMPPStream.m in Sources */,
 				A996505B1B387CC800D5A8E9 /* XMPPMessage+XEP_0172.m in Sources */,
-				EB6F22BC1AB02E7F007FF1B8 /* MainTitleBar.swift in Sources */,
 				EBB338301A9F5A44000CAD88 /* UserModel.swift in Sources */,
 				EB9F71DF1B0E0060000C2D9F /* MainTabBar.swift in Sources */,
 				A984E2EE1B67ACA9009F318E /* ChatRoomModel.swift in Sources */,
