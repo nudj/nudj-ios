@@ -24,6 +24,8 @@
 "chat.archived.body" = "Archived chats are stored in Settings.";
 "chat.contact.send.format" = "Contact %@";
 "chat.contact.success.format" = "You have successfully contacted %@";
+"chat.connection.error.title" = "Error";
+"chat.connection.error.body.format" = "Can't connect to the chat server. %@";
 
 // Country selection
 "country.default.dialcode" = "+44";

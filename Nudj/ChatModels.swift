@@ -170,7 +170,9 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             return true;
         }
         catch let error as NSError {
-            let alertView = UIAlertView(title: "Error", message:"Can't connect to the chat server \(error.localizedDescription)", delegate: nil, cancelButtonTitle: "Ok")
+            let title = NSLocalizedString("chat.connection.error.title", comment: "")
+            let message = String.localizedStringWithFormat(NSLocalizedString("chat.connection.error.body.format", comment: ""), error.localizedDescription)
+            let alertView = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: NSLocalizedString("general.button.ok", comment: ""))
             alertView.show()
             return false;
         }
