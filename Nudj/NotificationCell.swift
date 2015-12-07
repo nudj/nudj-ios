@@ -71,18 +71,16 @@ class NotificationCell: UITableViewCell {
         
         self.smsButton.addTarget(self, action: "actions:", forControlEvents:.TouchUpInside)
         
-        
         switch(data.notificationType!){
         case .AskToRefer:
             self.callButton.hidden = true
-            self.smsButton.setTitle("Details", forState: UIControlState.Normal)
+            self.smsButton.setTitle(NSLocalizedString("notification.button.details", comment: ""), forState: UIControlState.Normal)
             self.refLabel.hidden = false
             self.refAmount.hidden = false
-            
             break;
         case .AppApplication:
             self.callButton.hidden = true
-            self.smsButton.setTitle("Message", forState: UIControlState.Normal)
+            self.smsButton.setTitle(NSLocalizedString("notification.button.message", comment: ""), forState: UIControlState.Normal)
             self.refLabel.hidden = false
             self.refAmount.hidden = false
             break;
@@ -90,68 +88,54 @@ class NotificationCell: UITableViewCell {
             break;
         case .MatchingContact:
             self.callButton.hidden = true
-            self.smsButton.setTitle("NUDJ", forState: UIControlState.Normal)
+            self.smsButton.setTitle(NSLocalizedString("notification.button.nudj", comment: ""), forState: UIControlState.Normal)
             self.smsButton.backgroundColor = appDelegate.appColor
             self.refLabel.hidden = false
             self.refAmount.hidden = false
             break;
         case .AppApplicationWithNoReferral:
             self.callButton.hidden = true
-            self.smsButton.setTitle("Message", forState: UIControlState.Normal)
+            self.smsButton.setTitle(NSLocalizedString("notification.button.message", comment: ""), forState: UIControlState.Normal)
             self.refLabel.hidden = false
             self.refAmount.hidden = false
             break;
         case .WebApplicationWithNoReferral:
             break;
         }
-        
     }
     
     func readStatus(read:Bool){
-        
         loggingPrint("read status -> \(read)")
         self.isRead = read
         
         if(read == false){
-            self.contentView.backgroundColor =  UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
+            self.contentView.backgroundColor =  UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 1.0)
         }else{
             self.contentView.backgroundColor = UIColor.whiteColor()
         }
-        
-        
     }
     
     func actions(sender:UIButton){
-        
         self.sender = sender
         delegate?.didPressRightButton(self)
-        
     }
     
     @IBAction func callAction(sender: UIButton) {
-        
          delegate?.didPressCallButton(self)
     }
 
     @IBAction func ImageTap(sender: UITapGestureRecognizer) {
-        
         delegate?.didTapUserImage(self)
     }
 
     func markAsRead(){
-        
         loggingPrint("mark as read url: notifications/\(self.notificationID!)/read")
-        
+        // TODO: API strings
         API.sharedInstance.put("notifications/\(self.notificationID!)/read", params: nil, closure: { json in
-            
             loggingPrint("success \(json)")
-            
-        }) { error in
-            
+        }) { 
+            error in
             loggingPrint("error \(error)")
         }
-        
     }
-    
-
 }

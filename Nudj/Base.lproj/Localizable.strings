@@ -70,6 +70,11 @@
 // Login
 "login.phone-number.required" = "You must supply a phone number to log in.";
 
+// Notification
+"notification.button.details" = "Details";
+"notification.button.message" = "Message";
+"notification.button.nudj" = "NUDJ";
+
 // Phone and SMS
 "phone.unavailable.title" = "Phone unavailable";
 "phone.unavailable.body" = "This device cannot make phone calls.";
