@@ -10,13 +10,12 @@ import AddressBook
 import UIKit
 
 class Contacts {
+    // TOOD: JRB: review this, especially the image cache
 
     var book : ABAddressBook!
-
     var cache = [Int:UIImage]()
 
     func createAddressBook(force:Bool = false) -> Bool {
-
         if (!force && self.book != nil) {
             return true
         }
@@ -35,35 +34,35 @@ class Contacts {
 
     func determineStatus() -> Bool {
         let status = ABAddressBookGetAuthorizationStatus()
-
+        
         switch status {
-            case .Authorized:
-                return self.createAddressBook()
-
-            case .NotDetermined:
-                var ok = false
-                ABAddressBookRequestAccessWithCompletion(nil) {
-                    (granted:Bool, err:CFError!) in
-                    dispatch_async(dispatch_get_main_queue()) {
-                        if granted {
-                            ok = self.createAddressBook()
-                        }
+        case .Authorized:
+            return self.createAddressBook()
+            
+        case .NotDetermined:
+            var ok = false
+            ABAddressBookRequestAccessWithCompletion(nil) {
+                (granted:Bool, err:CFError!) in
+                dispatch_async(dispatch_get_main_queue()) {
+                    if granted {
+                        ok = self.createAddressBook()
                     }
                 }
-                if ok == true {
-                    return true
-                }
-
-                self.book = nil
-                return false
-
-            case .Restricted:
-                self.book = nil
-                return false
-
-            case .Denied:
-                self.book = nil
-                return false
+            }
+            if ok == true {
+                return true
+            }
+            
+            self.book = nil
+            return false
+            
+        case .Restricted:
+            self.book = nil
+            return false
+            
+        case .Denied:
+            self.book = nil
+            return false
         }
     }
 
@@ -100,7 +99,7 @@ class Contacts {
         let newContact:ABRecordRef! = ABPersonCreate().takeRetainedValue()
 
         var error: Unmanaged<CFErrorRef>? = nil
-
+        // TODO: determine if this should be left in
         ABRecordSetValue(newContact, kABPersonFirstNameProperty, "Nudj", &error)
 
 //        ABRecordSetValue(newContact, kABPersonPhoneMainLabel, "+442033223966", &error)
