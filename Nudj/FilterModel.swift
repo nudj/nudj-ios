@@ -13,22 +13,18 @@ class FilterModel: NSObject {
     var filteredContent = [ContactModel?]()
 
     override init() {
-
     }
 
     init(content:[ContactModel]){
-
         self.allContent = content
         self.filteredContent = content
-        
     }
 
     func startFiltering(filteringText:String, completionHandler:(success:Bool) -> Void) {
-        
-        self.filteredContent = self.allContent.filter({ element in
+        self.filteredContent = self.allContent.filter({ 
+            element in
             element!.name.lowercaseString.hasPrefix(filteringText.lowercaseString)
         })
-        
         completionHandler(success:true)
     }
     
@@ -40,5 +36,4 @@ class FilterModel: NSObject {
         self.allContent = content
         self.filteredContent = content
     }
-    
 }

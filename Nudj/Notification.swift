@@ -9,6 +9,7 @@ import Foundation
 import SwiftyJSON
 
 enum NotificationType:Int {
+    // TODO: see if we can do without the raw int values
     case AskToRefer = 1
     case AppApplication = 2
     case WebApplication = 3
@@ -44,7 +45,7 @@ class Notification {
         }
         let type = NotificationType(rawValue: rawType)
         let obj = Notification()
-    
+        // TODO: API strings
         obj.senderImage = data["sender"]["image"]["profile"].stringValue
         obj.senderId = data["sender"]["id"].stringValue
         obj.senderName = data["sender"]["name"].stringValue

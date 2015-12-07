@@ -28,8 +28,7 @@ class ChatStructModel: NSObject {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     let defaults = NSUserDefaults.standardUserDefaults()
    
-    func createData(json:JSON) -> ChatStructModel{
-        
+    func createData(json:JSON) -> ChatStructModel {
         let chat = ChatStructModel()
         
         chat.chatId = json["id"].stringValue
@@ -38,11 +37,9 @@ class ChatStructModel: NSObject {
         chat.jobLike = json["job"]["liked"].boolValue
         chat.job = json["job"]
         
-        
-        //set default time to when chatroom was created
-        //convert timestamp to NSdate
-        let timestamp:NSTimeInterval =  NSTimeInterval(json["created"].doubleValue)
-        let date:NSDate = NSDate(timeIntervalSince1970:timestamp)
+        // set default time to when chatroom was created
+        let timestamp: NSTimeInterval =  NSTimeInterval(json["created"].doubleValue)
+        let date: NSDate = NSDate(timeIntervalSince1970: timestamp)
         chat.timeinRawForm = date
         chat.time = date.timeAgoSinceNow()
         
@@ -59,17 +56,16 @@ class ChatStructModel: NSObject {
             self.retrieveStoredContent(chat)
         }
         
+        // TODO: API strings
         let user = json["participants"][0]["id"].intValue == appDelegate.user!.id ? json["participants"][1] : json["participants"][0]
         chat.participantName =  user["name"].stringValue.isEmpty ? user["contact"]["alias"].stringValue : user["name"].stringValue
         chat.participantsID = user["id"].stringValue
         chat.image = user["image"]["profile"].stringValue
         
         return chat
-        
     }
     
-    
-    func markAsRead(){
+    func markAsRead() {
         //Mark as read
         if(self.isRead != nil && self.isRead! == false){
             self.isRead = true
@@ -81,13 +77,11 @@ class ChatStructModel: NSObject {
         }
     }
     
-    func retrieveStoredContent(chat:ChatStructModel){
-        
+    func retrieveStoredContent(chat:ChatStructModel) {
         let outData = NSUserDefaults.standardUserDefaults().dataForKey(chat.chatId!)
         let dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData!) as! NSDictionary
         
         if dict.count > 0 {
-            
             loggingPrint("has stored content \(dict)")
             
             let dateFormatter = NSDateFormatter()
@@ -97,22 +91,17 @@ class ChatStructModel: NSObject {
             if let arrr = appDelegate.chatInst!.listOfActiveChatRooms[chat.chatId!]{
                 let arr = arrr.retrieveStoredChats()
                 if arr.count != 0 {
-                    
                     // if there is a last message use this instead of the default
                     let time = arr.lastObject as! JSQMessage
                     chat.timeinRawForm = time.date
                     
                     let timestamp = time.date.timeIntervalSince1970
                     chat.time = NSDate(timeIntervalSince1970: timestamp).timeAgoSinceNow()
-                    
-                    
                 }
             }
             chat.isRead = dict["isRead"] as? Bool
             chat.isNew = dict["isNew"]as? Bool
-            
         }
-        
     }
     
 }

@@ -21,7 +21,7 @@ class BaseController: UIViewController {
     }
     
     func showSimpleAlert(text: String) {
-        // TODO: supply a title
+        // TODO: pass in an optional title
         let alert = UIAlertController(title: nil, message: text, preferredStyle: UIAlertControllerStyle.Alert)
         let okButtonTitle = NSLocalizedString("general.button.ok", comment: "")
         alert.addAction(UIAlertAction(title: okButtonTitle, style: UIAlertActionStyle.Cancel, handler: nil))

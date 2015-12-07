@@ -55,7 +55,7 @@ class JobModel {
             "active": self.active ? "1" : "0",
             "skills": self.skills
         ]
-        
+        // TODO: API strings
         API.sharedInstance.put("jobs/\(jobID)", params: params, closure: { 
             result in
             closure(true)
