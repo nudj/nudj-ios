@@ -1169,6 +1169,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="feedBackTextView" destination="D7M-6w-2AY" id="7QL-ie-hH6"/>
+                        <outlet property="sendButton" destination="uaS-nZ-mq4" id="KGx-LB-Rdl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ABT-L0-yQR" userLabel="First Responder" sceneMemberID="firstResponder"/>

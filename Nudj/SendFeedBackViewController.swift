@@ -7,16 +7,14 @@
 
 import UIKit
 
-class SendFeedBackViewController: UIViewController,UITextViewDelegate {
+class SendFeedBackViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var feedBackTextView: UITextView!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-
+    @IBOutlet weak var sendButton: UIBarButtonItem!
+    
     override func viewWillAppear(animated: Bool) {
         self.tabBarController?.tabBar.hidden = true
+        self.sendButton.enabled = !feedBackTextView.text.isEmpty
         self.feedBackTextView.becomeFirstResponder()
     }
     
@@ -25,23 +23,21 @@ class SendFeedBackViewController: UIViewController,UITextViewDelegate {
         self.tabBarController?.tabBar.hidden = false
     }
     
-    
     func textViewDidChange(textView: UITextView) {
-    }
-
-    @IBAction func sendFeedBack(sender: UIBarButtonItem) {
-        
-        if(!self.feedBackTextView.text.isEmpty){
-            API.sharedInstance.post("feedback", params: ["feedback":self.feedBackTextView.text], closure: { json in
-                self.navigationController?.popViewControllerAnimated(true)
-            }, errorHandler: { error in
-                // TODO: eror handling    
-                loggingPrint(error)
-            })
-        } else {
-            let alert:UIAlertView = UIAlertView(title: "No Text!", message: "Please add a comment", delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
+        if textView == feedBackTextView {
+            self.sendButton.enabled = !feedBackTextView.text.isEmpty
         }
     }
-
+    
+    @IBAction func sendFeedBack(sender: UIBarButtonItem) {
+        guard !self.feedBackTextView.text.isEmpty else {
+            return
+        }
+        API.sharedInstance.post("feedback", params: ["feedback":self.feedBackTextView.text], closure: { json in
+            self.navigationController?.popViewControllerAnimated(true)
+            }, errorHandler: { error in
+                // TODO: error handling    
+                loggingPrint(error)
+        })
+    }
 }
