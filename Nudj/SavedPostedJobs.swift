@@ -36,7 +36,7 @@ class SavedPostedJobs: BaseController, DataProviderProtocol {
         self.table.tableFooterView = UIView(frame: CGRectZero);
         
         self.table.loadData()
-        self.view.addSubview(self.noContentImage.createNoContentPlaceHolder(self.view, imageTitle: "no_jobs"))
+        self.view.addSubview(self.noContentImage.alignInSuperView(self.view, imageTitle: "no_jobs"))
     }
 
     override func didReceiveMemoryWarning() {
@@ -69,9 +69,9 @@ class SavedPostedJobs: BaseController, DataProviderProtocol {
     
     func didfinishLoading(count:Int) {
         if(count == 0){
-            self.noContentImage.showPlaceholder()
+            self.noContentImage.hidden = false
         }else{
-            self.noContentImage.hidePlaceholder()
+            self.noContentImage.hidden = true
         }
     }
     

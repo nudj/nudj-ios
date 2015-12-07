@@ -8,21 +8,15 @@
 import UIKit
 
 class NoContentPlaceHolder: UIImageView {
+    let imageWidth: CGFloat = 200.0
+    let imageHeight: CGFloat = 149.0
 
-    func createNoContentPlaceHolder(view :UIView, imageTitle:String) -> NoContentPlaceHolder{
-        // TODO: magic numbers
-        self.frame = CGRectMake((view.frame.size.width/2) - 200/2 , (view.frame.size.height/2) - 149/2, 200,149)
+    func alignInSuperView(superview: UIView, imageTitle: String) -> NoContentPlaceHolder {
+        let size = superview.frame.size
+        self.frame = CGRectMake((size.width - imageWidth) / 2.0, (size.height - imageHeight) / 2.0, imageWidth, imageHeight)
         self.image = UIImage(named: imageTitle)
         self.hidden = true
         
         return self
-    }
-    
-    func showPlaceholder(){
-        self.hidden = false
-    }
-    
-    func hidePlaceholder(){
-        self.hidden = true
     }
 }

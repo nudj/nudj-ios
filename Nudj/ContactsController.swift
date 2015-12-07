@@ -61,7 +61,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         self.activityIndi.hidden = false
         self.table.hidden = true
         
-        self.view.addSubview(self.noContentImage.createNoContentPlaceHolder(self.view, imageTitle: "no_contacts"))
+        self.view.addSubview(self.noContentImage.alignInSuperView(self.view, imageTitle: "no_contacts"))
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -145,9 +145,9 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
             self.table.hidden = false
             
             if(self.filtering.filteredContent.count == 0){
-                self.noContentImage.showPlaceholder()
+                self.noContentImage.hidden = false
             }else{
-                self.noContentImage.hidePlaceholder()
+                self.noContentImage.hidden = true
             }
         })
     }

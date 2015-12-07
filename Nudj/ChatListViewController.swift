@@ -24,7 +24,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
          self.chatTable.registerNib(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
          self.chatTable.tableFooterView = UIView(frame: CGRectZero);
         
-         self.view.addSubview(self.noContentImage.createNoContentPlaceHolder(self.view, imageTitle: "no_chats"))
+         self.view.addSubview(self.noContentImage.alignInSuperView(self.view, imageTitle: "no_chats"))
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -68,9 +68,9 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
             self.navigationController?.tabBarItem.badgeValue = nil
             
             if(self.data.count == 0){
-                self.noContentImage.showPlaceholder()
+                self.noContentImage.hidden = false
             }else{
-                self.noContentImage.hidePlaceholder()
+                self.noContentImage.hidden = true
             }
         })
     }

@@ -38,7 +38,7 @@ class MainFeed: BaseController, DataProviderProtocol ,UISearchBarDelegate, Tutor
         self.view.addSubview(self.blackBackground)
         
         self.view.bringSubviewToFront(self.searchBar)
-        self.view.addSubview(self.noContentImage.createNoContentPlaceHolder(self.view, imageTitle: "no_jobs"))
+        self.view.addSubview(self.noContentImage.alignInSuperView(self.view, imageTitle: "no_jobs"))
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
         if appDelegate.shouldShowAddJobTutorial  {
@@ -74,9 +74,9 @@ class MainFeed: BaseController, DataProviderProtocol ,UISearchBarDelegate, Tutor
     
     func didfinishLoading(count:Int) {
         if(count == 0){
-            self.noContentImage.showPlaceholder()
+            self.noContentImage.hidden = false
         }else{
-            self.noContentImage.hidePlaceholder()
+            self.noContentImage.hidden = true
         }
     }
 

@@ -285,8 +285,8 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
         
         if(hiddenFieldsCount == 5){
             let noContentImage = NoContentPlaceHolder()
-            self.view.addSubview(noContentImage.createNoContentPlaceHolder(self.view, imageTitle: "no_profile_content"))
-            noContentImage.showPlaceholder()
+            self.view.addSubview(noContentImage.alignInSuperView(self.view, imageTitle: "no_profile_content"))
+            noContentImage.hidden = false
         }
     }
 

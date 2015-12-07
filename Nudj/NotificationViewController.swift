@@ -32,7 +32,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
         self.tableView.tableFooterView = UIView(frame: CGRectZero);
 
         self.refreshControl?.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
-        self.view.addSubview(self.noContentImage.createNoContentPlaceHolder(self.view, imageTitle: "no_notifications"))
+        self.view.addSubview(self.noContentImage.alignInSuperView(self.view, imageTitle: "no_notifications"))
         
         UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         
@@ -85,9 +85,9 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
         self.refreshControl?.endRefreshing()
         
         if(self.data.count == 0){
-            self.noContentImage.showPlaceholder()
+            self.noContentImage.hidden = false
         } else {
-            self.noContentImage.hidePlaceholder()
+            self.noContentImage.hidden = true
         }
     }
     
