@@ -17,7 +17,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
     
 
     @IBOutlet weak var scrollView: UIScrollView!
-    var openSpace:CGFloat = 0;
+    var openSpace:CGFloat = 0.0;
 
     // Fields
 
@@ -65,17 +65,17 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
         
         if(isEditable != nil && isEditable == true){
             
-            self.navigationItem.rightBarButtonItem?.title = "Update"
-            self.title = "Edit Job"
+            self.navigationItem.rightBarButtonItem?.title = NSLocalizedString("jobs.add.button.update", comment: "")
+            self.title = NSLocalizedString("jobs.add.button.edit", comment: "")
             
             self.deleteBtn.hidden = false
             self.topGreyBorder.hidden = false
             self.bottomGreyBorder.hidden = false
             
-            API.sharedInstance.get("jobs/\(self.jobId!)?params=job.title,job.company,job.liked,job.salary,job.active,job.description,job.skills,job.bonus,job.user,job.location,user.image,user.name,user.contact", params: nil, closure: { json in
-                
+            // TODO: API strings
+            API.sharedInstance.get("jobs/\(self.jobId!)?params=job.title,job.company,job.liked,job.salary,job.active,job.description,job.skills,job.bonus,job.user,job.location,user.image,user.name,user.contact", params: nil, closure: {
+                json in
                 self.prefillData(json["data"])
-                
                 }) { error in
                     // TODO: handle error
             }
@@ -88,7 +88,6 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
     }
     
     override func viewWillAppear(animated: Bool) {
-        
         self.tabBarController?.tabBar.hidden = true
     }
     
@@ -113,9 +112,9 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
             job.location = location.text!
             job.active = activeButton.selected
             job.bonus = bonus.text!
-            
-            
-            if(sender.title == "Update"){
+
+            // TODO: select by something less fragile than the title
+            if(sender.title == NSLocalizedString("jobs.add.button.update", comment: "")){
                 job.edit(self.jobId!, closure: { result in
                     if(result == true){
                         self.navigationController?.navigationBarHidden = true
@@ -126,7 +125,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
                         self.view.addSubview(self.popup!)
                     }else{
                         self.navigationController?.navigationBarHidden = false
-                        let alert = UIAlertView(title: "Failed to update", message: "Oops, something went wrong. Could not update the job details.", delegate: nil, cancelButtonTitle: "OK")
+                        let alert = UIAlertView(title: NSLocalizedString("jobs.update.error.title", comment: ""), message: NSLocalizedString("jobs.update.error.body", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("general.button.ok", comment: ""))
                         alert.show()
                     }
                 })
@@ -146,7 +145,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
                 }
             }
         }else{
-            let alert = UIAlertView(title: "Missing information", message: "Please fill in the fields marked with *", delegate: nil, cancelButtonTitle: "OK")
+            let alert = UIAlertView(title: NSLocalizedString("jobs.validation.error.title", comment: ""), message: NSLocalizedString("jobs.validation.error.body", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("general.button.ok", comment: ""))
             alert.show();
         }
         
@@ -155,36 +154,37 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
     }
     
     func checkFields() -> Bool{
+        var result = true
         if (jobTitle.text!.isEmpty ){
             jobTitle.placeholder = self.appendRequired(jobTitle.placeholder!)
-            return false
+            result = false
         }
         
         if (jobDescription.text.isEmpty){
             jobDescriptionLabel.text = self.appendRequired(jobDescriptionLabel.text!)
-            return false
+            result = false
         }
         
         if (skills.tokens()!.count == 0){
             skillsLabel.text  = self.appendRequired(skillsLabel.text!)
-            return false
+            result = false
         }
         
         if (salary.text!.isEmpty){
             salary.placeholder = self.appendRequired(salary.placeholder!)
-            return false
+            result = false
         }
         
         if (bonus.text!.isEmpty){
             bonus.placeholder = self.appendRequired(bonus.placeholder!)
-            return false
+            result = false
         }
         
-        return true
+        return result
     }
     
     func appendRequired(value:String) -> String{
-        return value + " (Required)"
+        return String.localizedStringWithFormat(NSLocalizedString("jobs.validation.required.format", comment: ""), value)
     }
     
     func prefillData(json:JSON){
@@ -233,7 +233,6 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
     }
 
     func textViewDidChange(textView: UITextView) {
-        
         updateAssets()
     }
 
@@ -332,11 +331,11 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
     func keyboardWillHide(note: NSNotification){ }
     
     func dismissPopUp() {
-        
         popup!.removeFromSuperview();
-        if(self.navigationItem.rightBarButtonItem?.title == "Update"){
-             MixPanelHandler.sendData("JobUpdated")
-             self.closeCurrentView()
+        // TODO: select by something less fragile than the title
+        if(self.navigationItem.rightBarButtonItem?.title == NSLocalizedString("jobs.add.button.update", comment: "")){
+            MixPanelHandler.sendData("JobUpdated")
+            self.closeCurrentView()
         }else{
             MixPanelHandler.sendData("NewJobAdded")
             performSegueWithIdentifier("showAskForReferal", sender: self)
@@ -351,30 +350,23 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
         }
     }
     @IBAction func deleteAction(sender: UIButton) {
-            
-        let alert =  UIAlertView(title:"Delete job", message: "Are you sure you want to delete this job?", delegate: self, cancelButtonTitle: "NO",  otherButtonTitles: "YES")
+        let alert =  UIAlertView(title:NSLocalizedString("jobs.delete.alert.title", comment: ""), message: NSLocalizedString("jobs.delete.alert.body", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("general.button.cancel", comment: ""),  otherButtonTitles: NSLocalizedString("general.button.delete", comment: ""))
         alert.show()
         
     }
     
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        
         if buttonIndex == 1 {
-            
+            // API strings
             API.sharedInstance.request(.DELETE, path: "jobs/\(self.jobId!)", params: nil, closure: { json in
                 MixPanelHandler.sendData("JobDeleted")
                 self.closeCurrentView()
-                
-            }, errorHandler: { error in
-            
-                let alert = UIAlertView(title: "Error", message:"Error deleting this job", delegate: nil, cancelButtonTitle:"OK")
+            }, errorHandler: { 
+                error in
+                let alert = UIAlertView(title: NSLocalizedString("jobs.delete.error.title", comment: ""), message:NSLocalizedString("jobs.delete.error.body", comment: ""), delegate: nil, cancelButtonTitle:NSLocalizedString("general.button.cancel", comment: ""))
                 alert.show()
-                
             })
-
-            
         }
-        
     }
     
     func closeCurrentView(){

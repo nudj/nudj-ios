@@ -11,6 +11,7 @@
 "general.button.notnow" = "Not Now";
 "general.button.done" = "Done";
 "general.button.send" = "Send";
+"general.button.delete" = "Delete";
 "general.pull-to-refresh" = "Pull to refresh";
 
 // Account
@@ -54,6 +55,17 @@
 "jobs.interested.alert.title" = "Are you sure?";
 "jobs.interested.alert.body" = "This will send a notification to the Hirer that you are interested in this position.";
 "jobs.interested.confirmation.body" = "The hirer has been notified.";
+"jobs.add.button.update" = "Update";
+"jobs.add.button.edit" = "Edit Job";
+"jobs.update.error.title" = "Failed to update";
+"jobs.update.error.body" = "There was an error updating the job details.";
+"jobs.validation.error.title" = "Missing information";
+"jobs.validation.error.body" = "Please fill in the fields marked with *";
+"jobs.validation.required.format" = "%@ (Required)";
+"jobs.delete.alert.title" = "Delete job";
+"jobs.delete.alert.body" = "Are you sure you want to delete this job?";
+"jobs.delete.error.title" = "Error";
+"jobs.delete.error.body" = "There was an error deleting this job.";
 
 // Login
 "login.phone-number.required" = "You must supply a phone number to log in.";
