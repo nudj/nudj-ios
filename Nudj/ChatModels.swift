@@ -150,12 +150,16 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             return true;
         }
         
-        if (appGlobalDelegate.user == nil){
+        guard let user = appGlobalDelegate.user else {
             return false
         }
         
-        jabberPassword = appGlobalDelegate.user!.token;
-        jabberUsername = "\(appGlobalDelegate.user!.id!)@\(chatServer)";
+        guard let id = user.id else {
+            return false
+        }
+        
+        jabberPassword = user.token;
+        jabberUsername = "\(id)@\(chatServer)";
         if ( jabberUsername!.isEmpty || jabberPassword!.isEmpty) {
             return false;
         }

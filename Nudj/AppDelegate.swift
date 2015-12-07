@@ -620,16 +620,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
         let defaults = NSUserDefaults.standardUserDefaults()
         // TODO: magic strings
         if let outData = defaults.dataForKey("USER") {
+            if self.user == nil {
+                self.user = UserModel()
+            }
             if let dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData) as? [String:Bool] {
-                loggingPrint(dict)
-                
-                if dict["Completed"] != nil {
-                    self.user!.completed = dict["Completed"]!.boolValue
-                }
-                
-                self.shouldShowNudjTutorial =  dict["NudjTutorial"]!.boolValue
-                self.shouldShowAskForReferralTutorial = dict["AskForReferralTutorial"]!.boolValue
-                self.shouldShowAddJobTutorial = dict["AddJobTutorial"]!.boolValue
+                self.user?.completed = dict["Completed"] ?? false
+                self.shouldShowNudjTutorial =  dict["NudjTutorial"] ?? true
+                self.shouldShowAskForReferralTutorial = dict["AskForReferralTutorial"] ?? true
+                self.shouldShowAddJobTutorial = dict["AddJobTutorial"] ?? true
             }else{
                 loggingPrint("error in reading NSUserDefaults USER")
             }
