@@ -8,10 +8,10 @@
 import UIKit
 
 class AsyncImage: UIImageView {
-
+    // TODO: magic number
     let minimumBytes = 100
 
-    let loader = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+    let loader = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
 
     @IBInspectable
     var blur:Bool = false
@@ -48,13 +48,13 @@ class AsyncImage: UIImageView {
     }
 
     func prepare() {
-        self.contentMode = UIViewContentMode.ScaleAspectFill
+        self.contentMode = .ScaleAspectFill
 
         if (self.circleShape) {
-            self.layer.cornerRadius = self.layer.bounds.width/2
+            self.layer.cornerRadius = self.layer.bounds.width / 2.0
             self.layer.masksToBounds = true
 
-            self.layer.borderColor = UIColor(red: 1, green: 1, blue: 1, alpha: borderAlpha).CGColor
+            self.layer.borderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: borderAlpha).CGColor
             self.layer.borderWidth = borderWidth
         }
 
@@ -82,7 +82,8 @@ class AsyncImage: UIImageView {
         session.configuration.HTTPShouldSetCookies = false
         session.configuration.HTTPMaximumConnectionsPerHost = 8
 
-        session.dataTaskWithURL(NSURL(string: url)!) { (data, response, error) in
+        session.dataTaskWithURL(NSURL(string: url)!) { 
+            (data, response, error) in
             completion(data: data)
         }.resume()
     }
