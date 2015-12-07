@@ -10,6 +10,7 @@
 "general.button.cancel" = "Cancel";
 "general.button.notnow" = "Not Now";
 "general.button.done" = "Done";
+"general.button.send" = "Send";
 "general.pull-to-refresh" = "Pull to refresh";
 
 // Account
@@ -39,6 +40,20 @@
 "invitation.successful.body.format" = "%@ has been invited.";
 "invitation.failed.title" = "Invitation Failed";
 "invitation.failed.body.format" = "There was a problem inviting %@.";
+
+// Jobs
+"jobs.button.edit" = "Edit";
+"jobs.button.ask-for-referral" = "Ask for Referral";
+"jobs.button.save" = "Save";
+"jobs.button.saved" = "Saved";
+"jobs.button.interested" = "INTERESTED";
+"jobs.employer.format" = "Employer: %@";
+"jobs.location.format" = "Location: %@";
+"jobs.salary.format" = "Salary: %@";
+"jobs.bonus.format" = "Referral Bonus: %@";
+"jobs.interested.alert.title" = "Are you sure?";
+"jobs.interested.alert.body" = "This will send a notification to the Hirer that you are interested in this position.";
+"jobs.interested.confirmation.body" = "The hirer has been notified.";
 
 // Login
 "login.phone-number.required" = "You must supply a phone number to log in.";

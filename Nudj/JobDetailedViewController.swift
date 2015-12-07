@@ -96,21 +96,20 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
                tutorial.starTutorial("tutorial-ask", view: self.view)
             }
             
-            // TODO: localisation
-            self.navigationItem.rightBarButtonItem?.title = "Edit"
-            self.interestedBtn.setTitle("Ask for Referral", forState: UIControlState.Normal)
+            self.navigationItem.rightBarButtonItem?.title = NSLocalizedString("jobs.button.edit", comment: "")
+            self.interestedBtn.setTitle(NSLocalizedString("jobs.button.ask-for-referral", comment: ""), forState: UIControlState.Normal)
             
             spaceBetween.constant = 0
             let constraint = NSLayoutConstraint(item: nudgeBtn, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 0)
             nudgeBtn.addConstraint(constraint)
             
         } else if(content["liked"].boolValue){
-            self.navigationItem.rightBarButtonItem?.title = "Saved"
+            self.navigationItem.rightBarButtonItem?.title = NSLocalizedString("jobs.button.saved", comment: "")
             if appDelegate.shouldShowNudjTutorial  {
                 tutorial.starTutorial("tutorial-nudge", view: self.view)
             }
         } else {
-            self.navigationItem.rightBarButtonItem?.title = "Save"
+            self.navigationItem.rightBarButtonItem?.title = NSLocalizedString("jobs.button.save", comment: "")
             if appDelegate.shouldShowNudjTutorial  {
                 tutorial.starTutorial("tutorial-nudge", view: self.view)
             }
@@ -142,28 +141,31 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
         // Set job active or not active status
         self.jobActive.selected = content["active"].boolValue
         
-        
         /** Using NZLABEL to style a UILabel to have multiple colors and fontsize **/
         
-        // TODO: API localisation
         // Employer Property
-        employerText.text = "Employer: " + content["company"].stringValue
-        employerText.setFontColor(appDelegate.appColor, string:content["company"].stringValue)
+        let employer = content["company"].stringValue
+        employerText.text = String.localizedStringWithFormat(NSLocalizedString("jobs.employer.format", comment: ""), employer)
+        employerText.setFontColor(appDelegate.appColor, string:employer)
         
         // Location Property
-        locationText.text = "Location: " + content["location"].stringValue
-        locationText.setFontColor(appDelegate.appColor, string:content["location"].stringValue)
+        let location = content["location"].stringValue
+        locationText.text = String.localizedStringWithFormat(NSLocalizedString("jobs.location.format", comment: ""), location)
+        locationText.setFontColor(appDelegate.appColor, string:location)
         
         // Salary Property
-        salaryText.text = "Salary: " + content["salary"].stringValue
-        salaryText.setFontColor(appDelegate.appColor, string:content["salary"].stringValue)
+        let salary = content["salary"].stringValue
+        salaryText.text = String.localizedStringWithFormat(NSLocalizedString("jobs.salary.format", comment: ""), salary)
+        salaryText.setFontColor(appDelegate.appColor, string:salary)
         
         
         // Referral Property
         let boldFont = UIFont(name: "HelveticaNeue-Bold", size: 22)
-        bonusText.text = "Referral Bonus: £" + content["bonus"].stringValue
-        bonusText.setFont(boldFont, string: "£" + content["bonus"].stringValue)
-        bonusText.setFontColor(appDelegate.appBlueColor, string: "£" + content["bonus"].stringValue)
+        // TODO: use a proper number formatter
+        let formattedBonus = "£" + content["bonus"].stringValue
+        bonusText.text = String.localizedStringWithFormat(NSLocalizedString("jobs.bonus.format", comment: ""), formattedBonus)
+        bonusText.setFont(boldFont, string: formattedBonus)
+        bonusText.setFontColor(appDelegate.appBlueColor, string: formattedBonus)
         
         spinner.removeFromSuperview()
         for subView in self.view.subviews {
@@ -173,29 +175,27 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
 
     @IBAction func topRightNavAction(sender: UIBarButtonItem) {
         // TODO: API strings
-        // TODO: localisation
-        if (sender.title == "Save") {
+        if (sender.title == NSLocalizedString("jobs.button.save", comment: "")) {
             MixPanelHandler.sendData("SaveJobButtonClicked")
             API.sharedInstance.put("jobs/\(self.jobID!)/like", params: nil, closure: { json in
                 loggingPrint("Job saved \(json)")
-                self.navigationItem.rightBarButtonItem?.title = "Saved"
+                self.navigationItem.rightBarButtonItem?.title = NSLocalizedString("jobs.button.saved", comment: "")
                 
                 }) { 
                     error in
                     loggingPrint("Error -> \(error)")
             }
-        } else if(sender.title == "Saved") {
+        } else if(sender.title == NSLocalizedString("jobs.button.saved", comment: "")) {
             MixPanelHandler.sendData("SavedJobButtonClicked")
             API.sharedInstance.request(API.Method.DELETE, path: "jobs/\(self.jobID!)/like", params: nil, closure: { 
                 json in
                 loggingPrint("un save \(json)")
-                self.navigationItem.rightBarButtonItem?.title = "Save"
+                self.navigationItem.rightBarButtonItem?.title = NSLocalizedString("jobs.button.save", comment: "")
                 }, errorHandler: { 
                     error in
                     loggingPrint("Error -> \(error)")
             })
-        } else if (sender.title == "Edit"){
-            
+        } else if (sender.title == NSLocalizedString("jobs.button.edit", comment: "")){
             // Go to EditView
             MixPanelHandler.sendData("EditJobButtonClicked")
             let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -229,11 +229,10 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
     }
     
     @IBAction func interested(sender: UIButton) {
-        // TODO: localisation
-        if(sender.titleLabel?.text == "INTERESTED"){
+        if(sender.titleLabel?.text == NSLocalizedString("jobs.button.interested", comment: "")){
             //Go to INTERESTED
             MixPanelHandler.sendData("InterestedButtonClicked")
-            let alertview = UIAlertView(title: "Are you sure?", message: "This will send a notification to the Hirer that you are interested in this position", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Send")
+            let alertview = UIAlertView(title: NSLocalizedString("jobs.interested.alert.title", comment: ""), message: NSLocalizedString("jobs.interested.alert.body", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("general.button.cancel", comment: ""), otherButtonTitles: NSLocalizedString("general.button.send", comment: ""))
             alertview.show()
         } else {
             MixPanelHandler.sendData("AskForReferalButtonClicked")
@@ -264,9 +263,12 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
             self.navigationController?.navigationBarHidden = true
             
             self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true)
-            // TODO: localisation
-           self.popup!.bodyText("The hirer has been notified")
-            self.popup!.delegate = self
+            guard let popup = self.popup else {
+                return
+            }
+            weak var weakSelf = self
+            popup.bodyText(NSLocalizedString("jobs.interested.confirmation.body", comment: ""))
+            popup.delegate = weakSelf
             self.view.addSubview(self.popup!)
             }) { 
                 error in
@@ -278,14 +280,14 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
     func dismissPopUp() {
         self.popup!.removeFromSuperview()
         self.navigationController?.navigationBarHidden = false
+        // TODO: investigate if we can now set self.popup to nil
     }
     
     func dismissTutorial() {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
         
         // TODO: API strings
-        // TODO: localisation
-        if(self.navigationItem.rightBarButtonItem?.title == "Edit"){
+        if(self.navigationItem.rightBarButtonItem?.title == NSLocalizedString("jobs.button.edit", comment: "")){
             UserModel.update(["settings":["tutorial":["create_job":false]]], closure: { 
                 result in
                 appDelegate.updateUserObject("AskForReferralTutorial", with:false)
