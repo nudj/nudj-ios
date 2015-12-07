@@ -8,9 +8,7 @@
 import UIKit
 
 protocol TutorialViewDelegate {
-    
     func dismissTutorial()
-    
 }
 
 class TutorialView: UIImageView {
@@ -28,15 +26,10 @@ class TutorialView: UIImageView {
         self.addGestureRecognizer(gesture)
         
         window!.addSubview(self)
-   
     }
     
-    
     func stopTutorial(){
-        
         self.removeFromSuperview()
         delegate?.dismissTutorial()
     }
-    
-    
 }
