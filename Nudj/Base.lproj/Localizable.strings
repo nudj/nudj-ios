@@ -12,6 +12,10 @@
 "general.button.done" = "Done";
 "general.pull-to-refresh" = "Pull to refresh";
 
+// Account
+"account.delete.error.title" = "Error Deleting Account";
+"account.delete.error.body" = "There was an error deleting your account. Please try again.";
+
 // Chat
 "chat.restored.title" = "Chat Restored";
 "chat.archived.title" = "Chat Archived";

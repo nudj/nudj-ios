@@ -353,16 +353,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
             if response["status"].boolValue {
                 self.logout()
             } else {
-                // TODO: localisation
-                let alert = UIAlertView(title: "Error deleting account", message: "We were unable to delete your account, please try again.", delegate: nil, cancelButtonTitle: "OK")
+                let alert = UIAlertView(title: NSLocalizedString("account.delete.error.title", comment: ""), message: NSLocalizedString("account.delete.error.body", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("general.button.ok", comment: ""))
                 alert.show()
             }
             
             }, 
             errorHandler: {
                 error in
-                // TODO: localisation
-                let alert = UIAlertView(title: "Error deleting account", message: "Oops something went wrong.", delegate: nil, cancelButtonTitle: "OK")
+                let alert = UIAlertView(title: NSLocalizedString("account.delete.error.title", comment: ""), message: NSLocalizedString("account.delete.error.body", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("general.button.ok", comment: ""))
                 alert.show()
         })
     }
@@ -454,29 +452,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
         }()
 
     lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
-        // The persistent store coordinator for the application. This implementation creates and return a coordinator, having added the store for the application to it. 
-        // This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
-        // TODO: JRB: No, the above line is rubbish. We must be able to recover from any failure.
-        // Create the coordinator and store
         var coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("NudgeData.sqlite")
-        // TODO: localisation
-        var failureReason = "There was an error creating or loading the application's saved data."
         do {
-            try coordinator?.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
-        } catch let error as NSError {
-            // TODO: this error handling is unsatisfactory
-            // Report any error we got.
-            var dict = [String: AnyObject]()
-            dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
-            dict[NSLocalizedFailureReasonErrorKey] = failureReason
-            
-            dict[NSUnderlyingErrorKey] = error
-            let wrappedError = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
-            // Replace this with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            loggingPrint("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
-            abort()
+            let options = [
+                NSMigratePersistentStoresAutomaticallyOption: true, 
+                NSInferMappingModelAutomaticallyOption: true]
+            try coordinator?.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: options)
+        } 
+        catch let error as NSError {
+            loggingPrint("Error opening the Core Data store \(error)")
+            do {
+                let fileManager = NSFileManager()
+                try fileManager.removeItemAtURL(url)
+                try coordinator?.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
+            }
+            catch let error as NSError {
+                loggingPrint("Error creating a new Core Data store \(error)")
+                return nil
+            }
         }
         
         return coordinator
@@ -688,4 +682,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
         }
     }
 }
-
