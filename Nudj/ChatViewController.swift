@@ -41,7 +41,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
         self.incomingBubbleImageData = bubbleFactory.incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor());
 
         self.showLoadEarlierMessagesHeader = false
-    
+        // TODO: magic number
         self.templateImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(UserModel.getDefaultUserImage(), diameter: 30)
         
         appGlobalDelegate.chatInst!.delegate = self
@@ -66,18 +66,20 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
         self.myImage = self.setupAvatarImage(appGlobalDelegate.user!.base64Image)
         self.otherUserImage = self.setupAvatarImage(self.otherUserBase64Image)
         
-        self.favourite.selected = isLiked != nil ? isLiked! : false
-        self.archive.selected = isArchived != nil ? isArchived! : false
+        self.favourite.selected = isLiked ?? false
+        self.archive.selected = isArchived ?? false
     }
 
     //Get and convert base64 image
     func setupAvatarImage(base64Content:String?) -> JSQMessagesAvatarImage{
-        if base64Content != nil {
-            let decodedData = NSData(base64EncodedString: base64Content!, options: NSDataBase64DecodingOptions(rawValue: 0))
-                if  decodedData != nil {
-                    let decodedimage :UIImage = UIImage(data: decodedData!)!
+        // TODO: magic number
+        if let base64Content = base64Content {
+            if let decodedData = NSData(base64EncodedString: base64Content, options: [])
+            {
+                if let decodedimage :UIImage = UIImage(data: decodedData) {
                     return JSQMessagesAvatarImageFactory.avatarImageWithImage(decodedimage, diameter: 30)
                 }
+            }
         }
         
         //Default
@@ -146,7 +148,6 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
             }
         }
     }
-    
     
     // JSQMessages CollectionView DataSource
     
@@ -378,17 +379,14 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
         case 5:
             // Archive Conversation
             if(selectedButton.selected){
-                // TODO: localisation
                 MixPanelHandler.sendData("Chat_RestoreFromArchive")
                 self.completeRequest("chat/"+self.chatID+"/archive", withType: "DELETE")
-                let alert = UIAlertView(title: "Chat restored", message: "Chat successfully restored.", delegate: self, cancelButtonTitle: "OK")
+                let alert = UIAlertView(title: NSLocalizedString("chat.restored.title", comment: ""), message: nil, delegate: self, cancelButtonTitle: NSLocalizedString("general.button.ok", comment: ""))
                 alert.show()
-                
-            }else{
-                // TODO: localisation                
+            } else {
                 MixPanelHandler.sendData("Chat_Archive")
                 self.completeRequest("chat/"+self.chatID+"/archive", withType: "PUT")
-                let alert = UIAlertView(title: "Chat Archived", message: "Archived chats are stored in Settings.", delegate: self, cancelButtonTitle: "OK")
+                let alert = UIAlertView(title: NSLocalizedString("chat.archived.title", comment: ""), message: NSLocalizedString("chat.archived.body", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("general.button.ok", comment: ""))
                 alert.show()
             }
             selectedButton.selected = !selectedButton.selected

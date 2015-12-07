@@ -12,6 +12,11 @@
 "general.button.done" = "Done";
 "general.pull-to-refresh" = "Pull to refresh";
 
+// Chat
+"chat.restored.title" = "Chat Restored";
+"chat.archived.title" = "Chat Archived";
+"chat.archived.body" = "Archived chats are stored in Settings.";
+
 // Country selection
 "country.default.dialcode" = "+44";
 "country.default.name" = "United Kingdom";
