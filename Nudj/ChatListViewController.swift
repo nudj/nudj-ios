@@ -124,7 +124,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return isArchive != nil ? isArchive! : false
+        return isArchive ?? false
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
