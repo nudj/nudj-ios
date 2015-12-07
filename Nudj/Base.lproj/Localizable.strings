@@ -32,6 +32,13 @@
 "sms.failed.title" = "Text message failed";
 "sms.failed.body" = "Your message could not be sent. Please try again.";
 
+// Profile
+"profile.new.image-source" = "Choose Image Source";
+"profile.image-source.camera" = "Camera";
+"profile.image-source.library" = "Library";
+"profile.linkedin.failed.title" = "LinkedIn was not connected";
+"profile.facebook.failed.title" = "Facebook was not connected";
+
 // Server
 "server.error.unknown" = "There was an unexpected error communicating with the server.";
 

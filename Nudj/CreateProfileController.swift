@@ -13,7 +13,7 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
     @IBOutlet weak var linkedIn: UIImageView!
     @IBOutlet weak var faceBookImage: UIImageView!
     
-    let msgTitle = "Choose Image Source"
+    let msgTitle = NSLocalizedString("profile.new.image-source", comment: "")
 
     @IBOutlet weak var image: AsyncImage! {
         didSet {
@@ -148,20 +148,21 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
     // MARK: - Image management
 
     func pickLibrary() {
-        let alert = UIAlertController(title: self.msgTitle, message: nil, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default) {
+        // TODO: should maybe be an action sheet rather than an alert
+        let alert = UIAlertController(title: self.msgTitle, message: nil, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("profile.image-source.camera", comment: ""), style: .Default) {
             action -> Void in
-            self.changeProfileImage(UIImagePickerControllerSourceType.Camera)
+            self.changeProfileImage(.Camera)
             })
-        alert.addAction(UIAlertAction(title: "Library", style: UIAlertActionStyle.Default) {
+        alert.addAction(UIAlertAction(title: NSLocalizedString("profile.image-source.library", comment: ""), style: .Default) {
             action -> Void in
-            self.changeProfileImage(UIImagePickerControllerSourceType.SavedPhotosAlbum)
+            self.changeProfileImage(.PhotoLibrary)
             })
         self.presentViewController(alert, animated: true, completion: nil)
     }
 
     func changeProfileImage(source: UIImagePickerControllerSourceType) {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum){
+        if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary){
             imagePicker.delegate = self
             imagePicker.sourceType = source;
             imagePicker.allowsEditing = true
@@ -205,9 +206,8 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
         self.socialhander!.configureLinkedin(false, completionHandler: { success in
             if(success){
                 self.performSegueWithIdentifier("showCreateProfileView", sender: self)
-            }else{
-                // TODO: localisation
-                let alert = UIAlertView(title: "Try Again", message: "OOPS, an error occured please try again!", delegate: nil, cancelButtonTitle: "OK")
+            } else {
+                let alert = UIAlertView(title: NSLocalizedString("profile.linkedin.failed.title", comment: ""), message: nil, delegate: nil, cancelButtonTitle: NSLocalizedString("general.button.ok", comment: ""))
                 alert.show()
             }
         })
@@ -219,9 +219,8 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
         self.socialhander!.configureFacebook(false, completionHandler: { success in
             if(success){
                 self.performSegueWithIdentifier("showCreateProfileView", sender: self)
-            }else{
-                // TODO: localisation
-                let alert = UIAlertView(title: "Try Again", message: "OOPS, an error occured please try again!", delegate: nil, cancelButtonTitle: "OK")
+            } else {
+                let alert = UIAlertView(title: NSLocalizedString("profile.facebook.failed.title", comment: ""), message: nil, delegate: nil, cancelButtonTitle: NSLocalizedString("general.button.ok", comment: ""))
                 alert.show()
             }
         })
