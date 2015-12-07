@@ -65,6 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
         } else if (user == nil) {
             // Invalid user Require Login
             // Proceed to login view
+            // TODO: figure out why this is not implemented
         } else {
             prefetchUserData()
 
@@ -98,7 +99,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
                 NSNotificationCenter.defaultCenter().postNotificationName("updateBadgeValue", object: nil, userInfo: ["value":"\(notificationCount)","index":"3"])
                 pushNotificationsPayload = nil
             }
-            
         }
         
         //Handle internet connection
@@ -116,12 +116,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
     }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        let characterSet: NSCharacterSet = NSCharacterSet( charactersInString: "<>" )
-
-        self.deviceToken = ( deviceToken.description as NSString )
-            .stringByTrimmingCharactersInSet( characterSet )
-            .stringByReplacingOccurrencesOfString( " ", withString: "" ) as String
-
+        // TODO review whether we should be storing the binary data instead
+        let characterSet: NSCharacterSet = NSCharacterSet( charactersInString: "<> " )
+        self.deviceToken = deviceToken.description.stringByTrimmingCharactersInSet( characterSet )
         syncDeviceToken()
     }
 
@@ -187,7 +184,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
     
     func beginInternetConnectionCheck(){
         // TODO: refactor to a single-responsibility object
-       do {
+        do {
             // TODO: audit this for callers and figure out what NoInternetConnectionView is for: it might be overkill
             let reachability = try Reachability.reachabilityForInternetConnection()
             let view = NoInternetConnectionView(frame: self.window!.frame)
@@ -293,7 +290,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
         if (self.user == nil) {
             self.user = user
         }
-
+        // TODO: API strings
         let moc = self.managedObjectContext!
         let entity =  NSEntityDescription.entityForName("User", inManagedObjectContext: moc)
         let userObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: moc)
@@ -355,7 +352,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
             loggingPrint("deleted account \(response)")
             if response["status"].boolValue {
                 self.logout()
-            }else{
+            } else {
                 // TODO: localisation
                 let alert = UIAlertView(title: "Error deleting account", message: "We were unable to delete your account, please try again.", delegate: nil, cancelButtonTitle: "OK")
                 alert.show()
