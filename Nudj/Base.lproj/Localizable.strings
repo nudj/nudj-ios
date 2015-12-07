@@ -46,8 +46,18 @@
 "profile.new.image-source" = "Choose Image Source";
 "profile.image-source.camera" = "Camera";
 "profile.image-source.library" = "Library";
-"profile.linkedin.failed.title" = "LinkedIn was not connected";
-"profile.facebook.failed.title" = "Facebook was not connected";
+"profile.linkedin.failed.title" = "LinkedIn was not connected.";
+"profile.facebook.failed.title" = "Facebook was not connected.";
+
+// Referral
+"referral.title" = "Refer Someone";
+"referral.ask.format" = "Select contacts to ask for referrals for the %@ position.";
+"referral.ask.button" = "Ask";
+"referral.message.placeholder" = "Enter your personalised message";
+"referral.nudge.sent.singular.format" = "You have successfully nudged %@.");
+"referral.nudge.sent.plural.format" = "You have successfully nudged %@ and %d others.");
+"referral.ask.sent.singular.format" = "You have successfully asked %@ for a referral.");
+"referral.ask.sent.plural.format" = "You have successfully asked %@ and %d others for a referral.");
 
 // Server
 "server.error.unknown" = "There was an unexpected error communicating with the server.";

@@ -35,14 +35,14 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
         self.tabBarController?.tabBar.hidden = true
         
         if(self.isNudjRequest!){
-            // TODO: localisation
-            self.title = "Refer Someone"
+            self.title = NSLocalizedString("referral.title", comment: "")
         } else {
             if let job = self.jobTitle {
+                // TODO: eliminate singleton access
                 let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
-                self.messageLabel.text = "Select contacts to ask for referrals, for the \(job) position"
+                self.messageLabel.text = String.localizedStringWithFormat(NSLocalizedString("referral.ask.format", comment: ""), job)
                 self.messageLabel.setFontColor(appDelegate.appColor, string:job)
-                self.navigationItem.rightBarButtonItem?.title = "Ask"
+                self.navigationItem.rightBarButtonItem?.title = NSLocalizedString("referral.ask.button", comment: "")
             }
         }
 
@@ -63,6 +63,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
                 return
             }
 
+            // TODO: API strings
             let dictionary = response["data"].sort{ $0.0 < $1.0 }
             var content = [ContactModel?]();
             
@@ -97,7 +98,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     //MARK: TextView Delegate
     func textViewDidBeginEditing(textView: UITextView) {
         // TODO: Use proper UIKit placeholder
-        if(textView.text == "Enter your personalised message"){
+        if(textView.text == NSLocalizedString("referral.message.placeholder", comment: "")){
             textView.text = ""
         }
     }
@@ -249,14 +250,17 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
                 
                 self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true);
                 
-                let nudjContent = self.selected.count > 1 ? "\(self.selected[0].name) and \(self.selected.count - 1) others" : self.selected[0].name
-                self.popup!.bodyText("You have successfully nudged \(nudjContent)");
+                let nudjContent: String
+                if self.selected.count == 1 {
+                    nudjContent = String.localizedStringWithFormat(NSLocalizedString("referral.nudge.sent.singular.format", comment: ""), self.selected[0].name)
+                } else {
+                    nudjContent = String.localizedStringWithFormat(NSLocalizedString("referral.nudge.sent.plural.format", comment: ""), self.selected[0].name, self.selected.count - 1)
+                }
+                self.popup!.bodyText(nudjContent);
                 self.popup!.delegate = self;
                 self.view.addSubview(self.popup!);
                 
                 //self.performSegueWithIdentifier("ShowPopup", sender: self)
-                
-                
                 loggingPrint(result)
                 }) { error in
                     loggingPrint(error)
@@ -268,8 +272,13 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
                 
                 self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true);
                 
-                let nudjContent = self.selected.count > 1 ? "\(self.selected[0].name) and \(self.selected.count - 1) others" : self.selected[0].name
-                self.popup!.bodyText("You have successfully asked \(nudjContent) for referral");
+                let nudjContent: String
+                if self.selected.count == 1 {
+                    nudjContent = String.localizedStringWithFormat(NSLocalizedString("referral.ask.sent.singular.format", comment: ""), self.selected[0].name)
+                } else {
+                    nudjContent = String.localizedStringWithFormat(NSLocalizedString("referral.ask.sent.plural.format", comment: ""), self.selected[0].name, self.selected.count - 1)
+                }
+                self.popup!.bodyText(nudjContent);
                 self.popup!.delegate = self;
                 self.view.addSubview(self.popup!);
                 
