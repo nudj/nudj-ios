@@ -8,9 +8,7 @@
 import UIKit
 
 protocol SocialStatusDelegate {
-    
     func didTap(statusIdentifier:String, parent:SocialStatus)
-    
 }
 
 class SocialStatus: UIImageView {
@@ -23,17 +21,14 @@ class SocialStatus: UIImageView {
         super.init(coder: aDecoder)
     }
     
-    init(status:Bool, and statusID:String){
+    init(status:Bool, and statusID:String) {
         if(status){
-            
+            // TODO: magic numbers
             super.init(frame: CGRectMake(0, 0, 118, 24))
             self.image = UIImage(named: "connected")
-            
         }else{
-            
             super.init(frame: CGRectMake(0, 0, 144, 24))
             self.image = UIImage(named: "not_connected")
-            
         }
         
         self.currentStatus = status
@@ -42,43 +37,28 @@ class SocialStatus: UIImageView {
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
         self.userInteractionEnabled = true
         self.addGestureRecognizer(tapGestureRecognizer)
-        
     }
     
-    func loadStatusContent(status:Bool){
-        
+    func loadStatusContent(status:Bool) {
         if(status){
-            
+            // TODO: magic numbers
             self.frame = CGRectMake(0, 0, 118, 24)
             self.image = UIImage(named: "connected")
-            
-        }else{
-           
+        } else {
             self.frame = CGRectMake(0, 0, 144, 24)
             self.image = UIImage(named: "not_connected")
-            
         }
-        
         self.currentStatus = status
-
-        
     }
     
-    func updateStatus(){
-        
+    func updateStatus() {
         if(self.currentStatus != nil){
-            
             self.loadStatusContent(!self.currentStatus!)
-            
         }
     }
-    
-    
-    func imageTapped(img: AnyObject)
-    {
+        
+    func imageTapped(img: AnyObject) {
         delegate?.didTap(self.statusIdentifier!, parent: self)
         
     }
-        
 }
-

@@ -36,17 +36,18 @@ class CreatePopupView: UIView {
         let gesture :UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:"dismissPopup");
         self.blackBackground!.addGestureRecognizer(gesture)
         
+        // TODO: magic numbers
         self.whitepopupbox = UIView(frame: CGRectMake((w - 250) / 2 , (h - 250) / 2 , 250, 250))
         self.whitepopupbox!.backgroundColor = UIColor.whiteColor();
         self.whitepopupbox!.layer.cornerRadius = 5;
         self.whitepopupbox!.layer.masksToBounds = true;
         self.whitepopupbox!.userInteractionEnabled = true;
-
         
         let gestureTwo :UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:"dismissPopup");
         self.whitepopupbox!.addGestureRecognizer(gestureTwo)
         
         if(withText){
+            // TODO: magic numbers
             self.contentImage = UIImageView(frame: CGRectMake((self.whitepopupbox!.frame.size.width - 88)/2 , 22 , 88, 88))
             self.contentImage!.image = UIImage(named:i)
             
