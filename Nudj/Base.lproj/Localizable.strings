@@ -22,6 +22,8 @@
 "chat.restored.title" = "Chat Restored";
 "chat.archived.title" = "Chat Archived";
 "chat.archived.body" = "Archived chats are stored in Settings.";
+"chat.contact.send.format" = "Contact %@";
+"chat.contact.success.format" = "You have successfully contacted %@";
 
 // Country selection
 "country.default.dialcode" = "+44";
