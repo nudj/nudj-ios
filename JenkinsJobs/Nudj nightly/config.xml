@@ -41,7 +41,7 @@
     <relativeTargetDir></relativeTargetDir>
     <reference></reference>
     <excludedRegions></excludedRegions>
-    <excludedUsers></excludedUsers>
+    <excludedUsers>BuildBot</excludedUsers>
     <gitConfigName>BuildBot</gitConfigName>
     <gitConfigEmail>buildbot@sailmaker.co.uk</gitConfigEmail>
     <skipTag>true</skipTag>
