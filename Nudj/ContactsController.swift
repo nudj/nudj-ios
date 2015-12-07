@@ -20,7 +20,6 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
     @IBOutlet weak var segControl: UISegmentedControl!
     
     @IBOutlet weak var activityIndi: UIActivityIndicatorView!
-    var alert = UIAlertView()
     var searchBar =  UISearchBar()
     var isSearchEnabled:Bool = false
     
@@ -46,9 +45,6 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         self.searchBar.frame = CGRectMake(0, 0, self.view.frame.width, 70)
         self.view.addSubview(self.searchBar)
         
-        //Invite pop up config
-        self.alert  = UIAlertView(title: "Invite", message: "", delegate: self, cancelButtonTitle: "NO", otherButtonTitles: "YES")
-        
         table.registerNib(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
         table.rowHeight = self.staticRowHeight
         
@@ -56,7 +52,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         table.tableFooterView = UIView(frame: CGRectZero)
 
         refreshControl = UIRefreshControl()
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("general.pull-to-refresh", comment: ""))
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         table.addSubview(refreshControl)
 
@@ -212,22 +208,28 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
             let index = indexes[indexPath.section]
         
             if let section = self.data[index] {
-                let contact :ContactModel? = self.isSearchEnabled ? self.filtering.filteredContent[indexPath.row] : section[indexPath.row]
+                guard let contact = self.isSearchEnabled ? self.filtering.filteredContent[indexPath.row] : section[indexPath.row] else {
+                    return
+                }
                 
-                if let user = contact?.user {
+                if let user = contact.user {
                     //Go to profile view
                     let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     let genericController = storyboard.instantiateViewControllerWithIdentifier("GenericProfileView") as! GenericProfileViewController
                     genericController.userId = user.id!
                     genericController.type = .Public
-                    genericController.preloadedName = contact!.name
+                    genericController.preloadedName = contact.name
 
                     self.navigationController?.pushViewController(genericController, animated: true)
                 } else {
                     lastSelectedContact = contact
-                    // TODO: localisation
-                    self.alert.message = "Would you like to tell \(contact!.name) about Nudge?";
-                    self.alert.show();
+                    let message = String.localizedStringWithFormat(NSLocalizedString("invitation.send.body.format", comment: ""), contact.name)
+                    let alert = UIAlertView(title: NSLocalizedString("invitation.send.title", comment: ""), 
+                        message: message, 
+                        delegate: self, 
+                        cancelButtonTitle: NSLocalizedString("general.button.cancel", comment: ""), 
+                        otherButtonTitles: NSLocalizedString("invitation.send.button", comment: ""))
+                    alert.show()
                 }
             }
             cell.setSelected(false, animated: true)
@@ -246,29 +248,39 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
     
     //MARK :Invite user
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        // TODO: localisation
         if buttonIndex == 0{
             // TODO: suspicious
             loggingPrint("Dismiss pop up")
         } else {
             MixPanelHandler.sendData("InviteUserAction")
-            let alertview  = UIAlertView(title: "Invite", message: "", delegate: self, cancelButtonTitle: "OK")
-            API.sharedInstance.post("contacts/\(lastSelectedContact!.id)/invite", params: nil, closure: { 
-                result in
-                if (result["status"].boolValue) {
-                    alertview.title = "Invite Successful"
-                    alertview.message = "Contact has been invited";
-                } else {
-                    alertview.title = "Invite Failed"
-                    alertview.message = "There was a problem inviting your friend";
-                }
-                },errorHandler: { 
+            guard let contactName = lastSelectedContact?.name else {
+                return
+            }
+            guard let contactID = lastSelectedContact?.id else {
+                return
+            }
+            API.sharedInstance.post("contacts/\(contactID)/invite", params: nil, 
+                closure: { 
+                    result in
+                    let title: String
+                    let message: String
+                    if (result["status"].boolValue) {
+                        title = NSLocalizedString(("invitation.successful.title"), comment: "")
+                        message = String.localizedStringWithFormat(NSLocalizedString("invitation.successful.body.format", comment: ""), contactName)
+                    } else {
+                        title = NSLocalizedString(("invitation.failed.title"), comment: "")
+                        message = String.localizedStringWithFormat(NSLocalizedString("invitation.failed.body.format", comment: ""), contactName)
+                    }
+                    let alertview  = UIAlertView(title: title, message: message, delegate: self, cancelButtonTitle: NSLocalizedString("general.button.ok", comment: ""))
+                    alertview.show()
+                },
+                errorHandler: { 
                     error in
-                    alertview.title = "Invite Failed"
-                    alertview.message = "There was a problem inviting your friend";
-                    
-            })
-            alertview.show();
+                    let title = NSLocalizedString(("invitation.failed.title"), comment: "")
+                    let message = String.localizedStringWithFormat(NSLocalizedString("invitation.failed.body.format", comment: ""), contactName)
+                    let alertview  = UIAlertView(title: title, message: message, delegate: self, cancelButtonTitle: NSLocalizedString("general.button.ok", comment: ""))
+                    alertview.show()
+                })
         }
     }
     

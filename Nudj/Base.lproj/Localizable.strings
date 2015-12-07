@@ -10,6 +10,7 @@
 "general.button.cancel" = "Cancel";
 "general.button.notnow" = "Not Now";
 "general.button.done" = "Done";
+"general.pull-to-refresh" = "Pull to refresh";
 
 // Country selection
 "country.default.dialcode" = "+44";
@@ -20,6 +21,15 @@
 // Access to contacts
 "contacts.access.request.title" = "Nudj would like to access your address book";
 "contacts.access.request.body" = "This will let you send texts and job referrals to anyone in your address book.\n\nNudj will never send messages without your explicit permission.";
+
+// Invitations
+"invitation.send.title" = "Invite Contact";
+"invitation.send.body.format" = "Would you like to tell %@ about Nudj?";
+"invitation.send.button" = "Invite";
+"invitation.successful.title" = "Invitation Sent"
+"invitation.successful.body.format" = "%@ has been invited."
+"invitation.failed.title" = "Invitation Failed"
+"invitation.failed.body.format" = "There was a problem inviting %@."
 
 // Login
 "login.phone-number.required" = "You must supply a phone number to log in.";
