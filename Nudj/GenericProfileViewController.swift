@@ -8,14 +8,7 @@
 import UIKit
 import SwiftyJSON
 
-enum UserFavouriteText:String {
-    case Favourite = "Favourite"
-    case unFavourite = "UnFavourite"
-}
-
 class GenericProfileViewController: BaseController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
-
-    let msgTitle = "Choose Image Source"
     var hiddenFieldsCount = 0
     @IBOutlet var topRightButton: UIBarButtonItem!
     
@@ -533,23 +526,25 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
     // MARK: - Image management
 
     func pickLibrary() {
-        let alert = UIAlertController(title: self.msgTitle, message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+        // TODO: refactor with CreateProfileController
+        let msgTitle = NSLocalizedString("profile.new.image-source", comment: "")
+        let alert = UIAlertController(title: msgTitle, message: nil, preferredStyle: UIAlertControllerStyle.Alert)
 
-        alert.addAction(UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default) {
+        alert.addAction(UIAlertAction(title: NSLocalizedString("profile.image-source.camera", comment: ""), style: UIAlertActionStyle.Default) {
             action -> Void in
-            self.changeProfileImage(UIImagePickerControllerSourceType.Camera)
+            self.changeProfileImage(.Camera)
             })
 
-        alert.addAction(UIAlertAction(title: "Library", style: UIAlertActionStyle.Default) {
+        alert.addAction(UIAlertAction(title: NSLocalizedString("profile.image-source.library", comment: ""), style: UIAlertActionStyle.Default) {
             action -> Void in
-            self.changeProfileImage(UIImagePickerControllerSourceType.SavedPhotosAlbum)
+            self.changeProfileImage(.PhotoLibrary)
             })
 
         self.presentViewController(alert, animated: true, completion: nil)
     }
 
     func changeProfileImage(source: UIImagePickerControllerSourceType) {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum){
+        if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary){
             imagePicker.delegate = self
             imagePicker.sourceType = source;
             imagePicker.allowsEditing = true
