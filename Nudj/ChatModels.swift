@@ -23,6 +23,13 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     var jabberPassword:String?;
     var listOfActiveChatRooms = [String:ChatRoomModel]()
     
+    lazy var dateFormatter: NSDateFormatter = { 
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSSxxx";
+        return dateFormatter
+    }()
+    
     // TODO: API strings
     let chatServer = "chat.nudj.co";
     let ConferenceUrl = "@conference.chat.nudj.co";
@@ -281,10 +288,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
                 var stringTimeStamp = delay.attributeStringValueForName("stamp")
                 
                 stringTimeStamp = stringTimeStamp.stringByReplacingOccurrencesOfString("T", withString: " ")
-                let dateFormatter = NSDateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSSxxx";
-                time = dateFormatter.dateFromString(stringTimeStamp)
-                
+                time = self.dateFormatter.dateFromString(stringTimeStamp)
                 if(time == nil){
                     time = NSDate()
                 }
@@ -305,13 +309,11 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         
                 let jsqMessage = JSQMessage(senderId: sendersId, senderDisplayName: sendersId, date:time!, text: message.body())
                 delegate?.recievedMessage(jsqMessage, conference: sender.roomJID.bare())
-            
             } else {
                 // TODO: better error handling
                 loggingPrint("Error getting sender of this message")
             }
         }
-
     }
     
     func xmppRoomDidJoin(sender: XMPPRoom!) {
