@@ -31,10 +31,10 @@
 "invitation.send.title" = "Invite Contact";
 "invitation.send.body.format" = "Would you like to tell %@ about Nudj?";
 "invitation.send.button" = "Invite";
-"invitation.successful.title" = "Invitation Sent"
-"invitation.successful.body.format" = "%@ has been invited."
-"invitation.failed.title" = "Invitation Failed"
-"invitation.failed.body.format" = "There was a problem inviting %@."
+"invitation.successful.title" = "Invitation Sent";
+"invitation.successful.body.format" = "%@ has been invited.";
+"invitation.failed.title" = "Invitation Failed";
+"invitation.failed.body.format" = "There was a problem inviting %@.";
 
 // Login
 "login.phone-number.required" = "You must supply a phone number to log in.";
@@ -59,10 +59,10 @@
 "referral.ask.format" = "Select contacts to ask for referrals for the %@ position.";
 "referral.ask.button" = "Ask";
 "referral.message.placeholder" = "Enter your personalised message";
-"referral.nudge.sent.singular.format" = "You have successfully nudged %@.");
-"referral.nudge.sent.plural.format" = "You have successfully nudged %@ and %d others.");
-"referral.ask.sent.singular.format" = "You have successfully asked %@ for a referral.");
-"referral.ask.sent.plural.format" = "You have successfully asked %@ and %d others for a referral.");
+"referral.nudge.sent.singular.format" = "You have successfully nudged %@.";
+"referral.nudge.sent.plural.format" = "You have successfully nudged %@ and %d others.";
+"referral.ask.sent.singular.format" = "You have successfully asked %@ for a referral.";
+"referral.ask.sent.plural.format" = "You have successfully asked %@ and %d others for a referral.";
 
 // Server
 "server.error.unknown" = "There was an unexpected error communicating with the server.";
