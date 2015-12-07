@@ -37,7 +37,6 @@ class SavedPostedJobs: BaseController, DataProviderProtocol {
         
         self.table.loadData()
         self.view.addSubview(self.noContentImage.createNoContentPlaceHolder(self.view, imageTitle: "no_jobs"))
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,19 +45,15 @@ class SavedPostedJobs: BaseController, DataProviderProtocol {
     }
     
     override func viewWillAppear(animated: Bool) {
-        
         self.tabBarController?.tabBar.hidden = true
-        
     }
     
     override func viewWillDisappear(animated: Bool) {
-        
         self.tabBarController?.tabBar.hidden = false
     }
     
-    
     func requestData(page: Int, size: Int, listener: (JSON) -> ()) {
-        
+        // TODO: API strings
         let url = "jobs/\(self.requestParams!)?params=job.title,job.salary,job.bonus,job.user,job.location,job.company,user.name,user.image&sizes=user.profile&page=" + String(page) + "&limit=" + String(size)
         
         loggingPrint("jobs request \(url)")
@@ -66,26 +61,18 @@ class SavedPostedJobs: BaseController, DataProviderProtocol {
     }
     
     func deleteData(id: Int, listener: (JSON) -> ()) {
-        
         loggingPrint("delete id\(id)")
         MixPanelHandler.sendData("JobDeleted")
         
         self.apiRequest(.DELETE, path: "jobs/\(id)", closure: listener)
     }
     
-    
     func didfinishLoading(count:Int) {
-        
-        
         if(count == 0){
-            
             self.noContentImage.showPlaceholder()
-            
         }else{
-            
             self.noContentImage.hidePlaceholder()
         }
-        
     }
     
     func goToJob(job:JSON) {
@@ -101,8 +88,6 @@ class SavedPostedJobs: BaseController, DataProviderProtocol {
             detailsView.jobID = selectedJobData!["id"].stringValue
             loggingPrint(selectedJobData)
         }
-        
     }
-  
 
 }

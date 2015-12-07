@@ -11,5 +11,6 @@ import SwiftyJSON
 class DataTableCell: UITableViewCell {
     func loadData(data:JSON?) {
         // To be implemented
+        // TODO: review this
     }
 }

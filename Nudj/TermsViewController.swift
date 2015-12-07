@@ -19,6 +19,7 @@ class TermsViewController: UIViewController {
         var url: NSURL?
 
         // Do any additional setup after loading the view.
+        // TODO: API strings
         if(isPrivacy == true){
             url = NSURL(string: "http://api.nudj.co/html/privacy")
             self.title = "Privacy Policy"

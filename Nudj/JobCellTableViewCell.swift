@@ -29,7 +29,7 @@ class JobCellTableViewCell: DataTableCell {
         if (data == nil) {
             return
         }
-        
+        // TODO: API strings
         self.title.text = data!["title"].stringValue
         self.salary.text = data!["salary"].stringValue
         self.bonusAmount.text = "£" + data!["bonus"].stringValue
