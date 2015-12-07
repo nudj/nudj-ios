@@ -17,9 +17,6 @@
 "country.default.code" = "GB";
 "country.choose.label" = "Choose your country";
 
-// Server
-"server.error.unknown" = "There was an unexpected error communicating with the server.";
-
 // Access to contacts
 "contacts.access.request.title" = "Nudj would like to access your address book";
 "contacts.access.request.body" = "This will let you send texts and job referrals to anyone in your address book.\n\nNudj will never send messages without your explicit permission.";
@@ -34,6 +31,9 @@
 "sms.unavailable.body" = "This device cannot send text messages.";
 "sms.failed.title" = "Text message failed";
 "sms.failed.body" = "Your message could not be sent. Please try again.";
+
+// Server
+"server.error.unknown" = "There was an unexpected error communicating with the server.";
 
 // Settings
 "settings.title.profile" = "Your Profile";
@@ -60,7 +60,6 @@
 "settings.linkedin.connected.body" = "You have successfully connected your LinkedIn account.":
 "settings.linkedin.disconnected.title" = "LinkedIn Disconnected":
 "settings.linkedin.disconnected.body" = "You have successfully disconnected your LinkedIn account.":
-
 
 // User status
 "userstatus.unknown" = "SELECT STATUS";
