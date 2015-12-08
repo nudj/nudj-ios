@@ -99,7 +99,7 @@ cd &quot;${WORKSPACE}&quot;
 -notify=true \
 -tags=internal \
 -release_type=beta \
--api_token= ca127f9d4c5648479847e08aa9b2ebfd \
+-api_token=ca127f9d4c5648479847e08aa9b2ebfd \
 -app_id=9bb5535d31f24908a06d72757a8e39e9 \
 &quot;${WORKSPACE}/Nudj.ipa&quot;
 
