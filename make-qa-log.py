@@ -43,7 +43,10 @@ def currentBranch():
 	'''Return the current Git branch'''
 	command = 'git symbolic-ref --short --quiet HEAD'
 	f = os.popen(command)
-	return f.readlines()[0][:-1]
+	try:
+		return f.readlines()[0][:-1]
+	except:
+		return '[detached]'
 
 def currentHash():
 	'''Return the current Git hash'''
