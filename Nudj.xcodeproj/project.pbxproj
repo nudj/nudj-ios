@@ -2654,9 +2654,11 @@
 			files = (
 			);
 			inputPaths = (
+				"$(PROJECT_DIR)/$(PROJECT_NAME)/Base.lproj/Localizable.strings",
 			);
 			name = "Update localizations";
 			outputPaths = (
+				"$(PROJECT_DIR)/$(PROJECT_NAME)/Generated/Localizations.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
