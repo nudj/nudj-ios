@@ -1,3 +1,6 @@
 [submodule "Externals/LoggingPrint"]
 	path = Externals/LoggingPrint
 	url = git@github.com:JungleCandy/LoggingPrint.git
+[submodule "Externals/Laurine"]
+	path = Externals/Laurine
+	url = git@github.com:richardbuckle/Laurine.git
