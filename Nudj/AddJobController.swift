@@ -184,7 +184,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
     }
     
     func appendRequired(value:String) -> String{
-        return String.localizedStringWithFormat(NSLocalizedString("jobs.validation.required.format", comment: ""), value)
+        return Localizations.Jobs.Validation.Required.Format(value)
     }
     
     func prefillData(json:JSON){

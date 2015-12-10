@@ -70,7 +70,7 @@ class VerifyViewController: BaseController {
             (json: JSON) in
 
             self.code = json["data"]["code"].stringValue
-            let verificationCodeMessage = String.localizedStringWithFormat(NSLocalizedString("verification.code.alert.format", comment: ""), self.code)
+            let verificationCodeMessage = Localizations.Verification.Code.Alert.Format(self.code)
             self.showSimpleAlert(verificationCodeMessage)
         })
     }

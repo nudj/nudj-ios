@@ -40,7 +40,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
             if let job = self.jobTitle {
                 // TODO: eliminate singleton access
                 let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
-                self.messageLabel.text = String.localizedStringWithFormat(NSLocalizedString("referral.ask.format", comment: ""), job)
+                self.messageLabel.text = Localizations.Referral.Ask.Format(job)
                 self.messageLabel.setFontColor(appDelegate.appColor, string:job)
                 self.navigationItem.rightBarButtonItem?.title = NSLocalizedString("referral.ask.button", comment: "")
             }
@@ -252,9 +252,9 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
                 
                 let nudjContent: String
                 if self.selected.count == 1 {
-                    nudjContent = String.localizedStringWithFormat(NSLocalizedString("referral.nudge.sent.singular.format", comment: ""), self.selected[0].name)
+                    nudjContent = Localizations.Referral.Nudge.Sent.Singular.Format(self.selected[0].name)
                 } else {
-                    nudjContent = String.localizedStringWithFormat(NSLocalizedString("referral.nudge.sent.plural.format", comment: ""), self.selected[0].name, self.selected.count - 1)
+                    nudjContent = Localizations.Referral.Nudge.Sent.Plural.Format(self.selected[0].name, self.selected.count - 1)
                 }
                 self.popup!.bodyText(nudjContent);
                 self.popup!.delegate = self;
@@ -274,9 +274,9 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
                 
                 let nudjContent: String
                 if self.selected.count == 1 {
-                    nudjContent = String.localizedStringWithFormat(NSLocalizedString("referral.ask.sent.singular.format", comment: ""), self.selected[0].name)
+                    nudjContent = Localizations.Referral.Ask.Sent.Singular.Format(self.selected[0].name)
                 } else {
-                    nudjContent = String.localizedStringWithFormat(NSLocalizedString("referral.ask.sent.plural.format", comment: ""), self.selected[0].name, self.selected.count - 1)
+                    nudjContent = Localizations.Referral.Ask.Sent.Plural.Format(self.selected[0].name, self.selected.count - 1)
                 }
                 self.popup!.bodyText(nudjContent);
                 self.popup!.delegate = self;

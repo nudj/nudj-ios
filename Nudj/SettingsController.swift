@@ -225,8 +225,8 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
         self.statusParent = parent;
         if(parent.currentStatus!){
             // TODO: move to UIAlertController
-            let title = String.localizedStringWithFormat(NSLocalizedString("settings.disconnect.title.format", comment: ""), statusIdentifier)
-            let message = String.localizedStringWithFormat(NSLocalizedString("settings.disconnect.title.body", comment: ""), statusIdentifier)
+            let title = Localizations.Settings.Disconnect.Title.Format(statusIdentifier)
+            let message = Localizations.Settings.Disconnect.Title.Body(statusIdentifier)
             let alertview = UIAlertView(title: title, message:message, delegate:self, cancelButtonTitle: NSLocalizedString("general.button.cancel", comment: ""), otherButtonTitles: NSLocalizedString("settings.disconnect.button", comment: ""))
             alertview.tag = statusIdentifier == "facebook" ? 0 : 1
             alertview.show();

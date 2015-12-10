@@ -223,7 +223,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
                     self.navigationController?.pushViewController(genericController, animated: true)
                 } else {
                     lastSelectedContact = contact
-                    let message = String.localizedStringWithFormat(NSLocalizedString("invitation.send.body.format", comment: ""), contact.name)
+                    let message = Localizations.Invitation.Send.Body.Format(contact.name)
                     let alert = UIAlertView(title: NSLocalizedString("invitation.send.title", comment: ""), 
                         message: message, 
                         delegate: self, 
@@ -266,10 +266,10 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
                     let message: String
                     if (result["status"].boolValue) {
                         title = NSLocalizedString(("invitation.successful.title"), comment: "")
-                        message = String.localizedStringWithFormat(NSLocalizedString("invitation.successful.body.format", comment: ""), contactName)
+                        message = Localizations.Invitation.Successful.Body.Format(contactName)
                     } else {
                         title = NSLocalizedString(("invitation.failed.title"), comment: "")
-                        message = String.localizedStringWithFormat(NSLocalizedString("invitation.failed.body.format", comment: ""), contactName)
+                        message = Localizations.Invitation.Failed.Body.Format(contactName)
                     }
                     let alertview  = UIAlertView(title: title, message: message, delegate: self, cancelButtonTitle: NSLocalizedString("general.button.ok", comment: ""))
                     alertview.show()
@@ -277,7 +277,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
                 errorHandler: { 
                     error in
                     let title = NSLocalizedString(("invitation.failed.title"), comment: "")
-                    let message = String.localizedStringWithFormat(NSLocalizedString("invitation.failed.body.format", comment: ""), contactName)
+                    let message = Localizations.Invitation.Failed.Body.Format(contactName)
                     let alertview  = UIAlertView(title: title, message: message, delegate: self, cancelButtonTitle: NSLocalizedString("general.button.ok", comment: ""))
                     alertview.show()
                 })

@@ -21,7 +21,7 @@ class InitiateChatViewController: UIViewController, CreatePopupViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = String.localizedStringWithFormat(NSLocalizedString("chat.contact.send.format", comment: ""), self.username!)
+        self.title = Localizations.Chat.Contact.Send.Format(self.username!)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -44,7 +44,7 @@ class InitiateChatViewController: UIViewController, CreatePopupViewDelegate {
                 
                 self.textview.resignFirstResponder()
                 self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true);
-                self.popup!.bodyText(String.localizedStringWithFormat(NSLocalizedString("chat.contact.success.format", comment: ""), self.username!));
+                self.popup!.bodyText(Localizations.Chat.Contact.Success.Format(self.username!));
                 self.popup?.delegate = self;
                 self.view.addSubview(self.popup!)
 

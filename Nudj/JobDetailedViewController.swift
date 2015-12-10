@@ -145,17 +145,17 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
         
         // Employer Property
         let employer = content["company"].stringValue
-        employerText.text = String.localizedStringWithFormat(NSLocalizedString("jobs.employer.format", comment: ""), employer)
+        employerText.text = Localizations.Jobs.Employer.Format(employer)
         employerText.setFontColor(appDelegate.appColor, string:employer)
         
         // Location Property
         let location = content["location"].stringValue
-        locationText.text = String.localizedStringWithFormat(NSLocalizedString("jobs.location.format", comment: ""), location)
+        locationText.text = Localizations.Jobs.Location.Format(location)
         locationText.setFontColor(appDelegate.appColor, string:location)
         
         // Salary Property
         let salary = content["salary"].stringValue
-        salaryText.text = String.localizedStringWithFormat(NSLocalizedString("jobs.salary.format", comment: ""), salary)
+        salaryText.text = Localizations.Jobs.Salary.Format(salary)
         salaryText.setFontColor(appDelegate.appColor, string:salary)
         
         
@@ -163,7 +163,7 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
         let boldFont = UIFont(name: "HelveticaNeue-Bold", size: 22)
         // TODO: use a proper number formatter
         let formattedBonus = "£" + content["bonus"].stringValue
-        bonusText.text = String.localizedStringWithFormat(NSLocalizedString("jobs.bonus.format", comment: ""), formattedBonus)
+        bonusText.text = Localizations.Jobs.Bonus.Format(formattedBonus)
         bonusText.setFont(boldFont, string: formattedBonus)
         bonusText.setFontColor(appDelegate.appBlueColor, string: formattedBonus)
         
