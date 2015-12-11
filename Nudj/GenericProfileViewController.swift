@@ -527,15 +527,15 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
 
     func pickLibrary() {
         // TODO: refactor with CreateProfileController
-        let msgTitle = NSLocalizedString("profile.new.image-source", comment: "")
+        let msgTitle = Localizations.Profile.New.ImageSource
         let alert = UIAlertController(title: msgTitle, message: nil, preferredStyle: UIAlertControllerStyle.Alert)
 
-        alert.addAction(UIAlertAction(title: NSLocalizedString("profile.image-source.camera", comment: ""), style: UIAlertActionStyle.Default) {
+        alert.addAction(UIAlertAction(title: Localizations.Profile.ImageSource.Camera, style: UIAlertActionStyle.Default) {
             action -> Void in
             self.changeProfileImage(.Camera)
             })
 
-        alert.addAction(UIAlertAction(title: NSLocalizedString("profile.image-source.library", comment: ""), style: UIAlertActionStyle.Default) {
+        alert.addAction(UIAlertAction(title: Localizations.Profile.ImageSource.Library, style: UIAlertActionStyle.Default) {
             action -> Void in
             self.changeProfileImage(.PhotoLibrary)
             })

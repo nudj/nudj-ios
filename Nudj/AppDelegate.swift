@@ -353,14 +353,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
             if response["status"].boolValue {
                 self.logout()
             } else {
-                let alert = UIAlertView(title: NSLocalizedString("account.delete.error.title", comment: ""), message: NSLocalizedString("account.delete.error.body", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("general.button.ok", comment: ""))
+                let alert = UIAlertView(title: Localizations.Account.Delete.Error.Title, message: Localizations.Account.Delete.Error.Body, delegate: nil, cancelButtonTitle: Localizations.General.Button.Ok)
                 alert.show()
             }
             
             }, 
             errorHandler: {
                 error in
-                let alert = UIAlertView(title: NSLocalizedString("account.delete.error.title", comment: ""), message: NSLocalizedString("account.delete.error.body", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("general.button.ok", comment: ""))
+                let alert = UIAlertView(title: Localizations.Account.Delete.Error.Title, message: Localizations.Account.Delete.Error.Body, delegate: nil, cancelButtonTitle: Localizations.General.Button.Ok)
                 alert.show()
         })
     }

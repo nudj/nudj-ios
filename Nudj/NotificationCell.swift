@@ -74,13 +74,13 @@ class NotificationCell: UITableViewCell {
         switch(data.notificationType!){
         case .AskToRefer:
             self.callButton.hidden = true
-            self.smsButton.setTitle(NSLocalizedString("notification.button.details", comment: ""), forState: UIControlState.Normal)
+            self.smsButton.setTitle(Localizations.Notification.Button.Details, forState: .Normal)
             self.refLabel.hidden = false
             self.refAmount.hidden = false
             break;
         case .AppApplication:
             self.callButton.hidden = true
-            self.smsButton.setTitle(NSLocalizedString("notification.button.message", comment: ""), forState: UIControlState.Normal)
+            self.smsButton.setTitle(Localizations.Notification.Button.Message, forState: .Normal)
             self.refLabel.hidden = false
             self.refAmount.hidden = false
             break;
@@ -88,14 +88,14 @@ class NotificationCell: UITableViewCell {
             break;
         case .MatchingContact:
             self.callButton.hidden = true
-            self.smsButton.setTitle(NSLocalizedString("notification.button.nudj", comment: ""), forState: UIControlState.Normal)
+            self.smsButton.setTitle(Localizations.Notification.Button.Nudj, forState: .Normal)
             self.smsButton.backgroundColor = appDelegate.appColor
             self.refLabel.hidden = false
             self.refAmount.hidden = false
             break;
         case .AppApplicationWithNoReferral:
             self.callButton.hidden = true
-            self.smsButton.setTitle(NSLocalizedString("notification.button.message", comment: ""), forState: UIControlState.Normal)
+            self.smsButton.setTitle(Localizations.Notification.Button.Message, forState: .Normal)
             self.refLabel.hidden = false
             self.refAmount.hidden = false
             break;

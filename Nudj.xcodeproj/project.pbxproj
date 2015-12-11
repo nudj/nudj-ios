@@ -266,6 +266,7 @@
 		A9F3337E1B45532F00F0D17B /* success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3337D1B45532F00F0D17B /* success@2x.png */; };
 		A9F333811B45972100F0D17B /* save@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3337F1B45972100F0D17B /* save@2x.png */; };
 		A9F333821B45972100F0D17B /* saved@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333801B45972100F0D17B /* saved@2x.png */; };
+		C84E00F81C191FC60065F220 /* Localizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84E00F71C191FC60065F220 /* Localizations.swift */; };
 		C89325A61C08BEC10069FCFD /* LoggingPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89325A21C08BEC10069FCFD /* LoggingPrint.swift */; };
 		C89325AA1C08CCE00069FCFD /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89325A91C08CCE00069FCFD /* AssetsLibrary.framework */; };
 		C89325AC1C08CCEA0069FCFD /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89325AB1C08CCEA0069FCFD /* CoreText.framework */; };
@@ -822,6 +823,7 @@
 		A9F3337D1B45532F00F0D17B /* success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "success@2x.png"; sourceTree = "<group>"; };
 		A9F3337F1B45972100F0D17B /* save@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "save@2x.png"; sourceTree = "<group>"; };
 		A9F333801B45972100F0D17B /* saved@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "saved@2x.png"; sourceTree = "<group>"; };
+		C84E00F71C191FC60065F220 /* Localizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizations.swift; sourceTree = "<group>"; };
 		C89325A21C08BEC10069FCFD /* LoggingPrint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggingPrint.swift; sourceTree = "<group>"; };
 		C89325A91C08CCE00069FCFD /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		C89325AB1C08CCEA0069FCFD /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -868,7 +870,7 @@
 		EBB337F71A9F53CA000CAD88 /* NudgeData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NudgeData.xcdatamodel; sourceTree = "<group>"; };
 		EBB337FA1A9F581F000CAD88 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		EBB3382F1A9F5A44000CAD88 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UserModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		EBB338321A9F5FF9000CAD88 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = LoginController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		EBB338321A9F5FF9000CAD88 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = LoginController.swift; sourceTree = "<group>"; };
 		EBB3383B1A9F73D4000CAD88 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = API.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EBB3383F1AA0ADB5000CAD88 /* VerifyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = VerifyViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EBB338411AA0C365000CAD88 /* GenericProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = GenericProfileViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -2137,6 +2139,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C84E00F61C191F160065F220 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				C84E00F71C191FC60065F220 /* Localizations.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
 		C893259F1C08BEC10069FCFD /* LoggingPrint */ = {
 			isa = PBXGroup;
 			children = (
@@ -2226,6 +2236,7 @@
 				EB0926CF1A8DE4CB00E1D958 /* AppDelegate.swift */,
 				EBB338451AA0EA46000CAD88 /* BaseController.swift */,
 				EBB337F91A9F5557000CAD88 /* DataModel */,
+				C84E00F61C191F160065F220 /* Generated */,
 				C8A661E11C0B64A00088355D /* UI */,
 				EB0926CD1A8DE4CB00E1D958 /* Supporting Files */,
 			);
@@ -2413,6 +2424,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB0926EB1A8DE4CB00E1D958 /* Build configuration list for PBXNativeTarget "Nudj" */;
 			buildPhases = (
+				C8B0B9DD1C19228F0079AACF /* Update localizations */,
 				30F2C7085A8ADC56610FB4A5 /* Check Pods Manifest.lock */,
 				EB0926C61A8DE4CB00E1D958 /* Sources */,
 				EB0926C71A8DE4CB00E1D958 /* Frameworks */,
@@ -2636,6 +2648,23 @@
 			shellScript = "FILE=\"${SRCROOT}/Externals/HockeySDK-iOS/BuildAgent\"\nif [ -f \"$FILE\" ]; then\n\"$FILE\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		C8B0B9DD1C19228F0079AACF /* Update localizations */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(PROJECT_DIR)/$(PROJECT_NAME)/Base.lproj/Localizable.strings",
+			);
+			name = "Update localizations";
+			outputPaths = (
+				"$(PROJECT_DIR)/$(PROJECT_NAME)/Generated/Localizations.swift",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# CONFIGURATION\n# Get base path to project\nBASE_PATH=\"$PROJECT_DIR/$PROJECT_NAME\"\n\n# Configure path to Laurine Generator script\nLAURINE_PATH=\"$PROJECT_DIR/Externals/Laurine/LaurineGenerator.swift\"\n\n# Configure path to main localization file (usually english).\nSOURCE_PATH=\"$BASE_PATH/Base.lproj/Localizable.strings\"\n\n# Configure path to output. If you use ObjC version of output, set implementation file (.m), as header will be generated automatically at the same location.\nOUTPUT_PATH=\"$BASE_PATH/Generated/Localizations.swift\"\n\n# Actually generate output. Customize parameters to your needs (see documentation)\nxcrun swift $LAURINE_PATH -i $SOURCE_PATH -o $OUTPUT_PATH -c\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -2829,6 +2858,7 @@
 				A99650081B387CC800D5A8E9 /* NSData+XMPP.m in Sources */,
 				A99650001B387CC800D5A8E9 /* JSQSystemSoundPlayer.m in Sources */,
 				A996502E1B387CC800D5A8E9 /* XMPPRoomMessageHybridCoreDataStorageObject.m in Sources */,
+				C84E00F81C191FC60065F220 /* Localizations.swift in Sources */,
 				EB000F7C1AB2E0B800E4D385 /* DataTableCell.swift in Sources */,
 				A99650761B387CC800D5A8E9 /* DDLog.m in Sources */,
 				A9C6EC921B381EB000EC9140 /* ChatViewController.swift in Sources */,
