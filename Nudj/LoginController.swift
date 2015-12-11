@@ -144,13 +144,11 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
                         self.proceed()
                         return
                     }
-                    self.appDelegate.contacts.isAuthorized()
                 })
             })
         }
         else if (authorizationStatus == ABAuthorizationStatus.Denied || authorizationStatus == ABAuthorizationStatus.Restricted) {
-            loggingPrint("access denied")
-            self.appDelegate.contacts.isAuthorized()
+            // nothing
         }
         else if (authorizationStatus == ABAuthorizationStatus.Authorized) {
             loggingPrint("access granted")
