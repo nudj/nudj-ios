@@ -34,6 +34,8 @@ TODO
 
 ### In submodules
 
+* Laurine  
+  Supports compile-time checking of the loading of localised text.
 * LoggingPrint  
   Used to confine developer logging to debug builds of the app, to improve performance of the release builds.
 
