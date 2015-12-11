@@ -65,8 +65,8 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
         
         if(isEditable != nil && isEditable == true){
             
-            self.navigationItem.rightBarButtonItem?.title = NSLocalizedString("jobs.add.button.update", comment: "")
-            self.title = NSLocalizedString("jobs.add.button.edit", comment: "")
+            self.navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Add.Button.Update
+            self.title = Localizations.Jobs.Add.Button.Edit
             
             self.deleteBtn.hidden = false
             self.topGreyBorder.hidden = false
@@ -114,7 +114,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
             job.bonus = bonus.text!
 
             // TODO: select by something less fragile than the title
-            if(sender.title == NSLocalizedString("jobs.add.button.update", comment: "")){
+            if(sender.title == Localizations.Jobs.Add.Button.Update){
                 job.edit(self.jobId!, closure: { result in
                     if(result == true){
                         self.navigationController?.navigationBarHidden = true
@@ -125,7 +125,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
                         self.view.addSubview(self.popup!)
                     }else{
                         self.navigationController?.navigationBarHidden = false
-                        let alert = UIAlertView(title: NSLocalizedString("jobs.update.error.title", comment: ""), message: NSLocalizedString("jobs.update.error.body", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("general.button.ok", comment: ""))
+                        let alert = UIAlertView(title: Localizations.Jobs.Update.Error.Title, message: Localizations.Jobs.Update.Error.Body, delegate: nil, cancelButtonTitle: Localizations.General.Button.Ok)
                         alert.show()
                     }
                 })
@@ -145,12 +145,11 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
                 }
             }
         }else{
-            let alert = UIAlertView(title: NSLocalizedString("jobs.validation.error.title", comment: ""), message: NSLocalizedString("jobs.validation.error.body", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("general.button.ok", comment: ""))
+            let alert = UIAlertView(title: Localizations.Jobs.Validation.Error.Title, message: Localizations.Jobs.Validation.Error.Body, delegate: nil, cancelButtonTitle: Localizations.General.Button.Ok)
             alert.show();
         }
         
         item.enabled = true
-        
     }
     
     func checkFields() -> Bool{
@@ -333,7 +332,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
     func dismissPopUp() {
         popup!.removeFromSuperview();
         // TODO: select by something less fragile than the title
-        if(self.navigationItem.rightBarButtonItem?.title == NSLocalizedString("jobs.add.button.update", comment: "")){
+        if(self.navigationItem.rightBarButtonItem?.title == Localizations.Jobs.Add.Button.Update){
             MixPanelHandler.sendData("JobUpdated")
             self.closeCurrentView()
         }else{
@@ -350,7 +349,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
         }
     }
     @IBAction func deleteAction(sender: UIButton) {
-        let alert =  UIAlertView(title:NSLocalizedString("jobs.delete.alert.title", comment: ""), message: NSLocalizedString("jobs.delete.alert.body", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("general.button.cancel", comment: ""),  otherButtonTitles: NSLocalizedString("general.button.delete", comment: ""))
+        let alert =  UIAlertView(title: Localizations.Jobs.Delete.Alert.Title, message: Localizations.Jobs.Delete.Alert.Body, delegate: self, cancelButtonTitle: Localizations.General.Button.Cancel,  otherButtonTitles: Localizations.General.Button.Delete)
         alert.show()
         
     }
@@ -363,7 +362,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
                 self.closeCurrentView()
             }, errorHandler: { 
                 error in
-                let alert = UIAlertView(title: NSLocalizedString("jobs.delete.error.title", comment: ""), message:NSLocalizedString("jobs.delete.error.body", comment: ""), delegate: nil, cancelButtonTitle:NSLocalizedString("general.button.cancel", comment: ""))
+                let alert = UIAlertView(title: Localizations.Jobs.Delete.Error.Title, message: Localizations.Jobs.Delete.Error.Body, delegate: nil, cancelButtonTitle:Localizations.General.Button.Cancel)
                 alert.show()
             })
         }

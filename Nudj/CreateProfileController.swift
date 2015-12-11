@@ -13,7 +13,7 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
     @IBOutlet weak var linkedIn: UIImageView!
     @IBOutlet weak var faceBookImage: UIImageView!
     
-    let msgTitle = NSLocalizedString("profile.new.image-source", comment: "")
+    let msgTitle = Localizations.Profile.New.ImageSource
 
     @IBOutlet weak var image: AsyncImage! {
         didSet {
@@ -150,11 +150,11 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
     func pickLibrary() {
         // TODO: should maybe be an action sheet rather than an alert
         let alert = UIAlertController(title: self.msgTitle, message: nil, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("profile.image-source.camera", comment: ""), style: .Default) {
+        alert.addAction(UIAlertAction(title: Localizations.Profile.ImageSource.Camera, style: .Default) {
             action -> Void in
             self.changeProfileImage(.Camera)
             })
-        alert.addAction(UIAlertAction(title: NSLocalizedString("profile.image-source.library", comment: ""), style: .Default) {
+        alert.addAction(UIAlertAction(title: Localizations.Profile.ImageSource.Library, style: .Default) {
             action -> Void in
             self.changeProfileImage(.PhotoLibrary)
             })
@@ -207,7 +207,7 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
             if(success){
                 self.performSegueWithIdentifier("showCreateProfileView", sender: self)
             } else {
-                let alert = UIAlertView(title: NSLocalizedString("profile.linkedin.failed.title", comment: ""), message: nil, delegate: nil, cancelButtonTitle: NSLocalizedString("general.button.ok", comment: ""))
+                let alert = UIAlertView(title: Localizations.Profile.Linkedin.Failed.Title, message: nil, delegate: nil, cancelButtonTitle: Localizations.General.Button.Ok)
                 alert.show()
             }
         })
@@ -220,7 +220,7 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
             if(success){
                 self.performSegueWithIdentifier("showCreateProfileView", sender: self)
             } else {
-                let alert = UIAlertView(title: NSLocalizedString("profile.facebook.failed.title", comment: ""), message: nil, delegate: nil, cancelButtonTitle: NSLocalizedString("general.button.ok", comment: ""))
+                let alert = UIAlertView(title: Localizations.Profile.Facebook.Failed.Title, message: nil, delegate: nil, cancelButtonTitle: Localizations.General.Button.Ok)
                 alert.show()
             }
         })

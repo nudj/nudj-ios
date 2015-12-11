@@ -381,12 +381,12 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
             if(selectedButton.selected){
                 MixPanelHandler.sendData("Chat_RestoreFromArchive")
                 self.completeRequest("chat/"+self.chatID+"/archive", withType: "DELETE")
-                let alert = UIAlertView(title: NSLocalizedString("chat.restored.title", comment: ""), message: nil, delegate: self, cancelButtonTitle: NSLocalizedString("general.button.ok", comment: ""))
+                let alert = UIAlertView(title: Localizations.Chat.Restored.Title, message: nil, delegate: self, cancelButtonTitle: Localizations.General.Button.Ok)
                 alert.show()
             } else {
                 MixPanelHandler.sendData("Chat_Archive")
                 self.completeRequest("chat/"+self.chatID+"/archive", withType: "PUT")
-                let alert = UIAlertView(title: NSLocalizedString("chat.archived.title", comment: ""), message: NSLocalizedString("chat.archived.body", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("general.button.ok", comment: ""))
+                let alert = UIAlertView(title: Localizations.Chat.Archived.Title, message: Localizations.Chat.Archived.Body, delegate: self, cancelButtonTitle: Localizations.General.Button.Ok)
                 alert.show()
             }
             selectedButton.selected = !selectedButton.selected

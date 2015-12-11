@@ -96,20 +96,21 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
                tutorial.starTutorial("tutorial-ask", view: self.view)
             }
             
-            self.navigationItem.rightBarButtonItem?.title = NSLocalizedString("jobs.button.edit", comment: "")
-            self.interestedBtn.setTitle(NSLocalizedString("jobs.button.ask-for-referral", comment: ""), forState: UIControlState.Normal)
+            self.navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Button.Edit
+            self.interestedBtn.setTitle(Localizations.Jobs.Button.AskForReferral, forState: UIControlState.Normal)
             
             spaceBetween.constant = 0
             let constraint = NSLayoutConstraint(item: nudgeBtn, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 0)
             nudgeBtn.addConstraint(constraint)
             
         } else if(content["liked"].boolValue){
-            self.navigationItem.rightBarButtonItem?.title = NSLocalizedString("jobs.button.saved", comment: "")
+            // TODO: review this: I find it a confusing UX
+            self.navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Button.Saved
             if appDelegate.shouldShowNudjTutorial  {
                 tutorial.starTutorial("tutorial-nudge", view: self.view)
             }
         } else {
-            self.navigationItem.rightBarButtonItem?.title = NSLocalizedString("jobs.button.save", comment: "")
+            self.navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Button.Save
             if appDelegate.shouldShowNudjTutorial  {
                 tutorial.starTutorial("tutorial-nudge", view: self.view)
             }
@@ -175,27 +176,28 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
 
     @IBAction func topRightNavAction(sender: UIBarButtonItem) {
         // TODO: API strings
-        if (sender.title == NSLocalizedString("jobs.button.save", comment: "")) {
+        // TODO: use something less fragile than selecting on the button title
+        if (sender.title == Localizations.Jobs.Button.Save) {
             MixPanelHandler.sendData("SaveJobButtonClicked")
             API.sharedInstance.put("jobs/\(self.jobID!)/like", params: nil, closure: { json in
                 loggingPrint("Job saved \(json)")
-                self.navigationItem.rightBarButtonItem?.title = NSLocalizedString("jobs.button.saved", comment: "")
+                self.navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Button.Saved
                 
                 }) { 
                     error in
                     loggingPrint("Error -> \(error)")
             }
-        } else if(sender.title == NSLocalizedString("jobs.button.saved", comment: "")) {
+        } else if(sender.title == Localizations.Jobs.Button.Saved) {
             MixPanelHandler.sendData("SavedJobButtonClicked")
             API.sharedInstance.request(API.Method.DELETE, path: "jobs/\(self.jobID!)/like", params: nil, closure: { 
                 json in
                 loggingPrint("un save \(json)")
-                self.navigationItem.rightBarButtonItem?.title = NSLocalizedString("jobs.button.save", comment: "")
+                self.navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Button.Save
                 }, errorHandler: { 
                     error in
                     loggingPrint("Error -> \(error)")
             })
-        } else if (sender.title == NSLocalizedString("jobs.button.edit", comment: "")){
+        } else if (sender.title == Localizations.Jobs.Button.Edit){
             // Go to EditView
             MixPanelHandler.sendData("EditJobButtonClicked")
             let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -229,10 +231,10 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
     }
     
     @IBAction func interested(sender: UIButton) {
-        if(sender.titleLabel?.text == NSLocalizedString("jobs.button.interested", comment: "")){
+        if(sender.titleLabel?.text == Localizations.Jobs.Button.Interested){
             //Go to INTERESTED
             MixPanelHandler.sendData("InterestedButtonClicked")
-            let alertview = UIAlertView(title: NSLocalizedString("jobs.interested.alert.title", comment: ""), message: NSLocalizedString("jobs.interested.alert.body", comment: ""), delegate: self, cancelButtonTitle: NSLocalizedString("general.button.cancel", comment: ""), otherButtonTitles: NSLocalizedString("general.button.send", comment: ""))
+            let alertview = UIAlertView(title: Localizations.Jobs.Interested.Alert.Title, message: Localizations.Jobs.Interested.Alert.Title, delegate: self, cancelButtonTitle: Localizations.General.Button.Cancel, otherButtonTitles: Localizations.General.Button.Send)
             alertview.show()
         } else {
             MixPanelHandler.sendData("AskForReferalButtonClicked")
@@ -267,7 +269,7 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
                 return
             }
             weak var weakSelf = self
-            popup.bodyText(NSLocalizedString("jobs.interested.confirmation.body", comment: ""))
+            popup.bodyText(Localizations.Jobs.Interested.Confirmation.Body)
             popup.delegate = weakSelf
             self.view.addSubview(self.popup!)
             }) { 
@@ -287,7 +289,8 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
         
         // TODO: API strings
-        if(self.navigationItem.rightBarButtonItem?.title == NSLocalizedString("jobs.button.edit", comment: "")){
+        // TODO: select on something less fragile than the button title
+        if(self.navigationItem.rightBarButtonItem?.title == Localizations.Jobs.Button.Edit){
             UserModel.update(["settings":["tutorial":["create_job":false]]], closure: { 
                 result in
                 appDelegate.updateUserObject("AskForReferralTutorial", with:false)

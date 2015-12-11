@@ -16,9 +16,9 @@ protocol CountrySelectionPickerDelegate {
 class CountrySelectionPicker: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
     // TODO: API strings
     var delegate : CountrySelectionPickerDelegate?
-    var selection = ["dial_code": NSLocalizedString("country.default.dialcode", comment: ""),
-        "name": NSLocalizedString("country.default.name", comment: ""),
-        "code": NSLocalizedString("country.default.code", comment: "")]
+    var selection = ["dial_code": Localizations.Country.Default.Dialcode,
+        "name": Localizations.Country.Default.Name,
+        "code": Localizations.Country.Default.Code]
     var picker:UIPickerView?
     var data:[AnyObject] = []
     var isCreated:Bool = false;
@@ -35,13 +35,13 @@ class CountrySelectionPicker: UIView, UIPickerViewDataSource, UIPickerViewDelega
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         let title = UILabel(frame: CGRectMake(0, 5, self.frame.size.width, 30))
-        title.text = NSLocalizedString("country.choose.label", comment: "")
+        title.text = Localizations.Country.Choose.Label
         title.textAlignment = NSTextAlignment.Center
         title.textColor = appDelegate.appColor
         self.addSubview(title)
         
         let button = UIButton(frame: CGRectMake(self.frame.size.width - 70, 5, 60, 30))
-        button.setTitle(NSLocalizedString("general.button.done", comment: ""), forState: UIControlState.Normal)
+        button.setTitle(Localizations.General.Button.Done, forState: UIControlState.Normal)
         button.setTitleColor(appDelegate.appColor, forState: UIControlState.Normal)
         button.addTarget(self, action: "doneAction", forControlEvents: UIControlEvents.TouchUpInside)
         self.addSubview(button)

@@ -177,9 +177,9 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             return true;
         }
         catch let error as NSError {
-            let title = NSLocalizedString("chat.connection.error.title", comment: "")
+            let title = Localizations.Chat.Connection.Error.Title
             let message = Localizations.Chat.Connection.Error.Body.Format(error.localizedDescription)
-            let alertView = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: NSLocalizedString("general.button.ok", comment: ""))
+            let alertView = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: Localizations.General.Button.Ok)
             alertView.show()
             return false;
         }

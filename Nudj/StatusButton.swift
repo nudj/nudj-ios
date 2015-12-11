@@ -9,9 +9,9 @@ import UIKit
 
 struct Status {
     static let titles = [
-        NSLocalizedString("userstatus.hiring", comment: ""),
-        NSLocalizedString("userstatus.available", comment: ""),
-        NSLocalizedString("userstatus.do-not-disturb", comment: "")
+        Localizations.Userstatus.Hiring,
+        Localizations.Userstatus.Available,
+        Localizations.Userstatus.DoNotDisturb
     ]
     // TODO: magic numbers
     static let colors = [
@@ -21,7 +21,7 @@ struct Status {
 }
 
 class StatusButton: UIButton {
-    let initialTitle = NSLocalizedString("userstatus.unknown", comment: "")
+    let initialTitle = Localizations.Userstatus.Unknown
 
     var gray = true
     var isChanged = false

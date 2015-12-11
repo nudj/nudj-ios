@@ -12,8 +12,8 @@ import SwiftyJSON
 
 class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFieldDelegate {
 
-    let msgTitle = NSLocalizedString("contacts.access.request.title", comment: "")
-    let msgContent = NSLocalizedString("contacts.access.request.body", comment: "")
+    let msgTitle = Localizations.Contacts.Access.Request.Title
+    let msgContent = Localizations.Contacts.Access.Request.Body
     
     var countrySelectionView = CountrySelectionPicker()
     var code = "GB"
@@ -68,11 +68,11 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
         let phoneNumber = self.getFormattedNumber()
 
         if (phoneNumber.isEmpty) {
-            showSimpleAlert(NSLocalizedString("login.phone-number.required", comment: ""))
+            showSimpleAlert(Localizations.Login.PhoneNumber.Required)
             showLoginButton()
             return;
         }
-
+        // TODO: API strings
         let params: [String: AnyObject] = ["phone": phoneNumber, "country_code": code]
         API.sharedInstance.post("users", params: params, closure: { response in
             if (self.appDelegate.contacts.isAuthorized()) {
@@ -102,12 +102,12 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
     func askForAddressBookPermission() {
         let alert = UIAlertController(title: self.msgTitle, message: self.msgContent, preferredStyle: UIAlertControllerStyle.Alert)
 
-        alert.addAction(UIAlertAction(title: NSLocalizedString("general.button.notnow", comment: ""), style: UIAlertActionStyle.Cancel) {
+        alert.addAction(UIAlertAction(title: Localizations.General.Button.Notnow, style: UIAlertActionStyle.Cancel) {
             action in
             self.appDelegate.showContactsAccessView()
             })
 
-        alert.addAction(UIAlertAction(title: NSLocalizedString("general.button.ok", comment: ""), style: UIAlertActionStyle.Default) {
+        alert.addAction(UIAlertAction(title: Localizations.General.Button.Ok, style: UIAlertActionStyle.Default) {
             action in
             self.getContactListPermission()
             })

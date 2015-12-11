@@ -23,7 +23,7 @@ class BaseController: UIViewController {
     func showSimpleAlert(text: String) {
         // TODO: pass in an optional title
         let alert = UIAlertController(title: nil, message: text, preferredStyle: UIAlertControllerStyle.Alert)
-        let okButtonTitle = NSLocalizedString("general.button.ok", comment: "")
+        let okButtonTitle = Localizations.General.Button.Ok
         alert.addAction(UIAlertAction(title: okButtonTitle, style: UIAlertActionStyle.Cancel, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
@@ -41,7 +41,7 @@ class BaseController: UIViewController {
                 if (json["error"] != nil) {
                     self.showSimpleAlert(json["error"]["message"].stringValue)
                 } else {
-                    self.showSimpleAlert(NSLocalizedString("server.error.unknown", comment: ""))
+                    self.showSimpleAlert(Localizations.Server.Error.Unknown)
                 }
 
                 // TODO: sort this out - we have no error to pass here

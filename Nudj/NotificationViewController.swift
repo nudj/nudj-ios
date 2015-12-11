@@ -188,10 +188,10 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
                 if(UIApplication.sharedApplication().canOpenURL(phoneUrl)){
                     UIApplication.sharedApplication().openURL(phoneUrl)
                 } else {
-                    let alert = UIAlertView(title: NSLocalizedString("phone.unavailable.title", comment: ""),
-                        message: NSLocalizedString("phone.unavailable.body", comment: ""),
+                    let alert = UIAlertView(title: Localizations.Phone.Unavailable.Title,
+                        message: Localizations.Phone.Unavailable.Body,
                         delegate: nil,
-                        cancelButtonTitle: NSLocalizedString("general.button.ok", comment: ""));
+                        cancelButtonTitle: Localizations.General.Button.Ok);
                     alert.show()
                 }
             }
@@ -211,10 +211,10 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
                 messageComposer.recipients = [reciverNumber]
                 self.presentViewController(messageComposer, animated: true, completion: nil)
             } else {
-                let alert = UIAlertView(title: NSLocalizedString("sms.unavailable.title", comment: ""),
-                    message: NSLocalizedString("sms.unavailable.body", comment: ""),
+                let alert = UIAlertView(title: Localizations.Sms.Unavailable.Title,
+                    message: Localizations.Sms.Unavailable.Body,
                     delegate: nil,
-                    cancelButtonTitle: NSLocalizedString("general.button.ok", comment: ""));
+                    cancelButtonTitle: Localizations.General.Button.Ok);
                 alert.show()
             }
         } else {
@@ -225,10 +225,10 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
     
     func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult) {
         if result == MessageComposeResultFailed {
-            let alert = UIAlertView(title: NSLocalizedString("sms.failed.title", comment: ""),
-                message: NSLocalizedString("sms.failed.body", comment: ""),
+            let alert = UIAlertView(title: Localizations.Sms.Failed.Title,
+                message: Localizations.Sms.Failed.Body,
                 delegate: nil,
-                cancelButtonTitle: NSLocalizedString("general.button.ok", comment: ""));
+                cancelButtonTitle: Localizations.General.Button.Ok);
             alert.show()
         }
         

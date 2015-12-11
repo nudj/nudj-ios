@@ -89,7 +89,7 @@ class VerifyViewController: BaseController {
         codeField.text = ""
 
         if (code.characters.count != self.codeLength) {
-            showSimpleAlert(NSLocalizedString("verification.code.invalid", comment: ""))
+            showSimpleAlert(Localizations.Verification.Code.Invalid)
             return
         }
 
@@ -102,7 +102,7 @@ class VerifyViewController: BaseController {
 
             if (!self.isValidResponse(json)) {
                 self.showCodeField(animated: true)
-                self.showSimpleAlert(NSLocalizedString("verification.code.invalid", comment: ""))
+                self.showSimpleAlert(Localizations.Verification.Code.Invalid)
                 return
             }
 
@@ -133,7 +133,7 @@ class VerifyViewController: BaseController {
             self.performSegueWithIdentifier("showInitProfileView", sender: nil)
         }, errorHandler: {_ in
             self.showCodeField(animated: true)
-            self.showSimpleAlert(NSLocalizedString("verification.code.error", comment: ""))
+            self.showSimpleAlert(Localizations.Verification.Code.Error)
         })
     }
 

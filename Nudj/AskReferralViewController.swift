@@ -35,14 +35,14 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
         self.tabBarController?.tabBar.hidden = true
         
         if(self.isNudjRequest!){
-            self.title = NSLocalizedString("referral.title", comment: "")
+            self.title = Localizations.Referral.Title
         } else {
             if let job = self.jobTitle {
                 // TODO: eliminate singleton access
                 let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
                 self.messageLabel.text = Localizations.Referral.Ask.Format(job)
                 self.messageLabel.setFontColor(appDelegate.appColor, string:job)
-                self.navigationItem.rightBarButtonItem?.title = NSLocalizedString("referral.ask.button", comment: "")
+                self.navigationItem.rightBarButtonItem?.title = Localizations.Referral.Ask.Button
             }
         }
 
@@ -98,7 +98,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     //MARK: TextView Delegate
     func textViewDidBeginEditing(textView: UITextView) {
         // TODO: Use proper UIKit placeholder
-        if(textView.text == NSLocalizedString("referral.message.placeholder", comment: "")){
+        if(textView.text == Localizations.Referral.Message.Placeholder){
             textView.text = ""
         }
     }

@@ -52,7 +52,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         table.tableFooterView = UIView(frame: CGRectZero)
 
         refreshControl = UIRefreshControl()
-        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("general.pull-to-refresh", comment: ""))
+        refreshControl.attributedTitle = NSAttributedString(string: Localizations.General.PullToRefresh)
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         table.addSubview(refreshControl)
 
@@ -224,11 +224,11 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
                 } else {
                     lastSelectedContact = contact
                     let message = Localizations.Invitation.Send.Body.Format(contact.name)
-                    let alert = UIAlertView(title: NSLocalizedString("invitation.send.title", comment: ""), 
+                    let alert = UIAlertView(title: Localizations.Invitation.Send.Title, 
                         message: message, 
                         delegate: self, 
-                        cancelButtonTitle: NSLocalizedString("general.button.cancel", comment: ""), 
-                        otherButtonTitles: NSLocalizedString("invitation.send.button", comment: ""))
+                        cancelButtonTitle: Localizations.General.Button.Cancel, 
+                        otherButtonTitles: Localizations.Invitation.Send.Button)
                     alert.show()
                 }
             }
@@ -265,20 +265,20 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
                     let title: String
                     let message: String
                     if (result["status"].boolValue) {
-                        title = NSLocalizedString(("invitation.successful.title"), comment: "")
+                        title = Localizations.Invitation.Successful.Title
                         message = Localizations.Invitation.Successful.Body.Format(contactName)
                     } else {
-                        title = NSLocalizedString(("invitation.failed.title"), comment: "")
+                        title = Localizations.Invitation.Failed.Title
                         message = Localizations.Invitation.Failed.Body.Format(contactName)
                     }
-                    let alertview  = UIAlertView(title: title, message: message, delegate: self, cancelButtonTitle: NSLocalizedString("general.button.ok", comment: ""))
+                    let alertview  = UIAlertView(title: title, message: message, delegate: self, cancelButtonTitle: Localizations.General.Button.Ok)
                     alertview.show()
                 },
                 errorHandler: { 
                     error in
-                    let title = NSLocalizedString(("invitation.failed.title"), comment: "")
+                    let title = Localizations.Invitation.Failed.Title
                     let message = Localizations.Invitation.Failed.Body.Format(contactName)
-                    let alertview  = UIAlertView(title: title, message: message, delegate: self, cancelButtonTitle: NSLocalizedString("general.button.ok", comment: ""))
+                    let alertview  = UIAlertView(title: title, message: message, delegate: self, cancelButtonTitle: Localizations.General.Button.Ok)
                     alertview.show()
                 })
         }
