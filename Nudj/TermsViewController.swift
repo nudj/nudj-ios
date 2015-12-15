@@ -21,10 +21,10 @@ class TermsViewController: UIViewController {
         // Do any additional setup after loading the view.
         // TODO: API strings
         if(isPrivacy == true){
-            url = NSURL(string: "http://api.nudj.co/html/privacy")
+            url = NSURL(string: "https://api.nudj.co/html/privacy")
             self.title = "Privacy Policy"
         }else{
-            url = NSURL(string: "http://api.nudj.co/html/terms")
+            url = NSURL(string: "https://api.nudj.co/html/terms")
             self.title = "Terms & Condition"
         }
         

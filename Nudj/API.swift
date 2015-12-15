@@ -16,7 +16,7 @@ class API {
 
     // Production
     // TODO: API strings
-    let baseURL = "http://api.nudj.co/api/v1/"
+    let baseURL = "https://api.nudj.co/api/v1/"
     var token:String? = nil
 
     // TODO: remove this singleton (NB it isn't even implemented correctly)

@@ -24,7 +24,7 @@ class UserModel: CustomStringConvertible {
 
     var skills:[String]?
     // TODO: API strings
-    var image:[String:String] = ["profile": "http://api.nudj.co/app/placeholder/user.png"]
+    var image:[String:String] = ["profile": "https://api.nudj.co/app/placeholder/user.png"]
     var isDefaultImage = true
     var base64Image:String?
     
