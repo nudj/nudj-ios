@@ -2662,7 +2662,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# CONFIGURATION\n# Get base path to project\nBASE_PATH=\"$SRCROOT/$PROJECT_NAME\"\n\n# Configure path to Laurine Generator script\nLAURINE_PATH=\"$SRCROOT/Externals/Laurine/LaurineGenerator.swift\"\n\n# Configure path to main localization file (usually english).\nSOURCE_PATH=\"$BASE_PATH/Base.lproj/Localizable.strings\"\n\n# Configure path to output. If you use ObjC version of output, set implementation file (.m), as header will be generated automatically at the same location.\nOUTPUT_PATH=\"$BASE_PATH/Generated/Localizations.swift\"\n\n# Actually generate output. Customize parameters to your needs (see documentation)\nxcrun -sdk macosx swift $LAURINE_PATH -i $SOURCE_PATH -o $OUTPUT_PATH -c\n";
+			shellScript = "# CONFIGURATION\n# Get base path to project\nBASE_PATH=\"${SRCROOT}/${PROJECT_NAME}\"\n\n# Configure path to Laurine Generator script\nLAURINE_PATH=\"${SRCROOT}/Externals/Laurine/LaurineGenerator.swift\"\n\n# Configure path to main localization file (usually english).\nSOURCE_PATH=\"${BASE_PATH}/Base.lproj/Localizable.strings\"\n\n# Configure path to output. If you use ObjC version of output, set implementation file (.m), as header will be generated automatically at the same location.\nOUTPUT_PATH=\"${BASE_PATH}/Generated/Localizations.swift\"\n\n# Actually generate output. Customize parameters to your needs (see documentation)\nxcrun -sdk macosx swift \"${LAURINE_PATH}\" -i \"${SOURCE_PATH}\" -o \"${OUTPUT_PATH}\" -c\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
