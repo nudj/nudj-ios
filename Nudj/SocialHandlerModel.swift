@@ -13,101 +13,8 @@ import FBSDKLoginKit
 // TODO: all this is horrible and needs to be cleaned up
 
 class SocialHandlerModel: NSObject {
-    var reqClient:LIALinkedInHttpClient?
-    var LinkedinPermission:String?
-    
-    init(viewController:UIViewController){
-        super.init()
-        // TODO: check that we mean LinkedIn here
-        self.setLinkedInPermission(viewController)
-    }
-    
-    func setLinkedInPermission(viewController:UIViewController){
-        // TODO: API strings
-        // TODO: check that we mean LinkedIn here
-        API.sharedInstance.get("config/linkedin_permission", params: nil, closure: { response in
-            
-            loggingPrint(response["data"].stringValue)
-            self.LinkedinPermission = response["data"].stringValue
-            
-            if self.LinkedinPermission!.isEmpty {
-                self.LinkedinPermission = "r_basicprofile"
-            } else {
-                self.LinkedinPermission = response["data"].stringValue
-            }
-            
-            self.reqClient = self.linkedInClientCongfig(viewController)
-        }, errorHandler: {
-            error in
-            // TODO: why commented out?
-//            var alert = UIAlertView(title: "Server Error", message: "Oops, something went wrong. Could not get Linkedin's scope.", delegate: nil, cancelButtonTitle: "OK")
-//            alert.show()
-        })
-    }
-    
-    //MARK: - Linked in config
-    func configureLinkedin(connected:Bool,completionHandler:(success:Bool) -> Void){
-        if(connected){
-            self.deleteSocial("linkedin", completionHandler: { 
-                result in
-                completionHandler(success:result)
-            })
-        } else {
-            self.reqClient?.getAuthorizationCode({ 
-                code in
-                self.reqClient?.getAccessToken(code, success: {accessTokenData in
-                    
-                    let accessToken = accessTokenData["access_token"] as! String
-                    loggingPrint("Linkedin token -> \(accessToken)")
-                    
-                    self.updateSocial("linkedin", param: accessToken, completionHandler: { 
-                        request in
-                        completionHandler(success:request)
-                    })
-                    }, 
-                    failure: { 
-                        error in
-                        completionHandler(success:false)
-                        loggingPrint("Querying accessToken failed \(error)");
-                })
-                }, 
-                cancel: { 
-                    cancel in
-                    completionHandler(success:false)
-                    loggingPrint("Authorization was cancelled by user")
-                }, 
-                failure: { 
-                    error in
-                    completionHandler(success:false)
-                    loggingPrint("Authorization failed \(error)");
-            })
-        }
-    }
-    
-    func requestMeWithToken(accessToken:String){
-        // TODO: API strings
-        self.reqClient?.GET("https://api.linkedin.com/v1/people/~?oauth2_access_token=\(accessToken)&format=json", parameters: nil, success: {
-            result in
-            loggingPrint("current user \(result)");
-            }, 
-            failure: { 
-                error in
-                loggingPrint("failed to fetch current user \(error)");
-        })
-    }
-    
-    func linkedInClientCongfig(viewController:UIViewController) -> LIALinkedInHttpClient{
-        // TODO: API strings
-        // TODO: secret tokens
-        loggingPrint("configuring linkedin with \(self.LinkedinPermission!)")
-        let application = LIALinkedInApplication.applicationWithRedirectURL("http://api.nudj.co", clientId:"77l67v0flc6leq", clientSecret:"PLOAmXuwsl1sSooc", state:"DCEEFWF45453sdffef424", grantedAccess:[self.LinkedinPermission!,"r_emailaddress"]) as! LIALinkedInApplication
-        
-        return LIALinkedInHttpClient(forApplication: application, presentingViewController: viewController)
-    }
 
-    //MARK: - FaceBook config
     func configureFacebook(connected:Bool,completionHandler:(success:Bool) -> Void){
-        
         if(connected){
             self.deleteSocial("facebook", completionHandler: {
                 result in
@@ -136,7 +43,6 @@ class SocialHandlerModel: NSObject {
         }
     }
 
-    //MARK: Updating social connection
     func updateSocial(path:String, param:String, completionHandler:(success:Bool) -> Void){
         // TODO: API strings
         API.sharedInstance.put("connect/\(path)", params:["token":param], closure: { 
