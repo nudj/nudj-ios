@@ -44,7 +44,7 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
         self.faceBookImage.userInteractionEnabled = true
         self.faceBookImage.addGestureRecognizer(tapGestureRecognizer2)
         
-        self.socialhander = SocialHandlerModel(viewController: self)
+        self.socialhander = SocialHandlerModel()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -201,18 +201,6 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
         })
     }
 
-    //MARK: Linkedin
-    func linkedinAction(){
-        self.socialhander!.configureLinkedin(false, completionHandler: { success in
-            if(success){
-                self.performSegueWithIdentifier("showCreateProfileView", sender: self)
-            } else {
-                let alert = UIAlertView(title: Localizations.Profile.Linkedin.Failed.Title, message: nil, delegate: nil, cancelButtonTitle: Localizations.General.Button.Ok)
-                alert.show()
-            }
-        })
-    }
-    
     //MARK: Facebook
     func facebookAction(){
         // TODO: refactor with LinkedIn action
