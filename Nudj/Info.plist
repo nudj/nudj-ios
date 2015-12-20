@@ -34,8 +34,6 @@
 	<string>436716026489484</string>
 	<key>FacebookDisplayName</key>
 	<string>$(PRODUCT_NAME)</string>
-	<key>LIAppId</key>
-	<string>3860203</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
