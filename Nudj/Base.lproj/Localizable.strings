@@ -91,7 +91,6 @@
 "profile.new.image-source" = "Choose Image Source";
 "profile.image-source.camera" = "Camera";
 "profile.image-source.library" = "Library";
-"profile.linkedin.failed.title" = "LinkedIn was not connected.";
 "profile.facebook.failed.title" = "Facebook was not connected.";
 
 // Referral
@@ -128,10 +127,6 @@
 "settings.facebook.connected.body" = "You have successfully connected your Facebook account.";
 "settings.facebook.disconnected.title" = "Facebook Disconnected";
 "settings.facebook.disconnected.body" = "You have successfully disconnected your Facebook account.";
-"settings.linkedin.connected.title" = "LinkedIn Connected";
-"settings.linkedin.connected.body" = "You have successfully connected your LinkedIn account.";
-"settings.linkedin.disconnected.title" = "LinkedIn Disconnected";
-"settings.linkedin.disconnected.body" = "You have successfully disconnected your LinkedIn account.";
 
 // User status
 "userstatus.unknown" = "SELECT STATUS";
