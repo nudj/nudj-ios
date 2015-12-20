@@ -49,7 +49,7 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
 
         table.registerNib(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
-        self.socialhander = SocialHandlerModel(viewController: self)
+        self.socialhander = SocialHandlerModel()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -243,14 +243,15 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.jobsSelected = "goToLogin"
                 performSegueWithIdentifier("goToLogin", sender: self)
             }
-        }else{
+        }else if alertView.tag == 0 {
             if(buttonIndex == 1){
-                self.handleSocialAction(alertView.tag ==  0 ? "facebook" : "linkedin")
+                self.handleSocialAction("facebook")
             }
         }
     }
     
     func handleSocialAction(statusIdentifier:String){
+        // TODO: make statusIdentifier an enum
         // TODO: refactor and move to UIAlertController
         let alert = UIAlertView(title: "", message: "", delegate: nil, cancelButtonTitle: Localizations.General.Button.Ok)
         
@@ -268,24 +269,6 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
                         alert.message = Localizations.Settings.Facebook.Disconnected.Body
                     }
                     alert.show()
-                }
-            })
-        }
-        
-        if(statusIdentifier == "linkedin"){
-            self.socialhander!.configureLinkedin(self.statusParent!.currentStatus!, completionHandler: { success in
-                if(success){
-                    self.statusParent!.updateStatus()
-                    self.socialStatuses["linkedin"] = self.statusParent!.currentStatus!
-                    if(self.statusParent!.currentStatus!){
-                        alert.title = Localizations.Settings.Linkedin.Connected.Title
-                        alert.message = Localizations.Settings.Linkedin.Connected.Body
-                    }else{
-                        alert.title = Localizations.Settings.Linkedin.Disconnected.Title
-                        alert.message = Localizations.Settings.Linkedin.Disconnected.Body
-                    }
-                    alert.show()
-                    self.table.reloadData();
                 }
             })
         }
