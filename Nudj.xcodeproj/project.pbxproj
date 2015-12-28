@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		A903BAEE1B581C4F00D69863 /* NZLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A903BAED1B581C4F00D69863 /* NZLabel.m */; };
 		A9191EA61B6A402E000F9168 /* SocialStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9191EA51B6A402E000F9168 /* SocialStatus.swift */; };
-		A9191EA81B6A864E000F9168 /* linkedin-sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9191EA71B6A864E000F9168 /* linkedin-sdk.framework */; };
 		A92324D01B7BAE77009C1F0C /* no_chats@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324C81B7BAE77009C1F0C /* no_chats@2x.png */; };
 		A92324D11B7BAE77009C1F0C /* no_contacts@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324C91B7BAE77009C1F0C /* no_contacts@2x.png */; };
 		A92324D21B7BAE77009C1F0C /* no_favourite_contacts@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324CA1B7BAE77009C1F0C /* no_favourite_contacts@2x.png */; };
@@ -347,7 +346,6 @@
 		A903BAEC1B581C4F00D69863 /* NZLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NZLabel.h; sourceTree = "<group>"; };
 		A903BAED1B581C4F00D69863 /* NZLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NZLabel.m; sourceTree = "<group>"; };
 		A9191EA51B6A402E000F9168 /* SocialStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SocialStatus.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		A9191EA71B6A864E000F9168 /* linkedin-sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "linkedin-sdk.framework"; path = "Externals/LinkedIn/linkedin-sdk.framework"; sourceTree = "<group>"; };
 		A92324C81B7BAE77009C1F0C /* no_chats@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_chats@2x.png"; sourceTree = "<group>"; };
 		A92324C91B7BAE77009C1F0C /* no_contacts@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_contacts@2x.png"; sourceTree = "<group>"; };
 		A92324CA1B7BAE77009C1F0C /* no_favourite_contacts@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_favourite_contacts@2x.png"; sourceTree = "<group>"; };
@@ -861,7 +859,6 @@
 				C89325AC1C08CCEA0069FCFD /* CoreText.framework in Frameworks */,
 				C89325AA1C08CCE00069FCFD /* AssetsLibrary.framework in Frameworks */,
 				A996508E1B38806700D5A8E9 /* libresolv.dylib in Frameworks */,
-				A9191EA81B6A864E000F9168 /* linkedin-sdk.framework in Frameworks */,
 				A996508B1B38805B00D5A8E9 /* libxml2.2.dylib in Frameworks */,
 				A996508C1B38805B00D5A8E9 /* libxml2.dylib in Frameworks */,
 				C89325B51C08CE410069FCFD /* HockeySDK.framework in Frameworks */,
@@ -2037,7 +2034,6 @@
 				A99650871B38804D00D5A8E9 /* AudioToolbox.framework */,
 				A99650851B38804500D5A8E9 /* CFNetwork.framework */,
 				A99650831B38803A00D5A8E9 /* Security.framework */,
-				A9191EA71B6A864E000F9168 /* linkedin-sdk.framework */,
 				FDD460F204898DA0004C5B93 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -3008,7 +3004,6 @@
 				CURRENT_PROJECT_VERSION = 13;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Externals/LinkedIn",
 					"$(PROJECT_DIR)/Externals/HockeySDK-iOS/HockeySDK.embeddedframework",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3043,7 +3038,6 @@
 				CURRENT_PROJECT_VERSION = 13;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Externals/LinkedIn",
 					"$(PROJECT_DIR)/Externals/HockeySDK-iOS/HockeySDK.embeddedframework",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
