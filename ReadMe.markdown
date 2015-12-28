@@ -28,7 +28,6 @@ TODO
 * JSQMessagesViewController
 * JSQSystemSoundPlayer
 * KSTokenView
-* LinkedIn
 * NZLabel
 * XMPPFramework
 
