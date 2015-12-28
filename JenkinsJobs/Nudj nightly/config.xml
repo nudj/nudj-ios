@@ -2,20 +2,13 @@
 <project>
   <actions/>
   <description>Nightly Nudj build for QA.</description>
-  <logRotator class="hudson.tasks.LogRotator">
-    <daysToKeep>-1</daysToKeep>
-    <numToKeep>50</numToKeep>
-    <artifactDaysToKeep>-1</artifactDaysToKeep>
-    <artifactNumToKeep>-1</artifactNumToKeep>
-  </logRotator>
   <keepDependencies>false</keepDependencies>
   <properties/>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@1.5.0">
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.12">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
         <name>github</name>
-        <refspec></refspec>
         <url>git@github.com:Nudj/nudj-ios.git</url>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
@@ -24,29 +17,28 @@
         <name>development</name>
       </hudson.plugins.git.BranchSpec>
     </branches>
-    <localBranch>development</localBranch>
-    <disableSubmodules>false</disableSubmodules>
-    <recursiveSubmodules>true</recursiveSubmodules>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
-    <authorOrCommitter>false</authorOrCommitter>
-    <clean>true</clean>
-    <wipeOutWorkspace>true</wipeOutWorkspace>
-    <pruneBranches>true</pruneBranches>
-    <remotePoll>false</remotePoll>
-    <ignoreNotifyCommit>false</ignoreNotifyCommit>
-    <useShallowClone>false</useShallowClone>
-    <buildChooser class="hudson.plugins.git.util.DefaultBuildChooser"/>
-    <gitTool>Default</gitTool>
     <submoduleCfg class="list"/>
-    <relativeTargetDir></relativeTargetDir>
-    <reference></reference>
-    <excludedRegions></excludedRegions>
-    <excludedUsers>BuildBot</excludedUsers>
-    <gitConfigName>BuildBot</gitConfigName>
-    <gitConfigEmail>buildbot@sailmaker.co.uk</gitConfigEmail>
-    <skipTag>true</skipTag>
-    <includedRegions></includedRegions>
-    <scmName></scmName>
+    <extensions>
+      <hudson.plugins.git.extensions.impl.UserExclusion>
+        <excludedUsers>BuildBot</excludedUsers>
+      </hudson.plugins.git.extensions.impl.UserExclusion>
+      <hudson.plugins.git.extensions.impl.SubmoduleOption>
+        <disableSubmodules>false</disableSubmodules>
+        <recursiveSubmodules>true</recursiveSubmodules>
+        <trackingSubmodules>false</trackingSubmodules>
+      </hudson.plugins.git.extensions.impl.SubmoduleOption>
+      <hudson.plugins.git.extensions.impl.UserIdentity>
+        <name>BuildBot</name>
+        <email>buildbot@sailmaker.co.uk</email>
+      </hudson.plugins.git.extensions.impl.UserIdentity>
+      <hudson.plugins.git.extensions.impl.PruneStaleBranch/>
+      <hudson.plugins.git.extensions.impl.CleanCheckout/>
+      <hudson.plugins.git.extensions.impl.WipeWorkspace/>
+      <hudson.plugins.git.extensions.impl.LocalBranch>
+        <localBranch>development</localBranch>
+      </hudson.plugins.git.extensions.impl.LocalBranch>
+    </extensions>
   </scm>
   <canRoam>true</canRoam>
   <disabled>false</disabled>
@@ -66,8 +58,7 @@ Workspace=&quot;Nudj.xcworkspace&quot;
 MainScheme=&quot;Nudj&quot;
 
 # set the desired version of Xcode
-set DEVELOPER_DIR=&quot;/Applications/Xcode.app/Contents/Developer&quot;
-export DEVELOPER_DIR
+export DEVELOPER_DIR=&quot;/Applications/Xcode.app/Contents/Developer&quot;
 
 # leave the marketing version as is but bump the build number
 ./newVersion
@@ -82,6 +73,9 @@ zip -r ../Nudj.dSYM.zip &quot;Nudj.app.dSYM&quot;
 cd &quot;${WORKSPACE}&quot;
 
 /usr/bin/xcrun -sdk iphoneos PackageApplication &quot;${WORKSPACE}/BuildProducts/Nudj.app&quot; -o &quot;${WORKSPACE}/Nudj.ipa&quot;
+
+# workaround Jenkins git plugin not fetching master at the moment
+git fetch github +master:master
 
 # make release notes
 ./make-qa-log.py &gt; changelog.markdown
@@ -106,19 +100,24 @@ cd &quot;${WORKSPACE}&quot;
 rm -f changelog.markdown
 
 git push --all github
-git push --tags github</command>
+git push --tags github
+</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
       <artifacts>*.ipa,*.zip</artifacts>
-      <latestOnly>false</latestOnly>
       <allowEmptyArchive>false</allowEmptyArchive>
+      <onlyIfSuccessful>false</onlyIfSuccessful>
+      <fingerprint>false</fingerprint>
+      <defaultExcludes>true</defaultExcludes>
+      <caseSensitive>true</caseSensitive>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.plugins.git.GitPublisher plugin="git@1.5.0">
+    <hudson.plugins.git.GitPublisher plugin="git@2.2.12">
       <configVersion>2</configVersion>
       <pushMerge>false</pushMerge>
       <pushOnlyIfSuccess>true</pushOnlyIfSuccess>
+      <forcePush>false</forcePush>
       <branchesToPush>
         <hudson.plugins.git.GitPublisher_-BranchToPush>
           <targetRepoName>github</targetRepoName>
@@ -126,19 +125,11 @@ git push --tags github</command>
         </hudson.plugins.git.GitPublisher_-BranchToPush>
       </branchesToPush>
     </hudson.plugins.git.GitPublisher>
-    <hudson.tasks.Mailer plugin="mailer@1.5">
+    <hudson.tasks.Mailer plugin="mailer@1.11">
       <recipients>richardb@sailmaker.co.uk</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>true</sendToIndividuals>
     </hudson.tasks.Mailer>
   </publishers>
-  <buildWrappers>
-    <hudson.plugins.locksandlatches.LockWrapper plugin="locks-and-latches@0.6">
-      <locks>
-        <hudson.plugins.locksandlatches.LockWrapper_-LockWaitConfig>
-          <name>iOS-sim</name>
-        </hudson.plugins.locksandlatches.LockWrapper_-LockWaitConfig>
-      </locks>
-    </hudson.plugins.locksandlatches.LockWrapper>
-  </buildWrappers>
+  <buildWrappers/>
 </project>

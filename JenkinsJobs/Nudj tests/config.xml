@@ -4,12 +4,11 @@
   <description>Build Nudj, run static analyser and tests.</description>
   <keepDependencies>false</keepDependencies>
   <properties/>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@1.5.0">
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.12">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
         <name>github</name>
-        <refspec></refspec>
         <url>git@github.com:Nudj/nudj-ios.git</url>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
@@ -18,28 +17,19 @@
         <name>github/development</name>
       </hudson.plugins.git.BranchSpec>
     </branches>
-    <disableSubmodules>false</disableSubmodules>
-    <recursiveSubmodules>true</recursiveSubmodules>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
-    <authorOrCommitter>false</authorOrCommitter>
-    <clean>true</clean>
-    <wipeOutWorkspace>true</wipeOutWorkspace>
-    <pruneBranches>true</pruneBranches>
-    <remotePoll>false</remotePoll>
-    <ignoreNotifyCommit>false</ignoreNotifyCommit>
-    <useShallowClone>false</useShallowClone>
-    <buildChooser class="hudson.plugins.git.util.DefaultBuildChooser"/>
-    <gitTool>Default</gitTool>
     <submoduleCfg class="list"/>
-    <relativeTargetDir></relativeTargetDir>
-    <reference></reference>
-    <excludedRegions></excludedRegions>
-    <excludedUsers></excludedUsers>
-    <gitConfigName></gitConfigName>
-    <gitConfigEmail></gitConfigEmail>
-    <skipTag>false</skipTag>
-    <includedRegions></includedRegions>
-    <scmName></scmName>
+    <extensions>
+      <hudson.plugins.git.extensions.impl.PerBuildTag/>
+      <hudson.plugins.git.extensions.impl.SubmoduleOption>
+        <disableSubmodules>false</disableSubmodules>
+        <recursiveSubmodules>true</recursiveSubmodules>
+        <trackingSubmodules>false</trackingSubmodules>
+      </hudson.plugins.git.extensions.impl.SubmoduleOption>
+      <hudson.plugins.git.extensions.impl.PruneStaleBranch/>
+      <hudson.plugins.git.extensions.impl.CleanCheckout/>
+      <hudson.plugins.git.extensions.impl.WipeWorkspace/>
+    </extensions>
   </scm>
   <canRoam>true</canRoam>
   <disabled>false</disabled>
@@ -59,6 +49,11 @@ WorkspaceName=&quot;Nudj.xcworkspace&quot;
 Configuration=&quot;Debug&quot;
 Scheme=&quot;Nudj&quot;
 Simulator=NudjiPhone6-&quot;${BUILD_NUMBER}&quot;
+BuildDir=&quot;${WORKSPACE}&quot;/tmp/objs
+
+# configure Ruby gems to be on the path
+export GEM_HOME=&quot;${HOME}&quot;/.gem
+export PATH=$PATH:&quot;${GEM_HOME}&quot;/bin/
 
 # set the desired version of Xcode
 export DEVELOPER_DIR=&quot;/Applications/Xcode.app/Contents/Developer&quot;
@@ -71,10 +66,14 @@ cd &quot;${WORKSPACE}&quot;
 xcodebuild clean
 
 # run the static analyzer on the main code base
-/usr/local/bin/checker-current/scan-build -k -v -v --keep-empty --use-analyzer Xcode -o ./clangScanBuildReports xcodebuild -workspace &quot;${WorkspaceName}&quot; -scheme &quot;${Scheme}&quot; -configuration &quot;${Configuration}&quot; -destination name=${Simulator} ONLY_ACTIVE_ARCH=NO clean build
+/usr/local/bin/checker-current/scan-build -k -v -v --keep-empty --use-analyzer Xcode -o ./clangScanBuildReports \
+    xcodebuild -workspace &quot;${WorkspaceName}&quot; \
+    -scheme &quot;${Scheme}&quot; -configuration &quot;${Configuration}&quot; \
+    -destination name=${Simulator} ONLY_ACTIVE_ARCH=NO \
+    clean build
 
 # delete our custom intermediates directory
-rm -rf &quot;${WORKSPACE}&quot;/tmp/objs
+rm -rf &quot;${BuildDir}&quot;
 
 # kill the iOS Simulator
 xcrun simctl shutdown NudjiPhone6-&quot;${BUILD_NUMBER}&quot; || true
@@ -82,29 +81,38 @@ xcrun simctl erase NudjiPhone6-&quot;${BUILD_NUMBER}&quot; || true
 
 # build the test target using our custom intermediates directory
 # and pipe the output to ocunit2junit
-xcodebuild -workspace &quot;${WorkspaceName}&quot; -scheme &quot;${Scheme}&quot; -configuration &quot;${Configuration}&quot; -sdk iphonesimulator -enableCodeCoverage YES -destination name=${Simulator} ONLY_ACTIVE_ARCH=NO GCC_TREAT_WARNINGS_AS_ERRORS=NO clean build test 2&gt;&amp;1 | /usr/local/bin/ocunit2junit || true
+xcodebuild -workspace &quot;${WorkspaceName}&quot; -scheme &quot;${Scheme}&quot; \
+    -configuration &quot;${Configuration}&quot; -sdk iphonesimulator \
+    -enableCodeCoverage YES -destination name=${Simulator} \
+    ONLY_ACTIVE_ARCH=YES VALID_ARCHS=x86_64 \
+    GCC_TREAT_WARNINGS_AS_ERRORS=NO \
+    -derivedDataPath &quot;${BuildDir}&quot; \
+    clean build test \
+    2&gt;&amp;1 | /usr/local/bin/ocunit2junit || true
+
+# generate the coverage report
+cd &quot;${WORKSPACE}&quot;
+slather coverage --jenkins --build-directory &quot;${BuildDir}&quot;
 
 # kill the iOS Simulator
 xcrun simctl shutdown NudjiPhone6-&quot;${BUILD_NUMBER}&quot; || true
 xcrun simctl erase NudjiPhone6-&quot;${BUILD_NUMBER}&quot; || true
 xcrun simctl delete NudjiPhone6-&quot;${BUILD_NUMBER}&quot; || true
-
-# generate the coverage report
-cd &quot;${WORKSPACE}&quot;
-# /usr/local/bin/gcovr --root=. --exclude=&apos;(.*./Developer/SDKs/.*)|(.*Tests\.m)|(NudjTests/.*)|(Externals/.*)|(Pods/.*)|(.*main\.m)&apos; -x &gt; ./coverage.xml</command>
+</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
-    <hudson.plugins.warnings.WarningsPublisher plugin="warnings@4.35">
+    <hudson.plugins.warnings.WarningsPublisher plugin="warnings@4.48">
       <healthy></healthy>
       <unHealthy></unHealthy>
       <thresholdLimit>low</thresholdLimit>
       <pluginName>[WARNINGS] </pluginName>
       <defaultEncoding></defaultEncoding>
       <canRunOnFailed>false</canRunOnFailed>
+      <usePreviousBuildAsReference>false</usePreviousBuildAsReference>
       <useStableBuildAsReference>false</useStableBuildAsReference>
       <useDeltaValues>false</useDeltaValues>
-      <thresholds plugin="analysis-core@1.54">
+      <thresholds plugin="analysis-core@1.72">
         <unstableTotalAll></unstableTotalAll>
         <unstableTotalHigh></unstableTotalHigh>
         <unstableTotalNormal></unstableTotalNormal>
@@ -128,8 +136,8 @@ cd &quot;${WORKSPACE}&quot;
       <bugThreshold>0</bugThreshold>
       <markBuildUnstableWhenThresholdIsExceeded>true</markBuildUnstableWhenThresholdIsExceeded>
     </jenkins.plugins.clangscanbuild.publisher.ClangScanBuildPublisher>
-    <hudson.plugins.cobertura.CoberturaPublisher plugin="cobertura@1.9.2">
-      <coberturaReportFile>coverage.xml</coberturaReportFile>
+    <hudson.plugins.cobertura.CoberturaPublisher plugin="cobertura@1.9.7">
+      <coberturaReportFile>coverage/cobertura.xml</coberturaReportFile>
       <onlyStable>false</onlyStable>
       <failUnhealthy>false</failUnhealthy>
       <failUnstable>false</failUnstable>
@@ -176,24 +184,17 @@ cd &quot;${WORKSPACE}&quot;
       </failingTarget>
       <sourceEncoding>UTF_8</sourceEncoding>
     </hudson.plugins.cobertura.CoberturaPublisher>
-    <hudson.tasks.junit.JUnitResultArchiver>
+    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.2-beta-4">
       <testResults>test-reports/*.xml</testResults>
       <keepLongStdio>false</keepLongStdio>
       <testDataPublishers/>
+      <healthScaleFactor>1.0</healthScaleFactor>
     </hudson.tasks.junit.JUnitResultArchiver>
-    <hudson.tasks.Mailer plugin="mailer@1.5">
+    <hudson.tasks.Mailer plugin="mailer@1.11">
       <recipients>richardb@sailmaker.co.uk</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
       <sendToIndividuals>true</sendToIndividuals>
     </hudson.tasks.Mailer>
   </publishers>
-  <buildWrappers>
-    <hudson.plugins.locksandlatches.LockWrapper plugin="locks-and-latches@0.6">
-      <locks>
-        <hudson.plugins.locksandlatches.LockWrapper_-LockWaitConfig>
-          <name>iOS-sim</name>
-        </hudson.plugins.locksandlatches.LockWrapper_-LockWaitConfig>
-      </locks>
-    </hudson.plugins.locksandlatches.LockWrapper>
-  </buildWrappers>
+  <buildWrappers/>
 </project>
