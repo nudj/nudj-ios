@@ -3,7 +3,16 @@
   <actions/>
   <description>Build Nudj, run static analyser and tests.</description>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>14</daysToKeep>
+        <numToKeep>50</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+  </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.12">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
@@ -48,7 +57,7 @@
 WorkspaceName=&quot;Nudj.xcworkspace&quot;
 Configuration=&quot;Debug&quot;
 Scheme=&quot;Nudj&quot;
-Simulator=NudjiPhone6-&quot;${BUILD_NUMBER}&quot;
+Simulator=Nudj-iPhone6-&quot;${BUILD_NUMBER}&quot;
 BuildDir=&quot;${WORKSPACE}&quot;/tmp/objs
 
 # configure Ruby gems to be on the path
@@ -66,7 +75,8 @@ cd &quot;${WORKSPACE}&quot;
 xcodebuild clean
 
 # run the static analyzer on the main code base
-/usr/local/bin/checker-current/scan-build -k -v -v --keep-empty --use-analyzer Xcode -o ./clangScanBuildReports \
+/usr/local/bin/checker-current/scan-build -k -v -v --keep-empty \
+    --use-analyzer Xcode -o ./clangScanBuildReports \
     xcodebuild -workspace &quot;${WorkspaceName}&quot; \
     -scheme &quot;${Scheme}&quot; -configuration &quot;${Configuration}&quot; \
     -destination name=${Simulator} ONLY_ACTIVE_ARCH=NO \
@@ -76,8 +86,8 @@ xcodebuild clean
 rm -rf &quot;${BuildDir}&quot;
 
 # kill the iOS Simulator
-xcrun simctl shutdown NudjiPhone6-&quot;${BUILD_NUMBER}&quot; || true
-xcrun simctl erase NudjiPhone6-&quot;${BUILD_NUMBER}&quot; || true
+xcrun simctl shutdown &quot;${Simulator}&quot; || true
+xcrun simctl erase &quot;${Simulator}&quot; || true
 
 # build the test target using our custom intermediates directory
 # and pipe the output to ocunit2junit
@@ -95,9 +105,9 @@ cd &quot;${WORKSPACE}&quot;
 slather coverage --jenkins --build-directory &quot;${BuildDir}&quot;
 
 # kill the iOS Simulator
-xcrun simctl shutdown NudjiPhone6-&quot;${BUILD_NUMBER}&quot; || true
-xcrun simctl erase NudjiPhone6-&quot;${BUILD_NUMBER}&quot; || true
-xcrun simctl delete NudjiPhone6-&quot;${BUILD_NUMBER}&quot; || true
+xcrun simctl shutdown &quot;${Simulator}&quot; || true
+xcrun simctl erase &quot;${Simulator}&quot; || true
+xcrun simctl delete &quot;${Simulator}&quot; || true
 </command>
     </hudson.tasks.Shell>
   </builders>

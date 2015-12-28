@@ -3,7 +3,16 @@
   <actions/>
   <description>Nightly Nudj build for QA.</description>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>14</daysToKeep>
+        <numToKeep>50</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+  </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.12">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
@@ -63,7 +72,12 @@ export DEVELOPER_DIR=&quot;/Applications/Xcode.app/Contents/Developer&quot;
 # leave the marketing version as is but bump the build number
 ./newVersion
 
-xcodebuild -workspace &quot;${Workspace}&quot; -scheme &quot;${MainScheme}&quot; -configuration Release -sdk iphoneos CONFIGURATION_BUILD_DIR=&quot;${WORKSPACE}/BuildProducts&quot; clean build
+xcodebuild -workspace &quot;${Workspace}&quot; \
+  -scheme &quot;${MainScheme}&quot; \
+  -configuration Release \
+  -sdk iphoneos \
+  CONFIGURATION_BUILD_DIR=&quot;${WORKSPACE}/BuildProducts&quot; \
+  clean build
 
 cd &quot;${WORKSPACE}&quot;
 zip -qr &quot;${BUILD_TAG}&quot; BuildProducts
@@ -82,20 +96,20 @@ git fetch github +master:master
 
 # upload to Hockey App -- the plugin writes the Jenkins build number into the dSYM so we use puck
 /usr/local/bin/puck \
--dsym_path=&quot;${WORKSPACE}/Nudj.dSYM.zip&quot; \
--build_server_url=&quot;${BUILD_URL}&quot; \
--source_path=&quot;${WORKSPACE}&quot; \
--notes_path=&quot;${WORKSPACE}/changelog.markdown&quot; \
--notes_type=markdown \
--submit=auto \
--download=true \
--mandatory=false \
--notify=true \
--tags=internal \
--release_type=beta \
--api_token=ca127f9d4c5648479847e08aa9b2ebfd \
--app_id=9bb5535d31f24908a06d72757a8e39e9 \
-&quot;${WORKSPACE}/Nudj.ipa&quot;
+  -dsym_path=&quot;${WORKSPACE}/Nudj.dSYM.zip&quot; \
+  -build_server_url=&quot;${BUILD_URL}&quot; \
+  -source_path=&quot;${WORKSPACE}&quot; \
+  -notes_path=&quot;${WORKSPACE}/changelog.markdown&quot; \
+  -notes_type=markdown \
+  -submit=auto \
+  -download=true \
+  -mandatory=false \
+  -notify=true \
+  -tags=internal \
+  -release_type=beta \
+  -api_token=ca127f9d4c5648479847e08aa9b2ebfd \
+  -app_id=9bb5535d31f24908a06d72757a8e39e9 \
+  &quot;${WORKSPACE}/Nudj.ipa&quot;
 
 rm -f changelog.markdown
 
