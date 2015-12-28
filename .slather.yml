@@ -1,0 +1,8 @@
+xcodeproj: Nudj.xcodeproj
+scheme: Nudj
+input_format: profdata
+coverage_service: cobertura_xml
+output_directory: coverage
+ignore:
+  - Externals/*
+  - ../*
