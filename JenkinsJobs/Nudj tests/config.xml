@@ -68,7 +68,8 @@ export PATH=$PATH:&quot;${GEM_HOME}&quot;/bin/
 export DEVELOPER_DIR=&quot;/Applications/Xcode.app/Contents/Developer&quot;
 
 # clean the iOS Simulator dir
-xcrun simctl create &quot;${Simulator}&quot; com.apple.CoreSimulator.SimDeviceType.iPhone-6 com.apple.CoreSimulator.SimRuntime.iOS-9-1
+xcrun simctl create &quot;${Simulator}&quot; com.apple.CoreSimulator.SimDeviceType.iPhone-6 com.apple.CoreSimulator.SimRuntime.iOS-9-2
+SimulatorSpec=&quot;platform=iOS Simulator,OS=9.2,name=${Simulator}&quot;
 
 # do a default clean
 cd &quot;${WORKSPACE}&quot;
@@ -79,7 +80,7 @@ xcodebuild clean
     --use-analyzer Xcode -o ./clangScanBuildReports \
     xcodebuild -workspace &quot;${WorkspaceName}&quot; \
     -scheme &quot;${Scheme}&quot; -configuration &quot;${Configuration}&quot; \
-    -destination name=${Simulator} ONLY_ACTIVE_ARCH=NO \
+    -destination &quot;${SimulatorSpec}&quot; ONLY_ACTIVE_ARCH=NO \
     clean build
 
 # delete our custom intermediates directory
@@ -93,7 +94,7 @@ xcrun simctl erase &quot;${Simulator}&quot; || true
 # and pipe the output to ocunit2junit
 xcodebuild -workspace &quot;${WorkspaceName}&quot; -scheme &quot;${Scheme}&quot; \
     -configuration &quot;${Configuration}&quot; -sdk iphonesimulator \
-    -enableCodeCoverage YES -destination name=${Simulator} \
+    -enableCodeCoverage YES -destination &quot;${SimulatorSpec}&quot; \
     ONLY_ACTIVE_ARCH=YES VALID_ARCHS=x86_64 \
     GCC_TREAT_WARNINGS_AS_ERRORS=NO \
     -derivedDataPath &quot;${BuildDir}&quot; \
