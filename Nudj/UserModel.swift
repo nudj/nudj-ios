@@ -151,6 +151,7 @@ class UserModel: CustomStringConvertible {
     }
     
     static func getImageByContactId(identifier: String) -> UIImage {
+        // TODO: remove singleton access
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
         return appDelegate.contacts.getContactImageForId(identifier) ?? getDefaultUserImage()
     }

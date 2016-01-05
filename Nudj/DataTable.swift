@@ -8,6 +8,7 @@
 import UIKit
 import SwiftyJSON
 
+// TODO: MVC violation: separate out the UITableView, UITableViewDataSource, UITableViewDelegate
 class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
 
     var refreshControl:UIRefreshControl!
@@ -111,8 +112,9 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell:DataTableCell = self.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath) as! DataTableCell
-        cell.loadData(self.data[indexPath.row])
+        let cell = self.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath)
+        let dataTableCell = cell as? DataTableCell
+        dataTableCell?.loadData(self.data[indexPath.row])
         return cell
     }
 

@@ -9,7 +9,7 @@ import UIKit
 import SwiftyJSON
 import QuartzCore
 
-class JobCellTableViewCell: DataTableCell {
+class JobCellTableViewCell: UITableViewCell, DataTableCell {
 
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var creator: UILabel!
@@ -25,11 +25,11 @@ class JobCellTableViewCell: DataTableCell {
         super.awakeFromNib()
     }
 
-    override func loadData(data:JSON?) {
+    func loadData(data:JSON?) {
         if (data == nil) {
             return
         }
-        // TODO: API strings
+        // TODO: API strings and MVC violation
         self.title.text = data!["title"].stringValue
         self.salary.text = data!["salary"].stringValue
         self.bonusAmount.text = "£" + data!["bonus"].stringValue

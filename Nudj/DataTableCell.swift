@@ -8,9 +8,7 @@
 import UIKit
 import SwiftyJSON
 
-class DataTableCell: UITableViewCell {
-    func loadData(data:JSON?) {
-        // To be implemented
-        // TODO: review this
-    }
+// TODO: I don't like this: rework it
+protocol DataTableCell {
+    func loadData(data:JSON?)
 }

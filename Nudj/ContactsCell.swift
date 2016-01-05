@@ -6,9 +6,8 @@
 //
 
 import UIKit
-import SwiftyJSON
 
-class ContactsCell: DataTableCell {
+class ContactsCell: UITableViewCell {
 
     @IBOutlet weak var profileImage: AsyncImage!
     @IBOutlet weak var name: UILabel!
@@ -25,7 +24,7 @@ class ContactsCell: DataTableCell {
     }
 
     func loadData(contact: ContactModel) {
-
+        // TODO: MVC violation
         profileImage.setCustomImage(UserModel.getDefaultUserImage())
         
         if let user = contact.user {
@@ -70,9 +69,7 @@ class ContactsCell: DataTableCell {
     }
     
     func removeSelectionStyle(){
-        
         self.selectionStyle = UITableViewCellSelectionStyle.None;
-        
     }
 
 }
