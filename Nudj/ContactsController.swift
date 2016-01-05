@@ -129,7 +129,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
 
                     let userId = isUser ? userContact!["id"].intValue : subJson["id"].intValue
                     let name = isUser ? subJson["name"].stringValue : subJson["alias"].stringValue
-                    let apple_id = isUser ? userContact!["apple_id"].int : subJson["apple_id"].int
+                    let apple_id = isUser ? userContact!["apple_id"].stringValue : subJson["apple_id"].stringValue
 
                     let contact = ContactModel(id: userId, name: name, apple_id: apple_id, user: user)
                     self.data[id]!.append(contact)

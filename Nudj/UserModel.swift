@@ -150,13 +150,12 @@ class UserModel: CustomStringConvertible {
         API.sharedInstance.put("users/me", params: fields, closure: realClosure, errorHandler: realErrorHandler)
     }
     
-
-    static func getImageByContactId(contactId:Int) -> UIImage? {
+    static func getImageByContactId(identifier: String) -> UIImage {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
-        return appDelegate.contacts.getContactImageForId(contactId)
+        return appDelegate.contacts.getContactImageForId(identifier) ?? getDefaultUserImage()
     }
 
-    static func getDefaultUserImage() -> UIImage? {
-        return UIImage(named: "user_image_placeholder")
+    static func getDefaultUserImage() -> UIImage {
+        return UIImage(named: "user_image_placeholder")!
     }
 }

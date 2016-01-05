@@ -76,7 +76,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
                         user!.updateFromJson(obj["user"])
                     }
 
-                    let contact = ContactModel(id: obj["id"].intValue, name: obj["alias"].stringValue, apple_id: obj["apple_id"].int, user: user)
+                    let contact = ContactModel(id: obj["id"].intValue, name: obj["alias"].stringValue, apple_id: obj["apple_id"].stringValue, user: user)
                     content.append(contact)
                 }
             }

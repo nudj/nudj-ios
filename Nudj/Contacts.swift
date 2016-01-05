@@ -6,227 +6,117 @@
 //
 
 import Foundation
-import AddressBook
+import Contacts
 import UIKit
 
 class Contacts {
-    // TOOD: JRB: review this, especially the image cache
-
-    var book : ABAddressBook!
-    var cache = [Int:UIImage]()
-
-    func createAddressBook(force:Bool = false) -> Bool {
-        if (!force && self.book != nil) {
-            return true
-        }
-
-        var err : Unmanaged<CFError>? = nil
-        let book : ABAddressBook? = ABAddressBookCreateWithOptions(nil, &err).takeRetainedValue()
-        if book == nil {
-            loggingPrint(err)
-            self.book = nil
-            return false
-        }
-
-        self.book = book
-        return true
-    }
-
-    func determineStatus() -> Bool {
-        let status = ABAddressBookGetAuthorizationStatus()
-        
-        switch status {
-        case .Authorized:
-            return self.createAddressBook()
-            
-        case .NotDetermined:
-            var ok = false
-            ABAddressBookRequestAccessWithCompletion(nil) {
-                (granted:Bool, err:CFError!) in
-                dispatch_async(dispatch_get_main_queue()) {
-                    if granted {
-                        ok = self.createAddressBook()
-                    }
-                }
-            }
-            if ok == true {
-                return true
-            }
-            
-            self.book = nil
-            return false
-            
-        case .Restricted:
-            self.book = nil
-            return false
-            
-        case .Denied:
-            self.book = nil
-            return false
-        }
-    }
+    let contactStore = CNContactStore()
+    var imageCache = [String:UIImage]()
 
     func isAuthorized() -> Bool {
-        let status = ABAddressBookGetAuthorizationStatus()
+        let status = CNContactStore.authorizationStatusForEntityType(.Contacts)
         return status == .Authorized
     }
-
-    func createProjectContact() {
-        if (!self.isAuthorized()) {
-            return
-        }
-
-        if (self.book == nil) {
-            self.createAddressBook()
-        }
-
-        let newContact:ABRecordRef! = ABPersonCreate().takeRetainedValue()
-
-        var error: Unmanaged<CFErrorRef>? = nil
-        // TODO: determine if this should be left in
-        ABRecordSetValue(newContact, kABPersonFirstNameProperty, "Nudj", &error)
-
-//        ABRecordSetValue(newContact, kABPersonPhoneMainLabel, "+442033223966", &error)
-
-        ABAddressBookAddRecord(self.book, newContact, &error)
-        ABAddressBookSave(self.book, &error)
+    
+    func isBlocked() -> Bool {
+        let status = CNContactStore.authorizationStatusForEntityType(.Contacts)
+        return status == .Denied || status == .Restricted;
     }
 
-    func getContactImageForId(contactId:Int) -> UIImage?  {
-
-        if let cachedImage = self.cache[contactId] {
+    func getContactImageForId(identifier: String) -> UIImage? {
+        if let cachedImage = self.imageCache[identifier] {
             return cachedImage
         }
 
-        if (!self.isAuthorized()) {
+        if (self.isBlocked()) {
             return nil
         }
 
-        if (self.book == nil) {
-            self.createAddressBook()
-        }
-
-        let recordId = ABRecordID(contactId)
-
-        let userRef = ABAddressBookGetPersonWithRecordID(self.book, recordId)
-
-        if (userRef == nil) {
-            return nil
-        }
-
-        let user: ABRecord = userRef.takeRetainedValue()
-
-        if (ABPersonHasImageData(user)) {
-            if let imageRef = ABPersonCopyImageDataWithFormat(user, kABPersonImageFormatThumbnail) {
-                self.cache[contactId] = UIImage(data: imageRef.takeRetainedValue())
-                return self.cache[contactId]
-            }
-        } else {
-            let linkedRef = ABPersonCopyArrayOfAllLinkedPeople(user)
-
-            if (linkedRef == nil) {
-                return nil
-            }
-
-            let linked = linkedRef.takeRetainedValue() as NSArray as [ABRecord]
-
-            if (linked.count <= 0) {
-                return nil
-            }
-
-            for linkedUser: ABRecordRef in linked {
-                if (ABPersonHasImageData(linkedUser)) {
-                    if let imageRef = ABPersonCopyImageDataWithFormat(linkedUser, kABPersonImageFormatThumbnail) {
-                        self.cache[contactId] = UIImage(data: imageRef.takeRetainedValue())
-                        return self.cache[contactId]
-
-                    }
+        contactStore.requestAccessForEntityType(.Contacts) {
+            success, error in
+            guard success else {return}
+            do {
+                let contact = try self.contactStore.unifiedContactWithIdentifier(identifier, keysToFetch: [CNContactThumbnailImageDataKey])
+                let image: UIImage
+                if let thumbnail = contact.thumbnailImageData {
+                    image = UIImage(data: thumbnail) ?? UserModel.getDefaultUserImage()
+                } else {
+                    image = UserModel.getDefaultUserImage()
                 }
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.imageCache[identifier] = image
+                    // TODO: notify UI
+                }
+            }
+            catch {
+                // nothing
             }
         }
 
         return nil
     }
+    
+    // TODO: change notification from store
 
-    func sync(closure:((Bool)->())? = nil) {
-        if (!self.isAuthorized()) {
-            loggingPrint("not authorized")
-            determineStatus()
+    func sync(closure:((Bool) -> Void)? = nil) {
+        if (self.isBlocked()) {
             return
         }
 
-        if (self.book == nil) {
-            self.createAddressBook()
-        }
-
-        var contacts = [[String:String]]()
-
-        let people = ABAddressBookCopyArrayOfAllPeople(self.book).takeRetainedValue() as NSArray as [ABRecord]
-        for person in people {
-            let id = ABRecordGetRecordID(person) as Int32
-            let apple_id = Int(id)
-
-            var number = "";
-            var numbers = [String]();
-            let numbersRef: ABMultiValueRef = ABRecordCopyValue(person, kABPersonPhoneProperty).takeRetainedValue()
-            let nameRef = ABRecordCopyCompositeName(person)
-
-            if (nameRef == nil) {
-                continue
-            }
-
-            let name = nameRef.takeRetainedValue() as String
-
-            // TODO: Do foreach
-            if (ABMultiValueGetCount(numbersRef) > 0) {
-
-                if let phone = ABMultiValueCopyValueAtIndex(numbersRef, 0).takeRetainedValue() as? String {
-                    numbers.append(phone)
-                    number = phone
-                }
-
-            }
-
-            contacts.append(["alias": name, "phone": number, "apple_id": String(id)])
-
-            if (ABPersonHasImageData(person)) {
-                if let imageRef = ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail) {
-                    self.cache[apple_id] = UIImage(data: imageRef.takeRetainedValue())
-                } else {
-                    self.cache[apple_id] = UserModel.getDefaultUserImage()
-                }
-            } else {
-                if let linkedRef = ABPersonCopyArrayOfAllLinkedPeople(person) {
-                    let linked = linkedRef.takeRetainedValue() as NSArray as [ABRecord]
-
-                    if (linked.count > 0) {
-                        for linkedUser: ABRecordRef in linked {
-                            if (ABPersonHasImageData(linkedUser)) {
-                                if let imageRef = ABPersonCopyImageDataWithFormat(linkedUser, kABPersonImageFormatThumbnail) {
-                                    self.cache[apple_id] = UIImage(data: imageRef.takeRetainedValue())
-                                    break
-                                }
-                            } else {
-                                self.cache[apple_id] = UserModel.getDefaultUserImage()
-                            }
-                        }
-                    } else {
-                        self.cache[apple_id] = UserModel.getDefaultUserImage()
+        contactStore.requestAccessForEntityType(.Contacts) {
+            success, error in
+            guard success else {return}
+            do {
+                let formatter = CNContactFormatter()
+                formatter.style = .FullName
+                
+                let keysToFetch = [
+                    CNContactFormatter.descriptorForRequiredKeysForStyle(formatter.style),
+                    CNContactPhoneNumbersKey, 
+                    CNContactIdentifierKey, 
+                    CNContactThumbnailImageDataKey
+                ]
+                let fetchRequest = CNContactFetchRequest(keysToFetch: keysToFetch)
+                fetchRequest.predicate = nil
+                
+                var contactsArray = [[String:String]]()
+                var newImages = [String:UIImage]()
+                
+                try self.contactStore.enumerateContactsWithFetchRequest(fetchRequest) {
+                    contact, stop in
+                    guard let fullName = formatter.stringFromContact(contact) else {
+                        return
                     }
-
+                    let phones = contact.phoneNumbers
+                    let firstPhone = phones.first?.value as? CNPhoneNumber
+                    let firstPhoneNumber = firstPhone?.stringValue ?? ""
+                    let identifier = contact.identifier
+                    if let thumbnail = contact.thumbnailImageData {
+                        if let image = UIImage(data: thumbnail) {
+                            newImages[identifier] = image
+                        }
+                    }
+                    
+                    contactsArray.append(["alias": fullName, "phone": firstPhoneNumber, "apple_id": identifier])
+                }
+                
+                UserModel.update(["contacts": contactsArray], closure: {
+                    result in
+                    loggingPrint(result)
+                    closure?(true)
+                    }, errorHandler: {
+                        result in
+                        closure?(false)
+                })
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.imageCache = newImages
+                    // TODO: notify UI
                 }
             }
+            catch {
+                // nothing
+            }
         }
-
-        if (contacts.isEmpty) {
-            return
-        }
-
-        UserModel.update(["contacts": contacts], closure: {result in
-            loggingPrint(result)
-            closure?(true)
-            }, errorHandler: {result in
-                closure?(false)
-        })
     }
 }
