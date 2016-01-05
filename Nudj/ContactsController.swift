@@ -14,7 +14,7 @@ struct ContactPaths {
     static let favourites = "users/me/favourites"
 }
 
-class ContactsController: BaseController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIAlertViewDelegate {
+class ContactsController: BaseController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var segControl: UISegmentedControl!
@@ -224,12 +224,13 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
                 } else {
                     lastSelectedContact = contact
                     let message = Localizations.Invitation.Send.Body.Format(contact.name)
-                    let alert = UIAlertView(title: Localizations.Invitation.Send.Title, 
-                        message: message, 
-                        delegate: self, 
-                        cancelButtonTitle: Localizations.General.Button.Cancel, 
-                        otherButtonTitles: Localizations.Invitation.Send.Button)
-                    alert.show()
+                    let alert = UIAlertController.init(title: Localizations.Invitation.Send.Title, message: message, preferredStyle: .Alert)
+                    let cancelAction = UIAlertAction.init(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
+                    alert.addAction(cancelAction)
+                    let inviteAction = UIAlertAction.init(title: Localizations.Invitation.Send.Button, style: .Default, handler: inviteUser)
+                    alert.addAction(inviteAction)
+                    alert.preferredAction = inviteAction
+                    self.presentViewController(alert, animated: true, completion: nil)
                 }
             }
             cell.setSelected(false, animated: true)
@@ -246,42 +247,42 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         }
     }
     
-    //MARK :Invite user
-    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        if buttonIndex == 0{
-            // TODO: suspicious
-            loggingPrint("Dismiss pop up")
-        } else {
-            MixPanelHandler.sendData("InviteUserAction")
-            guard let contactName = lastSelectedContact?.name else {
-                return
-            }
-            guard let contactID = lastSelectedContact?.id else {
-                return
-            }
-            API.sharedInstance.post("contacts/\(contactID)/invite", params: nil, 
-                closure: { 
-                    result in
-                    let title: String
-                    let message: String
-                    if (result["status"].boolValue) {
-                        title = Localizations.Invitation.Successful.Title
-                        message = Localizations.Invitation.Successful.Body.Format(contactName)
-                    } else {
-                        title = Localizations.Invitation.Failed.Title
-                        message = Localizations.Invitation.Failed.Body.Format(contactName)
-                    }
-                    let alertview  = UIAlertView(title: title, message: message, delegate: self, cancelButtonTitle: Localizations.General.Button.Ok)
-                    alertview.show()
-                },
-                errorHandler: { 
-                    error in
-                    let title = Localizations.Invitation.Failed.Title
-                    let message = Localizations.Invitation.Failed.Body.Format(contactName)
-                    let alertview  = UIAlertView(title: title, message: message, delegate: self, cancelButtonTitle: Localizations.General.Button.Ok)
-                    alertview.show()
-                })
+    func inviteUser(_: UIAlertAction) {
+        MixPanelHandler.sendData("InviteUserAction")
+        guard let contactName = lastSelectedContact?.name else {
+            return
         }
+        guard let contactID = lastSelectedContact?.id else {
+            return
+        }
+        API.sharedInstance.post("contacts/\(contactID)/invite", params: nil, 
+            closure: { 
+                result in
+                let title: String
+                let message: String
+                if (result["status"].boolValue) {
+                    title = Localizations.Invitation.Successful.Title
+                    message = Localizations.Invitation.Successful.Body.Format(contactName)
+                } else {
+                    title = Localizations.Invitation.Failed.Title
+                    message = Localizations.Invitation.Failed.Body.Format(contactName)
+                }
+                let alert = UIAlertController.init(title: title, message: message, preferredStyle: .Alert)
+                let cancelAction = UIAlertAction.init(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
+                alert.addAction(cancelAction)
+                alert.preferredAction = cancelAction
+                self.presentViewController(alert, animated: true, completion: nil)
+            },
+            errorHandler: { 
+                error in
+                let title = Localizations.Invitation.Failed.Title
+                let message = Localizations.Invitation.Failed.Body.Format(contactName)
+                let alert = UIAlertController.init(title: title, message: message, preferredStyle: .Alert)
+                let cancelAction = UIAlertAction.init(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
+                alert.addAction(cancelAction)
+                alert.preferredAction = cancelAction
+                self.presentViewController(alert, animated: true, completion: nil)
+        })
     }
     
     @IBAction func segmentSelection(sender: UISegmentedControl) {
