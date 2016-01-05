@@ -81,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
         //Setup XMPP and connect
         chatInst = ChatModels()
         chatInst!.delegate = self;
-        if(!chatInst!.connect()) {
+        if(!chatInst!.connect(inViewController: self.window!.rootViewController!)) {
             loggingPrint("NOT Connected to chat server so will try reconnecting")
         }
 

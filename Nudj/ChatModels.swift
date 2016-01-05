@@ -151,7 +151,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         xmppStream!.sendElement(presence);
     }
     
-    func connect() -> Bool {
+    func connect(inViewController viewController: UIViewController) -> Bool {
         if (!xmppStream!.isDisconnected()) {
             self.goOnline();
             return true;
@@ -179,8 +179,11 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         catch let error as NSError {
             let title = Localizations.Chat.Connection.Error.Title
             let message = Localizations.Chat.Connection.Error.Body.Format(error.localizedDescription)
-            let alertView = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: Localizations.General.Button.Ok)
-            alertView.show()
+            let alert = UIAlertController.init(title: title, message: message, preferredStyle: .Alert)
+            let defaultAction = UIAlertAction.init(title: Localizations.General.Button.Ok, style: .Default, handler: nil)
+            alert.addAction(defaultAction)
+            alert.preferredAction = defaultAction
+            viewController.presentViewController(alert, animated: true, completion: nil)
             return false;
         }
     }

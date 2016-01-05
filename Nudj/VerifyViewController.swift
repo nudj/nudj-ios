@@ -128,9 +128,9 @@ class VerifyViewController: BaseController {
             appDelegate.contacts.sync()
 
             // Connect to the chat server
-            appDelegate.chatInst!.connect()
-            
-            self.performSegueWithIdentifier("showInitProfileView", sender: nil)
+            if (appDelegate.chatInst!.connect(inViewController: self)) {
+                self.performSegueWithIdentifier("showInitProfileView", sender: nil)                
+            }
         }, errorHandler: {_ in
             self.showCodeField(animated: true)
             self.showSimpleAlert(Localizations.Verification.Code.Error)
