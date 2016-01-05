@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-import AddressBook
+import Contacts
 import SwiftyJSON
 
 class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFieldDelegate {
@@ -120,7 +120,6 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
     }
     
     func showPolicy(){
-        
         isPrivacy = true
         self.performSegueWithIdentifier("GoToPrivacy", sender: self)
     }
@@ -131,28 +130,24 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
     }
 
     func getContactListPermission() {
-        let authorizationStatus = ABAddressBookGetAuthorizationStatus()
-        if (authorizationStatus == ABAuthorizationStatus.NotDetermined)
-        {
-            loggingPrint("requesting access...")
-            let emptyDictionary = [:]
-            let addressBook: ABAddressBook = ABAddressBookCreateWithOptions(emptyDictionary, nil).takeRetainedValue()
-
-            ABAddressBookRequestAccessWithCompletion(addressBook, {success, error in
-                dispatch_sync(dispatch_get_main_queue(), { () -> Void in
-                    if (success && error == nil) {
-                        self.proceed()
-                        return
-                    }
-                })
-            })
-        }
-        else if (authorizationStatus == ABAuthorizationStatus.Denied || authorizationStatus == ABAuthorizationStatus.Restricted) {
-            // nothing
-        }
-        else if (authorizationStatus == ABAuthorizationStatus.Authorized) {
-            loggingPrint("access granted")
+        let authorizationStatus = CNContactStore.authorizationStatusForEntityType(.Contacts)
+        switch authorizationStatus {
+        case .Authorized:
             self.proceed()
+            
+        case .NotDetermined:
+            let contactStore = CNContactStore()
+            contactStore.requestAccessForEntityType(.Contacts) {
+                success, error in
+                if (success && error == nil) {
+                    dispatch_sync(dispatch_get_main_queue()) {
+                        self.proceed()
+                    }
+                }
+            }
+            
+        case .Denied, .Restricted:
+            break
         }
     }
 
