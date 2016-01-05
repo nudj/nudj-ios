@@ -14,15 +14,18 @@ protocol SocialStatusDelegate {
 class SocialStatus: UIImageView {
     
     var delegate : SocialStatusDelegate?
-    var currentStatus:Bool?
-    var statusIdentifier:String?
+    var connected:Bool = false
+    var statusIdentifier:String = ""
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    init(status:Bool, and statusID:String) {
-        if(status){
+    init(connected:Bool, and statusID:String) {
+        self.connected = connected
+        self.statusIdentifier = statusID
+        
+        if(connected){
             // TODO: magic numbers
             super.init(frame: CGRectMake(0, 0, 118, 24))
             self.image = UIImage(named: "connected")
@@ -31,16 +34,13 @@ class SocialStatus: UIImageView {
             self.image = UIImage(named: "not_connected")
         }
         
-        self.currentStatus = status
-        self.statusIdentifier = statusID
-        
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
         self.userInteractionEnabled = true
         self.addGestureRecognizer(tapGestureRecognizer)
     }
     
-    func loadStatusContent(status:Bool) {
-        if(status){
+    func loadStatusContent(connected:Bool) {
+        if(connected){
             // TODO: magic numbers
             self.frame = CGRectMake(0, 0, 118, 24)
             self.image = UIImage(named: "connected")
@@ -48,17 +48,14 @@ class SocialStatus: UIImageView {
             self.frame = CGRectMake(0, 0, 144, 24)
             self.image = UIImage(named: "not_connected")
         }
-        self.currentStatus = status
+        self.connected = connected
     }
     
-    func updateStatus() {
-        if(self.currentStatus != nil){
-            self.loadStatusContent(!self.currentStatus!)
-        }
+    func toggleConnected() {
+        self.loadStatusContent(!self.connected)
     }
         
     func imageTapped(img: AnyObject) {
-        delegate?.didTap(self.statusIdentifier!, parent: self)
-        
+        delegate?.didTap(self.statusIdentifier, parent: self)        
     }
 }
