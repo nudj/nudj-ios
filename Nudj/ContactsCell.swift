@@ -15,14 +15,6 @@ class ContactsCell: UITableViewCell {
 
     var contactId:Int = 0
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-
     func loadData(contact: ContactModel) {
         // TODO: MVC violation
         profileImage.setCustomImage(UserModel.getDefaultUserImage())
