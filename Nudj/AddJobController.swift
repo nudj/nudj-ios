@@ -9,7 +9,7 @@ import UIKit
 import SwiftyJSON
 
 @IBDesignable
-class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDelegate, UITextViewDelegate, UIAlertViewDelegate{
+class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDelegate, UITextViewDelegate {
 
     var popup :CreatePopupView?
     var isEditable:Bool?
@@ -125,8 +125,12 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
                         self.view.addSubview(self.popup!)
                     }else{
                         self.navigationController?.navigationBarHidden = false
-                        let alert = UIAlertView(title: Localizations.Jobs.Update.Error.Title, message: Localizations.Jobs.Update.Error.Body, delegate: nil, cancelButtonTitle: Localizations.General.Button.Ok)
-                        alert.show()
+                        let localization = Localizations.Jobs.Update.Error.self
+                        let alert = UIAlertController(title: localization.Title, message: localization.Body, preferredStyle: .Alert)
+                        let cancelAction = UIAlertAction(title: Localizations.General.Button.Ok, style: .Cancel, handler: nil)
+                        alert.addAction(cancelAction)
+                        alert.preferredAction = cancelAction
+                        self.presentViewController(alert, animated: true, completion: nil)
                     }
                 })
             }else{
@@ -144,9 +148,13 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
                     self.view.addSubview(self.popup!)
                 }
             }
-        }else{
-            let alert = UIAlertView(title: Localizations.Jobs.Validation.Error.Title, message: Localizations.Jobs.Validation.Error.Body, delegate: nil, cancelButtonTitle: Localizations.General.Button.Ok)
-            alert.show();
+        } else {
+            let localization = Localizations.Jobs.Validation.Error.self
+            let alert = UIAlertController(title: localization.Title, message: localization.Body, preferredStyle: .Alert)
+            let cancelAction = UIAlertAction(title: Localizations.General.Button.Ok, style: .Cancel, handler: nil)
+            alert.addAction(cancelAction)
+            alert.preferredAction = cancelAction
+            self.presentViewController(alert, animated: true, completion: nil)
         }
         
         item.enabled = true
@@ -348,24 +356,32 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
             refView.jobTitle = self.jobTitle.text
         }
     }
+    
     @IBAction func deleteAction(sender: UIButton) {
-        let alert =  UIAlertView(title: Localizations.Jobs.Delete.Alert.Title, message: Localizations.Jobs.Delete.Alert.Body, delegate: self, cancelButtonTitle: Localizations.General.Button.Cancel,  otherButtonTitles: Localizations.General.Button.Delete)
-        alert.show()
-        
+        let localization = Localizations.Jobs.Delete.Alert.self
+        let alert = UIAlertController(title: localization.Title, message: localization.Body, preferredStyle: .Alert)
+        let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
+        alert.addAction(cancelAction)
+        let deleteAction = UIAlertAction(title: Localizations.General.Button.Delete, style: .Destructive, handler: deleteJob)
+        alert.addAction(deleteAction)
+        alert.preferredAction = cancelAction
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        if buttonIndex == 1 {
-            // API strings
-            API.sharedInstance.request(.DELETE, path: "jobs/\(self.jobId!)", params: nil, closure: { json in
-                MixPanelHandler.sendData("JobDeleted")
-                self.closeCurrentView()
+    func deleteJob(_: UIAlertAction) {
+        // API strings
+        API.sharedInstance.request(.DELETE, path: "jobs/\(self.jobId!)", params: nil, closure: { json in
+            MixPanelHandler.sendData("JobDeleted")
+            self.closeCurrentView()
             }, errorHandler: { 
                 error in
-                let alert = UIAlertView(title: Localizations.Jobs.Delete.Error.Title, message: Localizations.Jobs.Delete.Error.Body, delegate: nil, cancelButtonTitle:Localizations.General.Button.Cancel)
-                alert.show()
-            })
-        }
+                let localization = Localizations.Jobs.Delete.Error.self
+              let alert = UIAlertController(title: localization.Title, message: localization.Body, preferredStyle: .Alert)
+                let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
+                alert.addAction(cancelAction)
+                alert.preferredAction = cancelAction
+                self.presentViewController(alert, animated: true, completion: nil)
+        })
     }
     
     func closeCurrentView(){

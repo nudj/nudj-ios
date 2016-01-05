@@ -9,7 +9,7 @@ import Foundation
 
 struct SettingsItem {
     let name: String
-    let action: String // TODO: should be a Selector not a String
+    let action: String // TODO: should be an Enum not a String
 
     init(name:String, action:String) {
         self.name = name;

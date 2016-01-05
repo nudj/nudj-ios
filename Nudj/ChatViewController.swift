@@ -8,7 +8,7 @@
 import UIKit
 import Foundation
 
-class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlertViewDelegate{
+class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
     
     var outgoingBubbleImageData :JSQMessagesBubbleImage?;
     var incomingBubbleImageData :JSQMessagesBubbleImage?;
@@ -378,16 +378,25 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
             break;
         case 5:
             // Archive Conversation
+            func dismissSelf(_: UIAlertAction) {
+                self.navigationController?.popViewControllerAnimated(true)
+            }
             if(selectedButton.selected){
                 MixPanelHandler.sendData("Chat_RestoreFromArchive")
                 self.completeRequest("chat/"+self.chatID+"/archive", withType: "DELETE")
-                let alert = UIAlertView(title: Localizations.Chat.Restored.Title, message: nil, delegate: self, cancelButtonTitle: Localizations.General.Button.Ok)
-                alert.show()
+                let alert = UIAlertController(title: Localizations.Chat.Restored.Title, message: nil, preferredStyle: .Alert)
+                let defaultAction = UIAlertAction(title: Localizations.General.Button.Ok, style: .Default, handler: dismissSelf)
+                alert.addAction(defaultAction)
+                alert.preferredAction = defaultAction
+                self.presentViewController(alert, animated: true, completion: nil)
             } else {
                 MixPanelHandler.sendData("Chat_Archive")
                 self.completeRequest("chat/"+self.chatID+"/archive", withType: "PUT")
-                let alert = UIAlertView(title: Localizations.Chat.Archived.Title, message: Localizations.Chat.Archived.Body, delegate: self, cancelButtonTitle: Localizations.General.Button.Ok)
-                alert.show()
+                let alert = UIAlertController(title: Localizations.Chat.Archived.Title, message: Localizations.Chat.Archived.Body, preferredStyle: .Alert)
+                let defaultAction = UIAlertAction(title: Localizations.General.Button.Ok, style: .Default, handler: dismissSelf)
+                alert.addAction(defaultAction)
+                alert.preferredAction = defaultAction
+                self.presentViewController(alert, animated: true, completion: nil)
             }
             selectedButton.selected = !selectedButton.selected
             break;
@@ -423,11 +432,11 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
                 if !chatRoom.xmppRoom!.isJoined {
                     self.dontUpdateButton = true
                     self.inputToolbar?.contentView?.rightBarButtonItem?.enabled = false
-                }else{
+                } else {
                     self.dontUpdateButton = false
                 }
                 
-            }else{
+            } else {
                 self.dontUpdateButton = true
                 self.inputToolbar?.contentView?.rightBarButtonItem?.enabled = false
             }
@@ -437,11 +446,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate, UIAlert
     }
     
     func isRecievingMessageIndication(user: String) {
-        // TODO: do we nned this?        
-    }
-    
-    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        self.navigationController?.popViewControllerAnimated(true)
+        // TODO: do we need this?        
     }
     
     func sendOfflineMessage(message:String){

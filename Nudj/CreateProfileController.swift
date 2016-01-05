@@ -151,11 +151,11 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
         // TODO: should maybe be an action sheet rather than an alert
         let alert = UIAlertController(title: self.msgTitle, message: nil, preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: Localizations.Profile.ImageSource.Camera, style: .Default) {
-            action -> Void in
+            _ in
             self.changeProfileImage(.Camera)
             })
         alert.addAction(UIAlertAction(title: Localizations.Profile.ImageSource.Library, style: .Default) {
-            action -> Void in
+            _ in
             self.changeProfileImage(.PhotoLibrary)
             })
         self.presentViewController(alert, animated: true, completion: nil)
@@ -208,8 +208,11 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
             if(success){
                 self.performSegueWithIdentifier("showCreateProfileView", sender: self)
             } else {
-                let alert = UIAlertView(title: Localizations.Profile.Facebook.Failed.Title, message: nil, delegate: nil, cancelButtonTitle: Localizations.General.Button.Ok)
-                alert.show()
+                let alert = UIAlertController(title: Localizations.Profile.Facebook.Failed.Title, message: nil, preferredStyle: .Alert)
+                let defaultAction = UIAlertAction(title: Localizations.General.Button.Ok, style: .Cancel, handler: nil)
+                alert.addAction(defaultAction)
+                alert.preferredAction = defaultAction
+                self.presentViewController(alert, animated: true, completion: nil)
             }
         })
     }

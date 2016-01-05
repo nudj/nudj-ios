@@ -8,10 +8,10 @@
 import UIKit
 import SwiftyJSON
 
-class SettingsController: UIViewController, UITableViewDataSource, UITableViewDelegate, SocialStatusDelegate, UIAlertViewDelegate {
+class SettingsController: UIViewController, UITableViewDataSource, UITableViewDelegate, SocialStatusDelegate {
 
     var statusButton = StatusButton()
-    var socialStatuses = [String:Bool]()
+    var socialStatuses = [String:Bool]() // TODO: use Enum not String
     
     let cellIdentifier = "SettingsCell";
     var jobsSelected:String?;
@@ -28,14 +28,13 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
             SettingsItem(name: Localizations.Settings.Title.Chats, action: "goToChats")
         ],
         [
-            //SettingsItem(name: "LinkedIn", action: "linkedin"),
             SettingsItem(name: Localizations.Settings.Title.Facebook, action: "facebook")
         ],
         [
             //SettingsItem(name: "Invite Friends", action: ""),
             SettingsItem(name: Localizations.Settings.Title.Terms, action: "goToTerms"),
             SettingsItem(name: Localizations.Settings.Title.Privacy, action: "goToTerms"), // TODO: check this
-            SettingsItem(name: Localizations.Settings.Title.Feedback, action: "goToFeedBack")
+            SettingsItem(name: Localizations.Settings.Title.Feedback, action: "goToFeedBack") // TODO: maybe use HockeyApp for this
         ],
         [
             //SettingsItem(name: "Log Out", action: "goToLogin"),
@@ -96,29 +95,28 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
         if (data.action == "showStatusPicker") {
             cell.accessoryView = self.statusButton
             cell.accessoryView?.userInteractionEnabled = false
-        } else if(data.action == "linkedin"){
+        } else if(data.action == "linkedin") {
             cell.imageView!.image = UIImage(named: "linkdin")
-            if(self.socialStatuses.count > 0){
-                let social = SocialStatus(status: self.socialStatuses["linkedin"]!, and: data.action)
+            if (self.socialStatuses.count > 0){
+                let social = SocialStatus(connected: self.socialStatuses["linkedin"]!, and: data.action)
                 social.delegate = self
                 cell.accessoryView = social
-            }else{
+            } else {
                 cell.accessoryView = nil;
             }
-            
-        } else if(data.action == "facebook"){
+        } else if (data.action == "facebook") {
             cell.imageView!.image = UIImage(named: "facebook_icon")
-            if(self.socialStatuses.count > 0){
-                let social = SocialStatus(status: self.socialStatuses["facebook"]!, and: data.action)
+            if (self.socialStatuses.count > 0) {
+                let social = SocialStatus(connected: self.socialStatuses["facebook"]!, and: data.action)
                 social.delegate = self
                 cell.accessoryView = social;
-            }else{
+            } else {
                 cell.accessoryView = nil;
             }
-        }else if(data.action == "goToLogin"){
+        } else if(data.action == "goToLogin") {
             cell.accessoryView = nil
             cell.accessoryType = UITableViewCellAccessoryType.None
-        }else{
+        } else {
             cell.accessoryView = nil
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         }
@@ -152,24 +150,23 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
             return
         }
         
-        // TODO: this is too fragile use a flag property
+        // TODO: this is too fragile use a flag or enum property
         isPolicy = (name == Localizations.Settings.Title.Privacy)
 
-        if(action == "linkedin"){
+        if(action == "linkedin") {
             // nothing
-        }else if(action == "facebook"){
+        } else if(action == "facebook") {
             // nothing
-        }else if(action == "goToLogin"){
-            // TODO: move to UIAlertController
-            let alertview = UIAlertView(title: Localizations.Settings.Delete.Title,
-                message: Localizations.Settings.Delete.Body,
-                delegate:self,
-                cancelButtonTitle: Localizations.General.Button.Cancel,
-                otherButtonTitles: Localizations.Settings.Delete.Button)
-            // TODO: why 3?
-            alertview.tag = 3
-            alertview.show();
-        }else{
+        } else if(action == "goToLogin") {
+            let localization = Localizations.Settings.Delete.self
+            let alert = UIAlertController(title: localization.Title, message: localization.Body, preferredStyle: .Alert)
+            let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
+            alert.addAction(cancelAction)
+            alert.preferredAction = cancelAction
+            let deleteAction = UIAlertAction(title: Localizations.Settings.Delete.Button, style: .Destructive, handler: deleteAccount)
+            alert.addAction(deleteAction)
+            self.presentViewController(alert, animated: true, completion: nil)
+        } else {
             self.jobsSelected = action
             performSegueWithIdentifier(action, sender: self)
         }
@@ -181,7 +178,7 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
         // goToLogin
         if (segue.destinationViewController.isKindOfClass(LoginController)) {
             let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            delegate.deleteAccount()
+            delegate.deleteAccount(inViewController: segue.destinationViewController)
         }
 
         // showYourProfile
@@ -223,52 +220,55 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
 
     func didTap(statusIdentifier: String, parent:SocialStatus) {
         self.statusParent = parent;
-        if(parent.currentStatus!){
-            // TODO: move to UIAlertController
+        if(parent.connected){
             let title = Localizations.Settings.Disconnect.Title.Format(statusIdentifier)
             let message = Localizations.Settings.Disconnect.Title.Body(statusIdentifier)
-            let alertview = UIAlertView(title: title, message:message, delegate:self, cancelButtonTitle: Localizations.General.Button.Cancel, otherButtonTitles: Localizations.Settings.Disconnect.Button)
-            alertview.tag = statusIdentifier == "facebook" ? 0 : 1
-            alertview.show();
-        }else{
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+            let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
+            alert.addAction(cancelAction)
+            if (statusIdentifier == "facebook") {
+                let disconnectAction = UIAlertAction(title: Localizations.Settings.Disconnect.Button, style: .Default, handler: toggleFacebook)
+                alert.addAction(disconnectAction)
+            }
+            alert.preferredAction = cancelAction
+            self.presentViewController(alert, animated: true, completion: nil)
+        } else {
             self.handleSocialAction(statusIdentifier)
         }
     }
     
-    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        // TODO: these magic tags should be an enum
-        if alertView.tag == 3 {
-            if(buttonIndex == 1){
-                MixPanelHandler.sendData("DeleteAcountAction")
-                self.jobsSelected = "goToLogin"
-                performSegueWithIdentifier("goToLogin", sender: self)
-            }
-        }else if alertView.tag == 0 {
-            if(buttonIndex == 1){
-                self.handleSocialAction("facebook")
-            }
-        }
+    func deleteAccount(_: UIAlertAction) {
+        MixPanelHandler.sendData("DeleteAcountAction")
+        self.jobsSelected = "goToLogin"
+        performSegueWithIdentifier("goToLogin", sender: self)
+    }
+    
+    func toggleFacebook(_: UIAlertAction) {
+        // TODO: straighten this out
+        self.handleSocialAction("facebook")
     }
     
     func handleSocialAction(statusIdentifier:String){
         // TODO: make statusIdentifier an enum
-        // TODO: refactor and move to UIAlertController
-        let alert = UIAlertView(title: "", message: "", delegate: nil, cancelButtonTitle: Localizations.General.Button.Ok)
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .Alert)
+        let cancelAction = UIAlertAction(title: Localizations.General.Button.Ok, style: .Cancel, handler: nil)
+        alert.addAction(cancelAction)
+        alert.preferredAction = cancelAction
         
         if(statusIdentifier == "facebook"){
-            self.socialhander!.configureFacebook(self.statusParent!.currentStatus!, completionHandler: { success in
-                
+            self.socialhander!.configureFacebook(self.statusParent!.connected, completionHandler: { 
+                success in
                 if(success){
-                    self.statusParent!.updateStatus()
-                    self.socialStatuses["facebook"] = self.statusParent!.currentStatus!
-                    if(self.statusParent!.currentStatus!){
+                    self.statusParent!.toggleConnected()
+                    self.socialStatuses["facebook"] = self.statusParent!.connected
+                    if(self.statusParent!.connected){
                         alert.title = Localizations.Settings.Facebook.Connected.Title
                         alert.message = Localizations.Settings.Facebook.Connected.Body
                     }else{
                         alert.title = Localizations.Settings.Facebook.Disconnected.Title
                         alert.message = Localizations.Settings.Facebook.Disconnected.Body
                     }
-                    alert.show()
+                    self.presentViewController(alert, animated: true, completion: nil)
                 }
             })
         }

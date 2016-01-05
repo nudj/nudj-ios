@@ -81,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
         //Setup XMPP and connect
         chatInst = ChatModels()
         chatInst!.delegate = self;
-        if(!chatInst!.connect()) {
+        if(!chatInst!.connect(inViewController: self.window!.rootViewController!)) {
             loggingPrint("NOT Connected to chat server so will try reconnecting")
         }
 
@@ -342,7 +342,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
         self.api?.token = nil
     }
     
-    func deleteAccount(){
+    func deleteAccount(inViewController viewController: UIViewController){
         // TODO: API strings
         API.sharedInstance.request(.DELETE, path: "users/me", params: nil, closure: { 
             response in
@@ -350,15 +350,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
             if response["status"].boolValue {
                 self.logout()
             } else {
-                let alert = UIAlertView(title: Localizations.Account.Delete.Error.Title, message: Localizations.Account.Delete.Error.Body, delegate: nil, cancelButtonTitle: Localizations.General.Button.Ok)
-                alert.show()
+                let localization = Localizations.Account.Delete.Error.self
+                let alert = UIAlertController(title: localization.Title, message: localization.Body, preferredStyle: .Alert)
+                let cancelAction = UIAlertAction(title: Localizations.General.Button.Ok, style: .Cancel, handler: nil)
+                alert.addAction(cancelAction)
+                alert.preferredAction = cancelAction
+                viewController.presentViewController(alert, animated: true, completion: nil)
             }
             
             }, 
             errorHandler: {
                 error in
-                let alert = UIAlertView(title: Localizations.Account.Delete.Error.Title, message: Localizations.Account.Delete.Error.Body, delegate: nil, cancelButtonTitle: Localizations.General.Button.Ok)
-                alert.show()
+                let localization = Localizations.Account.Delete.Error.self
+                let alert = UIAlertController(title: localization.Title, message: localization.Body, preferredStyle: .Alert)
+                let cancelAction = UIAlertAction(title: Localizations.General.Button.Ok, style: .Cancel, handler: nil)
+                alert.addAction(cancelAction)
+                alert.preferredAction = cancelAction
+                viewController.presentViewController(alert, animated: true, completion: nil)
         })
     }
     
