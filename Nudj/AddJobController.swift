@@ -126,8 +126,8 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
                     }else{
                         self.navigationController?.navigationBarHidden = false
                         let localization = Localizations.Jobs.Update.Error.self
-                        let alert = UIAlertController.init(title: localization.Title, message: localization.Body, preferredStyle: .Alert)
-                        let cancelAction = UIAlertAction.init(title: Localizations.General.Button.Ok, style: .Cancel, handler: nil)
+                        let alert = UIAlertController(title: localization.Title, message: localization.Body, preferredStyle: .Alert)
+                        let cancelAction = UIAlertAction(title: Localizations.General.Button.Ok, style: .Cancel, handler: nil)
                         alert.addAction(cancelAction)
                         alert.preferredAction = cancelAction
                         self.presentViewController(alert, animated: true, completion: nil)
@@ -150,8 +150,8 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
             }
         } else {
             let localization = Localizations.Jobs.Validation.Error.self
-            let alert = UIAlertController.init(title: localization.Title, message: localization.Body, preferredStyle: .Alert)
-            let cancelAction = UIAlertAction.init(title: Localizations.General.Button.Ok, style: .Cancel, handler: nil)
+            let alert = UIAlertController(title: localization.Title, message: localization.Body, preferredStyle: .Alert)
+            let cancelAction = UIAlertAction(title: Localizations.General.Button.Ok, style: .Cancel, handler: nil)
             alert.addAction(cancelAction)
             alert.preferredAction = cancelAction
             self.presentViewController(alert, animated: true, completion: nil)
@@ -359,10 +359,10 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
     
     @IBAction func deleteAction(sender: UIButton) {
         let localization = Localizations.Jobs.Delete.Alert.self
-        let alert = UIAlertController.init(title: localization.Title, message: localization.Body, preferredStyle: .Alert)
-        let cancelAction = UIAlertAction.init(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
+        let alert = UIAlertController(title: localization.Title, message: localization.Body, preferredStyle: .Alert)
+        let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
         alert.addAction(cancelAction)
-        let deleteAction = UIAlertAction.init(title: Localizations.General.Button.Delete, style: .Destructive, handler: deleteJob)
+        let deleteAction = UIAlertAction(title: Localizations.General.Button.Delete, style: .Destructive, handler: deleteJob)
         alert.addAction(deleteAction)
         alert.preferredAction = cancelAction
         self.presentViewController(alert, animated: true, completion: nil)
@@ -376,8 +376,8 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
             }, errorHandler: { 
                 error in
                 let localization = Localizations.Jobs.Delete.Error.self
-              let alert = UIAlertController.init(title: localization.Title, message: localization.Body, preferredStyle: .Alert)
-                let cancelAction = UIAlertAction.init(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
+              let alert = UIAlertController(title: localization.Title, message: localization.Body, preferredStyle: .Alert)
+                let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
                 alert.addAction(cancelAction)
                 alert.preferredAction = cancelAction
                 self.presentViewController(alert, animated: true, completion: nil)

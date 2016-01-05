@@ -188,8 +188,8 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
                 if(UIApplication.sharedApplication().canOpenURL(phoneUrl)){
                     UIApplication.sharedApplication().openURL(phoneUrl)
                 } else {
-                    let alert = UIAlertController.init(title: Localizations.Phone.Unavailable.Title, message: Localizations.Phone.Unavailable.Body, preferredStyle: .Alert)
-                    let defaultAction = UIAlertAction.init(title: Localizations.General.Button.Ok, style: .Default, handler: nil)
+                    let alert = UIAlertController(title: Localizations.Phone.Unavailable.Title, message: Localizations.Phone.Unavailable.Body, preferredStyle: .Alert)
+                    let defaultAction = UIAlertAction(title: Localizations.General.Button.Ok, style: .Default, handler: nil)
                     alert.addAction(defaultAction)
                     alert.preferredAction = defaultAction
                     self.presentViewController(alert, animated: true, completion: nil)
@@ -211,8 +211,8 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
                 messageComposer.recipients = [reciverNumber]
                 self.presentViewController(messageComposer, animated: true, completion: nil)
             } else {
-                let alert = UIAlertController.init(title: Localizations.Sms.Unavailable.Title, message: Localizations.Sms.Unavailable.Body, preferredStyle: .Alert)
-                let defaultAction = UIAlertAction.init(title: Localizations.General.Button.Ok, style: .Default, handler: nil)
+                let alert = UIAlertController(title: Localizations.Sms.Unavailable.Title, message: Localizations.Sms.Unavailable.Body, preferredStyle: .Alert)
+                let defaultAction = UIAlertAction(title: Localizations.General.Button.Ok, style: .Default, handler: nil)
                 alert.addAction(defaultAction)
                 alert.preferredAction = defaultAction
                 self.presentViewController(alert, animated: true, completion: nil)
@@ -225,8 +225,8 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
     
     func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult) {
         if result == MessageComposeResultFailed {
-            let alert = UIAlertController.init(title: Localizations.Sms.Failed.Title, message: Localizations.Sms.Failed.Body, preferredStyle: .Alert)
-            let defaultAction = UIAlertAction.init(title: Localizations.General.Button.Ok, style: .Default, handler: nil)
+            let alert = UIAlertController(title: Localizations.Sms.Failed.Title, message: Localizations.Sms.Failed.Body, preferredStyle: .Alert)
+            let defaultAction = UIAlertAction(title: Localizations.General.Button.Ok, style: .Default, handler: nil)
             alert.addAction(defaultAction)
             alert.preferredAction = defaultAction
             self.presentViewController(alert, animated: true, completion: nil)

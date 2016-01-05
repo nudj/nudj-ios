@@ -224,10 +224,10 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
                 } else {
                     lastSelectedContact = contact
                     let message = Localizations.Invitation.Send.Body.Format(contact.name)
-                    let alert = UIAlertController.init(title: Localizations.Invitation.Send.Title, message: message, preferredStyle: .Alert)
-                    let cancelAction = UIAlertAction.init(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
+                    let alert = UIAlertController(title: Localizations.Invitation.Send.Title, message: message, preferredStyle: .Alert)
+                    let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
                     alert.addAction(cancelAction)
-                    let inviteAction = UIAlertAction.init(title: Localizations.Invitation.Send.Button, style: .Default, handler: inviteUser)
+                    let inviteAction = UIAlertAction(title: Localizations.Invitation.Send.Button, style: .Default, handler: inviteUser)
                     alert.addAction(inviteAction)
                     alert.preferredAction = inviteAction
                     self.presentViewController(alert, animated: true, completion: nil)
@@ -267,8 +267,8 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
                     title = Localizations.Invitation.Failed.Title
                     message = Localizations.Invitation.Failed.Body.Format(contactName)
                 }
-                let alert = UIAlertController.init(title: title, message: message, preferredStyle: .Alert)
-                let cancelAction = UIAlertAction.init(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
+                let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+                let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
                 alert.addAction(cancelAction)
                 alert.preferredAction = cancelAction
                 self.presentViewController(alert, animated: true, completion: nil)
@@ -277,8 +277,8 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
                 error in
                 let title = Localizations.Invitation.Failed.Title
                 let message = Localizations.Invitation.Failed.Body.Format(contactName)
-                let alert = UIAlertController.init(title: title, message: message, preferredStyle: .Alert)
-                let cancelAction = UIAlertAction.init(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
+                let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+                let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
                 alert.addAction(cancelAction)
                 alert.preferredAction = cancelAction
                 self.presentViewController(alert, animated: true, completion: nil)

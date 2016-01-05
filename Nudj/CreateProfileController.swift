@@ -208,8 +208,8 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
             if(success){
                 self.performSegueWithIdentifier("showCreateProfileView", sender: self)
             } else {
-                let alert = UIAlertController.init(title: Localizations.Profile.Facebook.Failed.Title, message: nil, preferredStyle: .Alert)
-                let defaultAction = UIAlertAction.init(title: Localizations.General.Button.Ok, style: .Cancel, handler: nil)
+                let alert = UIAlertController(title: Localizations.Profile.Facebook.Failed.Title, message: nil, preferredStyle: .Alert)
+                let defaultAction = UIAlertAction(title: Localizations.General.Button.Ok, style: .Cancel, handler: nil)
                 alert.addAction(defaultAction)
                 alert.preferredAction = defaultAction
                 self.presentViewController(alert, animated: true, completion: nil)

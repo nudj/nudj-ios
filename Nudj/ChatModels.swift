@@ -179,8 +179,8 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         catch let error as NSError {
             let title = Localizations.Chat.Connection.Error.Title
             let message = Localizations.Chat.Connection.Error.Body.Format(error.localizedDescription)
-            let alert = UIAlertController.init(title: title, message: message, preferredStyle: .Alert)
-            let defaultAction = UIAlertAction.init(title: Localizations.General.Button.Ok, style: .Default, handler: nil)
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+            let defaultAction = UIAlertAction(title: Localizations.General.Button.Ok, style: .Default, handler: nil)
             alert.addAction(defaultAction)
             alert.preferredAction = defaultAction
             viewController.presentViewController(alert, animated: true, completion: nil)

@@ -384,16 +384,16 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
             if(selectedButton.selected){
                 MixPanelHandler.sendData("Chat_RestoreFromArchive")
                 self.completeRequest("chat/"+self.chatID+"/archive", withType: "DELETE")
-                let alert = UIAlertController.init(title: Localizations.Chat.Restored.Title, message: nil, preferredStyle: .Alert)
-                let defaultAction = UIAlertAction.init(title: Localizations.General.Button.Ok, style: .Default, handler: dismissSelf)
+                let alert = UIAlertController(title: Localizations.Chat.Restored.Title, message: nil, preferredStyle: .Alert)
+                let defaultAction = UIAlertAction(title: Localizations.General.Button.Ok, style: .Default, handler: dismissSelf)
                 alert.addAction(defaultAction)
                 alert.preferredAction = defaultAction
                 self.presentViewController(alert, animated: true, completion: nil)
             } else {
                 MixPanelHandler.sendData("Chat_Archive")
                 self.completeRequest("chat/"+self.chatID+"/archive", withType: "PUT")
-                let alert = UIAlertController.init(title: Localizations.Chat.Archived.Title, message: Localizations.Chat.Archived.Body, preferredStyle: .Alert)
-                let defaultAction = UIAlertAction.init(title: Localizations.General.Button.Ok, style: .Default, handler: dismissSelf)
+                let alert = UIAlertController(title: Localizations.Chat.Archived.Title, message: Localizations.Chat.Archived.Body, preferredStyle: .Alert)
+                let defaultAction = UIAlertAction(title: Localizations.General.Button.Ok, style: .Default, handler: dismissSelf)
                 alert.addAction(defaultAction)
                 alert.preferredAction = defaultAction
                 self.presentViewController(alert, animated: true, completion: nil)

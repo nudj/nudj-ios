@@ -250,7 +250,7 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func handleSocialAction(statusIdentifier:String){
         // TODO: make statusIdentifier an enum
-        let alert = UIAlertController.init(title: nil, message: nil, preferredStyle: .Alert)
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .Alert)
         let cancelAction = UIAlertAction(title: Localizations.General.Button.Ok, style: .Cancel, handler: nil)
         alert.addAction(cancelAction)
         alert.preferredAction = cancelAction

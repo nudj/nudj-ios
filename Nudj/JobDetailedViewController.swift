@@ -234,10 +234,10 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, Tutori
         if(sender.titleLabel?.text == Localizations.Jobs.Button.Interested){
             //Go to INTERESTED
             MixPanelHandler.sendData("InterestedButtonClicked")
-            let alert = UIAlertController.init(title: Localizations.Jobs.Interested.Alert.Title, message: Localizations.Jobs.Interested.Alert.Body, preferredStyle: .Alert)
-            let cancelAction = UIAlertAction.init(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
+            let alert = UIAlertController(title: Localizations.Jobs.Interested.Alert.Title, message: Localizations.Jobs.Interested.Alert.Body, preferredStyle: .Alert)
+            let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
             alert.addAction(cancelAction)
-            let sendAction = UIAlertAction.init(title: Localizations.General.Button.Send, style: .Cancel, handler: postRequest)
+            let sendAction = UIAlertAction(title: Localizations.General.Button.Send, style: .Cancel, handler: postRequest)
             alert.addAction(sendAction)
             alert.preferredAction = sendAction
             self.presentViewController(alert, animated: true, completion: nil)
