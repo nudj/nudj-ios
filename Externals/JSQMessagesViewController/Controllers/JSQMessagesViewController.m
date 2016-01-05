@@ -1178,7 +1178,9 @@ JSQMessagesKeyboardControllerDelegate>{
 }
 
 -(void)completeRequest:(NSString *)url withType:(NSString*)type{
-    
+    // TODO: API strings
+    // TODO: remove unnecessary logging
+    // TODO: make asynchronous
     NSString *baseUrl = @"http://api.nudj.co/api/v1/";
     
     NSURL *requestUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",baseUrl,url]];
