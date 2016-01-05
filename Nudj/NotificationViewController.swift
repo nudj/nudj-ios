@@ -188,11 +188,11 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
                 if(UIApplication.sharedApplication().canOpenURL(phoneUrl)){
                     UIApplication.sharedApplication().openURL(phoneUrl)
                 } else {
-                    let alert = UIAlertView(title: Localizations.Phone.Unavailable.Title,
-                        message: Localizations.Phone.Unavailable.Body,
-                        delegate: nil,
-                        cancelButtonTitle: Localizations.General.Button.Ok);
-                    alert.show()
+                    let alert = UIAlertController.init(title: Localizations.Phone.Unavailable.Title, message: Localizations.Phone.Unavailable.Body, preferredStyle: .Alert)
+                    let defaultAction = UIAlertAction.init(title: Localizations.General.Button.Ok, style: .Default, handler: nil)
+                    alert.addAction(defaultAction)
+                    alert.preferredAction = defaultAction
+                    self.presentViewController(alert, animated: true, completion: nil)
                 }
             }
         } else {
@@ -211,11 +211,11 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
                 messageComposer.recipients = [reciverNumber]
                 self.presentViewController(messageComposer, animated: true, completion: nil)
             } else {
-                let alert = UIAlertView(title: Localizations.Sms.Unavailable.Title,
-                    message: Localizations.Sms.Unavailable.Body,
-                    delegate: nil,
-                    cancelButtonTitle: Localizations.General.Button.Ok);
-                alert.show()
+                let alert = UIAlertController.init(title: Localizations.Sms.Unavailable.Title, message: Localizations.Sms.Unavailable.Body, preferredStyle: .Alert)
+                let defaultAction = UIAlertAction.init(title: Localizations.General.Button.Ok, style: .Default, handler: nil)
+                alert.addAction(defaultAction)
+                alert.preferredAction = defaultAction
+                self.presentViewController(alert, animated: true, completion: nil)
             }
         } else {
             // TODO: better error handling
@@ -225,11 +225,11 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
     
     func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult) {
         if result == MessageComposeResultFailed {
-            let alert = UIAlertView(title: Localizations.Sms.Failed.Title,
-                message: Localizations.Sms.Failed.Body,
-                delegate: nil,
-                cancelButtonTitle: Localizations.General.Button.Ok);
-            alert.show()
+            let alert = UIAlertController.init(title: Localizations.Sms.Failed.Title, message: Localizations.Sms.Failed.Body, preferredStyle: .Alert)
+            let defaultAction = UIAlertAction.init(title: Localizations.General.Button.Ok, style: .Default, handler: nil)
+            alert.addAction(defaultAction)
+            alert.preferredAction = defaultAction
+            self.presentViewController(alert, animated: true, completion: nil)
         }
         
         controller.dismissViewControllerAnimated(true, completion: nil)
