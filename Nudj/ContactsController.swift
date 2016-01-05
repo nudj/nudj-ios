@@ -93,6 +93,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
     }
 
     func loadData(url:String) {
+        // TODO: this network access is slowing down the UI: fix it
         // API strings
         let variable = url == ContactPaths.all ? "contact.user" : "user.contact"
         let path = "\(url)?params=\(variable),contact.alias,contact.apple_id,user.image,user.status,user.name&sizes=user.profile"
