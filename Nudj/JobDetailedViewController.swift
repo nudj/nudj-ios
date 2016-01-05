@@ -9,7 +9,7 @@ import UIKit
 import Foundation
 import SwiftyJSON
 
-class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAlertViewDelegate, TutorialViewDelegate {
+class JobDetailedViewController: BaseController, CreatePopupViewDelegate, TutorialViewDelegate {
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
     
@@ -234,8 +234,13 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
         if(sender.titleLabel?.text == Localizations.Jobs.Button.Interested){
             //Go to INTERESTED
             MixPanelHandler.sendData("InterestedButtonClicked")
-            let alertview = UIAlertView(title: Localizations.Jobs.Interested.Alert.Title, message: Localizations.Jobs.Interested.Alert.Title, delegate: self, cancelButtonTitle: Localizations.General.Button.Cancel, otherButtonTitles: Localizations.General.Button.Send)
-            alertview.show()
+            let alert = UIAlertController.init(title: Localizations.Jobs.Interested.Alert.Title, message: Localizations.Jobs.Interested.Alert.Body, preferredStyle: .Alert)
+            let cancelAction = UIAlertAction.init(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
+            alert.addAction(cancelAction)
+            let sendAction = UIAlertAction.init(title: Localizations.General.Button.Send, style: .Cancel, handler: postRequest)
+            alert.addAction(sendAction)
+            alert.preferredAction = sendAction
+            self.presentViewController(alert, animated: true, completion: nil)
         } else {
             MixPanelHandler.sendData("AskForReferalButtonClicked")
             //Go to EditView
@@ -249,14 +254,7 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, UIAler
         }
     }
     
-    //MARK: Invite user
-    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        if buttonIndex == 1 {
-            self.postRequest()
-        }
-    }
-    
-    func postRequest(){
+    func postRequest(_: UIAlertAction){
         let params:[String:AnyObject] = ["job_id": "\(self.jobID!)"]
         
         // TODO: API strings
