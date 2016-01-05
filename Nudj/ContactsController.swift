@@ -35,6 +35,11 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
     var lastSelectedContact:ContactModel?
     var noContentImage = NoContentPlaceHolder()
     
+    deinit {
+        let nc = NSNotificationCenter.defaultCenter()
+        nc.removeObserver(self, name: Contacts.Notification.ContactThumbnailReceived.rawValue, object: nil)
+    }
+    
     override func viewDidLoad() {
         
         self.searchBar.hidden = true
@@ -62,6 +67,9 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         self.table.hidden = true
         
         self.view.addSubview(self.noContentImage.alignInSuperView(self.view, imageTitle: "no_contacts"))
+        
+        let nc = NSNotificationCenter.defaultCenter()
+        nc.addObserver(self, selector: Selector("contactThumbnailReceived"), name: Contacts.Notification.ContactThumbnailReceived.rawValue, object: nil)
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -91,6 +99,16 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
             self.loadData(self.getContactsUrl())
         }
     }
+    
+    func contactThumbnailReceived(notification: NSNotification) {
+        guard let userInfo = notification.userInfo else {return}
+        guard let identifier = userInfo[Contacts.ThumbnailKey.Identifier.rawValue] as? String else {return}
+        guard let image = userInfo[Contacts.ThumbnailKey.Image.rawValue] as? UIImage else {return}
+        
+        guard let row = filtering.filteredRowWithIdentifier(identifier) else {return}
+        let cell = self.table.cellForRowAtIndexPath(NSIndexPath(index: row)) as? ContactsCell
+        cell?.profileImage.setCustomImage(image)
+    }
 
     func loadData(url:String) {
         // TODO: this network access is slowing down the UI: fix it
@@ -103,7 +121,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
             self.indexes.removeAll(keepCapacity: false)
 
             let dictionary = response["data"].sort{ $0.0 < $1.0 }
-            var content = [ContactModel?]();
+            var content = [ContactModel]();
             
             for (id, obj) in dictionary {
                 if self.data[id] == nil {
@@ -186,9 +204,8 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         let cell:ContactsCell = table.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath) as! ContactsCell
         cell.removeSelectionStyle()
         if(self.isSearchEnabled == true){
-            if let contact = self.filtering.filteredContent[indexPath.row] {
-                cell.loadData(contact)
-            }
+            let contact = self.filtering.filteredContent[indexPath.row]
+            cell.loadData(contact)
         }else{
             let index = indexes[indexPath.section]
 
@@ -209,9 +226,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
             let index = indexes[indexPath.section]
         
             if let section = self.data[index] {
-                guard let contact = self.isSearchEnabled ? self.filtering.filteredContent[indexPath.row] : section[indexPath.row] else {
-                    return
-                }
+                let contact = self.isSearchEnabled ? self.filtering.filteredContent[indexPath.row] : section[indexPath.row]
                 
                 if let user = contact.user {
                     //Go to profile view

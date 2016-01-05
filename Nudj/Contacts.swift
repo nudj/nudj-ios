@@ -10,6 +10,15 @@ import Contacts
 import UIKit
 
 class Contacts {
+    enum Notification: String {
+        case ContactThumbnailReceived
+    }
+    
+    enum ThumbnailKey: String {
+        case Identifier
+        case Image
+    }
+    
     let contactStore = CNContactStore()
     var imageCache = [String:UIImage]()
 
@@ -45,10 +54,10 @@ class Contacts {
                 }
                 dispatch_async(dispatch_get_main_queue()) {
                     self.imageCache[identifier] = image
-                    // TODO: notify UI
+                    self.notifyThumbnailChangeForContactWithId(identifier, newThumbnail: image)
                 }
             }
-            catch {
+            catch _ as NSError {
                 // nothing
             }
         }
@@ -56,7 +65,19 @@ class Contacts {
         return nil
     }
     
-    // TODO: change notification from store
+    func notifyThumbnailChangeForContactWithId(identifier: String, newThumbnail: UIImage) {
+        let nc = NSNotificationCenter.defaultCenter()
+        let notification = NSNotification(
+            name: Notification.ContactThumbnailReceived.rawValue, 
+            object: self, 
+            userInfo: [
+                ThumbnailKey.Identifier.rawValue: identifier, 
+                ThumbnailKey.Image.rawValue: newThumbnail
+            ])
+        nc.postNotification(notification)
+    }
+    
+    // TODO: change notification from store CNContactStoreDidChangeNotification
 
     func sync(closure:((Bool) -> Void)? = nil) {
         if (self.isBlocked()) {

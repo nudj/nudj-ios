@@ -65,7 +65,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
 
             // TODO: API strings
             let dictionary = response["data"].sort{ $0.0 < $1.0 }
-            var content = [ContactModel?]();
+            var content = [ContactModel]();
             
             for (_, parentObj) in dictionary {
                 for (_, obj) in parentObj {
@@ -173,15 +173,14 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
             cell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier) as? ContactsCell
         }
 
-        if let contact = self.filtering.filteredContent[indexPath.row] {
-            cell.loadData(contact)
-
-            if selected.count > 0 {
-                for value in selected {
-                    if value.id == contact.id {
-                        cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-                        break
-                    }
+        let contact = self.filtering.filteredContent[indexPath.row] 
+        cell.loadData(contact)
+        
+        if selected.count > 0 {
+            for value in selected {
+                if value.id == contact.id {
+                    cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+                    break
                 }
             }
         }
@@ -201,23 +200,21 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
 
     func toggleRowSelection(indexPath: NSIndexPath) {
         if let cell = askTable.cellForRowAtIndexPath(indexPath) as? ContactsCell {
-            if let contact = self.filtering.filteredContent[indexPath.row] {
-                let selectedArray = selected as NSArray
-                for (index, value) in selectedArray.enumerate() {
-                    let contactModel = value as! ContactModel
-                    if contactModel.id == contact.id {
-                        selected.removeAtIndex(index)
-                        cell.accessoryType = UITableViewCellAccessoryType.None
-                        checkSelected()
-                        return
-                    }
+            let contact = self.filtering.filteredContent[indexPath.row]
+            let selectedArray = selected as NSArray
+            for (index, value) in selectedArray.enumerate() {
+                let contactModel = value as! ContactModel
+                if contactModel.id == contact.id {
+                    selected.removeAtIndex(index)
+                    cell.accessoryType = UITableViewCellAccessoryType.None
+                    checkSelected()
+                    return
                 }
-
-                selected.append(contact)
-                cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-                checkSelected()
-                return;
             }
+            
+            selected.append(contact)
+            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+            checkSelected()
         }
     }
 

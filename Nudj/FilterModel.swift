@@ -9,8 +9,8 @@ import UIKit
 
 class FilterModel: NSObject {
 
-    var allContent = [ContactModel?]()
-    var filteredContent = [ContactModel?]()
+    var allContent = [ContactModel]()
+    var filteredContent = [ContactModel]()
 
     override init() {
     }
@@ -23,7 +23,7 @@ class FilterModel: NSObject {
     func startFiltering(filteringText:String, completionHandler:(success:Bool) -> Void) {
         self.filteredContent = self.allContent.filter({ 
             element in
-            element!.name.lowercaseString.hasPrefix(filteringText.lowercaseString)
+            element.name.lowercaseString.hasPrefix(filteringText.lowercaseString)
         })
         completionHandler(success:true)
     }
@@ -32,8 +32,12 @@ class FilterModel: NSObject {
         self.filteredContent = self.allContent
     }
 
-    func setContent(content:[ContactModel?]) {
+    func setContent(content:[ContactModel]) {
         self.allContent = content
         self.filteredContent = content
+    }
+    
+    func filteredRowWithIdentifier(identifier: String) -> Int? {
+        return filteredContent.indexOf{ $0.apple_id == identifier }
     }
 }
