@@ -633,24 +633,6 @@ public struct Localizations {
         }
     }
 
-    public struct Contacts {
-
-    
-        public struct Access {
-
-        
-            public struct Request {
-
-                            /// Base translation: Nudj would like to access your address book
-                public static var Title : String = "contacts.access.request.title".localized
-
-                /// Base translation: This will let you send texts and job referrals to anyone in your address book.Nudj will never send messages without your explicit permission.
-                public static var Body : String = "contacts.access.request.body".localized
-
-            }
-        }
-    }
-
     public struct Chat {
 
     

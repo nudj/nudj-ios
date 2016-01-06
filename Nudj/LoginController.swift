@@ -12,9 +12,6 @@ import SwiftyJSON
 
 class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFieldDelegate {
 
-    let msgTitle = Localizations.Contacts.Access.Request.Title
-    let msgContent = Localizations.Contacts.Access.Request.Body
-    
     var countrySelectionView = CountrySelectionPicker()
     var code = "GB"
     var isPrivacy:Bool?
@@ -37,7 +34,6 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
         
         let policyTap = UITapGestureRecognizer(target:self, action:"showPolicy")
         self.privacyLink.addGestureRecognizer(policyTap)
-        
         
         let termstap = UITapGestureRecognizer(target:self, action:"showTerms")
         self.termsLiink.addGestureRecognizer(termstap)
@@ -74,13 +70,9 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
         }
         // TODO: API strings
         let params: [String: AnyObject] = ["phone": phoneNumber, "country_code": code]
-        API.sharedInstance.post("users", params: params, closure: { response in
-            if (self.appDelegate.contacts.isAuthorized()) {
-                self.proceed()
-            } else {
-                self.askForAddressBookPermission()
-            }
-        })
+        API.sharedInstance.post("users", params: params, closure: { response in })
+        
+        self.performSegueWithIdentifier("showVerifyView", sender: self)
     }
 
     func showLoginButton() {
@@ -99,26 +91,6 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
         }
     }
 
-    func askForAddressBookPermission() {
-        let alert = UIAlertController(title: self.msgTitle, message: self.msgContent, preferredStyle: UIAlertControllerStyle.Alert)
-
-        alert.addAction(UIAlertAction(title: Localizations.General.Button.Notnow, style: UIAlertActionStyle.Cancel) {
-            action in
-            self.appDelegate.showContactsAccessView()
-            })
-
-        alert.addAction(UIAlertAction(title: Localizations.General.Button.Ok, style: UIAlertActionStyle.Default) {
-            action in
-            self.getContactListPermission()
-            })
-
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-
-    func proceed() {
-        self.performSegueWithIdentifier("showVerifyView", sender: self)
-    }
-    
     func showPolicy(){
         isPrivacy = true
         self.performSegueWithIdentifier("GoToPrivacy", sender: self)
@@ -127,28 +99,6 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
     func showTerms(){
         isPrivacy = false
         self.performSegueWithIdentifier("GoToTerms", sender: self)
-    }
-
-    func getContactListPermission() {
-        let authorizationStatus = CNContactStore.authorizationStatusForEntityType(.Contacts)
-        switch authorizationStatus {
-        case .Authorized:
-            self.proceed()
-            
-        case .NotDetermined:
-            let contactStore = CNContactStore()
-            contactStore.requestAccessForEntityType(.Contacts) {
-                success, error in
-                if (success && error == nil) {
-                    dispatch_sync(dispatch_get_main_queue()) {
-                        self.proceed()
-                    }
-                }
-            }
-            
-        case .Denied, .Restricted:
-            break
-        }
     }
 
     func getCleanNumber(number: String? = nil) -> String {

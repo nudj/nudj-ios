@@ -86,7 +86,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
         }
 
         requestNotificationPermission(application)
-        //pushNotificationsPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey]
         if let remoteNotification = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary {
             pushNotificationsPayload = remoteNotification
         }
@@ -175,6 +174,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
     }
 
     func showContactsAccessView() {
+        // TODO: remove, see ticket #24
         let askForPermission = NoContactsPermissionController(nibName: "NoContactsPermissionController", bundle: nil)
         self.window!.rootViewController = askForPermission
     }
