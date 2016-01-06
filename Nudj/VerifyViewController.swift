@@ -124,9 +124,6 @@ class VerifyViewController: BaseController {
                 appDelegate.syncDeviceToken()
             }
 
-            // Sync contacts
-            appDelegate.contacts.sync()
-
             // Connect to the chat server
             if (appDelegate.chatInst!.connect(inViewController: self)) {
                 self.performSegueWithIdentifier("showInitProfileView", sender: nil)                
