@@ -57,7 +57,7 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
         self.countrySelectionView.showAction()
     }
     
-    @IBAction func loginAct(sender: UIButton) {
+    @IBAction func loginAct(sender: AnyObject) {
         // Hide button to prevent multiple clicks
         self.hideLoginButton()
 
@@ -89,6 +89,11 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
         if self.countrySelectionView.isCreated == true && self.countrySelectionView.hidden == false{
             self.countrySelectionView.doneAction()
         }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.loginAct(textField)
+        return true
     }
 
     func showPolicy(){
