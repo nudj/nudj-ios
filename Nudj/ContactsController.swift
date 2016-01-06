@@ -105,9 +105,14 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         guard let identifier = userInfo[Contacts.ThumbnailKey.Identifier.rawValue] as? String else {return}
         guard let image = userInfo[Contacts.ThumbnailKey.Image.rawValue] as? UIImage else {return}
         
+        self.applyThumbnail(thumbnail: image, toContactIdentifier: identifier)
+    }
+    
+    func applyThumbnail(thumbnail thumbnail: UIImage, toContactIdentifier identifier: String) {
         guard let row = filtering.filteredRowWithIdentifier(identifier) else {return}
         let cell = self.table.cellForRowAtIndexPath(NSIndexPath(index: row)) as? ContactsCell
-        cell?.profileImage.setCustomImage(image)
+        cell?.profileImage.setCustomImage(thumbnail)
+        cell?.setNeedsDisplay()
     }
 
     func loadData(url:String) {
