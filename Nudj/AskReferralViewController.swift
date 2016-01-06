@@ -21,7 +21,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     var isSlideTransition:Bool?
     var filtering = FilterModel()
     
-    var selected = [ContactModel]()
+    var selected = Set<ContactModel>()
     var popup :CreatePopupView?;
 
     var messagePlaceholder:String?
@@ -201,19 +201,14 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     func toggleRowSelection(indexPath: NSIndexPath) {
         if let cell = askTable.cellForRowAtIndexPath(indexPath) as? ContactsCell {
             let contact = self.filtering.filteredContent[indexPath.row]
-            let selectedArray = selected as NSArray
-            for (index, value) in selectedArray.enumerate() {
-                let contactModel = value as! ContactModel
-                if contactModel.id == contact.id {
-                    selected.removeAtIndex(index)
-                    cell.accessoryType = UITableViewCellAccessoryType.None
-                    checkSelected()
-                    return
-                }
+            if selected.contains(contact) {
+                selected.remove(contact)
+                cell.accessoryType = UITableViewCellAccessoryType.None
+            } else {
+                selected.insert(contact)
+                cell.accessoryType = UITableViewCellAccessoryType.Checkmark
             }
-            
-            selected.append(contact)
-            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+
             checkSelected()
         }
     }
@@ -240,6 +235,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
         self.messageText.resignFirstResponder()
 
         // TODO: Refactor
+        guard let firstSelected = self.selected.first else {return}
         if(self.isNudjRequest!){
             // TODO: API strings
             API.sharedInstance.put("nudge", params: params, closure: { result in
@@ -249,9 +245,9 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
                 
                 let nudjContent: String
                 if self.selected.count == 1 {
-                    nudjContent = Localizations.Referral.Nudge.Sent.Singular.Format(self.selected[0].name)
+                    nudjContent = Localizations.Referral.Nudge.Sent.Singular.Format(firstSelected.name)
                 } else {
-                    nudjContent = Localizations.Referral.Nudge.Sent.Plural.Format(self.selected[0].name, self.selected.count - 1)
+                    nudjContent = Localizations.Referral.Nudge.Sent.Plural.Format(firstSelected.name, self.selected.count - 1)
                 }
                 self.popup!.bodyText(nudjContent);
                 self.popup!.delegate = self;
@@ -271,9 +267,9 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
                 
                 let nudjContent: String
                 if self.selected.count == 1 {
-                    nudjContent = Localizations.Referral.Ask.Sent.Singular.Format(self.selected[0].name)
+                    nudjContent = Localizations.Referral.Ask.Sent.Singular.Format(firstSelected.name)
                 } else {
-                    nudjContent = Localizations.Referral.Ask.Sent.Plural.Format(self.selected[0].name, self.selected.count - 1)
+                    nudjContent = Localizations.Referral.Ask.Sent.Plural.Format(firstSelected.name, self.selected.count - 1)
                 }
                 self.popup!.bodyText(nudjContent);
                 self.popup!.delegate = self;
