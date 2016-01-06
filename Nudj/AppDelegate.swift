@@ -59,8 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
                 // User did not passed full registration
                 self.syncContacts()
                 self.pushViewControllerWithId("createProfile")
-            } else {
-                self.showContactsAccessView()
             }
         } else if (user == nil) {
             // Invalid user Require Login
@@ -171,12 +169,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
         }
     }
 
-    func showContactsAccessView() {
-        // TODO: remove, see ticket #24
-        let askForPermission = NoContactsPermissionController(nibName: "NoContactsPermissionController", bundle: nil)
-        self.window!.rootViewController = askForPermission
-    }
-    
     func beginInternetConnectionCheck(){
         // TODO: refactor to a single-responsibility object
         do {
