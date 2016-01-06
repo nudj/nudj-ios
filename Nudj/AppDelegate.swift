@@ -73,8 +73,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
                 // Valid User, Proceed
                 self.changeRootViewController("mainNavigation")
                 self.syncContacts()
-            } else {
-                self.showContactsAccessView()
             }
         }
         
@@ -422,10 +420,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
 
         if (appWasInBackground) {
             appWasInBackground = false
-
-            if (!contacts.isAuthorized()) {
-                self.showContactsAccessView()
-            }
         }
     }
 
