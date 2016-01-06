@@ -46,12 +46,8 @@ class Contacts {
             guard success else {return}
             do {
                 let contact = try self.contactStore.unifiedContactWithIdentifier(identifier, keysToFetch: [CNContactThumbnailImageDataKey])
-                let image: UIImage
-                if let thumbnail = contact.thumbnailImageData {
-                    image = UIImage(data: thumbnail) ?? UserModel.getDefaultUserImage()
-                } else {
-                    image = UserModel.getDefaultUserImage()
-                }
+                guard let thumbnail = contact.thumbnailImageData else {return}
+                guard let image = UIImage(data: thumbnail) else {return}
                 dispatch_async(dispatch_get_main_queue()) {
                     self.imageCache[identifier] = image
                     self.notifyThumbnailChangeForContactWithId(identifier, newThumbnail: image)
