@@ -68,10 +68,10 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Who's Hiring" id="Xds-DF-SN0">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="xys-7o-jBt">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="xys-7o-jBt">
                             <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="erZ-w0-oUk" kind="modal" identifier="" id="ChB-i7-pmy"/>
+                                <segue destination="erZ-w0-oUk" kind="showDetail" identifier="" id="ChB-i7-pmy"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -741,12 +741,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Ask For Referral" id="tYy-gD-bN1">
-                        <barButtonItem key="leftBarButtonItem" image="close_btn.png" style="plain" id="JMz-te-aJK">
+                        <barButtonItem key="leftBarButtonItem" image="close_btn.png" id="JMz-te-aJK">
                             <connections>
                                 <action selector="close:" destination="l4F-Ih-7ec" id="BcZ-fX-KkP"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Refer" style="plain" id="sLk-Wa-E5s">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Refer" id="sLk-Wa-E5s">
                             <connections>
                                 <action selector="askAction:" destination="l4F-Ih-7ec" id="bei-VZ-8fx"/>
                             </connections>
@@ -1163,7 +1163,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Send FeedBack" id="byM-g9-Zy7">
-                        <barButtonItem key="rightBarButtonItem" title="Send" style="plain" id="uaS-nZ-mq4">
+                        <barButtonItem key="rightBarButtonItem" title="Send" id="uaS-nZ-mq4">
                             <connections>
                                 <action selector="sendFeedBack:" destination="HrJ-cc-tGk" id="kbi-he-cDB"/>
                             </connections>
@@ -1407,7 +1407,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Contacts" id="V8t-St-1H8">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="search" id="Psa-0Q-brj">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="Psa-0Q-brj">
                             <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="searchButton:" destination="8rJ-Kc-sve" id="HZg-pb-ZTq"/>
