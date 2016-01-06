@@ -31,9 +31,7 @@ class ContactsCell: UITableViewCell {
             }
 
         } else {
-            if let apple_id = contact.apple_id {
-                profileImage.setCustomImage(UserModel.getImageByContactId(apple_id))
-            }
+            profileImage.setCustomImage(UserModel.getImageByContactId(contact.apple_id))
 
             self.hideStatus()
         }

@@ -8,13 +8,13 @@
 import Foundation
 import SwiftyJSON
 
-class ContactModel {
+struct ContactModel {
     let id: Int
-    var name: String
-    var apple_id: String?
-    var user:UserModel?
+    let name: String
+    let apple_id: String
+    let user: UserModel?
 
-    init(id:Int, name:String, apple_id:String?, user:UserModel? = nil) {
+    init(id: Int, name: String, apple_id: String, user: UserModel?) {
         self.id = id
         self.name = name
         self.user = user
@@ -26,5 +26,16 @@ class ContactModel {
         API.sharedInstance.get("contacts/mine?params=contact.alias,contact.user,contact.apple_id,user.image,user.status&sizes=user.profile", params: nil, closure: { result in
             closure(true, result)
             })
+    }
+}
+
+// Equatable
+func == (lhs: ContactModel, rhs: ContactModel) -> Bool {
+    return lhs.id == rhs.id && lhs.name == rhs.name && lhs.apple_id == rhs.apple_id
+}
+
+extension ContactModel: Hashable {
+    var hashValue: Int {
+        return id.hashValue ^ name.hashValue ^ apple_id.hashValue
     }
 }
