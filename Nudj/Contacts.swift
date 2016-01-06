@@ -128,7 +128,9 @@ class Contacts {
                 
                 dispatch_async(dispatch_get_main_queue()) {
                     self.imageCache = newImages
-                    // TODO: notify UI
+                    for (identifier, image) in newImages {
+                        self.notifyThumbnailChangeForContactWithId(identifier, newThumbnail: image)
+                    }
                 }
             }
             catch {

@@ -69,7 +69,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         self.view.addSubview(self.noContentImage.alignInSuperView(self.view, imageTitle: "no_contacts"))
         
         let nc = NSNotificationCenter.defaultCenter()
-        nc.addObserver(self, selector: Selector("contactThumbnailReceived"), name: Contacts.Notification.ContactThumbnailReceived.rawValue, object: nil)
+        nc.addObserver(self, selector: Selector("contactThumbnailReceived:"), name: Contacts.Notification.ContactThumbnailReceived.rawValue, object: nil)
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -86,10 +86,6 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         }
             
         self.tabBarController?.tabBar.hidden = false
-    }
-
-    func refresh(sender: AnyObject?) {
-        refresh()
     }
 
     func refresh() {
@@ -109,6 +105,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
     }
     
     func applyThumbnail(thumbnail thumbnail: UIImage, toContactIdentifier identifier: String) {
+        // TODO: broken. Rework the data model here.
         guard let row = filtering.filteredRowWithIdentifier(identifier) else {return}
         let cell = self.table.cellForRowAtIndexPath(NSIndexPath(index: row)) as? ContactsCell
         cell?.profileImage.setCustomImage(thumbnail)
@@ -155,6 +152,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
                     let name = isUser ? subJson["name"].stringValue : subJson["alias"].stringValue
                     let apple_id = isUser ? userContact!["apple_id"].stringValue : subJson["apple_id"].stringValue
 
+                    // TODO: the server is returning old AB-stype IDs here
                     let contact = ContactModel(id: userId, name: name, apple_id: apple_id, user: user)
                     self.data[id]!.append(contact)
                     content.append(contact)

@@ -13,6 +13,7 @@ struct ContactModel {
     let name: String
     let apple_id: String
     let user: UserModel?
+    // TODO: add optional thumbnail image here
 
     init(id: Int, name: String, apple_id: String, user: UserModel?) {
         self.id = id
