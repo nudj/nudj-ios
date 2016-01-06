@@ -63,7 +63,7 @@ class SocialHandlerModel: NSObject {
         API.sharedInstance.request(API.Method.DELETE, path: "connect/\(path)", params: nil, closure: { json in
             loggingPrint("\(path) token deleted successfully -> \(json)")
             completionHandler(success:true)
-        }, token: appDelegate.user?.token, errorHandler: { 
+        }, token: appDelegate.user.token, errorHandler: { 
             error in
             loggingPrint("error in deleting \(path) token -> \(error)")
             completionHandler(success:false)

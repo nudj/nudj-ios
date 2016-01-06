@@ -109,12 +109,12 @@ class VerifyViewController: BaseController {
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
 
             // TODO: API strings
-            let user = appDelegate.user == nil ? UserModel() : appDelegate.user!
+            let user = appDelegate.user
             user.id = json["data"]["id"].intValue
             user.token = json["data"]["token"].stringValue
             user.completed = json["data"]["completed"].boolValue
 
-            appDelegate.pushUserData(user)
+            appDelegate.pushUserData()
 
             // Change user API token
             appDelegate.prepareApi()

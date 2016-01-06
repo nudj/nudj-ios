@@ -29,11 +29,11 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
     override func viewDidLoad() {
         super.viewDidLoad();
 
-        let id = appGlobalDelegate.user!.id!
+        let id = appGlobalDelegate.user.id!
         // TODO: API strings
         self.senderId = String(id) + "@chat.nudj.co";
         
-        self.senderDisplayName = appGlobalDelegate.user!.name!
+        self.senderDisplayName = appGlobalDelegate.user.name!
 
         let bubbleFactory : JSQMessagesBubbleImageFactory = JSQMessagesBubbleImageFactory();
         
@@ -46,7 +46,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
         
         appGlobalDelegate.chatInst!.delegate = self
         
-        self.userToken = appGlobalDelegate.user?.token
+        self.userToken = appGlobalDelegate.user.token
         
         if let chatRoom = appGlobalDelegate.chatInst!.listOfActiveChatRooms[self.chatID] {
             self.messages = chatRoom.retrieveStoredChats()
@@ -63,7 +63,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
         }
         
         //Avatar Image
-        self.myImage = self.setupAvatarImage(appGlobalDelegate.user!.base64Image)
+        self.myImage = self.setupAvatarImage(appGlobalDelegate.user.base64Image)
         self.otherUserImage = self.setupAvatarImage(self.otherUserBase64Image)
         
         self.favourite.selected = isLiked ?? false

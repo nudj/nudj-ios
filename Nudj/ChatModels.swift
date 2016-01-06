@@ -157,9 +157,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             return true;
         }
         
-        guard let user = appGlobalDelegate.user else {
-            return false
-        }
+        let user = appGlobalDelegate.user
         
         guard let id = user.id else {
             return false

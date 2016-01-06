@@ -84,7 +84,7 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
             }
             
             if (user.completed) {
-                appDelegate.user!.completed = true
+                appDelegate.user.completed = true
                 appDelegate.pushUserData()
                 appDelegate.changeRootViewController("mainNavigation")
             }
@@ -116,7 +116,7 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
         UserModel.update(["name": userName], closure: { 
             result in
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
-            appDelegate.user!.name = userName
+            appDelegate.user.name = userName
             appDelegate.pushUserData()
             self.checkIfUserMayProceed()
         })

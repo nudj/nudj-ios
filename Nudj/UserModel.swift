@@ -65,7 +65,7 @@ class UserModel: CustomStringConvertible {
             let userResponse = response["data"]
 
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
-            let user = appDelegate.user == nil ? UserModel() : appDelegate.user!
+            let user = appDelegate.user
             user.updateFromJson(userResponse)
             closure?(user)
         }, errorHandler: errorHandler)

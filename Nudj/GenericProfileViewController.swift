@@ -319,8 +319,8 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
         UserModel.update(["name":nameLabel.text!,"email":email.text!,"position":position.text!,"address":location.text!,"company":company.text!,"completed":true], closure: { 
             result in
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
-            appDelegate.user!.name = self.nameLabel.text
-            appDelegate.user!.completed = true
+            appDelegate.user.name = self.nameLabel.text
+            appDelegate.user.completed = true
             appDelegate.pushUserData()
         })
     }
@@ -330,7 +330,7 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
         UserModel.update(["name": userName], closure: { 
             result in
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
-            appDelegate.user!.name = userName
+            appDelegate.user.name = userName
             appDelegate.pushUserData()
         })
     }

@@ -12,19 +12,9 @@ class MixPanelHandler: NSObject {
     static func sendData(title:String) {
         let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let mixpanel = Mixpanel.sharedInstance()
-        var username = "unavailable"
-        var userId = "unavailable"
-        
-        if let user = appdelegate.user {
-            if user.name != nil {
-                username = user.name!
-            }
-            
-            if user.id != nil{
-                userId = "\(user.id!)"
-            }
-        }
-        mixpanel.track(title, properties: ["name":username, "id":userId])
+        let username = appdelegate.user.name ?? "unavailable"
+        let userId = appdelegate.user.id ?? 0
+        mixpanel.track(title, properties: ["name": username, "id": userId])
     }
     
     static func startEventTracking(title:String){

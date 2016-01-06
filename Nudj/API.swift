@@ -123,7 +123,7 @@ class API {
 
     func performLogout() {
         let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        delegate.logout()
+        delegate.deleteAllData()
         delegate.changeRootViewController("loginController")
     }
 }

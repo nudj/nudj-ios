@@ -90,7 +90,7 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, Tutori
     func populateView(content:JSON){
         // Configure right button
         // TODO: API strings
-        if(appDelegate.user!.id == content["user"]["id"].intValue){
+        if(appDelegate.user.id == content["user"]["id"].intValue){
             
             if appDelegate.shouldShowAskForReferralTutorial  {
                tutorial.starTutorial("tutorial-ask", view: self.view)
@@ -220,7 +220,7 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, Tutori
         }
         
         if let profileView = segue.destinationViewController as? GenericProfileViewController {
-            if(self.userId! == appDelegate.user!.id) {
+            if(self.userId! == appDelegate.user.id) {
                 profileView.type = .Own
             } else {
                 profileView.userId = self.userId!

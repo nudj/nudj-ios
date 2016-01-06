@@ -57,7 +57,7 @@ class ChatStructModel: NSObject {
         }
         
         // TODO: API strings
-        let user = json["participants"][0]["id"].intValue == appDelegate.user!.id ? json["participants"][1] : json["participants"][0]
+        let user = json["participants"][0]["id"].intValue == appDelegate.user.id ? json["participants"][1] : json["participants"][0]
         chat.participantName =  user["name"].stringValue.isEmpty ? user["contact"]["alias"].stringValue : user["name"].stringValue
         chat.participantsID = user["id"].stringValue
         chat.image = user["image"]["profile"].stringValue

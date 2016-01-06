@@ -17,7 +17,7 @@ import HockeySDK
 class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
 
     var window: UIWindow?
-    var user: UserModel?
+    var user = UserModel()
     var api: API?
     var chatInst: ChatModels?
     var deviceToken: String?
@@ -26,9 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
     
     var shouldShowBadge = false
     var appWasInBackground = false
-    var pushNotificationsPayload :NSDictionary?
+    var pushNotificationsPayload: NSDictionary?
     
-    //Tutorial options
+    // Tutorial options TODO: these duplicate properties of the user object, remove them
     var shouldShowAddJobTutorial = true
     var shouldShowNudjTutorial = true
     var shouldShowAskForReferralTutorial = true
@@ -52,26 +52,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
         // Getting of user details from CoreData
         fetchUserData()
         prepareApi();
-        loggingPrint("usercompleted is  -> \(self.user?.completed)")
         
-        if (user != nil && user!.id != nil && user!.completed == false) {
-            if (contacts.isAuthorized()) {
-                // User did not passed full registration
-                self.syncContacts()
-                self.pushViewControllerWithId("createProfile")
-            }
-        } else if (user == nil) {
-            // Invalid user Require Login
-            // Proceed to login view
-            // TODO: figure out why this is not implemented
+        if (user.id != nil && user.completed == false) {
+            // User did not complete registration
+            self.pushViewControllerWithId("createProfile")
         } else {
+            // Valid User, Proceed
             prefetchUserData()
-
-            if (contacts.isAuthorized()) {
-                // Valid User, Proceed
-                self.changeRootViewController("mainNavigation")
-                self.syncContacts()
-            }
+            self.changeRootViewController("mainNavigation")
+        }
+        if (contacts.isAuthorized()) {
+            self.syncContacts()
         }
         
         //Setup XMPP and connect
@@ -213,19 +204,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
         
         do {
             let fetchRequest = NSFetchRequest(entityName:"User")
-            fetchRequest.fetchLimit = 1;
             let results = try moc.executeFetchRequest(fetchRequest)
             
             if (results.count > 0) {
-                let user = self.user ?? UserModel()
-                let obj = results.first as! NSManagedObject;
+                let obj = results.first as! NSManagedObject
                 
-                user.id = obj.valueForKey("id") == nil ? nil : obj.valueForKey("id") as? Int
-                user.name = obj.valueForKey("name") == nil ? nil : (obj.valueForKey("name") as! String)
-                user.token = obj.valueForKey("token") == nil ? nil : (obj.valueForKey("token") as! String)
-                user.completed = obj.valueForKey("completed") == nil ? false : (obj.valueForKey("completed") as! Bool)
-                user.addressBookAccess = obj.valueForKey("addressBookAccess") == nil ? false : obj.valueForKey("addressBookAccess")!.boolValue
-                user.status = obj.valueForKey("status") == nil ? 0 : obj.valueForKey("status") as! Int
+                // TODO: straighten out the data model and use mogenerator
+                user.id = obj.valueForKey("id") as? Int
+                user.name = obj.valueForKey("name") as? String
+                user.token = obj.valueForKey("token") as? String
+                user.completed = obj.valueForKey("completed")?.boolValue ?? false
+                user.addressBookAccess = obj.valueForKey("addressBookAccess")?.boolValue ?? false
+                user.status = obj.valueForKey("status") as? Int ?? 0
                 
                 getUserObject()
             }
@@ -236,64 +226,65 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
     }
 
     func prefetchUserData() {
-        if let user = self.user {
-            if user.token != nil {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () -> Void in
-                    // TODO: API strings
-                    UserModel.getCurrent(["user.name", "user.completed", "user.status", "user.image","user.settings"], closure: { 
-                        userObject in
-                        if let source :JSON = userObject.source {
+        if self.user.token != nil {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () -> Void in
+                // TODO: API strings
+                UserModel.getCurrent(["user.name", "user.completed", "user.status", "user.image","user.settings"], closure: { 
+                    userObject in
+                    if let source :JSON = userObject.source {
+                        
+                        if let settings :JSON = userObject.settings {
+                            // TODO: eliminate this duplication
+                            self.shouldShowAddJobTutorial = settings["tutorial"]["post_job"].boolValue
+                            self.updateUserObject("AddJobTutorial", with: self.shouldShowAddJobTutorial)
                             
-                            if let settings :JSON = userObject.settings {
-                                self.shouldShowAddJobTutorial = settings["tutorial"]["post_job"].boolValue
-                                self.updateUserObject("AddJobTutorial", with: self.shouldShowAddJobTutorial)
-                                
-                                self.shouldShowAskForReferralTutorial = settings["tutorial"]["create_job"].boolValue
-                                self.updateUserObject("AskForReferralTutorial", with: self.shouldShowAskForReferralTutorial)
-                                
-                                self.shouldShowNudjTutorial = settings["tutorial"]["open_job"].boolValue
-                                self.updateUserObject("NudjTutorial", with:  self.shouldShowNudjTutorial)
-                            }
-                            self.user!.updateFromJson(source)
-                            self.pushUserData()
-                        }else{
-                            loggingPrint(" user has no source object")
+                            self.shouldShowAskForReferralTutorial = settings["tutorial"]["create_job"].boolValue
+                            self.updateUserObject("AskForReferralTutorial", with: self.shouldShowAskForReferralTutorial)
+                            
+                            self.shouldShowNudjTutorial = settings["tutorial"]["open_job"].boolValue
+                            self.updateUserObject("NudjTutorial", with:  self.shouldShowNudjTutorial)
                         }
-                    })
+                        self.user.updateFromJson(source)
+                        self.pushUserData()
+                    }else{
+                        loggingPrint(" user has no source object")
+                    }
                 })
-            } else {
-                loggingPrint(" user has no token")
-            }
+            })
         } else {
-            loggingPrint("current user deleted")
+            loggingPrint(" user has no token")
         }
     }
 
     func pushUserData() {
-        pushUserData(self.user!)
-    }
-
-    func pushUserData(user: UserModel) {
-        if (self.user == nil) {
-            self.user = user
-        }
         // TODO: API strings
+        // TODO just make self.user a managed object. This duplication is nuts
         let moc = self.managedObjectContext!
-        let entity =  NSEntityDescription.entityForName("User", inManagedObjectContext: moc)
-        let userObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: moc)
-        
-        userObject.setValue(user.id == nil ? nil : NSInteger(user.id!), forKey: "id")
-        userObject.setValue(user.name, forKey: "name")
-        userObject.setValue(user.token, forKey: "token")
-        userObject.setValue(user.completed, forKey: "completed")
-        userObject.setValue(user.addressBookAccess, forKey: "addressBookAccess")
-        userObject.setValue(user.status == nil ? nil : NSInteger(user.status!), forKey: "status")
-        
-        self.updateUserObject("Completed", with: user.completed)
+        do {
+            let fetchRequest = NSFetchRequest(entityName:"User")
+            let results = try moc.executeFetchRequest(fetchRequest)
+            
+            var userObject = results.first as? NSManagedObject
+            if (userObject == nil) {
+                let entity =  NSEntityDescription.entityForName("User", inManagedObjectContext: moc)
+                userObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: moc)
+            }
+            guard let obj = userObject else {return}
+            obj.setValue(user.id, forKey: "id")
+            obj.setValue(user.name, forKey: "name")
+            obj.setValue(user.token, forKey: "token")
+            obj.setValue(user.completed, forKey: "completed")
+            obj.setValue(user.addressBookAccess, forKey: "addressBookAccess")
+            obj.setValue(user.status, forKey: "status")
+            
+            self.updateUserObject("Completed", with: user.completed)
+        }
+        catch let error as NSError {
+            loggingPrint("Could not fetch \(error), \(error.userInfo)")
+        }
 
         do {
             try moc.save()
-            self.user = user
         }
         catch let error as NSError {
             loggingPrint("Could not save \(error), \(error.userInfo)")
@@ -324,10 +315,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
         }
     }
 
-    func logout() {
+    func deleteAllData() {
         self.deleteUserData()
         self.deleteChatData()
-        self.deleteUserObject()        
+        self.deleteUserDefaults()        
         API.sharedInstance.token = nil
         self.api?.token = nil
     }
@@ -336,9 +327,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
         // TODO: API strings
         API.sharedInstance.request(.DELETE, path: "users/me", params: nil, closure: { 
             response in
-            loggingPrint("deleted account \(response)")
             if response["status"].boolValue {
-                self.logout()
+                self.deleteAllData()
             } else {
                 let localization = Localizations.Account.Delete.Error.self
                 let alert = UIAlertController(title: localization.Title, message: localization.Body, preferredStyle: .Alert)
@@ -362,18 +352,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
     
     func deleteChatData(){
         var chatRoom = self.chatInst!.listOfActiveChatRooms
-        for (id, _) in  chatRoom {
-            if let chat = chatRoom[id]{
+        for (key, _) in  chatRoom {
+            if let chat = chatRoom[key]{
                 chat.teminateSession()
-                chatRoom.removeValueForKey(id)
+                chatRoom.removeValueForKey(key)
                 chat.deleteStoredChats()
-                self.deleteNSuserDefaultContent(id)
+                self.deleteNSuserDefaultContentForKey(key)
             }
         }
     }
 
     func prepareApi() {
-        API.sharedInstance.token = self.user?.token
+        API.sharedInstance.token = self.user.token
         loggingPrint("Token: \(API.sharedInstance.token)")
         if (api == nil) {
             api = API()
@@ -537,139 +527,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
         // TODO: determine what to do
     }
     
-    //MARK: - NSUSERDEFAULT
-    // TODO: refactor Chat properties
-    
-    func saveNSUserDefaultContent(id:String, params:[String:Bool]){
+    func deleteNSuserDefaultContentForKey(key:String){
         let defaults = NSUserDefaults.standardUserDefaults()
-        if let outData = defaults.dataForKey(id) {
-            if let dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData) as? [String:Bool] {
-                var diction = dict
-                
-                if(params["isRead"] != nil){
-                    diction["isRead"] = params["isRead"]
-                }
-                
-                if(params["isNew"] != nil){
-                    diction["isNew"] = params["isNew"]
-                }
-                
-                let data = NSKeyedArchiver.archivedDataWithRootObject(diction)
-                defaults.setObject(data, forKey:id)
-                defaults.synchronize()
-            }
-        } else {
-            //TODO: Handle this
-        }
-    }
-    
-    func getNSUserDefaultContent(id:String, value:String) -> Int{
-        let defaults = NSUserDefaults.standardUserDefaults()
-        if let outData = defaults.dataForKey(id) {
-            if let dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData) as? [String:Bool] {
-                let diction = dict[value]
-                return Int(diction!)
-            }
-        }
-        // TODO: why 2?
-        return 2
-    }
-    
-    func deleteNSuserDefaultContent(id:String){
-        let defaults = NSUserDefaults.standardUserDefaults()
-        if let _ = defaults.dataForKey(id) {
-            defaults.setObject(nil, forKey:id)
-            defaults.synchronize()
-            loggingPrint("Deleted NSuserDefaultdata id:\(id)")
-        }
-    }
-    
-    //CURRENT USER
-    func createUserObject(){
-        let defaults = NSUserDefaults.standardUserDefaults()
-        
-        // TODO: magic strings
-        let dict = ["Completed":false, "AddJobTutorial":true, "NudjTutorial":true, "AskForReferralTutorial":true]
-        let data = NSKeyedArchiver.archivedDataWithRootObject(dict)
-        
-        defaults.setObject(data, forKey:"USER")
+        defaults.setObject(nil, forKey:key)
         defaults.synchronize()
-        
-        self.getUserObject()
     }
     
     func getUserObject(){
-        let defaults = NSUserDefaults.standardUserDefaults()
         // TODO: magic strings
-        if let outData = defaults.dataForKey("USER") {
-            if self.user == nil {
-                self.user = UserModel()
-            }
-            if let dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData) as? [String:Bool] {
-                self.user?.completed = dict["Completed"] ?? false
-                self.shouldShowNudjTutorial =  dict["NudjTutorial"] ?? true
-                self.shouldShowAskForReferralTutorial = dict["AskForReferralTutorial"] ?? true
-                self.shouldShowAddJobTutorial = dict["AddJobTutorial"] ?? true
-            }else{
-                loggingPrint("error in reading NSUserDefaults USER")
-            }
-        } else {
-            self.createUserObject()
-        }
+        let dict = readUserDefaults()
+        self.user.completed = dict["Completed"] ?? false
+        self.shouldShowNudjTutorial =  dict["NudjTutorial"] ?? true
+        self.shouldShowAskForReferralTutorial = dict["AskForReferralTutorial"] ?? true
+        self.shouldShowAddJobTutorial = dict["AddJobTutorial"] ?? true
     }
     
-    func updateUserObject(title:String, with value:Bool){
-        let defaults = NSUserDefaults.standardUserDefaults()
+    func updateUserObject(key:String, with value:Bool){
         // TODO: magic strings
-        if let outData = defaults.dataForKey("USER") {
-            if let dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData) as? [String:Bool] {
-                 if dict[title] != nil {
-                    var newContent = dict
-                    newContent[title] = value
-                    let data = NSKeyedArchiver.archivedDataWithRootObject(newContent)
-                    defaults.setObject(data, forKey:"USER")
-                    defaults.synchronize()
-                    loggingPrint("Updated \(title) with \(value)")
-                 }
-            } else {
-                // TODO: better error handling
-                loggingPrint("error in reading NSUserDefaults USER")
-            }
-        } else {
-            // Cannot put in USER as it doesnt exist so create one
-            self.createUserObject()
-            
-            // user has been created. now let's retry putting
-            updateUserObject(title, with: value)
-        }
+        var dict = readUserDefaults()
+        dict[key] = value
+        writeUserDefaults(dict)
     }
     
-    func deleteUserObject(){
-        // TODO: magic strings
+    func readUserDefaults() -> [String:Bool] {
         let defaults = NSUserDefaults.standardUserDefaults()
-        if let _ = defaults.dataForKey("USER") {
-            defaults.setObject(nil, forKey:"USER")
-            defaults.synchronize()
+        // TODO: magic strings
+        var dict = (defaults.objectForKey("USER")) as? [String:Bool]
+        if dict == nil {
+            dict = ["Completed":false, "AddJobTutorial":true, "NudjTutorial":true, "AskForReferralTutorial":true]
+            writeUserDefaults(dict!)
         }
+        return dict!
     }
     
-    func createTestCaseForUserinfo(){
-        // TODO: move to test suite
+    func writeUserDefaults(dict: [String:Bool]) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(dict, forKey:"USER")
+        defaults.synchronize()
+    }
+    
+    func deleteUserDefaults() {
         // TODO: magic strings
         let defaults = NSUserDefaults.standardUserDefaults()
-        if let outData = defaults.dataForKey("USER") {
-            if let dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData) as? [String:Bool] {
-                var dic = dict
-                dic["Completed"] = false
-                dic["NudjTutorial"] = false
-                dic["AskForReferralTutorial"] = false
-                dic["AddJobTutorial"] = false
-                let data = NSKeyedArchiver.archivedDataWithRootObject(dic)
-                defaults.setObject(data, forKey:"USER")
-                defaults.synchronize()
-                
-                getUserObject()
-            }
-        }
+        defaults.setObject(nil, forKey:"USER")
+        defaults.synchronize()
     }
 }
