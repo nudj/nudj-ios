@@ -95,15 +95,6 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
         if (data.action == "showStatusPicker") {
             cell.accessoryView = self.statusButton
             cell.accessoryView?.userInteractionEnabled = false
-        } else if(data.action == "linkedin") {
-            cell.imageView!.image = UIImage(named: "linkdin")
-            if (self.socialStatuses.count > 0){
-                let social = SocialStatus(connected: self.socialStatuses["linkedin"]!, and: data.action)
-                social.delegate = self
-                cell.accessoryView = social
-            } else {
-                cell.accessoryView = nil;
-            }
         } else if (data.action == "facebook") {
             cell.imageView!.image = UIImage(named: "facebook_icon")
             if (self.socialStatuses.count > 0) {
@@ -153,9 +144,7 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
         // TODO: this is too fragile use a flag or enum property
         isPolicy = (name == Localizations.Settings.Title.Privacy)
 
-        if(action == "linkedin") {
-            // nothing
-        } else if(action == "facebook") {
+        if(action == "facebook") {
             // nothing
         } else if(action == "goToLogin") {
             let localization = Localizations.Settings.Delete.self
