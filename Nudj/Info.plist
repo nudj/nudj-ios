@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleDisplayName</key>
+	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -39,10 +41,10 @@
 	<string>LaunchScreen</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-	  <string>fbapi</string>
-	  <string>fb-messenger-api</string>
-	  <string>fbauth2</string>
-	  <string>fbshareextension</string>
+		<string>fbapi</string>
+		<string>fb-messenger-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
 	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
@@ -70,7 +72,7 @@
 				<false/>
 			</dict>
 		</dict>
-	</dict>	
+	</dict>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
