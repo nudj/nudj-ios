@@ -10,6 +10,9 @@ import SwiftyJSON
 
 class SettingsController: UIViewController, UITableViewDataSource, UITableViewDelegate, SocialStatusDelegate {
 
+    @IBOutlet weak var versionNumberLabel: UILabel!
+    @IBOutlet weak var table: UITableView!
+    
     var statusButton = StatusButton()
     var socialStatuses = [String:Bool]() // TODO: use Enum not String
     
@@ -42,12 +45,12 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
         ]
     ];
 
-    @IBOutlet weak var table: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         table.registerNib(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
+        versionNumberLabel.text = fullVersionNumber()
         self.socialhander = SocialHandlerModel()
     }
 
@@ -117,20 +120,20 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
 
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         // TODO: magic numbers
-        return section == structure.count - 1 ? 0.01: 0
+        return 0.0
     }
 
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         // TODO: magic numbers
-        return section == 0 ? 0.01: 0
+        return 0.0
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         // TODO: magic numbers        
         if (indexPath.section == 3) {
-            return 88;
+            return 88.0
         }else{
-            return 44;
+            return 44.0;
         }
     }
     
