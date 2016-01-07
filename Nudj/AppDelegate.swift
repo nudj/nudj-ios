@@ -53,19 +53,14 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
         fetchUserData()
         prepareApi();
         
-        if (user.id != nil && user.completed == false) {
-            // User did not complete registration
-            self.pushViewControllerWithId("createProfile")
-        } else {
-            // Valid User, Proceed
-            prefetchUserData()
-            self.changeRootViewController("mainNavigation")
+        prefetchUserData()
+        self.changeRootViewController("mainNavigation")
             
-            // we only register for notifications if we have a valid user
-            if( user.completed) {
-                AppDelegate.registerForRemoteNotifications()            
-            }
-        }
+		// we only register for notifications if we have a valid user
+		if( user.completed) {
+			AppDelegate.registerForRemoteNotifications()            
+		}
+        
         if (contacts.isAuthorized()) {
             self.syncContacts()
         }
