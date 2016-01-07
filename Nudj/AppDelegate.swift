@@ -90,7 +90,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
         //Handle internet connection
         self.beginInternetConnectionCheck()
         
-        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        return true
     }
 
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
