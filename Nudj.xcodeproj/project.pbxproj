@@ -250,6 +250,7 @@
 		A9F3337E1B45532F00F0D17B /* success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3337D1B45532F00F0D17B /* success@2x.png */; };
 		A9F333811B45972100F0D17B /* save@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3337F1B45972100F0D17B /* save@2x.png */; };
 		A9F333821B45972100F0D17B /* saved@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333801B45972100F0D17B /* saved@2x.png */; };
+		C83FB6BC1C3EB5D0004ACE3E /* VersionNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83FB6BB1C3EB5D0004ACE3E /* VersionNumber.swift */; };
 		C84E00F81C191FC60065F220 /* Localizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84E00F71C191FC60065F220 /* Localizations.swift */; };
 		C89325A61C08BEC10069FCFD /* LoggingPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89325A21C08BEC10069FCFD /* LoggingPrint.swift */; };
 		C89325AA1C08CCE00069FCFD /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89325A91C08CCE00069FCFD /* AssetsLibrary.framework */; };
@@ -775,6 +776,7 @@
 		A9F3337D1B45532F00F0D17B /* success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "success@2x.png"; sourceTree = "<group>"; };
 		A9F3337F1B45972100F0D17B /* save@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "save@2x.png"; sourceTree = "<group>"; };
 		A9F333801B45972100F0D17B /* saved@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "saved@2x.png"; sourceTree = "<group>"; };
+		C83FB6BB1C3EB5D0004ACE3E /* VersionNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionNumber.swift; sourceTree = "<group>"; };
 		C84E00F71C191FC60065F220 /* Localizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizations.swift; sourceTree = "<group>"; };
 		C89325A21C08BEC10069FCFD /* LoggingPrint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggingPrint.swift; sourceTree = "<group>"; };
 		C89325A91C08CCE00069FCFD /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -2239,6 +2241,7 @@
 				A9ACE1C11B68F401003BD5F2 /* TermsViewController.swift */,
 				A9ACE1C31B68FC0F003BD5F2 /* SendFeedBackViewController.swift */,
 				A9ACE1CB1B69107A003BD5F2 /* SavedPostedJobs.swift */,
+				C83FB6BB1C3EB5D0004ACE3E /* VersionNumber.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -2711,6 +2714,7 @@
 				EB9F71E11B0E0200000C2D9F /* MainTabItem.swift in Sources */,
 				A996501B1B387CC800D5A8E9 /* XMPPRosterCoreDataStorage.m in Sources */,
 				A99650711B387CC800D5A8E9 /* XMPPStringPrep.m in Sources */,
+				C83FB6BC1C3EB5D0004ACE3E /* VersionNumber.swift in Sources */,
 				A99650571B387CC800D5A8E9 /* XMPPMessageArchiving_Message_CoreDataObject.m in Sources */,
 				EBF17A261B4D76C600C67657 /* JobModel.swift in Sources */,
 				A9964FEA1B387CC800D5A8E9 /* JSQMessage.m in Sources */,

@@ -221,6 +221,19 @@ public struct Localizations {
         }
     }
 
+    public struct Version {
+
+    
+        public struct Full {
+
+                    /// Base translation: %@ v%@ (build %@)
+            public static func Format(value1 : String, _ value2 : String, _ value3 : String) -> String {
+                return String(format: NSLocalizedString("version.full.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1, value2, value3)
+            }
+
+        }
+    }
+
     public struct Phone {
 
     
