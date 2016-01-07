@@ -237,7 +237,7 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, Tutori
             let alert = UIAlertController(title: Localizations.Jobs.Interested.Alert.Title, message: Localizations.Jobs.Interested.Alert.Body, preferredStyle: .Alert)
             let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
             alert.addAction(cancelAction)
-            let sendAction = UIAlertAction(title: Localizations.General.Button.Send, style: .Cancel, handler: postRequest)
+            let sendAction = UIAlertAction(title: Localizations.General.Button.Send, style: .Default, handler: postRequest)
             alert.addAction(sendAction)
             alert.preferredAction = sendAction
             self.presentViewController(alert, animated: true, completion: nil)
