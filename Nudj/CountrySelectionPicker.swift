@@ -98,8 +98,9 @@ class CountrySelectionPicker: UIView, UIPickerViewDataSource, UIPickerViewDelega
     
     func requestCountries() {
         // TODO: API strings
-        // TODO: should be a method on the API class - but it doesn't share the base URL
-        Alamofire.request(API.Method.GET, "https://api.nudj.co/countries").responseJSON{
+        // TODO: should be a method on the API class
+        let api = API()
+        Alamofire.request(API.Method.GET, api.server.URLString + "countries").responseJSON{
             response in
             switch response.result {
             case .Success(let value):

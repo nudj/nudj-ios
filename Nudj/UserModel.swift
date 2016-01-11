@@ -24,7 +24,7 @@ class UserModel: CustomStringConvertible {
 
     var skills:[String]?
     // TODO: API strings
-    var image:[String:String] = ["profile": "https://api.nudj.co/app/placeholder/user.png"]
+    var image:[String:String]
     var isDefaultImage = true
     var base64Image:String?
     
@@ -46,6 +46,8 @@ class UserModel: CustomStringConvertible {
         self.id = id;
         self.name = name;
         self.token = token;
+        let api = API()
+        self.image = ["profile": api.server.URLString + "app/placeholder/user.png"]
     }
 
     static func getLocal(closure: ((UserModel?) -> ())) {

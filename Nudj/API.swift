@@ -16,8 +16,8 @@ class API {
 
     // Production
     // TODO: API strings
-    let baseURL = "https://api.nudj.co/api/v1/"
-    var token:String? = nil
+    var baseURL: String { return server.URLString + "api/v1" }
+    var token: String? = nil
 
     // TODO: remove this singleton (NB it isn't even implemented correctly)
     static var sharedInstance = API();
