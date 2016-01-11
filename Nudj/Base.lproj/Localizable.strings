@@ -136,4 +136,4 @@
 "verification.code.error" = "There was an error in code verification, please try again.";
 
 // Version
-"version.full.format" = "%@ v%@ (build %@)";
+"version.full.format" = "%@ v%@ (build %@) %@";

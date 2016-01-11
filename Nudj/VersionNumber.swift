@@ -12,6 +12,8 @@ func fullVersionNumber() -> String {
     let appName = (bundle.objectForInfoDictionaryKey("CFBundleDisplayName") ?? bundle.objectForInfoDictionaryKey("CFBundleName")) as! String
     let shortVersion = bundle.objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
     let build = bundle.objectForInfoDictionaryKey("CFBundleVersion") as! String
-    let fullVersion = Localizations.Version.Full.Format(appName, shortVersion, build)
+    let api = API()
+    let serverName = api.server.description
+    let fullVersion = Localizations.Version.Full.Format(appName, shortVersion, build, serverName)
     return fullVersion
 }
