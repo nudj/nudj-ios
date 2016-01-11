@@ -254,6 +254,313 @@
 		C84E00F81C191FC60065F220 /* Localizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84E00F71C191FC60065F220 /* Localizations.swift */; };
 		C86F844B1C44257800C23332 /* API+Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F844A1C44257800C23332 /* API+Server.swift */; };
 		C86F844D1C44273A00C23332 /* ProductionServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F844C1C44273A00C23332 /* ProductionServer.swift */; };
+		C86F84521C444DB800C23332 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95798241B46965A006E826E /* NotificationViewController.swift */; };
+		C86F84531C444DB800C23332 /* XMPPRoomOccupantCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EFE1B387CC800D5A8E9 /* XMPPRoomOccupantCoreDataStorageObject.m */; };
+		C86F84541C444DB800C23332 /* InitiateChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A7C4D51B8364000051B1E5 /* InitiateChatViewController.swift */; };
+		C86F84551C444DB800C23332 /* XMPPRoomMessageCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EFC1B387CC800D5A8E9 /* XMPPRoomMessageCoreDataStorageObject.m */; };
+		C86F84561C444DB800C23332 /* XMPPvCardTempEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F2E1B387CC800D5A8E9 /* XMPPvCardTempEmail.m */; };
+		C86F84571C444DB800C23332 /* JSQMessagesMediaPlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E7D1B387CC800D5A8E9 /* JSQMessagesMediaPlaceholderView.m */; };
+		C86F84581C444DB800C23332 /* XMPPvCardTempAdr.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F281B387CC800D5A8E9 /* XMPPvCardTempAdr.m */; };
+		C86F84591C444DB800C23332 /* XMPPRoomOccupantHybridMemoryStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F081B387CC800D5A8E9 /* XMPPRoomOccupantHybridMemoryStorageObject.m */; };
+		C86F845A1C444DB800C23332 /* JSQMessagesAvatarImage.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E5D1B387CC800D5A8E9 /* JSQMessagesAvatarImage.m */; };
+		C86F845B1C444DB800C23332 /* NSXMLElement+XEP_0203.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F8B1B387CC800D5A8E9 /* NSXMLElement+XEP_0203.m */; };
+		C86F845C1C444DB800C23332 /* JSQVideoMediaItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E651B387CC800D5A8E9 /* JSQVideoMediaItem.m */; };
+		C86F845D1C444DB800C23332 /* ChatModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A996508F1B39776A00D5A8E9 /* ChatModels.swift */; };
+		C86F845E1C444DB800C23332 /* JSQMessagesMediaViewBubbleImageMasker.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E441B387CC700D5A8E9 /* JSQMessagesMediaViewBubbleImageMasker.m */; };
+		C86F845F1C444DB800C23332 /* XMPPResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F391B387CC800D5A8E9 /* XMPPResultSet.m */; };
+		C86F84601C444DB800C23332 /* XMPPPubSub.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F3E1B387CC800D5A8E9 /* XMPPPubSub.m */; };
+		C86F84611C444DB800C23332 /* GenericProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB338411AA0C365000CAD88 /* GenericProfileViewController.swift */; };
+		C86F84621C444DB800C23332 /* XMPPLastActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EF11B387CC800D5A8E9 /* XMPPLastActivity.m */; };
+		C86F84631C444DB800C23332 /* XMPPAttentionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F911B387CC800D5A8E9 /* XMPPAttentionModule.m */; };
+		C86F84641C444DB800C23332 /* XMPPvCard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9964F1B1B387CC800D5A8E9 /* XMPPvCard.xcdatamodeld */; };
+		C86F84651C444DB800C23332 /* XMPPGoogleSharedStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EC41B387CC800D5A8E9 /* XMPPGoogleSharedStatus.m */; };
+		C86F84661C444DB800C23332 /* SocialStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9191EA51B6A402E000F9168 /* SocialStatus.swift */; };
+		C86F84671C444DB800C23332 /* XMPPPing.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F831B387CC800D5A8E9 /* XMPPPing.m */; };
+		C86F84681C444DB800C23332 /* XMPPUserCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964ED51B387CC800D5A8E9 /* XMPPUserCoreDataStorageObject.m */; };
+		C86F84691C444DB800C23332 /* XMPPResourceMemoryStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964ED81B387CC800D5A8E9 /* XMPPResourceMemoryStorageObject.m */; };
+		C86F846A1C444DB800C23332 /* JSQMessagesCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E4C1B387CC700D5A8E9 /* JSQMessagesCollectionViewFlowLayout.m */; };
+		C86F846B1C444DB800C23332 /* XMPPResourceCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964ED01B387CC800D5A8E9 /* XMPPResourceCoreDataStorageObject.m */; };
+		C86F846C1C444DB800C23332 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB338321A9F5FF9000CAD88 /* LoginController.swift */; };
+		C86F846D1C444DB800C23332 /* XMPPPresence+XEP_0172.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F761B387CC800D5A8E9 /* XMPPPresence+XEP_0172.m */; };
+		C86F846E1C444DB800C23332 /* XMPPIQ.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EAC1B387CC800D5A8E9 /* XMPPIQ.m */; };
+		C86F846F1C444DB800C23332 /* XMPPXFacebookPlatformAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E9A1B387CC800D5A8E9 /* XMPPXFacebookPlatformAuthentication.m */; };
+		C86F84701C444DB800C23332 /* CreateProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCE12551B2B1D2600C3928C /* CreateProfileController.swift */; };
+		C86F84711C444DB800C23332 /* XMPPCapabilities.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F621B387CC800D5A8E9 /* XMPPCapabilities.m */; };
+		C86F84721C444DB800C23332 /* KSToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF1861C1B21DACA00D8D80D /* KSToken.swift */; };
+		C86F84731C444DB800C23332 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6F22B91AAF706A007FF1B8 /* AsyncImage.swift */; };
+		C86F84741C444DB800C23332 /* JSQLocationMediaItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E531B387CC700D5A8E9 /* JSQLocationMediaItem.m */; };
+		C86F84751C444DB800C23332 /* XMPPvCardAvatarCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F1E1B387CC800D5A8E9 /* XMPPvCardAvatarCoreDataStorageObject.m */; };
+		C86F84761C444DB800C23332 /* ContactsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB000F7E1AB71D6600E4D385 /* ContactsController.swift */; };
+		C86F84771C444DB800C23332 /* JSQMessagesLoadEarlierHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E7A1B387CC800D5A8E9 /* JSQMessagesLoadEarlierHeaderView.m */; };
+		C86F84781C444DB800C23332 /* CPAnimationProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F333241B41759A00F0D17B /* CPAnimationProgram.m */; };
+		C86F84791C444DB800C23332 /* XMPPvCardTempModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F321B387CC800D5A8E9 /* XMPPvCardTempModule.m */; };
+		C86F847A1C444DB800C23332 /* XMPPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EB11B387CC800D5A8E9 /* XMPPMessage.m */; };
+		C86F847B1C444DB800C23332 /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FB31B387CC800D5A8E9 /* DDAbstractDatabaseLogger.m */; };
+		C86F847C1C444DB800C23332 /* XMPPvCardTempAdrTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F2A1B387CC800D5A8E9 /* XMPPvCardTempAdrTypes.m */; };
+		C86F847D1C444DB800C23332 /* XMPPvCardTempCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F241B387CC800D5A8E9 /* XMPPvCardTempCoreDataStorageObject.m */; };
+		C86F847E1C444DB800C23332 /* XMPPvCardTempBase.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F2C1B387CC800D5A8E9 /* XMPPvCardTempBase.m */; };
+		C86F847F1C444DB800C23332 /* UIImage+JSQMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E351B387CC700D5A8E9 /* UIImage+JSQMessages.m */; };
+		C86F84801C444DB800C23332 /* XMPPMessage+XEP0045.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F111B387CC800D5A8E9 /* XMPPMessage+XEP0045.m */; };
+		C86F84811C444DB800C23332 /* XMPPvCardTempTel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F341B387CC800D5A8E9 /* XMPPvCardTempTel.m */; };
+		C86F84821C444DB800C23332 /* XMPPAnonymousAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E8B1B387CC800D5A8E9 /* XMPPAnonymousAuthentication.m */; };
+		C86F84831C444DB800C23332 /* XMPPIQ+JabberRPCResonse.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EEA1B387CC800D5A8E9 /* XMPPIQ+JabberRPCResonse.m */; };
+		C86F84841C444DB800C23332 /* XMPPCapabilities.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = A9964F5A1B387CC800D5A8E9 /* XMPPCapabilities.xcdatamodel */; };
+		C86F84851C444DB800C23332 /* JSQMessagesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E6C1B387CC800D5A8E9 /* JSQMessagesCollectionViewCell.m */; };
+		C86F84861C444DB800C23332 /* ContactsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB35BBA31AB7288000842E1F /* ContactsCell.swift */; };
+		C86F84871C444DB800C23332 /* SavedPostedJobs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACE1CB1B69107A003BD5F2 /* SavedPostedJobs.swift */; };
+		C86F84881C444DB800C23332 /* VerifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB3383F1AA0ADB5000CAD88 /* VerifyViewController.swift */; };
+		C86F84891C444DB800C23332 /* XMPPGroupCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964ECE1B387CC800D5A8E9 /* XMPPGroupCoreDataStorageObject.m */; };
+		C86F848A1C444DB800C23332 /* XMPPAutoTime.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F861B387CC800D5A8E9 /* XMPPAutoTime.m */; };
+		C86F848B1C444DB800C23332 /* XMPPvCardTemp.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F261B387CC800D5A8E9 /* XMPPvCardTemp.m */; };
+		C86F848C1C444DB800C23332 /* CountrySelectionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9733ECD1B781F49008D6115 /* CountrySelectionPicker.swift */; };
+		C86F848D1C444DB800C23332 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF17A271B4E641400C67657 /* ContactModel.swift */; };
+		C86F848E1C444DB800C23332 /* XMPPSoftwareVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F511B387CC800D5A8E9 /* XMPPSoftwareVersion.m */; };
+		C86F848F1C444DB800C23332 /* UIColor+JSQMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E311B387CC700D5A8E9 /* UIColor+JSQMessages.m */; };
+		C86F84901C444DB800C23332 /* ContextFilterLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FBE1B387CC800D5A8E9 /* ContextFilterLogFormatter.m */; };
+		C86F84911C444DB800C23332 /* NoContentPlaceHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A947CC981B7119B500C9518E /* NoContentPlaceHolder.swift */; };
+		C86F84921C444DB800C23332 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0926CF1A8DE4CB00E1D958 /* AppDelegate.swift */; };
+		C86F84931C444DB800C23332 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACE1C11B68F401003BD5F2 /* TermsViewController.swift */; };
+		C86F84941C444DB800C23332 /* XMPPIQ+JabberRPC.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EE81B387CC800D5A8E9 /* XMPPIQ+JabberRPC.m */; };
+		C86F84951C444DB800C23332 /* GCDMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FA41B387CC800D5A8E9 /* GCDMulticastDelegate.m */; };
+		C86F84961C444DB800C23332 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB866BDE1B53EFAE00E203CA /* NotificationCell.swift */; };
+		C86F84971C444DB800C23332 /* JSQMessagesLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E781B387CC800D5A8E9 /* JSQMessagesLabel.m */; };
+		C86F84981C444DB800C23332 /* MainFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0926D11A8DE4CB00E1D958 /* MainFeed.swift */; };
+		C86F84991C444DB800C23332 /* XMPPProcessOne.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EC71B387CC800D5A8E9 /* XMPPProcessOne.m */; };
+		C86F849A1C444DB800C23332 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FB01B387CC800D5A8E9 /* GCDAsyncSocket.m */; };
+		C86F849B1C444DB800C23332 /* RBResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6F22BD1AB045C0007FF1B8 /* RBResizer.swift */; };
+		C86F849C1C444DB800C23332 /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FC81B387CC800D5A8E9 /* DDXMLDocument.m */; };
+		C86F849D1C444DB800C23332 /* UIDevice+JSQMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E331B387CC700D5A8E9 /* UIDevice+JSQMessages.m */; };
+		C86F849E1C444DB800C23332 /* XMPPRoom.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9964EF71B387CC800D5A8E9 /* XMPPRoom.xcdatamodeld */; };
+		C86F849F1C444DB800C23332 /* NotificationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB866BD81B53EC9700E203CA /* NotificationButton.swift */; };
+		C86F84A01C444DB800C23332 /* XMPPStream.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EB91B387CC800D5A8E9 /* XMPPStream.m */; };
+		C86F84A11C444DB800C23332 /* XMPPMessage+XEP_0172.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F741B387CC800D5A8E9 /* XMPPMessage+XEP_0172.m */; };
+		C86F84A21C444DB800C23332 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB3382F1A9F5A44000CAD88 /* UserModel.swift */; };
+		C86F84A31C444DB800C23332 /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9F71DE1B0E0060000C2D9F /* MainTabBar.swift */; };
+		C86F84A41C444DB800C23332 /* ChatRoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A984E2ED1B67ACA9009F318E /* ChatRoomModel.swift */; };
+		C86F84A51C444DB800C23332 /* XMPPRoomCoreDataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EFA1B387CC800D5A8E9 /* XMPPRoomCoreDataStorage.m */; };
+		C86F84A61C444DB800C23332 /* JSQMessagesCollectionViewFlowLayoutInvalidationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E4E1B387CC700D5A8E9 /* JSQMessagesCollectionViewFlowLayoutInvalidationContext.m */; };
+		C86F84A71C444DB800C23332 /* JSQMessagesComposerTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E741B387CC800D5A8E9 /* JSQMessagesComposerTextView.m */; };
+		C86F84A81C444DB800C23332 /* XMPPRoomOccupantMemoryStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F0F1B387CC800D5A8E9 /* XMPPRoomOccupantMemoryStorageObject.m */; };
+		C86F84A91C444DB800C23332 /* NSString+JSQMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E2F1B387CC700D5A8E9 /* NSString+JSQMessages.m */; };
+		C86F84AA1C444DB800C23332 /* JSQMessagesCollectionViewCellIncoming.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E6E1B387CC800D5A8E9 /* JSQMessagesCollectionViewCellIncoming.m */; };
+		C86F84AB1C444DB800C23332 /* NSXMLElement+XMPP.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EA51B387CC800D5A8E9 /* NSXMLElement+XMPP.m */; };
+		C86F84AC1C444DB800C23332 /* XMPPMessageArchivingCoreDataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F6C1B387CC800D5A8E9 /* XMPPMessageArchivingCoreDataStorage.m */; };
+		C86F84AD1C444DB800C23332 /* XMPPRoomMessageMemoryStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F0D1B387CC800D5A8E9 /* XMPPRoomMessageMemoryStorageObject.m */; };
+		C86F84AE1C444DB800C23332 /* ChatStructModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC313B1B72357A00356B1F /* ChatStructModel.swift */; };
+		C86F84AF1C444DB800C23332 /* JSQMessagesToolbarButtonFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E481B387CC700D5A8E9 /* JSQMessagesToolbarButtonFactory.m */; };
+		C86F84B01C444DB800C23332 /* XMPPAutoPing.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F811B387CC800D5A8E9 /* XMPPAutoPing.m */; };
+		C86F84B11C444DB800C23332 /* XMPPModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EB31B387CC800D5A8E9 /* XMPPModule.m */; };
+		C86F84B21C444DB800C23332 /* DispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FC01B387CC800D5A8E9 /* DispatchQueueLogFormatter.m */; };
+		C86F84B31C444DB800C23332 /* JSQMessagesCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E6A1B387CC800D5A8E9 /* JSQMessagesCollectionView.m */; };
+		C86F84B41C444DB800C23332 /* JobDetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F3332B1B41997600F0D17B /* JobDetailedViewController.swift */; };
+		C86F84B51C444DB800C23332 /* XMPPRosterMemoryStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EDA1B387CC800D5A8E9 /* XMPPRosterMemoryStorage.m */; };
+		C86F84B61C444DB800C23332 /* XMPPMessageArchiving.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F6E1B387CC800D5A8E9 /* XMPPMessageArchiving.m */; };
+		C86F84B71C444DB800C23332 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDD28CD1ACD8ADA00956995 /* SettingsController.swift */; };
+		C86F84B81C444DB800C23332 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB04F6221AAD89AF002F2677 /* Contacts.swift */; };
+		C86F84B91C444DB800C23332 /* XMPPMessageArchiving_Contact_CoreDataObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F681B387CC800D5A8E9 /* XMPPMessageArchiving_Contact_CoreDataObject.m */; };
+		C86F84BA1C444DB800C23332 /* XMPPElement.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EA91B387CC800D5A8E9 /* XMPPElement.m */; };
+		C86F84BB1C444DB800C23332 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FB51B387CC800D5A8E9 /* DDASLLogger.m */; };
+		C86F84BC1C444DB800C23332 /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FC51B387CC800D5A8E9 /* NSString+DDXML.m */; };
+		C86F84BD1C444DB800C23332 /* NSXMLElement+XEP_0335.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F9F1B387CC800D5A8E9 /* NSXMLElement+XEP_0335.m */; };
+		C86F84BE1C444DB800C23332 /* JSQSystemSoundPlayer+JSQMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E2B1B387CC700D5A8E9 /* JSQSystemSoundPlayer+JSQMessages.m */; };
+		C86F84BF1C444DB800C23332 /* KSTokenField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF1861D1B21DACA00D8D80D /* KSTokenField.swift */; };
+		C86F84C01C444DB800C23332 /* TokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE5C3111B25811400CFF7E9 /* TokenView.swift */; };
+		C86F84C11C444DB800C23332 /* XMPPIQ+LastActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EEF1B387CC800D5A8E9 /* XMPPIQ+LastActivity.m */; };
+		C86F84C21C444DB800C23332 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF17A231B4D538800C67657 /* Common.swift */; };
+		C86F84C31C444DB800C23332 /* XMPPDateTimeProfiles.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F4B1B387CC800D5A8E9 /* XMPPDateTimeProfiles.m */; };
+		C86F84C41C444DB800C23332 /* XMPPRoomHybridStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F031B387CC800D5A8E9 /* XMPPRoomHybridStorage.m */; };
+		C86F84C51C444DB800C23332 /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FCC1B387CC800D5A8E9 /* DDXMLNode.m */; };
+		C86F84C61C444DB800C23332 /* FilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9977C891B6158960005A23C /* FilterModel.swift */; };
+		C86F84C71C444DB800C23332 /* JSQPhotoMediaItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E631B387CC800D5A8E9 /* JSQPhotoMediaItem.m */; };
+		C86F84C81C444DB800C23332 /* XMPPvCardCoreDataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F201B387CC800D5A8E9 /* XMPPvCardCoreDataStorage.m */; };
+		C86F84C91C444DB800C23332 /* XMPPPlainAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E971B387CC800D5A8E9 /* XMPPPlainAuthentication.m */; };
+		C86F84CA1C444DB800C23332 /* JSQMediaItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E551B387CC700D5A8E9 /* JSQMediaItem.m */; };
+		C86F84CB1C444DB800C23332 /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FCA1B387CC800D5A8E9 /* DDXMLElement.m */; };
+		C86F84CC1C444DB800C23332 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB3383B1A9F73D4000CAD88 /* API.swift */; };
+		C86F84CD1C444DB800C23332 /* NSXMLElement+XEP_0059.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F371B387CC800D5A8E9 /* NSXMLElement+XEP_0059.m */; };
+		C86F84CE1C444DB800C23332 /* JSQMessagesAvatarImageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E401B387CC700D5A8E9 /* JSQMessagesAvatarImageFactory.m */; };
+		C86F84CF1C444DB800C23332 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9953F9C1B997A9700084952 /* TutorialView.swift */; };
+		C86F84D01C444DB800C23332 /* ChatListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC9D1B3853F900EC9140 /* ChatListTableViewCell.swift */; };
+		C86F84D11C444DB800C23332 /* SettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA9B441AF0D2280027A2A2 /* SettingsItem.swift */; };
+		C86F84D21C444DB800C23332 /* JSQMessagesTypingIndicatorFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E821B387CC800D5A8E9 /* JSQMessagesTypingIndicatorFooterView.m */; };
+		C86F84D31C444DB800C23332 /* SendFeedBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACE1C31B68FC0F003BD5F2 /* SendFeedBackViewController.swift */; };
+		C86F84D41C444DB800C23332 /* XMPPJID.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EAE1B387CC800D5A8E9 /* XMPPJID.m */; };
+		C86F84D51C444DB800C23332 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB338451AA0EA46000CAD88 /* BaseController.swift */; };
+		C86F84D61C444DB800C23332 /* DataProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBF42581AB1E55F0001E8B6 /* DataProviderProtocol.swift */; };
+		C86F84D71C444DB800C23332 /* XMPPCoreDataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EC01B387CC800D5A8E9 /* XMPPCoreDataStorage.m */; };
+		C86F84D81C444DB800C23332 /* XMPPJabberRPCModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EEC1B387CC800D5A8E9 /* XMPPJabberRPCModule.m */; };
+		C86F84D91C444DB800C23332 /* JSQMessagesInputToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E761B387CC800D5A8E9 /* JSQMessagesInputToolbar.m */; };
+		C86F84DA1C444DB800C23332 /* XMPPMessageDeliveryReceipts.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F7B1B387CC800D5A8E9 /* XMPPMessageDeliveryReceipts.m */; };
+		C86F84DB1C444DB800C23332 /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC9B1B38447700EC9140 /* ChatListViewController.swift */; };
+		C86F84DC1C444DB800C23332 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FBB1B387CC800D5A8E9 /* DDTTYLogger.m */; };
+		C86F84DD1C444DB800C23332 /* NSXMLElement+XEP_0297.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F961B387CC800D5A8E9 /* NSXMLElement+XEP_0297.m */; };
+		C86F84DE1C444DB800C23332 /* XMPPMessage+XEP_0333.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F9C1B387CC800D5A8E9 /* XMPPMessage+XEP_0333.m */; };
+		C86F84DF1C444DB800C23332 /* CPAnimationStep.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F333261B41759A00F0D17B /* CPAnimationStep.m */; };
+		C86F84E01C444DB800C23332 /* KSUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF1861F1B21DACA00D8D80D /* KSUtils.swift */; };
+		C86F84E11C444DB800C23332 /* XMPPCapsResourceCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F601B387CC800D5A8E9 /* XMPPCapsResourceCoreDataStorageObject.m */; };
+		C86F84E21C444DB800C23332 /* VerifyCodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF17A211B4C128100C67657 /* VerifyCodeTextField.swift */; };
+		C86F84E31C444DB800C23332 /* UIView+JSQMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E371B387CC700D5A8E9 /* UIView+JSQMessages.m */; };
+		C86F84E41C444DB800C23332 /* XMPPXOAuth2Google.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E9D1B387CC800D5A8E9 /* XMPPXOAuth2Google.m */; };
+		C86F84E51C444DB800C23332 /* JSQMessagesBubbleImageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E421B387CC700D5A8E9 /* JSQMessagesBubbleImageFactory.m */; };
+		C86F84E61C444DB800C23332 /* NZLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A903BAED1B581C4F00D69863 /* NZLabel.m */; };
+		C86F84E71C444DB800C23332 /* TURNSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F411B387CC800D5A8E9 /* TURNSocket.m */; };
+		C86F84E81C444DB800C23332 /* JSQMessagesToolbarContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E7F1B387CC800D5A8E9 /* JSQMessagesToolbarContentView.m */; };
+		C86F84E91C444DB800C23332 /* XMPPReconnect.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964ECA1B387CC800D5A8E9 /* XMPPReconnect.m */; };
+		C86F84EA1C444DB800C23332 /* JSQMessagesBubbleImage.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E5F1B387CC800D5A8E9 /* JSQMessagesBubbleImage.m */; };
+		C86F84EB1C444DB800C23332 /* XMPPDeprecatedPlainAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E911B387CC800D5A8E9 /* XMPPDeprecatedPlainAuthentication.m */; };
+		C86F84EC1C444DB800C23332 /* MainTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9F71E01B0E0200000C2D9F /* MainTabItem.swift */; };
+		C86F84ED1C444DB800C23332 /* XMPPRosterCoreDataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964ED31B387CC800D5A8E9 /* XMPPRosterCoreDataStorage.m */; };
+		C86F84EE1C444DB800C23332 /* XMPPStringPrep.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FAC1B387CC800D5A8E9 /* XMPPStringPrep.m */; };
+		C86F84EF1C444DB800C23332 /* VersionNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83FB6BB1C3EB5D0004ACE3E /* VersionNumber.swift */; };
+		C86F84F01C444DB800C23332 /* XMPPMessageArchiving_Message_CoreDataObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F6A1B387CC800D5A8E9 /* XMPPMessageArchiving_Message_CoreDataObject.m */; };
+		C86F84F11C444DB800C23332 /* JobModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF17A251B4D76C600C67657 /* JobModel.swift */; };
+		C86F84F21C444DB800C23332 /* JSQMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E571B387CC800D5A8E9 /* JSQMessage.m */; };
+		C86F84F31C444DB800C23332 /* StatusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB313D2D1AAF37FB00F008B8 /* StatusButton.swift */; };
+		C86F84F41C444DB800C23332 /* XMPPCapabilitiesCoreDataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F5C1B387CC800D5A8E9 /* XMPPCapabilitiesCoreDataStorage.m */; };
+		C86F84F51C444DB800C23332 /* XMPPIDTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FA81B387CC800D5A8E9 /* XMPPIDTracker.m */; };
+		C86F84F61C444DB800C23332 /* XMPPvCardTempLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F301B387CC800D5A8E9 /* XMPPvCardTempLabel.m */; };
+		C86F84F71C444DB800C23332 /* XMPPParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EB51B387CC800D5A8E9 /* XMPPParser.m */; };
+		C86F84F81C444DB800C23332 /* NudgeData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EBB337F61A9F53CA000CAD88 /* NudgeData.xcdatamodeld */; };
+		C86F84F91C444DB800C23332 /* NSNumber+XMPP.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EA31B387CC800D5A8E9 /* NSNumber+XMPP.m */; };
+		C86F84FA1C444DB800C23332 /* JSQMessagesKeyboardController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E3A1B387CC700D5A8E9 /* JSQMessagesKeyboardController.m */; };
+		C86F84FB1C444DB800C23332 /* XMPPMessageArchiving.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9964F651B387CC800D5A8E9 /* XMPPMessageArchiving.xcdatamodeld */; };
+		C86F84FC1C444DB800C23332 /* XMPPPrivacy.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EF41B387CC800D5A8E9 /* XMPPPrivacy.m */; };
+		C86F84FD1C444DB800C23332 /* XMPPTransports.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F541B387CC800D5A8E9 /* XMPPTransports.m */; };
+		C86F84FE1C444DB800C23332 /* NSData+XMPP.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EA11B387CC800D5A8E9 /* NSData+XMPP.m */; };
+		C86F84FF1C444DB800C23332 /* JSQSystemSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E861B387CC800D5A8E9 /* JSQSystemSoundPlayer.m */; };
+		C86F85001C444DB800C23332 /* XMPPRoomMessageHybridCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F061B387CC800D5A8E9 /* XMPPRoomMessageHybridCoreDataStorageObject.m */; };
+		C86F85011C444DB800C23332 /* Localizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84E00F71C191FC60065F220 /* Localizations.swift */; };
+		C86F85021C444DB800C23332 /* DataTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB000F7B1AB2E0B800E4D385 /* DataTableCell.swift */; };
+		C86F85031C444DB800C23332 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FB91B387CC800D5A8E9 /* DDLog.m */; };
+		C86F85041C444DB800C23332 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC911B381EB000EC9140 /* ChatViewController.swift */; };
+		C86F85051C444DB800C23332 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FB71B387CC800D5A8E9 /* DDFileLogger.m */; };
+		C86F85061C444DB800C23332 /* XMPPMessage+XEP_0224.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F931B387CC800D5A8E9 /* XMPPMessage+XEP_0224.m */; };
+		C86F85071C444DB800C23332 /* XMPPMessage+XEP_0066.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F461B387CC800D5A8E9 /* XMPPMessage+XEP_0066.m */; };
+		C86F85081C444DB800C23332 /* XMPPDeprecatedDigestAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E8E1B387CC800D5A8E9 /* XMPPDeprecatedDigestAuthentication.m */; };
+		C86F85091C444DB800C23332 /* XMPPPresence.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EB71B387CC800D5A8E9 /* XMPPPresence.m */; };
+		C86F850A1C444DB800C23332 /* AddJobController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA9B481AF265150027A2A2 /* AddJobController.swift */; };
+		C86F850B1C444DB800C23332 /* XMPPMUC.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F131B387CC800D5A8E9 /* XMPPMUC.m */; };
+		C86F850C1C444DB800C23332 /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E501B387CC700D5A8E9 /* JSQMessagesCollectionViewLayoutAttributes.m */; };
+		C86F850D1C444DB800C23332 /* API+Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F844A1C44257800C23332 /* API+Server.swift */; };
+		C86F850E1C444DB800C23332 /* XMPPRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F151B387CC800D5A8E9 /* XMPPRoom.m */; };
+		C86F850F1C444DB800C23332 /* CreatePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F333731B4444D700F0D17B /* CreatePopupView.swift */; };
+		C86F85101C444DB800C23332 /* XMPPRoster.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EE01B387CC800D5A8E9 /* XMPPRoster.m */; };
+		C86F85111C444DB800C23332 /* XMPPBandwidthMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EBD1B387CC800D5A8E9 /* XMPPBandwidthMonitor.m */; };
+		C86F85121C444DB800C23332 /* SocialHandlerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B577F21B6BD58E00CFB474 /* SocialHandlerModel.swift */; };
+		C86F85131C444DB800C23332 /* StatusPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB313D2F1AAF4C5A00F008B8 /* StatusPicker.swift */; };
+		C86F85141C444DB800C23332 /* XMPPCapsCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F5E1B387CC800D5A8E9 /* XMPPCapsCoreDataStorageObject.m */; };
+		C86F85151C444DB800C23332 /* XMPPMessage+XEP_0184.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F791B387CC800D5A8E9 /* XMPPMessage+XEP_0184.m */; };
+		C86F85161C444DB800C23332 /* XMPPvCardCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F221B387CC800D5A8E9 /* XMPPvCardCoreDataStorageObject.m */; };
+		C86F85181C444DB800C23332 /* XMPPTime.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F881B387CC800D5A8E9 /* XMPPTime.m */; };
+		C86F85191C444DB800C23332 /* KSTokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF1861E1B21DACA00D8D80D /* KSTokenView.swift */; };
+		C86F851A1C444DB800C23332 /* XMPPBlocking.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F7E1B387CC800D5A8E9 /* XMPPBlocking.m */; };
+		C86F851B1C444DB800C23332 /* JSQMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E3C1B387CC700D5A8E9 /* JSQMessagesViewController.m */; };
+		C86F851C1C444DB800C23332 /* XMPPIQ+XEP_0060.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F3C1B387CC800D5A8E9 /* XMPPIQ+XEP_0060.m */; };
+		C86F851D1C444DB800C23332 /* XMPPRoomHybrid.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9964F001B387CC800D5A8E9 /* XMPPRoomHybrid.xcdatamodeld */; };
+		C86F851E1C444DB800C23332 /* XEP_0223.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F8E1B387CC800D5A8E9 /* XEP_0223.m */; };
+		C86F851F1C444DB800C23332 /* LoggingPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89325A21C08BEC10069FCFD /* LoggingPrint.swift */; };
+		C86F85201C444DB800C23332 /* NoInternetConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94B49D51B8A8056008CF762 /* NoInternetConnectionView.swift */; };
+		C86F85211C444DB800C23332 /* XMPPUserMemoryStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EDD1B387CC800D5A8E9 /* XMPPUserMemoryStorageObject.m */; };
+		C86F85221C444DB800C23332 /* XMPPMessage+XEP_0308.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F991B387CC800D5A8E9 /* XMPPMessage+XEP_0308.m */; };
+		C86F85231C444DB800C23332 /* XMPPRoomMemoryStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F0B1B387CC800D5A8E9 /* XMPPRoomMemoryStorage.m */; };
+		C86F85241C444DB800C23332 /* DDList.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FA21B387CC800D5A8E9 /* DDList.m */; };
+		C86F85251C444DB800C23332 /* CPAnimationSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F333251B41759A00F0D17B /* CPAnimationSequence.m */; };
+		C86F85261C444DB800C23332 /* JobCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBF42521AB0AF5F0001E8B6 /* JobCellTableViewCell.swift */; };
+		C86F85271C444DB800C23332 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2F78071AD288E400B59C0E /* SettingsCell.swift */; };
+		C86F85281C444DB800C23332 /* NSDate+XMPPDateTimeProfiles.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F491B387CC800D5A8E9 /* NSDate+XMPPDateTimeProfiles.m */; };
+		C86F85291C444DB800C23332 /* JSQMessagesTimestampFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E461B387CC700D5A8E9 /* JSQMessagesTimestampFormatter.m */; };
+		C86F852A1C444DB800C23332 /* JSQMessagesCellTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E681B387CC800D5A8E9 /* JSQMessagesCellTextView.m */; };
+		C86F852B1C444DB800C23332 /* NSString+XEP_0106.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F571B387CC800D5A8E9 /* NSString+XEP_0106.m */; };
+		C86F852C1C444DB800C23332 /* DataTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBF42561AB1DEFF0001E8B6 /* DataTable.swift */; };
+		C86F852D1C444DB800C23332 /* XMPPRoster.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = A9964ED11B387CC800D5A8E9 /* XMPPRoster.xcdatamodel */; };
+		C86F852E1C444DB800C23332 /* JSQMessagesCollectionViewCellOutgoing.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E711B387CC800D5A8E9 /* JSQMessagesCollectionViewCellOutgoing.m */; };
+		C86F852F1C444DB800C23332 /* MixPanelHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A929E4941B863D3F00AC2A5F /* MixPanelHandler.swift */; };
+		C86F85301C444DB800C23332 /* XMPPvCardAvatarModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F711B387CC800D5A8E9 /* XMPPvCardAvatarModule.m */; };
+		C86F85311C444DB800C23332 /* XMPPMessage+XEP_0085.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F4E1B387CC800D5A8E9 /* XMPPMessage+XEP_0085.m */; };
+		C86F85321C444DB800C23332 /* XMPPSRVResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FAA1B387CC800D5A8E9 /* XMPPSRVResolver.m */; };
+		C86F85331C444DB800C23332 /* AskReferralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F3336D1B42CD4300F0D17B /* AskReferralViewController.swift */; };
+		C86F85341C444DB800C23332 /* XMPPDigestMD5Authentication.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E941B387CC800D5A8E9 /* XMPPDigestMD5Authentication.m */; };
+		C86F85351C444DB800C23332 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB72C5691B578D8100CCBD2E /* Notification.swift */; };
+		C86F85361C444DB800C23332 /* XMPPIQ+XEP_0066.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F441B387CC800D5A8E9 /* XMPPIQ+XEP_0066.m */; };
+		C86F85371C444DB800C23332 /* RFImageToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FA61B387CC800D5A8E9 /* RFImageToDataTransformer.m */; };
+		C86F85381C444DB800C23332 /* NSBundle+JSQMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E2D1B387CC700D5A8E9 /* NSBundle+JSQMessages.m */; };
+		C86F853A1C444DB800C23332 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C89325AF1C08CE1C0069FCFD /* libc++.tbd */; };
+		C86F853B1C444DB800C23332 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89325AD1C08CCF60069FCFD /* QuickLook.framework */; };
+		C86F853C1C444DB800C23332 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89325AB1C08CCEA0069FCFD /* CoreText.framework */; };
+		C86F853D1C444DB800C23332 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89325A91C08CCE00069FCFD /* AssetsLibrary.framework */; };
+		C86F853E1C444DB800C23332 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A996508D1B38806700D5A8E9 /* libresolv.dylib */; };
+		C86F853F1C444DB800C23332 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A99650891B38805B00D5A8E9 /* libxml2.2.dylib */; };
+		C86F85401C444DB800C23332 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A996508A1B38805B00D5A8E9 /* libxml2.dylib */; };
+		C86F85411C444DB800C23332 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89325B21C08CE410069FCFD /* HockeySDK.framework */; };
+		C86F85421C444DB800C23332 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A99650871B38804D00D5A8E9 /* AudioToolbox.framework */; };
+		C86F85431C444DB800C23332 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A99650851B38804500D5A8E9 /* CFNetwork.framework */; };
+		C86F85441C444DB800C23332 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A99650831B38803A00D5A8E9 /* Security.framework */; };
+		C86F85451C444DB800C23332 /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9964FD21B387CC800D5A8E9 /* libidn.a */; };
+		C86F85461C444DB800C23332 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB337FA1A9F581F000CAD88 /* CoreData.framework */; };
+		C86F85471C444DB800C23332 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDD460F204898DA0004C5B93 /* Pods.framework */; };
+		C86F85491C444DB800C23332 /* connected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACE1CE1B6913F9003BD5F2 /* connected@2x.png */; };
+		C86F854A1C444DB800C23332 /* favourite2wText@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650A01B3DB3FF00D5A8E9 /* favourite2wText@2x.png */; };
+		C86F854B1C444DB800C23332 /* JSQMessagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9964E3D1B387CC700D5A8E9 /* JSQMessagesViewController.xib */; };
+		C86F854C1C444DB800C23332 /* no_favourite_contacts@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324CA1B7BAE77009C1F0C /* no_favourite_contacts@2x.png */; };
+		C86F854D1C444DB800C23332 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9964E831B387CC800D5A8E9 /* JSQMessagesTypingIndicatorFooterView.xib */; };
+		C86F854E1C444DB800C23332 /* close_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3336F1B42D20C00F0D17B /* close_btn@2x.png */; };
+		C86F854F1C444DB800C23332 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBA8C3441B32DFF100522167 /* Main.storyboard */; };
+		C86F85501C444DB800C23332 /* job_description@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333591B42ACDC00F0D17B /* job_description@2x.png */; };
+		C86F85511C444DB800C23332 /* pound_sign@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333691B42B0B700F0D17B /* pound_sign@2x.png */; };
+		C86F85521C444DB800C23332 /* facebook_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACE1CF1B6913F9003BD5F2 /* facebook_icon@2x.png */; };
+		C86F85531C444DB800C23332 /* mute2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650A31B3DB3FF00D5A8E9 /* mute2@2x.png */; };
+		C86F85541C444DB800C23332 /* no_jobs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324CC1B7BAE77009C1F0C /* no_jobs@2x.png */; };
+		C86F85551C444DB800C23332 /* JSQMessagesToolbarContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9964E801B387CC800D5A8E9 /* JSQMessagesToolbarContentView.xib */; };
+		C86F85561C444DB800C23332 /* 3dots@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650981B3DB2D100D5A8E9 /* 3dots@2x.png */; };
+		C86F85571C444DB800C23332 /* NoInternetConnectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A662031C0B66570088355D /* NoInternetConnectionView.xib */; };
+		C86F85581C444DB800C23332 /* tag_location_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333551B42ACDC00F0D17B /* tag_location_active@2x.png */; };
+		C86F85591C444DB800C23332 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3334D1B42ACCB00F0D17B /* check.png */; };
+		C86F855A1C444DB800C23332 /* salary_details@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3335B1B42ACDC00F0D17B /* salary_details@2x.png */; };
+		C86F855B1C444DB800C23332 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A996509E1B3DB3FF00D5A8E9 /* arrow@2x.png */; };
+		C86F855C1C444DB800C23332 /* back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A996509A1B3DB2E300D5A8E9 /* back_btn@2x.png */; };
+		C86F855D1C444DB800C23332 /* add_skills@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333571B42ACDC00F0D17B /* add_skills@2x.png */; };
+		C86F855E1C444DB800C23332 /* JSQMessagesAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A9964E281B387CC700D5A8E9 /* JSQMessagesAssets.bundle */; };
+		C86F855F1C444DB800C23332 /* this_job_has-been_posted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3336B1B42BE4B00F0D17B /* this_job_has-been_posted@2x.png */; };
+		C86F85601C444DB800C23332 /* no_notifications@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324CD1B7BAE77009C1F0C /* no_notifications@2x.png */; };
+		C86F85611C444DB800C23332 /* employer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333581B42ACDC00F0D17B /* employer@2x.png */; };
+		C86F85621C444DB800C23332 /* job_title@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3335A1B42ACDC00F0D17B /* job_title@2x.png */; };
+		C86F85631C444DB800C23332 /* no_contacts@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324C91B7BAE77009C1F0C /* no_contacts@2x.png */; };
+		C86F85641C444DB800C23332 /* no_internet_conection@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324CB1B7BAE77009C1F0C /* no_internet_conection@2x.png */; };
+		C86F85651C444DB800C23332 /* favouriteWText@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A996509F1B3DB3FF00D5A8E9 /* favouriteWText@2x.png */; };
+		C86F85661C444DB800C23332 /* archive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A996509D1B3DB3FF00D5A8E9 /* archive@2x.png */; };
+		C86F85671C444DB800C23332 /* no_search_results@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324CF1B7BAE77009C1F0C /* no_search_results@2x.png */; };
+		C86F85681C444DB800C23332 /* job_detail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650A11B3DB3FF00D5A8E9 /* job_detail@2x.png */; };
+		C86F85691C444DB800C23332 /* SettingsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661FD1C0B66440088355D /* SettingsCell.xib */; };
+		C86F856A1C444DB800C23332 /* save@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3337F1B45972100F0D17B /* save@2x.png */; };
+		C86F856B1C444DB800C23332 /* employer_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333511B42ACDC00F0D17B /* employer_active@2x.png */; };
+		C86F856C1C444DB800C23332 /* tag_location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3335C1B42ACDC00F0D17B /* tag_location@2x.png */; };
+		C86F856D1C444DB800C23332 /* job_description_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333521B42ACDC00F0D17B /* job_description_active@2x.png */; };
+		C86F856E1C444DB800C23332 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB0926DA1A8DE4CB00E1D958 /* LaunchScreen.xib */; };
+		C86F856F1C444DB800C23332 /* not_connected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACE1D11B6913F9003BD5F2 /* not_connected@2x.png */; };
+		C86F85701C444DB800C23332 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB0926D81A8DE4CB00E1D958 /* Images.xcassets */; };
+		C86F85711C444DB800C23332 /* JobCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661FA1C0B66350088355D /* JobCellTableViewCell.xib */; };
+		C86F85721C444DB800C23332 /* ChatListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661F41C0B66270088355D /* ChatListTableViewCell.xib */; };
+		C86F85731C444DB800C23332 /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C89325B41C08CE410069FCFD /* HockeySDKResources.bundle */; };
+		C86F85741C444DB800C23332 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C8A662081C0B69960088355D /* Localizable.strings */; };
+		C86F85751C444DB800C23332 /* success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3337D1B45532F00F0D17B /* success@2x.png */; };
+		C86F85761C444DB800C23332 /* mute@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650A21B3DB3FF00D5A8E9 /* mute@2x.png */; };
+		C86F85771C444DB800C23332 /* archive_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A94FE6CB1B84C9E600761F32 /* archive_active@2x.png */; };
+		C86F85781C444DB800C23332 /* JSQMessagesLoadEarlierHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9964E7B1B387CC800D5A8E9 /* JSQMessagesLoadEarlierHeaderView.xib */; };
+		C86F85791C444DB800C23332 /* salary_details_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333541B42ACDC00F0D17B /* salary_details_active@2x.png */; };
+		C86F857A1C444DB800C23332 /* job_title_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333531B42ACDC00F0D17B /* job_title_active@2x.png */; };
+		C86F857B1C444DB800C23332 /* saved@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333801B45972100F0D17B /* saved@2x.png */; };
+		C86F857C1C444DB800C23332 /* linkdin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACE1D01B6913F9003BD5F2 /* linkdin@2x.png */; };
+		C86F857D1C444DB800C23332 /* add_skills_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333501B42ACDC00F0D17B /* add_skills_active@2x.png */; };
+		C86F857E1C444DB800C23332 /* profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650A41B3DB3FF00D5A8E9 /* profile@2x.png */; };
+		C86F857F1C444DB800C23332 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661F11C0B66160088355D /* ChatViewController.xib */; };
+		C86F85801C444DB800C23332 /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661EE1C0B66110088355D /* NotificationCell.xib */; };
+		C86F85811C444DB800C23332 /* no_chats@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324C81B7BAE77009C1F0C /* no_chats@2x.png */; };
+		C86F85821C444DB800C23332 /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9964E721B387CC800D5A8E9 /* JSQMessagesCollectionViewCellOutgoing.xib */; };
+		C86F85831C444DB800C23332 /* ContactsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661F71C0B662E0088355D /* ContactsCell.xib */; };
+		C86F85841C444DB800C23332 /* JSQMessagesCollectionViewCellIncoming.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9964E6F1B387CC800D5A8E9 /* JSQMessagesCollectionViewCellIncoming.xib */; };
+		C86F85851C444DB800C23332 /* no_profile_content@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324CE1B7BAE77009C1F0C /* no_profile_content@2x.png */; };
+		C86F85891C444DB800C23332 /* Pods.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FDD460F204898DA0004C5B93 /* Pods.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C86F85901C444E7400C23332 /* ProductionServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F844C1C44273A00C23332 /* ProductionServer.swift */; };
 		C89325A61C08BEC10069FCFD /* LoggingPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89325A21C08BEC10069FCFD /* LoggingPrint.swift */; };
 		C89325AA1C08CCE00069FCFD /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89325A91C08CCE00069FCFD /* AssetsLibrary.framework */; };
 		C89325AC1C08CCEA0069FCFD /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89325AB1C08CCEA0069FCFD /* CoreText.framework */; };
@@ -328,6 +635,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		C86F85881C444DB800C23332 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C86F85891C444DB800C23332 /* Pods.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EBD107401AF0B8F900310818 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -782,6 +1100,8 @@
 		C84E00F71C191FC60065F220 /* Localizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizations.swift; sourceTree = "<group>"; };
 		C86F844A1C44257800C23332 /* API+Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+Server.swift"; sourceTree = "<group>"; };
 		C86F844C1C44273A00C23332 /* ProductionServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductionServer.swift; sourceTree = "<group>"; };
+		C86F858E1C444DB800C23332 /* Nudj beta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nudj beta.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C86F858F1C444DB900C23332 /* Nudj beta-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Nudj beta-Info.plist"; path = "/Users/richardbuckle/dev/nudj/nudj-ios/Nudj beta-Info.plist"; sourceTree = "<absolute>"; };
 		C89325A21C08BEC10069FCFD /* LoggingPrint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggingPrint.swift; sourceTree = "<group>"; };
 		C89325A91C08CCE00069FCFD /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		C89325AB1C08CCEA0069FCFD /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -852,6 +1172,27 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C86F85391C444DB800C23332 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C86F853A1C444DB800C23332 /* libc++.tbd in Frameworks */,
+				C86F853B1C444DB800C23332 /* QuickLook.framework in Frameworks */,
+				C86F853C1C444DB800C23332 /* CoreText.framework in Frameworks */,
+				C86F853D1C444DB800C23332 /* AssetsLibrary.framework in Frameworks */,
+				C86F853E1C444DB800C23332 /* libresolv.dylib in Frameworks */,
+				C86F853F1C444DB800C23332 /* libxml2.2.dylib in Frameworks */,
+				C86F85401C444DB800C23332 /* libxml2.dylib in Frameworks */,
+				C86F85411C444DB800C23332 /* HockeySDK.framework in Frameworks */,
+				C86F85421C444DB800C23332 /* AudioToolbox.framework in Frameworks */,
+				C86F85431C444DB800C23332 /* CFNetwork.framework in Frameworks */,
+				C86F85441C444DB800C23332 /* Security.framework in Frameworks */,
+				C86F85451C444DB800C23332 /* libidn.a in Frameworks */,
+				C86F85461C444DB800C23332 /* CoreData.framework in Frameworks */,
+				C86F85471C444DB800C23332 /* Pods.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EB0926C71A8DE4CB00E1D958 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -2125,6 +2466,7 @@
 			children = (
 				EB0926CA1A8DE4CB00E1D958 /* Nudj.app */,
 				EB0926E11A8DE4CB00E1D958 /* nudjTests.xctest */,
+				C86F858E1C444DB800C23332 /* Nudj beta.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2153,6 +2495,7 @@
 				A99650811B387D5000D5A8E9 /* Nudj-Bridging-Header.h */,
 				A99650821B387D5000D5A8E9 /* Nudj-Prefix.pch */,
 				EB0926CE1A8DE4CB00E1D958 /* Info.plist */,
+				C86F858F1C444DB900C23332 /* Nudj beta-Info.plist */,
 				C8A661DE1C0B60020088355D /* Nudj.release.xcconfig */,
 				C8A661DF1C0B60290088355D /* Nudj.debug.xcconfig */,
 				C8A661E01C0B61400088355D /* Warnings.xcconfig */,
@@ -2314,6 +2657,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		C86F844E1C444DB800C23332 /* Nudj beta */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C86F858B1C444DB800C23332 /* Build configuration list for PBXNativeTarget "Nudj beta" */;
+			buildPhases = (
+				C86F844F1C444DB800C23332 /* Update localizations */,
+				C86F84501C444DB800C23332 /* Check Pods Manifest.lock */,
+				C86F84511C444DB800C23332 /* Sources */,
+				C86F85391C444DB800C23332 /* Frameworks */,
+				C86F85481C444DB800C23332 /* Resources */,
+				C86F85861C444DB800C23332 /* Copy Pods Resources */,
+				C86F85871C444DB800C23332 /* Embed Pods Frameworks */,
+				C86F85881C444DB800C23332 /* Embed Frameworks */,
+				C86F858A1C444DB800C23332 /* HockeySDK BuildAgent */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Nudj beta";
+			productName = Nudge;
+			productReference = C86F858E1C444DB800C23332 /* Nudj beta.app */;
+			productType = "com.apple.product-type.application";
+		};
 		EB0926C91A8DE4CB00E1D958 /* Nudj */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB0926EB1A8DE4CB00E1D958 /* Build configuration list for PBXNativeTarget "Nudj" */;
@@ -2395,12 +2761,81 @@
 			projectRoot = "";
 			targets = (
 				EB0926C91A8DE4CB00E1D958 /* Nudj */,
+				C86F844E1C444DB800C23332 /* Nudj beta */,
 				EB0926E01A8DE4CB00E1D958 /* NudjTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		C86F85481C444DB800C23332 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C86F85491C444DB800C23332 /* connected@2x.png in Resources */,
+				C86F854A1C444DB800C23332 /* favourite2wText@2x.png in Resources */,
+				C86F854B1C444DB800C23332 /* JSQMessagesViewController.xib in Resources */,
+				C86F854C1C444DB800C23332 /* no_favourite_contacts@2x.png in Resources */,
+				C86F854D1C444DB800C23332 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
+				C86F854E1C444DB800C23332 /* close_btn@2x.png in Resources */,
+				C86F854F1C444DB800C23332 /* Main.storyboard in Resources */,
+				C86F85501C444DB800C23332 /* job_description@2x.png in Resources */,
+				C86F85511C444DB800C23332 /* pound_sign@2x.png in Resources */,
+				C86F85521C444DB800C23332 /* facebook_icon@2x.png in Resources */,
+				C86F85531C444DB800C23332 /* mute2@2x.png in Resources */,
+				C86F85541C444DB800C23332 /* no_jobs@2x.png in Resources */,
+				C86F85551C444DB800C23332 /* JSQMessagesToolbarContentView.xib in Resources */,
+				C86F85561C444DB800C23332 /* 3dots@2x.png in Resources */,
+				C86F85571C444DB800C23332 /* NoInternetConnectionView.xib in Resources */,
+				C86F85581C444DB800C23332 /* tag_location_active@2x.png in Resources */,
+				C86F85591C444DB800C23332 /* check.png in Resources */,
+				C86F855A1C444DB800C23332 /* salary_details@2x.png in Resources */,
+				C86F855B1C444DB800C23332 /* arrow@2x.png in Resources */,
+				C86F855C1C444DB800C23332 /* back_btn@2x.png in Resources */,
+				C86F855D1C444DB800C23332 /* add_skills@2x.png in Resources */,
+				C86F855E1C444DB800C23332 /* JSQMessagesAssets.bundle in Resources */,
+				C86F855F1C444DB800C23332 /* this_job_has-been_posted@2x.png in Resources */,
+				C86F85601C444DB800C23332 /* no_notifications@2x.png in Resources */,
+				C86F85611C444DB800C23332 /* employer@2x.png in Resources */,
+				C86F85621C444DB800C23332 /* job_title@2x.png in Resources */,
+				C86F85631C444DB800C23332 /* no_contacts@2x.png in Resources */,
+				C86F85641C444DB800C23332 /* no_internet_conection@2x.png in Resources */,
+				C86F85651C444DB800C23332 /* favouriteWText@2x.png in Resources */,
+				C86F85661C444DB800C23332 /* archive@2x.png in Resources */,
+				C86F85671C444DB800C23332 /* no_search_results@2x.png in Resources */,
+				C86F85681C444DB800C23332 /* job_detail@2x.png in Resources */,
+				C86F85691C444DB800C23332 /* SettingsCell.xib in Resources */,
+				C86F856A1C444DB800C23332 /* save@2x.png in Resources */,
+				C86F856B1C444DB800C23332 /* employer_active@2x.png in Resources */,
+				C86F856C1C444DB800C23332 /* tag_location@2x.png in Resources */,
+				C86F856D1C444DB800C23332 /* job_description_active@2x.png in Resources */,
+				C86F856E1C444DB800C23332 /* LaunchScreen.xib in Resources */,
+				C86F856F1C444DB800C23332 /* not_connected@2x.png in Resources */,
+				C86F85701C444DB800C23332 /* Images.xcassets in Resources */,
+				C86F85711C444DB800C23332 /* JobCellTableViewCell.xib in Resources */,
+				C86F85721C444DB800C23332 /* ChatListTableViewCell.xib in Resources */,
+				C86F85731C444DB800C23332 /* HockeySDKResources.bundle in Resources */,
+				C86F85741C444DB800C23332 /* Localizable.strings in Resources */,
+				C86F85751C444DB800C23332 /* success@2x.png in Resources */,
+				C86F85761C444DB800C23332 /* mute@2x.png in Resources */,
+				C86F85771C444DB800C23332 /* archive_active@2x.png in Resources */,
+				C86F85781C444DB800C23332 /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
+				C86F85791C444DB800C23332 /* salary_details_active@2x.png in Resources */,
+				C86F857A1C444DB800C23332 /* job_title_active@2x.png in Resources */,
+				C86F857B1C444DB800C23332 /* saved@2x.png in Resources */,
+				C86F857C1C444DB800C23332 /* linkdin@2x.png in Resources */,
+				C86F857D1C444DB800C23332 /* add_skills_active@2x.png in Resources */,
+				C86F857E1C444DB800C23332 /* profile@2x.png in Resources */,
+				C86F857F1C444DB800C23332 /* ChatViewController.xib in Resources */,
+				C86F85801C444DB800C23332 /* NotificationCell.xib in Resources */,
+				C86F85811C444DB800C23332 /* no_chats@2x.png in Resources */,
+				C86F85821C444DB800C23332 /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
+				C86F85831C444DB800C23332 /* ContactsCell.xib in Resources */,
+				C86F85841C444DB800C23332 /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
+				C86F85851C444DB800C23332 /* no_profile_content@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EB0926C81A8DE4CB00E1D958 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2524,6 +2959,83 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C86F844F1C444DB800C23332 /* Update localizations */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/$(PROJECT_NAME)/Base.lproj/Localizable.strings",
+			);
+			name = "Update localizations";
+			outputPaths = (
+				"$(SRCROOT)/$(PROJECT_NAME)/Generated/Localizations.swift",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# CONFIGURATION\n# Get base path to project\nBASE_PATH=\"${SRCROOT}/${PROJECT_NAME}\"\n\n# Configure path to Laurine Generator script\nLAURINE_PATH=\"${SRCROOT}/Externals/Laurine/LaurineGenerator.swift\"\n\n# Configure path to main localization file (usually english).\nSOURCE_PATH=\"${BASE_PATH}/Base.lproj/Localizable.strings\"\n\n# Configure path to output. If you use ObjC version of output, set implementation file (.m), as header will be generated automatically at the same location.\nOUTPUT_PATH=\"${BASE_PATH}/Generated/Localizations.swift\"\n\n# Actually generate output. Customize parameters to your needs (see documentation)\nxcrun -sdk macosx swift \"${LAURINE_PATH}\" -i \"${SOURCE_PATH}\" -o \"${OUTPUT_PATH}\" -c\n";
+			showEnvVarsInLog = 0;
+		};
+		C86F84501C444DB800C23332 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C86F85861C444DB800C23332 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C86F85871C444DB800C23332 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C86F858A1C444DB800C23332 /* HockeySDK BuildAgent */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "HockeySDK BuildAgent";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "FILE=\"${SRCROOT}/Externals/HockeySDK-iOS/BuildAgent\"\nif [ -f \"$FILE\" ]; then\n\"$FILE\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		C89325A81C08CBF40069FCFD /* HockeySDK BuildAgent */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2559,6 +3071,244 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C86F84511C444DB800C23332 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C86F84521C444DB800C23332 /* NotificationViewController.swift in Sources */,
+				C86F84531C444DB800C23332 /* XMPPRoomOccupantCoreDataStorageObject.m in Sources */,
+				C86F84541C444DB800C23332 /* InitiateChatViewController.swift in Sources */,
+				C86F84551C444DB800C23332 /* XMPPRoomMessageCoreDataStorageObject.m in Sources */,
+				C86F84561C444DB800C23332 /* XMPPvCardTempEmail.m in Sources */,
+				C86F84571C444DB800C23332 /* JSQMessagesMediaPlaceholderView.m in Sources */,
+				C86F84581C444DB800C23332 /* XMPPvCardTempAdr.m in Sources */,
+				C86F84591C444DB800C23332 /* XMPPRoomOccupantHybridMemoryStorageObject.m in Sources */,
+				C86F845A1C444DB800C23332 /* JSQMessagesAvatarImage.m in Sources */,
+				C86F845B1C444DB800C23332 /* NSXMLElement+XEP_0203.m in Sources */,
+				C86F845C1C444DB800C23332 /* JSQVideoMediaItem.m in Sources */,
+				C86F845D1C444DB800C23332 /* ChatModels.swift in Sources */,
+				C86F845E1C444DB800C23332 /* JSQMessagesMediaViewBubbleImageMasker.m in Sources */,
+				C86F845F1C444DB800C23332 /* XMPPResultSet.m in Sources */,
+				C86F84601C444DB800C23332 /* XMPPPubSub.m in Sources */,
+				C86F84611C444DB800C23332 /* GenericProfileViewController.swift in Sources */,
+				C86F84621C444DB800C23332 /* XMPPLastActivity.m in Sources */,
+				C86F84631C444DB800C23332 /* XMPPAttentionModule.m in Sources */,
+				C86F84641C444DB800C23332 /* XMPPvCard.xcdatamodeld in Sources */,
+				C86F84651C444DB800C23332 /* XMPPGoogleSharedStatus.m in Sources */,
+				C86F84661C444DB800C23332 /* SocialStatus.swift in Sources */,
+				C86F84671C444DB800C23332 /* XMPPPing.m in Sources */,
+				C86F84681C444DB800C23332 /* XMPPUserCoreDataStorageObject.m in Sources */,
+				C86F84691C444DB800C23332 /* XMPPResourceMemoryStorageObject.m in Sources */,
+				C86F846A1C444DB800C23332 /* JSQMessagesCollectionViewFlowLayout.m in Sources */,
+				C86F846B1C444DB800C23332 /* XMPPResourceCoreDataStorageObject.m in Sources */,
+				C86F846C1C444DB800C23332 /* LoginController.swift in Sources */,
+				C86F846D1C444DB800C23332 /* XMPPPresence+XEP_0172.m in Sources */,
+				C86F846E1C444DB800C23332 /* XMPPIQ.m in Sources */,
+				C86F846F1C444DB800C23332 /* XMPPXFacebookPlatformAuthentication.m in Sources */,
+				C86F84701C444DB800C23332 /* CreateProfileController.swift in Sources */,
+				C86F84711C444DB800C23332 /* XMPPCapabilities.m in Sources */,
+				C86F84721C444DB800C23332 /* KSToken.swift in Sources */,
+				C86F84731C444DB800C23332 /* AsyncImage.swift in Sources */,
+				C86F84741C444DB800C23332 /* JSQLocationMediaItem.m in Sources */,
+				C86F84751C444DB800C23332 /* XMPPvCardAvatarCoreDataStorageObject.m in Sources */,
+				C86F84761C444DB800C23332 /* ContactsController.swift in Sources */,
+				C86F84771C444DB800C23332 /* JSQMessagesLoadEarlierHeaderView.m in Sources */,
+				C86F84781C444DB800C23332 /* CPAnimationProgram.m in Sources */,
+				C86F84791C444DB800C23332 /* XMPPvCardTempModule.m in Sources */,
+				C86F847A1C444DB800C23332 /* XMPPMessage.m in Sources */,
+				C86F847B1C444DB800C23332 /* DDAbstractDatabaseLogger.m in Sources */,
+				C86F847C1C444DB800C23332 /* XMPPvCardTempAdrTypes.m in Sources */,
+				C86F847D1C444DB800C23332 /* XMPPvCardTempCoreDataStorageObject.m in Sources */,
+				C86F847E1C444DB800C23332 /* XMPPvCardTempBase.m in Sources */,
+				C86F847F1C444DB800C23332 /* UIImage+JSQMessages.m in Sources */,
+				C86F84801C444DB800C23332 /* XMPPMessage+XEP0045.m in Sources */,
+				C86F84811C444DB800C23332 /* XMPPvCardTempTel.m in Sources */,
+				C86F84821C444DB800C23332 /* XMPPAnonymousAuthentication.m in Sources */,
+				C86F84831C444DB800C23332 /* XMPPIQ+JabberRPCResonse.m in Sources */,
+				C86F84841C444DB800C23332 /* XMPPCapabilities.xcdatamodel in Sources */,
+				C86F84851C444DB800C23332 /* JSQMessagesCollectionViewCell.m in Sources */,
+				C86F84861C444DB800C23332 /* ContactsCell.swift in Sources */,
+				C86F84871C444DB800C23332 /* SavedPostedJobs.swift in Sources */,
+				C86F84881C444DB800C23332 /* VerifyViewController.swift in Sources */,
+				C86F84891C444DB800C23332 /* XMPPGroupCoreDataStorageObject.m in Sources */,
+				C86F848A1C444DB800C23332 /* XMPPAutoTime.m in Sources */,
+				C86F848B1C444DB800C23332 /* XMPPvCardTemp.m in Sources */,
+				C86F848C1C444DB800C23332 /* CountrySelectionPicker.swift in Sources */,
+				C86F848D1C444DB800C23332 /* ContactModel.swift in Sources */,
+				C86F848E1C444DB800C23332 /* XMPPSoftwareVersion.m in Sources */,
+				C86F848F1C444DB800C23332 /* UIColor+JSQMessages.m in Sources */,
+				C86F84901C444DB800C23332 /* ContextFilterLogFormatter.m in Sources */,
+				C86F84911C444DB800C23332 /* NoContentPlaceHolder.swift in Sources */,
+				C86F84921C444DB800C23332 /* AppDelegate.swift in Sources */,
+				C86F84931C444DB800C23332 /* TermsViewController.swift in Sources */,
+				C86F84941C444DB800C23332 /* XMPPIQ+JabberRPC.m in Sources */,
+				C86F84951C444DB800C23332 /* GCDMulticastDelegate.m in Sources */,
+				C86F84961C444DB800C23332 /* NotificationCell.swift in Sources */,
+				C86F84971C444DB800C23332 /* JSQMessagesLabel.m in Sources */,
+				C86F84981C444DB800C23332 /* MainFeed.swift in Sources */,
+				C86F84991C444DB800C23332 /* XMPPProcessOne.m in Sources */,
+				C86F849A1C444DB800C23332 /* GCDAsyncSocket.m in Sources */,
+				C86F849B1C444DB800C23332 /* RBResizer.swift in Sources */,
+				C86F849C1C444DB800C23332 /* DDXMLDocument.m in Sources */,
+				C86F849D1C444DB800C23332 /* UIDevice+JSQMessages.m in Sources */,
+				C86F849E1C444DB800C23332 /* XMPPRoom.xcdatamodeld in Sources */,
+				C86F849F1C444DB800C23332 /* NotificationButton.swift in Sources */,
+				C86F84A01C444DB800C23332 /* XMPPStream.m in Sources */,
+				C86F84A11C444DB800C23332 /* XMPPMessage+XEP_0172.m in Sources */,
+				C86F84A21C444DB800C23332 /* UserModel.swift in Sources */,
+				C86F84A31C444DB800C23332 /* MainTabBar.swift in Sources */,
+				C86F84A41C444DB800C23332 /* ChatRoomModel.swift in Sources */,
+				C86F84A51C444DB800C23332 /* XMPPRoomCoreDataStorage.m in Sources */,
+				C86F84A61C444DB800C23332 /* JSQMessagesCollectionViewFlowLayoutInvalidationContext.m in Sources */,
+				C86F84A71C444DB800C23332 /* JSQMessagesComposerTextView.m in Sources */,
+				C86F84A81C444DB800C23332 /* XMPPRoomOccupantMemoryStorageObject.m in Sources */,
+				C86F84A91C444DB800C23332 /* NSString+JSQMessages.m in Sources */,
+				C86F84AA1C444DB800C23332 /* JSQMessagesCollectionViewCellIncoming.m in Sources */,
+				C86F84AB1C444DB800C23332 /* NSXMLElement+XMPP.m in Sources */,
+				C86F84AC1C444DB800C23332 /* XMPPMessageArchivingCoreDataStorage.m in Sources */,
+				C86F84AD1C444DB800C23332 /* XMPPRoomMessageMemoryStorageObject.m in Sources */,
+				C86F84AE1C444DB800C23332 /* ChatStructModel.swift in Sources */,
+				C86F84AF1C444DB800C23332 /* JSQMessagesToolbarButtonFactory.m in Sources */,
+				C86F84B01C444DB800C23332 /* XMPPAutoPing.m in Sources */,
+				C86F84B11C444DB800C23332 /* XMPPModule.m in Sources */,
+				C86F84B21C444DB800C23332 /* DispatchQueueLogFormatter.m in Sources */,
+				C86F84B31C444DB800C23332 /* JSQMessagesCollectionView.m in Sources */,
+				C86F84B41C444DB800C23332 /* JobDetailedViewController.swift in Sources */,
+				C86F84B51C444DB800C23332 /* XMPPRosterMemoryStorage.m in Sources */,
+				C86F84B61C444DB800C23332 /* XMPPMessageArchiving.m in Sources */,
+				C86F84B71C444DB800C23332 /* SettingsController.swift in Sources */,
+				C86F84B81C444DB800C23332 /* Contacts.swift in Sources */,
+				C86F84B91C444DB800C23332 /* XMPPMessageArchiving_Contact_CoreDataObject.m in Sources */,
+				C86F84BA1C444DB800C23332 /* XMPPElement.m in Sources */,
+				C86F84BB1C444DB800C23332 /* DDASLLogger.m in Sources */,
+				C86F84BC1C444DB800C23332 /* NSString+DDXML.m in Sources */,
+				C86F84BD1C444DB800C23332 /* NSXMLElement+XEP_0335.m in Sources */,
+				C86F84BE1C444DB800C23332 /* JSQSystemSoundPlayer+JSQMessages.m in Sources */,
+				C86F84BF1C444DB800C23332 /* KSTokenField.swift in Sources */,
+				C86F84C01C444DB800C23332 /* TokenView.swift in Sources */,
+				C86F84C11C444DB800C23332 /* XMPPIQ+LastActivity.m in Sources */,
+				C86F84C21C444DB800C23332 /* Common.swift in Sources */,
+				C86F84C31C444DB800C23332 /* XMPPDateTimeProfiles.m in Sources */,
+				C86F84C41C444DB800C23332 /* XMPPRoomHybridStorage.m in Sources */,
+				C86F84C51C444DB800C23332 /* DDXMLNode.m in Sources */,
+				C86F84C61C444DB800C23332 /* FilterModel.swift in Sources */,
+				C86F84C71C444DB800C23332 /* JSQPhotoMediaItem.m in Sources */,
+				C86F84C81C444DB800C23332 /* XMPPvCardCoreDataStorage.m in Sources */,
+				C86F84C91C444DB800C23332 /* XMPPPlainAuthentication.m in Sources */,
+				C86F84CA1C444DB800C23332 /* JSQMediaItem.m in Sources */,
+				C86F84CB1C444DB800C23332 /* DDXMLElement.m in Sources */,
+				C86F84CC1C444DB800C23332 /* API.swift in Sources */,
+				C86F84CD1C444DB800C23332 /* NSXMLElement+XEP_0059.m in Sources */,
+				C86F84CE1C444DB800C23332 /* JSQMessagesAvatarImageFactory.m in Sources */,
+				C86F84CF1C444DB800C23332 /* TutorialView.swift in Sources */,
+				C86F84D01C444DB800C23332 /* ChatListTableViewCell.swift in Sources */,
+				C86F84D11C444DB800C23332 /* SettingsItem.swift in Sources */,
+				C86F84D21C444DB800C23332 /* JSQMessagesTypingIndicatorFooterView.m in Sources */,
+				C86F84D31C444DB800C23332 /* SendFeedBackViewController.swift in Sources */,
+				C86F84D41C444DB800C23332 /* XMPPJID.m in Sources */,
+				C86F84D51C444DB800C23332 /* BaseController.swift in Sources */,
+				C86F84D61C444DB800C23332 /* DataProviderProtocol.swift in Sources */,
+				C86F84D71C444DB800C23332 /* XMPPCoreDataStorage.m in Sources */,
+				C86F84D81C444DB800C23332 /* XMPPJabberRPCModule.m in Sources */,
+				C86F84D91C444DB800C23332 /* JSQMessagesInputToolbar.m in Sources */,
+				C86F84DA1C444DB800C23332 /* XMPPMessageDeliveryReceipts.m in Sources */,
+				C86F84DB1C444DB800C23332 /* ChatListViewController.swift in Sources */,
+				C86F84DC1C444DB800C23332 /* DDTTYLogger.m in Sources */,
+				C86F84DD1C444DB800C23332 /* NSXMLElement+XEP_0297.m in Sources */,
+				C86F84DE1C444DB800C23332 /* XMPPMessage+XEP_0333.m in Sources */,
+				C86F84DF1C444DB800C23332 /* CPAnimationStep.m in Sources */,
+				C86F84E01C444DB800C23332 /* KSUtils.swift in Sources */,
+				C86F84E11C444DB800C23332 /* XMPPCapsResourceCoreDataStorageObject.m in Sources */,
+				C86F84E21C444DB800C23332 /* VerifyCodeTextField.swift in Sources */,
+				C86F84E31C444DB800C23332 /* UIView+JSQMessages.m in Sources */,
+				C86F84E41C444DB800C23332 /* XMPPXOAuth2Google.m in Sources */,
+				C86F84E51C444DB800C23332 /* JSQMessagesBubbleImageFactory.m in Sources */,
+				C86F84E61C444DB800C23332 /* NZLabel.m in Sources */,
+				C86F84E71C444DB800C23332 /* TURNSocket.m in Sources */,
+				C86F84E81C444DB800C23332 /* JSQMessagesToolbarContentView.m in Sources */,
+				C86F84E91C444DB800C23332 /* XMPPReconnect.m in Sources */,
+				C86F84EA1C444DB800C23332 /* JSQMessagesBubbleImage.m in Sources */,
+				C86F84EB1C444DB800C23332 /* XMPPDeprecatedPlainAuthentication.m in Sources */,
+				C86F84EC1C444DB800C23332 /* MainTabItem.swift in Sources */,
+				C86F84ED1C444DB800C23332 /* XMPPRosterCoreDataStorage.m in Sources */,
+				C86F84EE1C444DB800C23332 /* XMPPStringPrep.m in Sources */,
+				C86F84EF1C444DB800C23332 /* VersionNumber.swift in Sources */,
+				C86F84F01C444DB800C23332 /* XMPPMessageArchiving_Message_CoreDataObject.m in Sources */,
+				C86F84F11C444DB800C23332 /* JobModel.swift in Sources */,
+				C86F84F21C444DB800C23332 /* JSQMessage.m in Sources */,
+				C86F84F31C444DB800C23332 /* StatusButton.swift in Sources */,
+				C86F84F41C444DB800C23332 /* XMPPCapabilitiesCoreDataStorage.m in Sources */,
+				C86F84F51C444DB800C23332 /* XMPPIDTracker.m in Sources */,
+				C86F84F61C444DB800C23332 /* XMPPvCardTempLabel.m in Sources */,
+				C86F84F71C444DB800C23332 /* XMPPParser.m in Sources */,
+				C86F84F81C444DB800C23332 /* NudgeData.xcdatamodeld in Sources */,
+				C86F84F91C444DB800C23332 /* NSNumber+XMPP.m in Sources */,
+				C86F84FA1C444DB800C23332 /* JSQMessagesKeyboardController.m in Sources */,
+				C86F84FB1C444DB800C23332 /* XMPPMessageArchiving.xcdatamodeld in Sources */,
+				C86F84FC1C444DB800C23332 /* XMPPPrivacy.m in Sources */,
+				C86F84FD1C444DB800C23332 /* XMPPTransports.m in Sources */,
+				C86F84FE1C444DB800C23332 /* NSData+XMPP.m in Sources */,
+				C86F84FF1C444DB800C23332 /* JSQSystemSoundPlayer.m in Sources */,
+				C86F85001C444DB800C23332 /* XMPPRoomMessageHybridCoreDataStorageObject.m in Sources */,
+				C86F85011C444DB800C23332 /* Localizations.swift in Sources */,
+				C86F85021C444DB800C23332 /* DataTableCell.swift in Sources */,
+				C86F85031C444DB800C23332 /* DDLog.m in Sources */,
+				C86F85041C444DB800C23332 /* ChatViewController.swift in Sources */,
+				C86F85051C444DB800C23332 /* DDFileLogger.m in Sources */,
+				C86F85061C444DB800C23332 /* XMPPMessage+XEP_0224.m in Sources */,
+				C86F85071C444DB800C23332 /* XMPPMessage+XEP_0066.m in Sources */,
+				C86F85081C444DB800C23332 /* XMPPDeprecatedDigestAuthentication.m in Sources */,
+				C86F85091C444DB800C23332 /* XMPPPresence.m in Sources */,
+				C86F850A1C444DB800C23332 /* AddJobController.swift in Sources */,
+				C86F850B1C444DB800C23332 /* XMPPMUC.m in Sources */,
+				C86F850C1C444DB800C23332 /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,
+				C86F850D1C444DB800C23332 /* API+Server.swift in Sources */,
+				C86F850E1C444DB800C23332 /* XMPPRoom.m in Sources */,
+				C86F850F1C444DB800C23332 /* CreatePopupView.swift in Sources */,
+				C86F85101C444DB800C23332 /* XMPPRoster.m in Sources */,
+				C86F85111C444DB800C23332 /* XMPPBandwidthMonitor.m in Sources */,
+				C86F85121C444DB800C23332 /* SocialHandlerModel.swift in Sources */,
+				C86F85131C444DB800C23332 /* StatusPicker.swift in Sources */,
+				C86F85141C444DB800C23332 /* XMPPCapsCoreDataStorageObject.m in Sources */,
+				C86F85151C444DB800C23332 /* XMPPMessage+XEP_0184.m in Sources */,
+				C86F85161C444DB800C23332 /* XMPPvCardCoreDataStorageObject.m in Sources */,
+				C86F85901C444E7400C23332 /* ProductionServer.swift in Sources */,
+				C86F85181C444DB800C23332 /* XMPPTime.m in Sources */,
+				C86F85191C444DB800C23332 /* KSTokenView.swift in Sources */,
+				C86F851A1C444DB800C23332 /* XMPPBlocking.m in Sources */,
+				C86F851B1C444DB800C23332 /* JSQMessagesViewController.m in Sources */,
+				C86F851C1C444DB800C23332 /* XMPPIQ+XEP_0060.m in Sources */,
+				C86F851D1C444DB800C23332 /* XMPPRoomHybrid.xcdatamodeld in Sources */,
+				C86F851E1C444DB800C23332 /* XEP_0223.m in Sources */,
+				C86F851F1C444DB800C23332 /* LoggingPrint.swift in Sources */,
+				C86F85201C444DB800C23332 /* NoInternetConnectionView.swift in Sources */,
+				C86F85211C444DB800C23332 /* XMPPUserMemoryStorageObject.m in Sources */,
+				C86F85221C444DB800C23332 /* XMPPMessage+XEP_0308.m in Sources */,
+				C86F85231C444DB800C23332 /* XMPPRoomMemoryStorage.m in Sources */,
+				C86F85241C444DB800C23332 /* DDList.m in Sources */,
+				C86F85251C444DB800C23332 /* CPAnimationSequence.m in Sources */,
+				C86F85261C444DB800C23332 /* JobCellTableViewCell.swift in Sources */,
+				C86F85271C444DB800C23332 /* SettingsCell.swift in Sources */,
+				C86F85281C444DB800C23332 /* NSDate+XMPPDateTimeProfiles.m in Sources */,
+				C86F85291C444DB800C23332 /* JSQMessagesTimestampFormatter.m in Sources */,
+				C86F852A1C444DB800C23332 /* JSQMessagesCellTextView.m in Sources */,
+				C86F852B1C444DB800C23332 /* NSString+XEP_0106.m in Sources */,
+				C86F852C1C444DB800C23332 /* DataTable.swift in Sources */,
+				C86F852D1C444DB800C23332 /* XMPPRoster.xcdatamodel in Sources */,
+				C86F852E1C444DB800C23332 /* JSQMessagesCollectionViewCellOutgoing.m in Sources */,
+				C86F852F1C444DB800C23332 /* MixPanelHandler.swift in Sources */,
+				C86F85301C444DB800C23332 /* XMPPvCardAvatarModule.m in Sources */,
+				C86F85311C444DB800C23332 /* XMPPMessage+XEP_0085.m in Sources */,
+				C86F85321C444DB800C23332 /* XMPPSRVResolver.m in Sources */,
+				C86F85331C444DB800C23332 /* AskReferralViewController.swift in Sources */,
+				C86F85341C444DB800C23332 /* XMPPDigestMD5Authentication.m in Sources */,
+				C86F85351C444DB800C23332 /* Notification.swift in Sources */,
+				C86F85361C444DB800C23332 /* XMPPIQ+XEP_0066.m in Sources */,
+				C86F85371C444DB800C23332 /* RFImageToDataTransformer.m in Sources */,
+				C86F85381C444DB800C23332 /* NSBundle+JSQMessages.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EB0926C61A8DE4CB00E1D958 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2899,6 +3649,74 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		C86F858C1C444DB800C23332 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8A661DF1C0B60290088355D /* Nudj.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 18;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Externals/HockeySDK-iOS/HockeySDK.embeddedframework",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Nudj/Nudj-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SDKROOT)/usr/include/libxml2",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Nudj beta-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Externals/XMPPFramework/Vendor/libidn",
+					"$(SDKROOT)/usr/include/libxml2",
+					/usr/include/libxml2,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "co.nudj.ios-app.nudj";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Nudj/Nudj-Bridging-Header.h";
+			};
+			name = Debug;
+		};
+		C86F858D1C444DB800C23332 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8A661DE1C0B60020088355D /* Nudj.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 18;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Externals/HockeySDK-iOS/HockeySDK.embeddedframework",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Nudj/Nudj-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SDKROOT)/usr/include/libxml2",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Nudj beta-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Externals/XMPPFramework/Vendor/libidn",
+					"$(SDKROOT)/usr/include/libxml2",
+					/usr/include/libxml2,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "co.nudj.ios-app.nudj";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7bbbb056-d2e4-4809-b47b-f36c34b76e21";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Nudj/Nudj-Bridging-Header.h";
+			};
+			name = Release;
+		};
 		EB0926E91A8DE4CB00E1D958 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3079,6 +3897,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C86F858B1C444DB800C23332 /* Build configuration list for PBXNativeTarget "Nudj beta" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C86F858C1C444DB800C23332 /* Debug */,
+				C86F858D1C444DB800C23332 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		EB0926C51A8DE4CB00E1D958 /* Build configuration list for PBXProject "Nudj" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
