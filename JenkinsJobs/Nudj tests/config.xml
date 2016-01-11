@@ -103,7 +103,7 @@ xcodebuild -workspace &quot;${WorkspaceName}&quot; -scheme &quot;${Scheme}&quot;
 
 # generate the coverage report
 cd &quot;${WORKSPACE}&quot;
-slather coverage --jenkins --build-directory &quot;${BuildDir}&quot;
+slather coverage --scheme &quot;${Scheme}&quot; --jenkins --build-directory &quot;${BuildDir}&quot;
 
 # kill the iOS Simulator
 xcrun simctl shutdown &quot;${Simulator}&quot; || true
