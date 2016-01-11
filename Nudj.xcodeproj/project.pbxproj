@@ -560,7 +560,7 @@
 		C86F85841C444DB800C23332 /* JSQMessagesCollectionViewCellIncoming.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9964E6F1B387CC800D5A8E9 /* JSQMessagesCollectionViewCellIncoming.xib */; };
 		C86F85851C444DB800C23332 /* no_profile_content@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324CE1B7BAE77009C1F0C /* no_profile_content@2x.png */; };
 		C86F85891C444DB800C23332 /* Pods.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FDD460F204898DA0004C5B93 /* Pods.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C86F85901C444E7400C23332 /* ProductionServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F844C1C44273A00C23332 /* ProductionServer.swift */; };
+		C86F85921C444F2100C23332 /* DevelopmentServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F85911C444F2100C23332 /* DevelopmentServer.swift */; };
 		C89325A61C08BEC10069FCFD /* LoggingPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89325A21C08BEC10069FCFD /* LoggingPrint.swift */; };
 		C89325AA1C08CCE00069FCFD /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89325A91C08CCE00069FCFD /* AssetsLibrary.framework */; };
 		C89325AC1C08CCEA0069FCFD /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89325AB1C08CCEA0069FCFD /* CoreText.framework */; };
@@ -1102,6 +1102,7 @@
 		C86F844C1C44273A00C23332 /* ProductionServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductionServer.swift; sourceTree = "<group>"; };
 		C86F858E1C444DB800C23332 /* Nudj beta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nudj beta.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C86F858F1C444DB900C23332 /* Nudj beta-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Nudj beta-Info.plist"; path = "/Users/richardbuckle/dev/nudj/nudj-ios/Nudj beta-Info.plist"; sourceTree = "<absolute>"; };
+		C86F85911C444F2100C23332 /* DevelopmentServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevelopmentServer.swift; sourceTree = "<group>"; };
 		C89325A21C08BEC10069FCFD /* LoggingPrint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggingPrint.swift; sourceTree = "<group>"; };
 		C89325A91C08CCE00069FCFD /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		C89325AB1C08CCEA0069FCFD /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -2445,6 +2446,7 @@
 				C86F844A1C44257800C23332 /* API+Server.swift */,
 				EB04F6221AAD89AF002F2677 /* Contacts.swift */,
 				C86F844C1C44273A00C23332 /* ProductionServer.swift */,
+				C86F85911C444F2100C23332 /* DevelopmentServer.swift */,
 			);
 			name = Drivers;
 			sourceTree = "<group>";
@@ -3191,6 +3193,7 @@
 				C86F84C31C444DB800C23332 /* XMPPDateTimeProfiles.m in Sources */,
 				C86F84C41C444DB800C23332 /* XMPPRoomHybridStorage.m in Sources */,
 				C86F84C51C444DB800C23332 /* DDXMLNode.m in Sources */,
+				C86F85921C444F2100C23332 /* DevelopmentServer.swift in Sources */,
 				C86F84C61C444DB800C23332 /* FilterModel.swift in Sources */,
 				C86F84C71C444DB800C23332 /* JSQPhotoMediaItem.m in Sources */,
 				C86F84C81C444DB800C23332 /* XMPPvCardCoreDataStorage.m in Sources */,
@@ -3272,7 +3275,6 @@
 				C86F85141C444DB800C23332 /* XMPPCapsCoreDataStorageObject.m in Sources */,
 				C86F85151C444DB800C23332 /* XMPPMessage+XEP_0184.m in Sources */,
 				C86F85161C444DB800C23332 /* XMPPvCardCoreDataStorageObject.m in Sources */,
-				C86F85901C444E7400C23332 /* ProductionServer.swift in Sources */,
 				C86F85181C444DB800C23332 /* XMPPTime.m in Sources */,
 				C86F85191C444DB800C23332 /* KSTokenView.swift in Sources */,
 				C86F851A1C444DB800C23332 /* XMPPBlocking.m in Sources */,
