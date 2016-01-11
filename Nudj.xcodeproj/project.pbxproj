@@ -1116,7 +1116,7 @@
 		C86F844A1C44257800C23332 /* API+Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+Server.swift"; sourceTree = "<group>"; };
 		C86F844C1C44273A00C23332 /* ProductionServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductionServer.swift; sourceTree = "<group>"; };
 		C86F858E1C444DB800C23332 /* Nudj beta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nudj beta.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C86F858F1C444DB900C23332 /* Nudj beta-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Nudj beta-Info.plist"; path = "/Users/richardbuckle/dev/nudj/nudj-ios/Nudj beta-Info.plist"; sourceTree = "<absolute>"; };
+		C86F858F1C444DB900C23332 /* Beta-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Beta-Info.plist"; sourceTree = "<group>"; };
 		C86F85911C444F2100C23332 /* DevelopmentServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevelopmentServer.swift; sourceTree = "<group>"; };
 		C89325A21C08BEC10069FCFD /* LoggingPrint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggingPrint.swift; sourceTree = "<group>"; };
 		C89325A91C08CCE00069FCFD /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -1137,7 +1137,7 @@
 		C8A662021C0B66570088355D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NoInternetConnectionView.xib; sourceTree = "<group>"; };
 		C8A662071C0B69960088355D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C8A6A0321C44536C004DB1C0 /* Nudj beta tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Nudj beta tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C8A6A0331C44536C004DB1C0 /* Nudj beta Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Nudj beta Tests-Info.plist"; path = "/Users/richardbuckle/dev/nudj/nudj-ios/Nudj beta Tests-Info.plist"; sourceTree = "<absolute>"; };
+		C8A6A0331C44536C004DB1C0 /* Beta-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Beta-Info.plist"; sourceTree = "<group>"; };
 		EB000F7B1AB2E0B800E4D385 /* DataTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DataTableCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB000F7E1AB71D6600E4D385 /* ContactsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ContactsController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB04F6221AAD89AF002F2677 /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Contacts.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -2522,7 +2522,7 @@
 				A99650811B387D5000D5A8E9 /* Nudj-Bridging-Header.h */,
 				A99650821B387D5000D5A8E9 /* Nudj-Prefix.pch */,
 				EB0926CE1A8DE4CB00E1D958 /* Info.plist */,
-				C86F858F1C444DB900C23332 /* Nudj beta-Info.plist */,
+				C86F858F1C444DB900C23332 /* Beta-Info.plist */,
 				C8A661DE1C0B60020088355D /* Nudj.release.xcconfig */,
 				C8A661DF1C0B60290088355D /* Nudj.debug.xcconfig */,
 				C8A661E01C0B61400088355D /* Warnings.xcconfig */,
@@ -2543,7 +2543,7 @@
 			isa = PBXGroup;
 			children = (
 				EB0926E61A8DE4CB00E1D958 /* Info.plist */,
-				C8A6A0331C44536C004DB1C0 /* Nudj beta Tests-Info.plist */,
+				C8A6A0331C44536C004DB1C0 /* Beta-Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -3744,7 +3744,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SDKROOT)/usr/include/libxml2",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Nudj beta-Info.plist";
+				INFOPLIST_FILE = "Nudj/Beta-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3778,7 +3778,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SDKROOT)/usr/include/libxml2",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Nudj beta-Info.plist";
+				INFOPLIST_FILE = "Nudj/Beta-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3798,7 +3798,7 @@
 			baseConfigurationReference = C8A661DF1C0B60290088355D /* Nudj.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = "Nudj beta Tests-Info.plist";
+				INFOPLIST_FILE = "NudjTests/Beta-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "co.nudj.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3811,7 +3811,7 @@
 			baseConfigurationReference = C8A661DE1C0B60020088355D /* Nudj.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = "Nudj beta Tests-Info.plist";
+				INFOPLIST_FILE = "NudjTests/Beta-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "co.nudj.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
