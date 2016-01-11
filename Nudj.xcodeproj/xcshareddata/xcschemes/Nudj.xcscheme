@@ -39,6 +39,16 @@
                ReferencedContainer = "container:Nudj.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C8A6A0281C44536C004DB1C0"
+               BuildableName = "Nudj beta tests.xctest"
+               BlueprintName = "Nudj beta tests"
+               ReferencedContainer = "container:Nudj.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

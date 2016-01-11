@@ -576,6 +576,7 @@
 		C8A661FB1C0B66440088355D /* SettingsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661FD1C0B66440088355D /* SettingsCell.xib */; };
 		C8A662011C0B66570088355D /* NoInternetConnectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A662031C0B66570088355D /* NoInternetConnectionView.xib */; };
 		C8A662061C0B69960088355D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C8A662081C0B69960088355D /* Localizable.strings */; };
+		C8A6A02C1C44536C004DB1C0 /* NudgeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0926E71A8DE4CB00E1D958 /* NudgeTests.swift */; };
 		EB000F7C1AB2E0B800E4D385 /* DataTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB000F7B1AB2E0B800E4D385 /* DataTableCell.swift */; };
 		EB000F7F1AB71D6600E4D385 /* ContactsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB000F7E1AB71D6600E4D385 /* ContactsController.swift */; };
 		EB04F6231AAD89AF002F2677 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB04F6221AAD89AF002F2677 /* Contacts.swift */; };
@@ -625,6 +626,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		C8A6A02A1C44536C004DB1C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EB0926C21A8DE4CB00E1D958 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EB0926C91A8DE4CB00E1D958;
+			remoteInfo = Nudge;
+		};
+		C8A6A0341C44537D004DB1C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EB0926C21A8DE4CB00E1D958 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C86F844E1C444DB800C23332;
+			remoteInfo = "Nudj beta";
+		};
 		EB0926E21A8DE4CB00E1D958 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EB0926C21A8DE4CB00E1D958 /* Project object */;
@@ -1121,6 +1136,8 @@
 		C8A661FC1C0B66440088355D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SettingsCell.xib; sourceTree = "<group>"; };
 		C8A662021C0B66570088355D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NoInternetConnectionView.xib; sourceTree = "<group>"; };
 		C8A662071C0B69960088355D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C8A6A0321C44536C004DB1C0 /* Nudj beta tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Nudj beta tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8A6A0331C44536C004DB1C0 /* Nudj beta Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Nudj beta Tests-Info.plist"; path = "/Users/richardbuckle/dev/nudj/nudj-ios/Nudj beta Tests-Info.plist"; sourceTree = "<absolute>"; };
 		EB000F7B1AB2E0B800E4D385 /* DataTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DataTableCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB000F7E1AB71D6600E4D385 /* ContactsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ContactsController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB04F6221AAD89AF002F2677 /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Contacts.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -1191,6 +1208,13 @@
 				C86F85451C444DB800C23332 /* libidn.a in Frameworks */,
 				C86F85461C444DB800C23332 /* CoreData.framework in Frameworks */,
 				C86F85471C444DB800C23332 /* Pods.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C8A6A02D1C44536C004DB1C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2469,6 +2493,7 @@
 				EB0926CA1A8DE4CB00E1D958 /* Nudj.app */,
 				EB0926E11A8DE4CB00E1D958 /* nudjTests.xctest */,
 				C86F858E1C444DB800C23332 /* Nudj beta.app */,
+				C8A6A0321C44536C004DB1C0 /* Nudj beta tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2518,6 +2543,7 @@
 			isa = PBXGroup;
 			children = (
 				EB0926E61A8DE4CB00E1D958 /* Info.plist */,
+				C8A6A0331C44536C004DB1C0 /* Nudj beta Tests-Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2682,6 +2708,25 @@
 			productReference = C86F858E1C444DB800C23332 /* Nudj beta.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C8A6A0281C44536C004DB1C0 /* Nudj beta tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C8A6A02F1C44536C004DB1C0 /* Build configuration list for PBXNativeTarget "Nudj beta tests" */;
+			buildPhases = (
+				C8A6A02B1C44536C004DB1C0 /* Sources */,
+				C8A6A02D1C44536C004DB1C0 /* Frameworks */,
+				C8A6A02E1C44536C004DB1C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C8A6A0291C44536C004DB1C0 /* PBXTargetDependency */,
+				C8A6A0351C44537D004DB1C0 /* PBXTargetDependency */,
+			);
+			name = "Nudj beta tests";
+			productName = NudgeTests;
+			productReference = C8A6A0321C44536C004DB1C0 /* Nudj beta tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		EB0926C91A8DE4CB00E1D958 /* Nudj */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB0926EB1A8DE4CB00E1D958 /* Build configuration list for PBXNativeTarget "Nudj" */;
@@ -2734,6 +2779,9 @@
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Nudge I.T. Limited";
 				TargetAttributes = {
+					C8A6A0281C44536C004DB1C0 = {
+						TestTargetID = C86F844E1C444DB800C23332;
+					};
 					EB0926C91A8DE4CB00E1D958 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = A5R558S6UR;
@@ -2765,6 +2813,7 @@
 				EB0926C91A8DE4CB00E1D958 /* Nudj */,
 				C86F844E1C444DB800C23332 /* Nudj beta */,
 				EB0926E01A8DE4CB00E1D958 /* NudjTests */,
+				C8A6A0281C44536C004DB1C0 /* Nudj beta tests */,
 			);
 		};
 /* End PBXProject section */
@@ -2835,6 +2884,13 @@
 				C86F85831C444DB800C23332 /* ContactsCell.xib in Resources */,
 				C86F85841C444DB800C23332 /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
 				C86F85851C444DB800C23332 /* no_profile_content@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C8A6A02E1C44536C004DB1C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3311,6 +3367,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C8A6A02B1C44536C004DB1C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8A6A02C1C44536C004DB1C0 /* NudgeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EB0926C61A8DE4CB00E1D958 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3560,6 +3624,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		C8A6A0291C44536C004DB1C0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EB0926C91A8DE4CB00E1D958 /* Nudj */;
+			targetProxy = C8A6A02A1C44536C004DB1C0 /* PBXContainerItemProxy */;
+		};
+		C8A6A0351C44537D004DB1C0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C86F844E1C444DB800C23332 /* Nudj beta */;
+			targetProxy = C8A6A0341C44537D004DB1C0 /* PBXContainerItemProxy */;
+		};
 		EB0926E31A8DE4CB00E1D958 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = EB0926C91A8DE4CB00E1D958 /* Nudj */;
@@ -3716,6 +3790,32 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "7bbbb056-d2e4-4809-b47b-f36c34b76e21";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Nudj/Nudj-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		C8A6A0301C44536C004DB1C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8A661DF1C0B60290088355D /* Nudj.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Nudj beta Tests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "co.nudj.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nudj beta.app/Nudj beta";
+			};
+			name = Debug;
+		};
+		C8A6A0311C44536C004DB1C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8A661DE1C0B60020088355D /* Nudj.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Nudj beta Tests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "co.nudj.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nudj beta.app/Nudj beta";
 			};
 			name = Release;
 		};
@@ -3904,6 +4004,15 @@
 			buildConfigurations = (
 				C86F858C1C444DB800C23332 /* Debug */,
 				C86F858D1C444DB800C23332 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C8A6A02F1C44536C004DB1C0 /* Build configuration list for PBXNativeTarget "Nudj beta tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C8A6A0301C44536C004DB1C0 /* Debug */,
+				C8A6A0311C44536C004DB1C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
