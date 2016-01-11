@@ -64,7 +64,8 @@
     <hudson.tasks.Shell>
       <command># local vars
 Workspace=&quot;Nudj.xcworkspace&quot;
-MainScheme=&quot;Nudj&quot;
+MainScheme=&quot;Nudj beta&quot;
+ProductName=&quot;Nudj beta&quot;
 
 # set the desired version of Xcode
 export DEVELOPER_DIR=&quot;/Applications/Xcode.app/Contents/Developer&quot;
@@ -83,10 +84,10 @@ cd &quot;${WORKSPACE}&quot;
 zip -qr &quot;${BUILD_TAG}&quot; BuildProducts
 
 cd BuildProducts
-zip -r ../Nudj.dSYM.zip &quot;Nudj.app.dSYM&quot;
+zip -r &quot;../${ProductName}.dSYM.zip&quot; &quot;${ProductName}.app.dSYM&quot;
 cd &quot;${WORKSPACE}&quot;
 
-/usr/bin/xcrun -sdk iphoneos PackageApplication &quot;${WORKSPACE}/BuildProducts/Nudj.app&quot; -o &quot;${WORKSPACE}/Nudj.ipa&quot;
+/usr/bin/xcrun -sdk iphoneos PackageApplication &quot;${WORKSPACE}/BuildProducts/${ProductName}.app&quot; -o &quot;${WORKSPACE}/${ProductName}.ipa&quot;
 
 # workaround Jenkins git plugin not fetching master at the moment
 git fetch github +master:master
@@ -96,7 +97,7 @@ git fetch github +master:master
 
 # upload to Hockey App -- the plugin writes the Jenkins build number into the dSYM so we use puck
 /usr/local/bin/puck \
-  -dsym_path=&quot;${WORKSPACE}/Nudj.dSYM.zip&quot; \
+  -dsym_path=&quot;${WORKSPACE}/${ProductName}.dSYM.zip&quot; \
   -build_server_url=&quot;${BUILD_URL}&quot; \
   -source_path=&quot;${WORKSPACE}&quot; \
   -notes_path=&quot;${WORKSPACE}/changelog.markdown&quot; \
@@ -109,7 +110,7 @@ git fetch github +master:master
   -release_type=beta \
   -api_token=ca127f9d4c5648479847e08aa9b2ebfd \
   -app_id=9bb5535d31f24908a06d72757a8e39e9 \
-  &quot;${WORKSPACE}/Nudj.ipa&quot;
+  &quot;${WORKSPACE}/${ProductName}.ipa&quot;
 
 rm -f changelog.markdown
 

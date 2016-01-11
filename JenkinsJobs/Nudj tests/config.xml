@@ -56,7 +56,7 @@
       <command># local vars
 WorkspaceName=&quot;Nudj.xcworkspace&quot;
 Configuration=&quot;Debug&quot;
-Scheme=&quot;Nudj&quot;
+Scheme=&quot;Nudj beta&quot;
 Simulator=Nudj-iPhone6-&quot;${BUILD_NUMBER}&quot;
 BuildDir=&quot;${WORKSPACE}&quot;/tmp/objs
 
