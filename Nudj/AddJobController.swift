@@ -112,6 +112,8 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
             job.location = location.text!
             job.active = activeButton.selected
             job.bonus = bonus.text!
+            
+            AppDelegate.registerForRemoteNotifications()
 
             // TODO: select by something less fragile than the title
             if(sender.title == Localizations.Jobs.Add.Button.Update){
