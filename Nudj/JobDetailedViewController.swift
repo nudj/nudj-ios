@@ -231,6 +231,8 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, Tutori
     }
     
     @IBAction func interested(sender: UIButton) {
+        // TODO: use two separate IBActions rather than this if-else statement
+        AppDelegate.registerForRemoteNotifications()
         if(sender.titleLabel?.text == Localizations.Jobs.Button.Interested){
             //Go to INTERESTED
             MixPanelHandler.sendData("InterestedButtonClicked")
