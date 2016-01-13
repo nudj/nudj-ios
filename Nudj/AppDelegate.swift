@@ -69,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
         chatInst = ChatModels()
         chatInst!.delegate = self;
         if(!chatInst!.connect(inViewController: self.window!.rootViewController!)) {
-            loggingPrint("NOT Connected to chat server so will try reconnecting")
+            // TODO: decide what to do here
         }
 
         requestNotificationPermission(application)
@@ -152,7 +152,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
         }
 
         if self.deviceToken != nil {
-            loggingPrint( "Device token sent -> \(self.deviceToken!)")
             // TODO: API strings
             API.sharedInstance.put("devices", params: ["token":self.deviceToken!], closure:{ 
                 _ in
@@ -171,7 +170,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
             
             reachability.whenUnreachable = { 
                 reachability in
-                loggingPrint("Not reachable")
                 if !isShown {
                     self.window?.addSubview(view)
                     isShown = true
@@ -180,7 +178,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
             
             reachability.whenReachable = { 
                 reachability in
-                loggingPrint("reachable")
                 if isShown {
                     view.removeFromSuperview()
                     isShown = false
@@ -247,13 +244,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
                         }
                         self.user.updateFromJson(source)
                         self.pushUserData()
-                    }else{
-                        loggingPrint(" user has no source object")
                     }
                 })
             })
-        } else {
-            loggingPrint(" user has no token")
         }
     }
 
@@ -364,8 +357,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
     }
 
     func prepareApi() {
+        // TODO: why do we have both a sharedInstance and an instance variable?
         API.sharedInstance.token = self.user.token
-        loggingPrint("Token: \(API.sharedInstance.token)")
         if (api == nil) {
             api = API()
         }
