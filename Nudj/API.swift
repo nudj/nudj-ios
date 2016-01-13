@@ -16,7 +16,7 @@ class API {
 
     // Production
     // TODO: API strings
-    var baseURL: String { return server.URLString + "api/v1" }
+    var baseURL: String { return server.URLString + "api/v1/" }
     var token: String? = nil
 
     // TODO: remove this singleton (NB it isn't even implemented correctly)
