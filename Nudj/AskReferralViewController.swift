@@ -233,6 +233,7 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
         let params:[String:AnyObject] = ["job": "\(jobId!)", "contacts": contactIds, "message": messageText.text]
         
         self.messageText.resignFirstResponder()
+        AppDelegate.registerForRemoteNotifications()
 
         // TODO: Refactor
         guard let firstSelected = self.selected.first else {return}
