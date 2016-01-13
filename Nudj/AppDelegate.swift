@@ -14,7 +14,7 @@ import SwiftyJSON
 import HockeySDK
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
+class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
 
     var window: UIWindow?
     var user = UserModel()
@@ -60,6 +60,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
             // Valid User, Proceed
             prefetchUserData()
             self.changeRootViewController("mainNavigation")
+            
+            // we only register for notifications if we have a valid user
+            AppDelegate.registerForRemoteNotifications()
         }
         if (contacts.isAuthorized()) {
             self.syncContacts()
@@ -72,7 +75,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
             // TODO: decide what to do here
         }
 
-        requestNotificationPermission(application)
         if let remoteNotification = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary {
             pushNotificationsPayload = remoteNotification
         }
@@ -111,10 +113,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ChatModelsDelegate {
         loggingPrint( "Notification Error: ", error.localizedDescription )
     }
 
-    func requestNotificationPermission(application: UIApplication) {
+    static func registerForRemoteNotifications() {
+        let application = UIApplication.sharedApplication()
         let types: UIUserNotificationType = [.Badge, .Alert, .Sound]
-        let settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: types, categories: nil)
-        application.registerUserNotificationSettings( settings )
+        let settings = UIUserNotificationSettings(forTypes: types, categories: nil)
+        application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
     }
 
