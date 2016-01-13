@@ -115,6 +115,9 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
 
     static func registerForRemoteNotifications() {
         let application = UIApplication.sharedApplication()
+        if(application.isRegisteredForRemoteNotifications()) {
+            return
+        }
         let types: UIUserNotificationType = [.Badge, .Alert, .Sound]
         let settings = UIUserNotificationSettings(forTypes: types, categories: nil)
         application.registerUserNotificationSettings(settings)
