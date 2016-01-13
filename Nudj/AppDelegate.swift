@@ -62,7 +62,9 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
             self.changeRootViewController("mainNavigation")
             
             // we only register for notifications if we have a valid user
-            AppDelegate.registerForRemoteNotifications()
+            if( user.completed) {
+                AppDelegate.registerForRemoteNotifications()            
+            }
         }
         if (contacts.isAuthorized()) {
             self.syncContacts()
