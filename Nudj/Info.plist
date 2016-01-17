@@ -20,6 +20,8 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleSpokenName</key>
+	<string>Nudge</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
