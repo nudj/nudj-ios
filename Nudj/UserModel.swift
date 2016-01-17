@@ -18,7 +18,7 @@ class UserModel: CustomStringConvertible {
     var token: String?
     var about: String?
 
-    var completed: Bool = false
+    var completed: Bool = false // TODO: redundant after ticket #35
     var addressBookAccess = false
     var status: Int? = 0
 

@@ -12,7 +12,7 @@ import SwiftyJSON
 private struct UnknownError : ErrorType {}
 
 class BaseController: UIViewController {
-
+    // TODO: review this
     var chatCounter = 0;
     var notificationCounter = 0;
     

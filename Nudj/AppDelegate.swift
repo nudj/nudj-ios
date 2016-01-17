@@ -35,6 +35,8 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
     
     //Mix panel
     let MIXPANEL_TOKEN = "29fc1fec9fa6f75efd303f12c8be4acb"
+    
+    // TOOD: refactor these out
     let appColor = UIColor(red: 0.0, green: 0.63, blue: 0.53, alpha: 1.0)
     let appBlueColor = UIColor(red:17.0/255.0, green:147.0/255.0, blue:189.0/255.0, alpha: 1.0)
     

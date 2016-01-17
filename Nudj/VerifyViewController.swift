@@ -106,6 +106,7 @@ class VerifyViewController: BaseController {
                 return
             }
 
+            // TODO: refactor the below out of the app delegate
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
 
             // TODO: API strings
