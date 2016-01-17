@@ -86,7 +86,7 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
             if (user.completed) {
                 appDelegate.user.completed = true
                 appDelegate.pushUserData()
-                appDelegate.changeRootViewController("mainNavigation")
+                appDelegate.showViewControllerWithIdentifier(.Main)
             }
             
             if !user.isDefaultImage {

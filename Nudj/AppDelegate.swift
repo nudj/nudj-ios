@@ -15,6 +15,11 @@ import HockeySDK
 
 @UIApplicationMain
 class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
+    
+    enum ViewControllerIdentifier: String {
+        case Main = "mainNavigation"
+        case Login = "loginController"
+    }
 
     var window: UIWindow?
     var user = UserModel()
@@ -55,9 +60,15 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
         fetchUserData()
         prepareApi();
         
-        prefetchUserData()
-        self.changeRootViewController("mainNavigation")
-            
+        if user.id != nil {
+            // valid user
+            prefetchUserData()
+            showViewControllerWithIdentifier(.Main)
+        } else {
+            // user needs to login - the login screen is currently the default start view but don't rely on that
+            showViewControllerWithIdentifier(.Login)
+        }
+        
 		// we only register for notifications if we have a valid user
 		if( user.completed) {
 			AppDelegate.registerForRemoteNotifications()            
@@ -369,16 +380,8 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
         }
     }
 
-    func pushViewControllerWithId(id: String) {
-        let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let navigationController:UINavigationController = storyboard.instantiateViewControllerWithIdentifier("mainNavigationController") as! UINavigationController
-        let rootViewController:UIViewController = storyboard.instantiateViewControllerWithIdentifier(id) 
-        navigationController.viewControllers = [rootViewController]
-        self.window?.rootViewController = navigationController
-    }
-
-    func changeRootViewController(id:String) {
-        self.window!.rootViewController = self.window?.rootViewController?.storyboard?.instantiateViewControllerWithIdentifier(id)
+    func showViewControllerWithIdentifier(identifier: ViewControllerIdentifier) {
+        self.window!.rootViewController = self.window?.rootViewController?.storyboard?.instantiateViewControllerWithIdentifier(identifier.rawValue)
     }
 
     func applicationWillResignActive(application: UIApplication) {
