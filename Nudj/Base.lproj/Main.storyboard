@@ -712,7 +712,7 @@
                                 <rect key="frame" x="177" y="324" width="20" height="20"/>
                                 <color key="color" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
-                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vXR-VJ-TP6">
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vXR-VJ-TP6">
                                 <rect key="frame" x="0.0" y="258" width="375" height="409"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -2027,7 +2027,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smp-rK-aNl">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smp-rK-aNl">
                                 <rect key="frame" x="4" y="184" width="406" height="508"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tdu-Qe-djm" userLabel="Skills View">
@@ -2454,11 +2454,11 @@
                         <viewControllerLayoutGuide type="bottom" id="wdM-kP-MCQ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3a5-IX-tvj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1vZ-hu-yWg">
-                                <rect key="frame" x="16" y="64" width="343" height="170"/>
+                                <rect key="frame" x="20" y="64" width="374" height="170"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="170" id="KFq-Dr-xO6"/>
@@ -2509,7 +2509,6 @@
                     <connections>
                         <segue destination="HUi-qm-vwZ" kind="relationship" relationship="rootViewController" id="l7l-cF-kYn"/>
                         <segue destination="49e-Tb-3d3" kind="showDetail" identifier="showMainScreen" id="vho-Q5-Kri"/>
-                        <segue destination="u6h-lK-ytT" kind="show" identifier="showGenericProfileViewControllerAgain" id="fbd-Xz-21X"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tL6-xY-Tir" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2716,14 +2715,14 @@
         <image name="success.png" width="88" height="88"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BCe-Pt-bFX"/>
-        <segue reference="m0n-l7-DaR"/>
-        <segue reference="H51-O9-Snf"/>
-        <segue reference="zyP-mc-EMC"/>
+        <segue reference="vho-Q5-Kri"/>
+        <segue reference="l7l-cF-kYn"/>
+        <segue reference="yTk-h8-BPW"/>
+        <segue reference="H2O-Du-Dkg"/>
+        <segue reference="1RO-e0-4AP"/>
         <segue reference="oVM-eF-ddZ"/>
-        <segue reference="Dea-FG-uEg"/>
         <segue reference="gvE-qy-aNj"/>
-        <segue reference="6SR-Rm-L27"/>
+        <segue reference="TFM-Ac-ZI1"/>
         <segue reference="eNW-U2-njr"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
