@@ -9,5 +9,8 @@ import UIKit
 
 class MainTabBar: UITabBarController {
 
-    
+    @IBAction func unwindToMainTabBar(segue: UIStoryboardSegue) {
+        // nothing to do here
+    }
+        
 }
