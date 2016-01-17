@@ -712,8 +712,8 @@
                                 <rect key="frame" x="177" y="324" width="20" height="20"/>
                                 <color key="color" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
-                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vXR-VJ-TP6">
-                                <rect key="frame" x="0.0" y="258" width="375" height="409"/>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vXR-VJ-TP6">
+                                <rect key="frame" x="0.0" y="258" width="375" height="365"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="l4F-Ih-7ec" id="mtd-99-dHX"/>
@@ -2027,8 +2027,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smp-rK-aNl">
-                                <rect key="frame" x="4" y="184" width="406" height="508"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smp-rK-aNl">
+                                <rect key="frame" x="4" y="184" width="406" height="552"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tdu-Qe-djm" userLabel="Skills View">
                                         <rect key="frame" x="0.0" y="0.0" width="406" height="55"/>
@@ -2646,10 +2646,10 @@
             </objects>
             <point key="canvasLocation" x="-993.5" y="310.5"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Superfluous contacts nav-->
         <scene sceneID="6A9-wS-yDC">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yiN-Pn-yvP" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yiN-Pn-yvP" userLabel="Superfluous contacts nav" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="AXJ-ya-HwK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -2664,10 +2664,10 @@
             </objects>
             <point key="canvasLocation" x="-330" y="1946"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Superfluous add job nav-->
         <scene sceneID="tit-de-obz">
             <objects>
-                <navigationController storyboardIdentifier="addJobNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="erZ-w0-oUk" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="addJobNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="erZ-w0-oUk" userLabel="Superfluous add job nav" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lHL-Np-V1Q">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -2715,13 +2715,13 @@
         <image name="success.png" width="88" height="88"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vho-Q5-Kri"/>
+        <segue reference="BCe-Pt-bFX"/>
+        <segue reference="H2O-Du-Dkg"/>
         <segue reference="l7l-cF-kYn"/>
         <segue reference="yTk-h8-BPW"/>
-        <segue reference="H2O-Du-Dkg"/>
         <segue reference="1RO-e0-4AP"/>
+        <segue reference="FgN-nx-a7b"/>
         <segue reference="oVM-eF-ddZ"/>
-        <segue reference="gvE-qy-aNj"/>
         <segue reference="TFM-Ac-ZI1"/>
         <segue reference="eNW-U2-njr"/>
     </inferredMetricsTieBreakers>
