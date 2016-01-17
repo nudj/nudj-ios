@@ -9,7 +9,12 @@ import Foundation
 import UIKit
 import SwiftyJSON
 
-class VerifyViewController: BaseController {
+class VerifyViewController: BaseController, SegueHandlerType {
+    
+    enum SegueIdentifier: String {
+        case ShowInitProfileView = "showInitProfileView"
+        case UnwindToJobsList = "unwindToJobsList"
+    }
 
     @IBOutlet weak var codeField: UITextField!
 
