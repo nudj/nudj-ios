@@ -13,6 +13,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     
     enum SegueIdentifier: String {
         case GoToProfile = "GoToProfile"
+        case AskForReferral = "AskForReferral"
     }
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
@@ -215,15 +216,9 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let askView = segue.destinationViewController as? AskReferralViewController {
-            
-            MixPanelHandler.sendData("ReferButtonClicked")
-            askView.jobId = Int(self.jobID!)
-            askView.isNudjRequest = true
-            askView.isSlideTransition = true
-        }
-        
-        if let profileView = segue.destinationViewController as? GenericProfileViewController {
+        switch segueIdentifierForSegue(segue) {
+        case .GoToProfile:
+            let profileView = segue.destinationViewController as! GenericProfileViewController
             if(self.userId! == appDelegate.user.id) {
                 profileView.type = .Own
             } else {
@@ -231,7 +226,13 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
                 profileView.type = .Public
                 profileView.preloadedName = authorName.text
             }
-        }
+        case .AskForReferral:
+            let askView = segue.destinationViewController as! AskReferralViewController
+            MixPanelHandler.sendData("ReferButtonClicked")
+            askView.jobId = Int(self.jobID!)
+            askView.isNudjRequest = true
+            askView.isSlideTransition = true
+        }        
     }
     
     @IBAction func interested(sender: UIButton) {

@@ -295,9 +295,10 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let destinationNavigationController = segue.destinationViewController as? UINavigationController {
+        switch segueIdentifierForSegue(segue) {
+        case .GoToChat:
+            let destinationNavigationController = segue.destinationViewController as! UINavigationController
             let chatView = destinationNavigationController.topViewController as! InitiateChatViewController
-            
             chatView.jobid = selectedContent!.jobID
             chatView.userid = selectedContent!.senderId
             chatView.username = selectedContent!.senderName

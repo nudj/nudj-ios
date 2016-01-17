@@ -20,7 +20,6 @@ class LoginController: BaseController, SegueHandlerType, CountrySelectionPickerD
     
     var countrySelectionView = CountrySelectionPicker()
     var code = "GB"
-    var isPrivacy:Bool?
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
     
@@ -103,12 +102,10 @@ class LoginController: BaseController, SegueHandlerType, CountrySelectionPickerD
     }
 
     func showPolicy(){
-        isPrivacy = true
         self.performSegueWithIdentifier(.GoToPrivacy, sender: self)
     }
     
     func showTerms(){
-        isPrivacy = false
         self.performSegueWithIdentifier(.GoToTerms, sender: self)
     }
 
@@ -141,13 +138,17 @@ class LoginController: BaseController, SegueHandlerType, CountrySelectionPickerD
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         self.changeNavigationBar(false)
 
-        if let verify = segue.destinationViewController as? VerifyViewController {
+        switch segueIdentifierForSegue(segue) {
+        case .ShowVerifyView:
+            let verify = segue.destinationViewController as! VerifyViewController
             verify.setValue(self.getFormattedNumber(), forKey: "phoneNumber")
             verify.code = self.code
-        }
-        
-        if let termsView = segue.destinationViewController as? TermsViewController {
-            termsView.isPrivacy = isPrivacy
+        case .GoToPrivacy:
+            let termsView = segue.destinationViewController as! TermsViewController
+            termsView.isPrivacy = true
+        case .GoToTerms:
+            let termsView = segue.destinationViewController as! TermsViewController
+            termsView.isPrivacy = false
         }
     }
     

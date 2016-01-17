@@ -600,8 +600,13 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
 
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let vc = segue.destinationViewController as? MainTabBar {
-            vc.navigationItem.setHidesBackButton(true, animated: false)
+        switch segueIdentifierForSegue(segue) {
+        case .ShowMainScreen:
+            if let vc = segue.destinationViewController as? MainTabBar {
+                vc.navigationItem.setHidesBackButton(true, animated: false)
+            }
+        case .ShowStatusPicker:
+            break
         }
     }
 

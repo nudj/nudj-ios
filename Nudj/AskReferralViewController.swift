@@ -8,7 +8,11 @@
 import UIKit
 import CCMPopup
 
-class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, CreatePopupViewDelegate{
+class AskReferralViewController: UIViewController, SegueHandlerType, UISearchBarDelegate ,UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, CreatePopupViewDelegate{
+    
+    enum SegueIdentifier: String {
+        case ShowPopup = "ShowPopup"
+    }
     
     @IBOutlet var askTable: UITableView!
     @IBOutlet var searchBarView: UISearchBar!
@@ -283,7 +287,8 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.isKindOfClass(CCMPopupSegue) {
+        switch segueIdentifierForSegue(segue) {
+        case .ShowPopup:
             let popupSegue = segue as! CCMPopupSegue
             // TODO: magic numbers
             popupSegue.destinationBounds = CGRectMake(0, 0, 300, 400);
@@ -292,7 +297,6 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
             popupSegue.backgroundViewColor = UIColor.blackColor()
             popupSegue.dismissableByTouchingBackground = true
         }
-        
     }
     
     @IBAction func close(sender: AnyObject) {

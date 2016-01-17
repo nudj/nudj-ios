@@ -12,6 +12,8 @@ class CreateProfileController: UIViewController, SegueHandlerType, UITextFieldDe
 
     enum SegueIdentifier: String {
         case ShowCreateProfileView = "showCreateProfileView"
+        case GoToMainScreen = "goToMainScreenAfterProfileCompleted"
+        case SelectStatus = "selectStatus"
     }
     
     @IBOutlet weak var linkedIn: UIImageView!
@@ -141,11 +143,21 @@ class CreateProfileController: UIViewController, SegueHandlerType, UITextFieldDe
     // MARK: - Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let popover = segue.destinationViewController as? StatusPicker {
-            // TODO: magic numbers
-            popover.preferredContentSize = CGSize(width: 200, height: 200)
-        } else if let vc = segue.destinationViewController as? GenericProfileViewController {
-            vc.type = .Initial
+        switch segueIdentifierForSegue(segue) {
+            
+        case .SelectStatus:
+            if let popover = segue.destinationViewController as? StatusPicker {
+                // TODO: magic numbers
+                popover.preferredContentSize = CGSize(width: 200, height: 200)
+            }
+            
+        case .ShowCreateProfileView:
+            if let vc = segue.destinationViewController as? GenericProfileViewController {
+                vc.type = .Initial
+            }
+            
+        case .GoToMainScreen:
+            break
         }
     }
 

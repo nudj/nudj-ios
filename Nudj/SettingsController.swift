@@ -11,7 +11,14 @@ import SwiftyJSON
 class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSource, UITableViewDelegate, SocialStatusDelegate {
     
     enum SegueIdentifier: String {
+        case ShowProfile = "showYourProfile"
+        case ShowStatusPicker = "showStatusPicker"
         case GoToLogin = "goToLogin"
+        case GoToTerms = "goToTerms"
+        case GoToFeedBack = "goToFeedBack"
+        case GoToSavedJobs = "goToSavedJobs"
+        case GoToPostedJobs = "goToPostedJobs"
+        case GoToChats = "goToChats"
     }
 
     @IBOutlet weak var versionNumberLabel: UILabel!
@@ -173,47 +180,39 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
     
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-
-        // goToLogin
-        if (segue.destinationViewController.isKindOfClass(LoginController)) {
+        switch segueIdentifierForSegue(segue) {
+        case .ShowProfile:
+            let controller = segue.destinationViewController as! GenericProfileViewController
+            controller.type = .Own
+            
+        case .ShowStatusPicker:
+            break
+            
+        case .GoToLogin:
             let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
             delegate.deleteAccount(inViewController: segue.destinationViewController)
-        }
-
-        // showYourProfile
-        if (segue.destinationViewController.isKindOfClass(GenericProfileViewController)) {
-            if let controller = (segue.destinationViewController as? GenericProfileViewController) {
-                controller.type = .Own
+            
+        case .GoToTerms:
+            let controller = segue.destinationViewController as! TermsViewController
+            if isPolicy {
+                controller.isPrivacy = true
             }
-        }
-
-        // saved jobs or posted jobs
-        if (segue.destinationViewController.isKindOfClass(SavedPostedJobs)) {
-            if let controller = (segue.destinationViewController as? SavedPostedJobs) {
-                if(self.jobsSelected == "goToPostedJobs"){
-                    controller.title = Localizations.Settings.Title.PostedJobs
-                    controller.requestParams = "mine"
-                }
-                
-                if(self.jobsSelected == "goToSavedJobs"){
-                    controller.title = Localizations.Settings.Title.SavedJobs
-                    controller.requestParams = "liked"
-                }
-            }
-        }
-        
-        if(segue.destinationViewController.isKindOfClass(TermsViewController)){
-            if let controller = (segue.destinationViewController as? TermsViewController) {
-                if(isPolicy == true){
-                    controller.isPrivacy = true
-                }
-            }
-        }
-        
-        if(segue.destinationViewController.isKindOfClass(ChatListViewController)){
-            if let controller = (segue.destinationViewController as? ChatListViewController) {
-                 controller.isArchive = true
-            }
+        case .GoToFeedBack:
+            break
+            
+        case .GoToSavedJobs:
+            let controller = segue.destinationViewController as! SavedPostedJobs
+            controller.title = Localizations.Settings.Title.SavedJobs
+            controller.requestParams = "liked"
+            
+        case .GoToPostedJobs:
+            let controller = segue.destinationViewController as! SavedPostedJobs
+            controller.title = Localizations.Settings.Title.PostedJobs
+            controller.requestParams = "mine"
+            
+        case .GoToChats:
+            let controller = segue.destinationViewController as! ChatListViewController
+            controller.isArchive = true
         }
     }
 

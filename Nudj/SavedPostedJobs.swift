@@ -85,12 +85,10 @@ class SavedPostedJobs: BaseController, SegueHandlerType, DataProviderProtocol {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let askView = segue.destinationViewController as? AskReferralViewController {
-            loggingPrint(selectedJobData)
-            askView.jobId = Int(selectedJobData!["id"].stringValue)
-        }else if let detailsView = segue.destinationViewController as? JobDetailedViewController {
+        switch segueIdentifierForSegue(segue) {
+        case .GoToJob:
+            let detailsView = segue.destinationViewController as! JobDetailedViewController
             detailsView.jobID = selectedJobData!["id"].stringValue
-            loggingPrint(selectedJobData)
         }
     }
 

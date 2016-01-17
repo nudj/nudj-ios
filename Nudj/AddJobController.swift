@@ -355,10 +355,13 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let refView = segue.destinationViewController as? AskReferralViewController {
-            refView.jobId = self.jobId
-            refView.isNudjRequest = false
-            refView.jobTitle = self.jobTitle.text
+        switch segueIdentifierForSegue(segue) {
+        case .ShowAskForReferral:
+            if let refView = segue.destinationViewController as? AskReferralViewController {
+                refView.jobId = self.jobId
+                refView.isNudjRequest = false
+                refView.jobTitle = self.jobTitle.text
+            }
         }
     }
     
