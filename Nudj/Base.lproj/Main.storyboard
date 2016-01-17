@@ -8,10 +8,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Network Posts-->
+        <!--Jobs-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController title="Network Posts" automaticallyAdjustsScrollViewInsets="NO" id="9pv-A4-QxB" customClass="MainFeed" customModule="Nudj" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Jobs" automaticallyAdjustsScrollViewInsets="NO" id="9pv-A4-QxB" customClass="MainFeed" customModule="Nudj" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
@@ -1265,10 +1265,10 @@
             </objects>
             <point key="canvasLocation" x="2082.5" y="1990.5"/>
         </scene>
-        <!--Network Posts Navigator-->
+        <!--Jobs Navigator-->
         <scene sceneID="gnE-5Y-lyK">
             <objects>
-                <navigationController title="Network Posts Navigator" automaticallyAdjustsScrollViewInsets="NO" id="RXb-Ol-yaJ" customClass="MainTabItem" customModule="Nudj" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController title="Jobs Navigator" automaticallyAdjustsScrollViewInsets="NO" id="RXb-Ol-yaJ" customClass="MainTabItem" customModule="Nudj" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Jobs" image="jobsIcon" id="atM-D1-qso"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="t2G-We-sg6">
