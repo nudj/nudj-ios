@@ -9,12 +9,15 @@ import UIKit
 import SwiftyJSON
 
 @IBDesignable
-class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDelegate, UITextViewDelegate {
+class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDelegate, UITextFieldDelegate, UITextViewDelegate {
 
+    enum SegueIdentifier: String {
+        case ShowAskForReferral = "showAskForReferal"
+    }
+    
     var popup :CreatePopupView?
     var isEditable:Bool?
     var jobId:Int?
-    
 
     @IBOutlet weak var scrollView: UIScrollView!
     var openSpace:CGFloat = 0.0;
@@ -347,7 +350,7 @@ class AddJobController: UIViewController, CreatePopupViewDelegate, UITextFieldDe
             self.closeCurrentView()
         }else{
             MixPanelHandler.sendData("NewJobAdded")
-            performSegueWithIdentifier("showAskForReferal", sender: self)
+            performSegueWithIdentifier(.ShowAskForReferral, sender: self)
         }
     }
 

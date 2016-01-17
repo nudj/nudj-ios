@@ -9,7 +9,11 @@ import UIKit
 import SwiftyJSON
 import MessageUI
 
-class NotificationViewController: UITableViewController, NotificationCellDelegate, MFMessageComposeViewControllerDelegate {
+class NotificationViewController: UITableViewController, SegueHandlerType, NotificationCellDelegate, MFMessageComposeViewControllerDelegate {
+    
+    enum SegueIdentifier: String {
+        case GoToChat = "goToChat"
+    }
 
     var data = [Notification]()
     
@@ -265,7 +269,7 @@ class NotificationViewController: UITableViewController, NotificationCellDelegat
         if chatData.chatId != nil && !chatData.chatId!.isEmpty{
             self.gotTochatAction(cell)
         } else {
-            performSegueWithIdentifier("goToChat", sender: self)
+            performSegueWithIdentifier(.GoToChat, sender: self)
             cell.userInteractionEnabled = true
         }
     }

@@ -8,7 +8,11 @@
 import UIKit
 import SwiftyJSON
 
-class SettingsController: UIViewController, UITableViewDataSource, UITableViewDelegate, SocialStatusDelegate {
+class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSource, UITableViewDelegate, SocialStatusDelegate {
+    
+    enum SegueIdentifier: String {
+        case GoToLogin = "goToLogin"
+    }
 
     @IBOutlet weak var versionNumberLabel: UILabel!
     @IBOutlet weak var table: UITableView!
@@ -160,7 +164,10 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
             self.presentViewController(alert, animated: true, completion: nil)
         } else {
             self.jobsSelected = action
-            performSegueWithIdentifier(action, sender: self)
+            guard let segueIdentifier = SegueIdentifier(rawValue: action) else {
+                fatalError("Invalid segue identifier \(action)")
+            }
+            performSegueWithIdentifier(segueIdentifier, sender: self)
         }
     }
     
@@ -232,7 +239,7 @@ class SettingsController: UIViewController, UITableViewDataSource, UITableViewDe
     func deleteAccount(_: UIAlertAction) {
         MixPanelHandler.sendData("DeleteAcountAction")
         self.jobsSelected = "goToLogin"
-        performSegueWithIdentifier("goToLogin", sender: self)
+        performSegueWithIdentifier(.GoToLogin, sender: self)
     }
     
     func toggleFacebook(_: UIAlertAction) {

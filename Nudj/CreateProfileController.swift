@@ -8,8 +8,12 @@
 import UIKit
 import SwiftyJSON
 
-class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CreateProfileController: UIViewController, SegueHandlerType, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    enum SegueIdentifier: String {
+        case ShowCreateProfileView = "showCreateProfileView"
+    }
+    
     @IBOutlet weak var linkedIn: UIImageView!
     @IBOutlet weak var faceBookImage: UIImageView!
     
@@ -206,7 +210,7 @@ class CreateProfileController: UIViewController, UITextFieldDelegate, UIImagePic
         // TODO: refactor with LinkedIn action
         self.socialhander!.configureFacebook(false, completionHandler: { success in
             if(success){
-                self.performSegueWithIdentifier("showCreateProfileView", sender: self)
+                self.performSegueWithIdentifier(.ShowCreateProfileView, sender: self)
             } else {
                 let alert = UIAlertController(title: Localizations.Profile.Facebook.Failed.Title, message: nil, preferredStyle: .Alert)
                 let defaultAction = UIAlertAction(title: Localizations.General.Button.Ok, style: .Cancel, handler: nil)

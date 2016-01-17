@@ -9,7 +9,11 @@ import UIKit
 import Foundation
 import SwiftyJSON
 
-class JobDetailedViewController: BaseController, CreatePopupViewDelegate, TutorialViewDelegate {
+class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupViewDelegate, TutorialViewDelegate {
+    
+    enum SegueIdentifier: String {
+        case GoToProfile = "GoToProfile"
+    }
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
     
@@ -84,7 +88,7 @@ class JobDetailedViewController: BaseController, CreatePopupViewDelegate, Tutori
     }
     
     func goToProfile(){
-        self.performSegueWithIdentifier("GoToProfile", sender: self)
+        self.performSegueWithIdentifier(.GoToProfile, sender: self)
     }
     
     func populateView(content:JSON){

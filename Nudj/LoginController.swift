@@ -10,8 +10,14 @@ import UIKit
 import Contacts
 import SwiftyJSON
 
-class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFieldDelegate {
+class LoginController: BaseController, SegueHandlerType, CountrySelectionPickerDelegate, UITextFieldDelegate {
 
+    enum SegueIdentifier: String {
+        case ShowVerifyView = "showVerifyView"
+        case GoToPrivacy = "GoToPrivacy"
+        case GoToTerms = "GoToTerms"
+    }
+    
     var countrySelectionView = CountrySelectionPicker()
     var code = "GB"
     var isPrivacy:Bool?
@@ -72,7 +78,7 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
         let params: [String: AnyObject] = ["phone": phoneNumber, "country_code": code]
         API.sharedInstance.post("users", params: params, closure: { response in })
         
-        self.performSegueWithIdentifier("showVerifyView", sender: self)
+        self.performSegueWithIdentifier(.ShowVerifyView, sender: self)
     }
 
     func showLoginButton() {
@@ -98,12 +104,12 @@ class LoginController: BaseController, CountrySelectionPickerDelegate, UITextFie
 
     func showPolicy(){
         isPrivacy = true
-        self.performSegueWithIdentifier("GoToPrivacy", sender: self)
+        self.performSegueWithIdentifier(.GoToPrivacy, sender: self)
     }
     
     func showTerms(){
         isPrivacy = false
-        self.performSegueWithIdentifier("GoToTerms", sender: self)
+        self.performSegueWithIdentifier(.GoToTerms, sender: self)
     }
 
     func getCleanNumber(number: String? = nil) -> String {

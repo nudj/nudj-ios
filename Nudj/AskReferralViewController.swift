@@ -254,7 +254,6 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
                 self.popup!.delegate = self;
                 self.view.addSubview(self.popup!);
                 
-                //self.performSegueWithIdentifier("ShowPopup", sender: self)
                 loggingPrint(result)
                 }) { error in
                     loggingPrint(error)
@@ -275,8 +274,6 @@ class AskReferralViewController: UIViewController, UISearchBarDelegate ,UITableV
                 self.popup!.bodyText(nudjContent);
                 self.popup!.delegate = self;
                 self.view.addSubview(self.popup!);
-                
-                //self.performSegueWithIdentifier("ShowPopup", sender: self)
                 
                 loggingPrint(result)
                 }) { error in

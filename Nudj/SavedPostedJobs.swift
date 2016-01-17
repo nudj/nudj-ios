@@ -9,7 +9,11 @@ import UIKit
 import SwiftyJSON
 
 @IBDesignable
-class SavedPostedJobs: BaseController, DataProviderProtocol {
+class SavedPostedJobs: BaseController, SegueHandlerType, DataProviderProtocol {
+    
+    enum SegueIdentifier: String {
+        case GoToJob = "goToJob"
+    }
 
     @IBOutlet weak var table: DataTable!
     
@@ -77,7 +81,7 @@ class SavedPostedJobs: BaseController, DataProviderProtocol {
     
     func goToJob(job:JSON) {
         selectedJobData = job
-        performSegueWithIdentifier("goToJob", sender: self)
+        performSegueWithIdentifier(.GoToJob, sender: self)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

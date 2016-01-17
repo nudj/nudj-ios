@@ -10,7 +10,11 @@ import SwiftyJSON
 //import ReachabilitySwift
 
 @IBDesignable
-class MainFeed: BaseController, DataProviderProtocol, UISearchBarDelegate, TutorialViewDelegate{
+class MainFeed: BaseController, SegueHandlerType, DataProviderProtocol, UISearchBarDelegate, TutorialViewDelegate{
+    
+    enum SegueIdentifier: String {
+        case GoToJob = "goToJob"
+    }
 
     @IBOutlet weak var table: DataTable!
 
@@ -82,7 +86,7 @@ class MainFeed: BaseController, DataProviderProtocol, UISearchBarDelegate, Tutor
 
     func goToJob(job:JSON) {
         selectedJobData = job
-        performSegueWithIdentifier("goToJob", sender: self) 
+        performSegueWithIdentifier(.GoToJob, sender: self) 
     }
     
     @IBAction func unwindToJobsList(segue: UIStoryboardSegue) {

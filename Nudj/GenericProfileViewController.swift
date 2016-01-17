@@ -8,7 +8,13 @@
 import UIKit
 import SwiftyJSON
 
-class GenericProfileViewController: BaseController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
+class GenericProfileViewController: BaseController, SegueHandlerType, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
+    
+    enum SegueIdentifier: String {
+        case ShowMainScreen = "showMainScreen"
+        case ShowStatusPicker = "showStatusPicker"
+    }
+    
     var hiddenFieldsCount = 0
     @IBOutlet var topRightButton: UIBarButtonItem!
     
@@ -172,7 +178,7 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
     @IBAction func topRightButtonAction(sender: UIBarButtonItem) {
         switch type {
         case .Initial:
-            self.performSegueWithIdentifier("showMainScreen", sender: nil)
+            self.performSegueWithIdentifier(.ShowMainScreen, sender: nil)
             break;
         case .Own:
             MixPanelHandler.sendData("MyProfile_SaveButtonClicked")
@@ -601,7 +607,7 @@ class GenericProfileViewController: BaseController, UINavigationControllerDelega
 
     @IBAction func showStatusPicker() {
         MixPanelHandler.sendData("MyProfile_StatusButtonClicked")
-        self.performSegueWithIdentifier("showStatusPicker", sender: self)
+        self.performSegueWithIdentifier(.ShowStatusPicker, sender: self)
     }
 
 }
