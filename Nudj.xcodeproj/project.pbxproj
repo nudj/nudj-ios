@@ -561,6 +561,8 @@
 		C86F85851C444DB800C23332 /* no_profile_content@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324CE1B7BAE77009C1F0C /* no_profile_content@2x.png */; };
 		C86F85891C444DB800C23332 /* Pods.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FDD460F204898DA0004C5B93 /* Pods.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C86F85921C444F2100C23332 /* DevelopmentServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F85911C444F2100C23332 /* DevelopmentServer.swift */; };
+		C88204A61C4C258C00744554 /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88204A51C4C258C00744554 /* SegueHandlerType.swift */; };
+		C88204A71C4C258C00744554 /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88204A51C4C258C00744554 /* SegueHandlerType.swift */; };
 		C89325A61C08BEC10069FCFD /* LoggingPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89325A21C08BEC10069FCFD /* LoggingPrint.swift */; };
 		C89325AA1C08CCE00069FCFD /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89325A91C08CCE00069FCFD /* AssetsLibrary.framework */; };
 		C89325AC1C08CCEA0069FCFD /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89325AB1C08CCEA0069FCFD /* CoreText.framework */; };
@@ -1118,6 +1120,7 @@
 		C86F858E1C444DB800C23332 /* Nudj beta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nudj beta.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C86F858F1C444DB900C23332 /* Beta-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Beta-Info.plist"; sourceTree = "<group>"; };
 		C86F85911C444F2100C23332 /* DevelopmentServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevelopmentServer.swift; sourceTree = "<group>"; };
+		C88204A51C4C258C00744554 /* SegueHandlerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueHandlerType.swift; sourceTree = "<group>"; };
 		C89325A21C08BEC10069FCFD /* LoggingPrint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggingPrint.swift; sourceTree = "<group>"; };
 		C89325A91C08CCE00069FCFD /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		C89325AB1C08CCEA0069FCFD /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -2626,6 +2629,7 @@
 		EBDD28CC1ACD8AA700956995 /* MainControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C88204A51C4C258C00744554 /* SegueHandlerType.swift */,
 				A95798231B469636006E826E /* Notification */,
 				A9F3332A1B41994A00F0D17B /* Job Details */,
 				A9C6EC901B381E8800EC9140 /* ChatView */,
@@ -3261,6 +3265,7 @@
 				C86F84CE1C444DB800C23332 /* JSQMessagesAvatarImageFactory.m in Sources */,
 				C86F84CF1C444DB800C23332 /* TutorialView.swift in Sources */,
 				C86F84D01C444DB800C23332 /* ChatListTableViewCell.swift in Sources */,
+				C88204A71C4C258C00744554 /* SegueHandlerType.swift in Sources */,
 				C86F84D11C444DB800C23332 /* SettingsItem.swift in Sources */,
 				C86F84D21C444DB800C23332 /* JSQMessagesTypingIndicatorFooterView.m in Sources */,
 				C86F84D31C444DB800C23332 /* SendFeedBackViewController.swift in Sources */,
@@ -3507,6 +3512,7 @@
 				A9953F9D1B997A9700084952 /* TutorialView.swift in Sources */,
 				A9C6EC9F1B3853F900EC9140 /* ChatListTableViewCell.swift in Sources */,
 				EBEA9B451AF0D2280027A2A2 /* SettingsItem.swift in Sources */,
+				C88204A61C4C258C00744554 /* SegueHandlerType.swift in Sources */,
 				A9964FFE1B387CC800D5A8E9 /* JSQMessagesTypingIndicatorFooterView.m in Sources */,
 				A9ACE1C41B68FC0F003BD5F2 /* SendFeedBackViewController.swift in Sources */,
 				A996500D1B387CC800D5A8E9 /* XMPPJID.m in Sources */,
