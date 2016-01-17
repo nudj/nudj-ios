@@ -1268,7 +1268,7 @@
         <!--Jobs Navigator-->
         <scene sceneID="gnE-5Y-lyK">
             <objects>
-                <navigationController title="Jobs Navigator" automaticallyAdjustsScrollViewInsets="NO" id="RXb-Ol-yaJ" customClass="MainTabItem" customModule="Nudj" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController title="Jobs Navigator" automaticallyAdjustsScrollViewInsets="NO" id="RXb-Ol-yaJ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Jobs" image="jobsIcon" id="atM-D1-qso"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="t2G-We-sg6">
@@ -1290,7 +1290,7 @@
         <!--Settings Navigator-->
         <scene sceneID="GJ0-uY-yAh">
             <objects>
-                <navigationController title="Settings Navigator" id="d5t-oh-8QT" customClass="MainTabItem" customModule="Nudj" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController title="Settings Navigator" id="d5t-oh-8QT" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="settingsIcon" id="cLg-D5-XW4"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ecg-5M-pPv">
@@ -2718,13 +2718,13 @@
     <inferredMetricsTieBreakers>
         <segue reference="BCe-Pt-bFX"/>
         <segue reference="m0n-l7-DaR"/>
+        <segue reference="H51-O9-Snf"/>
         <segue reference="zyP-mc-EMC"/>
         <segue reference="oVM-eF-ddZ"/>
         <segue reference="Dea-FG-uEg"/>
         <segue reference="gvE-qy-aNj"/>
         <segue reference="6SR-Rm-L27"/>
-        <segue reference="1RO-e0-4AP"/>
-        <segue reference="E5T-Ai-Mhe"/>
+        <segue reference="eNW-U2-njr"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
 </document>

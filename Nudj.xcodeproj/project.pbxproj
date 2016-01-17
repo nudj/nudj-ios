@@ -408,7 +408,6 @@
 		C86F84E91C444DB800C23332 /* XMPPReconnect.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964ECA1B387CC800D5A8E9 /* XMPPReconnect.m */; };
 		C86F84EA1C444DB800C23332 /* JSQMessagesBubbleImage.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E5F1B387CC800D5A8E9 /* JSQMessagesBubbleImage.m */; };
 		C86F84EB1C444DB800C23332 /* XMPPDeprecatedPlainAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E911B387CC800D5A8E9 /* XMPPDeprecatedPlainAuthentication.m */; };
-		C86F84EC1C444DB800C23332 /* MainTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9F71E01B0E0200000C2D9F /* MainTabItem.swift */; };
 		C86F84ED1C444DB800C23332 /* XMPPRosterCoreDataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964ED31B387CC800D5A8E9 /* XMPPRosterCoreDataStorage.m */; };
 		C86F84EE1C444DB800C23332 /* XMPPStringPrep.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FAC1B387CC800D5A8E9 /* XMPPStringPrep.m */; };
 		C86F84EF1C444DB800C23332 /* VersionNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83FB6BB1C3EB5D0004ACE3E /* VersionNumber.swift */; };
@@ -597,7 +596,6 @@
 		EB866BD91B53EC9700E203CA /* NotificationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB866BD81B53EC9700E203CA /* NotificationButton.swift */; };
 		EB866BE01B53EFAE00E203CA /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB866BDE1B53EFAE00E203CA /* NotificationCell.swift */; };
 		EB9F71DF1B0E0060000C2D9F /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9F71DE1B0E0060000C2D9F /* MainTabBar.swift */; };
-		EB9F71E11B0E0200000C2D9F /* MainTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9F71E01B0E0200000C2D9F /* MainTabItem.swift */; };
 		EBA8C3461B32DFF100522167 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBA8C3441B32DFF100522167 /* Main.storyboard */; };
 		EBB337F81A9F53CA000CAD88 /* NudgeData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EBB337F61A9F53CA000CAD88 /* NudgeData.xcdatamodeld */; };
 		EBB3382E1A9F5973000CAD88 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB337FA1A9F581F000CAD88 /* CoreData.framework */; };
@@ -1163,7 +1161,6 @@
 		EB866BD81B53EC9700E203CA /* NotificationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NotificationButton.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB866BDE1B53EFAE00E203CA /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NotificationCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB9F71DE1B0E0060000C2D9F /* MainTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MainTabBar.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		EB9F71E01B0E0200000C2D9F /* MainTabItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MainTabItem.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EBA8C3451B32DFF100522167 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EBB337F71A9F53CA000CAD88 /* NudgeData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NudgeData.xcdatamodel; sourceTree = "<group>"; };
 		EBB337FA1A9F581F000CAD88 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -2558,7 +2555,6 @@
 				EB6F22BD1AB045C0007FF1B8 /* RBResizer.swift */,
 				EBBF42581AB1E55F0001E8B6 /* DataProviderProtocol.swift */,
 				EB9F71DE1B0E0060000C2D9F /* MainTabBar.swift */,
-				EB9F71E01B0E0200000C2D9F /* MainTabItem.swift */,
 				EBE5C3111B25811400CFF7E9 /* TokenView.swift */,
 				A9F333731B4444D700F0D17B /* CreatePopupView.swift */,
 				EBF17A231B4D538800C67657 /* Common.swift */,
@@ -3293,7 +3289,6 @@
 				C86F84E91C444DB800C23332 /* XMPPReconnect.m in Sources */,
 				C86F84EA1C444DB800C23332 /* JSQMessagesBubbleImage.m in Sources */,
 				C86F84EB1C444DB800C23332 /* XMPPDeprecatedPlainAuthentication.m in Sources */,
-				C86F84EC1C444DB800C23332 /* MainTabItem.swift in Sources */,
 				C86F84ED1C444DB800C23332 /* XMPPRosterCoreDataStorage.m in Sources */,
 				C86F84EE1C444DB800C23332 /* XMPPStringPrep.m in Sources */,
 				C86F84EF1C444DB800C23332 /* VersionNumber.swift in Sources */,
@@ -3539,7 +3534,6 @@
 				A99650171B387CC800D5A8E9 /* XMPPReconnect.m in Sources */,
 				A9964FEC1B387CC800D5A8E9 /* JSQMessagesBubbleImage.m in Sources */,
 				A99650031B387CC800D5A8E9 /* XMPPDeprecatedPlainAuthentication.m in Sources */,
-				EB9F71E11B0E0200000C2D9F /* MainTabItem.swift in Sources */,
 				A996501B1B387CC800D5A8E9 /* XMPPRosterCoreDataStorage.m in Sources */,
 				A99650711B387CC800D5A8E9 /* XMPPStringPrep.m in Sources */,
 				C83FB6BC1C3EB5D0004ACE3E /* VersionNumber.swift in Sources */,
