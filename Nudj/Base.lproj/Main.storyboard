@@ -71,7 +71,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="xys-7o-jBt">
                             <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="erZ-w0-oUk" kind="showDetail" identifier="AskReferral" id="ChB-i7-pmy"/>
+                                <segue destination="erZ-w0-oUk" kind="showDetail" identifier="AddJob" id="ChB-i7-pmy"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -2720,10 +2720,10 @@
         <segue reference="l7l-cF-kYn"/>
         <segue reference="yTk-h8-BPW"/>
         <segue reference="1RO-e0-4AP"/>
-        <segue reference="FgN-nx-a7b"/>
         <segue reference="oVM-eF-ddZ"/>
+        <segue reference="FgN-nx-a7b"/>
         <segue reference="TFM-Ac-ZI1"/>
-        <segue reference="eNW-U2-njr"/>
+        <segue reference="E5T-Ai-Mhe"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
 </document>

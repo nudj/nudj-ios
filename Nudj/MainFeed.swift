@@ -14,7 +14,7 @@ class MainFeed: BaseController, SegueHandlerType, DataProviderProtocol, UISearch
     
     enum SegueIdentifier: String {
         case GoToJob = "goToJob"
-        case AskReferral = "AskReferral"
+        case AddJob = "AddJob"
     }
 
     @IBOutlet weak var table: DataTable!
@@ -96,9 +96,8 @@ class MainFeed: BaseController, SegueHandlerType, DataProviderProtocol, UISearch
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segueIdentifierForSegue(segue) {
-        case .AskReferral:
-            let askView = segue.destinationViewController as! AskReferralViewController
-            askView.jobId = Int(selectedJobData!["id"].stringValue)
+        case .AddJob:
+            break
         case .GoToJob:
             let detailsView = segue.destinationViewController as! JobDetailedViewController
             detailsView.jobID = selectedJobData!["id"].stringValue
