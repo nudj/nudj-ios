@@ -38,7 +38,7 @@ class LoginController: BaseController, SegueHandlerType, CountryPickerDelegate, 
         switch segueIdentifierForSegue(segue) {
         case .ShowVerifyView:
             let verify = segue.destinationViewController as! VerifyViewController
-            verify.setValue(self.internationalPhoneNumber(), forKey: "phoneNumber")
+            verify.phoneNumber = self.internationalPhoneNumber()
             verify.code = self.iso2
         }
     }
