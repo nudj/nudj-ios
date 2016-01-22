@@ -32,9 +32,7 @@ class LoginController: BaseController, SegueHandlerType, CountrySelectionPickerD
     override func viewWillAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
-        phoneField.becomeFirstResponder()
         self.showLoginButton()
-
         self.changeNavigationBar(true)
     }
 
