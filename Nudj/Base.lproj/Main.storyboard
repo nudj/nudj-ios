@@ -1466,10 +1466,10 @@
             </objects>
             <point key="canvasLocation" x="-1348" y="-681"/>
         </scene>
-        <!--Login Controller-->
+        <!--LoginController-->
         <scene sceneID="9XR-1Z-ulP">
             <objects>
-                <viewController storyboardIdentifier="loginController" id="HUi-qm-vwZ" customClass="LoginController" customModule="Nudj" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginController" id="HUi-qm-vwZ" userLabel="LoginController" customClass="LoginController" customModule="Nudj" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SHQ-44-nEL"/>
                         <viewControllerLayoutGuide type="bottom" id="hlf-uK-Rhp"/>
@@ -1602,7 +1602,11 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bva-Ud-VfK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="Evh-ak-SA5" customClass="CountryPickerDataSource" customModule="Nudj" customModuleProvider="target"/>
+                <customObject id="Evh-ak-SA5" customClass="CountryPickerDataSource" customModule="Nudj" customModuleProvider="target">
+                    <connections>
+                        <outlet property="delegate" destination="HUi-qm-vwZ" id="NQf-7e-Ppq"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="-3059" y="-681"/>
         </scene>
