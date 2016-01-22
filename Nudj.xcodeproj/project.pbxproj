@@ -560,6 +560,8 @@
 		C86F85921C444F2100C23332 /* DevelopmentServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F85911C444F2100C23332 /* DevelopmentServer.swift */; };
 		C88204A61C4C258C00744554 /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88204A51C4C258C00744554 /* SegueHandlerType.swift */; };
 		C88204A71C4C258C00744554 /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88204A51C4C258C00744554 /* SegueHandlerType.swift */; };
+		C88BA0811C527416007A81EB /* Dialling Codes.plist in Resources */ = {isa = PBXBuildFile; fileRef = C88BA0801C527416007A81EB /* Dialling Codes.plist */; };
+		C88BA0821C527416007A81EB /* Dialling Codes.plist in Resources */ = {isa = PBXBuildFile; fileRef = C88BA0801C527416007A81EB /* Dialling Codes.plist */; };
 		C89325A61C08BEC10069FCFD /* LoggingPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89325A21C08BEC10069FCFD /* LoggingPrint.swift */; };
 		C89325AA1C08CCE00069FCFD /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89325A91C08CCE00069FCFD /* AssetsLibrary.framework */; };
 		C89325AC1C08CCEA0069FCFD /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89325AB1C08CCEA0069FCFD /* CoreText.framework */; };
@@ -1116,6 +1118,7 @@
 		C86F858F1C444DB900C23332 /* Beta-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Beta-Info.plist"; sourceTree = "<group>"; };
 		C86F85911C444F2100C23332 /* DevelopmentServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevelopmentServer.swift; sourceTree = "<group>"; };
 		C88204A51C4C258C00744554 /* SegueHandlerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueHandlerType.swift; sourceTree = "<group>"; };
+		C88BA0801C527416007A81EB /* Dialling Codes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Dialling Codes.plist"; sourceTree = "<group>"; };
 		C89325A21C08BEC10069FCFD /* LoggingPrint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggingPrint.swift; sourceTree = "<group>"; };
 		C89325A91C08CCE00069FCFD /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		C89325AB1C08CCEA0069FCFD /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -2412,6 +2415,14 @@
 			path = Generated;
 			sourceTree = "<group>";
 		};
+		C88BA07F1C5273C9007A81EB /* Static Data */ = {
+			isa = PBXGroup;
+			children = (
+				C88BA0801C527416007A81EB /* Dialling Codes.plist */,
+			);
+			name = "Static Data";
+			sourceTree = "<group>";
+		};
 		C893259F1C08BEC10069FCFD /* LoggingPrint */ = {
 			isa = PBXGroup;
 			children = (
@@ -2508,6 +2519,7 @@
 				EBB337F91A9F5557000CAD88 /* DataModel */,
 				C84E00F61C191F160065F220 /* Generated */,
 				C8A661E11C0B64A00088355D /* UI */,
+				C88BA07F1C5273C9007A81EB /* Static Data */,
 				EB0926CD1A8DE4CB00E1D958 /* Supporting Files */,
 			);
 			path = Nudj;
@@ -2827,6 +2839,7 @@
 				C86F854E1C444DB800C23332 /* close_btn@2x.png in Resources */,
 				C86F854F1C444DB800C23332 /* Main.storyboard in Resources */,
 				C86F85501C444DB800C23332 /* job_description@2x.png in Resources */,
+				C88BA0821C527416007A81EB /* Dialling Codes.plist in Resources */,
 				C86F85511C444DB800C23332 /* pound_sign@2x.png in Resources */,
 				C86F85521C444DB800C23332 /* facebook_icon@2x.png in Resources */,
 				C86F85531C444DB800C23332 /* mute2@2x.png in Resources */,
@@ -2902,6 +2915,7 @@
 				A9F333701B42D20C00F0D17B /* close_btn@2x.png in Resources */,
 				EBA8C3461B32DFF100522167 /* Main.storyboard in Resources */,
 				A9F333651B42ACDC00F0D17B /* job_description@2x.png in Resources */,
+				C88BA0811C527416007A81EB /* Dialling Codes.plist in Resources */,
 				A9F3336A1B42B0B700F0D17B /* pound_sign@2x.png in Resources */,
 				A9ACE1D31B6913F9003BD5F2 /* facebook_icon@2x.png in Resources */,
 				A99650AB1B3DB3FF00D5A8E9 /* mute2@2x.png in Resources */,
