@@ -1533,8 +1533,9 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vXN-QH-CG8" userLabel="Phone number stack">
                                                 <rect key="frame" x="0.0" y="45" width="560" height="30"/>
                                                 <subviews>
-                                                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="+44" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eqs-tI-vfK" userLabel="Prefix (+44)">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="+44" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eqs-tI-vfK" userLabel="Intl prefix">
                                                         <rect key="frame" x="0.0" y="0.0" width="45" height="30"/>
+                                                        <gestureRecognizers/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="45" id="jKf-t7-3gC"/>
                                                             <constraint firstAttribute="height" constant="30" id="xuT-a5-K2A"/>
@@ -1542,6 +1543,9 @@
                                                         <color key="textColor" red="0.0" green="0.63529411759999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="u5k-GL-OqI" appends="YES" id="ySh-D5-7oY"/>
+                                                        </connections>
                                                     </textField>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="RWM-Jp-PBz" userLabel="Phone Number">
                                                         <rect key="frame" x="53" y="0.0" width="507" height="30"/>
@@ -1557,12 +1561,12 @@
                                                     </textField>
                                                 </subviews>
                                             </stackView>
-                                            <pickerView contentMode="scaleToFill" misplaced="YES" showsSelectionIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMG-bB-M8L" userLabel="Country picker">
+                                            <pickerView contentMode="scaleToFill" showsSelectionIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMG-bB-M8L" userLabel="Country picker">
                                                 <rect key="frame" x="0.0" y="83" width="560" height="120"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" priority="250" constant="120" identifier="extend picker" id="0U5-xf-yLk" userLabel="extend picker"/>
-                                                    <constraint firstAttribute="height" priority="750" identifier="collapsePicker" id="9JN-8C-Him" userLabel="collapsePicker"/>
+                                                    <constraint firstAttribute="height" priority="800" identifier="collapsePicker" id="9JN-8C-Him" userLabel="collapsePicker"/>
                                                     <constraint firstAttribute="height" constant="120" placeholder="YES" identifier="placeholder" id="tD1-MS-2vj" userLabel="placeHolder"/>
                                                 </constraints>
                                                 <connections>
@@ -1570,14 +1574,14 @@
                                                     <outlet property="delegate" destination="Evh-ak-SA5" id="h3w-bA-8S4"/>
                                                 </connections>
                                             </pickerView>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5sd-3T-N9W" userLabel="Separator 2">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5sd-3T-N9W" userLabel="Separator 2">
                                                 <rect key="frame" x="0.0" y="211" width="560" height="1"/>
                                                 <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="aeH-t5-dIA"/>
                                                 </constraints>
                                             </view>
-                                            <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="240" misplaced="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pqc-O3-NX1" userLabel="Boilerplate">
+                                            <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="240" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pqc-O3-NX1" userLabel="Boilerplate">
                                                 <rect key="frame" x="0.0" y="220" width="560" height="257"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <string key="text">Nudj uses your phone number and address book to connect and create your personal network.
@@ -1608,10 +1612,8 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                     </view>
                     <navigationItem key="navigationItem" id="rrp-hY-OAp"/>
                     <connections>
-                        <outlet property="collapsePicker" destination="9JN-8C-Him" id="v1n-6p-tcX"/>
                         <outlet property="collapsedPicker" destination="9JN-8C-Him" id="7a3-BO-Fuv"/>
                         <outlet property="countryCode" destination="eqs-tI-vfK" id="TZX-x5-bM2"/>
-                        <outlet property="extendPicker" destination="0U5-xf-yLk" id="0oA-8M-ZNM"/>
                         <outlet property="extendedPicker" destination="0U5-xf-yLk" id="xec-51-dsk"/>
                         <outlet property="loginButton" destination="tRc-s3-uZE" id="c0S-Xz-3j2"/>
                         <outlet property="phoneField" destination="RWM-Jp-PBz" id="7ri-kM-FZt"/>
@@ -1624,6 +1626,11 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                         <outlet property="delegate" destination="HUi-qm-vwZ" id="NQf-7e-Ppq"/>
                     </connections>
                 </customObject>
+                <tapGestureRecognizer id="u5k-GL-OqI">
+                    <connections>
+                        <action selector="toggleCountryPicker:" destination="HUi-qm-vwZ" id="DVx-xL-nGI"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-3059" y="-681"/>
         </scene>

@@ -60,21 +60,31 @@ class LoginController: BaseController, SegueHandlerType, CountryPickerDelegate, 
         self.performSegueWithIdentifier(.ShowVerifyView, sender: self)
     }
     
-    func pickerIsExtended() -> Bool {
-        return extendedPicker.priority > collapsedPicker.priority
-    }
-    
-    func extendPicker() {
-        UIView.animateWithDuration(0.5) {
-            self.extendedPicker.priority = 750
-            self.collapsedPicker.priority = 250
+    @IBAction func toggleCountryPicker(sender: AnyObject) {
+        if countryPickerIsExtended() {
+            collapseCountryicker()
+        } else {
+            extendCountryPicker()
         }
     }
     
-    func collapsePicker() {
+    func countryPickerIsExtended() -> Bool {
+        return extendedPicker.priority > collapsedPicker.priority
+    }
+    
+    func extendCountryPicker() {
         UIView.animateWithDuration(0.5) {
-            self.extendedPicker.priority = 250
-            self.collapsedPicker.priority = 750
+            self.extendedPicker.priority = UILayoutPriorityDefaultHigh
+            self.collapsedPicker.priority = UILayoutPriorityDefaultLow
+            self.view.setNeedsUpdateConstraints()
+        }
+    }
+    
+    func collapseCountryicker() {
+        UIView.animateWithDuration(0.5) {
+            self.extendedPicker.priority = UILayoutPriorityDefaultLow
+            self.collapsedPicker.priority = 800.0
+            self.view.setNeedsUpdateConstraints()
         }
     }
 
