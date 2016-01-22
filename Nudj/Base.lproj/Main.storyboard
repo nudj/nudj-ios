@@ -1076,43 +1076,6 @@
             </objects>
             <point key="canvasLocation" x="-994" y="2971"/>
         </scene>
-        <!--Terms and Conditions-->
-        <scene sceneID="NjF-g7-JHD">
-            <objects>
-                <viewController storyboardIdentifier="TermsView" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Jrz-N1-eVN" customClass="TermsViewController" customModule="Nudj" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="otw-IU-gFN"/>
-                        <viewControllerLayoutGuide type="bottom" id="2lq-pI-rDJ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="OiA-tt-QMc">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Ee-YP-CC1">
-                                <rect key="frame" x="4" y="64" width="592" height="667"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="delegate" destination="Jrz-N1-eVN" id="4Mf-AE-M6j"/>
-                                </connections>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="bottomMargin" secondItem="0Ee-YP-CC1" secondAttribute="bottom" constant="-64" id="adN-I4-IzN"/>
-                            <constraint firstItem="0Ee-YP-CC1" firstAttribute="leading" secondItem="OiA-tt-QMc" secondAttribute="leadingMargin" constant="-16" id="eYs-79-n4X"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="0Ee-YP-CC1" secondAttribute="trailing" constant="-16" id="hue-hS-qFC"/>
-                            <constraint firstItem="0Ee-YP-CC1" firstAttribute="top" secondItem="otw-IU-gFN" secondAttribute="bottom" id="mPM-C5-Lml"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Terms and Conditions" id="A91-oY-Lry"/>
-                    <connections>
-                        <outlet property="webview" destination="0Ee-YP-CC1" id="rYK-mW-mSs"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="A0E-zk-VSS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="303" y="2324"/>
-        </scene>
         <!--Send FeedBack-->
         <scene sceneID="khT-Ah-3Ew">
             <objects>
@@ -1176,7 +1139,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ABT-L0-yQR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="936" y="2324"/>
+            <point key="canvasLocation" x="525.5" y="2044.5"/>
         </scene>
         <!--Contact-->
         <scene sceneID="3cQ-2r-CFH">

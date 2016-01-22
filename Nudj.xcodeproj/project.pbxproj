@@ -213,7 +213,6 @@
 		A99650AC1B3DB3FF00D5A8E9 /* profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650A41B3DB3FF00D5A8E9 /* profile@2x.png */; };
 		A9977C8A1B6158960005A23C /* FilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9977C891B6158960005A23C /* FilterModel.swift */; };
 		A9A7C4D61B8364000051B1E5 /* InitiateChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A7C4D51B8364000051B1E5 /* InitiateChatViewController.swift */; };
-		A9ACE1C21B68F401003BD5F2 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACE1C11B68F401003BD5F2 /* TermsViewController.swift */; };
 		A9ACE1C41B68FC0F003BD5F2 /* SendFeedBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACE1C31B68FC0F003BD5F2 /* SendFeedBackViewController.swift */; };
 		A9ACE1CC1B69107A003BD5F2 /* SavedPostedJobs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACE1CB1B69107A003BD5F2 /* SavedPostedJobs.swift */; };
 		A9ACE1D21B6913F9003BD5F2 /* connected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACE1CE1B6913F9003BD5F2 /* connected@2x.png */; };
@@ -319,7 +318,6 @@
 		C86F84901C444DB800C23332 /* ContextFilterLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FBE1B387CC800D5A8E9 /* ContextFilterLogFormatter.m */; };
 		C86F84911C444DB800C23332 /* NoContentPlaceHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A947CC981B7119B500C9518E /* NoContentPlaceHolder.swift */; };
 		C86F84921C444DB800C23332 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0926CF1A8DE4CB00E1D958 /* AppDelegate.swift */; };
-		C86F84931C444DB800C23332 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACE1C11B68F401003BD5F2 /* TermsViewController.swift */; };
 		C86F84941C444DB800C23332 /* XMPPIQ+JabberRPC.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EE81B387CC800D5A8E9 /* XMPPIQ+JabberRPC.m */; };
 		C86F84951C444DB800C23332 /* GCDMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FA41B387CC800D5A8E9 /* GCDMulticastDelegate.m */; };
 		C86F84961C444DB800C23332 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB866BDE1B53EFAE00E203CA /* NotificationCell.swift */; };
@@ -1071,7 +1069,6 @@
 		A99650A41B3DB3FF00D5A8E9 /* profile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile@2x.png"; sourceTree = "<group>"; };
 		A9977C891B6158960005A23C /* FilterModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FilterModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9A7C4D51B8364000051B1E5 /* InitiateChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = InitiateChatViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		A9ACE1C11B68F401003BD5F2 /* TermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TermsViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9ACE1C31B68FC0F003BD5F2 /* SendFeedBackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SendFeedBackViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9ACE1CB1B69107A003BD5F2 /* SavedPostedJobs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SavedPostedJobs.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9ACE1CE1B6913F9003BD5F2 /* connected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "connected@2x.png"; sourceTree = "<group>"; };
@@ -2614,7 +2611,6 @@
 				EB2F78071AD288E400B59C0E /* SettingsCell.swift */,
 				C8A661FD1C0B66440088355D /* SettingsCell.xib */,
 				EBEA9B441AF0D2280027A2A2 /* SettingsItem.swift */,
-				A9ACE1C11B68F401003BD5F2 /* TermsViewController.swift */,
 				A9ACE1C31B68FC0F003BD5F2 /* SendFeedBackViewController.swift */,
 				A9ACE1CB1B69107A003BD5F2 /* SavedPostedJobs.swift */,
 				C83FB6BB1C3EB5D0004ACE3E /* VersionNumber.swift */,
@@ -3198,7 +3194,6 @@
 				C86F84901C444DB800C23332 /* ContextFilterLogFormatter.m in Sources */,
 				C86F84911C444DB800C23332 /* NoContentPlaceHolder.swift in Sources */,
 				C86F84921C444DB800C23332 /* AppDelegate.swift in Sources */,
-				C86F84931C444DB800C23332 /* TermsViewController.swift in Sources */,
 				C86F84941C444DB800C23332 /* XMPPIQ+JabberRPC.m in Sources */,
 				C86F84951C444DB800C23332 /* GCDMulticastDelegate.m in Sources */,
 				C86F84961C444DB800C23332 /* NotificationCell.swift in Sources */,
@@ -3444,7 +3439,6 @@
 				A99650781B387CC800D5A8E9 /* ContextFilterLogFormatter.m in Sources */,
 				A947CC991B7119B500C9518E /* NoContentPlaceHolder.swift in Sources */,
 				EB0926D01A8DE4CB00E1D958 /* AppDelegate.swift in Sources */,
-				A9ACE1C21B68F401003BD5F2 /* TermsViewController.swift in Sources */,
 				A99650221B387CC800D5A8E9 /* XMPPIQ+JabberRPC.m in Sources */,
 				A996506D1B387CC800D5A8E9 /* GCDMulticastDelegate.m in Sources */,
 				EB866BE01B53EFAE00E203CA /* NotificationCell.swift in Sources */,
