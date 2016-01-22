@@ -1561,7 +1561,9 @@
                                                 <rect key="frame" x="0.0" y="83" width="560" height="120"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="120" id="0U5-xf-yLk"/>
+                                                    <constraint firstAttribute="height" priority="250" constant="120" identifier="extend picker" id="0U5-xf-yLk" userLabel="extend picker"/>
+                                                    <constraint firstAttribute="height" priority="750" identifier="collapsePicker" id="9JN-8C-Him" userLabel="collapsePicker"/>
+                                                    <constraint firstAttribute="height" constant="120" placeholder="YES" identifier="placeholder" id="tD1-MS-2vj" userLabel="placeHolder"/>
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="dataSource" destination="Evh-ak-SA5" id="yzv-jP-v1h"/>
@@ -1606,7 +1608,11 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                     </view>
                     <navigationItem key="navigationItem" id="rrp-hY-OAp"/>
                     <connections>
+                        <outlet property="collapsePicker" destination="9JN-8C-Him" id="v1n-6p-tcX"/>
+                        <outlet property="collapsedPicker" destination="9JN-8C-Him" id="7a3-BO-Fuv"/>
                         <outlet property="countryCode" destination="eqs-tI-vfK" id="TZX-x5-bM2"/>
+                        <outlet property="extendPicker" destination="0U5-xf-yLk" id="0oA-8M-ZNM"/>
+                        <outlet property="extendedPicker" destination="0U5-xf-yLk" id="xec-51-dsk"/>
                         <outlet property="loginButton" destination="tRc-s3-uZE" id="c0S-Xz-3j2"/>
                         <outlet property="phoneField" destination="RWM-Jp-PBz" id="7ri-kM-FZt"/>
                         <segue destination="eWs-5T-Xez" kind="show" identifier="showVerifyView" id="CY4-1X-3MT"/>

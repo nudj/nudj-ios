@@ -24,6 +24,8 @@ class LoginController: BaseController, SegueHandlerType, CountryPickerDelegate, 
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var phoneField: UITextField!
     @IBOutlet weak var countryCode: UITextField!
+    @IBOutlet weak var extendedPicker: NSLayoutConstraint!
+    @IBOutlet weak var collapsedPicker: NSLayoutConstraint!
 
     override func viewDidLoad() {
         validateLogin()
@@ -56,6 +58,24 @@ class LoginController: BaseController, SegueHandlerType, CountryPickerDelegate, 
         API.sharedInstance.post("users", params: params, closure: { response in })
         
         self.performSegueWithIdentifier(.ShowVerifyView, sender: self)
+    }
+    
+    func pickerIsExtended() -> Bool {
+        return extendedPicker.priority > collapsedPicker.priority
+    }
+    
+    func extendPicker() {
+        UIView.animateWithDuration(0.5) {
+            self.extendedPicker.priority = 750
+            self.collapsedPicker.priority = 250
+        }
+    }
+    
+    func collapsePicker() {
+        UIView.animateWithDuration(0.5) {
+            self.extendedPicker.priority = 250
+            self.collapsedPicker.priority = 750
+        }
     }
 
     func validateLogin() {
