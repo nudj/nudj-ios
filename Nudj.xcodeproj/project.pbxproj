@@ -562,6 +562,8 @@
 		C88204A71C4C258C00744554 /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88204A51C4C258C00744554 /* SegueHandlerType.swift */; };
 		C88BA0811C527416007A81EB /* Dialling Codes.plist in Resources */ = {isa = PBXBuildFile; fileRef = C88BA0801C527416007A81EB /* Dialling Codes.plist */; };
 		C88BA0821C527416007A81EB /* Dialling Codes.plist in Resources */ = {isa = PBXBuildFile; fileRef = C88BA0801C527416007A81EB /* Dialling Codes.plist */; };
+		C88BA0841C5277DD007A81EB /* CountryPickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88BA0831C5277DD007A81EB /* CountryPickerDataSource.swift */; };
+		C88BA0851C5277DD007A81EB /* CountryPickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88BA0831C5277DD007A81EB /* CountryPickerDataSource.swift */; };
 		C89325A61C08BEC10069FCFD /* LoggingPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89325A21C08BEC10069FCFD /* LoggingPrint.swift */; };
 		C89325AA1C08CCE00069FCFD /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89325A91C08CCE00069FCFD /* AssetsLibrary.framework */; };
 		C89325AC1C08CCEA0069FCFD /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89325AB1C08CCEA0069FCFD /* CoreText.framework */; };
@@ -1119,6 +1121,7 @@
 		C86F85911C444F2100C23332 /* DevelopmentServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevelopmentServer.swift; sourceTree = "<group>"; };
 		C88204A51C4C258C00744554 /* SegueHandlerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueHandlerType.swift; sourceTree = "<group>"; };
 		C88BA0801C527416007A81EB /* Dialling Codes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Dialling Codes.plist"; sourceTree = "<group>"; };
+		C88BA0831C5277DD007A81EB /* CountryPickerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryPickerDataSource.swift; sourceTree = "<group>"; };
 		C89325A21C08BEC10069FCFD /* LoggingPrint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggingPrint.swift; sourceTree = "<group>"; };
 		C89325A91C08CCE00069FCFD /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		C89325AB1C08CCEA0069FCFD /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -2612,6 +2615,7 @@
 				EB313D2F1AAF4C5A00F008B8 /* StatusPicker.swift */,
 				EBCE12551B2B1D2600C3928C /* CreateProfileController.swift */,
 				EBF17A211B4C128100C67657 /* VerifyCodeTextField.swift */,
+				C88BA0831C5277DD007A81EB /* CountryPickerDataSource.swift */,
 			);
 			name = Login/Register;
 			sourceTree = "<group>";
@@ -3209,6 +3213,7 @@
 				C86F84911C444DB800C23332 /* NoContentPlaceHolder.swift in Sources */,
 				C86F84921C444DB800C23332 /* AppDelegate.swift in Sources */,
 				C86F84941C444DB800C23332 /* XMPPIQ+JabberRPC.m in Sources */,
+				C88BA0851C5277DD007A81EB /* CountryPickerDataSource.swift in Sources */,
 				C86F84951C444DB800C23332 /* GCDMulticastDelegate.m in Sources */,
 				C86F84961C444DB800C23332 /* NotificationCell.swift in Sources */,
 				C86F84971C444DB800C23332 /* JSQMessagesLabel.m in Sources */,
@@ -3454,6 +3459,7 @@
 				A947CC991B7119B500C9518E /* NoContentPlaceHolder.swift in Sources */,
 				EB0926D01A8DE4CB00E1D958 /* AppDelegate.swift in Sources */,
 				A99650221B387CC800D5A8E9 /* XMPPIQ+JabberRPC.m in Sources */,
+				C88BA0841C5277DD007A81EB /* CountryPickerDataSource.swift in Sources */,
 				A996506D1B387CC800D5A8E9 /* GCDMulticastDelegate.m in Sources */,
 				EB866BE01B53EFAE00E203CA /* NotificationCell.swift in Sources */,
 				A9964FF81B387CC800D5A8E9 /* JSQMessagesLabel.m in Sources */,
