@@ -16,7 +16,7 @@ class LoginController: BaseController, SegueHandlerType, CountryPickerDelegate, 
         case ShowVerifyView = "showVerifyView"
     }
     
-    var iso2 = "GB"
+    var iso2CountryCode = "GB"
     var textObserver: NSObjectProtocol?
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
@@ -39,7 +39,7 @@ class LoginController: BaseController, SegueHandlerType, CountryPickerDelegate, 
         case .ShowVerifyView:
             let verify = segue.destinationViewController as! VerifyViewController
             verify.phoneNumber = self.internationalPhoneNumber()
-            verify.code = self.iso2
+            verify.iso2CountryCode = self.iso2CountryCode
         }
     }
     
@@ -52,7 +52,7 @@ class LoginController: BaseController, SegueHandlerType, CountryPickerDelegate, 
         let phoneNumber = internationalPhoneNumber()
 
         // TODO: API strings
-        let params: [String: AnyObject] = ["phone": phoneNumber, "country_code": iso2]
+        let params: [String: AnyObject] = ["phone": phoneNumber, "country_code": iso2CountryCode]
         API.sharedInstance.post("users", params: params, closure: { response in })
         
         self.performSegueWithIdentifier(.ShowVerifyView, sender: self)
@@ -101,6 +101,6 @@ class LoginController: BaseController, SegueHandlerType, CountryPickerDelegate, 
         phoneField.becomeFirstResponder()
         
         self.countryCode.text = data.diallingCode
-        self.iso2 = data.iso2Code
+        self.iso2CountryCode = data.iso2Code
     }
 }
