@@ -10,13 +10,12 @@ import UIKit
 import Contacts
 import SwiftyJSON
 
-class LoginController: BaseController, SegueHandlerType, CountrySelectionPickerDelegate, UITextFieldDelegate {
+class LoginController: BaseController, SegueHandlerType, CountryPickerDelegate, UITextFieldDelegate {
 
     enum SegueIdentifier: String {
         case ShowVerifyView = "showVerifyView"
     }
     
-    var countrySelectionView = CountrySelectionPicker()
     var iso2 = "GB"
     var textObserver: NSObjectProtocol?
     
@@ -27,7 +26,6 @@ class LoginController: BaseController, SegueHandlerType, CountrySelectionPickerD
     @IBOutlet weak var countryCode: UITextField!
 
     override func viewDidLoad() {
-        self.countrySelectionView.delegate = self
         validateLogin()
         let nc = NSNotificationCenter.defaultCenter()
         textObserver = nc.addObserverForName(UITextFieldTextDidChangeNotification, object: phoneField, queue: nil) {
@@ -47,11 +45,7 @@ class LoginController: BaseController, SegueHandlerType, CountrySelectionPickerD
     
     func showCountryList(){
         self.phoneField.resignFirstResponder()
-        
-        if self.countrySelectionView.isCreated == false{
-            self.view.addSubview(self.countrySelectionView.createDropActionSheet(self.phoneField.frame.origin.y + self.phoneField.frame.size.height+5, width: view.frame.size.width))
-        }
-        self.countrySelectionView.showAction()
+        // TODO: implement
     }
     
     @IBAction func login(sender: AnyObject) {
@@ -79,7 +73,7 @@ class LoginController: BaseController, SegueHandlerType, CountrySelectionPickerD
     }
     
     func shouldStripLeadingZeros() -> Bool {
-        return true // TODO:
+        return true // TODO: UK only
     }
 
     func stripLeadingZeros(number: String) -> String {
@@ -92,12 +86,6 @@ class LoginController: BaseController, SegueHandlerType, CountrySelectionPickerD
 
     // MARK: UITextFieldDelegate
     
-    func textFieldDidBeginEditing(textField: UITextField) {
-        if self.countrySelectionView.isCreated == true && self.countrySelectionView.hidden == false{
-            self.countrySelectionView.doneAction()
-        }
-    }
-    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         validateLogin()
         if !loginButton.enabled {
@@ -107,12 +95,12 @@ class LoginController: BaseController, SegueHandlerType, CountrySelectionPickerD
         return true
     }
     
-    // MARK: CountrySelectionPickerDelegate
+    // MARK: CountryPickerDelegate
     
-    func didSelect(selection:[String:String]) {
+    func didSelectData(data: CountryPickerDataSource.Data) {
         phoneField.becomeFirstResponder()
         
-        self.countryCode.text = selection["dial_code"]
-        self.iso2 = selection["code"]!
+        self.countryCode.text = data.diallingCode
+        self.iso2 = data.iso2Code
     }
 }
