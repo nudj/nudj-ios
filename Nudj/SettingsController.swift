@@ -14,7 +14,6 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
         case ShowProfile = "showYourProfile"
         case ShowStatusPicker = "showStatusPicker"
         case GoToLogin = "goToLogin"
-        case GoToTerms = "goToTerms"
         case GoToFeedBack = "goToFeedBack"
         case GoToSavedJobs = "goToSavedJobs"
         case GoToPostedJobs = "goToPostedJobs"
@@ -29,7 +28,6 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
     
     let cellIdentifier = "SettingsCell";
     var jobsSelected:String?;
-    var isPolicy = false;
 
     var socialhander :SocialHandlerModel?
     var statusParent :SocialStatus?
@@ -45,14 +43,10 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             SettingsItem(name: Localizations.Settings.Title.Facebook, action: "facebook")
         ],
         [
-            //SettingsItem(name: "Invite Friends", action: ""),
-            SettingsItem(name: Localizations.Settings.Title.Terms, action: "goToTerms"),
-            SettingsItem(name: Localizations.Settings.Title.Privacy, action: "goToTerms"), // TODO: check this
             SettingsItem(name: Localizations.Settings.Title.Feedback, action: "goToFeedBack") // TODO: maybe use HockeyApp for this
         ],
         [
-            //SettingsItem(name: "Log Out", action: "goToLogin"),
-            SettingsItem(name: Localizations.Settings.Title.DeleteAccount, action: "goToLogin") // TODO: check this
+            SettingsItem(name: Localizations.Settings.Title.DeleteAccount, action: "goToLogin") // TODO: rename this
         ]
     ];
 
@@ -150,14 +144,10 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let action = structure[indexPath.section][indexPath.row].action
-        let name = structure[indexPath.section][indexPath.row].name
         if (action.isEmpty) {
             return
         }
         
-        // TODO: this is too fragile use a flag or enum property
-        isPolicy = (name == Localizations.Settings.Title.Privacy)
-
         if(action == "facebook") {
             // nothing
         } else if(action == "goToLogin") {
@@ -192,11 +182,6 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
             delegate.deleteAccount(inViewController: segue.destinationViewController)
             
-        case .GoToTerms:
-            let controller = segue.destinationViewController as! TermsViewController
-            if isPolicy {
-                controller.isPrivacy = true
-            }
         case .GoToFeedBack:
             break
             

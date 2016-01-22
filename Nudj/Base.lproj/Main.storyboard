@@ -1085,11 +1085,11 @@
                         <viewControllerLayoutGuide type="bottom" id="2lq-pI-rDJ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="OiA-tt-QMc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Ee-YP-CC1">
-                                <rect key="frame" x="0.0" y="64" width="375" height="667"/>
+                            <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Ee-YP-CC1">
+                                <rect key="frame" x="4" y="64" width="592" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="delegate" destination="Jrz-N1-eVN" id="4Mf-AE-M6j"/>
@@ -1391,7 +1391,6 @@
                         <segue destination="u6h-lK-ytT" kind="show" identifier="showYourProfile" id="m0n-l7-DaR"/>
                         <segue destination="F3c-zd-gaG" kind="show" identifier="showStatusPicker" id="H51-O9-Snf"/>
                         <segue destination="HUi-qm-vwZ" kind="show" identifier="goToLogin" id="zyP-mc-EMC"/>
-                        <segue destination="Jrz-N1-eVN" kind="show" identifier="goToTerms" id="Dea-FG-uEg"/>
                         <segue destination="HrJ-cc-tGk" kind="show" identifier="goToFeedBack" id="90M-dj-0pn"/>
                         <segue destination="ALO-Pj-XQZ" kind="show" identifier="goToSavedJobs" id="oHM-Sk-no8"/>
                         <segue destination="ALO-Pj-XQZ" kind="show" identifier="goToPostedJobs" id="oVM-eF-ddZ"/>
@@ -2664,13 +2663,13 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="BCe-Pt-bFX"/>
-        <segue reference="H2O-Du-Dkg"/>
-        <segue reference="l7l-cF-kYn"/>
-        <segue reference="1RO-e0-4AP"/>
-        <segue reference="FgN-nx-a7b"/>
+        <segue reference="m0n-l7-DaR"/>
+        <segue reference="gvE-qy-aNj"/>
+        <segue reference="oVM-eF-ddZ"/>
+        <segue reference="zyP-mc-EMC"/>
+        <segue reference="H51-O9-Snf"/>
         <segue reference="TFM-Ac-ZI1"/>
         <segue reference="E5T-Ai-Mhe"/>
-        <segue reference="oVM-eF-ddZ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
 </document>
