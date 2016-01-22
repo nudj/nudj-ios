@@ -281,12 +281,6 @@ public struct Localizations {
             /// Base translation: Your Status
             public static var Status : String = "settings.title.status".localized
 
-            /// Base translation: Saved Jobs
-            public static var SavedJobs : String = "settings.title.saved-jobs".localized
-
-            /// Base translation: Privacy Policy
-            public static var Privacy : String = "settings.title.privacy".localized
-
             /// Base translation: Send Feedback
             public static var Feedback : String = "settings.title.feedback".localized
 
@@ -302,8 +296,8 @@ public struct Localizations {
             /// Base translation: Delete Your Account
             public static var DeleteAccount : String = "settings.title.delete-account".localized
 
-            /// Base translation: Terms of Use
-            public static var Terms : String = "settings.title.terms".localized
+            /// Base translation: Saved Jobs
+            public static var SavedJobs : String = "settings.title.saved-jobs".localized
 
         }
 
