@@ -1557,15 +1557,26 @@
                                                     </textField>
                                                 </subviews>
                                             </stackView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5sd-3T-N9W" userLabel="Separator 2">
-                                                <rect key="frame" x="0.0" y="83" width="560" height="1"/>
+                                            <pickerView contentMode="scaleToFill" misplaced="YES" showsSelectionIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMG-bB-M8L" userLabel="Country picker">
+                                                <rect key="frame" x="0.0" y="83" width="560" height="120"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="120" id="0U5-xf-yLk"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="Evh-ak-SA5" id="yzv-jP-v1h"/>
+                                                    <outlet property="delegate" destination="Evh-ak-SA5" id="h3w-bA-8S4"/>
+                                                </connections>
+                                            </pickerView>
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5sd-3T-N9W" userLabel="Separator 2">
+                                                <rect key="frame" x="0.0" y="211" width="560" height="1"/>
                                                 <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="aeH-t5-dIA"/>
                                                 </constraints>
                                             </view>
-                                            <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="240" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pqc-O3-NX1" userLabel="Boilerplate">
-                                                <rect key="frame" x="0.0" y="92" width="560" height="385"/>
+                                            <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="240" misplaced="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pqc-O3-NX1" userLabel="Boilerplate">
+                                                <rect key="frame" x="0.0" y="220" width="560" height="257"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <string key="text">Nudj uses your phone number and address book to connect and create your personal network.
 

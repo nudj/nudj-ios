@@ -61,7 +61,7 @@ class CountryPickerDataSource: NSObject, UIPickerViewDataSource, UIPickerViewDel
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         guard component == 0 else {return nil}
         let rowData = data[row]
-        return "\(rowData.country) (\(rowData.diallingCode))"
+        return "\(rowData.country) (+\(rowData.diallingCode))"
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
