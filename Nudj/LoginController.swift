@@ -100,7 +100,7 @@ class LoginController: BaseController, SegueHandlerType, CountryPickerDelegate, 
     func didSelectData(data: CountryPickerDataSource.Data) {
         phoneField.becomeFirstResponder()
         
-        self.countryCode.text = data.diallingCode
+        self.countryCode.text = "+" + data.diallingCode
         self.iso2CountryCode = data.iso2Code
     }
 }
