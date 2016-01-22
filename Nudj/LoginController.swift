@@ -14,8 +14,6 @@ class LoginController: BaseController, SegueHandlerType, CountrySelectionPickerD
 
     enum SegueIdentifier: String {
         case ShowVerifyView = "showVerifyView"
-        case GoToPrivacy = "GoToPrivacy"
-        case GoToTerms = "GoToTerms"
     }
     
     var countrySelectionView = CountrySelectionPicker()
@@ -27,8 +25,6 @@ class LoginController: BaseController, SegueHandlerType, CountrySelectionPickerD
     @IBOutlet weak var phoneField: UITextField!
     @IBOutlet weak var countryCode: UITextField!
     @IBOutlet weak var selectCountryLabel: UILabel!
-    @IBOutlet weak var termsLiink: UILabel!
-    @IBOutlet weak var privacyLink: UILabel!
 
     override func viewDidLoad() {
         self.selectCountryLabel.userInteractionEnabled = true
@@ -36,12 +32,6 @@ class LoginController: BaseController, SegueHandlerType, CountrySelectionPickerD
         self.selectCountryLabel.addGestureRecognizer(tap)
         
         self.countrySelectionView.delegate = self;
-        
-        let policyTap = UITapGestureRecognizer(target:self, action:"showPolicy")
-        self.privacyLink.addGestureRecognizer(policyTap)
-        
-        let termstap = UITapGestureRecognizer(target:self, action:"showTerms")
-        self.termsLiink.addGestureRecognizer(termstap)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -101,14 +91,6 @@ class LoginController: BaseController, SegueHandlerType, CountrySelectionPickerD
         return true
     }
 
-    func showPolicy(){
-        self.performSegueWithIdentifier(.GoToPrivacy, sender: self)
-    }
-    
-    func showTerms(){
-        self.performSegueWithIdentifier(.GoToTerms, sender: self)
-    }
-
     func getCleanNumber(number: String? = nil) -> String {
         //TODO: sort this out and refactor
         guard let value: String = number ?? phoneField.text else {
@@ -143,12 +125,6 @@ class LoginController: BaseController, SegueHandlerType, CountrySelectionPickerD
             let verify = segue.destinationViewController as! VerifyViewController
             verify.setValue(self.getFormattedNumber(), forKey: "phoneNumber")
             verify.code = self.code
-        case .GoToPrivacy:
-            let termsView = segue.destinationViewController as! TermsViewController
-            termsView.isPrivacy = true
-        case .GoToTerms:
-            let termsView = segue.destinationViewController as! TermsViewController
-            termsView.isPrivacy = false
         }
     }
     
