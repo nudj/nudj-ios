@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol CountryPickerDelegate: NSObjectProtocol {
+    func didSelectData(data: CountryPickerDataSource.Data)
+}
+
 class CountryPickerDataSource: NSObject, UIPickerViewDataSource, UIPickerViewDelegate {
     struct Data {
         let country: String
@@ -16,11 +20,12 @@ class CountryPickerDataSource: NSObject, UIPickerViewDataSource, UIPickerViewDel
     }
     
     let data: [Data]
+    weak var delegate: CountryPickerDelegate?
     
     override convenience init() {
         if let url = NSBundle.mainBundle().URLForResource("Dialling Codes", withExtension: "plist"),
             root = NSDictionary(contentsOfURL: url),
-        countries = root["countries"] as? [[String:String]] {
+            countries = root["countries"] as? [[String:String]] {
             let data: [Data] = countries.map{Data(country: $0["country"]!, diallingCode: $0["dialling code"]!, iso2Code: $0["iso2"]!)}
             self.init(data: data)
         } else {
@@ -34,10 +39,22 @@ class CountryPickerDataSource: NSObject, UIPickerViewDataSource, UIPickerViewDel
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return data.count
+        return 1
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 1
+        return data.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        guard component == 0 else {return nil}
+        let rowData = data[row]
+        return "\(rowData.country) (\(rowData.diallingCode))"
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        guard component == 0 else {return}
+        let rowData = data[row]
+        delegate?.didSelectData(rowData)
     }
 }
