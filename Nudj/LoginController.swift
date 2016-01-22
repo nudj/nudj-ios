@@ -24,13 +24,8 @@ class LoginController: BaseController, SegueHandlerType, CountrySelectionPickerD
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var phoneField: UITextField!
     @IBOutlet weak var countryCode: UITextField!
-    @IBOutlet weak var selectCountryLabel: UILabel!
 
     override func viewDidLoad() {
-        self.selectCountryLabel.userInteractionEnabled = true
-        let tap = UITapGestureRecognizer(target:self, action:"showCountryList")
-        self.selectCountryLabel.addGestureRecognizer(tap)
-        
         self.countrySelectionView.delegate = self;
     }
     
@@ -134,9 +129,5 @@ class LoginController: BaseController, SegueHandlerType, CountrySelectionPickerD
         
         self.countryCode.text = selection["dial_code"]
         self.code = selection["code"]!
-        
-        let code = selection["dial_code"]!
-        let name = selection["name"]!
-        self.selectCountryLabel.text = "\(name) (\(code))"
     }
 }

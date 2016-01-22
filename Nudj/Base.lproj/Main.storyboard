@@ -1523,24 +1523,8 @@
                                     <constraint firstAttribute="height" constant="1" id="Wml-oz-fYk"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="United Kingdom (+44)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0TW-l1-655">
-                                <rect key="frame" x="189" y="216" width="223" height="28"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" id="NgM-RA-cku"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="23"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nsp-NE-Zsn" userLabel="Separator 2">
-                                <rect key="frame" x="36" y="252" width="528" height="1"/>
-                                <color key="backgroundColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="xtt-Q3-YhC"/>
-                                </constraints>
-                            </view>
                             <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="+44" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eqs-tI-vfK" userLabel="Prefix (+44)">
-                                <rect key="frame" x="52" y="261" width="45" height="30"/>
+                                <rect key="frame" x="36" y="216" width="45" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="45" id="jKf-t7-3gC"/>
                                     <constraint firstAttribute="height" constant="30" id="xuT-a5-K2A"/>
@@ -1549,16 +1533,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wIK-JR-sf0" userLabel="Separator 3">
-                                <rect key="frame" x="104" y="261" width="1" height="30"/>
-                                <color key="backgroundColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="1" id="aoo-pb-j20"/>
-                                    <constraint firstAttribute="height" constant="30" id="dr2-kL-aZn"/>
-                                </constraints>
-                            </view>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="RWM-Jp-PBz" userLabel="Phone Number">
-                                <rect key="frame" x="113" y="261" width="435" height="30"/>
+                                <rect key="frame" x="89" y="216" width="475" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="7pA-3y-jWG"/>
                                 </constraints>
@@ -1569,8 +1545,15 @@
                                     <outlet property="delegate" destination="HUi-qm-vwZ" id="gCP-v3-ips"/>
                                 </connections>
                             </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5sd-3T-N9W" userLabel="Separator 2">
+                                <rect key="frame" x="36" y="254" width="528" height="1"/>
+                                <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="aeH-t5-dIA"/>
+                                </constraints>
+                            </view>
                             <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pqc-O3-NX1" userLabel="Boilerplate">
-                                <rect key="frame" x="20" y="299" width="560" height="301"/>
+                                <rect key="frame" x="20" y="263" width="560" height="337"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Nudj uses your phone number and address book to connect and create your personal network.
 Your number is safe with us and we won’t be spamming your contacts either.</string>
@@ -1581,37 +1564,32 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wIK-JR-sf0" firstAttribute="top" secondItem="nsp-NE-Zsn" secondAttribute="bottom" constant="8" id="1HH-jx-8Vh"/>
-                            <constraint firstItem="nsp-NE-Zsn" firstAttribute="top" secondItem="0TW-l1-655" secondAttribute="bottom" constant="8" id="3JZ-Oa-wB7"/>
                             <constraint firstItem="GaB-TN-v0Q" firstAttribute="top" secondItem="SHQ-44-nEL" secondAttribute="bottom" id="4A3-pq-jJX"/>
                             <constraint firstAttribute="trailingMargin" secondItem="GaB-TN-v0Q" secondAttribute="trailing" constant="-16" id="5ZU-mC-eTq"/>
                             <constraint firstItem="EyJ-Sc-It3" firstAttribute="leading" secondItem="QEm-Nc-qfT" secondAttribute="leadingMargin" constant="16" id="72K-13-5dT"/>
-                            <constraint firstAttribute="centerX" secondItem="0TW-l1-655" secondAttribute="centerX" id="AEi-kW-jPY"/>
-                            <constraint firstItem="RWM-Jp-PBz" firstAttribute="leading" secondItem="wIK-JR-sf0" secondAttribute="trailing" constant="8" id="E9X-fC-eJm"/>
-                            <constraint firstItem="eqs-tI-vfK" firstAttribute="leading" secondItem="QEm-Nc-qfT" secondAttribute="leadingMargin" constant="32" id="G4C-Po-iif"/>
+                            <constraint firstItem="eqs-tI-vfK" firstAttribute="leading" secondItem="QEm-Nc-qfT" secondAttribute="leadingMargin" constant="16" id="G4C-Po-iif"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5sd-3T-N9W" secondAttribute="trailing" constant="16" id="Gdh-MS-6tA"/>
+                            <constraint firstItem="5sd-3T-N9W" firstAttribute="leading" secondItem="QEm-Nc-qfT" secondAttribute="leadingMargin" constant="16" id="JZx-q5-eGs"/>
                             <constraint firstItem="COP-7C-8R7" firstAttribute="leading" secondItem="QEm-Nc-qfT" secondAttribute="leadingMargin" constant="16" id="Ktt-ts-uUX"/>
-                            <constraint firstItem="pqc-O3-NX1" firstAttribute="centerX" secondItem="nsp-NE-Zsn" secondAttribute="centerX" id="LIx-Pz-phW"/>
                             <constraint firstItem="pqc-O3-NX1" firstAttribute="leading" secondItem="QEm-Nc-qfT" secondAttribute="leadingMargin" id="Q8a-5I-3f8"/>
-                            <constraint firstItem="nsp-NE-Zsn" firstAttribute="leading" secondItem="QEm-Nc-qfT" secondAttribute="leadingMargin" constant="16" id="QH0-d6-8dE"/>
                             <constraint firstItem="GaB-TN-v0Q" firstAttribute="leading" secondItem="QEm-Nc-qfT" secondAttribute="leading" id="QVg-Wi-hCK"/>
                             <constraint firstAttribute="trailingMargin" secondItem="RWM-Jp-PBz" secondAttribute="trailing" constant="32" id="XER-O7-8gC"/>
-                            <constraint firstItem="0TW-l1-655" firstAttribute="top" secondItem="COP-7C-8R7" secondAttribute="bottom" constant="8" id="c1s-Y6-A7f"/>
-                            <constraint firstItem="wIK-JR-sf0" firstAttribute="leading" secondItem="eqs-tI-vfK" secondAttribute="trailing" constant="7" id="fHG-eY-bv5"/>
+                            <constraint firstItem="RWM-Jp-PBz" firstAttribute="trailing" secondItem="COP-7C-8R7" secondAttribute="trailing" id="Y3I-95-gfh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="EyJ-Sc-It3" secondAttribute="trailing" constant="16" id="gup-1Q-R4F"/>
                             <constraint firstItem="EyJ-Sc-It3" firstAttribute="top" secondItem="GaB-TN-v0Q" secondAttribute="bottom" constant="16" id="gvY-g9-96I"/>
                             <constraint firstItem="hlf-uK-Rhp" firstAttribute="top" secondItem="pqc-O3-NX1" secondAttribute="bottom" id="h0h-QH-pQ1"/>
-                            <constraint firstItem="0TW-l1-655" firstAttribute="top" secondItem="SHQ-44-nEL" secondAttribute="bottom" constant="196" id="h7L-nu-fR0"/>
                             <constraint firstItem="COP-7C-8R7" firstAttribute="top" secondItem="EyJ-Sc-It3" secondAttribute="bottom" constant="8" id="hbI-8h-Snl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pqc-O3-NX1" secondAttribute="trailing" id="jZZ-7w-mDR"/>
-                            <constraint firstItem="eqs-tI-vfK" firstAttribute="top" secondItem="nsp-NE-Zsn" secondAttribute="bottom" constant="8" id="ogo-sk-yuo"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="nsp-NE-Zsn" secondAttribute="trailing" constant="16" id="pap-Y1-Bug"/>
+                            <constraint firstItem="5sd-3T-N9W" firstAttribute="top" secondItem="eqs-tI-vfK" secondAttribute="bottom" constant="8" id="l9N-Kz-Tbe"/>
+                            <constraint firstItem="RWM-Jp-PBz" firstAttribute="leading" secondItem="eqs-tI-vfK" secondAttribute="trailing" constant="8" symbolic="YES" id="lPt-hZ-bL4"/>
+                            <constraint firstItem="RWM-Jp-PBz" firstAttribute="baseline" secondItem="eqs-tI-vfK" secondAttribute="baseline" id="qFz-dy-ylh"/>
+                            <constraint firstItem="eqs-tI-vfK" firstAttribute="top" secondItem="COP-7C-8R7" secondAttribute="bottom" constant="8" id="qww-Jq-0jU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="COP-7C-8R7" secondAttribute="trailing" constant="16" id="tRd-Wk-DBo"/>
-                            <constraint firstItem="RWM-Jp-PBz" firstAttribute="top" secondItem="nsp-NE-Zsn" secondAttribute="bottom" constant="8" id="uay-zT-RoO"/>
-                            <constraint firstItem="pqc-O3-NX1" firstAttribute="top" secondItem="eqs-tI-vfK" secondAttribute="bottom" constant="8" symbolic="YES" id="zfv-uu-3NG"/>
+                            <constraint firstItem="pqc-O3-NX1" firstAttribute="top" secondItem="5sd-3T-N9W" secondAttribute="bottom" constant="8" id="xXG-es-SHh"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="LIx-Pz-phW"/>
+                                <exclude reference="XER-O7-8gC"/>
                             </mask>
                         </variation>
                     </view>
@@ -1620,7 +1598,6 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                         <outlet property="countryCode" destination="eqs-tI-vfK" id="TZX-x5-bM2"/>
                         <outlet property="loginButton" destination="tRc-s3-uZE" id="c0S-Xz-3j2"/>
                         <outlet property="phoneField" destination="RWM-Jp-PBz" id="7ri-kM-FZt"/>
-                        <outlet property="selectCountryLabel" destination="0TW-l1-655" id="R9K-3i-nir"/>
                         <segue destination="eWs-5T-Xez" kind="show" identifier="showVerifyView" id="CY4-1X-3MT"/>
                     </connections>
                 </viewController>
