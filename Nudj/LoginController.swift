@@ -18,6 +18,7 @@ class LoginController: BaseController, SegueHandlerType, CountrySelectionPickerD
     
     var countrySelectionView = CountrySelectionPicker()
     var code = "GB"
+    var textObserver: NSObjectProtocol?
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
     
@@ -26,16 +27,24 @@ class LoginController: BaseController, SegueHandlerType, CountrySelectionPickerD
     @IBOutlet weak var countryCode: UITextField!
 
     override func viewDidLoad() {
-        self.countrySelectionView.delegate = self;
+        self.countrySelectionView.delegate = self
+        validateLogin()
+        let nc = NSNotificationCenter.defaultCenter()
+        textObserver = nc.addObserverForName(UITextFieldTextDidChangeNotification, object: phoneField, queue: nil) {
+            notification in
+            self.validateLogin()
+        }
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-
-        self.showLoginButton()
-        self.changeNavigationBar(true)
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        switch segueIdentifierForSegue(segue) {
+        case .ShowVerifyView:
+            let verify = segue.destinationViewController as! VerifyViewController
+            verify.setValue(self.internationalPhoneNumber(), forKey: "phoneNumber")
+            verify.code = self.code
+        }
     }
-
+    
     func showCountryList(){
         self.phoneField.resignFirstResponder()
         
@@ -45,17 +54,9 @@ class LoginController: BaseController, SegueHandlerType, CountrySelectionPickerD
         self.countrySelectionView.showAction()
     }
     
-    @IBAction func loginAct(sender: AnyObject) {
-        // Hide button to prevent multiple clicks
-        self.hideLoginButton()
+    @IBAction func login(sender: AnyObject) {
+        let phoneNumber = internationalPhoneNumber()
 
-        let phoneNumber = self.getFormattedNumber()
-
-        if (phoneNumber.isEmpty) {
-            showSimpleAlert(Localizations.Login.PhoneNumber.Required)
-            showLoginButton()
-            return;
-        }
         // TODO: API strings
         let params: [String: AnyObject] = ["phone": phoneNumber, "country_code": code]
         API.sharedInstance.post("users", params: params, closure: { response in })
@@ -63,16 +64,34 @@ class LoginController: BaseController, SegueHandlerType, CountrySelectionPickerD
         self.performSegueWithIdentifier(.ShowVerifyView, sender: self)
     }
 
-    func showLoginButton() {
-        self.loginButton.alpha = 1
-        self.loginButton.enabled = true
+    func validateLogin() {
+        let number = formattedNumber()
+        loginButton.enabled = !number.isEmpty
+    }
+    
+    func internationalPhoneNumber() -> String {
+        return (self.countryCode.text ?? "") + formattedNumber()
+    }
+    
+    func formattedNumber() -> String {
+        let number = phoneField.text ?? ""
+        return shouldStripLeadingZeros() ? stripLeadingZeros(number) : number
+    }
+    
+    func shouldStripLeadingZeros() -> Bool {
+        return true // TODO:
     }
 
-    func hideLoginButton() {
-        self.loginButton.alpha = 0
-        self.loginButton.enabled = false
+    func stripLeadingZeros(number: String) -> String {
+        var characters = number.characters
+        while characters.first == "0" {
+            characters = characters.dropFirst()
+        }
+        return String(characters)
     }
 
+    // MARK: UITextFieldDelegate
+    
     func textFieldDidBeginEditing(textField: UITextField) {
         if self.countrySelectionView.isCreated == true && self.countrySelectionView.hidden == false{
             self.countrySelectionView.doneAction()
@@ -80,48 +99,16 @@ class LoginController: BaseController, SegueHandlerType, CountrySelectionPickerD
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        self.loginAct(textField)
+        validateLogin()
+        if !loginButton.enabled {
+            return false
+        }
+        self.login(textField)
         return true
     }
-
-    func getCleanNumber(number: String? = nil) -> String {
-        //TODO: sort this out and refactor
-        guard let value: String = number ?? phoneField.text else {
-            return ""
-        }
-        
-        var characters = value.characters
-        while characters.first == "0" {
-            characters = characters.dropFirst()
-        }
-        return String(characters)
-    }
-
-    func getFormattedNumber() -> String {
-        return self.countryCode.text! + self.getCleanNumber(self.phoneField.text)
-    }
-
-    // MARK: - Navigation bar
-
-    func changeNavigationBar(hidden: Bool) {
-        if let nav = self.navigationController {
-            nav.navigationBarHidden = hidden
-        }
-    }
-
-    // MARK: - Navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        self.changeNavigationBar(false)
-
-        switch segueIdentifierForSegue(segue) {
-        case .ShowVerifyView:
-            let verify = segue.destinationViewController as! VerifyViewController
-            verify.setValue(self.getFormattedNumber(), forKey: "phoneNumber")
-            verify.code = self.code
-        }
-    }
     
-    //CountryPicker Delegate
+    // MARK: CountrySelectionPickerDelegate
+    
     func didSelect(selection:[String:String]) {
         phoneField.becomeFirstResponder()
         

@@ -67,9 +67,6 @@
 "jobs.delete.error.title" = "Error";
 "jobs.delete.error.body" = "There was an error deleting this job.";
 
-// Login
-"login.phone-number.required" = "You must supply a phone number to log in.";
-
 // Notification
 "notification.button.details" = "Details";
 "notification.button.message" = "Message";
