@@ -1900,13 +1900,13 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smp-rK-aNl">
-                                <rect key="frame" x="4" y="184" width="406" height="552"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smp-rK-aNl">
+                                <rect key="frame" x="4" y="140" width="406" height="596"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tdu-Qe-djm" userLabel="Skills View">
                                         <rect key="frame" x="0.0" y="0.0" width="406" height="55"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your skills" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZnK-jF-nIO">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Skills" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZnK-jF-nIO">
                                                 <rect key="frame" x="49" y="16" width="122" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="122" id="B2i-rT-bGN"/>
@@ -1974,7 +1974,7 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                                                     <constraint firstAttribute="height" constant="25" id="Y1J-Xx-88e"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your bio detail (keep it brief)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kSu-sU-Bgm">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Bio Detail (keep it brief)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kSu-sU-Bgm">
                                                 <rect key="frame" x="49" y="16" width="250" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="250" id="0Kc-34-60T"/>
@@ -2026,12 +2026,12 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                                                     <constraint firstAttribute="height" constant="25" id="dSc-xp-zUe"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Employer, Company" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Iva-AM-FXg">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your Employer or Company" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Iva-AM-FXg">
                                                 <rect key="frame" x="49" y="10" width="349" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="coC-Or-nFT"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="u6h-lK-ytT" id="SuW-PH-w2a"/>
@@ -2065,13 +2065,13 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                                                     <constraint firstAttribute="height" constant="25" id="ofi-a5-KjX"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tag Location" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A4y-bJ-U94">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your Location" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A4y-bJ-U94">
                                                 <rect key="frame" x="49" y="10" width="349" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="Ztj-WO-xE6"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="u6h-lK-ytT" id="AZl-oX-XOQ"/>
                                                 </connections>
@@ -2104,12 +2104,12 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                                                     <constraint firstAttribute="width" constant="25" id="iRJ-xO-cvo"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Position" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Zb-L3-b5R">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your Position" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Zb-L3-b5R">
                                                 <rect key="frame" x="49" y="10" width="349" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="FOa-5U-6QD"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="u6h-lK-ytT" id="Mb4-SO-0OR"/>
@@ -2143,12 +2143,12 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                                                     <constraint firstAttribute="height" constant="25" id="zbp-kj-lbQ"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="314-wO-jl0">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your Email (it will not be shared)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="314-wO-jl0">
                                                 <rect key="frame" x="49" y="10" width="349" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="ncd-Nt-9B2"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="u6h-lK-ytT" id="Uph-Mp-QnY"/>
@@ -2204,8 +2204,8 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                                     <constraint firstAttribute="trailing" secondItem="eZj-Gt-ANh" secondAttribute="trailing" id="yvn-CK-YKK"/>
                                 </constraints>
                             </scrollView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MaM-1e-UFb" userLabel="Top View">
-                                <rect key="frame" x="4" y="64" width="406" height="120"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MaM-1e-UFb" userLabel="Top View">
+                                <rect key="frame" x="4" y="20" width="406" height="120"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MqB-GV-Fan" userLabel="BackgroundImage" customClass="AsyncImage" customModule="Nudj" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="406" height="120"/>
@@ -2228,7 +2228,7 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="circleShape" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Swi-ei-rDt">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Swi-ei-rDt">
                                         <rect key="frame" x="124" y="31" width="266" height="24"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
@@ -2592,9 +2592,9 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
         <segue reference="BCe-Pt-bFX"/>
         <segue reference="IbB-SC-7jb"/>
         <segue reference="TFM-Ac-ZI1"/>
+        <segue reference="1RO-e0-4AP"/>
         <segue reference="zyP-mc-EMC"/>
         <segue reference="gvE-qy-aNj"/>
-        <segue reference="H51-O9-Snf"/>
         <segue reference="oVM-eF-ddZ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
