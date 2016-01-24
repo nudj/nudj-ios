@@ -22,7 +22,6 @@
 		A94B49D61B8A8056008CF762 /* NoInternetConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94B49D51B8A8056008CF762 /* NoInternetConnectionView.swift */; };
 		A94FE6CC1B84C9E600761F32 /* archive_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A94FE6CB1B84C9E600761F32 /* archive_active@2x.png */; };
 		A95798251B46965A006E826E /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95798241B46965A006E826E /* NotificationViewController.swift */; };
-		A9733ECE1B781F49008D6115 /* CountrySelectionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9733ECD1B781F49008D6115 /* CountrySelectionPicker.swift */; };
 		A984E2EE1B67ACA9009F318E /* ChatRoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A984E2ED1B67ACA9009F318E /* ChatRoomModel.swift */; };
 		A9953F9D1B997A9700084952 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9953F9C1B997A9700084952 /* TutorialView.swift */; };
 		A9964FD51B387CC800D5A8E9 /* JSQMessagesAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A9964E281B387CC700D5A8E9 /* JSQMessagesAssets.bundle */; };
@@ -311,7 +310,6 @@
 		C86F84891C444DB800C23332 /* XMPPGroupCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964ECE1B387CC800D5A8E9 /* XMPPGroupCoreDataStorageObject.m */; };
 		C86F848A1C444DB800C23332 /* XMPPAutoTime.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F861B387CC800D5A8E9 /* XMPPAutoTime.m */; };
 		C86F848B1C444DB800C23332 /* XMPPvCardTemp.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F261B387CC800D5A8E9 /* XMPPvCardTemp.m */; };
-		C86F848C1C444DB800C23332 /* CountrySelectionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9733ECD1B781F49008D6115 /* CountrySelectionPicker.swift */; };
 		C86F848D1C444DB800C23332 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF17A271B4E641400C67657 /* ContactModel.swift */; };
 		C86F848E1C444DB800C23332 /* XMPPSoftwareVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F511B387CC800D5A8E9 /* XMPPSoftwareVersion.m */; };
 		C86F848F1C444DB800C23332 /* UIColor+JSQMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E311B387CC700D5A8E9 /* UIColor+JSQMessages.m */; };
@@ -696,7 +694,6 @@
 		A94B49D51B8A8056008CF762 /* NoInternetConnectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NoInternetConnectionView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A94FE6CB1B84C9E600761F32 /* archive_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archive_active@2x.png"; sourceTree = "<group>"; };
 		A95798241B46965A006E826E /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NotificationViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		A9733ECD1B781F49008D6115 /* CountrySelectionPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CountrySelectionPicker.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A984E2ED1B67ACA9009F318E /* ChatRoomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ChatRoomModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9953F9C1B997A9700084952 /* TutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TutorialView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9964E281B387CC700D5A8E9 /* JSQMessagesAssets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JSQMessagesAssets.bundle; sourceTree = "<group>"; };
@@ -2572,7 +2569,6 @@
 				EBF17A231B4D538800C67657 /* Common.swift */,
 				A9191EA51B6A402E000F9168 /* SocialStatus.swift */,
 				A947CC981B7119B500C9518E /* NoContentPlaceHolder.swift */,
-				A9733ECD1B781F49008D6115 /* CountrySelectionPicker.swift */,
 				A929E4941B863D3F00AC2A5F /* MixPanelHandler.swift */,
 				C8A662031C0B66570088355D /* NoInternetConnectionView.xib */,
 				A94B49D51B8A8056008CF762 /* NoInternetConnectionView.swift */,
@@ -3205,7 +3201,6 @@
 				C86F84891C444DB800C23332 /* XMPPGroupCoreDataStorageObject.m in Sources */,
 				C86F848A1C444DB800C23332 /* XMPPAutoTime.m in Sources */,
 				C86F848B1C444DB800C23332 /* XMPPvCardTemp.m in Sources */,
-				C86F848C1C444DB800C23332 /* CountrySelectionPicker.swift in Sources */,
 				C86F848D1C444DB800C23332 /* ContactModel.swift in Sources */,
 				C86F848E1C444DB800C23332 /* XMPPSoftwareVersion.m in Sources */,
 				C86F848F1C444DB800C23332 /* UIColor+JSQMessages.m in Sources */,
@@ -3451,7 +3446,6 @@
 				A99650181B387CC800D5A8E9 /* XMPPGroupCoreDataStorageObject.m in Sources */,
 				A99650621B387CC800D5A8E9 /* XMPPAutoTime.m in Sources */,
 				A996503B1B387CC800D5A8E9 /* XMPPvCardTemp.m in Sources */,
-				A9733ECE1B781F49008D6115 /* CountrySelectionPicker.swift in Sources */,
 				EBF17A281B4E641400C67657 /* ContactModel.swift in Sources */,
 				A996504D1B387CC800D5A8E9 /* XMPPSoftwareVersion.m in Sources */,
 				A9964FD91B387CC800D5A8E9 /* UIColor+JSQMessages.m in Sources */,
