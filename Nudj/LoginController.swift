@@ -28,6 +28,7 @@ class LoginController: BaseController, SegueHandlerType, CountryPickerDelegate, 
     @IBOutlet weak var countyPickerContainer: UIView!
 
     override func viewDidLoad() {
+        self.countyPickerContainer.hidden = true // doing this in IB conflicts with the height constraint, which we need
         validateLogin()
         let nc = NSNotificationCenter.defaultCenter()
         textObserver = nc.addObserverForName(UITextFieldTextDidChangeNotification, object: phoneField, queue: nil) {

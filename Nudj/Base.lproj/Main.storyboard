@@ -1564,8 +1564,8 @@
                                             <view clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="260" verticalCompressionResistancePriority="740" translatesAutoresizingMaskIntoConstraints="NO" id="fu5-eG-AeT" userLabel="Country picker container">
                                                 <rect key="frame" x="0.0" y="83" width="560" height="80"/>
                                                 <subviews>
-                                                    <pickerView contentMode="scaleToFill" misplaced="YES" showsSelectionIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMG-bB-M8L" userLabel="Country picker">
-                                                        <rect key="frame" x="0.0" y="0.0" width="580" height="80"/>
+                                                    <pickerView contentMode="scaleToFill" showsSelectionIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMG-bB-M8L" userLabel="Country picker">
+                                                        <rect key="frame" x="0.0" y="-136" width="580" height="216"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <connections>
                                                             <outlet property="dataSource" destination="Evh-ak-SA5" id="yzv-jP-v1h"/>
