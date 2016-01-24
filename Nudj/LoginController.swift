@@ -17,6 +17,7 @@ class LoginController: BaseController, SegueHandlerType, CountryPickerDelegate, 
     }
     
     var iso2CountryCode = "GB"
+    var shouldStripLeadingZeros: Bool = true
     var textObserver: NSObjectProtocol?
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
@@ -28,7 +29,7 @@ class LoginController: BaseController, SegueHandlerType, CountryPickerDelegate, 
     @IBOutlet weak var countyPickerContainer: UIView!
 
     override func viewDidLoad() {
-        self.countyPickerContainer.hidden = true // doing this in IB conflicts with the height constraint, which we need
+        countyPickerContainer.hidden = true // doing this in IB conflicts with the height constraint, which we need
         validateLogin()
         let nc = NSNotificationCenter.defaultCenter()
         textObserver = nc.addObserverForName(UITextFieldTextDidChangeNotification, object: phoneField, queue: nil) {
@@ -46,11 +47,6 @@ class LoginController: BaseController, SegueHandlerType, CountryPickerDelegate, 
         }
     }
     
-    func showCountryList(){
-        self.phoneField.resignFirstResponder()
-        // TODO: implement
-    }
-    
     @IBAction func login(sender: AnyObject) {
         let phoneNumber = internationalPhoneNumber()
 
@@ -58,7 +54,7 @@ class LoginController: BaseController, SegueHandlerType, CountryPickerDelegate, 
         let params: [String: AnyObject] = ["phone": phoneNumber, "country_code": iso2CountryCode]
         API.sharedInstance.post("users", params: params, closure: { response in })
         
-        self.performSegueWithIdentifier(.ShowVerifyView, sender: self)
+        performSegueWithIdentifier(.ShowVerifyView, sender: self)
     }
     
     @IBAction func toggleCountryPicker(sender: AnyObject) {
@@ -74,18 +70,14 @@ class LoginController: BaseController, SegueHandlerType, CountryPickerDelegate, 
     }
     
     func internationalPhoneNumber() -> String {
-        return (self.countryCode.currentTitle ?? "") + formattedNumber()
+        return (countryCode.currentTitle ?? "") + formattedNumber()
     }
     
     func formattedNumber() -> String {
         let number = phoneField.text ?? ""
-        return shouldStripLeadingZeros() ? stripLeadingZeros(number) : number
+        return shouldStripLeadingZeros ? stripLeadingZeros(number) : number
     }
     
-    func shouldStripLeadingZeros() -> Bool {
-        return true // TODO: UK only
-    }
-
     func stripLeadingZeros(number: String) -> String {
         var characters = number.characters
         while characters.first == "0" {
@@ -108,8 +100,9 @@ class LoginController: BaseController, SegueHandlerType, CountryPickerDelegate, 
     // MARK: CountryPickerDelegate
     
     func didSelectData(data: CountryPickerDataSource.Data) {
-        self.countryCode.setTitle("+" + data.diallingCode, forState: .Normal)
-        self.iso2CountryCode = data.iso2Code
+        countryCode.setTitle("+" + data.diallingCode, forState: .Normal)
+        iso2CountryCode = data.iso2Code
+        shouldStripLeadingZeros = data.shouldStripLeadingZeros
         validateLogin()
     }
 }
