@@ -1562,12 +1562,12 @@
                                                 </subviews>
                                             </stackView>
                                             <pickerView contentMode="scaleToFill" showsSelectionIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMG-bB-M8L" userLabel="Country picker">
-                                                <rect key="frame" x="0.0" y="83" width="560" height="120"/>
+                                                <rect key="frame" x="0.0" y="83" width="560" height="80"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" priority="250" constant="120" identifier="extend picker" id="0U5-xf-yLk" userLabel="extend picker"/>
+                                                    <constraint firstAttribute="height" priority="250" constant="80" identifier="extend picker" id="0U5-xf-yLk" userLabel="extend picker"/>
                                                     <constraint firstAttribute="height" priority="800" identifier="collapsePicker" id="9JN-8C-Him" userLabel="collapsePicker"/>
-                                                    <constraint firstAttribute="height" constant="120" placeholder="YES" identifier="placeholder" id="tD1-MS-2vj" userLabel="placeHolder"/>
+                                                    <constraint firstAttribute="height" constant="80" placeholder="YES" identifier="placeholder" id="tD1-MS-2vj" userLabel="placeHolder"/>
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="dataSource" destination="Evh-ak-SA5" id="yzv-jP-v1h"/>
@@ -1575,14 +1575,14 @@
                                                 </connections>
                                             </pickerView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5sd-3T-N9W" userLabel="Separator 2">
-                                                <rect key="frame" x="0.0" y="211" width="560" height="1"/>
+                                                <rect key="frame" x="0.0" y="171" width="560" height="1"/>
                                                 <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="aeH-t5-dIA"/>
                                                 </constraints>
                                             </view>
                                             <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="240" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pqc-O3-NX1" userLabel="Boilerplate">
-                                                <rect key="frame" x="0.0" y="220" width="560" height="257"/>
+                                                <rect key="frame" x="0.0" y="180" width="560" height="297"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <string key="text">Nudj uses your phone number and address book to connect and create your personal network.
 
