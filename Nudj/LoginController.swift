@@ -16,8 +16,8 @@ class LoginController: BaseController, SegueHandlerType, CountryPickerDelegate, 
         case ShowVerifyView = "showVerifyView"
     }
     
-    var iso2CountryCode = "GB"
-    var shouldStripLeadingZeros: Bool = true
+    var iso2CountryCode = "GB" // default
+    var shouldStripLeadingZeros: Bool = true // default
     var textObserver: NSObjectProtocol?
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
@@ -30,11 +30,23 @@ class LoginController: BaseController, SegueHandlerType, CountryPickerDelegate, 
     @IBOutlet weak var countryPickerDataSource: CountryPickerDataSource!
 
     override func viewDidLoad() {
-        countyPickerContainer.hidden = true // doing this in IB conflicts with the height constraint, which we need
-        if let row = countryPickerDataSource.rowForIso2Code(iso2CountryCode) {
+        super.viewDidLoad()
+        
+        // start with the country picker hidden
+        // doing this in IB conflicts with the height constraint, which we need
+        countyPickerContainer.hidden = true 
+        
+        // try to apply the user's locale
+        if let currentCountryCode = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as? String,
+            (row, data) = countryPickerDataSource.rowForIso2Code(currentCountryCode) {
             countryPicker.selectRow(row, inComponent: 0, animated: false)
+            didSelectData(data)
+        } else {
+            // fall back to the defaults in IB
+            validateLogin()
         }
-        validateLogin()
+        
+        // listen to changes n the phone field
         let nc = NSNotificationCenter.defaultCenter()
         textObserver = nc.addObserverForName(UITextFieldTextDidChangeNotification, object: phoneField, queue: nil) {
             notification in

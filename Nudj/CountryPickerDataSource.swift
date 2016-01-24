@@ -62,9 +62,14 @@ class CountryPickerDataSource: NSObject, UIPickerViewDataSource, UIPickerViewDel
         super.init()
     }
     
-    func rowForIso2Code(iso2code: String) -> Int? {
+    func rowForIso2Code(iso2code: String) -> (Int, Data)? {
         let row = data.indexOf{$0.iso2Code == iso2code}
-        return row
+        if let row = row {
+            let rowData = data[row]
+            return (row, rowData)
+        } else {
+            return nil
+        }
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
