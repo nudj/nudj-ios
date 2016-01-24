@@ -7,7 +7,7 @@
 		<dict>
 			<key>country</key>
 			<string>United Kingdom</string>
-			<key>iso2Code</key>
+			<key>iso2CountryCode</key>
 			<string>GB</string>
 			<key>diallingCode</key>
 			<string>44</string>
@@ -17,7 +17,7 @@
 		<dict>
 			<key>country</key>
 			<string>United States</string>
-			<key>iso2Code</key>
+			<key>iso2CountryCode</key>
 			<string>US</string>
 			<key>diallingCode</key>
 			<string>1</string>
