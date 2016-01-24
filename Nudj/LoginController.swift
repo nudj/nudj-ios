@@ -27,9 +27,13 @@ class LoginController: BaseController, SegueHandlerType, CountryPickerDelegate, 
     @IBOutlet weak var countryCode: UIButton!
     @IBOutlet weak var countryPicker: UIPickerView!
     @IBOutlet weak var countyPickerContainer: UIView!
+    @IBOutlet weak var countryPickerDataSource: CountryPickerDataSource!
 
     override func viewDidLoad() {
         countyPickerContainer.hidden = true // doing this in IB conflicts with the height constraint, which we need
+        if let row = countryPickerDataSource.rowForIso2Code(iso2CountryCode) {
+            countryPicker.selectRow(row, inComponent: 0, animated: false)
+        }
         validateLogin()
         let nc = NSNotificationCenter.defaultCenter()
         textObserver = nc.addObserverForName(UITextFieldTextDidChangeNotification, object: phoneField, queue: nil) {

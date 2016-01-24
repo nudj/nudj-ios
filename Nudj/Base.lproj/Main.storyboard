@@ -1620,6 +1620,7 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                     <connections>
                         <outlet property="countryCode" destination="bZf-4c-ZsC" id="4Zo-tc-RCF"/>
                         <outlet property="countryPicker" destination="CMG-bB-M8L" id="A5d-bu-reb"/>
+                        <outlet property="countryPickerDataSource" destination="Evh-ak-SA5" id="kDK-dy-yIY"/>
                         <outlet property="countyPickerContainer" destination="fu5-eG-AeT" id="DaL-uq-5T1"/>
                         <outlet property="loginButton" destination="tRc-s3-uZE" id="c0S-Xz-3j2"/>
                         <outlet property="phoneField" destination="RWM-Jp-PBz" id="7ri-kM-FZt"/>
