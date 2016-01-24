@@ -22,6 +22,10 @@ class CountryPickerDataSource: NSObject, UIPickerViewDataSource, UIPickerViewDel
         let diallingCode: String
         let iso2Code: String
         
+        convenience init(fromDictionary dictionary:[String:String]) {
+            self.init(country: dictionary["country"]!, diallingCode: dictionary["diallingCode"]!, iso2Code: dictionary["iso2Code"]!)
+        }
+        
         init(country: String = "", diallingCode: String = "", iso2Code: String = "") {
             self.country = country
             self.diallingCode = diallingCode
@@ -38,7 +42,7 @@ class CountryPickerDataSource: NSObject, UIPickerViewDataSource, UIPickerViewDel
         if let url = NSBundle.mainBundle().URLForResource("Dialling Codes", withExtension: "plist"),
             root = NSDictionary(contentsOfURL: url),
             countries = root["countries"] as? [[String:String]] {
-            let data: [Data] = countries.map{Data(country: $0["country"]!, diallingCode: $0["diallingCode"]!, iso2Code: $0["iso2Code"]!)}
+                let data: [Data] = countries.map{Data(fromDictionary: $0)}
             self.init(data: data)
         } else {
             self.init(data: [])
