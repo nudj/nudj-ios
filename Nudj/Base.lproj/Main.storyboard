@@ -113,7 +113,7 @@
                                                 <rect key="frame" x="49" y="12" width="318" height="30"/>
                                                 <color key="textColor" red="0.074533462524414062" green="0.57771205902099609" blue="0.45876827836036682" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="FfD-3r-a1P" id="0xY-fL-gJO"/>
                                                 </connections>
@@ -307,7 +307,7 @@
                                                 </constraints>
                                                 <color key="textColor" red="0.074533462524414062" green="0.57771205902099609" blue="0.45876827836036682" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="FfD-3r-a1P" id="mVg-Ye-XvI"/>
                                                 </connections>
@@ -340,14 +340,14 @@
                                                     <constraint firstAttribute="height" constant="25" id="ePt-vi-Ree"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tag Location" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V5P-yB-WVQ">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Location" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V5P-yB-WVQ">
                                                 <rect key="frame" x="49" y="10" width="318" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="QZy-Uj-flG"/>
                                                 </constraints>
                                                 <color key="textColor" red="0.074533462524414062" green="0.57771205902099609" blue="0.45876827836036682" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="FfD-3r-a1P" id="Qcl-n0-4uv"/>
                                                 </connections>
@@ -421,19 +421,9 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Set Referral Bonus" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Jn-gO-n85">
                                                 <rect key="frame" x="0.0" y="29" width="375" height="21"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="143" id="6bj-nL-lhz"/>
-                                                    <constraint firstAttribute="width" constant="143" id="ujh-Gg-ZEp"/>
-                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
-                                                <variation key="default">
-                                                    <mask key="constraints">
-                                                        <exclude reference="6bj-nL-lhz"/>
-                                                        <exclude reference="ujh-Gg-ZEp"/>
-                                                    </mask>
-                                                </variation>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" red="0.94458281813245826" green="0.94458281813245826" blue="0.94458281813245826" alpha="1" colorSpace="calibratedRGB"/>
@@ -462,7 +452,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="ZgJ-Sx-4RX"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="FfD-3r-a1P" id="yL6-83-c9D"/>
                                                 </connections>
@@ -2598,14 +2588,14 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
         <image name="success.png" width="88" height="88"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BCe-Pt-bFX"/>
-        <segue reference="m0n-l7-DaR"/>
-        <segue reference="gvE-qy-aNj"/>
-        <segue reference="oVM-eF-ddZ"/>
-        <segue reference="zyP-mc-EMC"/>
-        <segue reference="H51-O9-Snf"/>
-        <segue reference="TFM-Ac-ZI1"/>
         <segue reference="E5T-Ai-Mhe"/>
+        <segue reference="BCe-Pt-bFX"/>
+        <segue reference="IbB-SC-7jb"/>
+        <segue reference="TFM-Ac-ZI1"/>
+        <segue reference="zyP-mc-EMC"/>
+        <segue reference="gvE-qy-aNj"/>
+        <segue reference="H51-O9-Snf"/>
+        <segue reference="oVM-eF-ddZ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
 </document>
