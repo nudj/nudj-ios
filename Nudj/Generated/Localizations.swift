@@ -248,17 +248,6 @@ public struct Localizations {
         }
     }
 
-    public struct Login {
-
-    
-        public struct PhoneNumber {
-
-                    /// Base translation: You must supply a phone number to log in.
-            public static var Required : String = "login.phone-number.required".localized
-
-        }
-    }
-
     public struct Server {
 
     
@@ -551,6 +540,29 @@ public struct Localizations {
         }
     }
 
+    public struct Verification {
+
+    
+        public struct Code {
+
+                    /// Base translation: That verification code is invalid.
+            public static var Invalid : String = "verification.code.invalid".localized
+
+            /// Base translation: There was an error in code verification, please try again.
+            public static var Error : String = "verification.code.error".localized
+
+
+            public struct Alert {
+
+                            /// Base translation: Your verification code is %@.
+                public static func Format(value1 : String) -> String {
+                    return String(format: NSLocalizedString("verification.code.alert.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
+                }
+
+            }
+        }
+    }
+
     public struct Sms {
 
     
@@ -572,29 +584,6 @@ public struct Localizations {
             /// Base translation: This device cannot send text messages.
             public static var Body : String = "sms.unavailable.body".localized
 
-        }
-    }
-
-    public struct Verification {
-
-    
-        public struct Code {
-
-                    /// Base translation: That verification code is invalid.
-            public static var Invalid : String = "verification.code.invalid".localized
-
-            /// Base translation: There was an error in code verification, please try again.
-            public static var Error : String = "verification.code.error".localized
-
-
-            public struct Alert {
-
-                            /// Base translation: Your verification code is %@.
-                public static func Format(value1 : String) -> String {
-                    return String(format: NSLocalizedString("verification.code.alert.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
-                }
-
-            }
         }
     }
 

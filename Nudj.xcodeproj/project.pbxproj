@@ -22,7 +22,6 @@
 		A94B49D61B8A8056008CF762 /* NoInternetConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94B49D51B8A8056008CF762 /* NoInternetConnectionView.swift */; };
 		A94FE6CC1B84C9E600761F32 /* archive_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A94FE6CB1B84C9E600761F32 /* archive_active@2x.png */; };
 		A95798251B46965A006E826E /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95798241B46965A006E826E /* NotificationViewController.swift */; };
-		A9733ECE1B781F49008D6115 /* CountrySelectionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9733ECD1B781F49008D6115 /* CountrySelectionPicker.swift */; };
 		A984E2EE1B67ACA9009F318E /* ChatRoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A984E2ED1B67ACA9009F318E /* ChatRoomModel.swift */; };
 		A9953F9D1B997A9700084952 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9953F9C1B997A9700084952 /* TutorialView.swift */; };
 		A9964FD51B387CC800D5A8E9 /* JSQMessagesAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A9964E281B387CC700D5A8E9 /* JSQMessagesAssets.bundle */; };
@@ -311,7 +310,6 @@
 		C86F84891C444DB800C23332 /* XMPPGroupCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964ECE1B387CC800D5A8E9 /* XMPPGroupCoreDataStorageObject.m */; };
 		C86F848A1C444DB800C23332 /* XMPPAutoTime.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F861B387CC800D5A8E9 /* XMPPAutoTime.m */; };
 		C86F848B1C444DB800C23332 /* XMPPvCardTemp.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F261B387CC800D5A8E9 /* XMPPvCardTemp.m */; };
-		C86F848C1C444DB800C23332 /* CountrySelectionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9733ECD1B781F49008D6115 /* CountrySelectionPicker.swift */; };
 		C86F848D1C444DB800C23332 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF17A271B4E641400C67657 /* ContactModel.swift */; };
 		C86F848E1C444DB800C23332 /* XMPPSoftwareVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F511B387CC800D5A8E9 /* XMPPSoftwareVersion.m */; };
 		C86F848F1C444DB800C23332 /* UIColor+JSQMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E311B387CC700D5A8E9 /* UIColor+JSQMessages.m */; };
@@ -560,6 +558,10 @@
 		C86F85921C444F2100C23332 /* DevelopmentServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F85911C444F2100C23332 /* DevelopmentServer.swift */; };
 		C88204A61C4C258C00744554 /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88204A51C4C258C00744554 /* SegueHandlerType.swift */; };
 		C88204A71C4C258C00744554 /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88204A51C4C258C00744554 /* SegueHandlerType.swift */; };
+		C88BA0811C527416007A81EB /* Dialling Codes.plist in Resources */ = {isa = PBXBuildFile; fileRef = C88BA0801C527416007A81EB /* Dialling Codes.plist */; };
+		C88BA0821C527416007A81EB /* Dialling Codes.plist in Resources */ = {isa = PBXBuildFile; fileRef = C88BA0801C527416007A81EB /* Dialling Codes.plist */; };
+		C88BA0841C5277DD007A81EB /* CountryPickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88BA0831C5277DD007A81EB /* CountryPickerDataSource.swift */; };
+		C88BA0851C5277DD007A81EB /* CountryPickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88BA0831C5277DD007A81EB /* CountryPickerDataSource.swift */; };
 		C89325A61C08BEC10069FCFD /* LoggingPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89325A21C08BEC10069FCFD /* LoggingPrint.swift */; };
 		C89325AA1C08CCE00069FCFD /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89325A91C08CCE00069FCFD /* AssetsLibrary.framework */; };
 		C89325AC1C08CCEA0069FCFD /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89325AB1C08CCEA0069FCFD /* CoreText.framework */; };
@@ -692,7 +694,6 @@
 		A94B49D51B8A8056008CF762 /* NoInternetConnectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NoInternetConnectionView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A94FE6CB1B84C9E600761F32 /* archive_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archive_active@2x.png"; sourceTree = "<group>"; };
 		A95798241B46965A006E826E /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NotificationViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		A9733ECD1B781F49008D6115 /* CountrySelectionPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CountrySelectionPicker.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A984E2ED1B67ACA9009F318E /* ChatRoomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ChatRoomModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9953F9C1B997A9700084952 /* TutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TutorialView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9964E281B387CC700D5A8E9 /* JSQMessagesAssets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JSQMessagesAssets.bundle; sourceTree = "<group>"; };
@@ -1116,6 +1117,8 @@
 		C86F858F1C444DB900C23332 /* Beta-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Beta-Info.plist"; sourceTree = "<group>"; };
 		C86F85911C444F2100C23332 /* DevelopmentServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevelopmentServer.swift; sourceTree = "<group>"; };
 		C88204A51C4C258C00744554 /* SegueHandlerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueHandlerType.swift; sourceTree = "<group>"; };
+		C88BA0801C527416007A81EB /* Dialling Codes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Dialling Codes.plist"; sourceTree = "<group>"; };
+		C88BA0831C5277DD007A81EB /* CountryPickerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryPickerDataSource.swift; sourceTree = "<group>"; };
 		C89325A21C08BEC10069FCFD /* LoggingPrint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggingPrint.swift; sourceTree = "<group>"; };
 		C89325A91C08CCE00069FCFD /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		C89325AB1C08CCEA0069FCFD /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -2412,6 +2415,14 @@
 			path = Generated;
 			sourceTree = "<group>";
 		};
+		C88BA07F1C5273C9007A81EB /* Static Data */ = {
+			isa = PBXGroup;
+			children = (
+				C88BA0801C527416007A81EB /* Dialling Codes.plist */,
+			);
+			name = "Static Data";
+			sourceTree = "<group>";
+		};
 		C893259F1C08BEC10069FCFD /* LoggingPrint */ = {
 			isa = PBXGroup;
 			children = (
@@ -2508,6 +2519,7 @@
 				EBB337F91A9F5557000CAD88 /* DataModel */,
 				C84E00F61C191F160065F220 /* Generated */,
 				C8A661E11C0B64A00088355D /* UI */,
+				C88BA07F1C5273C9007A81EB /* Static Data */,
 				EB0926CD1A8DE4CB00E1D958 /* Supporting Files */,
 			);
 			path = Nudj;
@@ -2557,7 +2569,6 @@
 				EBF17A231B4D538800C67657 /* Common.swift */,
 				A9191EA51B6A402E000F9168 /* SocialStatus.swift */,
 				A947CC981B7119B500C9518E /* NoContentPlaceHolder.swift */,
-				A9733ECD1B781F49008D6115 /* CountrySelectionPicker.swift */,
 				A929E4941B863D3F00AC2A5F /* MixPanelHandler.swift */,
 				C8A662031C0B66570088355D /* NoInternetConnectionView.xib */,
 				A94B49D51B8A8056008CF762 /* NoInternetConnectionView.swift */,
@@ -2600,6 +2611,7 @@
 				EB313D2F1AAF4C5A00F008B8 /* StatusPicker.swift */,
 				EBCE12551B2B1D2600C3928C /* CreateProfileController.swift */,
 				EBF17A211B4C128100C67657 /* VerifyCodeTextField.swift */,
+				C88BA0831C5277DD007A81EB /* CountryPickerDataSource.swift */,
 			);
 			name = Login/Register;
 			sourceTree = "<group>";
@@ -2827,6 +2839,7 @@
 				C86F854E1C444DB800C23332 /* close_btn@2x.png in Resources */,
 				C86F854F1C444DB800C23332 /* Main.storyboard in Resources */,
 				C86F85501C444DB800C23332 /* job_description@2x.png in Resources */,
+				C88BA0821C527416007A81EB /* Dialling Codes.plist in Resources */,
 				C86F85511C444DB800C23332 /* pound_sign@2x.png in Resources */,
 				C86F85521C444DB800C23332 /* facebook_icon@2x.png in Resources */,
 				C86F85531C444DB800C23332 /* mute2@2x.png in Resources */,
@@ -2902,6 +2915,7 @@
 				A9F333701B42D20C00F0D17B /* close_btn@2x.png in Resources */,
 				EBA8C3461B32DFF100522167 /* Main.storyboard in Resources */,
 				A9F333651B42ACDC00F0D17B /* job_description@2x.png in Resources */,
+				C88BA0811C527416007A81EB /* Dialling Codes.plist in Resources */,
 				A9F3336A1B42B0B700F0D17B /* pound_sign@2x.png in Resources */,
 				A9ACE1D31B6913F9003BD5F2 /* facebook_icon@2x.png in Resources */,
 				A99650AB1B3DB3FF00D5A8E9 /* mute2@2x.png in Resources */,
@@ -3187,7 +3201,6 @@
 				C86F84891C444DB800C23332 /* XMPPGroupCoreDataStorageObject.m in Sources */,
 				C86F848A1C444DB800C23332 /* XMPPAutoTime.m in Sources */,
 				C86F848B1C444DB800C23332 /* XMPPvCardTemp.m in Sources */,
-				C86F848C1C444DB800C23332 /* CountrySelectionPicker.swift in Sources */,
 				C86F848D1C444DB800C23332 /* ContactModel.swift in Sources */,
 				C86F848E1C444DB800C23332 /* XMPPSoftwareVersion.m in Sources */,
 				C86F848F1C444DB800C23332 /* UIColor+JSQMessages.m in Sources */,
@@ -3195,6 +3208,7 @@
 				C86F84911C444DB800C23332 /* NoContentPlaceHolder.swift in Sources */,
 				C86F84921C444DB800C23332 /* AppDelegate.swift in Sources */,
 				C86F84941C444DB800C23332 /* XMPPIQ+JabberRPC.m in Sources */,
+				C88BA0851C5277DD007A81EB /* CountryPickerDataSource.swift in Sources */,
 				C86F84951C444DB800C23332 /* GCDMulticastDelegate.m in Sources */,
 				C86F84961C444DB800C23332 /* NotificationCell.swift in Sources */,
 				C86F84971C444DB800C23332 /* JSQMessagesLabel.m in Sources */,
@@ -3432,7 +3446,6 @@
 				A99650181B387CC800D5A8E9 /* XMPPGroupCoreDataStorageObject.m in Sources */,
 				A99650621B387CC800D5A8E9 /* XMPPAutoTime.m in Sources */,
 				A996503B1B387CC800D5A8E9 /* XMPPvCardTemp.m in Sources */,
-				A9733ECE1B781F49008D6115 /* CountrySelectionPicker.swift in Sources */,
 				EBF17A281B4E641400C67657 /* ContactModel.swift in Sources */,
 				A996504D1B387CC800D5A8E9 /* XMPPSoftwareVersion.m in Sources */,
 				A9964FD91B387CC800D5A8E9 /* UIColor+JSQMessages.m in Sources */,
@@ -3440,6 +3453,7 @@
 				A947CC991B7119B500C9518E /* NoContentPlaceHolder.swift in Sources */,
 				EB0926D01A8DE4CB00E1D958 /* AppDelegate.swift in Sources */,
 				A99650221B387CC800D5A8E9 /* XMPPIQ+JabberRPC.m in Sources */,
+				C88BA0841C5277DD007A81EB /* CountryPickerDataSource.swift in Sources */,
 				A996506D1B387CC800D5A8E9 /* GCDMulticastDelegate.m in Sources */,
 				EB866BE01B53EFAE00E203CA /* NotificationCell.swift in Sources */,
 				A9964FF81B387CC800D5A8E9 /* JSQMessagesLabel.m in Sources */,

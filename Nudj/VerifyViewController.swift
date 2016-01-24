@@ -30,7 +30,7 @@ class VerifyViewController: BaseController, SegueHandlerType {
     let codeLength = 4
 
     var phoneNumber = ""
-    var code = ""
+    var iso2CountryCode = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,11 +71,12 @@ class VerifyViewController: BaseController, SegueHandlerType {
 
     @IBAction func resendButton() {
         // TODO: API strings
+        // TODO: test this
         self.apiRequest(.POST, path: "users", params: ["phone": phoneNumber], closure: {
             (json: JSON) in
 
-            self.code = json["data"]["code"].stringValue
-            let verificationCodeMessage = Localizations.Verification.Code.Alert.Format(self.code)
+            let verificationCode = json["data"]["code"].stringValue
+            let verificationCodeMessage = Localizations.Verification.Code.Alert.Format(verificationCode)
             self.showSimpleAlert(verificationCodeMessage)
         })
     }
@@ -88,12 +89,12 @@ class VerifyViewController: BaseController, SegueHandlerType {
     }
 
     func submit() {
-        guard let code: String = codeField.text else {
+        guard let verificationCode: String = codeField.text else {
             return
         }
         codeField.text = ""
 
-        if (code.characters.count != self.codeLength) {
+        if (verificationCode.characters.count != self.codeLength) {
             showSimpleAlert(Localizations.Verification.Code.Invalid)
             return
         }
@@ -101,7 +102,7 @@ class VerifyViewController: BaseController, SegueHandlerType {
         self.hideCodeField()
 
         // TODO: API strings
-        self.apiRequest(API.Method.PUT, path: "users/verify", params: ["phone": phoneNumber, "verification": code, "country_code": "GB"], closure: {
+        self.apiRequest(API.Method.PUT, path: "users/verify", params: ["phone": phoneNumber, "verification": verificationCode, "country_code": iso2CountryCode], closure: {
             (json: JSON) in
             loggingPrint(json.stringValue)
 
