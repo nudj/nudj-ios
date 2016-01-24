@@ -21,15 +21,22 @@ class CountryPickerDataSource: NSObject, UIPickerViewDataSource, UIPickerViewDel
         let country: String
         let diallingCode: String
         let iso2Code: String
+        let shouldStripLeadingZeros: Bool
         
-        convenience init(fromDictionary dictionary:[String:String]) {
-            self.init(country: dictionary["country"]!, diallingCode: dictionary["diallingCode"]!, iso2Code: dictionary["iso2Code"]!)
+        convenience init(fromDictionary dictionary:[String:AnyObject]) {
+            self.init(
+                country: dictionary["country"]! as! String, 
+                diallingCode: dictionary["diallingCode"]! as! String, 
+                iso2Code: dictionary["iso2Code"]! as! String,
+                shouldStripLeadingZeros: dictionary["shouldStripLeadingZeros"] as? Bool ?? false
+            )
         }
         
-        init(country: String = "", diallingCode: String = "", iso2Code: String = "") {
+        init(country: String = "", diallingCode: String = "", iso2Code: String = "", shouldStripLeadingZeros: Bool = false) {
             self.country = country
             self.diallingCode = diallingCode
             self.iso2Code = iso2Code
+            self.shouldStripLeadingZeros = shouldStripLeadingZeros
             super.init()
         }
     }
@@ -41,10 +48,11 @@ class CountryPickerDataSource: NSObject, UIPickerViewDataSource, UIPickerViewDel
         // init from static data "Dialling Codes.plist" in the main bundle
         if let url = NSBundle.mainBundle().URLForResource("Dialling Codes", withExtension: "plist"),
             root = NSDictionary(contentsOfURL: url),
-            countries = root["countries"] as? [[String:String]] {
+            countries = root["countries"] as? [[String:AnyObject]] {
                 let data: [Data] = countries.map{Data(fromDictionary: $0)}
             self.init(data: data)
         } else {
+            loggingPrint("error reading Dialling Codes.plist")
             self.init(data: [])
         }
     }

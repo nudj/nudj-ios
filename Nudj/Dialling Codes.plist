@@ -11,6 +11,8 @@
 			<string>GB</string>
 			<key>diallingCode</key>
 			<string>44</string>
+			<key>shouldStripLeadingZeros</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>country</key>
@@ -19,6 +21,8 @@
 			<string>US</string>
 			<key>diallingCode</key>
 			<string>1</string>
+			<key>shouldStripLeadingZeros</key>
+			<false/>
 		</dict>
 	</array>
 </dict>
