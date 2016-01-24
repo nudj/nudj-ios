@@ -20,22 +20,22 @@ class CountryPickerDataSource: NSObject, UIPickerViewDataSource, UIPickerViewDel
     class Data: NSObject { 
         let country: String
         let diallingCode: String
-        let iso2Code: String
+        let iso2CountryCode: String
         let shouldStripLeadingZeros: Bool
         
         convenience init(fromDictionary dictionary:[String:AnyObject]) {
             self.init(
                 country: dictionary["country"]! as! String, 
                 diallingCode: dictionary["diallingCode"]! as! String, 
-                iso2Code: dictionary["iso2Code"]! as! String,
+                iso2CountryCode: dictionary["iso2CountryCode"]! as! String,
                 shouldStripLeadingZeros: dictionary["shouldStripLeadingZeros"] as? Bool ?? false
             )
         }
         
-        init(country: String = "", diallingCode: String = "", iso2Code: String = "", shouldStripLeadingZeros: Bool = false) {
+        init(country: String = "", diallingCode: String = "", iso2CountryCode: String = "", shouldStripLeadingZeros: Bool = false) {
             self.country = country
             self.diallingCode = diallingCode
-            self.iso2Code = iso2Code
+            self.iso2CountryCode = iso2CountryCode
             self.shouldStripLeadingZeros = shouldStripLeadingZeros
             super.init()
         }
@@ -62,8 +62,8 @@ class CountryPickerDataSource: NSObject, UIPickerViewDataSource, UIPickerViewDel
         super.init()
     }
     
-    func rowForIso2Code(iso2code: String) -> (Int, Data)? {
-        let row = data.indexOf{$0.iso2Code == iso2code}
+    func rowForIso2CountryCode(iso2CountryCode: String) -> (Int, Data)? {
+        let row = data.indexOf{$0.iso2CountryCode == iso2CountryCode}
         if let row = row {
             let rowData = data[row]
             return (row, rowData)

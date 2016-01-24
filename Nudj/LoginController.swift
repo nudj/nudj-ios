@@ -37,8 +37,8 @@ class LoginController: BaseController, SegueHandlerType, CountryPickerDelegate, 
         countyPickerContainer.hidden = true 
         
         // try to apply the user's locale
-        if let currentCountryCode = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as? String,
-            (row, data) = countryPickerDataSource.rowForIso2Code(currentCountryCode) {
+        if let currentIso2CountryCode = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as? String,
+            (row, data) = countryPickerDataSource.rowForIso2CountryCode(currentIso2CountryCode) {
             countryPicker.selectRow(row, inComponent: 0, animated: false)
             didSelectData(data)
         } else {
@@ -117,7 +117,7 @@ class LoginController: BaseController, SegueHandlerType, CountryPickerDelegate, 
     
     func didSelectData(data: CountryPickerDataSource.Data) {
         countryCode.setTitle("+" + data.diallingCode, forState: .Normal)
-        iso2CountryCode = data.iso2Code
+        iso2CountryCode = data.iso2CountryCode
         shouldStripLeadingZeros = data.shouldStripLeadingZeros
         validateLogin()
     }
