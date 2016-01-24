@@ -24,8 +24,8 @@ class LoginController: BaseController, SegueHandlerType, CountryPickerDelegate, 
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var phoneField: UITextField!
     @IBOutlet weak var countryCode: UIButton!
-    @IBOutlet weak var extendedPicker: NSLayoutConstraint!
-    @IBOutlet weak var collapsedPicker: NSLayoutConstraint!
+    @IBOutlet weak var countryPicker: UIPickerView!
+    @IBOutlet weak var countyPickerContainer: UIView!
 
     override func viewDidLoad() {
         validateLogin()
@@ -61,30 +61,9 @@ class LoginController: BaseController, SegueHandlerType, CountryPickerDelegate, 
     }
     
     @IBAction func toggleCountryPicker(sender: AnyObject) {
-        if countryPickerIsExtended() {
-            collapseCountryicker()
-        } else {
-            extendCountryPicker()
-        }
-    }
-    
-    func countryPickerIsExtended() -> Bool {
-        return extendedPicker.priority > collapsedPicker.priority
-    }
-    
-    func extendCountryPicker() {
+        let wasHidden = self.countyPickerContainer.hidden
         UIView.animateWithDuration(0.5) {
-            self.extendedPicker.priority = UILayoutPriorityDefaultHigh
-            self.collapsedPicker.priority = UILayoutPriorityDefaultLow
-            self.view.setNeedsUpdateConstraints()
-        }
-    }
-    
-    func collapseCountryicker() {
-        UIView.animateWithDuration(0.5) {
-            self.extendedPicker.priority = UILayoutPriorityDefaultLow
-            self.collapsedPicker.priority = 800.0
-            self.view.setNeedsUpdateConstraints()
+            self.countyPickerContainer.hidden = !wasHidden
         }
     }
 

@@ -1561,19 +1561,25 @@
                                                     </textField>
                                                 </subviews>
                                             </stackView>
-                                            <pickerView contentMode="scaleToFill" showsSelectionIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMG-bB-M8L" userLabel="Country picker">
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="260" verticalCompressionResistancePriority="740" translatesAutoresizingMaskIntoConstraints="NO" id="fu5-eG-AeT" userLabel="Country picker container">
                                                 <rect key="frame" x="0.0" y="83" width="560" height="80"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <subviews>
+                                                    <pickerView contentMode="scaleToFill" misplaced="YES" showsSelectionIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMG-bB-M8L" userLabel="Country picker">
+                                                        <rect key="frame" x="0.0" y="0.0" width="580" height="80"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="Evh-ak-SA5" id="yzv-jP-v1h"/>
+                                                            <outlet property="delegate" destination="Evh-ak-SA5" id="h3w-bA-8S4"/>
+                                                        </connections>
+                                                    </pickerView>
+                                                </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" priority="250" constant="80" identifier="extend picker" id="0U5-xf-yLk" userLabel="extend picker"/>
-                                                    <constraint firstAttribute="height" priority="800" identifier="collapsePicker" id="9JN-8C-Him" userLabel="collapsePicker"/>
-                                                    <constraint firstAttribute="height" constant="80" placeholder="YES" identifier="placeholder" id="tD1-MS-2vj" userLabel="placeHolder"/>
+                                                    <constraint firstItem="CMG-bB-M8L" firstAttribute="trailing" secondItem="fu5-eG-AeT" secondAttribute="trailing" constant="20" id="8m9-CL-gWZ"/>
+                                                    <constraint firstItem="CMG-bB-M8L" firstAttribute="leading" secondItem="fu5-eG-AeT" secondAttribute="leading" id="BIW-fT-o9O"/>
+                                                    <constraint firstAttribute="height" constant="80" placeholder="YES" id="aTL-s5-ZJg"/>
+                                                    <constraint firstItem="CMG-bB-M8L" firstAttribute="bottom" secondItem="fu5-eG-AeT" secondAttribute="bottom" id="xUw-RL-7oI"/>
                                                 </constraints>
-                                                <connections>
-                                                    <outlet property="dataSource" destination="Evh-ak-SA5" id="yzv-jP-v1h"/>
-                                                    <outlet property="delegate" destination="Evh-ak-SA5" id="h3w-bA-8S4"/>
-                                                </connections>
-                                            </pickerView>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5sd-3T-N9W" userLabel="Separator 2">
                                                 <rect key="frame" x="0.0" y="171" width="560" height="1"/>
                                                 <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1612,9 +1618,9 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                     </view>
                     <navigationItem key="navigationItem" id="rrp-hY-OAp"/>
                     <connections>
-                        <outlet property="collapsedPicker" destination="9JN-8C-Him" id="7a3-BO-Fuv"/>
                         <outlet property="countryCode" destination="bZf-4c-ZsC" id="4Zo-tc-RCF"/>
-                        <outlet property="extendedPicker" destination="0U5-xf-yLk" id="xec-51-dsk"/>
+                        <outlet property="countryPicker" destination="CMG-bB-M8L" id="A5d-bu-reb"/>
+                        <outlet property="countyPickerContainer" destination="fu5-eG-AeT" id="DaL-uq-5T1"/>
                         <outlet property="loginButton" destination="tRc-s3-uZE" id="c0S-Xz-3j2"/>
                         <outlet property="phoneField" destination="RWM-Jp-PBz" id="7ri-kM-FZt"/>
                         <segue destination="eWs-5T-Xez" kind="show" identifier="showVerifyView" id="CY4-1X-3MT"/>
