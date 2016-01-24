@@ -1533,20 +1533,20 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vXN-QH-CG8" userLabel="Phone number stack">
                                                 <rect key="frame" x="0.0" y="45" width="560" height="30"/>
                                                 <subviews>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="+44" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eqs-tI-vfK" userLabel="Intl prefix">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bZf-4c-ZsC" userLabel="Intl prefix">
                                                         <rect key="frame" x="0.0" y="0.0" width="45" height="30"/>
-                                                        <gestureRecognizers/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="45" id="jKf-t7-3gC"/>
-                                                            <constraint firstAttribute="height" constant="30" id="xuT-a5-K2A"/>
+                                                            <constraint firstAttribute="height" constant="30" id="lqF-Et-89A"/>
+                                                            <constraint firstAttribute="width" constant="45" id="wJM-1G-CkO"/>
                                                         </constraints>
-                                                        <color key="textColor" red="0.0" green="0.63529411759999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <state key="normal" title="+44">
+                                                            <color key="titleColor" red="0.0" green="0.63529411764705879" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
                                                         <connections>
-                                                            <outletCollection property="gestureRecognizers" destination="u5k-GL-OqI" appends="YES" id="ySh-D5-7oY"/>
+                                                            <action selector="toggleCountryPicker:" destination="HUi-qm-vwZ" eventType="touchUpInside" id="weX-HB-5iZ"/>
                                                         </connections>
-                                                    </textField>
+                                                    </button>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="RWM-Jp-PBz" userLabel="Phone Number">
                                                         <rect key="frame" x="53" y="0.0" width="507" height="30"/>
                                                         <constraints>
@@ -1613,7 +1613,7 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                     <navigationItem key="navigationItem" id="rrp-hY-OAp"/>
                     <connections>
                         <outlet property="collapsedPicker" destination="9JN-8C-Him" id="7a3-BO-Fuv"/>
-                        <outlet property="countryCode" destination="eqs-tI-vfK" id="TZX-x5-bM2"/>
+                        <outlet property="countryCode" destination="bZf-4c-ZsC" id="4Zo-tc-RCF"/>
                         <outlet property="extendedPicker" destination="0U5-xf-yLk" id="xec-51-dsk"/>
                         <outlet property="loginButton" destination="tRc-s3-uZE" id="c0S-Xz-3j2"/>
                         <outlet property="phoneField" destination="RWM-Jp-PBz" id="7ri-kM-FZt"/>
@@ -1626,11 +1626,6 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                         <outlet property="delegate" destination="HUi-qm-vwZ" id="NQf-7e-Ppq"/>
                     </connections>
                 </customObject>
-                <tapGestureRecognizer id="u5k-GL-OqI">
-                    <connections>
-                        <action selector="toggleCountryPicker:" destination="HUi-qm-vwZ" id="DVx-xL-nGI"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-3059" y="-681"/>
         </scene>

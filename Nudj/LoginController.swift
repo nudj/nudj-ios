@@ -23,7 +23,7 @@ class LoginController: BaseController, SegueHandlerType, CountryPickerDelegate, 
     
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var phoneField: UITextField!
-    @IBOutlet weak var countryCode: UITextField!
+    @IBOutlet weak var countryCode: UIButton!
     @IBOutlet weak var extendedPicker: NSLayoutConstraint!
     @IBOutlet weak var collapsedPicker: NSLayoutConstraint!
 
@@ -94,7 +94,7 @@ class LoginController: BaseController, SegueHandlerType, CountryPickerDelegate, 
     }
     
     func internationalPhoneNumber() -> String {
-        return (self.countryCode.text ?? "") + formattedNumber()
+        return (self.countryCode.currentTitle ?? "") + formattedNumber()
     }
     
     func formattedNumber() -> String {
@@ -128,7 +128,7 @@ class LoginController: BaseController, SegueHandlerType, CountryPickerDelegate, 
     // MARK: CountryPickerDelegate
     
     func didSelectData(data: CountryPickerDataSource.Data) {
-        self.countryCode.text = "+" + data.diallingCode
+        self.countryCode.setTitle("+" + data.diallingCode, forState: .Normal)
         self.iso2CountryCode = data.iso2Code
         validateLogin()
     }
