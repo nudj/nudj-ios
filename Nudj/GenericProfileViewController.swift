@@ -151,7 +151,7 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
 
         showUserData()
         decoratePlaceholdersForRequiredFields()
-        topRightButton.enabled = self.hasEnoughData()
+        validate()
     }
  
     // Layout
@@ -319,6 +319,7 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
             }
 
             self.updateAssets()
+            self.validate()
         }, errorHandler: { 
             error in
             self.navigationController?.popViewControllerAnimated(true)
@@ -423,15 +424,6 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
         })
     }
     
-    func updateUserName(userName: String) -> Void {
-        UserModel.update(["name": userName], closure: { 
-            result in
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
-            appDelegate.user.name = userName
-            appDelegate.pushUserData()
-        })
-    }
-
     func toggleFavourite() {
         if (userId != user?.id!) {
             loggingPrint("Inconsistency between userId and loaded user!")
@@ -459,7 +451,6 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
         }
     }
 
-    
     func updateAssets() {
         if (aboutMeField != nil) {
             Common.automateUpdatingOfAssets(aboutMeField, icon: aboutMeIcon, label: aboutMeLabel)
