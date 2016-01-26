@@ -37,13 +37,34 @@ public struct Localizations {
     public struct Jobs {
 
     
-        public struct Location {
+        public struct Salary {
 
-                    /// Base translation: Location: %@
+                    /// Base translation: Salary: %@
             public static func Format(value1 : String) -> String {
-                return String(format: NSLocalizedString("jobs.location.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
+                return String(format: NSLocalizedString("jobs.salary.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
             }
 
+        }
+
+        public struct Nudj {
+
+        
+            public struct Button {
+
+                            /// Base translation: Edit Profile
+                public static var EditProfile : String = "jobs.nudj.button.edit-profile".localized
+
+            }
+
+            public struct NeedProfile {
+
+                            /// Base translation: Your profile is incomplete
+                public static var Title : String = "jobs.nudj.need-profile.title".localized
+
+                /// Base translation: The candidate will want to know who is referring them. You will be able to complete it on the next screen.
+                public static var Body : String = "jobs.nudj.need-profile.body".localized
+
+            }
         }
 
         public struct Bonus {
@@ -55,11 +76,11 @@ public struct Localizations {
 
         }
 
-        public struct Salary {
+        public struct Location {
 
-                    /// Base translation: Salary: %@
+                    /// Base translation: Location: %@
             public static func Format(value1 : String) -> String {
-                return String(format: NSLocalizedString("jobs.salary.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
+                return String(format: NSLocalizedString("jobs.location.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
             }
 
         }
@@ -121,40 +142,16 @@ public struct Localizations {
 
         }
 
-        public struct Interested {
+        public struct Add {
 
         
-            public struct Alert {
-
-                            /// Base translation: Are you sure?
-                public static var Title : String = "jobs.interested.alert.title".localized
-
-                /// Base translation: This will send a notification to the Hirer that you are interested in this position.
-                public static var Body : String = "jobs.interested.alert.body".localized
-
-            }
-
-            public struct NeedProfile {
-
-                            /// Base translation: Your profile is incomplete
-                public static var Title : String = "jobs.interested.need-profile.title".localized
-
-                /// Base translation: The Hirer will want to see your profile. You will be able to complete it on the next screen.
-                public static var Body : String = "jobs.interested.need-profile.body".localized
-
-            }
-
             public struct Button {
 
-                            /// Base translation: Edit Profile
-                public static var EditProfile : String = "jobs.interested.button.edit-profile".localized
+                            /// Base translation: Edit Job
+                public static var Edit : String = "jobs.add.button.edit".localized
 
-            }
-
-            public struct Confirmation {
-
-                            /// Base translation: The hirer has been notified.
-                public static var Body : String = "jobs.interested.confirmation.body".localized
+                /// Base translation: Update
+                public static var Update : String = "jobs.add.button.update".localized
 
             }
         }
@@ -182,20 +179,6 @@ public struct Localizations {
             }
         }
 
-        public struct Add {
-
-        
-            public struct Button {
-
-                            /// Base translation: Edit Job
-                public static var Edit : String = "jobs.add.button.edit".localized
-
-                /// Base translation: Update
-                public static var Update : String = "jobs.add.button.update".localized
-
-            }
-        }
-
         public struct Employer {
 
                     /// Base translation: Employer: %@
@@ -203,6 +186,44 @@ public struct Localizations {
                 return String(format: NSLocalizedString("jobs.employer.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
             }
 
+        }
+
+        public struct Interested {
+
+        
+            public struct Alert {
+
+                            /// Base translation: Are you sure?
+                public static var Title : String = "jobs.interested.alert.title".localized
+
+                /// Base translation: This will send a notification to the Hirer that you are interested in this position.
+                public static var Body : String = "jobs.interested.alert.body".localized
+
+            }
+
+            public struct NeedProfile {
+
+                            /// Base translation: Your profile is incomplete
+                public static var Title : String = "jobs.interested.need-profile.title".localized
+
+                /// Base translation: The hirer will want to see your profile. You will be able to complete it on the next screen.
+                public static var Body : String = "jobs.interested.need-profile.body".localized
+
+            }
+
+            public struct Button {
+
+                            /// Base translation: Edit Profile
+                public static var EditProfile : String = "jobs.interested.button.edit-profile".localized
+
+            }
+
+            public struct Confirmation {
+
+                            /// Base translation: The hirer has been notified.
+                public static var Body : String = "jobs.interested.confirmation.body".localized
+
+            }
         }
     }
 

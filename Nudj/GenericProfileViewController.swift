@@ -108,7 +108,8 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
     
     var requiredFields: Fields = []
     
-    var completionHandler: ((GenericProfileViewController) -> Void)? = nil
+    typealias CompletionHandler = ((GenericProfileViewController) -> Void)
+    var completionHandler: CompletionHandler? = nil
 
     enum Type {
         case Own, Public, Initial

@@ -784,7 +784,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="l4F-Ih-7ec" kind="show" identifier="AskForReferral" id="eNW-U2-njr"/>
+                                    <action selector="nudjAction:" destination="vRR-wd-aTg" eventType="touchUpInside" id="vq3-Dq-CrC"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="268" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M7K-Zz-jWR">
@@ -1009,6 +1009,7 @@
                         <outlet property="skills" destination="KXz-hf-wcR" id="gTB-Vc-6B0"/>
                         <outlet property="spaceBetween" destination="GxX-bp-IOJ" id="4Nc-6e-oSe"/>
                         <segue destination="u6h-lK-ytT" kind="show" identifier="GoToProfile" id="IbB-SC-7jb"/>
+                        <segue destination="l4F-Ih-7ec" kind="show" identifier="AskForReferral" id="w3z-vb-UAH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l1b-Cw-UAv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2592,7 +2593,7 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
         <segue reference="BCe-Pt-bFX"/>
         <segue reference="IbB-SC-7jb"/>
         <segue reference="TFM-Ac-ZI1"/>
-        <segue reference="eNW-U2-njr"/>
+        <segue reference="w3z-vb-UAH"/>
         <segue reference="1RO-e0-4AP"/>
         <segue reference="zyP-mc-EMC"/>
         <segue reference="gvE-qy-aNj"/>

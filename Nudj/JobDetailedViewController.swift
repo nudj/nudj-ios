@@ -229,7 +229,6 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         case .AskForReferral:
             AppDelegate.registerForRemoteNotifications()
             let askView = segue.destinationViewController as! AskReferralViewController
-            MixPanelHandler.sendData("ReferButtonClicked")
             askView.jobId = Int(self.jobID!)
             askView.isNudjRequest = true
             askView.isSlideTransition = true
@@ -244,35 +243,70 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
             if appDelegate.user.completed {
                 // The user has a complete profile so we can go ahead and post an application
                 let alert = UIAlertController(title: localization.Alert.Title, message: localization.Alert.Body, preferredStyle: .ActionSheet)
+                
                 let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
                 alert.addAction(cancelAction)
+                
                 let sendAction = UIAlertAction(title: Localizations.General.Button.Send, style: .Default, handler: postJobApplication)
                 alert.addAction(sendAction)
                 alert.preferredAction = sendAction
+                
                 self.presentViewController(alert, animated: true, completion: nil)
             } else {
                 // The user needs to complete their profile before we can post an application
                let alert = UIAlertController(title: localization.NeedProfile.Title, message: localization.NeedProfile.Body, preferredStyle: .ActionSheet)
+                
                 let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
                 alert.addAction(cancelAction)
-                let editProfileAction = UIAlertAction(title: localization.Button.EditProfile, style: .Default, handler: editProfile)
+                
+                let editProfileAction = UIAlertAction(title: localization.Button.EditProfile, style: .Default) {
+                    alertAction in
+                    self.editProfile(alertAction, requiredFields: [.Name, .Email, .Company, .Skills, .Position, .Bio, .Location], completionHandler: {
+                        _ in
+                        self.postJobApplication(alertAction)
+                   })
+                }
                 alert.addAction(editProfileAction)
                 alert.preferredAction = editProfileAction
+                
                 self.presentViewController(alert, animated: true, completion: nil)
             }
         }
     }
     
-    func editProfile(alertAction: UIAlertAction) {
+    @IBAction func nudjAction(sender: AnyObject) {
+        MixPanelHandler.sendData("ReferButtonClicked")
+        if (appDelegate.user.name?.isEmpty ?? true) || (appDelegate.user.email?.isEmpty ?? true) {
+            // user needs to supply at least name and email
+            let localization = Localizations.Jobs.Nudj.self
+            let alert = UIAlertController(title: localization.NeedProfile.Title, message: localization.NeedProfile.Body, preferredStyle: .ActionSheet)
+            
+            let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
+            alert.addAction(cancelAction)
+            
+            let editProfileAction = UIAlertAction(title: localization.Button.EditProfile, style: .Default) {
+                alertAction in
+                self.editProfile(alertAction, requiredFields: [.Name, .Email], completionHandler: {
+                    _ in
+                    self.performSegueWithIdentifier(.AskForReferral, sender: sender)
+                })
+            }
+            alert.addAction(editProfileAction)
+            alert.preferredAction = editProfileAction
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+        } else {
+            performSegueWithIdentifier(.AskForReferral, sender: sender)
+        }
+    }
+    
+    func editProfile(alertAction: UIAlertAction, requiredFields: GenericProfileViewController.Fields, completionHandler: GenericProfileViewController.CompletionHandler) {
         let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let genericProfileVC = storyboard.instantiateViewControllerWithIdentifier("GenericProfileView") as! GenericProfileViewController
         genericProfileVC.userId = appDelegate.user.id ?? 0
         genericProfileVC.type = .Own
-        genericProfileVC.requiredFields = [.Name, .Email, .Company, .Skills, .Position, .Bio, .Location]
-        genericProfileVC.completionHandler = {
-            _ in
-            self.postJobApplication(alertAction)
-        }
+        genericProfileVC.requiredFields = requiredFields
+        genericProfileVC.completionHandler = completionHandler
         
         self.navigationController?.pushViewController(genericProfileVC, animated:true)
     }

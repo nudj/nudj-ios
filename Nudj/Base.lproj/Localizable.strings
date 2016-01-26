@@ -57,8 +57,11 @@
 "jobs.interested.alert.body" = "This will send a notification to the Hirer that you are interested in this position.";
 "jobs.interested.button.edit-profile" = "Edit Profile";
 "jobs.interested.need-profile.title" = "Your profile is incomplete";
-"jobs.interested.need-profile.body" = "The Hirer will want to see your profile. You will be able to complete it on the next screen.";
+"jobs.interested.need-profile.body" = "The hirer will want to see your profile. You will be able to complete it on the next screen.";
 "jobs.interested.confirmation.body" = "The hirer has been notified.";
+"jobs.nudj.button.edit-profile" = "Edit Profile";
+"jobs.nudj.need-profile.title" = "Your profile is incomplete";
+"jobs.nudj.need-profile.body" = "The candidate will want to know who is referring them. You will be able to complete it on the next screen.";
 "jobs.add.button.update" = "Update";
 "jobs.add.button.edit" = "Edit Job";
 "jobs.update.error.title" = "Failed to update";
