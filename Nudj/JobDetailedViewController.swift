@@ -236,25 +236,50 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         }        
     }
     
-    @IBAction func interested(sender: UIButton) {
+    @IBAction func interested(sender: AnyObject) {
+        MixPanelHandler.sendData("InterestedButtonClicked")
         AppDelegate.registerForRemoteNotifications()
-        if(sender.titleLabel?.text == Localizations.Jobs.Button.Interested){
-            //Go to INTERESTED
-            MixPanelHandler.sendData("InterestedButtonClicked")
-            let alert = UIAlertController(title: Localizations.Jobs.Interested.Alert.Title, message: Localizations.Jobs.Interested.Alert.Body, preferredStyle: .Alert)
-            let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
-            alert.addAction(cancelAction)
-            let sendAction = UIAlertAction(title: Localizations.General.Button.Send, style: .Default, handler: postRequest)
-            alert.addAction(sendAction)
-            alert.preferredAction = sendAction
-            self.presentViewController(alert, animated: true, completion: nil)
+        let localization = Localizations.Jobs.Interested.self
+        if(sender as? UIButton == self.interestedBtn){
+            if appDelegate.user.completed {
+                // The user has a complete profile so we can go ahead and post an application
+                let alert = UIAlertController(title: localization.Alert.Title, message: localization.Alert.Body, preferredStyle: .ActionSheet)
+                let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
+                alert.addAction(cancelAction)
+                let sendAction = UIAlertAction(title: Localizations.General.Button.Send, style: .Default, handler: postJobApplication)
+                alert.addAction(sendAction)
+                alert.preferredAction = sendAction
+                self.presentViewController(alert, animated: true, completion: nil)
+            } else {
+                // The user needs to complete their profile before we can post an application
+               let alert = UIAlertController(title: localization.NeedProfile.Title, message: localization.NeedProfile.Body, preferredStyle: .ActionSheet)
+                let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
+                alert.addAction(cancelAction)
+                let editProfileAction = UIAlertAction(title: localization.Button.EditProfile, style: .Default, handler: editProfile)
+                alert.addAction(editProfileAction)
+                alert.preferredAction = editProfileAction
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
         }
     }
     
-    func postRequest(_: UIAlertAction){
-        let params:[String:AnyObject] = ["job_id": "\(self.jobID!)"]
+    func editProfile(alertAction: UIAlertAction) {
+        let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let genericProfileVC = storyboard.instantiateViewControllerWithIdentifier("GenericProfileView") as! GenericProfileViewController
+        genericProfileVC.userId = appDelegate.user.id ?? 0
+        genericProfileVC.type = .Own
+        genericProfileVC.requiredFields = [.Name, .Email, .Company, .Skills, .Position, .Bio, .Location]
+        genericProfileVC.completionHandler = {
+            _ in
+            self.postJobApplication(alertAction)
+        }
         
+        self.navigationController?.pushViewController(genericProfileVC, animated:true)
+    }
+    
+    func postJobApplication(_: UIAlertAction) {
         // TODO: API strings
+        let params:[String:AnyObject] = ["job_id": "\(self.jobID!)"]
         API.sharedInstance.put("nudge/apply", params: params, closure: {
             json in
             self.navigationController?.navigationBarHidden = true
@@ -281,7 +306,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     }
     
     func dismissTutorial() {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         // TODO: API strings
         // TODO: select on something less fragile than the button title

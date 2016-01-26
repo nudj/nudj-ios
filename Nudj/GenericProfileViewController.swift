@@ -107,6 +107,8 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
     var type:Type = Type.Public
     
     var requiredFields: Fields = []
+    
+    var completionHandler: ((GenericProfileViewController) -> Void)? = nil
 
     enum Type {
         case Own, Public, Initial
@@ -146,7 +148,7 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
         case .Initial, .Own:
             self.updateAllInformation()
 
-        default:
+        case .Public:
             break
         }
 
@@ -194,6 +196,10 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
             
         case .Public:
             toggleFavourite()
+        }
+        
+        if let completionHandler = completionHandler {
+            completionHandler(self)
         }
     }
     

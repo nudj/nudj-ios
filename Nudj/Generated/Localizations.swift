@@ -37,11 +37,11 @@ public struct Localizations {
     public struct Jobs {
 
     
-        public struct Salary {
+        public struct Location {
 
-                    /// Base translation: Salary: %@
+                    /// Base translation: Location: %@
             public static func Format(value1 : String) -> String {
-                return String(format: NSLocalizedString("jobs.salary.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
+                return String(format: NSLocalizedString("jobs.location.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
             }
 
         }
@@ -55,11 +55,11 @@ public struct Localizations {
 
         }
 
-        public struct Location {
+        public struct Salary {
 
-                    /// Base translation: Location: %@
+                    /// Base translation: Salary: %@
             public static func Format(value1 : String) -> String {
-                return String(format: NSLocalizedString("jobs.location.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
+                return String(format: NSLocalizedString("jobs.salary.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
             }
 
         }
@@ -104,21 +104,59 @@ public struct Localizations {
 
         public struct Button {
 
-                    /// Base translation: Ask for Referral
-            public static var AskForReferral : String = "jobs.button.ask-for-referral".localized
+                    /// Base translation: INTERESTED
+            public static var Interested : String = "jobs.button.interested".localized
 
             /// Base translation: Edit
             public static var Edit : String = "jobs.button.edit".localized
 
-            /// Base translation: INTERESTED
-            public static var Interested : String = "jobs.button.interested".localized
-
             /// Base translation: Saved
             public static var Saved : String = "jobs.button.saved".localized
+
+            /// Base translation: Ask for Referral
+            public static var AskForReferral : String = "jobs.button.ask-for-referral".localized
 
             /// Base translation: Save
             public static var Save : String = "jobs.button.save".localized
 
+        }
+
+        public struct Interested {
+
+        
+            public struct Alert {
+
+                            /// Base translation: Are you sure?
+                public static var Title : String = "jobs.interested.alert.title".localized
+
+                /// Base translation: This will send a notification to the Hirer that you are interested in this position.
+                public static var Body : String = "jobs.interested.alert.body".localized
+
+            }
+
+            public struct NeedProfile {
+
+                            /// Base translation: Your profile is incomplete
+                public static var Title : String = "jobs.interested.need-profile.title".localized
+
+                /// Base translation: The Hirer will want to see your profile. You will be able to complete it on the next screen.
+                public static var Body : String = "jobs.interested.need-profile.body".localized
+
+            }
+
+            public struct Button {
+
+                            /// Base translation: Edit Profile
+                public static var EditProfile : String = "jobs.interested.button.edit-profile".localized
+
+            }
+
+            public struct Confirmation {
+
+                            /// Base translation: The hirer has been notified.
+                public static var Body : String = "jobs.interested.confirmation.body".localized
+
+            }
         }
 
         public struct Validation {
@@ -144,36 +182,6 @@ public struct Localizations {
             }
         }
 
-        public struct Employer {
-
-                    /// Base translation: Employer: %@
-            public static func Format(value1 : String) -> String {
-                return String(format: NSLocalizedString("jobs.employer.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
-            }
-
-        }
-
-        public struct Interested {
-
-        
-            public struct Alert {
-
-                            /// Base translation: Are you sure?
-                public static var Title : String = "jobs.interested.alert.title".localized
-
-                /// Base translation: This will send a notification to the Hirer that you are interested in this position.
-                public static var Body : String = "jobs.interested.alert.body".localized
-
-            }
-
-            public struct Confirmation {
-
-                            /// Base translation: The hirer has been notified.
-                public static var Body : String = "jobs.interested.confirmation.body".localized
-
-            }
-        }
-
         public struct Add {
 
         
@@ -186,6 +194,15 @@ public struct Localizations {
                 public static var Update : String = "jobs.add.button.update".localized
 
             }
+        }
+
+        public struct Employer {
+
+                    /// Base translation: Employer: %@
+            public static func Format(value1 : String) -> String {
+                return String(format: NSLocalizedString("jobs.employer.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
+            }
+
         }
     }
 

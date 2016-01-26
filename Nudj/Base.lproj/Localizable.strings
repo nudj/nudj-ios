@@ -55,6 +55,9 @@
 "jobs.bonus.format" = "Referral Bonus: %@";
 "jobs.interested.alert.title" = "Are you sure?";
 "jobs.interested.alert.body" = "This will send a notification to the Hirer that you are interested in this position.";
+"jobs.interested.button.edit-profile" = "Edit Profile";
+"jobs.interested.need-profile.title" = "Your profile is incomplete";
+"jobs.interested.need-profile.body" = "The Hirer will want to see your profile. You will be able to complete it on the next screen.";
 "jobs.interested.confirmation.body" = "The hirer has been notified.";
 "jobs.add.button.update" = "Update";
 "jobs.add.button.edit" = "Edit Job";
