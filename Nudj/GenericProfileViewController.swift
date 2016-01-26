@@ -399,12 +399,17 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
             "address": location.text!, 
             "company": company.text!, 
             "completed": true
-            ], closure: { 
-            result in
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
-            appDelegate.user.name = self.nameLabel.text
-            appDelegate.user.completed = true
-            appDelegate.pushUserData()
+            ], 
+            closure: { 
+                result in
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
+                appDelegate.user.name = self.nameLabel.text
+                appDelegate.user.email = self.email.text
+                appDelegate.user.position = self.position.text
+                appDelegate.user.address = self.location.text
+                appDelegate.user.company = self.company.text
+                appDelegate.user.completed = true
+                appDelegate.pushUserData()
         })
     }
     
@@ -578,7 +583,6 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
     // MARK: - Image management
 
     func pickLibrary() {
-        // TODO: refactor with CreateProfileController
         let msgTitle = Localizations.Profile.New.ImageSource
         let alert = UIAlertController(title: msgTitle, message: nil, preferredStyle: UIAlertControllerStyle.Alert)
 
