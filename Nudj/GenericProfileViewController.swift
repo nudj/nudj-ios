@@ -481,9 +481,12 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
         }
 
         updateAssets()
-        textField.resignFirstResponder()
+        let hasEnoughData = self.hasEnoughData()
+        if hasEnoughData {
+            textField.resignFirstResponder()
+        }
 
-        return true
+        return hasEnoughData
     }
 
     func textFieldDidBeginEditing(textField: UITextField) {
@@ -504,12 +507,16 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
 
     func textViewDidChange(textView: UITextView) {
         updateAssets()
+        topRightButton.enabled = self.hasEnoughData()
     }
 
     func textViewShouldEndEditing(textView: UITextView) -> Bool {
-        textView.resignFirstResponder()
         updateAbout(textView.text!)
-        return true
+        let hasEnoughData = self.hasEnoughData()
+        if hasEnoughData {
+            textView.resignFirstResponder()
+        }
+        return hasEnoughData
     }
 
     // Hide keyboard on Return key and save the content
