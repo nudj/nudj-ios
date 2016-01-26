@@ -10,6 +10,7 @@
 "general.button.cancel" = "Cancel";
 "general.button.notnow" = "Not Now";
 "general.button.done" = "Done";
+"general.button.save" = "Save";
 "general.button.send" = "Send";
 "general.button.delete" = "Delete";
 "general.pull-to-refresh" = "Pull to refresh";
@@ -81,6 +82,9 @@
 "sms.failed.body" = "Your message could not be sent. Please try again.";
 
 // Profile
+"profile.create.title" = "Create Profile";
+"profile.own.title" = "Your Profile";
+"profile.other-person.title" = "Profile";
 "profile.new.image-source" = "Choose Image Source";
 "profile.image-source.camera" = "Camera";
 "profile.image-source.library" = "Library";

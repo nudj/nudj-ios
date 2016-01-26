@@ -146,21 +146,21 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
         switch self.type {
         case .Own:
             MixPanelHandler.sendData("MyProfileOpened")
-            self.topRightButton.title = "Save"
-            self.navigationItem.title = "My Profile"
+            self.topRightButton.title = Localizations.General.Button.Save
+            self.navigationItem.title = Localizations.Profile.Own.Title
             isEditable = true
 
         case .Initial:
             MixPanelHandler.sendData("CreateProfileOpened")
             self.navigationItem.setHidesBackButton(true, animated: false)
-            self.topRightButton.title = "OK"
-            self.navigationItem.title = "Create Profile"
+            self.topRightButton.title = Localizations.General.Button.Ok
+            self.navigationItem.title = Localizations.Profile.Create.Title
             isEditable = true
 
         case .Public:
             MixPanelHandler.sendData("ProfileOpened")
             self.topRightButton.title = nil
-            self.navigationItem.title = "Profile"
+            self.navigationItem.title = Localizations.Profile.OtherPerson.Title
             self.email?.superview?.hidden = true
             isEditable = false;
             skills?.userInteractionEnabled = false

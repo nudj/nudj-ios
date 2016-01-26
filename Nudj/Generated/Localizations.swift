@@ -192,13 +192,10 @@ public struct Localizations {
     public struct Profile {
 
     
-        public struct ImageSource {
+        public struct OtherPerson {
 
-                    /// Base translation: Camera
-            public static var Camera : String = "profile.image-source.camera".localized
-
-            /// Base translation: Library
-            public static var Library : String = "profile.image-source.library".localized
+                    /// Base translation: Profile
+            public static var Title : String = "profile.other-person.title".localized
 
         }
 
@@ -218,6 +215,30 @@ public struct Localizations {
                 public static var Title : String = "profile.facebook.failed.title".localized
 
             }
+        }
+
+        public struct Own {
+
+                    /// Base translation: Your Profile
+            public static var Title : String = "profile.own.title".localized
+
+        }
+
+        public struct ImageSource {
+
+                    /// Base translation: Camera
+            public static var Camera : String = "profile.image-source.camera".localized
+
+            /// Base translation: Library
+            public static var Library : String = "profile.image-source.library".localized
+
+        }
+
+        public struct Create {
+
+                    /// Base translation: Create Profile
+            public static var Title : String = "profile.create.title".localized
+
         }
     }
 
@@ -374,23 +395,26 @@ public struct Localizations {
 
         public struct Button {
 
-                    /// Base translation: Done
-            public static var Done : String = "general.button.done".localized
-
-            /// Base translation: Not Now
+                    /// Base translation: Not Now
             public static var Notnow : String = "general.button.notnow".localized
-
-            /// Base translation: Send
-            public static var Send : String = "general.button.send".localized
 
             /// Base translation: Cancel
             public static var Cancel : String = "general.button.cancel".localized
 
+            /// Base translation: Send
+            public static var Send : String = "general.button.send".localized
+
             /// Base translation: OK
             public static var Ok : String = "general.button.ok".localized
 
+            /// Base translation: Save
+            public static var Save : String = "general.button.save".localized
+
             /// Base translation: Delete
             public static var Delete : String = "general.button.delete".localized
+
+            /// Base translation: Done
+            public static var Done : String = "general.button.done".localized
 
         }
     }
