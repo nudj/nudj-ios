@@ -142,11 +142,6 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
         decoratePlaceholdersForRequiredFields()
         topRightButton.enabled = self.hasEnoughData()
     }
-
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
  
     // Layout
 
