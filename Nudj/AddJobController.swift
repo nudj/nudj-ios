@@ -138,6 +138,7 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
                         self.presentViewController(alert, animated: true, completion: nil)
                     }
                 })
+                self.closeCurrentView()
             }else{
                 job.save { error, id in
                     if (error != nil) {
@@ -152,6 +153,7 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
                     
                     self.view.addSubview(self.popup!)
                 }
+                self.closeCurrentView()
             }
         } else {
             let localization = Localizations.Jobs.Validation.Error.self
@@ -394,9 +396,5 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
     
     func closeCurrentView(){
          self.navigationController?.popViewControllerAnimated(true)
-    }
-    
-    @IBAction func closeAction(sender: UIBarButtonItem) {
-       self.closeCurrentView()
     }
 }
