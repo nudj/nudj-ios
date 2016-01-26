@@ -61,6 +61,7 @@ class VerifyViewController: BaseController, SegueHandlerType {
         }
 
         if (sender.text?.characters.count == codeLength) {
+            codeField.resignFirstResponder()
             self.submit()
         }
     }
@@ -95,7 +96,8 @@ class VerifyViewController: BaseController, SegueHandlerType {
             return
         }
 
-        self.hideCodeField()
+        codeField.resignFirstResponder()
+        hideCodeField()
 
         // TODO: API strings
         self.apiRequest(API.Method.PUT, path: "users/verify", params: ["phone": phoneNumber, "verification": verificationCode, "country_code": iso2CountryCode], closure: {
