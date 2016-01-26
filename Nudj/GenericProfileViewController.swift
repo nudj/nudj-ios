@@ -129,12 +129,11 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
         super.viewWillDisappear(animated)
 
         switch self.type {
-        case Type.Own: fallthrough
-        case Type.Initial:
+        case .Initial, .Own:
             self.updateAllInformation()
-            break;
+
         default:
-            break;
+            break
         }
 
         NSNotificationCenter.defaultCenter().removeObserver(self)
@@ -145,23 +144,20 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
 
     func prepareLayout() {
         switch self.type {
-        case Type.Own:
+        case .Own:
             MixPanelHandler.sendData("MyProfileOpened")
             self.topRightButton.title = "Save"
             self.navigationItem.title = "My Profile"
-            isEditable = true;
-            break;
+            isEditable = true
 
-        case Type.Initial:
+        case .Initial:
             MixPanelHandler.sendData("CreateProfileOpened")
             self.navigationItem.setHidesBackButton(true, animated: false)
             self.topRightButton.title = "OK"
             self.navigationItem.title = "Create Profile"
-            isEditable = true;
-            break;
+            isEditable = true
 
-        case Type.Public: fallthrough
-        default:
+        case .Public:
             MixPanelHandler.sendData("ProfileOpened")
             self.topRightButton.title = nil
             self.navigationItem.title = "Profile"
@@ -169,7 +165,6 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
             isEditable = false;
             skills?.userInteractionEnabled = false
             profilePhoto.userInteractionEnabled = false
-            break;
         }
     }
 
@@ -179,14 +174,13 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
         switch type {
         case .Initial:
             self.performSegueWithIdentifier(.ShowMainScreen, sender: nil)
-            break;
+            
         case .Own:
             MixPanelHandler.sendData("MyProfile_SaveButtonClicked")
             self.navigationController?.popViewControllerAnimated(true)
-            break;
-        case Type.Public:
+            
+        case .Public:
             toggleFavourite()
-            break;
         }
     }
 
@@ -231,11 +225,11 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
                 self.skills?.fillTokens(skills)
             }
 
-            if (self.type == Type.Public && user.favourite != nil) {
+            if (self.type == .Public && user.favourite != nil) {
                 self.topRightButton.image = self.getFavouriteIcon(user.favourite!)
             }
 
-            if (self.type == Type.Public) {
+            if (self.type == .Public) {
                 self.hideEmptyViews()
             }
 
@@ -322,7 +316,14 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
     // MARK: User Update functions
     
     func updateAllInformation(){
-        UserModel.update(["name":nameLabel.text!,"email":email.text!,"position":position.text!,"address":location.text!,"company":company.text!,"completed":true], closure: { 
+        UserModel.update([
+            "name": nameLabel.text!, 
+            "email": email.text!, 
+            "position": position.text!, 
+            "address": location.text!, 
+            "company": company.text!, 
+            "completed": true
+            ], closure: { 
             result in
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
             appDelegate.user.name = self.nameLabel.text
@@ -330,7 +331,6 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
             appDelegate.pushUserData()
         })
     }
-    
     
     func updateUserName(userName: String) -> Void {
         UserModel.update(["name": userName], closure: { 
@@ -402,7 +402,6 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
     // MARK: Skills
 
     func updateSkills(view:TokenView) {
-
         updateAssets()
 
         if (view.tokens() == nil || view.tokens()!.count <= 0) {
@@ -419,23 +418,18 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
         switch textField {
         case nameLabel:
             self.updateUserName(textField.text!)
-            break;
 
         case company:
             UserModel.update(["company": textField.text!], closure: {_ in})
-            break;
 
         case location:
             UserModel.update(["address": textField.text!], closure: {_ in})
-            break;
 
         case position:
             UserModel.update(["position": textField.text!], closure: {_ in})
-            break;
 
         case email:
             UserModel.update(["email": textField.text!], closure: {_ in})
-            break;
 
         default:
             break
@@ -443,7 +437,6 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
 
         updateAssets()
         textField.resignFirstResponder()
-
 
         return true
     }
@@ -461,7 +454,6 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
 
     func textViewShouldBeginEditing(textView: UITextView) -> Bool {
         scrollToSuperView(textView)
-        
         return true
     }
 
@@ -471,9 +463,7 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
 
     func textViewShouldEndEditing(textView: UITextView) -> Bool {
         textView.resignFirstResponder()
-
         updateAbout(textView.text!)
-
         return true
     }
 
@@ -511,23 +501,20 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
     }
 
     func scrollToSuperView(view: UIView) {
-        if (view.superview == nil) {
+        guard let superview = view.superview else {
             return;
         }
 
-        scrollView.setContentOffset(view.superview!.frame.origin, animated: true)
+        scrollView.setContentOffset(superview.frame.origin, animated: true)
     }
 
     // MARK: Notifications Management
 
     func registerNotification() {
-        
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: "keyboardWillBeShown:", name: UIKeyboardDidShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
-    
     }
-
 
     // MARK: - Image management
 
