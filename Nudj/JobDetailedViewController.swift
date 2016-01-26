@@ -227,6 +227,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
                 profileView.preloadedName = authorName.text
             }
         case .AskForReferral:
+            AppDelegate.registerForRemoteNotifications()
             let askView = segue.destinationViewController as! AskReferralViewController
             MixPanelHandler.sendData("ReferButtonClicked")
             askView.jobId = Int(self.jobID!)
@@ -236,7 +237,6 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     }
     
     @IBAction func interested(sender: UIButton) {
-        // TODO: use two separate IBActions rather than this if-else statement
         AppDelegate.registerForRemoteNotifications()
         if(sender.titleLabel?.text == Localizations.Jobs.Button.Interested){
             //Go to INTERESTED
@@ -248,16 +248,6 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
             alert.addAction(sendAction)
             alert.preferredAction = sendAction
             self.presentViewController(alert, animated: true, completion: nil)
-        } else {
-            MixPanelHandler.sendData("AskForReferalButtonClicked")
-            //Go to EditView
-            let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let addJobView = storyboard.instantiateViewControllerWithIdentifier("AskReferralView") as! AskReferralViewController
-            addJobView.jobId = Int(self.jobID!)
-            addJobView.isNudjRequest = false
-            addJobView.jobTitle = self.jobTitleText.text
-            addJobView.isSlideTransition = true
-            self.navigationController?.pushViewController(addJobView, animated:true);
         }
     }
     
