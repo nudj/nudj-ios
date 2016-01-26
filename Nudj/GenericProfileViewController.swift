@@ -139,19 +139,11 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
         }
 
         showUserData()
+        topRightButton.enabled = self.hasEnoughData()
     }
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-
-        switch self.type {
-        case .Initial, .Own:
-            self.updateAllInformation()
-
-        case .Public:
-            break
-        }
-
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
  
@@ -183,15 +175,17 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
         }
     }
 
-    // Navigatiopn Items
+    // Navigation Items
 
     @IBAction func topRightButtonAction(sender: UIBarButtonItem) {
         switch type {
         case .Initial:
+            self.updateAllInformation()
             self.performSegueWithIdentifier(.ShowMainScreen, sender: nil)
             
         case .Own:
             MixPanelHandler.sendData("MyProfile_SaveButtonClicked")
+            self.updateAllInformation()
             self.navigationController?.popViewControllerAnimated(true)
             
         case .Public:
@@ -420,12 +414,6 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
     }
 
     
-    // MARK: About
-
-    func updateAbout(text: String) -> Void {
-        UserModel.update(["about": text], closure: {_ in })
-    }
-
     func updateAssets() {
         if (aboutMeField != nil) {
             Common.automateUpdatingOfAssets(aboutMeField, icon: aboutMeIcon, label: aboutMeLabel)
@@ -466,33 +454,9 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
     // MARK: TextFieldDelegate
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        switch textField {
-        case nameLabel:
-            self.updateUserName(textField.text!)
-
-        case company:
-            UserModel.update(["company": textField.text!], closure: {_ in})
-
-        case location:
-            UserModel.update(["address": textField.text!], closure: {_ in})
-
-        case position:
-            UserModel.update(["position": textField.text!], closure: {_ in})
-
-        case email:
-            UserModel.update(["email": textField.text!], closure: {_ in})
-
-        default:
-            break
-        }
-
         updateAssets()
-        let hasEnoughData = self.hasEnoughData()
-        if hasEnoughData {
-            textField.resignFirstResponder()
-        }
-
-        return hasEnoughData
+        textField.resignFirstResponder()
+        return true
     }
 
     func textFieldDidBeginEditing(textField: UITextField) {
@@ -517,19 +481,13 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
     }
 
     func textViewShouldEndEditing(textView: UITextView) -> Bool {
-        updateAbout(textView.text!)
-        let hasEnoughData = self.hasEnoughData()
-        if hasEnoughData {
-            textView.resignFirstResponder()
-        }
-        return hasEnoughData
+        return true
     }
 
     // Hide keyboard on Return key and save the content
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         if(text == "\n") {
             textView.resignFirstResponder()
-            updateAbout(textView.text!)
             return false
         }
 
