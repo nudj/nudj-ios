@@ -393,7 +393,7 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
     }
     
     func closeCurrentView(){
-         self.dismissViewControllerAnimated(true, completion: nil)
+         self.navigationController?.popViewControllerAnimated(true)
     }
     
     @IBAction func closeAction(sender: UIBarButtonItem) {

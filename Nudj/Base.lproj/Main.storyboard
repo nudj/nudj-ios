@@ -592,11 +592,6 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Add Job Details" id="6Ro-DX-rEt">
-                        <barButtonItem key="leftBarButtonItem" image="close_btn.png" id="uCN-ca-gKY">
-                            <connections>
-                                <action selector="closeAction:" destination="FfD-3r-a1P" id="B7b-2n-o2M"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Post" id="r7j-TX-5L6">
                             <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -2572,14 +2567,14 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
         <image name="success.png" width="88" height="88"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="oVM-eF-ddZ"/>
-        <segue reference="BCe-Pt-bFX"/>
-        <segue reference="H2O-Du-Dkg"/>
         <segue reference="zyP-mc-EMC"/>
-        <segue reference="OxQ-75-aNI"/>
-        <segue reference="gvE-qy-aNj"/>
-        <segue reference="6SR-Rm-L27"/>
+        <segue reference="BCe-Pt-bFX"/>
+        <segue reference="IbB-SC-7jb"/>
+        <segue reference="TFM-Ac-ZI1"/>
         <segue reference="w3z-vb-UAH"/>
+        <segue reference="gvE-qy-aNj"/>
+        <segue reference="oVM-eF-ddZ"/>
+        <segue reference="OxQ-75-aNI"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
 </document>
