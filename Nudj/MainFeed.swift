@@ -85,6 +85,10 @@ class MainFeed: BaseController, SegueHandlerType, DataProviderProtocol, UISearch
         }
     }
 
+    @IBAction func addJob(sender: AnyObject) {
+        performSegueWithIdentifier(.AddJob, sender: sender)
+    }
+    
     func goToJob(job:JSON) {
         selectedJobData = job
         performSegueWithIdentifier(.GoToJob, sender: self) 
