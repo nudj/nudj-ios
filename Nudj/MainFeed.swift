@@ -45,7 +45,7 @@ class MainFeed: BaseController, SegueHandlerType, DataProviderProtocol, UISearch
         self.view.bringSubviewToFront(self.searchBar)
         self.view.addSubview(self.noContentImage.alignInSuperView(self.view, imageTitle: "no_jobs"))
         
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate // TODO: use dependency injection instead
         if appDelegate.shouldShowAddJobTutorial  {
             tutorial.delegate = self
             tutorial.starTutorial("tutorial-welcome", view: self.view)
@@ -86,7 +86,35 @@ class MainFeed: BaseController, SegueHandlerType, DataProviderProtocol, UISearch
     }
 
     @IBAction func addJob(sender: AnyObject) {
-        performSegueWithIdentifier(.AddJob, sender: sender)
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate // TODO: use dependency injection instead
+        let user = appDelegate.user
+        if (user.name?.isEmpty ?? true) || (user.email?.isEmpty ?? true) || (user.company?.isEmpty ?? true) {
+            // user needs to supply at least name, email and company
+            let localization = Localizations.Jobs.Add.self
+            let alert = UIAlertController(title: localization.NeedProfile.Title, message: localization.NeedProfile.Body, preferredStyle: .ActionSheet)
+            
+            let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
+            alert.addAction(cancelAction)
+            
+            let editProfileAction = UIAlertAction(title: localization.Button.EditProfile, style: .Default) {
+                alertAction in
+                self.editProfile(alertAction, user: user, requiredFields: [.Name, .Email, .Company], completionHandler: {
+                    _ in
+                    self.performSegueWithIdentifier(.AddJob, sender: sender)
+                })
+            }
+            alert.addAction(editProfileAction)
+            alert.preferredAction = editProfileAction
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+        } else {
+            performSegueWithIdentifier(.AddJob, sender: sender)
+        }
+    }
+    
+    func editProfile(alertAction: UIAlertAction, user: UserModel, requiredFields: GenericProfileViewController.Fields, completionHandler: GenericProfileViewController.CompletionHandler) {
+        let genericProfileVC = GenericProfileViewController.instantiateWithUserID(user.id ?? 0, type: .Own, requiredFields: requiredFields, completionHandler: completionHandler)
+        self.navigationController?.pushViewController(genericProfileVC, animated:true)
     }
     
     func goToJob(job:JSON) {

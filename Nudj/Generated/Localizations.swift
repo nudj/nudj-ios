@@ -37,6 +37,15 @@ public struct Localizations {
     public struct Jobs {
 
     
+        public struct Location {
+
+                    /// Base translation: Location: %@
+            public static func Format(value1 : String) -> String {
+                return String(format: NSLocalizedString("jobs.location.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
+            }
+
+        }
+
         public struct Salary {
 
                     /// Base translation: Salary: %@
@@ -58,31 +67,13 @@ public struct Localizations {
 
             public struct NeedProfile {
 
-                            /// Base translation: Your profile is incomplete
+                            /// Base translation: We need some details
                 public static var Title : String = "jobs.nudj.need-profile.title".localized
 
-                /// Base translation: The candidate will want to know who is referring them. You will be able to complete it on the next screen.
+                /// Base translation: The candidate will want to know who is referring them.You can give details on the next screen.
                 public static var Body : String = "jobs.nudj.need-profile.body".localized
 
             }
-        }
-
-        public struct Bonus {
-
-                    /// Base translation: Referral Bonus: %@
-            public static func Format(value1 : String) -> String {
-                return String(format: NSLocalizedString("jobs.bonus.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
-            }
-
-        }
-
-        public struct Location {
-
-                    /// Base translation: Location: %@
-            public static func Format(value1 : String) -> String {
-                return String(format: NSLocalizedString("jobs.location.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
-            }
-
         }
 
         public struct Delete {
@@ -107,6 +98,15 @@ public struct Localizations {
                 public static var Body : String = "jobs.delete.alert.body".localized
 
             }
+        }
+
+        public struct Bonus {
+
+                    /// Base translation: Referral Bonus: %@
+            public static func Format(value1 : String) -> String {
+                return String(format: NSLocalizedString("jobs.bonus.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
+            }
+
         }
 
         public struct Update {
@@ -142,43 +142,6 @@ public struct Localizations {
 
         }
 
-        public struct Add {
-
-        
-            public struct Button {
-
-                            /// Base translation: Edit Job
-                public static var Edit : String = "jobs.add.button.edit".localized
-
-                /// Base translation: Update
-                public static var Update : String = "jobs.add.button.update".localized
-
-            }
-        }
-
-        public struct Validation {
-
-        
-            public struct Error {
-
-                            /// Base translation: Missing information
-                public static var Title : String = "jobs.validation.error.title".localized
-
-                /// Base translation: Please fill in the fields marked with *
-                public static var Body : String = "jobs.validation.error.body".localized
-
-            }
-
-            public struct Required {
-
-                            /// Base translation: %@ (Required)
-                public static func Format(value1 : String) -> String {
-                    return String(format: NSLocalizedString("jobs.validation.required.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
-                }
-
-            }
-        }
-
         public struct Employer {
 
                     /// Base translation: Employer: %@
@@ -203,10 +166,10 @@ public struct Localizations {
 
             public struct NeedProfile {
 
-                            /// Base translation: Your profile is incomplete
+                            /// Base translation: We need some details
                 public static var Title : String = "jobs.interested.need-profile.title".localized
 
-                /// Base translation: The hirer will want to see your profile. You will be able to complete it on the next screen.
+                /// Base translation: The hirer will want to see your profile.You can fill it in on the next screen.
                 public static var Body : String = "jobs.interested.need-profile.body".localized
 
             }
@@ -222,6 +185,56 @@ public struct Localizations {
 
                             /// Base translation: The hirer has been notified.
                 public static var Body : String = "jobs.interested.confirmation.body".localized
+
+            }
+        }
+
+        public struct Add {
+
+        
+            public struct Button {
+
+                            /// Base translation: Edit Job
+                public static var Edit : String = "jobs.add.button.edit".localized
+
+                /// Base translation: Edit Profile
+                public static var EditProfile : String = "jobs.add.button.edit-profile".localized
+
+                /// Base translation: Update
+                public static var Update : String = "jobs.add.button.update".localized
+
+            }
+
+            public struct NeedProfile {
+
+                            /// Base translation: We need some details
+                public static var Title : String = "jobs.add.need-profile.title".localized
+
+                /// Base translation: Candidates will want to know who is hiring.You can give details on the next screen.
+                public static var Body : String = "jobs.add.need-profile.body".localized
+
+            }
+        }
+
+        public struct Validation {
+
+        
+            public struct Error {
+
+                            /// Base translation: Missing information
+                public static var Title : String = "jobs.validation.error.title".localized
+
+                /// Base translation: Please fill in the fields marked with *
+                public static var Body : String = "jobs.validation.error.body".localized
+
+            }
+
+            public struct Required {
+
+                            /// Base translation: %@ (Required)
+                public static func Format(value1 : String) -> String {
+                    return String(format: NSLocalizedString("jobs.validation.required.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
+                }
 
             }
         }
