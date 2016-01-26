@@ -139,6 +139,7 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
         }
 
         showUserData()
+        decoratePlaceholdersForRequiredFields()
         topRightButton.enabled = self.hasEnoughData()
     }
 
@@ -227,6 +228,35 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
         }
         
         return true
+    }
+    
+    func decoratePlaceholdersForRequiredFields() {
+        decoratePlaceholder(nameLabel, identifier: .Name)
+        decoratePlaceholder(email, identifier: .Email)
+        decoratePlaceholder(company, identifier: .Company)
+        decoratePlaceholder(position, identifier: .Position)
+        decoratePlaceholder(location, identifier: .Location)
+        decoratePlaceholder(skillsLabel, identifier: .Skills)
+        decoratePlaceholder(aboutMeLabel, identifier: .Bio)
+    }
+    
+    func decoratePlaceholder(field: UITextField, identifier: Fields) {
+        field.placeholder = decoratedPlaceholder(field.placeholder, isRequired: requiredFields.contains(identifier))
+    }
+    
+    func decoratePlaceholder(label: UILabel, identifier: Fields) {
+        label.text = decoratedPlaceholder(label.text, isRequired: requiredFields.contains(identifier))
+    }
+    
+    func decoratedPlaceholder(originalPlaceholder: String?, isRequired: Bool) -> String {
+        var placeholder = originalPlaceholder ?? ""
+        if placeholder.hasSuffix(" *") {
+            placeholder.removeRange(Range(start: placeholder.endIndex.advancedBy(-2), end: placeholder.endIndex))
+        }
+        if isRequired {
+            placeholder += " *"
+        }
+        return placeholder
     }
 
     // User Data Loding
