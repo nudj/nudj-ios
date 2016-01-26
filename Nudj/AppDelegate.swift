@@ -70,11 +70,11 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
         }
         
 		// we only register for notifications if we have a valid user
-		if( user.completed) {
+		if user.completed {
 			AppDelegate.registerForRemoteNotifications()            
 		}
         
-        if (contacts.isAuthorized()) {
+        if contacts.isAuthorized() {
             self.syncContacts()
         }
         
