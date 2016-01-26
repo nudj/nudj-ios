@@ -28,6 +28,7 @@ class VerifyViewController: BaseController, SegueHandlerType {
 
     let codeLength = 4
 
+    let phoneNumColor = UIColor(red: 0.09, green: 0.56, blue: 0.48, alpha: 1) // TODO: refactor
     var phoneNumber = ""
     var iso2CountryCode = ""
 
@@ -37,7 +38,7 @@ class VerifyViewController: BaseController, SegueHandlerType {
         let initialSMSText = smsText.attributedText ?? NSAttributedString(string: smsText.text!, attributes: [NSFontAttributeName: smsText.font])
 
         let phoneNumText = NSMutableAttributedString(string: phoneNumber, attributes: [
-            NSForegroundColorAttributeName: UIColor(red: 0.09, green: 0.56, blue: 0.48, alpha: 1),
+            NSForegroundColorAttributeName: phoneNumColor,
             NSFontAttributeName: smsText.font
 
         ])
