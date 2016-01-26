@@ -25,7 +25,6 @@ class VerifyViewController: BaseController, SegueHandlerType {
     }
 
     @IBOutlet weak var smsText: UILabel!
-    var initialSMSText: NSAttributedString? = nil
 
     let codeLength = 4
 
@@ -34,22 +33,18 @@ class VerifyViewController: BaseController, SegueHandlerType {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let initialSMSText = smsText.attributedText ?? NSAttributedString(string: smsText.text!, attributes: [NSFontAttributeName: smsText.font])
 
-        if (self.initialSMSText == nil) {
-            self.initialSMSText = NSAttributedString(string: smsText.text!, attributes: [
-                NSFontAttributeName: smsText.font
-            ])
-        }
-
-        let tmp = NSMutableAttributedString(string: phoneNumber, attributes: [
+        let phoneNumText = NSMutableAttributedString(string: phoneNumber, attributes: [
             NSForegroundColorAttributeName: UIColor(red: 0.09, green: 0.56, blue: 0.48, alpha: 1),
             NSFontAttributeName: smsText.font
 
         ])
 
-        tmp.insertAttributedString(self.initialSMSText!, atIndex: 0)
-
-        smsText.attributedText = tmp
+        let combinedText = NSMutableAttributedString(attributedString: initialSMSText)
+        combinedText.appendAttributedString(phoneNumText)
+        smsText.attributedText = combinedText
         smsText.sizeToFit()
     }
 
