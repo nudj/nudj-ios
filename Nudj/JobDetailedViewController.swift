@@ -301,13 +301,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     }
     
     func editProfile(alertAction: UIAlertAction, requiredFields: GenericProfileViewController.Fields, completionHandler: GenericProfileViewController.CompletionHandler) {
-        let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let genericProfileVC = storyboard.instantiateViewControllerWithIdentifier("GenericProfileView") as! GenericProfileViewController
-        genericProfileVC.userId = appDelegate.user.id ?? 0
-        genericProfileVC.type = .Own
-        genericProfileVC.requiredFields = requiredFields
-        genericProfileVC.completionHandler = completionHandler
-        
+        let genericProfileVC = GenericProfileViewController.instantiateWithUserID(appDelegate.user.id ?? 0, type: .Own, requiredFields: requiredFields, completionHandler: completionHandler)
         self.navigationController?.pushViewController(genericProfileVC, animated:true)
     }
     

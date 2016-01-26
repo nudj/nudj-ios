@@ -115,8 +115,18 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
         case Own, Public, Initial
     }
 
-    var userId:Int = 0
-    var user:UserModel?
+    var userId: Int = 0
+    var user: UserModel?
+    
+    static func instantiateWithUserID(userId: Int, type: Type, requiredFields: Fields, completionHandler: CompletionHandler) -> GenericProfileViewController {
+        let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let genericProfileVC = storyboard.instantiateViewControllerWithIdentifier("GenericProfileView") as! GenericProfileViewController
+        genericProfileVC.userId = userId
+        genericProfileVC.type = type
+        genericProfileVC.requiredFields = requiredFields
+        genericProfileVC.completionHandler = completionHandler
+        return genericProfileVC
+    }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
