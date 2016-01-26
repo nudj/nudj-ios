@@ -66,7 +66,7 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
     @IBOutlet weak var skills: TokenView! {
         didSet {
             skills.startEditClosure = scrollToSuperView
-            skills.changedClosure = updateSkills
+            skills.changedClosure = skillsChanged
         }
     }
 
@@ -191,6 +191,10 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
         if let completionHandler = completionHandler {
             completionHandler(self)
         }
+    }
+    
+    func validate() {
+        topRightButton.enabled = self.hasEnoughData()
     }
     
     func hasEnoughData() -> Bool {
@@ -386,6 +390,7 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
     // MARK: User Update functions
     
     func updateAllInformation(){
+        updateSkills(skills)
         UserModel.update([
             "name": nameLabel.text!, 
             "email": email.text!, 
@@ -464,10 +469,13 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
     }
 
     // MARK: Skills
+    
+    func skillsChanged(view:TokenView) {
+        updateAssets()
+        validate()
+    }
 
     func updateSkills(view:TokenView) {
-        updateAssets()
-
         if (view.tokens() == nil || view.tokens()!.count <= 0) {
             UserModel.update(["skills": [String]()])
         } else {
@@ -488,11 +496,15 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
         scrollToSuperView(textField)
     }
 
+    func textFieldDidEndEditing(textField: UITextField) {
+        validate()
+    }
+    
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         updateAssets()
         return true
     }
-
+    
     // MARK: TextViewDelegate
 
     func textViewShouldBeginEditing(textView: UITextView) -> Bool {
@@ -502,7 +514,7 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
 
     func textViewDidChange(textView: UITextView) {
         updateAssets()
-        topRightButton.enabled = self.hasEnoughData()
+        validate()
     }
 
     func textViewShouldEndEditing(textView: UITextView) -> Bool {
@@ -555,6 +567,11 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: "keyboardWillBeShown:", name: UIKeyboardDidShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
+        notificationCenter.addObserverForName(UITextFieldTextDidChangeNotification, object: nameLabel, queue: nil) {_ in self.validate()}
+        notificationCenter.addObserverForName(UITextFieldTextDidChangeNotification, object: email, queue: nil) {_ in self.validate()}
+        notificationCenter.addObserverForName(UITextFieldTextDidChangeNotification, object: company, queue: nil) {_ in self.validate()}
+        notificationCenter.addObserverForName(UITextFieldTextDidChangeNotification, object: position, queue: nil) {_ in self.validate()}
+        notificationCenter.addObserverForName(UITextFieldTextDidChangeNotification, object: location, queue: nil) {_ in self.validate()}
     }
 
     // MARK: - Image management
