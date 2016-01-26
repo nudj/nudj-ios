@@ -2787,6 +2787,14 @@
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Nudge I.T. Limited";
 				TargetAttributes = {
+					C86F844E1C444DB800C23332 = {
+						DevelopmentTeam = A5R558S6UR;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
+					};
 					C8A6A0281C44536C004DB1C0 = {
 						TestTargetID = C86F844E1C444DB800C23332;
 					};
@@ -2795,6 +2803,9 @@
 						DevelopmentTeam = A5R558S6UR;
 						SystemCapabilities = {
 							com.apple.DataProtection = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
