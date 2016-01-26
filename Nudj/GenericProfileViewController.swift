@@ -15,6 +15,19 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
         case ShowStatusPicker = "showStatusPicker"
     }
     
+    struct Fields: OptionSetType {
+        let rawValue: Int
+        init(rawValue: Int) { self.rawValue = rawValue }
+        
+        static let Name = Fields(rawValue: 1 << 1)
+        static let Email = Fields(rawValue: 1 << 2)
+        static let Company = Fields(rawValue: 1 << 3)
+        static let Skills = Fields(rawValue: 1 << 4)
+        static let Position = Fields(rawValue: 1 << 5)
+        static let Bio = Fields(rawValue: 1 << 6)
+        static let Location = Fields(rawValue: 1 << 7)
+    }
+    
     var hiddenFieldsCount = 0
     @IBOutlet var topRightButton: UIBarButtonItem!
     
@@ -92,6 +105,8 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
     var imagePicker = UIImagePickerController()
 
     var type:Type = Type.Public
+    
+    var requiredFields: Fields = []
 
     enum Type {
         case Own, Public, Initial
@@ -100,7 +115,6 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
     var userId:Int = 0
     var user:UserModel?
 
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -139,7 +153,6 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
  
-
     // Layout
 
     func prepareLayout() {
