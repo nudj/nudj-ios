@@ -595,7 +595,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Post" id="r7j-TX-5L6">
                             <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="PostAction:" destination="FfD-3r-a1P" id="0Ku-qd-TFf"/>
+                                <action selector="postJob:" destination="FfD-3r-a1P" id="5hV-Sg-LUc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -2571,7 +2571,7 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
         <segue reference="BCe-Pt-bFX"/>
         <segue reference="IbB-SC-7jb"/>
         <segue reference="TFM-Ac-ZI1"/>
-        <segue reference="w3z-vb-UAH"/>
+        <segue reference="E5T-Ai-Mhe"/>
         <segue reference="gvE-qy-aNj"/>
         <segue reference="oVM-eF-ddZ"/>
         <segue reference="OxQ-75-aNI"/>

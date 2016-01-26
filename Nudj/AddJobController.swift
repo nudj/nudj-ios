@@ -94,8 +94,7 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
         self.tabBarController?.tabBar.hidden = true
     }
     
-    //TODO: change to camel case
-    @IBAction func PostAction(sender: AnyObject) {
+    @IBAction func postJob(sender: AnyObject) {
         let item: UIBarButtonItem = sender as! UIBarButtonItem
         item.enabled = false
         
