@@ -2149,7 +2149,7 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                                                     <constraint firstAttribute="height" constant="30" id="ncd-Nt-9B2"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="u6h-lK-ytT" id="Uph-Mp-QnY"/>
                                                 </connections>
@@ -2588,14 +2588,14 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
         <image name="success.png" width="88" height="88"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="E5T-Ai-Mhe"/>
+        <segue reference="oVM-eF-ddZ"/>
         <segue reference="BCe-Pt-bFX"/>
         <segue reference="IbB-SC-7jb"/>
         <segue reference="TFM-Ac-ZI1"/>
+        <segue reference="eNW-U2-njr"/>
         <segue reference="1RO-e0-4AP"/>
         <segue reference="zyP-mc-EMC"/>
         <segue reference="gvE-qy-aNj"/>
-        <segue reference="oVM-eF-ddZ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
 </document>
