@@ -196,6 +196,38 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
             toggleFavourite()
         }
     }
+    
+    func hasEnoughData() -> Bool {
+        if requiredFields.contains(.Name) && (nameLabel.text?.isEmpty ?? true) {
+            return false
+        }
+        
+        if requiredFields.contains(.Email) && (email.text?.isEmpty ?? true) {
+            return false
+        }
+        
+        if requiredFields.contains(.Company) && (company.text?.isEmpty ?? true) {
+            return false
+        }
+        
+        if requiredFields.contains(.Skills) && (skills.tokens()?.count ?? 0) == 0 {
+            return false
+        }
+        
+        if requiredFields.contains(.Position) && (position.text?.isEmpty ?? true) {
+            return false
+        }
+        
+        if requiredFields.contains(.Bio) && (aboutMeField.text?.isEmpty ?? true) {
+            return false
+        }
+        
+        if requiredFields.contains(.Location) && (location.text?.isEmpty ?? true) {
+            return false
+        }
+        
+        return true
+    }
 
     // User Data Loding
 
