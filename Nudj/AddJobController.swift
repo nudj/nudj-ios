@@ -124,40 +124,24 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
 
             // TODO: select by something less fragile than the title
             if(sender.title == Localizations.Jobs.Add.Button.Update){
-                job.edit(self.jobId!, closure: { result in
-                    if(result == true){
-                        self.navigationController?.navigationBarHidden = true
-                        
-                        self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"this_job_has-been_posted", withText: false);
-                        self.popup?.delegate = self;
-                        
-                        self.view.addSubview(self.popup!)
-                    }else{
-                        self.navigationController?.navigationBarHidden = false
-                        let localization = Localizations.Jobs.Update.Error.self
-                        let alert = UIAlertController(title: localization.Title, message: localization.Body, preferredStyle: .Alert)
-                        let cancelAction = UIAlertAction(title: Localizations.General.Button.Ok, style: .Cancel, handler: nil)
-                        alert.addAction(cancelAction)
-                        alert.preferredAction = cancelAction
-                        self.presentViewController(alert, animated: true, completion: nil)
+                job.edit(self.jobId!) { 
+                    result in
+                    if result == true {
+                        self.showSuccessPopup()
+                    } else {
+                        self.postFailed()
                     }
-                })
-                self.closeCurrentView()
-            }else{
-                job.save { error, id in
-                    if (error != nil) {
-                        return
-                    }
-                    
-                    self.jobId = id
-                    self.navigationController?.navigationBarHidden = true
-                    
-                    self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"this_job_has-been_posted", withText: false);
-                    self.popup?.delegate = self;
-                    
-                    self.view.addSubview(self.popup!)
                 }
-                self.closeCurrentView()
+            } else {
+                job.save() { 
+                    error, id in
+                    if error == nil {
+                        self.jobId = id
+                        self.showSuccessPopup()
+                    } else {
+                        self.postFailed()
+                    }
+                }
             }
         } else {
             let localization = Localizations.Jobs.Validation.Error.self
@@ -169,6 +153,27 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
         }
         
         item.enabled = true
+    }
+    
+    func showSuccessPopup() {
+        self.navigationController?.navigationBarHidden = true
+        let size = self.view.frame.size
+        self.popup = CreatePopupView(x: 0, yCordinate: 0, width: size.width , height: size.height, imageName:"this_job_has-been_posted", withText: false);
+        self.popup?.delegate = self;
+        self.view.addSubview(self.popup!)
+    }
+    
+    func postFailed() {
+        self.navigationController?.navigationBarHidden = false
+        
+        let localization = Localizations.Jobs.Update.Error.self
+        let alert = UIAlertController(title: localization.Title, message: localization.Body, preferredStyle: .Alert)
+        let cancelAction = UIAlertAction(title: Localizations.General.Button.Ok, style: .Cancel, handler: nil)
+        alert.addAction(cancelAction)
+        alert.preferredAction = cancelAction
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+        self.closeCurrentView()
     }
     
     func checkFields() -> Bool{
