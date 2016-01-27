@@ -35,7 +35,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
         
         self.senderDisplayName = appGlobalDelegate.user.name ?? ""
 
-        let bubbleFactory : JSQMessagesBubbleImageFactory = JSQMessagesBubbleImageFactory();
+        let bubbleFactory = JSQMessagesBubbleImageFactory()
         
         self.outgoingBubbleImageData = bubbleFactory.outgoingMessagesBubbleImageWithColor(appGlobalDelegate.appColor);
         self.incomingBubbleImageData = bubbleFactory.incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor());
