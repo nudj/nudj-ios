@@ -102,7 +102,6 @@ class VerifyViewController: BaseController, SegueHandlerType {
         // TODO: API strings
         self.apiRequest(API.Method.PUT, path: "users/verify", params: ["phone": phoneNumber, "verification": verificationCode, "country_code": iso2CountryCode], closure: {
             (json: JSON) in
-            loggingPrint(json.stringValue)
 
             if (!self.isValidResponse(json)) {
                 self.showCodeField(animated: true)
