@@ -99,7 +99,8 @@ class API {
         case .Success(let value):
             // Try to get error code from the JSON
             let errorJson = JSON(value)
-            let code = errorJson["error"]["code"];
+            let code = errorJson["error"]["code"]
+            let message = errorJson["error"]["message"]
             
             // Log out user and show Login screen
             if (code == 10401) {
@@ -109,6 +110,8 @@ class API {
             } else if (code == 11101) {
                 loggingPrint("Invalid Token -> Logout!")
                 self.performLogout()
+            } else {
+                loggingPrint("API error: \(message)")
             }
             break
             
