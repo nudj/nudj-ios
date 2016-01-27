@@ -268,7 +268,7 @@
                                                 </constraints>
                                                 <color key="textColor" red="0.074533462524414062" green="0.57771205902099609" blue="0.45876827836036682" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" keyboardType="numberPad" returnKeyType="done"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="FfD-3r-a1P" id="iSA-vm-aeP"/>
                                                 </connections>
@@ -453,7 +453,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="ZgJ-Sx-4RX"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="FfD-3r-a1P" id="yL6-83-c9D"/>
                                                 </connections>

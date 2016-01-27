@@ -56,6 +56,8 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
     @IBOutlet weak var topGreyBorder: UIView!
     @IBOutlet weak var deleteBtn: UIButton!
     @IBOutlet weak var bottomGreyBorder: UIView!
+    
+    lazy var nonNumericCharacterSet = NSCharacterSet.decimalDigitCharacterSet().invertedSet
 
     override func viewDidLoad() {
 
@@ -105,15 +107,18 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
         scrollView.setContentOffset(CGPointMake(self.scrollView.contentOffset.x, 0), animated: true)
         
         if(self.checkFields()){
-            let job = JobModel();
-            job.title = jobTitle.text!
-            job.description = jobDescription.text
-            job.skills = skills.tokens()!.map({token in return token.title})
-            job.salary = salary.text!
-            job.company = employer.text!
-            job.location = location.text!
-            job.active = activeButton.selected
-            job.bonus = bonus.text!
+            let job = JobModel(
+                title: jobTitle.text!,
+                description: jobDescription.text,
+                salaryAmount: Int(salary.text!) ?? 0,
+                salaryCurrency: "GBP",
+                company: employer.text!,
+                location: location.text!,
+                bonusAmount: Int(bonus.text!) ?? 0,
+                bonusCurrency: "GBP",
+                active: activeButton.selected,
+                skills: skills.tokens()!.map({token in return token.title})
+            )
             
             AppDelegate.registerForRemoteNotifications()
 
@@ -241,7 +246,6 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
 
     func textViewShouldBeginEditing(textView: UITextView) -> Bool {
         scrollToSuperView(textView)
-
         return true
     }
 
@@ -278,7 +282,14 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
 
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         updateAssets()
-        return true
+        switch textField {
+        case salary, bonus:
+            let range = string.rangeOfCharacterFromSet(nonNumericCharacterSet)
+            return range?.isEmpty ?? true
+            
+        default:
+            return true
+        }
     }
 
     // MARK: Scroll Management

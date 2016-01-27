@@ -7,27 +7,31 @@
 
 import Foundation
 
-class JobModel {
+struct JobModel {
     // TODO: revisit error handling
     private struct UnknownError: ErrorType {}
 
-    var title:String = ""
-    var description: String = ""
-    var salary: String = ""
-    var company: String = ""
-    var location: String = ""
-    var bonus: String = ""
-    var active: Bool = true
-    var skills: [String] = []
+    var title:String
+    var description: String
+    var salaryAmount: Int
+    var salaryCurrency: String
+    var company: String
+    var location: String
+    var bonusAmount: Int
+    var bonusCurrency: String
+    var active: Bool
+    var skills: [String]
     
     func params() -> [String: AnyObject] {
         let params:[String: AnyObject] = [
             "title": self.title,
             "description": self.description,
-            "salary": self.salary,
+            "salary_amount": self.salaryAmount,
+            "salary_currency": self.salaryCurrency,
             "company": self.company,
             "location": self.location,
-            "bonus": self.bonus,
+            "bonus": self.bonusAmount,
+            "bonus_currency": self.bonusCurrency,
             "active": self.active ? "1" : "0",
             "skills": self.skills
         ]
@@ -62,5 +66,4 @@ class JobModel {
             closure(false)
         })
     }
-
 }
