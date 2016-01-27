@@ -957,7 +957,7 @@
                             <constraint firstItem="6JZ-HT-MOn" firstAttribute="top" secondItem="3F4-Zs-AO0" secondAttribute="bottom" constant="20" id="TKx-am-AEk"/>
                             <constraint firstItem="M7K-Zz-jWR" firstAttribute="centerY" secondItem="Mji-Gj-fEa" secondAttribute="centerY" id="Tnr-M9-7H0"/>
                             <constraint firstItem="6JZ-HT-MOn" firstAttribute="top" secondItem="ClY-JK-HuM" secondAttribute="top" constant="-24" id="UdX-Ck-D5r"/>
-                            <constraint firstItem="Mji-Gj-fEa" firstAttribute="width" secondItem="M7K-Zz-jWR" secondAttribute="width" id="Xy6-1l-dpj"/>
+                            <constraint firstItem="Mji-Gj-fEa" firstAttribute="width" secondItem="M7K-Zz-jWR" secondAttribute="width" priority="500" id="Xy6-1l-dpj"/>
                             <constraint firstItem="6JZ-HT-MOn" firstAttribute="trailing" secondItem="vov-20-Wq3" secondAttribute="trailingMargin" id="Zil-0j-xM8"/>
                             <constraint firstItem="iJy-5F-cqu" firstAttribute="trailing" secondItem="vov-20-Wq3" secondAttribute="trailingMargin" id="ZwX-bN-MD4"/>
                             <constraint firstItem="YAb-uZ-5ne" firstAttribute="trailing" secondItem="vov-20-Wq3" secondAttribute="trailingMargin" id="a4a-yz-wpl"/>
@@ -2567,13 +2567,13 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
         <image name="success.png" width="88" height="88"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zyP-mc-EMC"/>
         <segue reference="BCe-Pt-bFX"/>
         <segue reference="IbB-SC-7jb"/>
         <segue reference="TFM-Ac-ZI1"/>
-        <segue reference="E5T-Ai-Mhe"/>
-        <segue reference="gvE-qy-aNj"/>
+        <segue reference="w3z-vb-UAH"/>
         <segue reference="oVM-eF-ddZ"/>
+        <segue reference="zyP-mc-EMC"/>
+        <segue reference="gvE-qy-aNj"/>
         <segue reference="OxQ-75-aNI"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
