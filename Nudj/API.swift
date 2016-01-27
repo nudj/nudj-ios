@@ -13,7 +13,12 @@ class API {
     typealias Method = Alamofire.Method
     typealias JSONHandler = (JSON) -> Void
     typealias ErrorHandler = (ErrorType) -> Void
-
+    
+    struct APIError: ErrorType {
+        let code :Int
+        let message :String
+    }
+    
     // Production
     // TODO: API strings
     var baseURL: String { return server.URLString + "api/v1/" }
@@ -69,7 +74,7 @@ class API {
         Alamofire.request(method, (baseURL + path) as String, parameters: params, encoding: encoding, headers: headers).responseJSON {
             response in
             // Try to catch general API errors
-            if (self.tryToCatchAPIError(response)) {
+            if (self.tryToCatchAPIError(response, errorHandler: errorHandler)) {
                 // We have general error from server and the user should not continue.
                 return
             }
@@ -87,7 +92,7 @@ class API {
         }
     }
 
-    func tryToCatchAPIError(response: Alamofire.Response<AnyObject, NSError>) -> Bool {
+    func tryToCatchAPIError(response: Alamofire.Response<AnyObject, NSError>, errorHandler: ErrorHandler?) -> Bool {
         guard let rawResponse: NSHTTPURLResponse = response.response else {
             return false
         }
@@ -99,25 +104,26 @@ class API {
         case .Success(let value):
             // Try to get error code from the JSON
             let errorJson = JSON(value)
-            let code = errorJson["error"]["code"]
-            let message = errorJson["error"]["message"]
+            let code = errorJson["error"]["code"].numberValue.intValue
+            let message = errorJson["error"]["message"].stringValue
             
             // Log out user and show Login screen
             if (code == 10401) {
                 loggingPrint("Unauthorized -> Logout!")
                 self.performLogout()
-                return true
             } else if (code == 11101) {
                 loggingPrint("Invalid Token -> Logout!")
                 self.performLogout()
             } else {
                 loggingPrint("API error: \(message)")
             }
+            errorHandler?(APIError(code: Int(code), message: message))
             break
             
         case .Failure(let error):
             // TODO: improve error handling here
             loggingPrint("[API Error] rawResponse: \(rawResponse) Error: \(error)")
+            errorHandler?(error)
             break
         }
 
