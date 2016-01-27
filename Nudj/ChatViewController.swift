@@ -33,7 +33,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
         // TODO: API strings
         self.senderId = String(id) + "@chat.nudj.co";
         
-        self.senderDisplayName = appGlobalDelegate.user.name!
+        self.senderDisplayName = appGlobalDelegate.user.name ?? ""
 
         let bubbleFactory : JSQMessagesBubbleImageFactory = JSQMessagesBubbleImageFactory();
         
