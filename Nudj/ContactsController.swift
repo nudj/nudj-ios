@@ -61,7 +61,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         table.addSubview(refreshControl)
 
-        self.refresh()
+        self.refresh(self)
         
         self.activityIndi.hidden = false
         self.table.hidden = true
@@ -88,7 +88,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         self.tabBarController?.tabBar.hidden = false
     }
 
-    func refresh() {
+    @IBAction func refresh(sender: AnyObject) {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
 
         appDelegate.contacts.sync() { success in
