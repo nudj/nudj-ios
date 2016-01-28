@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10089" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10072.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -44,7 +44,7 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Eugene Kouumdjieff" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Kb-cS-OJp">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Johnny Appleseed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Kb-cS-OJp">
                         <rect key="frame" x="95" y="36" width="217" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="gtn-HI-NlE"/>
@@ -63,8 +63,8 @@
                         <color key="textColor" red="0.0" green="0.62352941179999999" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E-man - London" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZOA-2V-UsG">
-                        <rect key="frame" x="8" y="84" width="103" height="18"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acme Holdings Ltd" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZOA-2V-UsG">
+                        <rect key="frame" x="8" y="84" width="122" height="18"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" id="U2y-3a-XgB"/>
                             <constraint firstAttribute="height" constant="18" id="r5i-nG-wS3"/>
@@ -93,8 +93,8 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="London" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dd0-Nn-tUf">
-                        <rect key="frame" x="262" y="86" width="50" height="18"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Southend on Sea" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dd0-Nn-tUf">
+                        <rect key="frame" x="208" y="86" width="104" height="18"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="0CJ-cl-C5o"/>
                             <constraint firstAttribute="height" constant="18" id="Y5r-bm-ukx"/>
@@ -112,8 +112,10 @@
                     <constraint firstItem="VGx-xe-5UY" firstAttribute="leading" secondItem="T5K-wM-kd7" secondAttribute="trailing" constant="8" id="Ljc-FC-Hlm"/>
                     <constraint firstItem="TpL-j8-F0W" firstAttribute="top" secondItem="dd0-Nn-tUf" secondAttribute="bottom" constant="-2" id="MQi-RL-5Bq"/>
                     <constraint firstItem="up9-lT-fX9" firstAttribute="top" secondItem="ZOA-2V-UsG" secondAttribute="bottom" id="Ngo-8j-7YY"/>
+                    <constraint firstItem="rkX-dP-5w2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="up9-lT-fX9" secondAttribute="trailing" constant="10" id="T2y-yX-7di"/>
                     <constraint firstItem="ZOA-2V-UsG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="T7q-iC-7Bh"/>
                     <constraint firstItem="ZOA-2V-UsG" firstAttribute="top" secondItem="T5K-wM-kd7" secondAttribute="bottom" constant="16" id="UtI-w6-ARD"/>
+                    <constraint firstItem="ZOA-2V-UsG" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="dd0-Nn-tUf" secondAttribute="leading" constant="-10" id="Vgy-P6-4AU"/>
                     <constraint firstItem="rkX-dP-5w2" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="ZE0-LO-sfI"/>
                     <constraint firstItem="dd0-Nn-tUf" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="ZnM-1n-qI4"/>
                     <constraint firstItem="T5K-wM-kd7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Zy4-T1-oqX"/>
