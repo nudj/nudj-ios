@@ -120,7 +120,7 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
 
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         // TODO: magic number
-        return 129.0
+        return 128.0
     }
 
     // MARK: -- UITableViewDelegate --
