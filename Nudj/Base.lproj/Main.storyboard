@@ -1462,20 +1462,20 @@
                         <viewControllerLayoutGuide type="bottom" id="hlf-uK-Rhp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QEm-Nc-qfT">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="k4u-0C-TBO" userLabel="Main stack">
-                                <rect key="frame" x="0.0" y="20" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="20" width="414" height="672"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GaB-TN-v0Q" userLabel="Header">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="95"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="95"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nudge_small_logo" translatesAutoresizingMaskIntoConstraints="NO" id="TJO-D8-hOR" userLabel="Logo">
-                                                <rect key="frame" x="8" y="8" width="359" height="79"/>
+                                                <rect key="frame" x="8" y="8" width="398" height="79"/>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tRc-s3-uZE" userLabel="Login Button">
-                                                <rect key="frame" x="312" y="26" width="47" height="42"/>
+                                                <rect key="frame" x="351" y="26" width="47" height="42"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <state key="normal" title="Join">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1499,10 +1499,10 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RFW-Cg-SVV" userLabel="Body Stack">
-                                        <rect key="frame" x="16" y="103" width="343" height="451"/>
+                                        <rect key="frame" x="20" y="103" width="374" height="569"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm your phone number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="EyJ-Sc-It3">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="28"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="28" id="Jg1-x3-oYm"/>
                                                 </constraints>
@@ -1511,14 +1511,14 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="COP-7C-8R7" userLabel="Separator 1">
-                                                <rect key="frame" x="0.0" y="36" width="343" height="1"/>
+                                                <rect key="frame" x="0.0" y="36" width="374" height="1"/>
                                                 <color key="backgroundColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="Wml-oz-fYk"/>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vXN-QH-CG8" userLabel="Phone number stack">
-                                                <rect key="frame" x="0.0" y="45" width="343" height="30"/>
+                                                <rect key="frame" x="0.0" y="45" width="374" height="30"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bZf-4c-ZsC" userLabel="Intl prefix">
                                                         <rect key="frame" x="0.0" y="0.0" width="45" height="30"/>
@@ -1535,7 +1535,7 @@
                                                         </connections>
                                                     </button>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="RWM-Jp-PBz" userLabel="Phone Number">
-                                                        <rect key="frame" x="53" y="0.0" width="290" height="30"/>
+                                                        <rect key="frame" x="53" y="0.0" width="321" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="7pA-3y-jWG"/>
                                                         </constraints>
@@ -1549,10 +1549,10 @@
                                                 </subviews>
                                             </stackView>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="260" verticalCompressionResistancePriority="740" translatesAutoresizingMaskIntoConstraints="NO" id="fu5-eG-AeT" userLabel="Country picker container">
-                                                <rect key="frame" x="0.0" y="83" width="343" height="80"/>
+                                                <rect key="frame" x="0.0" y="83" width="374" height="80"/>
                                                 <subviews>
                                                     <pickerView contentMode="scaleToFill" showsSelectionIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMG-bB-M8L" userLabel="Country picker">
-                                                        <rect key="frame" x="0.0" y="-136" width="363" height="216"/>
+                                                        <rect key="frame" x="0.0" y="-136" width="394" height="216"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <connections>
                                                             <outlet property="dataSource" destination="Evh-ak-SA5" id="yzv-jP-v1h"/>
@@ -1568,14 +1568,14 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5sd-3T-N9W" userLabel="Separator 2">
-                                                <rect key="frame" x="0.0" y="171" width="343" height="1"/>
+                                                <rect key="frame" x="0.0" y="171" width="374" height="1"/>
                                                 <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="aeH-t5-dIA"/>
                                                 </constraints>
                                             </view>
                                             <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="240" misplaced="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pqc-O3-NX1" userLabel="Boilerplate">
-                                                <rect key="frame" x="0.0" y="180" width="343" height="271"/>
+                                                <rect key="frame" x="0.0" y="180" width="374" height="389"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <string key="text">Nudj uses your phone number and address book to connect and create your personal network.
 
@@ -2163,11 +2163,11 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                         <viewControllerLayoutGuide type="bottom" id="wdM-kP-MCQ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3a5-IX-tvj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1vZ-hu-yWg">
-                                <rect key="frame" x="16" y="20" width="343" height="170"/>
+                                <rect key="frame" x="20" y="20" width="374" height="170"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="170" id="KFq-Dr-xO6"/>
@@ -2404,13 +2404,13 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="w3z-vb-UAH"/>
-        <segue reference="TFM-Ac-ZI1"/>
-        <segue reference="vho-Q5-Kri"/>
-        <segue reference="zyP-mc-EMC"/>
-        <segue reference="gvE-qy-aNj"/>
-        <segue reference="H51-O9-Snf"/>
+        <segue reference="6SR-Rm-L27"/>
         <segue reference="oVM-eF-ddZ"/>
+        <segue reference="vho-Q5-Kri"/>
+        <segue reference="l7l-cF-kYn"/>
+        <segue reference="FgN-nx-a7b"/>
         <segue reference="m0n-l7-DaR"/>
+        <segue reference="1RO-e0-4AP"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
 </document>

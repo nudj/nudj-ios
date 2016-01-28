@@ -215,7 +215,6 @@
 		A9ACE1CC1B69107A003BD5F2 /* SavedPostedJobs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACE1CB1B69107A003BD5F2 /* SavedPostedJobs.swift */; };
 		A9ACE1D21B6913F9003BD5F2 /* connected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACE1CE1B6913F9003BD5F2 /* connected@2x.png */; };
 		A9ACE1D31B6913F9003BD5F2 /* facebook_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACE1CF1B6913F9003BD5F2 /* facebook_icon@2x.png */; };
-		A9ACE1D41B6913F9003BD5F2 /* linkdin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACE1D01B6913F9003BD5F2 /* linkdin@2x.png */; };
 		A9ACE1D51B6913F9003BD5F2 /* not_connected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACE1D11B6913F9003BD5F2 /* not_connected@2x.png */; };
 		A9B577F31B6BD58E00CFB474 /* SocialHandlerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B577F21B6BD58E00CFB474 /* SocialHandlerModel.swift */; };
 		A9C6EC921B381EB000EC9140 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC911B381EB000EC9140 /* ChatViewController.swift */; };
@@ -542,7 +541,6 @@
 		C86F85791C444DB800C23332 /* salary_details_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333541B42ACDC00F0D17B /* salary_details_active@2x.png */; };
 		C86F857A1C444DB800C23332 /* job_title_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333531B42ACDC00F0D17B /* job_title_active@2x.png */; };
 		C86F857B1C444DB800C23332 /* saved@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333801B45972100F0D17B /* saved@2x.png */; };
-		C86F857C1C444DB800C23332 /* linkdin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACE1D01B6913F9003BD5F2 /* linkdin@2x.png */; };
 		C86F857D1C444DB800C23332 /* add_skills_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333501B42ACDC00F0D17B /* add_skills_active@2x.png */; };
 		C86F857E1C444DB800C23332 /* profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650A41B3DB3FF00D5A8E9 /* profile@2x.png */; };
 		C86F857F1C444DB800C23332 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661F11C0B66160088355D /* ChatViewController.xib */; };
@@ -1071,7 +1069,6 @@
 		A9ACE1CB1B69107A003BD5F2 /* SavedPostedJobs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SavedPostedJobs.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9ACE1CE1B6913F9003BD5F2 /* connected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "connected@2x.png"; sourceTree = "<group>"; };
 		A9ACE1CF1B6913F9003BD5F2 /* facebook_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook_icon@2x.png"; sourceTree = "<group>"; };
-		A9ACE1D01B6913F9003BD5F2 /* linkdin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linkdin@2x.png"; sourceTree = "<group>"; };
 		A9ACE1D11B6913F9003BD5F2 /* not_connected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "not_connected@2x.png"; sourceTree = "<group>"; };
 		A9B577F21B6BD58E00CFB474 /* SocialHandlerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SocialHandlerModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9C6EC911B381EB000EC9140 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ChatViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -2288,7 +2285,6 @@
 			children = (
 				A9ACE1CE1B6913F9003BD5F2 /* connected@2x.png */,
 				A9ACE1CF1B6913F9003BD5F2 /* facebook_icon@2x.png */,
-				A9ACE1D01B6913F9003BD5F2 /* linkdin@2x.png */,
 				A9ACE1D11B6913F9003BD5F2 /* not_connected@2x.png */,
 			);
 			name = Settings;
@@ -2890,7 +2886,6 @@
 				C86F85791C444DB800C23332 /* salary_details_active@2x.png in Resources */,
 				C86F857A1C444DB800C23332 /* job_title_active@2x.png in Resources */,
 				C86F857B1C444DB800C23332 /* saved@2x.png in Resources */,
-				C86F857C1C444DB800C23332 /* linkdin@2x.png in Resources */,
 				C86F857D1C444DB800C23332 /* add_skills_active@2x.png in Resources */,
 				C86F857E1C444DB800C23332 /* profile@2x.png in Resources */,
 				C86F857F1C444DB800C23332 /* ChatViewController.xib in Resources */,
@@ -2966,7 +2961,6 @@
 				A9F333611B42ACDC00F0D17B /* salary_details_active@2x.png in Resources */,
 				A9F333601B42ACDC00F0D17B /* job_title_active@2x.png in Resources */,
 				A9F333821B45972100F0D17B /* saved@2x.png in Resources */,
-				A9ACE1D41B6913F9003BD5F2 /* linkdin@2x.png in Resources */,
 				A9F3335D1B42ACDC00F0D17B /* add_skills_active@2x.png in Resources */,
 				A99650AC1B3DB3FF00D5A8E9 /* profile@2x.png in Resources */,
 				C8A661EF1C0B66160088355D /* ChatViewController.xib in Resources */,
