@@ -68,7 +68,6 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
         // TODO: Ugh fix this singleton mess
         // TODO: API strings
         BaseController().apiRequest(API.Method.GET, path: "users/me?params=user.status,user.facebook,user.linkedin", closure: { json in
-            loggingPrint(json)
             if (json["data"]["status"] != nil && json["data"]["status"].stringValue != "") {
                 self.statusButton.setTitleByIndex(json["data"]["status"].intValue)
             }

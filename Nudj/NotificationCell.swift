@@ -105,7 +105,6 @@ class NotificationCell: UITableViewCell {
     }
     
     func readStatus(read:Bool){
-        loggingPrint("read status -> \(read)")
         self.isRead = read
         
         if(read == false){
