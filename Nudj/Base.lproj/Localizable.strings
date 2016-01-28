@@ -94,7 +94,7 @@
 "profile.other-person.title" = "Profile";
 "profile.new.image-source" = "Choose Image Source";
 "profile.image-source.camera" = "Camera";
-"profile.image-source.library" = "Library";
+"profile.image-source.library" = "Photo Library";
 "profile.facebook.failed.title" = "Facebook was not connected.";
 
 // Referral

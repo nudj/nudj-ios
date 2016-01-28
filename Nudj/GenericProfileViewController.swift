@@ -102,7 +102,6 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
 
     var openSpace:CGFloat = 0
     var viewType :Int?
-    var imagePicker = UIImagePickerController()
 
     var type:Type = Type.Public
     
@@ -579,29 +578,34 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
 
     func pickLibrary() {
         let msgTitle = Localizations.Profile.New.ImageSource
-        let alert = UIAlertController(title: msgTitle, message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: msgTitle, message: nil, preferredStyle: .ActionSheet)
 
-        alert.addAction(UIAlertAction(title: Localizations.Profile.ImageSource.Camera, style: UIAlertActionStyle.Default) {
-            action -> Void in
-            self.changeProfileImage(.Camera)
-            })
+        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+            alert.addAction(UIAlertAction(title: Localizations.Profile.ImageSource.Camera, style: .Default) {
+                action -> Void in
+                self.changeProfileImage(.Camera)
+                })
+        }
 
-        alert.addAction(UIAlertAction(title: Localizations.Profile.ImageSource.Library, style: UIAlertActionStyle.Default) {
-            action -> Void in
-            self.changeProfileImage(.PhotoLibrary)
-            })
+        if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) {
+            alert.addAction(UIAlertAction(title: Localizations.Profile.ImageSource.Library, style: .Default) {
+                action -> Void in
+                self.changeProfileImage(.PhotoLibrary)
+                })
+        }
 
-        self.presentViewController(alert, animated: true, completion: nil)
+        if !alert.actions.isEmpty {
+            self.presentViewController(alert, animated: true, completion: nil)            
+        }
     }
 
     func changeProfileImage(source: UIImagePickerControllerSourceType) {
-        if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary){
-            imagePicker.delegate = self
-            imagePicker.sourceType = source;
-            imagePicker.allowsEditing = true
-
-            self.presentViewController(imagePicker, animated: true, completion: nil)
-        }
+        guard UIImagePickerController.isSourceTypeAvailable(source) else {return}
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = source;
+        imagePicker.allowsEditing = true
+        self.presentViewController(imagePicker, animated: true, completion: nil)
     }
 
     func showUserImage(images: [String:String]) {
@@ -622,18 +626,19 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
     }
 
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-
+        // TODO: show the image immediately and put the encoding and upload on a background thread
         // Start activity to show that something is going on
         self.profilePhoto.startActivity()
         self.backgroundImage.startActivity()
 
         let image = info[UIImagePickerControllerEditedImage] as! UIImage
-        guard let imageData = UIImageJPEGRepresentation(image, 0.8)?.base64EncodedStringWithOptions([]) else {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        guard let imageData: String = UIImageJPEGRepresentation(image, 0.8)?.base64EncodedStringWithOptions([]) else {
             return
         }
         
-        UserModel.update(["image": imageData], closure: { response in
+        let imageParams = ["image": ["profile": imageData]]
+        UserModel.update(imageParams, closure: { response in
             UserModel.getCurrent(["user.image"], closure: { user in
                 self.showUserImage(user.image)
             })

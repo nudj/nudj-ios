@@ -274,7 +274,7 @@ public struct Localizations {
                     /// Base translation: Camera
             public static var Camera : String = "profile.image-source.camera".localized
 
-            /// Base translation: Library
+            /// Base translation: Photo Library
             public static var Library : String = "profile.image-source.library".localized
 
         }
