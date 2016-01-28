@@ -16,6 +16,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         case AskForReferral = "AskForReferral"
     }
     
+    // TODO: remove singleton access
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
     
     @IBOutlet var jobTitleText: UILabel!
@@ -32,13 +33,13 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     @IBOutlet weak var interestedBtn: UIButton!
     @IBOutlet weak var nudgeBtn: UIButton!
     @IBOutlet weak var askForReferralButton: UIButton!
+    @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
   
     @IBOutlet weak var skills: TokenView!
    
     var jobID:String?
     var userId:Int?
     var popup :CreatePopupView?;
-    var spinner = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,15 +55,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         MixPanelHandler.sendData("JobDetailsOpened")
         self.tabBarController?.tabBar.hidden = true
         
-        for subView in self.view.subviews {
-            subView.hidden = true;
-        }
-        
-        spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-        spinner.startAnimating()
-        spinner.center = self.view.center
-        spinner.color = appDelegate.appColor
-        self.view.addSubview(spinner)
+        activitySpinner.startAnimating()
         self.requestData()
     }
     
@@ -89,14 +82,19 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     
     func populateView(content:JSON){
         // TODO: API strings
-        if(appDelegate.user.id == content["user"]["id"].intValue){
-            navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Button.Edit
+        if appDelegate.user.id == content["user"]["id"].intValue {
             interestedBtn.hidden = true
             nudgeBtn.hidden = true
             askForReferralButton.hidden = false
+        } else {
+            interestedBtn.hidden = false
+            nudgeBtn.hidden = false
+            askForReferralButton.hidden = true
         }
         
-        if(content["liked"].boolValue){
+        if appDelegate.user.id == content["user"]["id"].intValue {
+            navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Button.Edit
+        } else if content["liked"].boolValue {
             // TODO: review this: I find it a confusing UX
             navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Button.Saved
         } else {
@@ -155,10 +153,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         bonusText.setFont(boldFont, string: formattedBonus)
         bonusText.setFontColor(appDelegate.appBlueColor, string: formattedBonus)
         
-        spinner.removeFromSuperview()
-        for subView in self.view.subviews {
-            subView.hidden = false;
-        }
+        activitySpinner.stopAnimating()
     }
 
     @IBAction func topRightNavAction(sender: UIBarButtonItem) {

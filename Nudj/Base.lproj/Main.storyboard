@@ -798,6 +798,26 @@
                                     <action selector="nudjAction:" destination="vRR-wd-aTg" eventType="touchUpInside" id="vq3-Dq-CrC"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="268" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kr2-47-R2H" userLabel="Ask for referral">
+                                <rect key="frame" x="16" y="563" width="343" height="40"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="8hR-fg-TBa"/>
+                                </constraints>
+                                <state key="normal" title="Ask for Referral">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="askForReferral:" destination="vRR-wd-aTg" eventType="touchUpInside" id="q8A-sM-P0Q"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posted by:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ClY-JK-HuM">
                                 <rect key="frame" x="16" y="108" width="58" height="14"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
@@ -928,26 +948,9 @@
                                 <color key="textColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="268" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kr2-47-R2H" userLabel="Ask for referral">
-                                <rect key="frame" x="16" y="563" width="343" height="40"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="8hR-fg-TBa"/>
-                                </constraints>
-                                <state key="normal" title="Ask for Referral">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="askForReferral:" destination="vRR-wd-aTg" eventType="touchUpInside" id="q8A-sM-P0Q"/>
-                                </connections>
-                            </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="vkP-6P-gFq">
+                                <rect key="frame" x="16" y="0.0" width="343" height="667"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -956,6 +959,7 @@
                             <constraint firstItem="ywj-gV-3hm" firstAttribute="leading" secondItem="vov-20-Wq3" secondAttribute="leadingMargin" id="3Lv-bm-Frf"/>
                             <constraint firstItem="ClY-JK-HuM" firstAttribute="leading" secondItem="vov-20-Wq3" secondAttribute="leadingMargin" id="43h-ws-Bw2"/>
                             <constraint firstItem="vc3-bP-ba6" firstAttribute="leading" secondItem="adi-20-xUa" secondAttribute="trailing" constant="8" id="54F-ng-ih1"/>
+                            <constraint firstItem="vkP-6P-gFq" firstAttribute="leading" secondItem="vov-20-Wq3" secondAttribute="leadingMargin" id="6Uv-rV-swa"/>
                             <constraint firstItem="ftp-qH-abp" firstAttribute="trailing" secondItem="vov-20-Wq3" secondAttribute="trailingMargin" id="70f-P2-pCZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Hbt-nR-ix5" secondAttribute="trailing" constant="-16" id="7Aa-56-3nz"/>
                             <constraint firstItem="M7K-Zz-jWR" firstAttribute="top" secondItem="ywj-gV-3hm" secondAttribute="bottom" constant="10" id="7Kw-2Y-au0"/>
@@ -973,11 +977,13 @@
                             <constraint firstAttribute="trailingMargin" secondItem="Kr2-47-R2H" secondAttribute="trailing" id="ThO-4z-wWD"/>
                             <constraint firstItem="M7K-Zz-jWR" firstAttribute="centerY" secondItem="Mji-Gj-fEa" secondAttribute="centerY" id="Tnr-M9-7H0"/>
                             <constraint firstItem="6JZ-HT-MOn" firstAttribute="top" secondItem="ClY-JK-HuM" secondAttribute="top" constant="-24" id="UdX-Ck-D5r"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vkP-6P-gFq" secondAttribute="trailing" id="V1w-em-hva"/>
                             <constraint firstItem="Mji-Gj-fEa" firstAttribute="width" secondItem="M7K-Zz-jWR" secondAttribute="width" priority="500" id="Xy6-1l-dpj"/>
                             <constraint firstItem="6JZ-HT-MOn" firstAttribute="trailing" secondItem="vov-20-Wq3" secondAttribute="trailingMargin" id="Zil-0j-xM8"/>
                             <constraint firstItem="iJy-5F-cqu" firstAttribute="trailing" secondItem="vov-20-Wq3" secondAttribute="trailingMargin" id="ZwX-bN-MD4"/>
                             <constraint firstItem="YAb-uZ-5ne" firstAttribute="trailing" secondItem="vov-20-Wq3" secondAttribute="trailingMargin" id="a4a-yz-wpl"/>
                             <constraint firstItem="Kg2-aW-kNL" firstAttribute="top" secondItem="adi-20-xUa" secondAttribute="bottom" constant="12" id="acI-lv-5B1"/>
+                            <constraint firstItem="vkP-6P-gFq" firstAttribute="top" secondItem="vov-20-Wq3" secondAttribute="topMargin" id="bcQ-FK-7dh"/>
                             <constraint firstItem="ftp-qH-abp" firstAttribute="leading" secondItem="ZVX-lB-sgI" secondAttribute="trailing" constant="8" id="dQv-KE-rRX"/>
                             <constraint firstItem="Kr2-47-R2H" firstAttribute="leading" secondItem="vov-20-Wq3" secondAttribute="leadingMargin" id="eF1-fy-fyr"/>
                             <constraint firstItem="ZVX-lB-sgI" firstAttribute="top" secondItem="Kg2-aW-kNL" secondAttribute="bottom" constant="11" id="eis-PZ-mCk"/>
@@ -992,6 +998,7 @@
                             <constraint firstItem="ywj-gV-3hm" firstAttribute="trailing" secondItem="vov-20-Wq3" secondAttribute="trailingMargin" id="l1S-qv-lRq"/>
                             <constraint firstItem="adi-20-xUa" firstAttribute="leading" secondItem="vov-20-Wq3" secondAttribute="leadingMargin" id="m57-eW-MjY"/>
                             <constraint firstItem="Kg2-aW-kNL" firstAttribute="leading" secondItem="vov-20-Wq3" secondAttribute="leadingMargin" id="oLK-8H-osS"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="vkP-6P-gFq" secondAttribute="bottom" id="ttm-Rp-rer"/>
                             <constraint firstItem="ThU-Hc-GZM" firstAttribute="top" secondItem="YAb-uZ-5ne" secondAttribute="bottom" constant="10" id="uJt-N7-zJx"/>
                             <constraint firstItem="ThU-Hc-GZM" firstAttribute="leading" secondItem="vov-20-Wq3" secondAttribute="leadingMargin" constant="-4" id="xAZ-xi-Luy"/>
                             <constraint firstItem="Kr2-47-R2H" firstAttribute="top" secondItem="ywj-gV-3hm" secondAttribute="bottom" constant="10" id="y0T-oU-Wfk"/>
@@ -1010,6 +1017,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="TextViewHeightConstraint" destination="Za0-Vv-crP" id="5XS-fs-Kjw"/>
+                        <outlet property="activitySpinner" destination="vkP-6P-gFq" id="8G1-LF-ZEO"/>
                         <outlet property="askForReferralButton" destination="Kr2-47-R2H" id="jUH-wf-vh1"/>
                         <outlet property="authorName" destination="YAb-uZ-5ne" id="ytr-0E-YCU"/>
                         <outlet property="bonusText" destination="ywj-gV-3hm" id="B3N-bi-bma"/>
