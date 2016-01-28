@@ -119,6 +119,18 @@ class UserModel: CustomStringConvertible {
             }
         }
     }
+    
+    func hasFullyCompletedProfile() -> Bool {
+        if name?.isEmpty ?? true {return false}
+        if email?.isEmpty ?? true {return false}
+        if company?.isEmpty ?? true {return false}
+        if skills?.isEmpty ?? true {return false}
+        if position?.isEmpty ?? true {return false}
+        if about?.isEmpty ?? true {return false}
+        if address?.isEmpty ?? true {return false}
+        
+        return true
+    }
 
     func toggleFavourite(closure: (JSON) -> (), errorHandler:ErrorHandler? = nil) {
         if (id == nil) {

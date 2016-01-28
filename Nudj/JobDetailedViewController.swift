@@ -238,7 +238,8 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         AppDelegate.registerForRemoteNotifications()
         let localization = Localizations.Jobs.Interested.self
         if(sender as? UIButton == self.interestedBtn){
-            if appDelegate.user.completed {
+            let user = appDelegate.user
+            if user.hasFullyCompletedProfile() {
                 // The user has a complete profile so we can go ahead and post an application
                 let alert = UIAlertController(title: localization.Alert.Title, message: localization.Alert.Body, preferredStyle: .ActionSheet)
                 
