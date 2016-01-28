@@ -106,12 +106,7 @@ class NotificationCell: UITableViewCell {
     
     func readStatus(read:Bool){
         self.isRead = read
-        
-        if(read == false){
-            self.contentView.backgroundColor =  UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 1.0)
-        }else{
-            self.contentView.backgroundColor = UIColor.whiteColor()
-        }
+        self.contentView.backgroundColor = read ? UIColor.whiteColor() : UIColor(white: 240.0/255.0, alpha: 1.0)
     }
     
     func actions(sender:UIButton){
