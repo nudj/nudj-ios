@@ -30,8 +30,8 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     @IBOutlet weak var TextViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var interestedBtn: UIButton!
-    @IBOutlet weak var spaceBetween: NSLayoutConstraint!
     @IBOutlet weak var nudgeBtn: UIButton!
+    @IBOutlet weak var askForReferralButton: UIButton!
   
     @IBOutlet weak var skills: TokenView!
    
@@ -88,31 +88,29 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     }
     
     func populateView(content:JSON){
-        // Configure right button
         // TODO: API strings
         if(appDelegate.user.id == content["user"]["id"].intValue){
-            self.navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Button.Edit
-            self.interestedBtn.setTitle(Localizations.Jobs.Button.AskForReferral, forState: UIControlState.Normal)
-            
-            spaceBetween.constant = 0
-            let constraint = NSLayoutConstraint(item: nudgeBtn, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 0)
-            nudgeBtn.addConstraint(constraint)
-            
-        } else if(content["liked"].boolValue){
+            navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Button.Edit
+            interestedBtn.hidden = true
+            nudgeBtn.hidden = true
+            askForReferralButton.hidden = false
+        }
+        
+        if(content["liked"].boolValue){
             // TODO: review this: I find it a confusing UX
-            self.navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Button.Saved
+            navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Button.Saved
         } else {
-            self.navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Button.Save
+            navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Button.Save
         }
         
         // Update skills
-        self.skills.editable = false
-        self.skills.userInteractionEnabled = false
+        skills.editable = false
+        skills.userInteractionEnabled = false
         var skillsArr:[String] = [];
         for i in content["skills"].arrayValue{
             skillsArr.append(i["name"].stringValue)
         }
-        self.skills.fillTokens(skillsArr)
+        skills.fillTokens(skillsArr)
         
         jobTitleText.text = content["title"].stringValue
         jobTitleText.numberOfLines = 0
@@ -120,7 +118,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         jobTitleText.minimumScaleFactor = 0.2
         
         authorName.text = content["user"]["name"].stringValue
-        self.userId = content["user"]["id"].intValue
+        userId = content["user"]["id"].intValue
         
         descriptionText.scrollEnabled = false
         descriptionText.text = content["description"].stringValue
@@ -222,39 +220,37 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         MixPanelHandler.sendData("InterestedButtonClicked")
         AppDelegate.registerForRemoteNotifications()
         let localization = Localizations.Jobs.Interested.self
-        if(sender as? UIButton == self.interestedBtn){
-            let user = appDelegate.user
-            if user.hasFullyCompletedProfile() {
-                // The user has a complete profile so we can go ahead and post an application
-                let alert = UIAlertController(title: localization.Alert.Title, message: localization.Alert.Body, preferredStyle: .ActionSheet)
-                
-                let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
-                alert.addAction(cancelAction)
-                
-                let sendAction = UIAlertAction(title: Localizations.General.Button.Send, style: .Default, handler: postJobApplication)
-                alert.addAction(sendAction)
-                alert.preferredAction = sendAction
-                
-                self.presentViewController(alert, animated: true, completion: nil)
-            } else {
-                // The user needs to complete their profile before we can post an application
-               let alert = UIAlertController(title: localization.NeedProfile.Title, message: localization.NeedProfile.Body, preferredStyle: .ActionSheet)
-                
-                let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
-                alert.addAction(cancelAction)
-                
-                let editProfileAction = UIAlertAction(title: localization.Button.EditProfile, style: .Default) {
-                    alertAction in
-                    self.editProfile(alertAction, requiredFields: [.Name, .Email, .Company, .Skills, .Position, .Bio, .Location], completionHandler: {
-                        _ in
-                        self.postJobApplication(alertAction)
-                   })
-                }
-                alert.addAction(editProfileAction)
-                alert.preferredAction = editProfileAction
-                
-                self.presentViewController(alert, animated: true, completion: nil)
+        let user = appDelegate.user
+        if user.hasFullyCompletedProfile() {
+            // The user has a complete profile so we can go ahead and post an application
+            let alert = UIAlertController(title: localization.Alert.Title, message: localization.Alert.Body, preferredStyle: .ActionSheet)
+            
+            let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
+            alert.addAction(cancelAction)
+            
+            let sendAction = UIAlertAction(title: Localizations.General.Button.Send, style: .Default, handler: postJobApplication)
+            alert.addAction(sendAction)
+            alert.preferredAction = sendAction
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+        } else {
+            // The user needs to complete their profile before we can post an application
+            let alert = UIAlertController(title: localization.NeedProfile.Title, message: localization.NeedProfile.Body, preferredStyle: .ActionSheet)
+            
+            let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
+            alert.addAction(cancelAction)
+            
+            let editProfileAction = UIAlertAction(title: localization.Button.EditProfile, style: .Default) {
+                alertAction in
+                self.editProfile(alertAction, requiredFields: [.Name, .Email, .Company, .Skills, .Position, .Bio, .Location], completionHandler: {
+                    _ in
+                    self.postJobApplication(alertAction)
+                })
             }
+            alert.addAction(editProfileAction)
+            alert.preferredAction = editProfileAction
+            
+            self.presentViewController(alert, animated: true, completion: nil)
         }
     }
     
@@ -272,7 +268,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
                 alertAction in
                 self.editProfile(alertAction, requiredFields: [.Name, .Email], completionHandler: {
                     _ in
-                    self.performSegueWithIdentifier(.AskForReferral, sender: sender)
+                    self.askForReferral(sender)
                 })
             }
             alert.addAction(editProfileAction)
@@ -280,8 +276,12 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
             
             self.presentViewController(alert, animated: true, completion: nil)
         } else {
-            performSegueWithIdentifier(.AskForReferral, sender: sender)
+            askForReferral(sender)
         }
+    }
+    
+    @IBAction func askForReferral(sender: AnyObject) {
+        performSegueWithIdentifier(.AskForReferral, sender: sender)
     }
     
     func editProfile(alertAction: UIAlertAction, requiredFields: GenericProfileViewController.Fields, completionHandler: GenericProfileViewController.CompletionHandler) {

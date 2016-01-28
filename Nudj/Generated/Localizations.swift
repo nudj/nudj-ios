@@ -125,21 +125,42 @@ public struct Localizations {
 
         public struct Button {
 
-                    /// Base translation: INTERESTED
-            public static var Interested : String = "jobs.button.interested".localized
+                    /// Base translation: Saved
+            public static var Saved : String = "jobs.button.saved".localized
 
             /// Base translation: Edit
             public static var Edit : String = "jobs.button.edit".localized
 
-            /// Base translation: Saved
-            public static var Saved : String = "jobs.button.saved".localized
-
-            /// Base translation: Ask for Referral
-            public static var AskForReferral : String = "jobs.button.ask-for-referral".localized
-
             /// Base translation: Save
             public static var Save : String = "jobs.button.save".localized
 
+        }
+
+        public struct Add {
+
+        
+            public struct Button {
+
+                            /// Base translation: Edit Job
+                public static var Edit : String = "jobs.add.button.edit".localized
+
+                /// Base translation: Edit Profile
+                public static var EditProfile : String = "jobs.add.button.edit-profile".localized
+
+                /// Base translation: Update
+                public static var Update : String = "jobs.add.button.update".localized
+
+            }
+
+            public struct NeedProfile {
+
+                            /// Base translation: We need some details
+                public static var Title : String = "jobs.add.need-profile.title".localized
+
+                /// Base translation: Candidates will want to know who is hiring.You can give details on the next screen.
+                public static var Body : String = "jobs.add.need-profile.body".localized
+
+            }
         }
 
         public struct Employer {
@@ -185,33 +206,6 @@ public struct Localizations {
 
                             /// Base translation: The hirer has been notified.
                 public static var Body : String = "jobs.interested.confirmation.body".localized
-
-            }
-        }
-
-        public struct Add {
-
-        
-            public struct Button {
-
-                            /// Base translation: Edit Job
-                public static var Edit : String = "jobs.add.button.edit".localized
-
-                /// Base translation: Edit Profile
-                public static var EditProfile : String = "jobs.add.button.edit-profile".localized
-
-                /// Base translation: Update
-                public static var Update : String = "jobs.add.button.update".localized
-
-            }
-
-            public struct NeedProfile {
-
-                            /// Base translation: We need some details
-                public static var Title : String = "jobs.add.need-profile.title".localized
-
-                /// Base translation: Candidates will want to know who is hiring.You can give details on the next screen.
-                public static var Body : String = "jobs.add.need-profile.body".localized
 
             }
         }
