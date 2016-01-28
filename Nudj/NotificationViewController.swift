@@ -253,7 +253,6 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
             let askView = storyboard.instantiateViewControllerWithIdentifier(viewId) as! AskReferralViewController
             askView.jobId = job
             askView.isNudjRequest = true
-            askView.isSlideTransition = true
             self.navigationController?.pushViewController(askView, animated: true);
         } else {
             let detailsView = storyboard.instantiateViewControllerWithIdentifier(viewId) as! JobDetailedViewController

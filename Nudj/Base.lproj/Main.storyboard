@@ -727,11 +727,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Ask For Referral" id="tYy-gD-bN1">
-                        <barButtonItem key="leftBarButtonItem" image="close_btn.png" id="JMz-te-aJK">
-                            <connections>
-                                <action selector="close:" destination="l4F-Ih-7ec" id="BcZ-fX-KkP"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title="Refer" id="sLk-Wa-E5s">
                             <connections>
                                 <action selector="askAction:" destination="l4F-Ih-7ec" id="bei-VZ-8fx"/>
@@ -2378,7 +2373,6 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
         <image name="bio" width="26" height="26"/>
         <image name="bio-active" width="26" height="26"/>
         <image name="chatIcon" width="30" height="30"/>
-        <image name="close_btn.png" width="16" height="16"/>
         <image name="contactsIcon" width="30" height="30"/>
         <image name="email" width="26" height="26"/>
         <image name="email-active" width="26" height="26"/>

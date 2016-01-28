@@ -22,7 +22,6 @@ class AskReferralViewController: UIViewController, SegueHandlerType, UISearchBar
 
     var jobId:Int?
     var isNudjRequest:Bool?
-    var isSlideTransition:Bool?
     var filtering = FilterModel()
     
     var selected = Set<ContactModel>()
@@ -311,10 +310,6 @@ class AskReferralViewController: UIViewController, SegueHandlerType, UISearchBar
     }
     
     func closeCurrentView(){
-        if isSlideTransition != nil && isSlideTransition == true {
-           self.navigationController?.popViewControllerAnimated(true)
-        } else {
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }
+        self.navigationController?.popViewControllerAnimated(true)
     }
 }

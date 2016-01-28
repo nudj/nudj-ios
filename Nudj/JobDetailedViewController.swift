@@ -215,7 +215,6 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
             let askView = segue.destinationViewController as! AskReferralViewController
             askView.jobId = Int(self.jobID!)
             askView.isNudjRequest = true
-            askView.isSlideTransition = true
         }        
     }
     
