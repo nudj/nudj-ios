@@ -277,13 +277,7 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
             let user = UserModel()
             user.updateFromJson(response["data"])
             
-            /*if self.user != nil {
-                self.user?.skills?.removeAll(keepCapacity: false)
-            }*/
-            
             self.user = user
-
-            loggingPrint(response["data"])
             
             if let status = user.status {
                 self.statusButton.setTitleByIndex(status)
