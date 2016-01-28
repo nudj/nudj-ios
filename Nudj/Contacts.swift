@@ -119,7 +119,6 @@ class Contacts {
                 
                 UserModel.update(["contacts": contactsArray], closure: {
                     result in
-                    loggingPrint(result)
                     closure?(true)
                     }, errorHandler: {
                         result in

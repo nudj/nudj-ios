@@ -79,8 +79,6 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         API.sharedInstance.get("jobs/\(self.jobID!)?params=job.title,job.company,job.liked,job.salary,job.active,job.description,job.skills,job.bonus,job.user,job.location,user.image,user.name,user.contact", params: nil, closure: { 
             json in
             self.populateView(json["data"])
-            loggingPrint(json)
-            
             }) { 
                 error in
                 loggingPrint("Error -> \(error)")
