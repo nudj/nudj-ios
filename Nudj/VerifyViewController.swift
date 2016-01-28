@@ -12,7 +12,6 @@ import SwiftyJSON
 class VerifyViewController: BaseController, SegueHandlerType {
     
     enum SegueIdentifier: String {
-        case ShowInitProfileView = "showInitProfileView"
         case UnwindToJobsList = "unwindToJobsList"
     }
 
