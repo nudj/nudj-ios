@@ -13,8 +13,7 @@ struct JobModel {
 
     var title:String
     var description: String
-    var salaryAmount: Int
-    var salaryCurrency: String
+    var salaryFreeText: String
     var company: String
     var location: String
     var bonusAmount: Int
@@ -26,8 +25,7 @@ struct JobModel {
         let params:[String: AnyObject] = [
             "title": self.title,
             "description": self.description,
-            "salary_amount": self.salaryAmount,
-            "salary_currency": self.salaryCurrency,
+            "salary": self.salaryFreeText,
             "company": self.company,
             "location": self.location,
             "bonus": self.bonusAmount,

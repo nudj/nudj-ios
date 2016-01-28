@@ -268,7 +268,7 @@
                                                 </constraints>
                                                 <color key="textColor" red="0.074533462524414062" green="0.57771205902099609" blue="0.45876827836036682" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" keyboardType="numberPad" returnKeyType="done"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="FfD-3r-a1P" id="iSA-vm-aeP"/>
                                                 </connections>
@@ -2428,14 +2428,14 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
         <image name="success.png" width="88" height="88"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="l7l-cF-kYn"/>
+        <segue reference="E5T-Ai-Mhe"/>
         <segue reference="BCe-Pt-bFX"/>
         <segue reference="IbB-SC-7jb"/>
         <segue reference="TFM-Ac-ZI1"/>
-        <segue reference="w3z-vb-UAH"/>
         <segue reference="1RO-e0-4AP"/>
         <segue reference="oVM-eF-ddZ"/>
         <segue reference="FgN-nx-a7b"/>
+        <segue reference="l7l-cF-kYn"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
 </document>

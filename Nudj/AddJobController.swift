@@ -110,8 +110,7 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
             let job = JobModel(
                 title: jobTitle.text!,
                 description: jobDescription.text,
-                salaryAmount: Int(salary.text!) ?? 0,
-                salaryCurrency: "GBP",
+                salaryFreeText: salary.text!,
                 company: employer.text!,
                 location: location.text!,
                 bonusAmount: Int(bonus.text!) ?? 0,
@@ -288,7 +287,7 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         updateAssets()
         switch textField {
-        case salary, bonus:
+        case bonus:
             let range = string.rangeOfCharacterFromSet(nonNumericCharacterSet)
             return range?.isEmpty ?? true
             
