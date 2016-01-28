@@ -23,7 +23,6 @@
 		A94FE6CC1B84C9E600761F32 /* archive_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A94FE6CB1B84C9E600761F32 /* archive_active@2x.png */; };
 		A95798251B46965A006E826E /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95798241B46965A006E826E /* NotificationViewController.swift */; };
 		A984E2EE1B67ACA9009F318E /* ChatRoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A984E2ED1B67ACA9009F318E /* ChatRoomModel.swift */; };
-		A9953F9D1B997A9700084952 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9953F9C1B997A9700084952 /* TutorialView.swift */; };
 		A9964FD51B387CC800D5A8E9 /* JSQMessagesAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A9964E281B387CC700D5A8E9 /* JSQMessagesAssets.bundle */; };
 		A9964FD61B387CC800D5A8E9 /* JSQSystemSoundPlayer+JSQMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E2B1B387CC700D5A8E9 /* JSQSystemSoundPlayer+JSQMessages.m */; };
 		A9964FD71B387CC800D5A8E9 /* NSBundle+JSQMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E2D1B387CC700D5A8E9 /* NSBundle+JSQMessages.m */; };
@@ -375,7 +374,6 @@
 		C86F84CC1C444DB800C23332 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB3383B1A9F73D4000CAD88 /* API.swift */; };
 		C86F84CD1C444DB800C23332 /* NSXMLElement+XEP_0059.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F371B387CC800D5A8E9 /* NSXMLElement+XEP_0059.m */; };
 		C86F84CE1C444DB800C23332 /* JSQMessagesAvatarImageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E401B387CC700D5A8E9 /* JSQMessagesAvatarImageFactory.m */; };
-		C86F84CF1C444DB800C23332 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9953F9C1B997A9700084952 /* TutorialView.swift */; };
 		C86F84D01C444DB800C23332 /* ChatListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC9D1B3853F900EC9140 /* ChatListTableViewCell.swift */; };
 		C86F84D11C444DB800C23332 /* SettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA9B441AF0D2280027A2A2 /* SettingsItem.swift */; };
 		C86F84D21C444DB800C23332 /* JSQMessagesTypingIndicatorFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E821B387CC800D5A8E9 /* JSQMessagesTypingIndicatorFooterView.m */; };
@@ -695,7 +693,6 @@
 		A94FE6CB1B84C9E600761F32 /* archive_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archive_active@2x.png"; sourceTree = "<group>"; };
 		A95798241B46965A006E826E /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NotificationViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A984E2ED1B67ACA9009F318E /* ChatRoomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ChatRoomModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		A9953F9C1B997A9700084952 /* TutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TutorialView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9964E281B387CC700D5A8E9 /* JSQMessagesAssets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JSQMessagesAssets.bundle; sourceTree = "<group>"; };
 		A9964E2A1B387CC700D5A8E9 /* JSQSystemSoundPlayer+JSQMessages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSQSystemSoundPlayer+JSQMessages.h"; sourceTree = "<group>"; };
 		A9964E2B1B387CC700D5A8E9 /* JSQSystemSoundPlayer+JSQMessages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JSQSystemSoundPlayer+JSQMessages.m"; sourceTree = "<group>"; };
@@ -2572,7 +2569,6 @@
 				A929E4941B863D3F00AC2A5F /* MixPanelHandler.swift */,
 				C8A662031C0B66570088355D /* NoInternetConnectionView.xib */,
 				A94B49D51B8A8056008CF762 /* NoInternetConnectionView.swift */,
-				A9953F9C1B997A9700084952 /* TutorialView.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -3279,7 +3275,6 @@
 				C86F84CC1C444DB800C23332 /* API.swift in Sources */,
 				C86F84CD1C444DB800C23332 /* NSXMLElement+XEP_0059.m in Sources */,
 				C86F84CE1C444DB800C23332 /* JSQMessagesAvatarImageFactory.m in Sources */,
-				C86F84CF1C444DB800C23332 /* TutorialView.swift in Sources */,
 				C86F84D01C444DB800C23332 /* ChatListTableViewCell.swift in Sources */,
 				C88204A71C4C258C00744554 /* SegueHandlerType.swift in Sources */,
 				C86F84D11C444DB800C23332 /* SettingsItem.swift in Sources */,
@@ -3523,7 +3518,6 @@
 				EBB3383C1A9F73D4000CAD88 /* API.swift in Sources */,
 				A99650431B387CC800D5A8E9 /* NSXMLElement+XEP_0059.m in Sources */,
 				A9964FE01B387CC800D5A8E9 /* JSQMessagesAvatarImageFactory.m in Sources */,
-				A9953F9D1B997A9700084952 /* TutorialView.swift in Sources */,
 				A9C6EC9F1B3853F900EC9140 /* ChatListTableViewCell.swift in Sources */,
 				EBEA9B451AF0D2280027A2A2 /* SettingsItem.swift in Sources */,
 				C88204A61C4C258C00744554 /* SegueHandlerType.swift in Sources */,

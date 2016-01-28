@@ -9,7 +9,7 @@ import UIKit
 import Foundation
 import SwiftyJSON
 
-class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupViewDelegate, TutorialViewDelegate {
+class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupViewDelegate {
     
     enum SegueIdentifier: String {
         case GoToProfile = "GoToProfile"
@@ -39,14 +39,11 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     var userId:Int?
     var popup :CreatePopupView?;
     var spinner = UIActivityIndicatorView()
-    var tutorial = TutorialView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let profileTap = UITapGestureRecognizer(target:self, action:"goToProfile")
         self.authorName.addGestureRecognizer(profileTap)
-        
-        tutorial.delegate = self
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -94,11 +91,6 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         // Configure right button
         // TODO: API strings
         if(appDelegate.user.id == content["user"]["id"].intValue){
-            
-            if appDelegate.shouldShowAskForReferralTutorial  {
-               tutorial.starTutorial("tutorial-ask", view: self.view)
-            }
-            
             self.navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Button.Edit
             self.interestedBtn.setTitle(Localizations.Jobs.Button.AskForReferral, forState: UIControlState.Normal)
             
@@ -109,14 +101,8 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         } else if(content["liked"].boolValue){
             // TODO: review this: I find it a confusing UX
             self.navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Button.Saved
-            if appDelegate.shouldShowNudjTutorial  {
-                tutorial.starTutorial("tutorial-nudge", view: self.view)
-            }
         } else {
             self.navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Button.Save
-            if appDelegate.shouldShowNudjTutorial  {
-                tutorial.starTutorial("tutorial-nudge", view: self.view)
-            }
         }
         
         // Update skills
@@ -330,25 +316,5 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         self.popup!.removeFromSuperview()
         self.navigationController?.navigationBarHidden = false
         // TODO: investigate if we can now set self.popup to nil
-    }
-    
-    func dismissTutorial() {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        // TODO: API strings
-        // TODO: select on something less fragile than the button title
-        if(self.navigationItem.rightBarButtonItem?.title == Localizations.Jobs.Button.Edit){
-            UserModel.update(["settings":["tutorial":["create_job":false]]], closure: { 
-                result in
-                appDelegate.updateUserObject("AskForReferralTutorial", with:false)
-                appDelegate.shouldShowAskForReferralTutorial = false
-            })
-        } else {
-            UserModel.update(["settings":["tutorial":["open_job":false]]], closure: { 
-                result in
-                appDelegate.updateUserObject("NudjTutorial", with:false)
-                appDelegate.shouldShowNudjTutorial = false
-            })
-        }
     }
 }

@@ -10,7 +10,7 @@ import SwiftyJSON
 //import ReachabilitySwift
 
 @IBDesignable
-class MainFeed: BaseController, SegueHandlerType, DataProviderProtocol, UISearchBarDelegate, TutorialViewDelegate{
+class MainFeed: BaseController, SegueHandlerType, DataProviderProtocol, UISearchBarDelegate {
     
     enum SegueIdentifier: String {
         case GoToJob = "goToJob"
@@ -25,7 +25,6 @@ class MainFeed: BaseController, SegueHandlerType, DataProviderProtocol, UISearch
     var blackBackground = UIView()
     var searchTerm:String?
     var noContentImage = NoContentPlaceHolder()
-    var tutorial = TutorialView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,12 +43,6 @@ class MainFeed: BaseController, SegueHandlerType, DataProviderProtocol, UISearch
         
         self.view.bringSubviewToFront(self.searchBar)
         self.view.addSubview(self.noContentImage.alignInSuperView(self.view, imageTitle: "no_jobs"))
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate // TODO: use dependency injection instead
-        if appDelegate.shouldShowAddJobTutorial  {
-            tutorial.delegate = self
-            tutorial.starTutorial("tutorial-welcome", view: self.view)
-        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -161,14 +154,4 @@ class MainFeed: BaseController, SegueHandlerType, DataProviderProtocol, UISearch
         searchBar.showsCancelButton = false
         self.searchBar.resignFirstResponder()
     }
-    
-    func dismissTutorial() {
-        UserModel.update(["settings":["tutorial":["post_job":false]]], closure: { result in
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
-            appDelegate.updateUserObject("AddJobTutorial", with:false)
-            appDelegate.shouldShowAddJobTutorial = false
-            
-        })
-    }
-    
 }
