@@ -280,7 +280,6 @@
 		C86F846D1C444DB800C23332 /* XMPPPresence+XEP_0172.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F761B387CC800D5A8E9 /* XMPPPresence+XEP_0172.m */; };
 		C86F846E1C444DB800C23332 /* XMPPIQ.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EAC1B387CC800D5A8E9 /* XMPPIQ.m */; };
 		C86F846F1C444DB800C23332 /* XMPPXFacebookPlatformAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E9A1B387CC800D5A8E9 /* XMPPXFacebookPlatformAuthentication.m */; };
-		C86F84701C444DB800C23332 /* CreateProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCE12551B2B1D2600C3928C /* CreateProfileController.swift */; };
 		C86F84711C444DB800C23332 /* XMPPCapabilities.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F621B387CC800D5A8E9 /* XMPPCapabilities.m */; };
 		C86F84721C444DB800C23332 /* KSToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF1861C1B21DACA00D8D80D /* KSToken.swift */; };
 		C86F84731C444DB800C23332 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6F22B91AAF706A007FF1B8 /* AsyncImage.swift */; };
@@ -604,7 +603,6 @@
 		EBBF42541AB0AF5F0001E8B6 /* JobCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBF42521AB0AF5F0001E8B6 /* JobCellTableViewCell.swift */; };
 		EBBF42571AB1DEFF0001E8B6 /* DataTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBF42561AB1DEFF0001E8B6 /* DataTable.swift */; };
 		EBBF42591AB1E55F0001E8B6 /* DataProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBF42581AB1E55F0001E8B6 /* DataProviderProtocol.swift */; };
-		EBCE12561B2B1D2600C3928C /* CreateProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCE12551B2B1D2600C3928C /* CreateProfileController.swift */; };
 		EBD1073E1AF0B8F800310818 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDD460F204898DA0004C5B93 /* Pods.framework */; };
 		EBD1073F1AF0B8F800310818 /* Pods.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FDD460F204898DA0004C5B93 /* Pods.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EBDD28CE1ACD8ADA00956995 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDD28CD1ACD8ADA00956995 /* SettingsController.swift */; };
@@ -1167,7 +1165,6 @@
 		EBBF42521AB0AF5F0001E8B6 /* JobCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = JobCellTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EBBF42561AB1DEFF0001E8B6 /* DataTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DataTable.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EBBF42581AB1E55F0001E8B6 /* DataProviderProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DataProviderProtocol.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		EBCE12551B2B1D2600C3928C /* CreateProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CreateProfileController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EBDD28CD1ACD8ADA00956995 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SettingsController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EBE5C3111B25811400CFF7E9 /* TokenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TokenView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EBEA9B441AF0D2280027A2A2 /* SettingsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SettingsItem.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -2601,7 +2598,6 @@
 				EBB338411AA0C365000CAD88 /* GenericProfileViewController.swift */,
 				EB313D2D1AAF37FB00F008B8 /* StatusButton.swift */,
 				EB313D2F1AAF4C5A00F008B8 /* StatusPicker.swift */,
-				EBCE12551B2B1D2600C3928C /* CreateProfileController.swift */,
 				EBF17A211B4C128100C67657 /* VerifyCodeTextField.swift */,
 				C88BA0831C5277DD007A81EB /* CountryPickerDataSource.swift */,
 			);
@@ -3174,7 +3170,6 @@
 				C86F846D1C444DB800C23332 /* XMPPPresence+XEP_0172.m in Sources */,
 				C86F846E1C444DB800C23332 /* XMPPIQ.m in Sources */,
 				C86F846F1C444DB800C23332 /* XMPPXFacebookPlatformAuthentication.m in Sources */,
-				C86F84701C444DB800C23332 /* CreateProfileController.swift in Sources */,
 				C86F84711C444DB800C23332 /* XMPPCapabilities.m in Sources */,
 				C86F84721C444DB800C23332 /* KSToken.swift in Sources */,
 				C86F84731C444DB800C23332 /* AsyncImage.swift in Sources */,
@@ -3418,7 +3413,6 @@
 				A996505C1B387CC800D5A8E9 /* XMPPPresence+XEP_0172.m in Sources */,
 				A996500C1B387CC800D5A8E9 /* XMPPIQ.m in Sources */,
 				A99650061B387CC800D5A8E9 /* XMPPXFacebookPlatformAuthentication.m in Sources */,
-				EBCE12561B2B1D2600C3928C /* CreateProfileController.swift in Sources */,
 				A99650541B387CC800D5A8E9 /* XMPPCapabilities.m in Sources */,
 				EBF186201B21DACA00D8D80D /* KSToken.swift in Sources */,
 				EB6F22BA1AAF706A007FF1B8 /* AsyncImage.swift in Sources */,

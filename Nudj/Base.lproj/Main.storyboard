@@ -1075,21 +1075,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="We welcome our user's feedback so that we can adjust, update and enhance Nudj to your needs." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LLz-HT-dYA">
-                                <rect key="frame" x="16" y="35" width="343" height="33"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We welcome our user's feedback so that we can adjust, update and enhance Nudj to your needs." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LLz-HT-dYA" userLabel="Intro">
+                                <rect key="frame" x="16" y="79" width="343" height="33"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <color key="textColor" red="0.5169832706451416" green="0.51669579744338989" blue="0.52538979053497314" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BdT-Rr-52Q" userLabel="Border">
-                                <rect key="frame" x="0.0" y="83" width="375" height="1"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BdT-Rr-52Q" userLabel="Border">
+                                <rect key="frame" x="0.0" y="127" width="375" height="1"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="FJX-0v-BfP"/>
                                 </constraints>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D7M-6w-2AY">
-                                <rect key="frame" x="8" y="94" width="359" height="506"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D7M-6w-2AY">
+                                <rect key="frame" x="8" y="138" width="359" height="480"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1126,7 +1126,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ABT-L0-yQR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1787.5" y="1153.5"/>
+            <point key="canvasLocation" x="-2197.5" y="753.5"/>
         </scene>
         <!--Contact-->
         <scene sceneID="3cQ-2r-CFH">
@@ -1174,7 +1174,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T8H-g6-tGF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2846.5" y="1495.5"/>
+            <point key="canvasLocation" x="-2862.5" y="1549.5"/>
         </scene>
         <!--Saved Jobs-->
         <scene sceneID="Wf9-nn-Ahp">
@@ -1213,7 +1213,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QSl-EQ-zJN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1078.5" y="261.5"/>
+            <point key="canvasLocation" x="-1642.5" y="753.5"/>
         </scene>
         <!--Jobs Navigator-->
         <scene sceneID="gnE-5Y-lyK">
