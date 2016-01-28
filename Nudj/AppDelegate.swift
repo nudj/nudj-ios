@@ -33,11 +33,6 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
     var appWasInBackground = false
     var pushNotificationsPayload: NSDictionary?
     
-    // Tutorial options TODO: these duplicate properties of the user object, remove them
-    var shouldShowAddJobTutorial = true
-    var shouldShowNudjTutorial = true
-    var shouldShowAskForReferralTutorial = true
-    
     //Mix panel
     let MIXPANEL_TOKEN = "29fc1fec9fa6f75efd303f12c8be4acb"
     
@@ -230,8 +225,6 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
                 user.completed = obj.valueForKey("completed")?.boolValue ?? false
                 user.addressBookAccess = obj.valueForKey("addressBookAccess")?.boolValue ?? false
                 user.status = obj.valueForKey("status") as? Int ?? 0
-                
-                getUserObject()
             }
         }
         catch let error as NSError {
@@ -246,18 +239,6 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
                 UserModel.getCurrent(["user.name", "user.completed", "user.status", "user.image","user.settings"], closure: { 
                     userObject in
                     if let source :JSON = userObject.source {
-                        
-                        if let settings :JSON = userObject.settings {
-                            // TODO: eliminate this duplication
-                            self.shouldShowAddJobTutorial = settings["tutorial"]["post_job"].boolValue
-                            self.updateUserObject("AddJobTutorial", with: self.shouldShowAddJobTutorial)
-                            
-                            self.shouldShowAskForReferralTutorial = settings["tutorial"]["create_job"].boolValue
-                            self.updateUserObject("AskForReferralTutorial", with: self.shouldShowAskForReferralTutorial)
-                            
-                            self.shouldShowNudjTutorial = settings["tutorial"]["open_job"].boolValue
-                            self.updateUserObject("NudjTutorial", with:  self.shouldShowNudjTutorial)
-                        }
                         self.user.updateFromJson(source)
                         self.pushUserData()
                     }
@@ -286,8 +267,6 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
             obj.setValue(user.completed, forKey: "completed")
             obj.setValue(user.addressBookAccess, forKey: "addressBookAccess")
             obj.setValue(user.status, forKey: "status")
-            
-            self.updateUserObject("Completed", with: user.completed)
         }
         catch let error as NSError {
             loggingPrint("Could not fetch \(error), \(error.userInfo)")
@@ -328,7 +307,6 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
     func deleteAllData() {
         self.deleteUserData()
         self.deleteChatData()
-        self.deleteUserDefaults()        
         API.sharedInstance.token = nil
         self.api?.token = nil
     }
@@ -361,15 +339,17 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
     }
     
     func deleteChatData(){
+        let defaults = NSUserDefaults.standardUserDefaults()
         var chatRoom = self.chatInst!.listOfActiveChatRooms
         for (key, _) in  chatRoom {
             if let chat = chatRoom[key]{
                 chat.teminateSession()
                 chatRoom.removeValueForKey(key)
                 chat.deleteStoredChats()
-                self.deleteNSuserDefaultContentForKey(key)
+                defaults.setObject(nil, forKey:key)
             }
         }
+        defaults.synchronize()
     }
 
     func prepareApi() {
@@ -527,51 +507,5 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
     
     func isRecievingMessageIndication(user: String) {
         // TODO: determine what to do
-    }
-    
-    func deleteNSuserDefaultContentForKey(key:String){
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject(nil, forKey:key)
-        defaults.synchronize()
-    }
-    
-    func getUserObject(){
-        // TODO: magic strings
-        let dict = readUserDefaults()
-        self.user.completed = dict["Completed"] ?? false
-        self.shouldShowNudjTutorial =  dict["NudjTutorial"] ?? true
-        self.shouldShowAskForReferralTutorial = dict["AskForReferralTutorial"] ?? true
-        self.shouldShowAddJobTutorial = dict["AddJobTutorial"] ?? true
-    }
-    
-    func updateUserObject(key:String, with value:Bool){
-        // TODO: magic strings
-        var dict = readUserDefaults()
-        dict[key] = value
-        writeUserDefaults(dict)
-    }
-    
-    func readUserDefaults() -> [String:Bool] {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        // TODO: magic strings
-        var dict = (defaults.objectForKey("USER")) as? [String:Bool]
-        if dict == nil {
-            dict = ["Completed":false, "AddJobTutorial":true, "NudjTutorial":true, "AskForReferralTutorial":true]
-            writeUserDefaults(dict!)
-        }
-        return dict!
-    }
-    
-    func writeUserDefaults(dict: [String:Bool]) {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject(dict, forKey:"USER")
-        defaults.synchronize()
-    }
-    
-    func deleteUserDefaults() {
-        // TODO: magic strings
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject(nil, forKey:"USER")
-        defaults.synchronize()
     }
 }
