@@ -9,6 +9,9 @@ import UIKit
 import SwiftyJSON
 
 class CreateProfileController: UIViewController, SegueHandlerType, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    // if as is likely this class is deleted, the following image assets can be deleted too: importBackground, linkedIn, facebook
+
 
     enum SegueIdentifier: String {
         case ShowCreateProfileView = "showCreateProfileView"
@@ -79,6 +82,8 @@ class CreateProfileController: UIViewController, SegueHandlerType, UITextFieldDe
             if let settings :JSON = user.settings {
                 loggingPrint("server -> \( user.settings)")
                 
+                // TODO: sort out the messy duplication between here and the app delegate
+                // ideally put it all in the user object in Core Data
                 appDelegate.shouldShowAddJobTutorial = settings["tutorial"]["create_job"].boolValue
                 appDelegate.shouldShowAskForReferralTutorial = settings["tutorial"]["post_job"].boolValue
                 appDelegate.shouldShowNudjTutorial = settings["tutorial"]["open_job"].boolValue
@@ -86,7 +91,6 @@ class CreateProfileController: UIViewController, SegueHandlerType, UITextFieldDe
                 appDelegate.updateUserObject("AddJobTutorial", with: appDelegate.shouldShowAddJobTutorial)
                 appDelegate.updateUserObject("AskForReferralTutorial", with: appDelegate.shouldShowAskForReferralTutorial)
                 appDelegate.updateUserObject("NudjTutorial", with:  appDelegate.shouldShowNudjTutorial)
-                
             }
             
             if (user.completed) {
