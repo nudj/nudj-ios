@@ -2250,10 +2250,10 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
             </objects>
             <point key="canvasLocation" x="-4794" y="-1933"/>
         </scene>
-        <!--Chats-->
+        <!--Chat List-->
         <scene sceneID="7hc-uu-5uL">
             <objects>
-                <viewController storyboardIdentifier="ChatListViewController" title="Chats" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qwH-I4-nQ1" customClass="ChatListViewController" customModule="Nudj" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatListViewController" title="Chats" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qwH-I4-nQ1" userLabel="Chat List" customClass="ChatListViewController" customModule="Nudj" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0zw-Tm-HWi"/>
                         <viewControllerLayoutGuide type="bottom" id="Bid-1Q-lVZ"/>
@@ -2293,7 +2293,7 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Cv-D5-bDy" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4152.5" y="-70.5"/>
+            <point key="canvasLocation" x="-4178.5" y="-76.5"/>
         </scene>
         <!--Notifications-->
         <scene sceneID="gbh-aa-mi7">
@@ -2341,10 +2341,10 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
             </objects>
             <point key="canvasLocation" x="-2845.5" y="-941.5"/>
         </scene>
-        <!--Chats-->
+        <!--Chats Navigation-->
         <scene sceneID="Fpd-Pk-stb">
             <objects>
-                <navigationController storyboardIdentifier="ChatListViewMain" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Vkr-2N-VXy" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ChatListViewMain" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Vkr-2N-VXy" userLabel="Chats Navigation" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Chats" image="chatIcon" id="iDq-Rj-zbl"/>
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -2428,14 +2428,14 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
         <image name="success.png" width="88" height="88"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="E5T-Ai-Mhe"/>
+        <segue reference="l7l-cF-kYn"/>
         <segue reference="BCe-Pt-bFX"/>
         <segue reference="IbB-SC-7jb"/>
         <segue reference="TFM-Ac-ZI1"/>
+        <segue reference="w3z-vb-UAH"/>
         <segue reference="1RO-e0-4AP"/>
         <segue reference="oVM-eF-ddZ"/>
         <segue reference="FgN-nx-a7b"/>
-        <segue reference="l7l-cF-kYn"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
 </document>
