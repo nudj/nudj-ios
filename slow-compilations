@@ -1,0 +1,2 @@
+xcodebuild -workspace Nudj.xcworkspace -scheme "Nudj beta" clean build | grep [1-9].[0-9]ms | sort -nr > culprits.txt
+
