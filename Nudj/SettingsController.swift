@@ -234,21 +234,33 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
 
     func didTap(socialStatus: SocialStatus) {
         self.statusParent = socialStatus;
-        let statusIdentifier = "facebook" // TODO fix
-        if(socialStatus.connected){
-            let title = Localizations.Settings.Disconnect.Title.Format(statusIdentifier)
-            let message = Localizations.Settings.Disconnect.Title.Body(statusIdentifier)
-            let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-            let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
-            alert.addAction(cancelAction)
-            if (statusIdentifier == "facebook") {
-                let disconnectAction = UIAlertAction(title: Localizations.Settings.Disconnect.Button, style: .Default, handler: toggleFacebook)
+        let statusIdentifier = socialStatus.statusIdentifier
+        switch statusIdentifier {
+        case .ToggleFacebook:
+            let statusName = statusIdentifier.title()
+            if(socialStatus.connected){
+                let title = Localizations.Settings.Disconnect.Title.Format(statusName)
+                let message = Localizations.Settings.Disconnect.Title.Body(statusName)
+                let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+                
+                let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
+                alert.addAction(cancelAction)
+                
+                let disconnectAction = UIAlertAction(title: Localizations.Settings.Disconnect.Button, style: .Default) {
+                    _ in
+                    self.handleSocialAction(.ToggleFacebook)
+                }
                 alert.addAction(disconnectAction)
+                
+                alert.preferredAction = cancelAction
+                self.presentViewController(alert, animated: true, completion: nil)
+            } else {
+                self.handleSocialAction(.ToggleFacebook)
             }
-            alert.preferredAction = cancelAction
-            self.presentViewController(alert, animated: true, completion: nil)
-        } else {
-            self.handleSocialAction(statusIdentifier)
+            break
+            
+        default:
+            break
         }
     }
     
@@ -257,19 +269,13 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
         performSegueWithIdentifier(.GoToLogin, sender: self)
     }
     
-    func toggleFacebook(_: UIAlertAction) {
-        // TODO: straighten this out
-        self.handleSocialAction("facebook")
-    }
-    
-    func handleSocialAction(statusIdentifier:String){
-        // TODO: make statusIdentifier an enum
+    func handleSocialAction(action: CellAction){
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .Alert)
         let cancelAction = UIAlertAction(title: Localizations.General.Button.Ok, style: .Cancel, handler: nil)
         alert.addAction(cancelAction)
         alert.preferredAction = cancelAction
         
-        if(statusIdentifier == "facebook"){
+        if action == .ToggleFacebook {
             self.socialhander!.configureFacebook(self.statusParent!.connected, completionHandler: { 
                 success in
                 if(success){
