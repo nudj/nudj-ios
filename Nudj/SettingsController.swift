@@ -219,12 +219,12 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
         case .GoToSavedJobs:
             let controller = segue.destinationViewController as! SavedPostedJobs
             controller.title = Localizations.Settings.Title.SavedJobs
-            controller.requestParams = "liked"
+            controller.requestParams = SavedPostedJobs.Query.Liked
             
         case .GoToPostedJobs:
             let controller = segue.destinationViewController as! SavedPostedJobs
             controller.title = Localizations.Settings.Title.PostedJobs
-            controller.requestParams = "mine"
+            controller.requestParams = SavedPostedJobs.Query.Posted
             
         case .GoToChats:
             let controller = segue.destinationViewController as! ChatListViewController

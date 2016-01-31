@@ -17,14 +17,14 @@ class SavedPostedJobs: BaseController, SegueHandlerType, DataProviderProtocol {
     
     enum Query: String {
         case Liked = "liked"
-        case UsersOwn = "mine"
+        case Posted = "mine"
         
         func IsEditable() -> Bool {
             switch self {
-            case .UsersOwn:
+            case .Posted:
                 return true
                 
-            case Liked:
+            case .Liked:
                 return false
             }
         }
@@ -32,7 +32,7 @@ class SavedPostedJobs: BaseController, SegueHandlerType, DataProviderProtocol {
 
     @IBOutlet weak var table: DataTable!
     
-    var requestParams: Query
+    var requestParams: Query = .Liked
     var selectedJobData:JSON? = nil
     var noContentImage = NoContentPlaceHolder()
     
