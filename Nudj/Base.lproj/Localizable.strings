@@ -95,6 +95,7 @@
 "profile.new.image-source" = "Choose Image Source";
 "profile.image-source.camera" = "Camera";
 "profile.image-source.library" = "Photo Library";
+"profile.image-source.saved-photos-album" = "Camera Roll";
 "profile.facebook.failed.title" = "Facebook was not connected.";
 
 // Referral

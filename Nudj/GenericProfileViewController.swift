@@ -593,6 +593,13 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
                 self.changeProfileImage(.PhotoLibrary)
                 })
         }
+        
+        if UIImagePickerController.isSourceTypeAvailable(.SavedPhotosAlbum) {
+            alert.addAction(UIAlertAction(title: Localizations.Profile.ImageSource.SavedPhotosAlbum, style: .Default) {
+                action -> Void in
+                self.changeProfileImage(.SavedPhotosAlbum)
+                })
+        }
 
         if !alert.actions.isEmpty {
             self.presentViewController(alert, animated: true, completion: nil)            
