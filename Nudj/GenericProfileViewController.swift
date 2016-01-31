@@ -611,6 +611,9 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = source;
+        if source == .Camera && UIImagePickerController.isCameraDeviceAvailable(.Front) {
+            imagePicker.cameraDevice = .Front            
+        }
         imagePicker.allowsEditing = true
         self.presentViewController(imagePicker, animated: true, completion: nil)
     }
