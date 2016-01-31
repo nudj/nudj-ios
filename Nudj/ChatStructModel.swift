@@ -82,8 +82,6 @@ class ChatStructModel: NSObject {
         let dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData!) as! NSDictionary
         
         if dict.count > 0 {
-            loggingPrint("has stored content \(dict)")
-            
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "d/M/yy - H:mm"
             
