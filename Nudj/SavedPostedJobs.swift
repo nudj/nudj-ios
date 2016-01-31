@@ -32,7 +32,7 @@ class SavedPostedJobs: BaseController, SegueHandlerType, DataProviderProtocol {
 
     @IBOutlet weak var table: DataTable!
     
-    var requestParams: Query = .Liked
+    var queryType: Query = .Liked
     var selectedJobData:JSON? = nil
     var noContentImage = NoContentPlaceHolder()
     
@@ -43,7 +43,7 @@ class SavedPostedJobs: BaseController, SegueHandlerType, DataProviderProtocol {
         //self.navigationController?.title = self.headerTitle
         self.table.asignCellNib("JobCellTableViewCell")
         
-        self.table.canEdit = self.requestParams.IsEditable()
+        self.table.canEdit = self.queryType.IsEditable()
     
         self.table.dataProvider = self as DataProviderProtocol
         self.table.delegate = self.table
@@ -70,7 +70,7 @@ class SavedPostedJobs: BaseController, SegueHandlerType, DataProviderProtocol {
     
     func requestData(page: Int, size: Int, listener: (JSON) -> ()) {
         // TODO: API strings
-        let query = requestParams.rawValue
+        let query = queryType.rawValue
         let url = "jobs/\(query)?params=job.title,job.salary,job.bonus,job.user,job.location,job.company,user.name,user.image&sizes=user.profile&page=\(page)&limit=\(size)"
         
         self.apiRequest(.GET, path: url, closure: listener)
