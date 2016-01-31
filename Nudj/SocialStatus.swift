@@ -8,20 +8,20 @@
 import UIKit
 
 protocol SocialStatusDelegate {
-    func didTap(statusIdentifier:String, parent:SocialStatus)
+    func didTap(socialStatus: SocialStatus)
 }
 
 class SocialStatus: UIImageView {
     
     var delegate : SocialStatusDelegate?
     var connected:Bool = false
-    var statusIdentifier:String = ""
+    var statusIdentifier: SettingsController.CellAction = .ToggleFacebook
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    init(connected:Bool, and statusID:String) {
+    init(connected:Bool, and statusID: SettingsController.CellAction) {
         self.connected = connected
         self.statusIdentifier = statusID
         
@@ -56,6 +56,6 @@ class SocialStatus: UIImageView {
     }
         
     func imageTapped(img: AnyObject) {
-        delegate?.didTap(self.statusIdentifier, parent: self)        
+        delegate?.didTap(self)        
     }
 }

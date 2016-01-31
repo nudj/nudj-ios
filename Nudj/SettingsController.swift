@@ -13,11 +13,28 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
     enum SegueIdentifier: String {
         case ShowProfile = "showYourProfile"
         case ShowStatusPicker = "showStatusPicker"
-        case GoToLogin = "goToLogin"
+        case GoToLogin = "goToLogin" // TODO rename this
         case GoToFeedBack = "goToFeedBack"
         case GoToSavedJobs = "goToSavedJobs"
         case GoToPostedJobs = "goToPostedJobs"
         case GoToChats = "goToChats"
+    }
+    
+    enum CellAction {
+        case ShowProfile, ChooseStatus, ShowSavedJobs, ShowPostedJobs, ShowChats, ToggleFacebook, GiveFeedback, DeleteAccount
+        
+        func segueIdentifier() -> SegueIdentifier? {
+            switch self {
+            case ShowProfile: return SegueIdentifier.ShowProfile
+            case ChooseStatus: return SegueIdentifier.ShowStatusPicker
+            case ShowSavedJobs: return SegueIdentifier.GoToSavedJobs
+            case ShowPostedJobs: return SegueIdentifier.GoToPostedJobs
+            case ShowChats: return SegueIdentifier.GoToChats
+            case ToggleFacebook: return nil
+            case GiveFeedback: return SegueIdentifier.GoToFeedBack
+            case DeleteAccount: return SegueIdentifier.GoToLogin
+            }
+        }
     }
 
     @IBOutlet weak var versionNumberLabel: UILabel!
@@ -26,29 +43,28 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
     var statusButton = StatusButton()
     var socialStatuses = [String:Bool]() // TODO: use Enum not String
     
-    let cellIdentifier = "SettingsCell";
-    var jobsSelected:String?;
+    let cellIdentifier = "SettingsCell"
 
     var socialhander :SocialHandlerModel?
     var statusParent :SocialStatus?
-    let structure: [[SettingsItem]] = [
+    let itemsArray: [[SettingsItem]] = [
         [
-            SettingsItem(name: Localizations.Settings.Title.Profile, action: "showYourProfile"),
-            SettingsItem(name: Localizations.Settings.Title.Status, action: "showStatusPicker"),
-            SettingsItem(name: Localizations.Settings.Title.SavedJobs, action: "goToSavedJobs"),
-            SettingsItem(name: Localizations.Settings.Title.PostedJobs, action: "goToPostedJobs"),
-            SettingsItem(name: Localizations.Settings.Title.Chats, action: "goToChats")
+            SettingsItem(name: Localizations.Settings.Title.Profile, action: .ShowProfile),
+            SettingsItem(name: Localizations.Settings.Title.Status, action: .ChooseStatus),
+            SettingsItem(name: Localizations.Settings.Title.SavedJobs, action: .ShowSavedJobs),
+            SettingsItem(name: Localizations.Settings.Title.PostedJobs, action: .ShowPostedJobs),
+            SettingsItem(name: Localizations.Settings.Title.Chats, action: .ShowChats)
         ],
         [
-            SettingsItem(name: Localizations.Settings.Title.Facebook, action: "facebook")
+            SettingsItem(name: Localizations.Settings.Title.Facebook, action: .ToggleFacebook)
         ],
         [
-            SettingsItem(name: Localizations.Settings.Title.Feedback, action: "goToFeedBack") // TODO: maybe use HockeyApp for this
+            SettingsItem(name: Localizations.Settings.Title.Feedback, action: .GiveFeedback)
         ],
         [
-            SettingsItem(name: Localizations.Settings.Title.DeleteAccount, action: "goToLogin") // TODO: rename this
+            SettingsItem(name: Localizations.Settings.Title.DeleteAccount, action: .DeleteAccount)
         ]
-    ];
+    ]
 
 
     override func viewDidLoad() {
@@ -67,7 +83,7 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
 
         // TODO: Ugh fix this singleton mess
         // TODO: API strings
-        BaseController().apiRequest(API.Method.GET, path: "users/me?params=user.status,user.facebook,user.linkedin", closure: { json in
+        BaseController().apiRequest(.GET, path: "users/me?params=user.status,user.facebook,user.linkedin", closure: { json in
             if (json["data"]["status"] != nil && json["data"]["status"].stringValue != "") {
                 self.statusButton.setTitleByIndex(json["data"]["status"].intValue)
             }
@@ -79,16 +95,16 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
     // MARK: - Table view data source
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return structure.count
+        return itemsArray.count
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return structure[section].count;
+        return itemsArray[section].count;
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! SettingsCell
-        let data = structure[indexPath.section][indexPath.row]
+        let data = itemsArray[indexPath.section][indexPath.row]
 
         cell.setTitle(data.name);
 
@@ -99,10 +115,12 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             cell.alignLeft()
         }
 
-        if (data.action == "showStatusPicker") {
+        switch data.action {
+        case .ChooseStatus:
             cell.accessoryView = self.statusButton
             cell.accessoryView?.userInteractionEnabled = false
-        } else if (data.action == "facebook") {
+            
+        case .ToggleFacebook:
             cell.imageView!.image = UIImage(named: "facebook_icon")
             if (self.socialStatuses.count > 0) {
                 let social = SocialStatus(connected: self.socialStatuses["facebook"]!, and: data.action)
@@ -111,10 +129,12 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             } else {
                 cell.accessoryView = nil;
             }
-        } else if(data.action == "goToLogin") {
+            
+        case .DeleteAccount:
             cell.accessoryView = nil
             cell.accessoryType = UITableViewCellAccessoryType.None
-        } else {
+            
+        default:
             cell.accessoryView = nil
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         }
@@ -142,14 +162,12 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let action = structure[indexPath.section][indexPath.row].action
-        if (action.isEmpty) {
-            return
-        }
-        
-        if(action == "facebook") {
-            // nothing
-        } else if(action == "goToLogin") {
+        let action = itemsArray[indexPath.section][indexPath.row].action
+        switch action {
+        case .ToggleFacebook:
+            break
+            
+        case .DeleteAccount:
             let localization = Localizations.Settings.Delete.self
             let alert = UIAlertController(title: localization.Title, message: localization.Body, preferredStyle: .Alert)
             let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
@@ -158,9 +176,9 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             let deleteAction = UIAlertAction(title: Localizations.Settings.Delete.Button, style: .Destructive, handler: deleteAccount)
             alert.addAction(deleteAction)
             self.presentViewController(alert, animated: true, completion: nil)
-        } else {
-            self.jobsSelected = action
-            guard let segueIdentifier = SegueIdentifier(rawValue: action) else {
+            
+        default:
+            guard let segueIdentifier = action.segueIdentifier() else {
                 fatalError("Invalid segue identifier \(action)")
             }
             performSegueWithIdentifier(segueIdentifier, sender: self)
@@ -200,9 +218,10 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
         }
     }
 
-    func didTap(statusIdentifier: String, parent:SocialStatus) {
-        self.statusParent = parent;
-        if(parent.connected){
+    func didTap(socialStatus: SocialStatus) {
+        self.statusParent = socialStatus;
+        let statusIdentifier = "facebook" // TODO fix
+        if(socialStatus.connected){
             let title = Localizations.Settings.Disconnect.Title.Format(statusIdentifier)
             let message = Localizations.Settings.Disconnect.Title.Body(statusIdentifier)
             let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
@@ -221,7 +240,6 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
     
     func deleteAccount(_: UIAlertAction) {
         MixPanelHandler.sendData("DeleteAcountAction")
-        self.jobsSelected = "goToLogin"
         performSegueWithIdentifier(.GoToLogin, sender: self)
     }
     

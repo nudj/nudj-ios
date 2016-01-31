@@ -9,9 +9,9 @@ import Foundation
 
 struct SettingsItem {
     let name: String
-    let action: String // TODO: should be an Enum not a String
+    let action: SettingsController.CellAction
 
-    init(name:String, action:String) {
+    init(name: String, action: SettingsController.CellAction) {
         self.name = name;
         self.action = action;
     }
