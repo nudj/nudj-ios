@@ -373,7 +373,6 @@
 		C86F84CD1C444DB800C23332 /* NSXMLElement+XEP_0059.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F371B387CC800D5A8E9 /* NSXMLElement+XEP_0059.m */; };
 		C86F84CE1C444DB800C23332 /* JSQMessagesAvatarImageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E401B387CC700D5A8E9 /* JSQMessagesAvatarImageFactory.m */; };
 		C86F84D01C444DB800C23332 /* ChatListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC9D1B3853F900EC9140 /* ChatListTableViewCell.swift */; };
-		C86F84D11C444DB800C23332 /* SettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA9B441AF0D2280027A2A2 /* SettingsItem.swift */; };
 		C86F84D21C444DB800C23332 /* JSQMessagesTypingIndicatorFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E821B387CC800D5A8E9 /* JSQMessagesTypingIndicatorFooterView.m */; };
 		C86F84D31C444DB800C23332 /* SendFeedBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACE1C31B68FC0F003BD5F2 /* SendFeedBackViewController.swift */; };
 		C86F84D41C444DB800C23332 /* XMPPJID.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EAE1B387CC800D5A8E9 /* XMPPJID.m */; };
@@ -607,7 +606,6 @@
 		EBD1073F1AF0B8F800310818 /* Pods.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FDD460F204898DA0004C5B93 /* Pods.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EBDD28CE1ACD8ADA00956995 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDD28CD1ACD8ADA00956995 /* SettingsController.swift */; };
 		EBE5C3121B25811400CFF7E9 /* TokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE5C3111B25811400CFF7E9 /* TokenView.swift */; };
-		EBEA9B451AF0D2280027A2A2 /* SettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA9B441AF0D2280027A2A2 /* SettingsItem.swift */; };
 		EBEA9B491AF265150027A2A2 /* AddJobController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA9B481AF265150027A2A2 /* AddJobController.swift */; };
 		EBF17A221B4C128100C67657 /* VerifyCodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF17A211B4C128100C67657 /* VerifyCodeTextField.swift */; };
 		EBF17A241B4D538800C67657 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF17A231B4D538800C67657 /* Common.swift */; };
@@ -1167,7 +1165,6 @@
 		EBBF42581AB1E55F0001E8B6 /* DataProviderProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DataProviderProtocol.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EBDD28CD1ACD8ADA00956995 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SettingsController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EBE5C3111B25811400CFF7E9 /* TokenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TokenView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		EBEA9B441AF0D2280027A2A2 /* SettingsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SettingsItem.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EBEA9B481AF265150027A2A2 /* AddJobController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AddJobController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EBF17A211B4C128100C67657 /* VerifyCodeTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = VerifyCodeTextField.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EBF17A231B4D538800C67657 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Common.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -2610,7 +2607,6 @@
 				EBDD28CD1ACD8ADA00956995 /* SettingsController.swift */,
 				EB2F78071AD288E400B59C0E /* SettingsCell.swift */,
 				C8A661FD1C0B66440088355D /* SettingsCell.xib */,
-				EBEA9B441AF0D2280027A2A2 /* SettingsItem.swift */,
 				A9ACE1C31B68FC0F003BD5F2 /* SendFeedBackViewController.swift */,
 				A9ACE1CB1B69107A003BD5F2 /* SavedPostedJobs.swift */,
 				C83FB6BB1C3EB5D0004ACE3E /* VersionNumber.swift */,
@@ -3266,7 +3262,6 @@
 				C86F84CE1C444DB800C23332 /* JSQMessagesAvatarImageFactory.m in Sources */,
 				C86F84D01C444DB800C23332 /* ChatListTableViewCell.swift in Sources */,
 				C88204A71C4C258C00744554 /* SegueHandlerType.swift in Sources */,
-				C86F84D11C444DB800C23332 /* SettingsItem.swift in Sources */,
 				C86F84D21C444DB800C23332 /* JSQMessagesTypingIndicatorFooterView.m in Sources */,
 				C86F84D31C444DB800C23332 /* SendFeedBackViewController.swift in Sources */,
 				C86F84D41C444DB800C23332 /* XMPPJID.m in Sources */,
@@ -3507,7 +3502,6 @@
 				A99650431B387CC800D5A8E9 /* NSXMLElement+XEP_0059.m in Sources */,
 				A9964FE01B387CC800D5A8E9 /* JSQMessagesAvatarImageFactory.m in Sources */,
 				A9C6EC9F1B3853F900EC9140 /* ChatListTableViewCell.swift in Sources */,
-				EBEA9B451AF0D2280027A2A2 /* SettingsItem.swift in Sources */,
 				C88204A61C4C258C00744554 /* SegueHandlerType.swift in Sources */,
 				A9964FFE1B387CC800D5A8E9 /* JSQMessagesTypingIndicatorFooterView.m in Sources */,
 				A9ACE1C41B68FC0F003BD5F2 /* SendFeedBackViewController.swift in Sources */,

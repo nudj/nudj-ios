@@ -13,7 +13,7 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
     enum SegueIdentifier: String {
         case ShowProfile = "showYourProfile"
         case ShowStatusPicker = "showStatusPicker"
-        case GoToLogin = "goToLogin" // TODO rename this
+        case GoToLogin = "goToLogin"
         case GoToFeedBack = "goToFeedBack"
         case GoToSavedJobs = "goToSavedJobs"
         case GoToPostedJobs = "goToPostedJobs"
@@ -35,6 +35,20 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             case DeleteAccount: return SegueIdentifier.GoToLogin
             }
         }
+        
+        func title() -> String {
+            let titles = Localizations.Settings.Title.self
+            switch self {
+            case ShowProfile: return titles.Profile
+            case ChooseStatus: return titles.Status
+            case ShowSavedJobs: return titles.SavedJobs
+            case ShowPostedJobs: return titles.PostedJobs
+            case ShowChats: return titles.Chats
+            case ToggleFacebook: return titles.Facebook
+            case GiveFeedback: return titles.Feedback
+            case DeleteAccount: return titles.DeleteAccount
+            }
+        }
     }
 
     @IBOutlet weak var versionNumberLabel: UILabel!
@@ -47,22 +61,22 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
 
     var socialhander :SocialHandlerModel?
     var statusParent :SocialStatus?
-    let itemsArray: [[SettingsItem]] = [
+    let itemsArray: [[CellAction]] = [
         [
-            SettingsItem(name: Localizations.Settings.Title.Profile, action: .ShowProfile),
-            SettingsItem(name: Localizations.Settings.Title.Status, action: .ChooseStatus),
-            SettingsItem(name: Localizations.Settings.Title.SavedJobs, action: .ShowSavedJobs),
-            SettingsItem(name: Localizations.Settings.Title.PostedJobs, action: .ShowPostedJobs),
-            SettingsItem(name: Localizations.Settings.Title.Chats, action: .ShowChats)
+            .ShowProfile,
+            .ChooseStatus,
+            .ShowSavedJobs,
+            .ShowPostedJobs,
+            .ShowChats
         ],
         [
-            SettingsItem(name: Localizations.Settings.Title.Facebook, action: .ToggleFacebook)
+            .ToggleFacebook
         ],
         [
-            SettingsItem(name: Localizations.Settings.Title.Feedback, action: .GiveFeedback)
+            .GiveFeedback
         ],
         [
-            SettingsItem(name: Localizations.Settings.Title.DeleteAccount, action: .DeleteAccount)
+            .DeleteAccount
         ]
     ]
 
@@ -104,9 +118,9 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! SettingsCell
-        let data = itemsArray[indexPath.section][indexPath.row]
+        let action = itemsArray[indexPath.section][indexPath.row]
 
-        cell.setTitle(data.name);
+        cell.setTitle(action.title());
 
         if (indexPath.section == 3) {
             cell.alignCenter()
@@ -115,7 +129,7 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             cell.alignLeft()
         }
 
-        switch data.action {
+        switch action {
         case .ChooseStatus:
             cell.accessoryView = self.statusButton
             cell.accessoryView?.userInteractionEnabled = false
@@ -123,7 +137,7 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
         case .ToggleFacebook:
             cell.imageView!.image = UIImage(named: "facebook_icon")
             if (self.socialStatuses.count > 0) {
-                let social = SocialStatus(connected: self.socialStatuses["facebook"]!, and: data.action)
+                let social = SocialStatus(connected: self.socialStatuses["facebook"]!, and: action)
                 social.delegate = self
                 cell.accessoryView = social;
             } else {
@@ -162,7 +176,7 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let action = itemsArray[indexPath.section][indexPath.row].action
+        let action = itemsArray[indexPath.section][indexPath.row]
         switch action {
         case .ToggleFacebook:
             break
