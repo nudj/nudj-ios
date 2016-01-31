@@ -14,10 +14,25 @@ class SavedPostedJobs: BaseController, SegueHandlerType, DataProviderProtocol {
     enum SegueIdentifier: String {
         case GoToJob = "goToJob"
     }
+    
+    enum Query: String {
+        case Liked = "liked"
+        case UsersOwn = "mine"
+        
+        func IsEditable() -> Bool {
+            switch self {
+            case .UsersOwn:
+                return true
+                
+            case Liked:
+                return false
+            }
+        }
+    }
 
     @IBOutlet weak var table: DataTable!
     
-    var requestParams:String?
+    var requestParams: Query
     var selectedJobData:JSON? = nil
     var noContentImage = NoContentPlaceHolder()
     
@@ -28,10 +43,7 @@ class SavedPostedJobs: BaseController, SegueHandlerType, DataProviderProtocol {
         //self.navigationController?.title = self.headerTitle
         self.table.asignCellNib("JobCellTableViewCell")
         
-        
-        if self.requestParams != nil && self.requestParams! == "mine" {
-            self.table.canEdit = true
-        }
+        self.table.canEdit = self.requestParams.IsEditable()
     
         self.table.dataProvider = self as DataProviderProtocol
         self.table.delegate = self.table
@@ -58,14 +70,13 @@ class SavedPostedJobs: BaseController, SegueHandlerType, DataProviderProtocol {
     
     func requestData(page: Int, size: Int, listener: (JSON) -> ()) {
         // TODO: API strings
-        let url = "jobs/\(self.requestParams!)?params=job.title,job.salary,job.bonus,job.user,job.location,job.company,user.name,user.image&sizes=user.profile&page=" + String(page) + "&limit=" + String(size)
+        let query = requestParams.rawValue
+        let url = "jobs/\(query)?params=job.title,job.salary,job.bonus,job.user,job.location,job.company,user.name,user.image&sizes=user.profile&page=\(page)&limit=\(size)"
         
-        loggingPrint("jobs request \(url)")
         self.apiRequest(.GET, path: url, closure: listener)
     }
     
     func deleteData(id: Int, listener: (JSON) -> ()) {
-        loggingPrint("delete id\(id)")
         MixPanelHandler.sendData("JobDeleted")
         
         self.apiRequest(.DELETE, path: "jobs/\(id)", closure: listener)
