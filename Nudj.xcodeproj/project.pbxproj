@@ -2774,6 +2774,9 @@
 					C86F844E1C444DB800C23332 = {
 						DevelopmentTeam = A5R558S6UR;
 						SystemCapabilities = {
+							com.apple.DataProtection = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
