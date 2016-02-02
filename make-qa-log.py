@@ -13,7 +13,7 @@ ticketReplacement = r'[#\1](https://github.com/Nudj/nudj-ios/issues/\1)'
 def preamble():
 	print '''## Nightly build for QA
 
-Built from branch `"%s"` with SHA `%s`.
+Built from branch `%s` with SHA `%s`.
 
 The technical change log since the last build shipped to the App Store follows:
 ''' % (currentBranch(), currentHash())
