@@ -120,14 +120,7 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! SettingsCell
         let action = itemsArray[indexPath.section][indexPath.row]
 
-        cell.setTitle(action.title());
-
-        if (indexPath.section == 3) {
-            cell.alignCenter()
-            cell.textLabel?.textColor = UIColor.redColor()
-        } else {
-            cell.alignLeft()
-        }
+        cell.textLabel!.text = action.title()
 
         switch action {
         case .ChooseStatus:
@@ -147,6 +140,7 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
         case .DeleteAccount:
             cell.accessoryView = nil
             cell.accessoryType = UITableViewCellAccessoryType.None
+            cell.textLabel?.textColor = UIColor.redColor()
             
         default:
             cell.accessoryView = nil
@@ -156,25 +150,6 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
         return cell
     }
 
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        // TODO: magic numbers
-        return 0.0
-    }
-
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        // TODO: magic numbers
-        return 0.0
-    }
-
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        // TODO: magic numbers        
-        if (indexPath.section == 3) {
-            return 88.0
-        }else{
-            return 44.0;
-        }
-    }
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let action = itemsArray[indexPath.section][indexPath.row]
         switch action {
