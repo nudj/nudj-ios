@@ -7,7 +7,7 @@ Format the Git log between development and master into the markdown required for
 import os
 import re
 
-maxLines = None
+maxLines = 80
 ticketRegex = re.compile(r'#(\d+)')
 ticketReplacement = r'[#\1](https://github.com/Nudj/nudj-ios/issues/\1)'
 
