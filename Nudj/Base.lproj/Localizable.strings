@@ -121,6 +121,7 @@
 "settings.title.FAQ" = "Frequently Asked Questions";
 "settings.title.feedback" = "Send Feedback";
 "settings.title.delete-account" = "Delete Your Account";
+"settings.title.test-notification" = "Send a Test Notification";
 "settings.delete.title" = "Delete Account";
 "settings.delete.body" = "Are you sure you want to permanently delete your account information, including jobs and chats?";
 "settings.delete.button" = "Delete Account";

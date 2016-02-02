@@ -22,7 +22,7 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
     }
     
     enum CellAction {
-        case ShowProfile, ChooseStatus, ShowSavedJobs, ShowPostedJobs, ShowChats, ToggleFacebook, ShowFAQ, GiveFeedback, DeleteAccount
+        case ShowProfile, ChooseStatus, ShowSavedJobs, ShowPostedJobs, ShowChats, ToggleFacebook, ShowFAQ, GiveFeedback, DeleteAccount, TestNotification
         
         func segueIdentifier() -> SegueIdentifier? {
             switch self {
@@ -35,6 +35,7 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             case ShowFAQ: return SegueIdentifier.ShowFAQ
             case GiveFeedback: return SegueIdentifier.GoToFeedBack
             case DeleteAccount: return SegueIdentifier.GoToLogin
+            case TestNotification: return nil
             }
         }
         
@@ -50,6 +51,7 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             case ShowFAQ: return titles.Faq
             case GiveFeedback: return titles.Feedback
             case DeleteAccount: return titles.DeleteAccount
+            case TestNotification: return titles.TestNotification
             }
         }
     }
@@ -61,9 +63,9 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
     var socialStatuses = [String:Bool]() // TODO: use Enum not String
     
     let cellIdentifier = "SettingsCell"
-
-    var socialhander :SocialHandlerModel?
-    var statusParent :SocialStatus?
+    
+    var socialhander: SocialHandlerModel?
+    var statusParent: SocialStatus?
     let itemsArray: [[CellAction]] = [
         [
             .ShowProfile,
@@ -78,13 +80,13 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
 //        ],
         [
             .ShowFAQ,
-            .GiveFeedback
+            .GiveFeedback,
+            .TestNotification
         ],
         [
             .DeleteAccount
         ]
     ]
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -170,6 +172,21 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             let deleteAction = UIAlertAction(title: Localizations.Settings.Delete.Button, style: .Destructive, handler: deleteAccount)
             alert.addAction(deleteAction)
             self.presentViewController(alert, animated: true, completion: nil)
+            
+        case .TestNotification:
+            let api = API.sharedInstance
+            if (api.token == nil) {
+                break
+            }
+            api.get("nsx300/app_notification_to_me", params: nil, 
+                closure: {
+                json in
+                loggingPrint(json)
+                }, 
+                errorHandler: {
+                    error in
+                loggingPrint(error)
+            })
             
         default:
             guard let segueIdentifier = action.segueIdentifier() else {

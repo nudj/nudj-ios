@@ -342,11 +342,14 @@ public struct Localizations {
             /// Base translation: Frequently Asked Questions
             public static var Faq : String = "settings.title.FAQ".localized
 
-            /// Base translation: Send Feedback
-            public static var Feedback : String = "settings.title.feedback".localized
+            /// Base translation: Send a Test Notification
+            public static var TestNotification : String = "settings.title.test-notification".localized
 
             /// Base translation: Facebook
             public static var Facebook : String = "settings.title.facebook".localized
+
+            /// Base translation: Send Feedback
+            public static var Feedback : String = "settings.title.feedback".localized
 
             /// Base translation: Posted Jobs
             public static var PostedJobs : String = "settings.title.posted-jobs".localized
