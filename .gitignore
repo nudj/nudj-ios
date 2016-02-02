@@ -21,6 +21,7 @@ VersionX-revision.h
 build/
 *.[oa]
 DerivedData/
+*.pyc
 
 # Other source repository archive directories (protects when importing)
 .hg
