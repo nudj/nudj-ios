@@ -456,7 +456,6 @@
 		C86F85241C444DB800C23332 /* DDList.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FA21B387CC800D5A8E9 /* DDList.m */; };
 		C86F85251C444DB800C23332 /* CPAnimationSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F333251B41759A00F0D17B /* CPAnimationSequence.m */; };
 		C86F85261C444DB800C23332 /* JobCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBF42521AB0AF5F0001E8B6 /* JobCellTableViewCell.swift */; };
-		C86F85271C444DB800C23332 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2F78071AD288E400B59C0E /* SettingsCell.swift */; };
 		C86F85281C444DB800C23332 /* NSDate+XMPPDateTimeProfiles.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F491B387CC800D5A8E9 /* NSDate+XMPPDateTimeProfiles.m */; };
 		C86F85291C444DB800C23332 /* JSQMessagesTimestampFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E461B387CC700D5A8E9 /* JSQMessagesTimestampFormatter.m */; };
 		C86F852A1C444DB800C23332 /* JSQMessagesCellTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E681B387CC800D5A8E9 /* JSQMessagesCellTextView.m */; };
@@ -580,7 +579,6 @@
 		EB0926D91A8DE4CB00E1D958 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB0926D81A8DE4CB00E1D958 /* Images.xcassets */; };
 		EB0926DC1A8DE4CB00E1D958 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB0926DA1A8DE4CB00E1D958 /* LaunchScreen.xib */; };
 		EB0926E81A8DE4CB00E1D958 /* NudgeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0926E71A8DE4CB00E1D958 /* NudgeTests.swift */; };
-		EB2F78091AD288E400B59C0E /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2F78071AD288E400B59C0E /* SettingsCell.swift */; };
 		EB313D2E1AAF37FB00F008B8 /* StatusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB313D2D1AAF37FB00F008B8 /* StatusButton.swift */; };
 		EB313D301AAF4C5A00F008B8 /* StatusPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB313D2F1AAF4C5A00F008B8 /* StatusPicker.swift */; };
 		EB35BBA51AB7288000842E1F /* ContactsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB35BBA31AB7288000842E1F /* ContactsCell.swift */; };
@@ -1141,7 +1139,6 @@
 		EB0926E11A8DE4CB00E1D958 /* nudjTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nudjTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB0926E61A8DE4CB00E1D958 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB0926E71A8DE4CB00E1D958 /* NudgeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NudgeTests.swift; sourceTree = "<group>"; };
-		EB2F78071AD288E400B59C0E /* SettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SettingsCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB313D2D1AAF37FB00F008B8 /* StatusButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StatusButton.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB313D2F1AAF4C5A00F008B8 /* StatusPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StatusPicker.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB35BBA31AB7288000842E1F /* ContactsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ContactsCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -2605,7 +2602,6 @@
 			isa = PBXGroup;
 			children = (
 				EBDD28CD1ACD8ADA00956995 /* SettingsController.swift */,
-				EB2F78071AD288E400B59C0E /* SettingsCell.swift */,
 				C8A661FD1C0B66440088355D /* SettingsCell.xib */,
 				A9ACE1C31B68FC0F003BD5F2 /* SendFeedBackViewController.swift */,
 				A9ACE1CB1B69107A003BD5F2 /* SavedPostedJobs.swift */,
@@ -3348,7 +3344,6 @@
 				C86F85241C444DB800C23332 /* DDList.m in Sources */,
 				C86F85251C444DB800C23332 /* CPAnimationSequence.m in Sources */,
 				C86F85261C444DB800C23332 /* JobCellTableViewCell.swift in Sources */,
-				C86F85271C444DB800C23332 /* SettingsCell.swift in Sources */,
 				C86F85281C444DB800C23332 /* NSDate+XMPPDateTimeProfiles.m in Sources */,
 				C86F85291C444DB800C23332 /* JSQMessagesTimestampFormatter.m in Sources */,
 				C86F852A1C444DB800C23332 /* JSQMessagesCellTextView.m in Sources */,
@@ -3590,7 +3585,6 @@
 				A996506C1B387CC800D5A8E9 /* DDList.m in Sources */,
 				A9F333281B41759A00F0D17B /* CPAnimationSequence.m in Sources */,
 				EBBF42541AB0AF5F0001E8B6 /* JobCellTableViewCell.swift in Sources */,
-				EB2F78091AD288E400B59C0E /* SettingsCell.swift in Sources */,
 				A996504A1B387CC800D5A8E9 /* NSDate+XMPPDateTimeProfiles.m in Sources */,
 				A9964FE31B387CC800D5A8E9 /* JSQMessagesTimestampFormatter.m in Sources */,
 				A9964FEF1B387CC800D5A8E9 /* JSQMessagesCellTextView.m in Sources */,

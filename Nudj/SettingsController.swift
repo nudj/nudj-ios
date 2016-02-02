@@ -117,7 +117,7 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! SettingsCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
         let action = itemsArray[indexPath.section][indexPath.row]
 
         cell.textLabel!.text = action.title()
