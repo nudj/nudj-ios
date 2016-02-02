@@ -7,6 +7,7 @@ Format the Git log between development and master into the markdown required for
 import os
 import re
 
+maxLines = None
 ticketRegex = re.compile(r'#(\d+)')
 ticketReplacement = r'[#\1](https://github.com/Nudj/nudj-ios/issues/\1)'
 
@@ -58,8 +59,13 @@ def readLog():
 	'''Scan the Git log and format it into markdown'''
 	command = 'git log --pretty=format:%%s master..%s' % currentBranch()
 	f = os.popen(command)
+	lineCount = 0
 	for line in f.readlines():
+		if maxLines is not None and lineCount > maxLines:
+			print "...\n"
+			break
 		printMarkdown(line)
+		lineCount += 1
 	print "\n"
 
 def main():
