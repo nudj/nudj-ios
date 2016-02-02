@@ -14,9 +14,13 @@ class API {
     typealias JSONHandler = (JSON) -> Void
     typealias ErrorHandler = (ErrorType) -> Void
     
-    struct APIError: ErrorType {
+    struct APIError: ErrorType, CustomDebugStringConvertible {
         let code :Int
         let message :String
+        
+        var debugDescription: String { 
+            return "code: \(code), message: \(message)" 
+        }
     }
     
     // Production
@@ -35,15 +39,15 @@ class API {
 
     // MARK: Standard Requests Without token
     func get(path: String, params: [String: AnyObject]? = nil, closure: JSONHandler, errorHandler: ErrorHandler? = nil) {
-        self.request(Method.GET, path: path, params: params, closure: closure, errorHandler: errorHandler)
+        self.request(.GET, path: path, params: params, closure: closure, errorHandler: errorHandler)
     }
 
     func post(path: String, params: [String: AnyObject]? = nil, closure: JSONHandler, errorHandler: ErrorHandler? = nil) {
-        self.request(Method.POST, path: path, params: params, closure: closure, errorHandler: errorHandler)
+        self.request(.POST, path: path, params: params, closure: closure, errorHandler: errorHandler)
     }
 
     func put(path: String, params: [String: AnyObject]? = nil, closure: JSONHandler, errorHandler: ErrorHandler? = nil) {
-        self.request(Method.PUT, path: path, params: params, closure: closure, errorHandler: errorHandler)
+        self.request(.PUT, path: path, params: params, closure: closure, errorHandler: errorHandler)
     }
 
     // MARK: General request
