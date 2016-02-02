@@ -1,0 +1,9 @@
+//
+//  Timings.xcconfig
+//  Nudj
+//
+//  Created by Richard Buckle on 02/02/2016.
+//  Copyright © 2016 Nudge I.T. Limited. All rights reserved.
+//
+
+OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS" "-Xfrontend" "-debug-time-function-bodies"
