@@ -18,10 +18,11 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
         case GoToSavedJobs = "goToSavedJobs"
         case GoToPostedJobs = "goToPostedJobs"
         case GoToChats = "goToChats"
+        case ShowFAQ = "ShowFAQ"
     }
     
     enum CellAction {
-        case ShowProfile, ChooseStatus, ShowSavedJobs, ShowPostedJobs, ShowChats, ToggleFacebook, GiveFeedback, DeleteAccount
+        case ShowProfile, ChooseStatus, ShowSavedJobs, ShowPostedJobs, ShowChats, ToggleFacebook, ShowFAQ, GiveFeedback, DeleteAccount
         
         func segueIdentifier() -> SegueIdentifier? {
             switch self {
@@ -31,6 +32,7 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             case ShowPostedJobs: return SegueIdentifier.GoToPostedJobs
             case ShowChats: return SegueIdentifier.GoToChats
             case ToggleFacebook: return nil
+            case ShowFAQ: return SegueIdentifier.ShowFAQ
             case GiveFeedback: return SegueIdentifier.GoToFeedBack
             case DeleteAccount: return SegueIdentifier.GoToLogin
             }
@@ -45,6 +47,7 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             case ShowPostedJobs: return titles.PostedJobs
             case ShowChats: return titles.Chats
             case ToggleFacebook: return titles.Facebook
+            case ShowFAQ: return titles.Faq
             case GiveFeedback: return titles.Feedback
             case DeleteAccount: return titles.DeleteAccount
             }
@@ -73,6 +76,7 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             .ToggleFacebook
         ],
         [
+            .ShowFAQ,
             .GiveFeedback
         ],
         [
@@ -204,6 +208,9 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
         case .GoToChats:
             let controller = segue.destinationViewController as! ChatListViewController
             controller.isArchive = true
+            
+        case .ShowFAQ:
+            break
         }
     }
 
