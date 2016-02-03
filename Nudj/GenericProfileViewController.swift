@@ -647,7 +647,7 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
             return
         }
         
-        let imageParams = ["image": ["profile": imageData]]
+        let imageParams = ["image": imageData]
         UserModel.update(imageParams, closure: { response in
             UserModel.getCurrent(["user.image"], closure: { user in
                 self.showUserImage(user.image)
