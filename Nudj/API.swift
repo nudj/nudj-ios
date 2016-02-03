@@ -23,55 +23,38 @@ class API {
     // TODO: API strings
     var baseURL: String { return server.URLString + "api/v1/" }
     var token: String? = nil
+    
+    var manager: Alamofire.Manager = {
+        let configuration: NSURLSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        configuration.HTTPShouldSetCookies = false
+        return Manager(configuration: configuration)
+    }()
 
-    // TODO: remove this singleton (NB it isn't even implemented correctly)
-    static var sharedInstance = API();
-
-    // Standard Call without specifying token
-    func request(method: Method, path: String, params: [String: AnyObject]? = nil, closure: JSONHandler, errorHandler: ErrorHandler? ) {
-        self.request(method, path: path, params: params, closure: closure, token: nil, errorHandler: errorHandler)
-    }
+    // TODO: remove this singleton
+    static var sharedInstance = API()
 
     // MARK: Standard Requests Without token
     func get(path: String, params: [String: AnyObject]? = nil, closure: JSONHandler, errorHandler: ErrorHandler? = nil) {
-        self.request(Method.GET, path: path, params: params, closure: closure, token: nil, errorHandler: errorHandler)
+        self.request(Method.GET, path: path, params: params, closure: closure, errorHandler: errorHandler)
     }
 
     func post(path: String, params: [String: AnyObject]? = nil, closure: JSONHandler, errorHandler: ErrorHandler? = nil) {
-        self.request(Method.POST, path: path, params: params, closure: closure, token: nil, errorHandler: errorHandler)
+        self.request(Method.POST, path: path, params: params, closure: closure, errorHandler: errorHandler)
     }
 
     func put(path: String, params: [String: AnyObject]? = nil, closure: JSONHandler, errorHandler: ErrorHandler? = nil) {
-        self.request(Method.PUT, path: path, params: params, closure: closure, token: nil, errorHandler: errorHandler)
+        self.request(Method.PUT, path: path, params: params, closure: closure, errorHandler: errorHandler)
     }
 
     // MARK: General request
-    func request(method: Method, path: String, params: [String: AnyObject]? = nil, closure: JSONHandler, token: String?, errorHandler: ErrorHandler? ) {
-        let manager = Manager.sharedInstance
-        manager.session.configuration.HTTPShouldSetCookies = false
-        manager.session.configuration.HTTPMaximumConnectionsPerHost = 8
-        
-        var headers = ["Content-Type":"application/json"]
-        // TODO: investigate this workaround
-        if (token != nil) {
-            //manager.session.configuration.HTTPAdditionalHeaders = ["token": token!]
-            
-            //IOS 9 Work around
-            headers = [
-                "token": token!,
-            ]
-        } else if self.token != nil {
-            //manager.session.configuration.HTTPAdditionalHeaders = ["token": self.token!]
-            
-            //IOS 9 Work around
-            headers = [
-                "token": self.token!,
-            ]
+    func request(method: Method, path: String, params: [String: AnyObject]? = nil, closure: JSONHandler, errorHandler: ErrorHandler? ) {
+        var headers = ["Content-Type": "application/json"]
+        if let token = self.token {
+            headers["token"] = token
         }
         
-        let encoding = (method != Method.GET) ? Alamofire.ParameterEncoding.JSON : Alamofire.ParameterEncoding.URL
-        
-        Alamofire.request(method, (baseURL + path) as String, parameters: params, encoding: encoding, headers: headers).responseJSON {
+        let encoding = (method != .GET) ? Alamofire.ParameterEncoding.JSON : Alamofire.ParameterEncoding.URL
+        manager.request(method, (baseURL + path) as String, parameters: params, encoding: encoding, headers: headers).responseJSON {
             response in
             // Try to catch general API errors
             if (self.tryToCatchAPIError(response, errorHandler: errorHandler)) {

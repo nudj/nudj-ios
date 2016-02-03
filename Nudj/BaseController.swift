@@ -30,10 +30,7 @@ class BaseController: UIViewController {
 
     func apiRequest(method: API.Method, path: String, params: [String: AnyObject]? = nil, closure: ((JSON) -> ())? = nil, errorHandler: (ErrorType -> Void)? = nil ) {
         // TODO: remove this singleton nastiness
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
-        let token = API.sharedInstance.token ?? ""
-
-        appDelegate.api!.request(method, path: path, params: params, closure: {
+        API.sharedInstance.request(method, path: path, params: params, closure: {
             (json: JSON) in
 
             if (json["status"].boolValue != true && json["data"] == nil) {
@@ -55,7 +52,7 @@ class BaseController: UIViewController {
             if (closure != nil) {
                 closure!(json)
             }
-        }, token: token, errorHandler: errorHandler)
+        }, errorHandler: errorHandler)
     }
 
     func apiUpdateUser(params: [String: AnyObject], closure: ((JSON) -> ())?) {
