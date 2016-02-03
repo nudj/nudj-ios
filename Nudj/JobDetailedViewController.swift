@@ -14,6 +14,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     enum SegueIdentifier: String {
         case GoToProfile = "GoToProfile"
         case AskForReferral = "AskForReferral"
+        case EditJob = "EditJob"
     }
     
     // TODO: remove singleton access
@@ -182,13 +183,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         } else if (sender.title == Localizations.Jobs.Button.Edit){
             // Go to EditView
             MixPanelHandler.sendData("EditJobButtonClicked")
-            let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let navController = storyboard.instantiateViewControllerWithIdentifier("addJobNavigationController") as! UINavigationController
-            
-            let addJobView = navController.viewControllers[0] as! AddJobController
-            addJobView.jobId = Int(self.jobID!)
-            addJobView.isEditable = true
-            self.presentViewController(navController, animated: true, completion: nil)
+            performSegueWithIdentifier(.EditJob, sender: sender)
         }
     }
     
@@ -203,11 +198,17 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
                 profileView.type = .Public
                 profileView.preloadedName = authorName.text
             }
+            
         case .AskForReferral:
             AppDelegate.registerForRemoteNotifications()
             let askView = segue.destinationViewController as! AskReferralViewController
             askView.jobId = Int(self.jobID!)
             askView.isNudjRequest = true
+            
+        case .EditJob:
+            let addJobView = segue.destinationViewController as! AddJobController
+            addJobView.jobId = Int(self.jobID!)
+            addJobView.isEditable = true
         }        
     }
     
