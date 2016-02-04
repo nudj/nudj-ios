@@ -72,9 +72,10 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             .ShowPostedJobs,
             .ShowChats
         ],
-        [
-            .ToggleFacebook
-        ],
+        // temporatily hide facebook option until #33 is resolved
+//        [
+//            .ToggleFacebook
+//        ],
         [
             .ShowFAQ,
             .GiveFeedback
