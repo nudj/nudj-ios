@@ -320,15 +320,13 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
     }
 
     func makeThingsWhite() {
+        statusButton.changeColor(UIColor.whiteColor())
+        nameLabel.textColor = UIColor.whiteColor()
         if (backgroundImage.image != nil) {
-            nameLabel.textColor = UIColor.whiteColor()
-            statusButton.changeColor(UIColor.whiteColor())
             backgroundImage.backgroundColor = nil
         }else{
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
             backgroundImage.backgroundColor = appDelegate.appColor
-            nameLabel.textColor = UIColor.whiteColor()
-            statusButton.changeColor(UIColor.whiteColor())
         }
     }
 
