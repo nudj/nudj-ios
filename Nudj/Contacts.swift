@@ -107,6 +107,9 @@ class Contacts {
                     let phones = contact.phoneNumbers
                     let firstPhone = phones.first?.value as? CNPhoneNumber
                     let firstPhoneNumber = firstPhone?.stringValue ?? ""
+                    if firstPhoneNumber.isEmpty {
+                        return // prevents the server from erroneously matching against other users with empty phone numbers #77
+                    }
                     let identifier = contact.identifier
                     if let thumbnail = contact.thumbnailImageData {
                         if let image = UIImage(data: thumbnail) {
