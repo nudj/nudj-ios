@@ -486,7 +486,6 @@
 		C86F85441C444DB800C23332 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A99650831B38803A00D5A8E9 /* Security.framework */; };
 		C86F85451C444DB800C23332 /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9964FD21B387CC800D5A8E9 /* libidn.a */; };
 		C86F85461C444DB800C23332 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB337FA1A9F581F000CAD88 /* CoreData.framework */; };
-		C86F85471C444DB800C23332 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDD460F204898DA0004C5B93 /* Pods.framework */; };
 		C86F85491C444DB800C23332 /* connected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACE1CE1B6913F9003BD5F2 /* connected@2x.png */; };
 		C86F854A1C444DB800C23332 /* favourite2wText@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650A01B3DB3FF00D5A8E9 /* favourite2wText@2x.png */; };
 		C86F854B1C444DB800C23332 /* JSQMessagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9964E3D1B387CC700D5A8E9 /* JSQMessagesViewController.xib */; };
@@ -547,7 +546,6 @@
 		C86F85831C444DB800C23332 /* ContactsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661F71C0B662E0088355D /* ContactsCell.xib */; };
 		C86F85841C444DB800C23332 /* JSQMessagesCollectionViewCellIncoming.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9964E6F1B387CC800D5A8E9 /* JSQMessagesCollectionViewCellIncoming.xib */; };
 		C86F85851C444DB800C23332 /* no_profile_content@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324CE1B7BAE77009C1F0C /* no_profile_content@2x.png */; };
-		C86F85891C444DB800C23332 /* Pods.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FDD460F204898DA0004C5B93 /* Pods.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C86F85921C444F2100C23332 /* DevelopmentServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F85911C444F2100C23332 /* DevelopmentServer.swift */; };
 		C88204A61C4C258C00744554 /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88204A51C4C258C00744554 /* SegueHandlerType.swift */; };
 		C88204A71C4C258C00744554 /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88204A51C4C258C00744554 /* SegueHandlerType.swift */; };
@@ -600,8 +598,6 @@
 		EBBF42541AB0AF5F0001E8B6 /* JobCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBF42521AB0AF5F0001E8B6 /* JobCellTableViewCell.swift */; };
 		EBBF42571AB1DEFF0001E8B6 /* DataTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBF42561AB1DEFF0001E8B6 /* DataTable.swift */; };
 		EBBF42591AB1E55F0001E8B6 /* DataProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBF42581AB1E55F0001E8B6 /* DataProviderProtocol.swift */; };
-		EBD1073E1AF0B8F800310818 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDD460F204898DA0004C5B93 /* Pods.framework */; };
-		EBD1073F1AF0B8F800310818 /* Pods.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FDD460F204898DA0004C5B93 /* Pods.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EBDD28CE1ACD8ADA00956995 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDD28CD1ACD8ADA00956995 /* SettingsController.swift */; };
 		EBE5C3121B25811400CFF7E9 /* TokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE5C3111B25811400CFF7E9 /* TokenView.swift */; };
 		EBEA9B491AF265150027A2A2 /* AddJobController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA9B481AF265150027A2A2 /* AddJobController.swift */; };
@@ -638,31 +634,6 @@
 			remoteInfo = Nudge;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		C86F85881C444DB800C23332 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				C86F85891C444DB800C23332 /* Pods.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EBD107401AF0B8F900310818 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				EBD1073F1AF0B8F800310818 /* Pods.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		39A67AE42E9231EE2A750094 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -1193,7 +1164,6 @@
 				C86F85441C444DB800C23332 /* Security.framework in Frameworks */,
 				C86F85451C444DB800C23332 /* libidn.a in Frameworks */,
 				C86F85461C444DB800C23332 /* CoreData.framework in Frameworks */,
-				C86F85471C444DB800C23332 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1221,7 +1191,6 @@
 				A99650841B38803A00D5A8E9 /* Security.framework in Frameworks */,
 				A99650801B387CC800D5A8E9 /* libidn.a in Frameworks */,
 				EBB3382E1A9F5973000CAD88 /* CoreData.framework in Frameworks */,
-				EBD1073E1AF0B8F800310818 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2686,7 +2655,6 @@
 				C86F85481C444DB800C23332 /* Resources */,
 				C86F85861C444DB800C23332 /* Copy Pods Resources */,
 				C86F85871C444DB800C23332 /* Embed Pods Frameworks */,
-				C86F85881C444DB800C23332 /* Embed Frameworks */,
 				C86F858A1C444DB800C23332 /* HockeySDK BuildAgent */,
 			);
 			buildRules = (
@@ -2728,7 +2696,6 @@
 				EB0926C81A8DE4CB00E1D958 /* Resources */,
 				C751DBEFD9EE0FE3DA600BDB /* Copy Pods Resources */,
 				0A04781945E5FF55A489AEC4 /* Embed Pods Frameworks */,
-				EBD107401AF0B8F900310818 /* Embed Frameworks */,
 				C89325A81C08CBF40069FCFD /* HockeySDK BuildAgent */,
 			);
 			buildRules = (
