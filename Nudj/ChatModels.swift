@@ -222,9 +222,10 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         let conferenceInvitation = message.elementForName("x", xmlns:"jabber:x:conference")
         
         if(conferenceInvitation != nil){
-            let jid = conferenceInvitation.attributesAsDictionary().valueForKey("jid") as! String
+            let jidString = conferenceInvitation.attributesAsDictionary().valueForKey("jid") as! String
+            let jid = XMPPJID.jidWithString(jidString)
             let chatroom = ChatRoomModel()
-            let roomID = self.getRoomIdFromJid(jid)
+            let roomID = jid.user
             
             //Store new chat
             let defaults = NSUserDefaults.standardUserDefaults()
@@ -236,7 +237,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             appGlobalDelegate.shouldShowBadge = true;
             
             //terminate room and reconnect
-            chatroom.prepareChatModel(jid, roomId: roomID, with:self.xmppStream!, delegate:self)
+            chatroom.prepareChatModel(jidString, roomId: roomID, with:self.xmppStream!, delegate:self)
             self.listOfActiveChatRooms[roomID] = chatroom
         } else {
             // TODO: better error handling
@@ -326,36 +327,35 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     }
     
     func xmppRoomDidLeave(sender: XMPPRoom!) {
-        loggingPrint("XMPPROOM LEFT -> \(sender.roomJID.description)")
-        let roomID = self.getRoomIdFromJid(sender.roomJID.description)
-        
-        if let chatRoom = appGlobalDelegate.chatInst!.listOfActiveChatRooms[roomID] {
+        loggingPrint("XMPPROOM LEFT -> \(sender.roomJID)")
+        let roomID = sender.roomJID.user
+        if let chatRoom = listOfActiveChatRooms[roomID] {
             chatRoom.teminateSession()
-            appGlobalDelegate.chatInst!.listOfActiveChatRooms.removeValueForKey(roomID)
+            listOfActiveChatRooms.removeValueForKey(roomID)
             loggingPrint("removed from list")
         }
     }
     
     func xmppRoom(sender: XMPPRoom!, occupantDidJoin occupantJID: XMPPJID!, withPresence presence: XMPPPresence!) {
-        loggingPrint("occupantDidJoinroom \(presence.type()) \(occupantJID.description)")
-        let roomID = self.getRoomIdFromJid(sender.roomJID.description)
-        if let chatRoom = appGlobalDelegate.chatInst!.listOfActiveChatRooms[roomID] {
+        loggingPrint("occupantDidJoinroom \(presence.type()) \(occupantJID)")
+        let roomID = sender.roomJID.user
+        if let chatRoom = listOfActiveChatRooms[roomID] {
             chatRoom.otherUserPresence = presence.type()
         }
     }
     
     func xmppRoom(sender: XMPPRoom!, occupantDidUpdate occupantJID: XMPPJID!, withPresence presence: XMPPPresence!) {
-        loggingPrint("occupantDidUpdateroom \(presence.type()) \(occupantJID.description)")
-        let roomID = self.getRoomIdFromJid(sender.roomJID.description)
-        if let chatRoom = appGlobalDelegate.chatInst!.listOfActiveChatRooms[roomID] {
+        loggingPrint("occupantDidUpdateroom \(presence.type()) \(occupantJID)")
+        let roomID = sender.roomJID.user
+        if let chatRoom = listOfActiveChatRooms[roomID] {
             chatRoom.otherUserPresence = presence.type()
         }
     }
     
     func xmppRoom(sender: XMPPRoom!, occupantDidLeave occupantJID: XMPPJID!, withPresence presence: XMPPPresence!) {
-        loggingPrint("occupantDidLeaveroom \(presence.type()) \(occupantJID.description)")
-        let roomID = self.getRoomIdFromJid(sender.roomJID.description)
-        if let chatRoom = appGlobalDelegate.chatInst!.listOfActiveChatRooms[roomID] {
+        loggingPrint("occupantDidLeaveroom \(presence.type()) \(occupantJID)")
+        let roomID = sender.roomJID.user
+        if let chatRoom = listOfActiveChatRooms[roomID] {
             chatRoom.otherUserPresence = presence.type()
         }
     }
@@ -384,10 +384,5 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             }
             
             }, errorHandler: nil)
-    }
-    
-    func getRoomIdFromJid(jid:String) -> String{
-        let components = jid.componentsSeparatedByString("@")
-        return components[0]
     }
 }
