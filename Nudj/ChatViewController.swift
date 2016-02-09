@@ -302,15 +302,15 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
         // TODO: why not implemented?
     }
     
-    func recievedMessage(content:JSQMessage, conference:String){
-        let conferenceID = self.chatID + "" + appGlobalDelegate.chatInst!.ConferenceUrl
+    func recievedMessage(content: JSQMessage, conference: String){
+        let conferenceID = self.chatID + appGlobalDelegate.chatInst!.ConferenceUrl
         
         if(conferenceID == conference){
             self.scrollToBottomAnimated(true);
             self.messages.addObject(content)
             self.finishReceivingMessageAnimated(true)
         } else {
-            let roomID = appGlobalDelegate.chatInst!.getRoomIdFromJid(conference)
+            let roomID = appGlobalDelegate.chatInst!.getRoomIdFromJidString(conference)
             
             //Store new chat
             loggingPrint("Saving new message \(roomID)")

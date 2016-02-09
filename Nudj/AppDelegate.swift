@@ -476,7 +476,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
     func recievedMessage(content: JSQMessage, conference: String) {
         if(shouldShowBadge) {
             //Store message as it's new
-            let roomID = self.chatInst!.getRoomIdFromJid(conference)
+            let roomID = self.chatInst!.getRoomIdFromJidString(conference)
             
             loggingPrint("Saving new message \(roomID)")
             let defaults = NSUserDefaults.standardUserDefaults()

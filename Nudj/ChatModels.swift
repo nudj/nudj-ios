@@ -385,4 +385,13 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             
             }, errorHandler: nil)
     }
+    
+    func getRoomIdFromJid(jid: XMPPJID) -> String {
+        return jid.user
+    }
+    
+    func getRoomIdFromJidString(jidString: String) -> String {
+        let jid = XMPPJID.jidWithString(jidString)
+        return getRoomIdFromJid(jid)
+    }
 }
