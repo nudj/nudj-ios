@@ -149,6 +149,10 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             cell.accessoryType = UITableViewCellAccessoryType.None
             cell.textLabel?.textColor = UIColor.redColor()
             
+        case .TestNotification:
+            cell.accessoryView = nil
+            cell.accessoryType = UITableViewCellAccessoryType.None
+            
         default:
             cell.accessoryView = nil
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
@@ -176,16 +180,18 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
         case .TestNotification:
             let api = API.sharedInstance
             if (api.token == nil) {
+                AppDelegate.registerForRemoteNotifications()
+                // TODO: send a notification when application:didRegisterForRemoteNotificationsWithDeviceToken: received?
                 break
             }
             api.get("nsx300/app_notification_to_me", params: nil, 
                 closure: {
-                json in
-                loggingPrint(json)
+                    json in
+                    loggingPrint(json)
                 }, 
                 errorHandler: {
                     error in
-                loggingPrint(error)
+                    loggingPrint(error)
             })
             
         default:
