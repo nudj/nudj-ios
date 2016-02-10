@@ -48,7 +48,5 @@ TODO
 	* FBSDKLoginKit
 	* FBSDKShareKit
 * DateTools  
-  To be eliminated per issue #11
 * Mixpanel
-* ReachabilitySwift, from [https://github.com/ashleymills/Reachability.swift]()
 * CCMPopup
