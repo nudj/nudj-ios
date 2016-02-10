@@ -40,8 +40,6 @@ TODO
 
 ### In CocoaPods
 
-* Alamofire  
-  Used for networking. Could probably be eliminated.
 * SwiftyJSON, ~> 2.1
 * Facebook APIs
 	* FBSDKCoreKit
