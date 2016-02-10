@@ -20,11 +20,11 @@ TODO
 
 ### Not (yet) in submodules
 
-* AnimStep
+* AnimStep  
+  Used by JSQMessagesViewController
 * HockeySDK-iOS  
   Used for crash reporting and deployment to QA.  
   Version 3.8.5 licensed from [http://hockeyapp.net/]().
-* iOSLinkedInAPI
 * JSQMessagesViewController
 * JSQSystemSoundPlayer
 * KSTokenView
