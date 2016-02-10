@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		16B64AE865819B4367ADC3D9 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDD460F204898DA0004C5B93 /* Pods.framework */; };
 		A903BAEE1B581C4F00D69863 /* NZLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A903BAED1B581C4F00D69863 /* NZLabel.m */; };
 		A9191EA61B6A402E000F9168 /* SocialStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9191EA51B6A402E000F9168 /* SocialStatus.swift */; };
 		A92324D01B7BAE77009C1F0C /* no_chats@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324C81B7BAE77009C1F0C /* no_chats@2x.png */; };
@@ -545,6 +544,8 @@
 		C86F85921C444F2100C23332 /* DevelopmentServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F85911C444F2100C23332 /* DevelopmentServer.swift */; };
 		C88204A61C4C258C00744554 /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88204A51C4C258C00744554 /* SegueHandlerType.swift */; };
 		C88204A71C4C258C00744554 /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88204A51C4C258C00744554 /* SegueHandlerType.swift */; };
+		C886F9D41C6BF438000D5AEA /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C886F9D31C6BF438000D5AEA /* Pods.framework */; };
+		C886F9D51C6BF467000D5AEA /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C898A54C1C6BEFA8001DAB38 /* Pods.framework */; };
 		C88BA0811C527416007A81EB /* Dialling Codes.plist in Resources */ = {isa = PBXBuildFile; fileRef = C88BA0801C527416007A81EB /* Dialling Codes.plist */; };
 		C88BA0821C527416007A81EB /* Dialling Codes.plist in Resources */ = {isa = PBXBuildFile; fileRef = C88BA0801C527416007A81EB /* Dialling Codes.plist */; };
 		C88BA0841C5277DD007A81EB /* CountryPickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88BA0831C5277DD007A81EB /* CountryPickerDataSource.swift */; };
@@ -556,7 +557,6 @@
 		C89325B01C08CE1C0069FCFD /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C89325AF1C08CE1C0069FCFD /* libc++.tbd */; };
 		C89325B51C08CE410069FCFD /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89325B21C08CE410069FCFD /* HockeySDK.framework */; };
 		C89325B61C08CE420069FCFD /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C89325B41C08CE410069FCFD /* HockeySDKResources.bundle */; };
-		C89E254E1C6A99D900E55740 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89E254D1C6A99D900E55740 /* Pods.framework */; };
 		C8A661EC1C0B66110088355D /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661EE1C0B66110088355D /* NotificationCell.xib */; };
 		C8A661EF1C0B66160088355D /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661F11C0B66160088355D /* ChatViewController.xib */; };
 		C8A661F21C0B66270088355D /* ChatListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661F41C0B66270088355D /* ChatListTableViewCell.xib */; };
@@ -1071,6 +1071,8 @@
 		C86F858F1C444DB900C23332 /* Beta-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Beta-Info.plist"; sourceTree = "<group>"; };
 		C86F85911C444F2100C23332 /* DevelopmentServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevelopmentServer.swift; sourceTree = "<group>"; };
 		C88204A51C4C258C00744554 /* SegueHandlerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueHandlerType.swift; sourceTree = "<group>"; };
+		C886F9D11C6BF372000D5AEA /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
+		C886F9D31C6BF438000D5AEA /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
 		C88BA0801C527416007A81EB /* Dialling Codes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Dialling Codes.plist"; sourceTree = "<group>"; };
 		C88BA0831C5277DD007A81EB /* CountryPickerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryPickerDataSource.swift; sourceTree = "<group>"; };
 		C89325A21C08BEC10069FCFD /* LoggingPrint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggingPrint.swift; sourceTree = "<group>"; };
@@ -1080,6 +1082,7 @@
 		C89325AF1C08CE1C0069FCFD /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		C89325B21C08CE410069FCFD /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HockeySDK.framework; sourceTree = "<group>"; };
 		C89325B41C08CE410069FCFD /* HockeySDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = HockeySDKResources.bundle; sourceTree = "<group>"; };
+		C898A54C1C6BEFA8001DAB38 /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "../../../Library/Developer/Xcode/DerivedData/Nudj-fdtsqpojpmyqxbgcozpglcgdnlcx/Build/Products/Debug-iphonesimulator/Pods.framework"; sourceTree = "<group>"; };
 		C89E254D1C6A99D900E55740 /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
 		C8A661DE1C0B60020088355D /* Nudj.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Nudj.release.xcconfig; sourceTree = "<group>"; };
 		C8A661DF1C0B60290088355D /* Nudj.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Nudj.debug.xcconfig; sourceTree = "<group>"; };
@@ -1145,7 +1148,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C89E254E1C6A99D900E55740 /* Pods.framework in Frameworks */,
+				C886F9D51C6BF467000D5AEA /* Pods.framework in Frameworks */,
 				C86F853A1C444DB800C23332 /* libc++.tbd in Frameworks */,
 				C86F853B1C444DB800C23332 /* QuickLook.framework in Frameworks */,
 				C86F853C1C444DB800C23332 /* CoreText.framework in Frameworks */,
@@ -1173,6 +1176,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C886F9D41C6BF438000D5AEA /* Pods.framework in Frameworks */,
 				C89325B01C08CE1C0069FCFD /* libc++.tbd in Frameworks */,
 				C89325AE1C08CCF60069FCFD /* QuickLook.framework in Frameworks */,
 				C89325AC1C08CCEA0069FCFD /* CoreText.framework in Frameworks */,
@@ -1186,7 +1190,6 @@
 				A99650841B38803A00D5A8E9 /* Security.framework in Frameworks */,
 				A99650801B387CC800D5A8E9 /* libidn.a in Frameworks */,
 				EBB3382E1A9F5973000CAD88 /* CoreData.framework in Frameworks */,
-				16B64AE865819B4367ADC3D9 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2339,6 +2342,9 @@
 		B24DF65843B49C77F100654A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C886F9D31C6BF438000D5AEA /* Pods.framework */,
+				C886F9D11C6BF372000D5AEA /* Pods.framework */,
+				C898A54C1C6BEFA8001DAB38 /* Pods.framework */,
 				C89E254D1C6A99D900E55740 /* Pods.framework */,
 				C89325AF1C08CE1C0069FCFD /* libc++.tbd */,
 				C89325B11C08CE410069FCFD /* HockeySDK.embeddedframework */,
