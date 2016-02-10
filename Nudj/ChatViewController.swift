@@ -340,6 +340,14 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
     }
     
     override func dropDownAction(sender: AnyObject!) {
+        func completeRequest(path: String, method: API.Method) {
+            let api = API.sharedInstance
+            api.request(method, path: path, closure: {_ in}, errorHandler: { 
+                error in
+                loggingPrint("error for \(method) on \(path): \(error)")
+            })
+        }
+
         let selectedButton = sender as! UIButton
         // TODO: Ugh, get rid of switching on tag
         switch (selectedButton.tag) {
@@ -366,10 +374,10 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
             let endpoint = "jobs/\(jobID)/like"
             if(selectedButton.selected){
                 MixPanelHandler.sendData("Chat_UnfavouriteJob")
-                self.completeRequest(endpoint, method: .DELETE)
+                completeRequest(endpoint, method: .DELETE)
             }else{
                 MixPanelHandler.sendData("Chat_FavouriteJob")
-                self.completeRequest(endpoint, method: .PUT)
+                completeRequest(endpoint, method: .PUT)
             }
             selectedButton.selected = !selectedButton.selected
             break;
@@ -387,7 +395,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
             let endpoint = "chat/\(chatID)/archive"
             if(selectedButton.selected){
                 MixPanelHandler.sendData("Chat_RestoreFromArchive")
-                self.completeRequest(endpoint, method: .DELETE)
+                completeRequest(endpoint, method: .DELETE)
                 let alert = UIAlertController(title: Localizations.Chat.Restored.Title, message: nil, preferredStyle: .Alert)
                 let defaultAction = UIAlertAction(title: Localizations.General.Button.Ok, style: .Default, handler: dismissSelf)
                 alert.addAction(defaultAction)
@@ -395,7 +403,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
                 self.presentViewController(alert, animated: true, completion: nil)
             } else {
                 MixPanelHandler.sendData("Chat_Archive")
-                self.completeRequest(endpoint, method: .PUT)
+                completeRequest(endpoint, method: .PUT)
                 let alert = UIAlertController(title: Localizations.Chat.Archived.Title, message: Localizations.Chat.Archived.Body, preferredStyle: .Alert)
                 let defaultAction = UIAlertAction(title: Localizations.General.Button.Ok, style: .Default, handler: dismissSelf)
                 alert.addAction(defaultAction)
@@ -464,14 +472,6 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
             }, errorHandler: {
                 error in
                 loggingPrint(error)
-        })
-    }
-    
-    func completeRequest(path: String, method: API.Method) {
-        let api = API()
-        api.request(method, path: path, closure: {_ in}, errorHandler: { 
-            error in
-            loggingPrint("error for \(method) on \(path): \(error)")
         })
     }
 }

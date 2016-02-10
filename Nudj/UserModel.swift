@@ -152,7 +152,7 @@ class UserModel: CustomStringConvertible {
             ? "me"
             : "\(id)"
         // TODO: API strings
-        API.sharedInstance.request(API.Method.GET, path: "users/\(userId)?params=\(userFields)", params: params, closure: closure!, errorHandler: errorHandler)
+        API.sharedInstance.get("users/\(userId)?params=\(userFields)", params: params, closure: closure!, errorHandler: errorHandler)
     }
 
     static func update(fields: [String: AnyObject], closure: ((JSON) -> ())? = nil, errorHandler: ErrorHandler? = nil) {

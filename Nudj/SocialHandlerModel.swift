@@ -59,7 +59,7 @@ class SocialHandlerModel: NSObject {
     }
     
     func deleteSocial(path:String, completionHandler:(success:Bool) -> Void){
-        API.sharedInstance.request(API.Method.DELETE, path: "connect/\(path)", params: nil, closure: { 
+        API.sharedInstance.delete("connect/\(path)", params: nil, closure: { 
             json in
             loggingPrint("\(path) token deleted successfully -> \(json)")
             completionHandler(success:true)

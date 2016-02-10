@@ -135,7 +135,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     }
     
     func deleteChat(row:Int){
-        API.sharedInstance.request(.DELETE, path:"chat/\(self.data[row].chatId!)", params: nil, closure: { 
+        API.sharedInstance.delete("chat/\(self.data[row].chatId!)", params: nil, closure: { 
             response in
         
             self.data.removeAtIndex(row)

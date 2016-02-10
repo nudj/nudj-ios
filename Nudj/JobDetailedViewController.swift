@@ -172,7 +172,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
             }
         } else if(sender.title == Localizations.Jobs.Button.Saved) {
             MixPanelHandler.sendData("SavedJobButtonClicked")
-            API.sharedInstance.request(API.Method.DELETE, path: "jobs/\(self.jobID!)/like", params: nil, closure: { 
+            API.sharedInstance.delete("jobs/\(self.jobID!)/like", params: nil, closure: { 
                 json in
                 loggingPrint("un save \(json)")
                 self.navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Button.Save

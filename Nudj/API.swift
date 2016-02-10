@@ -37,21 +37,25 @@ class API {
     // TODO: remove this singleton
     static var sharedInstance = API()
 
-    // MARK: Standard Requests Without token
-    func get(path: String, params: [String: AnyObject]? = nil, closure: JSONHandler, errorHandler: ErrorHandler? = nil) {
+    // MARK: Convenience request methods
+    func get(path: String, params: [String: AnyObject]? = nil, closure: JSONHandler? = nil, errorHandler: ErrorHandler? = nil) {
         self.request(.GET, path: path, params: params, closure: closure, errorHandler: errorHandler)
     }
 
-    func post(path: String, params: [String: AnyObject]? = nil, closure: JSONHandler, errorHandler: ErrorHandler? = nil) {
+    func post(path: String, params: [String: AnyObject]? = nil, closure: JSONHandler? = nil, errorHandler: ErrorHandler? = nil) {
         self.request(.POST, path: path, params: params, closure: closure, errorHandler: errorHandler)
     }
 
-    func put(path: String, params: [String: AnyObject]? = nil, closure: JSONHandler, errorHandler: ErrorHandler? = nil) {
+    func put(path: String, params: [String: AnyObject]? = nil, closure: JSONHandler? = nil, errorHandler: ErrorHandler? = nil) {
         self.request(.PUT, path: path, params: params, closure: closure, errorHandler: errorHandler)
     }
 
+    func delete(path: String, params: [String: AnyObject]? = nil, closure: JSONHandler? = nil, errorHandler: ErrorHandler? = nil) {
+        self.request(.DELETE, path: path, params: params, closure: closure, errorHandler: errorHandler)
+    }
+    
     // MARK: General request
-    func request(method: Method, path: String, params: [String: AnyObject]? = nil, closure: JSONHandler, errorHandler: ErrorHandler? ) {
+    func request(method: Method, path: String, params: [String: AnyObject]? = nil, closure: JSONHandler? = nil, errorHandler: ErrorHandler? ) {
         var headers = ["Content-Type": "application/json"]
         if let token = self.token {
             headers["token"] = token
@@ -69,7 +73,7 @@ class API {
             switch response.result {
             case .Success(let value):
                 let json = JSON(value)
-                closure(json)
+                closure?(json)
                 break
                 
             case .Failure(let error):
@@ -79,7 +83,7 @@ class API {
         }
     }
 
-    func tryToCatchAPIError(response: Alamofire.Response<AnyObject, NSError>, errorHandler: ErrorHandler?) -> Bool {
+    private func tryToCatchAPIError(response: Alamofire.Response<AnyObject, NSError>, errorHandler: ErrorHandler?) -> Bool {
         guard let rawResponse: NSHTTPURLResponse = response.response else {
             return false
         }
@@ -117,7 +121,7 @@ class API {
         return true
     }
 
-    func performLogout() {
+    private func performLogout() {
         let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
         delegate.deleteAllData()
         delegate.showViewControllerWithIdentifier(.Login)

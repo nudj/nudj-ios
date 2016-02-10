@@ -394,7 +394,7 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
     
     func deleteJob(_: UIAlertAction) {
         // API strings
-        API.sharedInstance.request(.DELETE, path: "jobs/\(self.jobId!)", params: nil, closure: { json in
+        API.sharedInstance.delete("jobs/\(self.jobId!)", params: nil, closure: { json in
             MixPanelHandler.sendData("JobDeleted")
             self.closeCurrentView()
             }, errorHandler: { 
