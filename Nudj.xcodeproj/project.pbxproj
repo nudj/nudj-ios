@@ -13,14 +13,12 @@
 		A92324D01B7BAE77009C1F0C /* no_chats@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324C81B7BAE77009C1F0C /* no_chats@2x.png */; };
 		A92324D11B7BAE77009C1F0C /* no_contacts@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324C91B7BAE77009C1F0C /* no_contacts@2x.png */; };
 		A92324D21B7BAE77009C1F0C /* no_favourite_contacts@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324CA1B7BAE77009C1F0C /* no_favourite_contacts@2x.png */; };
-		A92324D31B7BAE77009C1F0C /* no_internet_conection@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324CB1B7BAE77009C1F0C /* no_internet_conection@2x.png */; };
 		A92324D41B7BAE77009C1F0C /* no_jobs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324CC1B7BAE77009C1F0C /* no_jobs@2x.png */; };
 		A92324D51B7BAE77009C1F0C /* no_notifications@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324CD1B7BAE77009C1F0C /* no_notifications@2x.png */; };
 		A92324D61B7BAE77009C1F0C /* no_profile_content@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324CE1B7BAE77009C1F0C /* no_profile_content@2x.png */; };
 		A92324D71B7BAE77009C1F0C /* no_search_results@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324CF1B7BAE77009C1F0C /* no_search_results@2x.png */; };
 		A929E4951B863D3F00AC2A5F /* MixPanelHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A929E4941B863D3F00AC2A5F /* MixPanelHandler.swift */; };
 		A947CC991B7119B500C9518E /* NoContentPlaceHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A947CC981B7119B500C9518E /* NoContentPlaceHolder.swift */; };
-		A94B49D61B8A8056008CF762 /* NoInternetConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94B49D51B8A8056008CF762 /* NoInternetConnectionView.swift */; };
 		A94FE6CC1B84C9E600761F32 /* archive_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A94FE6CB1B84C9E600761F32 /* archive_active@2x.png */; };
 		A95798251B46965A006E826E /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95798241B46965A006E826E /* NotificationViewController.swift */; };
 		A984E2EE1B67ACA9009F318E /* ChatRoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A984E2ED1B67ACA9009F318E /* ChatRoomModel.swift */; };
@@ -450,7 +448,6 @@
 		C86F851D1C444DB800C23332 /* XMPPRoomHybrid.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9964F001B387CC800D5A8E9 /* XMPPRoomHybrid.xcdatamodeld */; };
 		C86F851E1C444DB800C23332 /* XEP_0223.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F8E1B387CC800D5A8E9 /* XEP_0223.m */; };
 		C86F851F1C444DB800C23332 /* LoggingPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89325A21C08BEC10069FCFD /* LoggingPrint.swift */; };
-		C86F85201C444DB800C23332 /* NoInternetConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94B49D51B8A8056008CF762 /* NoInternetConnectionView.swift */; };
 		C86F85211C444DB800C23332 /* XMPPUserMemoryStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EDD1B387CC800D5A8E9 /* XMPPUserMemoryStorageObject.m */; };
 		C86F85221C444DB800C23332 /* XMPPMessage+XEP_0308.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F991B387CC800D5A8E9 /* XMPPMessage+XEP_0308.m */; };
 		C86F85231C444DB800C23332 /* XMPPRoomMemoryStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F0B1B387CC800D5A8E9 /* XMPPRoomMemoryStorage.m */; };
@@ -501,7 +498,6 @@
 		C86F85541C444DB800C23332 /* no_jobs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324CC1B7BAE77009C1F0C /* no_jobs@2x.png */; };
 		C86F85551C444DB800C23332 /* JSQMessagesToolbarContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9964E801B387CC800D5A8E9 /* JSQMessagesToolbarContentView.xib */; };
 		C86F85561C444DB800C23332 /* 3dots@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650981B3DB2D100D5A8E9 /* 3dots@2x.png */; };
-		C86F85571C444DB800C23332 /* NoInternetConnectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A662031C0B66570088355D /* NoInternetConnectionView.xib */; };
 		C86F85581C444DB800C23332 /* tag_location_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333551B42ACDC00F0D17B /* tag_location_active@2x.png */; };
 		C86F85591C444DB800C23332 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3334D1B42ACCB00F0D17B /* check.png */; };
 		C86F855A1C444DB800C23332 /* salary_details@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3335B1B42ACDC00F0D17B /* salary_details@2x.png */; };
@@ -514,7 +510,6 @@
 		C86F85611C444DB800C23332 /* employer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333581B42ACDC00F0D17B /* employer@2x.png */; };
 		C86F85621C444DB800C23332 /* job_title@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3335A1B42ACDC00F0D17B /* job_title@2x.png */; };
 		C86F85631C444DB800C23332 /* no_contacts@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324C91B7BAE77009C1F0C /* no_contacts@2x.png */; };
-		C86F85641C444DB800C23332 /* no_internet_conection@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324CB1B7BAE77009C1F0C /* no_internet_conection@2x.png */; };
 		C86F85651C444DB800C23332 /* favouriteWText@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A996509F1B3DB3FF00D5A8E9 /* favouriteWText@2x.png */; };
 		C86F85661C444DB800C23332 /* archive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A996509D1B3DB3FF00D5A8E9 /* archive@2x.png */; };
 		C86F85671C444DB800C23332 /* no_search_results@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324CF1B7BAE77009C1F0C /* no_search_results@2x.png */; };
@@ -568,7 +563,6 @@
 		C8A661F51C0B662E0088355D /* ContactsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661F71C0B662E0088355D /* ContactsCell.xib */; };
 		C8A661F81C0B66350088355D /* JobCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661FA1C0B66350088355D /* JobCellTableViewCell.xib */; };
 		C8A661FB1C0B66440088355D /* SettingsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661FD1C0B66440088355D /* SettingsCell.xib */; };
-		C8A662011C0B66570088355D /* NoInternetConnectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A662031C0B66570088355D /* NoInternetConnectionView.xib */; };
 		C8A662061C0B69960088355D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C8A662081C0B69960088355D /* Localizable.strings */; };
 		C8A6A02C1C44536C004DB1C0 /* NudgeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0926E71A8DE4CB00E1D958 /* NudgeTests.swift */; };
 		EB000F7C1AB2E0B800E4D385 /* DataTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB000F7B1AB2E0B800E4D385 /* DataTableCell.swift */; };
@@ -646,7 +640,6 @@
 		A92324C81B7BAE77009C1F0C /* no_chats@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_chats@2x.png"; sourceTree = "<group>"; };
 		A92324C91B7BAE77009C1F0C /* no_contacts@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_contacts@2x.png"; sourceTree = "<group>"; };
 		A92324CA1B7BAE77009C1F0C /* no_favourite_contacts@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_favourite_contacts@2x.png"; sourceTree = "<group>"; };
-		A92324CB1B7BAE77009C1F0C /* no_internet_conection@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_internet_conection@2x.png"; sourceTree = "<group>"; };
 		A92324CC1B7BAE77009C1F0C /* no_jobs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_jobs@2x.png"; sourceTree = "<group>"; };
 		A92324CD1B7BAE77009C1F0C /* no_notifications@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_notifications@2x.png"; sourceTree = "<group>"; };
 		A92324CE1B7BAE77009C1F0C /* no_profile_content@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_profile_content@2x.png"; sourceTree = "<group>"; };
@@ -654,7 +647,6 @@
 		A929E4941B863D3F00AC2A5F /* MixPanelHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MixPanelHandler.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A947CC981B7119B500C9518E /* NoContentPlaceHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NoContentPlaceHolder.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A947CC9B1B711CF000C9518E /* no_jobs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_jobs@2x.png"; sourceTree = "<group>"; };
-		A94B49D51B8A8056008CF762 /* NoInternetConnectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NoInternetConnectionView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A94FE6CB1B84C9E600761F32 /* archive_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archive_active@2x.png"; sourceTree = "<group>"; };
 		A95798241B46965A006E826E /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NotificationViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A984E2ED1B67ACA9009F318E /* ChatRoomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ChatRoomModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -1098,7 +1090,6 @@
 		C8A661F61C0B662E0088355D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ContactsCell.xib; sourceTree = "<group>"; };
 		C8A661F91C0B66350088355D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/JobCellTableViewCell.xib; sourceTree = "<group>"; };
 		C8A661FC1C0B66440088355D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SettingsCell.xib; sourceTree = "<group>"; };
-		C8A662021C0B66570088355D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NoInternetConnectionView.xib; sourceTree = "<group>"; };
 		C8A662071C0B69960088355D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C8A6A0321C44536C004DB1C0 /* Nudj beta tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Nudj beta tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8A6A0331C44536C004DB1C0 /* Beta-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Beta-Info.plist"; sourceTree = "<group>"; };
@@ -1233,7 +1224,6 @@
 				A92324C81B7BAE77009C1F0C /* no_chats@2x.png */,
 				A92324C91B7BAE77009C1F0C /* no_contacts@2x.png */,
 				A92324CA1B7BAE77009C1F0C /* no_favourite_contacts@2x.png */,
-				A92324CB1B7BAE77009C1F0C /* no_internet_conection@2x.png */,
 				A92324CC1B7BAE77009C1F0C /* no_jobs@2x.png */,
 				A92324CD1B7BAE77009C1F0C /* no_notifications@2x.png */,
 				A92324CE1B7BAE77009C1F0C /* no_profile_content@2x.png */,
@@ -2531,8 +2521,6 @@
 				A9191EA51B6A402E000F9168 /* SocialStatus.swift */,
 				A947CC981B7119B500C9518E /* NoContentPlaceHolder.swift */,
 				A929E4941B863D3F00AC2A5F /* MixPanelHandler.swift */,
-				C8A662031C0B66570088355D /* NoInternetConnectionView.xib */,
-				A94B49D51B8A8056008CF762 /* NoInternetConnectionView.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -2815,7 +2803,6 @@
 				C86F85541C444DB800C23332 /* no_jobs@2x.png in Resources */,
 				C86F85551C444DB800C23332 /* JSQMessagesToolbarContentView.xib in Resources */,
 				C86F85561C444DB800C23332 /* 3dots@2x.png in Resources */,
-				C86F85571C444DB800C23332 /* NoInternetConnectionView.xib in Resources */,
 				C86F85581C444DB800C23332 /* tag_location_active@2x.png in Resources */,
 				C86F85591C444DB800C23332 /* check.png in Resources */,
 				C86F855A1C444DB800C23332 /* salary_details@2x.png in Resources */,
@@ -2828,7 +2815,6 @@
 				C86F85611C444DB800C23332 /* employer@2x.png in Resources */,
 				C86F85621C444DB800C23332 /* job_title@2x.png in Resources */,
 				C86F85631C444DB800C23332 /* no_contacts@2x.png in Resources */,
-				C86F85641C444DB800C23332 /* no_internet_conection@2x.png in Resources */,
 				C86F85651C444DB800C23332 /* favouriteWText@2x.png in Resources */,
 				C86F85661C444DB800C23332 /* archive@2x.png in Resources */,
 				C86F85671C444DB800C23332 /* no_search_results@2x.png in Resources */,
@@ -2890,7 +2876,6 @@
 				A92324D41B7BAE77009C1F0C /* no_jobs@2x.png in Resources */,
 				A9964FFD1B387CC800D5A8E9 /* JSQMessagesToolbarContentView.xib in Resources */,
 				A99650991B3DB2D100D5A8E9 /* 3dots@2x.png in Resources */,
-				C8A662011C0B66570088355D /* NoInternetConnectionView.xib in Resources */,
 				A9F333621B42ACDC00F0D17B /* tag_location_active@2x.png in Resources */,
 				A9F3334E1B42ACCB00F0D17B /* check.png in Resources */,
 				A9F333671B42ACDC00F0D17B /* salary_details@2x.png in Resources */,
@@ -2903,7 +2888,6 @@
 				A9F333641B42ACDC00F0D17B /* employer@2x.png in Resources */,
 				A9F333661B42ACDC00F0D17B /* job_title@2x.png in Resources */,
 				A92324D11B7BAE77009C1F0C /* no_contacts@2x.png in Resources */,
-				A92324D31B7BAE77009C1F0C /* no_internet_conection@2x.png in Resources */,
 				A99650A71B3DB3FF00D5A8E9 /* favouriteWText@2x.png in Resources */,
 				A99650A51B3DB3FF00D5A8E9 /* archive@2x.png in Resources */,
 				A92324D71B7BAE77009C1F0C /* no_search_results@2x.png in Resources */,
@@ -3312,7 +3296,6 @@
 				C86F851D1C444DB800C23332 /* XMPPRoomHybrid.xcdatamodeld in Sources */,
 				C86F851E1C444DB800C23332 /* XEP_0223.m in Sources */,
 				C86F851F1C444DB800C23332 /* LoggingPrint.swift in Sources */,
-				C86F85201C444DB800C23332 /* NoInternetConnectionView.swift in Sources */,
 				C86F85211C444DB800C23332 /* XMPPUserMemoryStorageObject.m in Sources */,
 				C86F85221C444DB800C23332 /* XMPPMessage+XEP_0308.m in Sources */,
 				C86F85231C444DB800C23332 /* XMPPRoomMemoryStorage.m in Sources */,
@@ -3553,7 +3536,6 @@
 				A996502C1B387CC800D5A8E9 /* XMPPRoomHybrid.xcdatamodeld in Sources */,
 				A99650651B387CC800D5A8E9 /* XEP_0223.m in Sources */,
 				C89325A61C08BEC10069FCFD /* LoggingPrint.swift in Sources */,
-				A94B49D61B8A8056008CF762 /* NoInternetConnectionView.swift in Sources */,
 				A996501F1B387CC800D5A8E9 /* XMPPUserMemoryStorageObject.m in Sources */,
 				A99650691B387CC800D5A8E9 /* XMPPMessage+XEP_0308.m in Sources */,
 				A99650301B387CC800D5A8E9 /* XMPPRoomMemoryStorage.m in Sources */,
@@ -3655,14 +3637,6 @@
 				C8A661FC1C0B66440088355D /* Base */,
 			);
 			name = SettingsCell.xib;
-			sourceTree = "<group>";
-		};
-		C8A662031C0B66570088355D /* NoInternetConnectionView.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C8A662021C0B66570088355D /* Base */,
-			);
-			name = NoInternetConnectionView.xib;
 			sourceTree = "<group>";
 		};
 		C8A662081C0B69960088355D /* Localizable.strings */ = {

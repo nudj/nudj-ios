@@ -9,7 +9,6 @@ import UIKit
 import CoreData
 import FBSDKLoginKit
 import Mixpanel
-import ReachabilitySwift
 import SwiftyJSON
 import HockeySDK
 
@@ -94,9 +93,6 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
             }
         }
         
-        //Handle internet connection
-        self.beginInternetConnectionCheck()
-        
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         return true
     }
@@ -168,38 +164,6 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
                 _ in
                 self.deviceTokenSynced = true
             });
-        }
-    }
-
-    func beginInternetConnectionCheck(){
-        // TODO: refactor to a single-responsibility object
-        do {
-            // TODO: audit this for callers and figure out what NoInternetConnectionView is for: it might be overkill
-            let reachability = try Reachability.reachabilityForInternetConnection()
-            let view = NoInternetConnectionView(frame: self.window!.frame)
-            var isShown = false;
-            
-            reachability.whenUnreachable = { 
-                reachability in
-                if !isShown {
-                    self.window?.addSubview(view)
-                    isShown = true
-                }
-            }
-            
-            reachability.whenReachable = { 
-                reachability in
-                if isShown {
-                    view.removeFromSuperview()
-                    isShown = false
-                }
-            }
-            
-            try reachability.startNotifier()
-        }
-        catch let error {
-            // TODO: figure out what to do here
-            loggingPrint("Reachability error: \(error)")
         }
     }
 

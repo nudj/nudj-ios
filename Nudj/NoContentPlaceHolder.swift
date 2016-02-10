@@ -8,6 +8,7 @@
 import UIKit
 
 class NoContentPlaceHolder: UIImageView {
+    // TODO: magic numbers
     let imageWidth: CGFloat = 200.0
     let imageHeight: CGFloat = 149.0
 

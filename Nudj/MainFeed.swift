@@ -7,7 +7,6 @@
 
 import UIKit
 import SwiftyJSON
-//import ReachabilitySwift
 
 @IBDesignable
 class MainFeed: BaseController, SegueHandlerType, DataProviderProtocol, UISearchBarDelegate {
