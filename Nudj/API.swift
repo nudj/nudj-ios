@@ -6,11 +6,43 @@
 //
 
 import Foundation
-import Alamofire
 import SwiftyJSON
 
-class API {
-    typealias Method = Alamofire.Method
+final class API {
+    // From https://tools.ietf.org/html/rfc7231#section-4.3
+    enum Method: String {
+        case OPTIONS, GET, HEAD, POST, PUT, PATCH, DELETE, TRACE, CONNECT
+    }
+    
+    enum ParameterEncoding {
+        case URL, JSON
+        
+        func encode(params: [String: AnyObject], ontoRequest request: NSMutableURLRequest) {
+            switch self {
+            case URL:
+                var paramString = ""
+                let characterSet = NSCharacterSet.URLQueryAllowedCharacterSet()
+                for (key, value) in params {
+                    let escapedKey = key.stringByAddingPercentEncodingWithAllowedCharacters(characterSet)
+                    let escapedValue = value.stringByAddingPercentEncodingWithAllowedCharacters(characterSet)
+                    paramString += "\(escapedKey)=\(escapedValue)&"
+                }
+                
+                request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+                request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
+                
+            case JSON:
+                do {
+                    let data = try NSJSONSerialization.dataWithJSONObject(params, options: [])
+                    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                    request.HTTPBody = data
+                } catch {
+                    fatalError("Error \(error) JSON encoding parameters \(params)")
+                }
+            }
+        }
+    }
+    
     typealias JSONHandler = (JSON) -> Void
     typealias ErrorHandler = (ErrorType) -> Void
     
@@ -23,16 +55,20 @@ class API {
         }
     }
     
-    // Production
     // TODO: API strings
     var baseURL: String { return server.URLString + "api/v1/" }
     var token: String? = nil
+    let session: NSURLSession
     
-    var manager: Alamofire.Manager = {
+    init() {
         let configuration: NSURLSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
         configuration.HTTPShouldSetCookies = false
-        return Manager(configuration: configuration)
-    }()
+        session = NSURLSession(configuration: configuration, delegate: nil, delegateQueue: NSOperationQueue.mainQueue())
+    }
+    
+    deinit {
+        session.invalidateAndCancel()
+    }
 
     // TODO: remove this singleton
     static var sharedInstance = API()
@@ -55,70 +91,83 @@ class API {
     }
     
     // MARK: General request
-    func request(method: Method, path: String, params: [String: AnyObject]? = nil, closure: JSONHandler? = nil, errorHandler: ErrorHandler? ) {
-        var headers = ["Content-Type": "application/json"]
-        if let token = self.token {
-            headers["token"] = token
-        }
-        
-        let encoding = (method != .GET) ? Alamofire.ParameterEncoding.JSON : Alamofire.ParameterEncoding.URL
-        manager.request(method, (baseURL + path) as String, parameters: params, encoding: encoding, headers: headers).responseJSON {
-            response in
-            // Try to catch general API errors
-            if (self.tryToCatchAPIError(response, errorHandler: errorHandler)) {
-                // We have general error from server and the user should not continue.
-                return
-            }
-            
-            switch response.result {
-            case .Success(let value):
-                let json = JSON(value)
-                closure?(json)
-                break
-                
-            case .Failure(let error):
-                errorHandler?(error)
-                break
-            }
-        }
+    func request(method: Method, path: String, params: [String: AnyObject]? = nil, closure: JSONHandler? = nil, errorHandler: ErrorHandler? = nil ) {
+        let request = clientURLRequest(method, path: path, params: params)
+        let task = dataTask(request, method: method, closure: closure, errorHandler: errorHandler)
+        task.resume()
     }
 
-    private func tryToCatchAPIError(response: Alamofire.Response<AnyObject, NSError>, errorHandler: ErrorHandler?) -> Bool {
-        guard let rawResponse: NSHTTPURLResponse = response.response else {
-            return false
+    private func dataTask(request: NSMutableURLRequest, method: Method, closure: JSONHandler? = nil, errorHandler: ErrorHandler? = nil) -> NSURLSessionDataTask {
+        let dataTask = session.dataTaskWithRequest(request) { 
+            (data, response, error) -> Void in
+            if let data = data {
+                guard let response = response as? NSHTTPURLResponse else {
+                    fatalError("The NSURLSessionDataTask API promises an NSHTTPURLResponse")
+                }
+                
+                do {
+                    let json = try NSJSONSerialization.JSONObjectWithData(data, options: [])
+                    
+                    let statusCode = response.statusCode
+                    switch statusCode {
+                    case 200...299:
+                        let swiftyJson = JSON(json)
+                        closure?(swiftyJson)
+                        
+                    default:
+                        if statusCode >= 400 {
+                            self.handleAPIError(response, value: json, errorHandler: errorHandler)
+                        } else {
+                            errorHandler?(APIError(code: statusCode, message: "Unexpected API error \(statusCode)"))
+                        }
+                    }
+                } catch {
+                    errorHandler?(error)
+                }
+            } else if let error = error {
+                errorHandler?(error)
+            }
         }
-        guard rawResponse.statusCode >= 400 else {
-            return false
+        return dataTask
+    }
+    
+    private func clientURLRequest(method: Method, path: String, params: [String: AnyObject]? = nil) -> NSMutableURLRequest {
+        guard let url = NSURL(string: self.baseURL + path) else {
+            fatalError("Cannot form URL from \(path)")
         }
         
-        switch response.result {
-        case .Success(let value):
-            // Try to get error code from the JSON
-            let errorJson = JSON(value)
-            let code = errorJson["error"]["code"].numberValue.intValue
-            let message = errorJson["error"]["message"].stringValue
-            
-            // Log out user and show Login screen
-            if (code == 10401) {
-                loggingPrint("Unauthorized -> Logout!")
-                self.performLogout()
-            } else if (code == 11101) {
-                loggingPrint("Invalid Token -> Logout!")
-                self.performLogout()
-            } else {
-                loggingPrint("API error: \(message)")
-            }
-            errorHandler?(APIError(code: Int(code), message: message))
-            break
-            
-        case .Failure(let error):
-            // TODO: improve error handling here
-            loggingPrint("[API Error] rawResponse: \(rawResponse) Error: \(error)")
-            errorHandler?(error)
-            break
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = method.rawValue
+        
+        let encoding: ParameterEncoding = (method == .GET) ? .URL : .JSON
+        if let params = params {
+            encoding.encode(params, ontoRequest: request)
         }
-
-        return true
+        
+        if let token = self.token {
+            request.addValue(token, forHTTPHeaderField: "token")
+        }
+        
+        return request
+    }
+    
+    private func handleAPIError(rawResponse: NSHTTPURLResponse, value: AnyObject, errorHandler: ErrorHandler?) {
+        // Try to get error code from the JSON
+        let errorJson = JSON(value)
+        let code = errorJson["error"]["code"].numberValue.intValue
+        let message = errorJson["error"]["message"].stringValue
+        
+        // TODO: API strings and constants
+        if (code == 10401) {
+            loggingPrint("Unauthorized -> Logout!")
+            self.performLogout()
+        } else if (code == 11101) {
+            loggingPrint("Invalid Token -> Logout!")
+            self.performLogout()
+        } else {
+            loggingPrint("API error: \(message)")
+        }
+        errorHandler?(APIError(code: Int(code), message: message))
     }
 
     private func performLogout() {
