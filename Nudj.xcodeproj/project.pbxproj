@@ -3677,7 +3677,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Externals/HockeySDK-iOS/HockeySDK.embeddedframework",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Nudj/Nudj-Prefix.pch";
@@ -3712,7 +3711,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Externals/HockeySDK-iOS/HockeySDK.embeddedframework",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Nudj/Nudj-Prefix.pch";
