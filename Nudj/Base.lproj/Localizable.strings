@@ -132,6 +132,8 @@
 "settings.facebook.connected.body" = "You have successfully connected your Facebook account.";
 "settings.facebook.disconnected.title" = "Facebook Disconnected";
 "settings.facebook.disconnected.body" = "You have successfully disconnected your Facebook account.";
+"settings.notification-test.title" = "Test Notification Sent";
+"settings.notification-test.body" = "If push notifications are set up correctly on your device, you should soon receive a test notification.";
 
 // User status
 "userstatus.unknown" = "SELECT STATUS";

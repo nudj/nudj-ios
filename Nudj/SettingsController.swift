@@ -193,6 +193,12 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
                     error in
                     loggingPrint(error)
             })
+            let localization = Localizations.Settings.NotificationTest.self
+            let alertController = UIAlertController(title: localization.Title, message: localization.Body, preferredStyle: .Alert)
+            let cancelAction = UIAlertAction(title: Localizations.General.Button.Ok, style: .Cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            alertController.preferredAction = cancelAction
+            self.presentViewController(alertController, animated: true, completion: nil)
             
         default:
             guard let segueIdentifier = action.segueIdentifier() else {

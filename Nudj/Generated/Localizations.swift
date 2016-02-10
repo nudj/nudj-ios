@@ -331,6 +331,16 @@ public struct Localizations {
     public struct Settings {
 
     
+        public struct NotificationTest {
+
+                    /// Base translation: Test Notification Sent
+            public static var Title : String = "settings.notification-test.title".localized
+
+            /// Base translation: If push notifications are set up correctly on your device, you should soon receive a test notification.
+            public static var Body : String = "settings.notification-test.body".localized
+
+        }
+
         public struct Title {
 
                     /// Base translation: Archived Chats
