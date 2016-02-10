@@ -100,30 +100,8 @@ final class API {
     private func dataTask(request: NSMutableURLRequest, method: Method, closure: JSONHandler? = nil, errorHandler: ErrorHandler? = nil) -> NSURLSessionDataTask {
         let dataTask = session.dataTaskWithRequest(request) { 
             (data, response, error) -> Void in
-            if let data = data {
-                guard let response = response as? NSHTTPURLResponse else {
-                    fatalError("The NSURLSessionDataTask API promises an NSHTTPURLResponse")
-                }
-                
-                do {
-                    let json = try NSJSONSerialization.JSONObjectWithData(data, options: [])
-                    
-                    let statusCode = response.statusCode
-                    switch statusCode {
-                    case 200...299:
-                        let swiftyJson = JSON(json)
-                        closure?(swiftyJson)
-                        
-                    default:
-                        if statusCode >= 400 {
-                            self.handleAPIError(response, value: json, errorHandler: errorHandler)
-                        } else {
-                            errorHandler?(APIError(code: statusCode, message: "Unexpected API error \(statusCode)"))
-                        }
-                    }
-                } catch {
-                    errorHandler?(error)
-                }
+            if let data = data, response = response {
+                self.handleResponse(response, data: data, closure: closure, errorHandler: errorHandler)
             } else if let error = error {
                 errorHandler?(error)
             }
@@ -151,7 +129,33 @@ final class API {
         return request
     }
     
-    private func handleAPIError(rawResponse: NSHTTPURLResponse, value: AnyObject, errorHandler: ErrorHandler?) {
+    private func handleResponse(response: NSURLResponse, data: NSData, closure: JSONHandler? = nil, errorHandler: ErrorHandler? = nil) {
+        guard let response = response as? NSHTTPURLResponse else {
+            fatalError("The NSURLSessionDataTask API promises an NSHTTPURLResponse")
+        }
+        
+        do {
+            let json = try NSJSONSerialization.JSONObjectWithData(data, options: [])
+            
+            let statusCode = response.statusCode
+            switch statusCode {
+            case 200...299:
+                let swiftyJson = JSON(json)
+                closure?(swiftyJson)
+                
+            default:
+                if statusCode >= 400 {
+                    self.handleAPIError(json, errorHandler: errorHandler)
+                } else {
+                    errorHandler?(APIError(code: statusCode, message: "Unexpected API error \(statusCode)"))
+                }
+            }
+        } catch {
+            errorHandler?(error)
+        }
+    }
+    
+    private func handleAPIError(value: AnyObject, errorHandler: ErrorHandler?) {
         // Try to get error code from the JSON
         let errorJson = JSON(value)
         let code = errorJson["error"]["code"].numberValue.intValue
