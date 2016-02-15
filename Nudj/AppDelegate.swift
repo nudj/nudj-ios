@@ -160,7 +160,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
 
         if self.deviceToken != nil {
             // TODO: API strings
-            API.sharedInstance.put("devices", params: ["token":self.deviceToken!], closure:{ 
+            API.sharedInstance.request(.PUT, path: "devices", params: ["token":self.deviceToken!], closure:{ 
                 _ in
                 self.deviceTokenSynced = true
             });

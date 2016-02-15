@@ -470,7 +470,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
         
         let path = API.Endpoints.Chat.notification()
         let params = API.Endpoints.Chat.paramsForMessage(chatID, userID: participantsID, message: message)
-        API.sharedInstance.put(path, params: params, closure: { 
+        API.sharedInstance.request(.PUT, path: path, params: params, closure: { 
             reponse in
             // TODO: error handling
             loggingPrint(reponse)

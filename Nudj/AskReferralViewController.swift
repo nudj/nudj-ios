@@ -240,7 +240,7 @@ class AskReferralViewController: UIViewController, SegueHandlerType, UISearchBar
         guard let firstSelected = self.selected.first else {return}
         if(self.isNudjRequest!){
             let path = API.Endpoints.Nudge.base
-            API.sharedInstance.put(path, params: params, closure: { result in
+            API.sharedInstance.request(.PUT, path: path, params: params, closure: { result in
                 self.navigationController?.navigationBarHidden = true
                 
                 self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true);
@@ -261,7 +261,7 @@ class AskReferralViewController: UIViewController, SegueHandlerType, UISearchBar
             }
         } else {
             let path = API.Endpoints.Nudge.ask
-            API.sharedInstance.put(path, params: params, closure: { result in
+            API.sharedInstance.request(.PUT, path: path, params: params, closure: { result in
                 self.navigationController?.navigationBarHidden = true
                 
                 self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true);

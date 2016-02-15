@@ -47,7 +47,7 @@ class SocialHandlerModel: NSObject {
     func updateSocial(path: String, token: String, completionHandler: CompletionHandler) {
         let endpoint = API.Endpoints.Connect.byPath(path)
         let params = API.Endpoints.Connect.paramsForToken(token)
-        API.sharedInstance.put(endpoint, params: params, closure: { 
+        API.sharedInstance.request(.PUT, path: endpoint, params: params, closure: { 
             json in
             loggingPrint("\(path) token stored successfully -> \(json)")
             completionHandler(true)

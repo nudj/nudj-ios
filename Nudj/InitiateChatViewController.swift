@@ -32,7 +32,7 @@ class InitiateChatViewController: UIViewController, CreatePopupViewDelegate {
         if(!textview.text.isEmpty){
             let path = API.Endpoints.Nudge.chat
             let params = API.Endpoints.Nudge.paramsForChat(jobid, userID: userid, notificationID: notificationid, message: textview.text)
-            API.sharedInstance.put(path, params: params, closure: { 
+            API.sharedInstance.request(.PUT, path: path, params: params, closure: { 
                 json in
                 
                 self.textview.resignFirstResponder()

@@ -55,7 +55,7 @@ struct JobModel {
     func edit(jobID:Int, closure:(Bool) -> ()) {
         let path = API.Endpoints.Jobs.byID(jobID)
         let params = self.params()
-        API.sharedInstance.put(path, params: params, closure: { 
+        API.sharedInstance.request(.PUT, path: path, params: params, closure: { 
             result in
             closure(true)
         }, errorHandler: { 

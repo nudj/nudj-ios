@@ -150,7 +150,7 @@ class UserModel: CustomStringConvertible {
 
     static func update(fields: [String: AnyObject], closure: ((JSON) -> ())? = nil, errorHandler: ErrorHandler? = nil) {
         let path = API.Endpoints.Users.me
-        API.sharedInstance.put(path, params: fields, closure: closure, errorHandler: errorHandler)
+        API.sharedInstance.request(.PUT, path: path, params: fields, closure: closure, errorHandler: errorHandler)
     }
     
     static func getImageByContactId(identifier: String) -> UIImage {

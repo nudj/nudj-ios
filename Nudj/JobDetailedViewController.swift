@@ -163,7 +163,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         if (sender.title == Localizations.Jobs.Button.Save) {
             MixPanelHandler.sendData("SaveJobButtonClicked")
             let path = API.Endpoints.Jobs.likeByID(jobID!) 
-            API.sharedInstance.put(path, params: nil, closure: { json in
+            API.sharedInstance.request(.PUT, path: path, params: nil, closure: { json in
                 loggingPrint("Job saved \(json)")
                 self.navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Button.Saved
                 
@@ -290,7 +290,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     func postJobApplication(_: UIAlertAction) {
         let path = API.Endpoints.Nudge.apply
         let params = API.Endpoints.Nudge.paramsForApplication(jobID!)
-        API.sharedInstance.put(path, params: params, closure: {
+        API.sharedInstance.request(.PUT, path: path, params: params, closure: {
             json in
             self.navigationController?.navigationBarHidden = true
             

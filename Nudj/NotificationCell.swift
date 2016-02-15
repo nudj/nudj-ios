@@ -125,7 +125,7 @@ class NotificationCell: UITableViewCell {
     func markAsRead(){
         loggingPrint("mark as read url: notifications/\(self.notificationID!)/read")
         // TODO: API strings
-        API.sharedInstance.put("notifications/\(self.notificationID!)/read", params: nil, closure: { json in
+        API.sharedInstance.request(.PUT, path: "notifications/\(self.notificationID!)/read", params: nil, closure: { json in
             loggingPrint("success \(json)")
         }) { 
             error in
