@@ -132,7 +132,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         guard let chatIDStr = data[row].chatId else {return} // TODO: data[row].chatId should be Int not String?
         guard let chatID = Int(chatIDStr) else {return}
         let path = API.Endpoints.Chat.byID(chatID)
-        API.sharedInstance.delete(path, params: nil, closure: { 
+        API.sharedInstance.request(.DELETE, path: path, params: nil, closure: { 
             response in
             self.data.removeAtIndex(row)
             self.chatTable.reloadData()

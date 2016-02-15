@@ -72,16 +72,6 @@ final class API {
    func put(path: String, params: [String: AnyObject]? = nil, closure: JSONHandler? = nil, errorHandler: ErrorHandler? = nil) {
         self.request(.PUT, path: path, params: params, closure: closure, errorHandler: errorHandler)
     }
-
-    /// Delete a resource
-    /// - parameter path: The path component of the URL. This will be percent-escaped as a path component.
-    /// Do not append URL parameters here: they will not be percent-escaped correctly.
-    /// - parameter params: A dictionary of URL parameters. This will be either JSON encoded or URL encoded with percent-escaping.
-    /// - parameter closure: A closure that receives the result upon success.
-    /// - parameter errorHandler: A closure that receives the error object upon failure.
-    func delete(path: String, params: [String: AnyObject]? = nil, closure: JSONHandler? = nil, errorHandler: ErrorHandler? = nil) {
-        self.request(.DELETE, path: path, params: params, closure: closure, errorHandler: errorHandler)
-    }
     
     // MARK: General request
     /// Make an API request
