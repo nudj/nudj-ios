@@ -9,11 +9,6 @@ import Foundation
 import UIKit
 import SwiftyJSON
 
-struct ContactPaths {
-    // TODO: API strings
-    static let all = "contacts/mine"
-}
-
 class ContactsController: BaseController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
     @IBOutlet weak var table: UITableView!
@@ -112,13 +107,13 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         cell?.setNeedsDisplay()
     }
 
-    func loadData(url:String) {
+    func loadData(path: String) {
         // TODO: this network access is slowing down the UI: fix it
         // API strings
-        let variable = url == ContactPaths.all ? "contact.user" : "user.contact"
-        let path = "\(url)?params=\(variable),contact.alias,contact.apple_id,user.image,user.status,user.name&sizes=user.profile"
+        let fields = (path == API.Endpoints.Contacts.mine) ? ["contact.user"] : ["user.contact"]
+        let params = API.Endpoints.Contacts.paramsForList(fields)
 
-        self.apiRequest(.GET, path: path, closure: { response in
+        self.apiRequest(.GET, path: path, params: params, closure: { response in
             self.data.removeAll(keepCapacity: false)
             self.indexes.removeAll(keepCapacity: false)
 
@@ -274,7 +269,8 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         guard let contactID = lastSelectedContact?.id else {
             return
         }
-        API.sharedInstance.post("contacts/\(contactID)/invite", params: nil, 
+        let path = API.Endpoints.Contacts.inviteByID(contactID)
+        API.sharedInstance.post(path, params: nil, 
             closure: { 
                 result in
                 let title: String
@@ -314,7 +310,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         let wantFavorites = segControl.selectedSegmentIndex > 0
         let noContentImageName = wantFavorites ? "no_favourite_contacts" : "no_contacts"
         self.noContentImage.image = UIImage(named:noContentImageName)
-        return wantFavorites ? API.Endpoints.Users.favouriteByID(0) : ContactPaths.all
+        return wantFavorites ? API.Endpoints.Users.favouriteByID(0) : API.Endpoints.Contacts.mine
     }
     
     @IBAction func searchButton(sender: UIBarButtonItem) {

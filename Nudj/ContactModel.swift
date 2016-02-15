@@ -24,7 +24,10 @@ struct ContactModel {
 
     static func getContacts(closure: (Bool, JSON) -> ()) {
         // TODO: API strings
-        API.sharedInstance.get("contacts/mine?params=contact.alias,contact.user,contact.apple_id,user.image,user.status&sizes=user.profile", params: nil, closure: { result in
+        let path = API.Endpoints.Contacts.mine
+        let params = API.Endpoints.Contacts.paramsForList(["contact.user"])
+        API.sharedInstance.get(path, params: params, closure: { 
+            result in
             closure(true, result)
             })
     }

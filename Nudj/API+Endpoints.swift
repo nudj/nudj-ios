@@ -70,6 +70,29 @@ extension API {
             static let status = base + "/status"
         }
         
+        struct Contacts {
+            static let base = "contacts"
+            static let mine = base + "/mine"
+            
+            static func paramsForList(fields: [String]) -> [String: AnyObject] {
+                let fieldsString = fields.reduce("", combine: {$0! + "," + $1}) ?? ""
+                let params: [String: AnyObject] = [
+                    "params": "\(fieldsString),contact.alias,contact.apple_id,user.image,user.status,user.name",
+                    "sizes": "user.profile",
+                ]
+                return params
+            }
+            
+            static func byID(contactID: Int) -> String {
+                return base + "/\(contactID)"
+            }
+            
+            static func inviteByID(contactID: Int) -> String {
+                let contactPath = byID(contactID)
+                return contactPath + "/invite"
+            }
+        }
+        
         struct Jobs {
             static let base = "jobs"
             static let available = base + "/available"
