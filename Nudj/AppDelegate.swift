@@ -277,7 +277,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
     
     func deleteAccount(inViewController viewController: UIViewController){
         // TODO: API strings
-        API.sharedInstance.delete("users/me", params: nil, closure: { 
+        API.sharedInstance.delete(API.Endpoints.Users.me, params: nil, closure: { 
             response in
             if response["status"].boolValue {
                 self.deleteAllData()

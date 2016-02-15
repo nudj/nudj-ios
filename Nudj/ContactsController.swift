@@ -10,8 +10,8 @@ import UIKit
 import SwiftyJSON
 
 struct ContactPaths {
+    // TODO: API strings
     static let all = "contacts/mine"
-    static let favourites = "users/me/favourites"
 }
 
 class ContactsController: BaseController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
@@ -311,8 +311,10 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
     }
 
     func getContactsUrl() -> String {
-        self.noContentImage.image = segControl.selectedSegmentIndex <= 0 ? UIImage(named:"no_contacts") : UIImage(named:"no_favourite_contacts")
-        return segControl.selectedSegmentIndex <= 0 ? ContactPaths.all : ContactPaths.favourites
+        let wantFavorites = segControl.selectedSegmentIndex > 0
+        let noContentImageName = wantFavorites ? "no_favourite_contacts" : "no_contacts"
+        self.noContentImage.image = UIImage(named:noContentImageName)
+        return wantFavorites ? API.Endpoints.Users.favouriteByID(0) : ContactPaths.all
     }
     
     @IBAction func searchButton(sender: UIBarButtonItem) {

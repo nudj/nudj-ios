@@ -32,7 +32,8 @@ extension API {
         }
         
         struct Users {
-            static let me = "users/me"
+            static let base = "users"
+            static let me = base + "/me"
             
             static func byID(userID: Int?) -> String {
                 guard let userID = userID else {
@@ -41,7 +42,7 @@ extension API {
                 guard userID > 0 else {
                     return me
                 }
-                return "users/\(userID)"
+                return base + "/\(userID)"
             }
             
             static func favouriteByID(userID: Int?) -> String {
@@ -52,6 +53,19 @@ extension API {
             static func paramsForFields(fields: [String]) -> [String: String] {
                 let userFields = fields.reduce("", combine: {$0! + "," + $1}) ?? ""
                 return ["params": userFields]
+            }
+            
+            static func paramsForStatuses() -> [String: String] {
+                return ["params": "user.status,user.facebook"]
+            }
+            
+            static let verify = base + "/verify"
+            static func paramsForVerify(phoneNumber: String, iso2CountryCode: String, verificationCode: String) -> [String: String] {
+                return [
+                    "phone": phoneNumber,
+                    "country_code": iso2CountryCode,
+                    "verification": verificationCode
+                ]
             }
         }
         

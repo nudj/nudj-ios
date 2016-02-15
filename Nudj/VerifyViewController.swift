@@ -99,7 +99,9 @@ class VerifyViewController: BaseController, SegueHandlerType {
         hideCodeField()
 
         // TODO: API strings
-        self.apiRequest(API.Method.PUT, path: "users/verify", params: ["phone": phoneNumber, "verification": verificationCode, "country_code": iso2CountryCode], closure: {
+        let path = API.Endpoints.Users.verify
+        let params = API.Endpoints.Users.paramsForVerify(phoneNumber, iso2CountryCode: iso2CountryCode, verificationCode: verificationCode)
+        self.apiRequest(API.Method.PUT, path: path, params: params, closure: {
             (json: JSON) in
 
             if (!self.isValidResponse(json)) {

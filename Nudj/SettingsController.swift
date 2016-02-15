@@ -104,11 +104,13 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
 
         // TODO: Ugh fix this singleton mess
         // TODO: API strings
-        BaseController().apiRequest(.GET, path: "users/me?params=user.status,user.facebook,user.linkedin", closure: { json in
+        let path = API.Endpoints.Users.me
+        let params = API.Endpoints.Users.paramsForStatuses()
+        BaseController().apiRequest(.GET, path: path, params: params, closure: { json in
             if (json["data"]["status"] != nil && json["data"]["status"].stringValue != "") {
                 self.statusButton.setTitleByIndex(json["data"]["status"].intValue)
             }
-            self.socialStatuses = ["facebook": json["data"]["facebook"].boolValue ,"linkedin":json["data"]["linkedin"].boolValue]
+            self.socialStatuses = ["facebook": json["data"]["facebook"].boolValue]
             self.table.reloadData()
         })
     }

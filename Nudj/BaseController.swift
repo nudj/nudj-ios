@@ -56,7 +56,8 @@ class BaseController: UIViewController {
     }
 
     func apiUpdateUser(params: [String: AnyObject], closure: ((JSON) -> ())?) {
-        self.apiRequest(.PUT, path: "users", params: params, closure: closure)
+        let path = API.Endpoints.Users.base
+        self.apiRequest(.PUT, path: path, params: params, closure: closure)
     }
     
     func updateBadge(notification:NSNotification){
