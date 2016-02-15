@@ -109,16 +109,13 @@ final class API {
         func encode(params: [String: AnyObject], ontoRequest request: NSMutableURLRequest) {
             switch self {
             case URL:
-                var paramString = ""
-                let characterSet = NSCharacterSet.URLQueryAllowedCharacterSet()
-                for (key, value) in params {
-                    let escapedKey = String(key).stringByAddingPercentEncodingWithAllowedCharacters(characterSet)
-                    let escapedValue = String(value).stringByAddingPercentEncodingWithAllowedCharacters(characterSet)
-                    paramString += "\(escapedKey)=\(escapedValue)&"
+                guard let components = NSURLComponents(URL: request.URL!, resolvingAgainstBaseURL: true) else {return}
+                let queryItems = params.map {
+                    key, value in 
+                    return NSURLQueryItem(name: key, value: String(value))
                 }
-                
-                request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-                request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
+                components.queryItems = queryItems
+                request.URL = components.URL
                 
             case JSON:
                 do {
