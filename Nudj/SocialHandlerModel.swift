@@ -13,6 +13,7 @@ import FBSDKLoginKit
 // TODO: all this is horrible and needs to be cleaned up
 
 class SocialHandlerModel: NSObject {
+    typealias CompletionHandler = (Bool) -> Void
 
     func configureFacebook(connected:Bool,completionHandler:(success:Bool) -> Void){
         if(connected){
@@ -34,7 +35,7 @@ class SocialHandlerModel: NSObject {
                     completionHandler(success:false)
                 } else {
                     loggingPrint("Facebook access token -> \(result.token.tokenString)")
-                    self.updateSocial("facebook", param: result.token.tokenString, completionHandler: { 
+                    self.updateSocial("facebook", token: result.token.tokenString, completionHandler: { 
                         request in
                         completionHandler(success:request)
                     })
@@ -43,31 +44,33 @@ class SocialHandlerModel: NSObject {
         }
     }
 
-    func updateSocial(path:String, param:String, completionHandler:(success:Bool) -> Void){
-        // TODO: API strings
-        API.sharedInstance.put("connect/\(path)", params:["token":param], closure: { 
+    func updateSocial(path: String, token: String, completionHandler: CompletionHandler) {
+        let endpoint = API.Endpoints.Connect.byPath(path)
+        let params = API.Endpoints.Connect.paramsForToken(token)
+        API.sharedInstance.put(endpoint, params: params, closure: { 
             json in
             loggingPrint("\(path) token stored successfully -> \(json)")
-            completionHandler(success:true)
+            completionHandler(true)
             }, 
             errorHandler: { 
                 error in
                 loggingPrint("error in storing \(path) token -> \(error)")
-                completionHandler(success:false)
+                completionHandler(false)
         })
         
     }
     
-    func deleteSocial(path:String, completionHandler:(success:Bool) -> Void){
-        API.sharedInstance.request(.DELETE, path: "connect/\(path)", params: nil, closure: { 
+    func deleteSocial(path: String, completionHandler: CompletionHandler) {
+        let endpoint = API.Endpoints.Connect.byPath(path)
+        API.sharedInstance.request(.DELETE, path: endpoint, params: nil, closure: { 
             json in
             loggingPrint("\(path) token deleted successfully -> \(json)")
-            completionHandler(success:true)
+            completionHandler(true)
         }, 
         errorHandler: { 
             error in
             loggingPrint("error in deleting \(path) token -> \(error)")
-            completionHandler(success:false)
+            completionHandler(false)
         });
     }
 }

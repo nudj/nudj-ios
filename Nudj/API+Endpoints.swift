@@ -70,6 +70,18 @@ extension API {
             static let status = base + "/status"
         }
         
+        struct Connect {
+            static let base = "connect"
+            
+            static func byPath(path: String) -> String {
+                return "\(base)/\(path)"
+            }
+            
+            static func paramsForToken(token: String) -> [String: AnyObject] {
+                return ["token": token]
+            }
+        }
+        
         struct Contacts {
             static let base = "contacts"
             static let mine = base + "/mine"
