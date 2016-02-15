@@ -159,7 +159,14 @@ final class API {
         let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = method.rawValue
         
-        let encoding: ParameterEncoding = (method == .GET) ? .URL : .JSON
+        let encoding: ParameterEncoding
+        switch method {
+        case .GET, .HEAD, .DELETE:
+            encoding = .URL
+            
+        default:
+            encoding = .JSON
+        }
         if let params = params {
             encoding.encode(params, ontoRequest: request)
         }
