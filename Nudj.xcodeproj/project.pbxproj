@@ -2434,11 +2434,11 @@
 			isa = PBXGroup;
 			children = (
 				EBB3383B1A9F73D4000CAD88 /* API.swift */,
+				C80486671C72132C0020EEE1 /* API+Endpoints.swift */,
 				C86F844A1C44257800C23332 /* API+Server.swift */,
 				EB04F6221AAD89AF002F2677 /* Contacts.swift */,
 				C86F844C1C44273A00C23332 /* ProductionServer.swift */,
 				C86F85911C444F2100C23332 /* DevelopmentServer.swift */,
-				C80486671C72132C0020EEE1 /* API+Endpoints.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";

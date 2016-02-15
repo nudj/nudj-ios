@@ -332,9 +332,10 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
     
     override func labelsAction(sender: AnyObject!){
         //go to job details
+        guard let jobID = Int(self.jobID) else {return} // TODO: self.jobID should be Int not String
         let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let jobDetailedView = storyboard.instantiateViewControllerWithIdentifier("JobDetailedView") as! JobDetailedViewController
-        jobDetailedView.jobID = self.jobID
+        jobDetailedView.jobID = jobID
         
         self.navigationController?.pushViewController(jobDetailedView, animated:true);
     }
@@ -347,6 +348,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
                 loggingPrint("error for \(method) on \(path): \(error)")
             })
         }
+        guard let jobID = Int(self.jobID) else {return} // TODO: self.jobID should be Int not String
 
         let selectedButton = sender as! UIButton
         // TODO: Ugh, get rid of switching on tag
@@ -355,7 +357,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
             //go to job details
             let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let jobDetailedView = storyboard.instantiateViewControllerWithIdentifier("JobDetailedView") as! JobDetailedViewController
-            jobDetailedView.jobID = self.jobID
+            jobDetailedView.jobID = jobID
             
             self.navigationController?.pushViewController(jobDetailedView, animated:true);
             break;
@@ -371,7 +373,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
             break;
         case 3:
             //Favourite Chat
-            let endpoint = "jobs/\(jobID)/like"
+            let endpoint = API.Endpoints.Jobs.likeByID(jobID) 
             if(selectedButton.selected){
                 MixPanelHandler.sendData("Chat_UnfavouriteJob")
                 completeRequest(endpoint, method: .DELETE)

@@ -69,17 +69,16 @@ class SavedPostedJobs: BaseController, SegueHandlerType, DataProviderProtocol {
     }
     
     func requestData(page: Int, size: Int, listener: (JSON) -> ()) {
-        // TODO: API strings
         let query = queryType.rawValue
-        let url = "jobs/\(query)?params=job.title,job.salary,job.bonus,job.user,job.location,job.company,user.name,user.image&sizes=user.profile&page=\(page)&limit=\(size)"
-        
-        self.apiRequest(.GET, path: url, closure: listener)
+        let path = API.Endpoints.Jobs.byFilter(query)
+        let params = API.Endpoints.Jobs.paramsForList(page, pageSize: size)
+        self.apiRequest(.GET, path: path, params: params, closure: listener)
     }
     
     func deleteData(id: Int, listener: (JSON) -> ()) {
         MixPanelHandler.sendData("JobDeleted")
-        
-        self.apiRequest(.DELETE, path: "jobs/\(id)", closure: listener)
+        let path = API.Endpoints.Jobs.byID(id)
+        self.apiRequest(.DELETE, path: path, closure: listener)
     }
     
     func didfinishLoading(count:Int) {

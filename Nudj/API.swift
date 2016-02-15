@@ -55,8 +55,7 @@ final class API {
         }
     }
     
-    // TODO: API strings
-    var baseURL: String { return server.URLString + "api/v1/" }
+    var baseURL: String { return server.URLString + Endpoints.versionPath }
     var token: String? = nil
     let session: NSURLSession
     

@@ -37,10 +37,10 @@ struct JobModel {
     }
 
     func save(closure:(ErrorType?, Int) -> ()) {
+        let path = API.Endpoints.Jobs.base
         let params = self.params()
-
-        // TODO: API strings
-        API.sharedInstance.post("jobs", params: params, closure: { result in
+        API.sharedInstance.post(path, params: params, closure: { 
+            result in
             if (result["data"]["id"].intValue > 0) {
                 closure(nil, result["data"]["id"].intValue)
             } else {
@@ -53,10 +53,9 @@ struct JobModel {
     }
     
     func edit(jobID:Int, closure:(Bool) -> ()) {
+        let path = API.Endpoints.Jobs.byID(jobID)
         let params = self.params()
-
-        // TODO: API strings
-        API.sharedInstance.put("jobs/\(jobID)", params: params, closure: { 
+        API.sharedInstance.put(path, params: params, closure: { 
             result in
             closure(true)
         }, errorHandler: { 

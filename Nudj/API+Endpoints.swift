@@ -10,14 +10,30 @@ import Foundation
 
 extension API {
     struct Endpoints {
+        static let versionPath = "api/v1/"
+        
         struct Jobs {
-            static let available = "jobs/available"
+            static let base = "jobs"
+            static let available = base + "/available"
+            
+            static func byID(jobID: Int) -> String {
+                return base + "/\(jobID)"
+            }
+            
+            static func byFilter(filter: String) -> String {
+                return base + "/\(filter)"
+            }
+            
+            static func likeByID(jobID: Int) -> String {
+                let jobPath = byID(jobID)
+                return jobPath + "/like"
+            }
             
             static func search(searchTerm: String?) -> String {
                 guard let searchTerm = searchTerm else {
                     return available
                 }
-                return "jobs/search/\(searchTerm)"
+                return base + "/search/\(searchTerm)"
             }
             
             static func paramsForList(page: Int, pageSize: Int) -> [String: AnyObject] {
@@ -26,6 +42,13 @@ extension API {
                     "sizes": "user.profile",
                     "page": page,
                     "limit": pageSize
+                ]
+                return params
+            }
+            
+            static func paramsForDetail() -> [String: AnyObject] {
+                let params: [String: AnyObject] = [
+                    "params": "job.title,job.company,job.liked,job.salary,job.active,job.description,job.skills,job.bonus,job.user,job.location,user.image,user.name,user.contact"
                 ]
                 return params
             }

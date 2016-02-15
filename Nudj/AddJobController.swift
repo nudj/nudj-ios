@@ -77,8 +77,9 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
             self.topGreyBorder.hidden = false
             self.bottomGreyBorder.hidden = false
             
-            // TODO: API strings
-            API.sharedInstance.get("jobs/\(self.jobId!)?params=job.title,job.company,job.liked,job.salary,job.active,job.description,job.skills,job.bonus,job.user,job.location,user.image,user.name,user.contact", params: nil, closure: {
+            let path = API.Endpoints.Jobs.byID(jobId!)
+            let params = API.Endpoints.Jobs.paramsForDetail()
+            API.sharedInstance.get(path, params: params, closure: {
                 json in
                 self.prefillData(json["data"])
                 }) { error in
@@ -393,8 +394,10 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
     }
     
     func deleteJob(_: UIAlertAction) {
-        // API strings
-        API.sharedInstance.delete("jobs/\(self.jobId!)", params: nil, closure: { json in
+        guard let jobId = jobId else {return}
+        let path = API.Endpoints.Jobs.byID(jobId)
+        API.sharedInstance.delete(path, params: nil, closure: { 
+            json in
             MixPanelHandler.sendData("JobDeleted")
             self.closeCurrentView()
             }, errorHandler: { 

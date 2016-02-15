@@ -38,9 +38,9 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
   
     @IBOutlet weak var skills: TokenView!
    
-    var jobID:String?
-    var userId:Int?
-    var popup :CreatePopupView?;
+    var jobID: Int?
+    var userId: Int?
+    var popup: CreatePopupView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,8 +66,9 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     }
     
     func requestData(){
-        // TODO: API strings
-        API.sharedInstance.get("jobs/\(self.jobID!)?params=job.title,job.company,job.liked,job.salary,job.active,job.description,job.skills,job.bonus,job.user,job.location,user.image,user.name,user.contact", params: nil, closure: { 
+        let path = API.Endpoints.Jobs.likeByID(jobID!)
+        let params = API.Endpoints.Jobs.paramsForDetail()
+        API.sharedInstance.get(path, params: params, closure: { 
             json in
             self.populateView(json["data"])
             }) { 
@@ -158,11 +159,11 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     }
 
     @IBAction func topRightNavAction(sender: UIBarButtonItem) {
-        // TODO: API strings
         // TODO: use something less fragile than selecting on the button title
         if (sender.title == Localizations.Jobs.Button.Save) {
             MixPanelHandler.sendData("SaveJobButtonClicked")
-            API.sharedInstance.put("jobs/\(self.jobID!)/like", params: nil, closure: { json in
+            let path = API.Endpoints.Jobs.likeByID(jobID!) 
+            API.sharedInstance.put(path, params: nil, closure: { json in
                 loggingPrint("Job saved \(json)")
                 self.navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Button.Saved
                 
@@ -172,7 +173,8 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
             }
         } else if(sender.title == Localizations.Jobs.Button.Saved) {
             MixPanelHandler.sendData("SavedJobButtonClicked")
-            API.sharedInstance.delete("jobs/\(self.jobID!)/like", params: nil, closure: { 
+            let path = API.Endpoints.Jobs.likeByID(jobID!) 
+            API.sharedInstance.delete(path, params: nil, closure: { 
                 json in
                 loggingPrint("un save \(json)")
                 self.navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Button.Save
