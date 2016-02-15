@@ -65,6 +65,11 @@ extension API {
             }
         }
         
+        struct Config {
+            static let base = "config"
+            static let status = base + "/status"
+        }
+        
         struct Jobs {
             static let base = "jobs"
             static let available = base + "/available"

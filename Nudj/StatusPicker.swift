@@ -18,9 +18,9 @@ class StatusPicker: BaseController, UIPickerViewDelegate, UIPickerViewDataSource
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         // TODO: remove this abuse of the NSCoder protocol
-        API.sharedInstance.get("config/status", params: nil, closure: {
+        let path = API.Endpoints.Config.status
+        API.sharedInstance.get(path, params: nil, closure: {
             json in
-
             for (key, value) in json["data"] {
                 if let key = Int(key) {
                     self.availableStatuses[key] = value.stringValue
@@ -31,7 +31,6 @@ class StatusPicker: BaseController, UIPickerViewDelegate, UIPickerViewDataSource
     }
 
     @IBAction func done(sender: UIBarButtonItem) {
-        loggingPrint(["status": self.selectedStatus])
         let path = API.Endpoints.Users.base
         let params = ["status": self.selectedStatus]
         self.apiRequest(.PUT, path: path, params: params, closure: { _ in
