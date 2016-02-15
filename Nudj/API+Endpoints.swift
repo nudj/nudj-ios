@@ -30,5 +30,33 @@ extension API {
                 return params
             }
         }
+        
+        struct Users {
+            static let me = "users/me"
+            
+            static func byID(userID: Int?) -> String {
+                guard let userID = userID else {
+                    return me
+                }
+                guard userID > 0 else {
+                    return me
+                }
+                return "users/\(userID)"
+            }
+            
+            static func favouriteByID(userID: Int?) -> String {
+                let userPath = byID(userID) 
+                return userPath + "/favourite"
+            }
+            
+            static func paramsForFields(fields: [String]) -> [String: String] {
+                let userFields = fields.reduce("", combine: {$0! + "," + $1}) ?? ""
+                return ["params": userFields]
+            }
+        }
+        
+        struct PlaceHolders {
+            static let defaultUserImage = "app/placeholder/user.png"
+        }
     }
 }

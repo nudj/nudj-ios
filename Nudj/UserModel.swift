@@ -23,8 +23,7 @@ class UserModel: CustomStringConvertible {
     var status: Int? = 0
 
     var skills:[String]?
-    // TODO: API strings
-    var image:[String:String]
+    var image:[String: String]
     var isDefaultImage = true
     var base64Image:String?
     
@@ -47,7 +46,7 @@ class UserModel: CustomStringConvertible {
         self.name = name;
         self.token = token;
         let api = API()
-        self.image = ["profile": api.server.URLString + "app/placeholder/user.png"]
+        self.image = ["profile": api.server.URLString + API.Endpoints.PlaceHolders.defaultUserImage]
     }
 
     static func getLocal(closure: ((UserModel?) -> ())) {
@@ -62,7 +61,7 @@ class UserModel: CustomStringConvertible {
         return appDelegate.user
     }
 
-    static func getCurrent(fields:[String]?, closure: ((UserModel) -> ())? = nil, errorHandler: ErrorHandler? = nil) {
+    static func getCurrent(fields:[String], closure: ((UserModel) -> ())? = nil, errorHandler: ErrorHandler? = nil) {
         UserModel.getById(0, fields: fields, closure: {response in
             let userResponse = response["data"]
 
@@ -138,30 +137,20 @@ class UserModel: CustomStringConvertible {
             return;
         }
 
-        // TODO: API strings
-        let url = "users/\(id!)/favourite"
+        let path = API.Endpoints.Users.favouriteByID(id)
         let method = (favourite ?? false) ? API.Method.DELETE : API.Method.PUT;
-
-        API.sharedInstance.request(method, path: url, params: nil, closure: closure, errorHandler: errorHandler)
+        API.sharedInstance.request(method, path: path, params: nil, closure: closure, errorHandler: errorHandler)
     }
 
-    static func getById(id: Int, fields:[String]?, closure: ((JSON) -> ())? = nil, errorHandler: ErrorHandler? = nil ) {
-        let params = [String: AnyObject]()
-        let userFields = fields?.reduce("", combine: {$0! + "," + $1}) ?? ""
-        let userId = (id <= 0)
-            ? "me"
-            : "\(id)"
-        // TODO: API strings
-        API.sharedInstance.get("users/\(userId)?params=\(userFields)", params: params, closure: closure!, errorHandler: errorHandler)
+    static func getById(id: Int, fields:[String], closure: ((JSON) -> ())? = nil, errorHandler: ErrorHandler? = nil ) {
+        let path = API.Endpoints.Users.byID(id)
+        let params = API.Endpoints.Users.paramsForFields(fields)
+        API.sharedInstance.get(path, params: params, closure: closure, errorHandler: errorHandler)
     }
 
     static func update(fields: [String: AnyObject], closure: ((JSON) -> ())? = nil, errorHandler: ErrorHandler? = nil) {
-        let realClosure = (closure != nil) ? closure! : { _ in }
-        let realErrorHandler = (errorHandler != nil) ? errorHandler! : { error in 
-            // TODO: handle error
-        }
-        // TODO: API strings
-        API.sharedInstance.put("users/me", params: fields, closure: realClosure, errorHandler: realErrorHandler)
+        let path = API.Endpoints.Users.me
+        API.sharedInstance.put(path, params: fields, closure: closure, errorHandler: errorHandler)
     }
     
     static func getImageByContactId(identifier: String) -> UIImage {
