@@ -288,9 +288,9 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     }
     
     func postJobApplication(_: UIAlertAction) {
-        // TODO: API strings
-        let params:[String:AnyObject] = ["job_id": "\(self.jobID!)"]
-        API.sharedInstance.put("nudge/apply", params: params, closure: {
+        let path = API.Endpoints.Nudge.apply
+        let params = API.Endpoints.Nudge.paramsForApplication(jobID!)
+        API.sharedInstance.put(path, params: params, closure: {
             json in
             self.navigationController?.navigationBarHidden = true
             

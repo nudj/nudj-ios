@@ -232,17 +232,15 @@ class AskReferralViewController: UIViewController, SegueHandlerType, UISearchBar
             messageText.text = nil
         }
         
-        // TODO: API strings
-        let params:[String:AnyObject] = ["job": "\(jobId!)", "contacts": contactIds, "message": messageText.text]
-        
+        let params = API.Endpoints.Nudge.paramsForJob(jobId!, contactIDs: contactIds, message: messageText.text)        
         self.messageText.resignFirstResponder()
         AppDelegate.registerForRemoteNotifications()
 
         // TODO: Refactor
         guard let firstSelected = self.selected.first else {return}
         if(self.isNudjRequest!){
-            // TODO: API strings
-            API.sharedInstance.put("nudge", params: params, closure: { result in
+            let path = API.Endpoints.Nudge.base
+            API.sharedInstance.put(path, params: params, closure: { result in
                 self.navigationController?.navigationBarHidden = true
                 
                 self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true);
@@ -262,8 +260,8 @@ class AskReferralViewController: UIViewController, SegueHandlerType, UISearchBar
                     loggingPrint(error)
             }
         } else {
-            // TODO: API strings
-            API.sharedInstance.put("nudge/ask", params: params, closure: { result in
+            let path = API.Endpoints.Nudge.ask
+            API.sharedInstance.put(path, params: params, closure: { result in
                 self.navigationController?.navigationBarHidden = true
                 
                 self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true);

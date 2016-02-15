@@ -135,6 +135,39 @@ extension API {
             }
         }
         
+        struct Nudge {
+            static let base = "nudge"
+            static let apply = base + "/apply"
+            static let ask = base + "/ask"
+            static let chat = base + "/chat"
+           
+            static func paramsForJob(jobID: Int, contactIDs: [Int], message: String) -> [String: AnyObject] {
+                let params: [String: AnyObject] = [
+                    "job": jobID,
+                    "contacts": contactIDs,
+                    "message": message,
+                ]
+                return params
+            }
+            
+            static func paramsForApplication(jobID: Int) -> [String: AnyObject] {
+                let params: [String: AnyObject] = [
+                    "job_id": jobID,
+                ]
+                return params
+            }
+            
+            static func paramsForChat(jobID: Int, userID: Int, notificationID: String, message: String) -> [String: AnyObject] {
+                let params: [String: AnyObject] = [
+                    "job_id": jobID,
+                    "user_id": userID,
+                    "notification_id": notificationID,
+                    "message": message,
+                ]
+                return params
+            }
+        }
+        
         struct Users {
             static let base = "users"
             static let me = base + "/me"

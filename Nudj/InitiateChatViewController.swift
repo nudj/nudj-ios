@@ -11,40 +11,34 @@ class InitiateChatViewController: UIViewController, CreatePopupViewDelegate {
 
     @IBOutlet weak var textview: UITextView!
     
-    var jobid:String?
-    var userid:String?
-    var username:String?
-    var notificationid:String?
+    var jobid: Int = 0
+    var userid:  Int = 0
+    var username: String = ""
+    var notificationid: String = ""
     
     var popup :CreatePopupView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = Localizations.Chat.Contact.Send.Format(self.username!)
+        self.title = Localizations.Chat.Contact.Send.Format(self.username)
     }
     
     override func viewWillAppear(animated: Bool) {
         self.textview.becomeFirstResponder()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     @IBAction func sendAction(sender: UIBarButtonItem) {
-        // TODO: AP{I strings
         if(!textview.text.isEmpty){
-            let params = ["job_id":self.jobid!,"user_id":self.userid!,"notification_id":self.notificationid!,"message":textview.text]
-            
-            loggingPrint("params ->\(params)")
-            API.sharedInstance.put("nudge/chat", params:params, closure: { json in
-                loggingPrint("success \(json)")
+            let path = API.Endpoints.Nudge.chat
+            let params = API.Endpoints.Nudge.paramsForChat(jobid, userID: userid, notificationID: notificationid, message: textview.text)
+            API.sharedInstance.put(path, params: params, closure: { 
+                json in
                 
                 self.textview.resignFirstResponder()
-                self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true);
-                self.popup!.bodyText(Localizations.Chat.Contact.Success.Format(self.username!));
+                let size = self.view.frame.size
+                self.popup = CreatePopupView(x: 0, yCordinate: 0, width: size.width, height: size.height, imageName: "success", withText: true);
+                self.popup!.bodyText(Localizations.Chat.Contact.Success.Format(self.username));
                 self.popup?.delegate = self;
                 self.view.addSubview(self.popup!)
 

@@ -135,10 +135,10 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
         self.navigationController?.pushViewController(GenericProfileView, animated:true);
     }
     
-    func didPressRightButton(cell:NotificationCell){
+    func didPressRightButton(cell: NotificationCell){
         
-        if(cell.type == nil){
-            return;
+        guard let cellType = cell.type else {
+            return
         }
         
         if cell.isRead == false {
@@ -148,37 +148,31 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
         
         self.selectedContent = cell.notificationData
         
-        switch cell.type! {
+        switch cellType {
         case .AskToRefer:
-            loggingPrint("Details")
             MixPanelHandler.sendData("Notification_DetailButtonClicked")
             self.goToView("JobDetailedView", contentId: cell.notificationData!.jobID)
-            break;
+            break
         case .AppApplication:
-            loggingPrint("go to chat")
             MixPanelHandler.sendData("Notification_MessageButtonClicked")
             self.gotTochat(cell)
-            break;
+            break
         case .WebApplication:
-            loggingPrint("sms")
             MixPanelHandler.sendData("Notification_SmsButtonClicked")
             self.createSms(cell.notificationData!.senderPhoneNumber)
-            break;
+            break
         case .MatchingContact:
-            loggingPrint("nudge")
             MixPanelHandler.sendData("Notification_ReferButtonClicked")
             self.nudge(cell.notificationData!.jobID)
-            break;
+            break
         case .AppApplicationWithNoReferral:
-            loggingPrint("go to chat")
             MixPanelHandler.sendData("Notification_MessageButtonClicked")
             self.gotTochat(cell)
-            break;
+            break
         case .WebApplicationWithNoReferral:
-            loggingPrint("sms")
             MixPanelHandler.sendData("Notification_SmsButtonClicked")
              self.createSms(cell.notificationData!.senderPhoneNumber)
-            break;
+            break
         }
     }
     
@@ -298,10 +292,10 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
         case .GoToChat:
             let destinationNavigationController = segue.destinationViewController as! UINavigationController
             let chatView = destinationNavigationController.topViewController as! InitiateChatViewController
-            chatView.jobid = selectedContent!.jobID
-            chatView.userid = selectedContent!.senderId
-            chatView.username = selectedContent!.senderName
-            chatView.notificationid = selectedContent!.notificationId
+            chatView.jobid = Int(selectedContent!.jobID!) ?? 0 // TODO: straighten these optional types out
+            chatView.userid = Int(selectedContent!.senderId!) ?? 0
+            chatView.username = selectedContent!.senderName!
+            chatView.notificationid = selectedContent!.notificationId!
         }
     }
 }
