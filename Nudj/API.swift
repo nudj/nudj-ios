@@ -9,38 +9,9 @@ import Foundation
 import SwiftyJSON
 
 final class API {
-    // From https://tools.ietf.org/html/rfc7231#section-4.3
+    /// HTTP methods as per https://tools.ietf.org/html/rfc7231#section-4.3
     enum Method: String {
         case OPTIONS, GET, HEAD, POST, PUT, PATCH, DELETE, TRACE, CONNECT
-    }
-    
-    enum ParameterEncoding {
-        case URL, JSON
-        
-        func encode(params: [String: AnyObject], ontoRequest request: NSMutableURLRequest) {
-            switch self {
-            case URL:
-                var paramString = ""
-                let characterSet = NSCharacterSet.URLQueryAllowedCharacterSet()
-                for (key, value) in params {
-                    let escapedKey = String(key).stringByAddingPercentEncodingWithAllowedCharacters(characterSet)
-                    let escapedValue = String(value).stringByAddingPercentEncodingWithAllowedCharacters(characterSet)
-                    paramString += "\(escapedKey)=\(escapedValue)&"
-                }
-                
-                request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-                request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
-                
-            case JSON:
-                do {
-                    let data = try NSJSONSerialization.dataWithJSONObject(params, options: [])
-                    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-                    request.HTTPBody = data
-                } catch {
-                    fatalError("Error \(error) JSON encoding parameters \(params)")
-                }
-            }
-        }
     }
     
     typealias JSONHandler = (JSON) -> Void
@@ -55,9 +26,7 @@ final class API {
         }
     }
     
-    var baseURL: String { return server.URLString + Endpoints.versionPath }
     var token: String? = nil
-    let session: NSURLSession
     
     init() {
         let configuration: NSURLSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -90,12 +59,54 @@ final class API {
     }
     
     // MARK: General request
+    /// Make an API request
+    /// - parameter method: The HTTP method (GET, PUT, etc) to use
+    /// - parameter path: The path component of the URL. This will be percent-escaped as a path component.
+    /// Do not append URL parameters here: they will not be percent-escaped correctly.
+    /// - parameter params: A dictionary of URL parameters. This will be either JSON encoded or URL encoded with percent-escaping.
+    /// - parameter closure: A closure that receives the result upon success.
+    /// - parameter errorHandler: A closure that receives the error object upon failure.
     func request(method: Method, path: String, params: [String: AnyObject]? = nil, closure: JSONHandler? = nil, errorHandler: ErrorHandler? = nil ) {
         let request = clientURLRequest(method, path: path, params: params)
         let task = dataTask(request, method: method, closure: closure, errorHandler: errorHandler)
         task.resume()
     }
 
+    // MARK: Implementation
+    
+    private var baseURL: String { return server.URLString + Endpoints.versionPath }
+    
+    private let session: NSURLSession
+    
+    private enum ParameterEncoding {
+        case URL, JSON
+        
+        func encode(params: [String: AnyObject], ontoRequest request: NSMutableURLRequest) {
+            switch self {
+            case URL:
+                var paramString = ""
+                let characterSet = NSCharacterSet.URLQueryAllowedCharacterSet()
+                for (key, value) in params {
+                    let escapedKey = String(key).stringByAddingPercentEncodingWithAllowedCharacters(characterSet)
+                    let escapedValue = String(value).stringByAddingPercentEncodingWithAllowedCharacters(characterSet)
+                    paramString += "\(escapedKey)=\(escapedValue)&"
+                }
+                
+                request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+                request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
+                
+            case JSON:
+                do {
+                    let data = try NSJSONSerialization.dataWithJSONObject(params, options: [])
+                    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                    request.HTTPBody = data
+                } catch {
+                    fatalError("Error \(error) JSON encoding parameters \(params)")
+                }
+            }
+        }
+    }
+    
     private func dataTask(request: NSMutableURLRequest, method: Method, closure: JSONHandler? = nil, errorHandler: ErrorHandler? = nil) -> NSURLSessionDataTask {
         let dataTask = session.dataTaskWithRequest(request) { 
             (data, response, error) -> Void in
