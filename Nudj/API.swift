@@ -110,6 +110,11 @@ final class API {
     }
     
     private func clientURLRequest(method: Method, path: String, params: [String: AnyObject]? = nil) -> NSMutableURLRequest {
+        // TEMP DEBUG
+        if path.containsString("?") {
+            loggingPrint( "Suspicious path component \"\(path)\"")
+        }
+        
         let characterSet = NSCharacterSet.URLPathAllowedCharacterSet()
         let encodedPath = path.stringByAddingPercentEncodingWithAllowedCharacters(characterSet) ?? ""
         guard let url = NSURL(string: self.baseURL + encodedPath) else {
