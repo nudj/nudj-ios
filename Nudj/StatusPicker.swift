@@ -32,7 +32,9 @@ class StatusPicker: BaseController, UIPickerViewDelegate, UIPickerViewDataSource
 
     @IBAction func done(sender: UIBarButtonItem) {
         loggingPrint(["status": self.selectedStatus])
-        self.apiUpdateUser(["status": self.selectedStatus], closure: { _ in
+        let path = API.Endpoints.Users.base
+        let params = ["status": self.selectedStatus]
+        self.apiRequest(.PUT, path: path, params: params, closure: { _ in
             self.hide()
         })
     }
