@@ -66,9 +66,9 @@ class LoginController: BaseController, SegueHandlerType, CountryPickerDelegate, 
     @IBAction func login(sender: AnyObject) {
         let phoneNumber = internationalPhoneNumber()
 
-        // TODO: API strings
-        let params: [String: AnyObject] = ["phone": phoneNumber, "country_code": iso2CountryCode]
-        API.sharedInstance.post("users", params: params, closure: { response in })
+        let path = API.Endpoints.Users.base
+        let params = API.Endpoints.Users.paramsForLogin(phoneNumber, iso2CountryCode: iso2CountryCode)
+        API.sharedInstance.post(path, params: params, closure: { response in })
         
         performSegueWithIdentifier(.ShowVerifyView, sender: self)
     }

@@ -83,11 +83,25 @@ extension API {
             }
             
             static let verify = base + "/verify"
+            
+            static func paramsForLogin(phoneNumber: String, iso2CountryCode: String) -> [String: String] {
+                return [
+                    "phone": phoneNumber,
+                    "country_code": iso2CountryCode
+                ]
+            }
+            
             static func paramsForVerify(phoneNumber: String, iso2CountryCode: String, verificationCode: String) -> [String: String] {
                 return [
                     "phone": phoneNumber,
                     "country_code": iso2CountryCode,
                     "verification": verificationCode
+                ]
+            }
+            
+            static func paramsForResendVerification(phoneNumber: String) -> [String: String] {
+                return [
+                    "phone": phoneNumber
                 ]
             }
         }

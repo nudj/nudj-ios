@@ -66,9 +66,10 @@ class VerifyViewController: BaseController, SegueHandlerType {
     }
 
     @IBAction func resendButton() {
-        // TODO: API strings
         // TODO: test this
-        self.apiRequest(.POST, path: "users", params: ["phone": phoneNumber], closure: {
+        let path = API.Endpoints.Users.base
+        let params = API.Endpoints.Users.paramsForResendVerification(phoneNumber)
+        self.apiRequest(.POST, path: path, params: params, closure: {
             (json: JSON) in
 
             let verificationCode = json["data"]["code"].stringValue
@@ -98,7 +99,6 @@ class VerifyViewController: BaseController, SegueHandlerType {
         codeField.resignFirstResponder()
         hideCodeField()
 
-        // TODO: API strings
         let path = API.Endpoints.Users.verify
         let params = API.Endpoints.Users.paramsForVerify(phoneNumber, iso2CountryCode: iso2CountryCode, verificationCode: verificationCode)
         self.apiRequest(API.Method.PUT, path: path, params: params, closure: {
