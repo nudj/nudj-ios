@@ -110,8 +110,10 @@ final class API {
     }
     
     private func clientURLRequest(method: Method, path: String, params: [String: AnyObject]? = nil) -> NSMutableURLRequest {
-        guard let url = NSURL(string: self.baseURL + path) else {
-            fatalError("Cannot form URL from \(path)")
+        let characterSet = NSCharacterSet.URLPathAllowedCharacterSet()
+        let encodedPath = path.stringByAddingPercentEncodingWithAllowedCharacters(characterSet) ?? ""
+        guard let url = NSURL(string: self.baseURL + encodedPath) else {
+            fatalError("Cannot form URL from \(encodedPath)")
         }
         
         let request = NSMutableURLRequest(URL: url)
