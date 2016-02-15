@@ -56,18 +56,12 @@ class MainFeed: BaseController, SegueHandlerType, DataProviderProtocol, UISearch
     }
     
     func requestData(page: Int, size: Int, listener: (JSON) -> ()) {
-        // TODO: API strings
-        let imageName = searchTerm == nil ? "no_jobs" : "no_search_results"
+        let imageName = (searchTerm == nil) ? "no_jobs" : "no_search_results"
         self.noContentImage.image = UIImage(named: imageName)
         
-        let path = searchTerm == nil ? "available" : "search/\(searchTerm!)"
-        let params: [String: String] = [
-            "params": "job.title,job.salary,job.bonus,job.user,job.location,job.company,user.name,user.image&sizes=user.profile",
-            "page": String(page),
-            "limit": String(size)
-        ]
-        let url = "jobs/\(path)"
-        self.apiRequest(.GET, path: url, params: params, closure: listener)
+        let path = API.Endpoints.Jobs.search(searchTerm)
+        let params = API.Endpoints.Jobs.paramsForList(page, pageSize: size)
+        self.apiRequest(.GET, path: path, params: params, closure: listener)
     }
     
     func deleteData(id: Int, listener: (JSON) -> ()) {

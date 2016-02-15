@@ -23,8 +23,8 @@ final class API {
                 var paramString = ""
                 let characterSet = NSCharacterSet.URLQueryAllowedCharacterSet()
                 for (key, value) in params {
-                    let escapedKey = key.stringByAddingPercentEncodingWithAllowedCharacters(characterSet)
-                    let escapedValue = value.stringByAddingPercentEncodingWithAllowedCharacters(characterSet)
+                    let escapedKey = String(key).stringByAddingPercentEncodingWithAllowedCharacters(characterSet)
+                    let escapedValue = String(value).stringByAddingPercentEncodingWithAllowedCharacters(characterSet)
                     paramString += "\(escapedKey)=\(escapedValue)&"
                 }
                 
