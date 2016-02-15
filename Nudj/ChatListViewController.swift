@@ -18,7 +18,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     @IBOutlet weak var activity: UIActivityIndicatorView!
     var data:[ChatStructModel] = []
     var noContentImage = NoContentPlaceHolder()
-    var isArchive:Bool?
+    var isArchive: Bool = false
     
     override func viewDidLoad() {
          self.chatTable.registerNib(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
@@ -47,12 +47,10 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     }
 
     func requestData() {
-        // TODO: API strings
-        let url = isArchive != nil && isArchive! == true ? "chat/archived":"chat/active"
-        
-        self.apiRequest(.GET, path: "\(url)?params=chat.job,job.liked,chat.participants,chat.created,job.title,job.company,job.like,user.image,user.name,user.contact,contact.alias&limit=100", closure: { 
+        let path = isArchive ? API.Endpoints.Chat.archived() : API.Endpoints.Chat.active()
+        let params = API.Endpoints.Chat.paramsForList(100)
+        self.apiRequest(.GET, path: path, params: params, closure: { 
             response in
-
             self.data.removeAll(keepCapacity: false)
             
             for (_, obj) in response["data"] {
@@ -67,11 +65,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
             self.chatCounter = 0
             self.navigationController?.tabBarItem.badgeValue = nil
             
-            if(self.data.count == 0){
-                self.noContentImage.hidden = false
-            }else{
-                self.noContentImage.hidden = true
-            }
+            self.noContentImage.hidden = !self.data.isEmpty
         })
     }
     
@@ -134,10 +128,12 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         }
     }
     
-    func deleteChat(row:Int){
-        API.sharedInstance.delete("chat/\(self.data[row].chatId!)", params: nil, closure: { 
+    func deleteChat(row: Int) {
+        guard let chatIDStr = data[row].chatId else {return} // TODO: data[row].chatId should be Int not String?
+        guard let chatID = Int(chatIDStr) else {return}
+        let path = API.Endpoints.Chat.byID(chatID)
+        API.sharedInstance.delete(path, params: nil, closure: { 
             response in
-        
             self.data.removeAtIndex(row)
             self.chatTable.reloadData()
         }, errorHandler: { 
@@ -145,7 +141,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         })
     }
     
-    func reload(notification:NSNotification){
+    func reload(notification: NSNotification) {
         self.requestData()
     }
 }

@@ -122,7 +122,7 @@ class MainFeed: BaseController, SegueHandlerType, DataProviderProtocol, UISearch
             break
         case .GoToJob:
             let detailsView = segue.destinationViewController as! JobDetailedViewController
-            detailsView.jobID = selectedJobData!["id"].stringValue
+            detailsView.jobID = selectedJobData!["id"].intValue
         }
     }
     

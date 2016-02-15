@@ -98,7 +98,7 @@ class SavedPostedJobs: BaseController, SegueHandlerType, DataProviderProtocol {
         switch segueIdentifierForSegue(segue) {
         case .GoToJob:
             let detailsView = segue.destinationViewController as! JobDetailedViewController
-            detailsView.jobID = selectedJobData!["id"].stringValue
+            detailsView.jobID = selectedJobData!["id"].intValue
         }
     }
 

@@ -243,7 +243,7 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
         self.goToView("AskReferralView", contentId:jobID)
     }
     
-    func goToView(viewId: String, contentId:String?) {
+    func goToView(viewId: String, contentId: String?) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         guard let job = Int(contentId ?? "") else {
             return
@@ -256,7 +256,7 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
             self.navigationController?.pushViewController(askView, animated: true);
         } else {
             let detailsView = storyboard.instantiateViewControllerWithIdentifier(viewId) as! JobDetailedViewController
-            detailsView.jobID = contentId
+            detailsView.jobID = job
             self.navigationController?.pushViewController(detailsView, animated: true);
         }
     }

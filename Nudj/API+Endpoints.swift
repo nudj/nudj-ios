@@ -12,6 +12,59 @@ extension API {
     struct Endpoints {
         static let versionPath = "api/v1/"
         
+        struct Chat {
+            static let base = "chat"
+            
+            static func byID(chatID: Int) -> String {
+                return base + "/\(chatID)"
+            }
+            
+            static func all() -> String {
+                return base + "/all"
+            }
+            
+            static func active() -> String {
+                return base + "/active"
+            }
+            
+            static func archived() -> String {
+                return base + "/archived"
+            }
+            
+            static func notification() -> String {
+                return base + "/notification"
+            }
+            
+            static func archiveByID(chatID: Int) -> String {
+                let chatPath = byID(chatID)
+                return chatPath + "/archive"
+            }
+            
+            static func paramsForLimit(pageSize: Int) -> [String: AnyObject] {
+                let params: [String: AnyObject] = [
+                    "limit": pageSize
+                ]
+                return params
+            }
+            
+            static func paramsForList(pageSize: Int) -> [String: AnyObject] {
+                let params: [String: AnyObject] = [
+                    "params": "chat.job,job.liked,chat.participants,chat.created,job.title,job.company,job.like,user.image,user.name,user.contact,contact.alias",
+                    "limit": pageSize
+                ]
+                return params
+            }
+            
+            static func paramsForMessage(chatID: Int, userID: Int, message: String) -> [String: AnyObject] {
+                let params: [String: AnyObject] = [
+                    "chat_id": chatID,
+                    "user_id": userID,
+                    "message": message,
+                ]
+                return params
+            }
+        }
+        
         struct Jobs {
             static let base = "jobs"
             static let available = base + "/available"

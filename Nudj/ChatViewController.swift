@@ -394,7 +394,8 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
             func dismissSelf(_: UIAlertAction) {
                 self.navigationController?.popViewControllerAnimated(true)
             }
-            let endpoint = "chat/\(chatID)/archive"
+            guard let chatID = Int(self.chatID) else {return} // TODO: self.chatID should be Int not String
+            let endpoint = API.Endpoints.Chat.archiveByID(chatID)
             if(selectedButton.selected){
                 MixPanelHandler.sendData("Chat_RestoreFromArchive")
                 completeRequest(endpoint, method: .DELETE)
@@ -463,14 +464,16 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
         // TODO: do we need this?        
     }
     
-    func sendOfflineMessage(message:String){
-        // TODO: API strings
-        let params = ["chat_id": self.chatID, "user_id": self.participantsID, "message": message]
-        API.sharedInstance.put("chat/notification", params: params, closure: { 
+    func sendOfflineMessage(message: String){
+        guard let chatID = Int(self.chatID) else {return} // TODO: self.chatID should be Int not String
+        guard let participantsID = Int(self.participantsID) else {return} // TODO: self.participantsID should be Int not String
+        
+        let path = API.Endpoints.Chat.notification()
+        let params = API.Endpoints.Chat.paramsForMessage(chatID, userID: participantsID, message: message)
+        API.sharedInstance.put(path, params: params, closure: { 
             reponse in
             // TODO: error handling
             loggingPrint(reponse)
-            
             }, errorHandler: {
                 error in
                 loggingPrint(error)
