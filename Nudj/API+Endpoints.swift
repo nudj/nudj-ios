@@ -75,9 +75,10 @@ extension API {
             static let mine = base + "/mine"
             
             static func paramsForList(fields: [String]) -> [String: AnyObject] {
-                let fieldsString = fields.reduce("", combine: {$0! + "," + $1}) ?? ""
+                let allFields = fields + ["contact.alias", "contact.apple_id", "user.image", "user.status", "user.name"]
+                let fieldsString = allFields.joinWithSeparator(",")
                 let params: [String: AnyObject] = [
-                    "params": "\(fieldsString),contact.alias,contact.apple_id,user.image,user.status,user.name",
+                    "params": fieldsString,
                     "sizes": "user.profile",
                 ]
                 return params
@@ -188,8 +189,8 @@ extension API {
             }
             
             static func paramsForFields(fields: [String]) -> [String: String] {
-                let userFields = fields.reduce("", combine: {$0! + "," + $1}) ?? ""
-                return ["params": userFields]
+                let fieldsString = fields.joinWithSeparator(",")
+                return ["params": fieldsString]
             }
             
             static func paramsForStatuses() -> [String: String] {
