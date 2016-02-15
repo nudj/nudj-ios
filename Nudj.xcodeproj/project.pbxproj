@@ -244,6 +244,8 @@
 		A9F3337E1B45532F00F0D17B /* success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3337D1B45532F00F0D17B /* success@2x.png */; };
 		A9F333811B45972100F0D17B /* save@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3337F1B45972100F0D17B /* save@2x.png */; };
 		A9F333821B45972100F0D17B /* saved@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333801B45972100F0D17B /* saved@2x.png */; };
+		C80486681C72132C0020EEE1 /* API+Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80486671C72132C0020EEE1 /* API+Endpoints.swift */; };
+		C80486691C72132C0020EEE1 /* API+Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80486671C72132C0020EEE1 /* API+Endpoints.swift */; };
 		C83FB6BC1C3EB5D0004ACE3E /* VersionNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83FB6BB1C3EB5D0004ACE3E /* VersionNumber.swift */; };
 		C84E00F81C191FC60065F220 /* Localizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84E00F71C191FC60065F220 /* Localizations.swift */; };
 		C86F844B1C44257800C23332 /* API+Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F844A1C44257800C23332 /* API+Server.swift */; };
@@ -1062,6 +1064,7 @@
 		A9F3337D1B45532F00F0D17B /* success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "success@2x.png"; sourceTree = "<group>"; };
 		A9F3337F1B45972100F0D17B /* save@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "save@2x.png"; sourceTree = "<group>"; };
 		A9F333801B45972100F0D17B /* saved@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "saved@2x.png"; sourceTree = "<group>"; };
+		C80486671C72132C0020EEE1 /* API+Endpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+Endpoints.swift"; sourceTree = "<group>"; };
 		C8182DC11C61684200E5C9F9 /* Timings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Timings.xcconfig; sourceTree = "<group>"; };
 		C83FB6BB1C3EB5D0004ACE3E /* VersionNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionNumber.swift; sourceTree = "<group>"; };
 		C84E00F71C191FC60065F220 /* Localizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizations.swift; sourceTree = "<group>"; };
@@ -2427,7 +2430,7 @@
 			name = Contatcs;
 			sourceTree = "<group>";
 		};
-		EB04F6211AAD8993002F2677 /* Drivers */ = {
+		EB04F6211AAD8993002F2677 /* API */ = {
 			isa = PBXGroup;
 			children = (
 				EBB3383B1A9F73D4000CAD88 /* API.swift */,
@@ -2435,8 +2438,9 @@
 				EB04F6221AAD89AF002F2677 /* Contacts.swift */,
 				C86F844C1C44273A00C23332 /* ProductionServer.swift */,
 				C86F85911C444F2100C23332 /* DevelopmentServer.swift */,
+				C80486671C72132C0020EEE1 /* API+Endpoints.swift */,
 			);
-			name = Drivers;
+			name = API;
 			sourceTree = "<group>";
 		};
 		EB0926C11A8DE4CB00E1D958 = {
@@ -2468,7 +2472,7 @@
 				EBEA9B471AF264DF0027A2A2 /* ActionControllers */,
 				EBDD28CC1ACD8AA700956995 /* MainControllers */,
 				EB6F22B81AAF702F007FF1B8 /* Common */,
-				EB04F6211AAD8993002F2677 /* Drivers */,
+				EB04F6211AAD8993002F2677 /* API */,
 				EBB338311A9F5A4A000CAD88 /* Models */,
 				EB0926CF1A8DE4CB00E1D958 /* AppDelegate.swift */,
 				EBB338451AA0EA46000CAD88 /* BaseController.swift */,
@@ -3201,6 +3205,7 @@
 				C86F84B61C444DB800C23332 /* XMPPMessageArchiving.m in Sources */,
 				C86F84B71C444DB800C23332 /* SettingsController.swift in Sources */,
 				C86F84B81C444DB800C23332 /* Contacts.swift in Sources */,
+				C80486691C72132C0020EEE1 /* API+Endpoints.swift in Sources */,
 				C86F84B91C444DB800C23332 /* XMPPMessageArchiving_Contact_CoreDataObject.m in Sources */,
 				C86F84BA1C444DB800C23332 /* XMPPElement.m in Sources */,
 				C86F84BB1C444DB800C23332 /* DDASLLogger.m in Sources */,
@@ -3441,6 +3446,7 @@
 				A99650591B387CC800D5A8E9 /* XMPPMessageArchiving.m in Sources */,
 				EBDD28CE1ACD8ADA00956995 /* SettingsController.swift in Sources */,
 				EB04F6231AAD89AF002F2677 /* Contacts.swift in Sources */,
+				C80486681C72132C0020EEE1 /* API+Endpoints.swift in Sources */,
 				A99650561B387CC800D5A8E9 /* XMPPMessageArchiving_Contact_CoreDataObject.m in Sources */,
 				A996500B1B387CC800D5A8E9 /* XMPPElement.m in Sources */,
 				A99650741B387CC800D5A8E9 /* DDASLLogger.m in Sources */,
