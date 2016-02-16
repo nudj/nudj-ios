@@ -246,6 +246,10 @@
 		A9F333821B45972100F0D17B /* saved@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333801B45972100F0D17B /* saved@2x.png */; };
 		C80486681C72132C0020EEE1 /* API+Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80486671C72132C0020EEE1 /* API+Endpoints.swift */; };
 		C80486691C72132C0020EEE1 /* API+Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80486671C72132C0020EEE1 /* API+Endpoints.swift */; };
+		C81F16A91C735BF0000927F8 /* NSData+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81F16A81C735BF0000927F8 /* NSData+Hex.swift */; };
+		C81F16AA1C735BF0000927F8 /* NSData+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81F16A81C735BF0000927F8 /* NSData+Hex.swift */; };
+		C81F16AC1C735C65000927F8 /* NSDataHexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81F16AB1C735C65000927F8 /* NSDataHexTests.swift */; };
+		C81F16AD1C735C65000927F8 /* NSDataHexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81F16AB1C735C65000927F8 /* NSDataHexTests.swift */; };
 		C83FB6BC1C3EB5D0004ACE3E /* VersionNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83FB6BB1C3EB5D0004ACE3E /* VersionNumber.swift */; };
 		C84E00F81C191FC60065F220 /* Localizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84E00F71C191FC60065F220 /* Localizations.swift */; };
 		C86F844B1C44257800C23332 /* API+Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F844A1C44257800C23332 /* API+Server.swift */; };
@@ -1066,6 +1070,8 @@
 		A9F333801B45972100F0D17B /* saved@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "saved@2x.png"; sourceTree = "<group>"; };
 		C80486671C72132C0020EEE1 /* API+Endpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+Endpoints.swift"; sourceTree = "<group>"; };
 		C8182DC11C61684200E5C9F9 /* Timings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Timings.xcconfig; sourceTree = "<group>"; };
+		C81F16A81C735BF0000927F8 /* NSData+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+Hex.swift"; sourceTree = "<group>"; };
+		C81F16AB1C735C65000927F8 /* NSDataHexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDataHexTests.swift; sourceTree = "<group>"; };
 		C83FB6BB1C3EB5D0004ACE3E /* VersionNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionNumber.swift; sourceTree = "<group>"; };
 		C84E00F71C191FC60065F220 /* Localizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizations.swift; sourceTree = "<group>"; };
 		C86F844A1C44257800C23332 /* API+Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+Server.swift"; sourceTree = "<group>"; };
@@ -2503,6 +2509,7 @@
 			isa = PBXGroup;
 			children = (
 				EB0926E71A8DE4CB00E1D958 /* NudgeTests.swift */,
+				C81F16AB1C735C65000927F8 /* NSDataHexTests.swift */,
 				EB0926E51A8DE4CB00E1D958 /* Supporting Files */,
 			);
 			path = NudjTests;
@@ -2530,6 +2537,7 @@
 				A9191EA51B6A402E000F9168 /* SocialStatus.swift */,
 				A947CC981B7119B500C9518E /* NoContentPlaceHolder.swift */,
 				A929E4941B863D3F00AC2A5F /* MixPanelHandler.swift */,
+				C81F16A81C735BF0000927F8 /* NSData+Hex.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -3214,6 +3222,7 @@
 				C86F84BE1C444DB800C23332 /* JSQSystemSoundPlayer+JSQMessages.m in Sources */,
 				C86F84BF1C444DB800C23332 /* KSTokenField.swift in Sources */,
 				C86F84C01C444DB800C23332 /* TokenView.swift in Sources */,
+				C81F16AA1C735BF0000927F8 /* NSData+Hex.swift in Sources */,
 				C86F84C11C444DB800C23332 /* XMPPIQ+LastActivity.m in Sources */,
 				C86F84C21C444DB800C23332 /* Common.swift in Sources */,
 				C86F84C31C444DB800C23332 /* XMPPDateTimeProfiles.m in Sources */,
@@ -3338,6 +3347,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8A6A02C1C44536C004DB1C0 /* NudgeTests.swift in Sources */,
+				C81F16AD1C735C65000927F8 /* NSDataHexTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3455,6 +3465,7 @@
 				A9964FD61B387CC800D5A8E9 /* JSQSystemSoundPlayer+JSQMessages.m in Sources */,
 				EBF186211B21DACA00D8D80D /* KSTokenField.swift in Sources */,
 				EBE5C3121B25811400CFF7E9 /* TokenView.swift in Sources */,
+				C81F16A91C735BF0000927F8 /* NSData+Hex.swift in Sources */,
 				A99650251B387CC800D5A8E9 /* XMPPIQ+LastActivity.m in Sources */,
 				EBF17A241B4D538800C67657 /* Common.swift in Sources */,
 				A996504B1B387CC800D5A8E9 /* XMPPDateTimeProfiles.m in Sources */,
@@ -3579,6 +3590,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB0926E81A8DE4CB00E1D958 /* NudgeTests.swift in Sources */,
+				C81F16AC1C735C65000927F8 /* NSDataHexTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3751,6 +3763,11 @@
 			baseConfigurationReference = C8A661DF1C0B60290088355D /* Nudj.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SDKROOT)/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = "NudjTests/Beta-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "co.nudj.$(PRODUCT_NAME:rfc1034identifier)";
@@ -3764,6 +3781,11 @@
 			baseConfigurationReference = C8A661DE1C0B60020088355D /* Nudj.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SDKROOT)/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = "NudjTests/Beta-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "co.nudj.$(PRODUCT_NAME:rfc1034identifier)";
@@ -3929,6 +3951,11 @@
 			baseConfigurationReference = C8A661DF1C0B60290088355D /* Nudj.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SDKROOT)/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = NudjTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "co.nudj.$(PRODUCT_NAME:rfc1034identifier)";
@@ -3942,6 +3969,11 @@
 			baseConfigurationReference = C8A661DE1C0B60020088355D /* Nudj.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SDKROOT)/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = NudjTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "co.nudj.$(PRODUCT_NAME:rfc1034identifier)";
