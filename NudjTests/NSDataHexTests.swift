@@ -12,20 +12,37 @@ import XCTest
 
 class NDDataHexTests: XCTestCase {
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
     func testEmptyData() {
         let data = NSData()
         let hex = data.hexString()
         XCTAssert(hex.isEmpty)
     }
     
+    func test1x0Byte() {
+        let data = NSMutableData(length: 1)
+        let hex = data!.hexString()
+        XCTAssertEqual(hex, "00")
+    }
+    
+    func test1x15Byte() {
+        let data = NSMutableData(length: 1)
+        let bytes = UnsafeMutablePointer<UInt8>(data!.mutableBytes)
+        bytes[0] = 15
+        let hex = data!.hexString()
+        XCTAssertEqual(hex, "0f")
+    }
+    
+    func test1x255Byte() {
+        let data = NSMutableData(length: 1)
+        let bytes = UnsafeMutablePointer<UInt8>(data!.mutableBytes)
+        bytes[0] = 255
+        let hex = data!.hexString()
+        XCTAssertEqual(hex, "ff")
+    }
+    
+    func test32x0Byte() {
+        let data = NSMutableData(length: 32)
+        let hex = data!.hexString()
+        XCTAssertEqual(hex, String(count: 64, repeatedValue: Character("0")))
+    }
 }
