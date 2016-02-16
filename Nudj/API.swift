@@ -41,26 +41,19 @@ final class API {
     // TODO: remove this singleton
     static var sharedInstance = API()
 
-    // MARK: Convenience request methods
-    
-    /// Get a resource
-    /// - parameter path: The path component of the URL. This will be percent-escaped as a path component.
-    /// Do not append URL parameters here: they will not be percent-escaped correctly.
-    /// - parameter params: A dictionary of URL parameters. This will be either JSON encoded or URL encoded with percent-escaping.
+    /// Initiate an API request
+    ///
+    /// - parameter method: The HTTP method (GET, PUT, etc) to use.
+    ///
+    /// - parameter path: The path component of the URL. This will be percent-encoded as a path component.  
+    /// **Warning**: do not append query parameters here: they will be percent-encoded into the path, which is not what you want. This is to allow user-generated components, such as search terms, to be sent in the path component even if they contain "query-like" characters such as '?', '=', and '&'.
+    ///
+    /// - parameter params: A dictionary of query parameters. This will be either JSON encoded or URL encoded with percent-encoding, whichever is appropriate for the HTTP method.
+    ///
     /// - parameter closure: A closure that receives the result upon success.
+    ///
     /// - parameter errorHandler: A closure that receives the error object upon failure.
-    func get(path: String, params: [String: AnyObject]? = nil, closure: JSONHandler? = nil, errorHandler: ErrorHandler? = nil) {
-        self.request(.GET, path: path, params: params, closure: closure, errorHandler: errorHandler)
-    }
-
-    // MARK: General request
-    /// Make an API request
-    /// - parameter method: The HTTP method (GET, PUT, etc) to use
-    /// - parameter path: The path component of the URL. This will be percent-escaped as a path component.
-    /// Do not append URL parameters here: they will not be percent-escaped correctly.
-    /// - parameter params: A dictionary of URL parameters. This will be either JSON encoded or URL encoded with percent-escaping.
-    /// - parameter closure: A closure that receives the result upon success.
-    /// - parameter errorHandler: A closure that receives the error object upon failure.
+    ///
     func request(method: Method, path: String, params: [String: AnyObject]? = nil, closure: JSONHandler? = nil, errorHandler: ErrorHandler? = nil ) {
         let request = clientURLRequest(method, path: path, params: params)
         let task = dataTask(request, method: method, closure: closure, errorHandler: errorHandler)
