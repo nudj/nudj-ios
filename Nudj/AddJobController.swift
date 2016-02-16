@@ -120,7 +120,8 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
                 skills: skills.tokens()!.map({token in return token.title})
             )
             
-            AppDelegate.registerForRemoteNotifications()
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            appDelegate.registerForRemoteNotifications()
 
             // TODO: select by something less fragile than the title
             if(sender.title == Localizations.Jobs.Add.Button.Update){

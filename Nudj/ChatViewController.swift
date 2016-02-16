@@ -131,7 +131,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
                     JSQSystemSoundPlayer.jsq_playMessageSentSound()
                     sendOnce = false
                     
-                    AppDelegate.registerForRemoteNotifications()
+                    appGlobalDelegate.registerForRemoteNotifications()
                     
                     chatRoom.xmppRoom!.sendMessageWithBody(text);
                     loggingPrint("Sent xmpp message");

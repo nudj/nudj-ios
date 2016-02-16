@@ -202,7 +202,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
             }
             
         case .AskForReferral:
-            AppDelegate.registerForRemoteNotifications()
+            appDelegate.registerForRemoteNotifications()
             let askView = segue.destinationViewController as! AskReferralViewController
             askView.jobId = Int(self.jobID!)
             askView.isNudjRequest = true
@@ -216,7 +216,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     
     @IBAction func interested(sender: AnyObject) {
         MixPanelHandler.sendData("InterestedButtonClicked")
-        AppDelegate.registerForRemoteNotifications()
+        appDelegate.registerForRemoteNotifications()
         let localization = Localizations.Jobs.Interested.self
         let user = appDelegate.user
         if user.hasFullyCompletedProfile() {

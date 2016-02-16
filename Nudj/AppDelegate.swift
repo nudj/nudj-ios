@@ -65,7 +65,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
         
 		// we only register for notifications if we have a valid user
 		if user.completed {
-			AppDelegate.registerForRemoteNotifications()            
+			registerForRemoteNotifications()
 		}
         
         if contacts.isAuthorized() {
@@ -114,9 +114,10 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
         loggingPrint( "Notification Error: ", error.localizedDescription )
     }
 
-    static func registerForRemoteNotifications() {
+    func registerForRemoteNotifications() {
         let application = UIApplication.sharedApplication()
-        if(application.isRegisteredForRemoteNotifications()) {
+        if(application.isRegisteredForRemoteNotifications() && deviceToken != nil) {
+            syncDeviceToken()
             return
         }
         let types: UIUserNotificationType = [.Badge, .Alert, .Sound]

@@ -234,7 +234,8 @@ class AskReferralViewController: UIViewController, SegueHandlerType, UISearchBar
         
         let params = API.Endpoints.Nudge.paramsForJob(jobId!, contactIDs: contactIds, message: messageText.text)        
         self.messageText.resignFirstResponder()
-        AppDelegate.registerForRemoteNotifications()
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.registerForRemoteNotifications()
 
         // TODO: Refactor
         guard let firstSelected = self.selected.first else {return}

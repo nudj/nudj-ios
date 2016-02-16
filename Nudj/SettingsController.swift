@@ -182,7 +182,8 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
         case .TestNotification:
             let api = API.sharedInstance
             if (api.token == nil) {
-                AppDelegate.registerForRemoteNotifications()
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                appDelegate.registerForRemoteNotifications()
                 // TODO: send a notification when application:didRegisterForRemoteNotificationsWithDeviceToken: received?
                 break
             }
