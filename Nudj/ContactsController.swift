@@ -270,7 +270,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
             return
         }
         let path = API.Endpoints.Contacts.inviteByID(contactID)
-        API.sharedInstance.post(path, params: nil, 
+        API.sharedInstance.request(.POST, path: path, params: nil, 
             closure: { 
                 result in
                 let title: String

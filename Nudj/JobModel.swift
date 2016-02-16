@@ -39,7 +39,7 @@ struct JobModel {
     func save(closure:(ErrorType?, Int) -> ()) {
         let path = API.Endpoints.Jobs.base
         let params = self.params()
-        API.sharedInstance.post(path, params: params, closure: { 
+        API.sharedInstance.request(.POST, path: path, params: params, closure: { 
             result in
             if (result["data"]["id"].intValue > 0) {
                 closure(nil, result["data"]["id"].intValue)

@@ -68,7 +68,7 @@ class LoginController: BaseController, SegueHandlerType, CountryPickerDelegate, 
 
         let path = API.Endpoints.Users.base
         let params = API.Endpoints.Users.paramsForLogin(phoneNumber, iso2CountryCode: iso2CountryCode)
-        API.sharedInstance.post(path, params: params, closure: { response in })
+        API.sharedInstance.request(.POST, path: path, params: params, closure: { response in })
         
         performSegueWithIdentifier(.ShowVerifyView, sender: self)
     }
