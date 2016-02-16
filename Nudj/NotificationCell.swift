@@ -123,7 +123,6 @@ class NotificationCell: UITableViewCell {
     }
 
     func markAsRead(){
-        // TODO: API strings
         let path = API.Endpoints.Notifications.markReadByID(notificationID!)
         API.sharedInstance.request(.PUT, path: path, params: nil, closure: { json in
             loggingPrint("success \(json)")
