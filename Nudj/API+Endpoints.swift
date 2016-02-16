@@ -106,6 +106,15 @@ extension API {
             }
         }
         
+        struct Feedback {
+            static let base = "feedback"
+            
+            static func params(message: String) -> [String: String] {
+                let params = ["feedback": message]
+                return params
+            }
+        }
+        
         struct Jobs {
             static let base = "jobs"
             static let available = base + "/available"

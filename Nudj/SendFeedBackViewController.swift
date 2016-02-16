@@ -33,7 +33,9 @@ class SendFeedBackViewController: UIViewController, UITextViewDelegate {
         guard !self.feedBackTextView.text.isEmpty else {
             return
         }
-        API.sharedInstance.request(.POST, path: "feedback", params: ["feedback":self.feedBackTextView.text], closure: { json in
+        let path = API.Endpoints.Feedback.base
+        let params = API.Endpoints.Feedback.params(feedBackTextView.text)
+        API.sharedInstance.request(.POST, path: path, params: params, closure: { json in
             self.navigationController?.popViewControllerAnimated(true)
             }, errorHandler: { error in
                 // TODO: error handling    
