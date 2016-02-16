@@ -28,11 +28,11 @@ class BaseController: UIViewController {
         self.presentViewController(alert, animated: true, completion: nil)
     }
 
-    func apiRequest(method: API.Method, path: String, params: [String: AnyObject]? = nil, closure: ((JSON) -> ())? = nil, errorHandler: (ErrorType -> Void)? = nil ) {
-        // TODO: remove this singleton nastiness
-        API.sharedInstance.request(method, path: path, params: params, closure: {
+    func apiRequest(method: API.Method, path: String, params: [String: AnyObject]? = nil, closure: API.JSONHandler? = nil, errorHandler: API.ErrorHandler? = nil ) {
+        // TODO: figure out when these alerts might fire and find a better UX for those cases
+        let wrappedClosure: API.JSONHandler = {
             (json: JSON) in
-
+            
             if (json["status"].boolValue != true && json["data"] == nil) {
                 loggingPrint(json)
                 if (json["error"] != nil) {
@@ -40,19 +40,22 @@ class BaseController: UIViewController {
                 } else {
                     self.showSimpleAlert(Localizations.Server.Error.Unknown)
                 }
-
+                
                 // TODO: sort this out - we have no error to pass here
                 if (errorHandler != nil) {
                     errorHandler!(UnknownError())
                 }
-
-                return;
+                
+                return
             }
-
+            
             if (closure != nil) {
                 closure!(json)
             }
-        }, errorHandler: errorHandler)
+        }
+        
+        // TODO: remove this singleton nastiness
+        API.sharedInstance.request(method, path: path, params: params, closure: wrappedClosure, errorHandler: errorHandler)
     }
 
     func updateBadge(notification:NSNotification){
