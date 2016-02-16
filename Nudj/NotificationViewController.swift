@@ -18,7 +18,7 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
     var data = [Notification]()
     
     let cellIdentifier = "NotificationCell"
-    var nextLink:String? = nil
+    var nextLink: String? = nil
     var noContentImage = NoContentPlaceHolder()
     var selectedContent: Notification?
     
@@ -26,7 +26,7 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
         MixPanelHandler.sendData("NotificationsTabOpened")
         
         self.tabBarController?.tabBar.hidden = false
-        loadData()
+        refresh()
     }
     
     override func viewDidLoad() {
@@ -48,15 +48,16 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
     }
 
     func refresh() {
-        loadData(false, url: nil)
+        loadData(false)
     }
 
-    func loadData(append:Bool = true, url:String? = nil) {
+    private func loadData(append: Bool = true, path: String? = nil) {
         // TODO: API strings
-        let defaulUrl = "notifications?params=chat.id,sender.name,sender.image&limit=100"
+        let path = path ?? API.Endpoints.Notifications.base
+        let params = API.Endpoints.Notifications.paramsForList(100)
 
-        API.sharedInstance.get(url == nil ? defaulUrl : url!, closure: {data in
-
+        API.sharedInstance.get(path, params: params, closure: {data in
+            // TODO: review the following
             //if !append {
                 self.data.removeAll(keepCapacity: false)
             //}
@@ -69,12 +70,12 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
         })
     }
     
-    func loadNext() {
+    private func loadNext() {
         if (nextLink == nil) {
             return
         }
 
-        loadData(true, url: self.nextLink)
+        loadData(true, path: self.nextLink)
     }
 
     func populate(data:JSON) {

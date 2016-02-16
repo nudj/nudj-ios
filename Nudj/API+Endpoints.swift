@@ -148,6 +148,27 @@ extension API {
             }
         }
         
+        struct Notifications {
+            static let base = "notifications"
+            
+            static func byID(id: AnyObject) -> String {
+                return base + "/\(id)"
+            }
+            
+            static func markReadByID(id: String) -> String {
+                let path = byID(id)
+                return path + "/read"
+            }
+            
+            static func paramsForList(pageSize: Int) -> [String: AnyObject] {
+                let params: [String: AnyObject] = [
+                    "params": "chat.id,sender.name,sender.image",
+                    "limit": pageSize,
+                ]
+                return params
+            }
+        }
+        
         struct Nudge {
             static let base = "nudge"
             static let apply = base + "/apply"
