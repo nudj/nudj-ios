@@ -2564,7 +2564,6 @@
 			children = (
 				EBB338321A9F5FF9000CAD88 /* LoginController.swift */,
 				EBB3383F1AA0ADB5000CAD88 /* VerifyViewController.swift */,
-				EBB338411AA0C365000CAD88 /* GenericProfileViewController.swift */,
 				EB313D2D1AAF37FB00F008B8 /* StatusButton.swift */,
 				EB313D2F1AAF4C5A00F008B8 /* StatusPicker.swift */,
 				EBF17A211B4C128100C67657 /* VerifyCodeTextField.swift */,
@@ -2578,6 +2577,7 @@
 			children = (
 				EBDD28CD1ACD8ADA00956995 /* SettingsController.swift */,
 				C8A661FD1C0B66440088355D /* SettingsCell.xib */,
+				EBB338411AA0C365000CAD88 /* GenericProfileViewController.swift */,
 				A9ACE1C31B68FC0F003BD5F2 /* SendFeedBackViewController.swift */,
 				A9ACE1CB1B69107A003BD5F2 /* SavedPostedJobs.swift */,
 				C83FB6BB1C3EB5D0004ACE3E /* VersionNumber.swift */,
