@@ -614,13 +614,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C8A6A02A1C44536C004DB1C0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EB0926C21A8DE4CB00E1D958 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EB0926C91A8DE4CB00E1D958;
-			remoteInfo = Nudge;
-		};
 		C8A6A0341C44537D004DB1C0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EB0926C21A8DE4CB00E1D958 /* Project object */;
@@ -2689,7 +2682,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				C8A6A0291C44536C004DB1C0 /* PBXTargetDependency */,
 				C8A6A0351C44537D004DB1C0 /* PBXTargetDependency */,
 			);
 			name = "Nudj beta tests";
@@ -3597,11 +3589,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C8A6A0291C44536C004DB1C0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EB0926C91A8DE4CB00E1D958 /* Nudj */;
-			targetProxy = C8A6A02A1C44536C004DB1C0 /* PBXContainerItemProxy */;
-		};
 		C8A6A0351C44537D004DB1C0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C86F844E1C444DB800C23332 /* Nudj beta */;
