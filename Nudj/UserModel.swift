@@ -145,7 +145,7 @@ class UserModel: CustomStringConvertible {
     static func getById(id: Int, fields:[String], closure: ((JSON) -> ())? = nil, errorHandler: ErrorHandler? = nil ) {
         let path = API.Endpoints.Users.byID(id)
         let params = API.Endpoints.Users.paramsForFields(fields)
-        API.sharedInstance.get(path, params: params, closure: closure, errorHandler: errorHandler)
+        API.sharedInstance.request(.GET, path: path, params: params, closure: closure, errorHandler: errorHandler)
     }
 
     static func update(fields: [String: AnyObject], closure: ((JSON) -> ())? = nil, errorHandler: ErrorHandler? = nil) {

@@ -79,7 +79,7 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
             
             let path = API.Endpoints.Jobs.byID(jobId!)
             let params = API.Endpoints.Jobs.paramsForDetail()
-            API.sharedInstance.get(path, params: params, closure: {
+            API.sharedInstance.request(.GET, path: path, params: params, closure: {
                 json in
                 self.prefillData(json["data"])
                 }) { error in

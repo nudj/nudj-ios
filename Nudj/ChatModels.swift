@@ -369,7 +369,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     func requestRooms(){
         let path = API.Endpoints.Chat.all()
         let params = API.Endpoints.Chat.paramsForLimit(100)
-        API.sharedInstance.get(path, params: params, closure:{
+        API.sharedInstance.request(.GET, path: path, params: params, closure:{
             (json: JSON) in
             if (json["status"].boolValue != true && json["data"] == nil) {
                 // TODO: better error handling

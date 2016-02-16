@@ -68,7 +68,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     func requestData(){
         let path = API.Endpoints.Jobs.likeByID(jobID!)
         let params = API.Endpoints.Jobs.paramsForDetail()
-        API.sharedInstance.get(path, params: params, closure: { 
+        API.sharedInstance.request(.GET, path: path, params: params, closure: { 
             json in
             self.populateView(json["data"])
             }) { 

@@ -19,7 +19,7 @@ class StatusPicker: BaseController, UIPickerViewDelegate, UIPickerViewDataSource
         super.init(coder: aDecoder)
         // TODO: remove this abuse of the NSCoder protocol
         let path = API.Endpoints.Config.status
-        API.sharedInstance.get(path, params: nil, closure: {
+        API.sharedInstance.request(.GET, path: path, params: nil, closure: {
             json in
             for (key, value) in json["data"] {
                 if let key = Int(key) {

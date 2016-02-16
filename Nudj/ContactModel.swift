@@ -26,7 +26,7 @@ struct ContactModel {
         // TODO: API strings
         let path = API.Endpoints.Contacts.mine
         let params = API.Endpoints.Contacts.paramsForList(["contact.user"])
-        API.sharedInstance.get(path, params: params, closure: { 
+        API.sharedInstance.request(.GET, path: path, params: params, closure: { 
             result in
             closure(true, result)
             })

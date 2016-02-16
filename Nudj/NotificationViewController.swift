@@ -56,7 +56,7 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
         let path = path ?? API.Endpoints.Notifications.base
         let params = API.Endpoints.Notifications.paramsForList(100)
 
-        API.sharedInstance.get(path, params: params, closure: {data in
+        API.sharedInstance.request(.GET, path: path, params: params, closure: {data in
             // TODO: review the following
             //if !append {
                 self.data.removeAll(keepCapacity: false)

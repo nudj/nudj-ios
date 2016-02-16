@@ -172,7 +172,7 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
 
             path += "/" + string
 
-            API.sharedInstance.get(path, params: nil, closure: { result in
+            API.sharedInstance.request(.GET, path: path, params: nil, closure: { result in
                 if let data: Array<String> = result["data"].arrayObject as? Array<String> {
                     completion!(results: data)
                 } else {
