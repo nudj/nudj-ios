@@ -103,9 +103,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
     }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        // TODO review whether we should be storing the binary data instead
-        let characterSet: NSCharacterSet = NSCharacterSet( charactersInString: "<> " )
-        self.deviceToken = deviceToken.description.stringByTrimmingCharactersInSet( characterSet )
+        self.deviceToken = deviceToken.hexString()
         syncDeviceToken()
     }
 
