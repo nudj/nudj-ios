@@ -10,9 +10,6 @@ import Foundation
 
 extension NSData {
     func hexString() -> String {
-        if self.length == 0 {
-            return ""
-        }
         var result = ""
         let bytes = UnsafePointer<UInt8>(self.bytes)
         for i in 0..<self.length {
