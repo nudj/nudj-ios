@@ -187,15 +187,7 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
                 // TODO: send a notification when application:didRegisterForRemoteNotificationsWithDeviceToken: received?
                 break
             }
-            api.request(.GET, path: "nsx300/app_notification_to_me", params: nil, 
-                closure: {
-                    json in
-                    loggingPrint(json)
-                }, 
-                errorHandler: {
-                    error in
-                    loggingPrint(error)
-            })
+            api.request(.GET, path: API.Endpoints.Notifications.test)
             let localization = Localizations.Settings.NotificationTest.self
             let alertController = UIAlertController(title: localization.Title, message: localization.Body, preferredStyle: .Alert)
             let cancelAction = UIAlertAction(title: Localizations.General.Button.Ok, style: .Cancel, handler: nil)

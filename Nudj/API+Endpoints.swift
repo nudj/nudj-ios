@@ -159,6 +159,7 @@ extension API {
         
         struct Notifications {
             static let base = "notifications"
+            static let test = base + "/test"
             
             static func byID(id: AnyObject) -> String {
                 return base + "/\(id)"
