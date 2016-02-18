@@ -32,6 +32,7 @@ final class API {
         let configuration: NSURLSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
         configuration.HTTPShouldSetCookies = false
         session = NSURLSession(configuration: configuration, delegate: nil, delegateQueue: NSOperationQueue.mainQueue())
+        session.sessionDescription = "Nudj API session"
     }
     
     deinit {
