@@ -343,7 +343,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
     override func dropDownAction(sender: AnyObject!) {
         func completeRequest(path: String, method: API.Method) {
             let api = API.sharedInstance
-            api.request(method, path: path, closure: {_ in}, errorHandler: { 
+            api.request(method, path: path, errorHandler: { 
                 error in
                 loggingPrint("error for \(method) on \(path): \(error)")
             })

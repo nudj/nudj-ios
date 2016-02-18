@@ -52,7 +52,6 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
     }
 
     private func loadData(append: Bool = true, path: String? = nil) {
-        // TODO: API strings
         let path = path ?? API.Endpoints.Notifications.base
         let params = API.Endpoints.Notifications.paramsForList(100)
 
