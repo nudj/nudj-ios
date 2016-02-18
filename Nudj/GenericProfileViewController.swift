@@ -271,51 +271,52 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
     // User Data Loding
 
     func showUserData(){
-        UserModel.getById(userId, fields: ["user.status", "user.name", "user.image", "user.skills", "user.about", "user.company", "user.address", "user.position", "user.email", "user.favourite"], closure: { response in
-
-            let user = UserModel()
-            user.updateFromJson(response["data"])
-            
-            self.user = user
-            
-            if let status = user.status {
-                self.statusButton.setTitleByIndex(status)
-            }
-
-            if (!(user.name?.isEmpty ?? true)) {
-                self.nameLabel.text = user.name
-            } else if (self.preloadedName != nil) {
-                self.nameLabel.text = self.preloadedName
-                self.nameLabel.textColor = UIColor.blackColor()
-            } else {
-                self.nameLabel.text = ""
-            }
-
-            self.aboutMeField?.text = user.about
-            self.company?.text = user.company
-            self.location?.text = user.address
-            self.position?.text = user.position
-            self.email.text = user.email
-
-            self.showUserImage(user.image)
-
-            if let skills = user.skills {
-                self.skills?.fillTokens(skills)
-            }
-
-            if (self.type == .Public && user.favourite != nil) {
-                self.topRightButton.image = self.getFavouriteIcon(user.favourite!)
-            }
-
-            if (self.type == .Public) {
-                self.hideEmptyViews()
-            }
-
-            self.updateAssets()
-            self.validate()
-        }, errorHandler: { 
-            error in
-            self.navigationController?.popViewControllerAnimated(true)
+        UserModel.getById(userId, fields: UserModel.fieldsForProfile, closure: { 
+                response in
+                
+                let user = UserModel()
+                user.updateFromJson(response["data"])
+                
+                self.user = user
+                
+                if let status = user.status {
+                    self.statusButton.setTitleByIndex(status)
+                }
+                
+                if (!(user.name?.isEmpty ?? true)) {
+                    self.nameLabel.text = user.name
+                } else if (self.preloadedName != nil) {
+                    self.nameLabel.text = self.preloadedName
+                    self.nameLabel.textColor = UIColor.blackColor()
+                } else {
+                    self.nameLabel.text = ""
+                }
+                
+                self.aboutMeField?.text = user.about
+                self.company?.text = user.company
+                self.location?.text = user.address
+                self.position?.text = user.position
+                self.email.text = user.email
+                
+                self.showUserImage(user.image)
+                
+                if let skills = user.skills {
+                    self.skills?.fillTokens(skills)
+                }
+                
+                if (self.type == .Public && user.favourite != nil) {
+                    self.topRightButton.image = self.getFavouriteIcon(user.favourite!)
+                }
+                
+                if (self.type == .Public) {
+                    self.hideEmptyViews()
+                }
+                
+                self.updateAssets()
+                self.validate()
+            }, errorHandler: { 
+                error in
+                self.navigationController?.popViewControllerAnimated(true)
         })
     }
 

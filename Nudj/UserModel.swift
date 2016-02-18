@@ -31,6 +31,19 @@ class UserModel: CustomStringConvertible {
         return "UserModel: id: \(id), name: \(name), completed: \(completed ? 1 : 0), status: \(status), image:\(image)"
     }
 
+    static let fieldsForProfile = [
+        "user.name", 
+        "user.about", 
+        "user.company", 
+        "user.address", 
+        "user.position", 
+        "user.email", 
+        "user.skills", 
+        "user.status",
+        "user.image", 
+        "user.favourite",
+    ]
+    
     var company:String?
     var address:String?
     var position:String?

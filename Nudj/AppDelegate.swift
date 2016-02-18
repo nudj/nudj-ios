@@ -195,7 +195,8 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
         if self.user.token != nil {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () -> Void in
                 // TODO: API strings
-                UserModel.getCurrent(["user.name", "user.completed", "user.status", "user.image","user.settings"], closure: { 
+                let fields = UserModel.fieldsForProfile + ["user.completed", "user.settings"]
+                UserModel.getCurrent(fields, closure: { 
                     userObject in
                     if let source :JSON = userObject.source {
                         self.user.updateFromJson(source)
