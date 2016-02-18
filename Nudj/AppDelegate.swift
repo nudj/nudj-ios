@@ -125,15 +125,6 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
     }
 
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        /*type_id = 8
-        [aps: {
-            alert = "Is it working, Ant?";
-            badge = 0;
-            sound = "bingbong.aiff";
-            }, meta: {
-                "chat_id" = 4;
-        }]*/
-        
         // Update badge
         let userinfo = userInfo as NSDictionary
         loggingPrint(userinfo)
@@ -276,7 +267,6 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
     }
     
     func deleteAccount(inViewController viewController: UIViewController){
-        // TODO: API strings
         API.sharedInstance.request(.DELETE, path: API.Endpoints.Users.me, params: nil, closure: { 
             response in
             if response["status"].boolValue {
