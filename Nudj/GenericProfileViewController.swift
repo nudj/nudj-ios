@@ -334,7 +334,7 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
         return status ? UIImage(named: "favourited") : UIImage(named: "favourite")
     }
 
-    func hideEmptyViews() {
+    private func hideEmptyViews() {
         if (skills != nil && (skills.tokens() == nil || skills.tokens()!.count <= 0)) {
             hideView(skills.superview!)
             hiddenFieldsCount += 1
@@ -396,6 +396,7 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
         updateSkills(skills)
         UserModel.update([
             "name": nameLabel.text!, 
+            "about": aboutMeField.text!, 
             "email": email.text!, 
             "position": position.text!, 
             "address": location.text!, 
@@ -404,13 +405,15 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
             ], 
             closure: { 
                 result in
-                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
-                appDelegate.user.name = self.nameLabel.text
-                appDelegate.user.email = self.email.text
-                appDelegate.user.position = self.position.text
-                appDelegate.user.address = self.location.text
-                appDelegate.user.company = self.company.text
-                appDelegate.user.completed = true
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                let user = appDelegate.user
+                user.name = self.nameLabel.text
+                user.about = self.aboutMeField.text
+                user.email = self.email.text
+                user.position = self.position.text
+                user.address = self.location.text
+                user.company = self.company.text
+                user.completed = true
                 appDelegate.pushUserData()
         })
     }
