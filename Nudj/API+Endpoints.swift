@@ -106,6 +106,15 @@ extension API {
             }
         }
         
+        struct Devices {
+            static let base = "devices"
+            
+            static func params(deviceToken: String) -> [String: String] {
+                let params = ["token": deviceToken]
+                return params
+            }
+        }
+        
         struct Feedback {
             static let base = "feedback"
             

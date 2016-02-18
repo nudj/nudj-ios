@@ -157,9 +157,10 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
             return
         }
         // TODO: gate based on deviceTokenSynced
-        if self.deviceToken != nil {
-            // TODO: API strings
-            API.sharedInstance.request(.PUT, path: "devices", params: ["token":self.deviceToken!], closure:{ 
+        if let deviceToken = self.deviceToken {
+            let path = API.Endpoints.Devices.base
+            let params = API.Endpoints.Devices.params(deviceToken)
+            API.sharedInstance.request(.PUT, path: path, params: params, closure:{ 
                 _ in
                 self.deviceTokenSynced = true
             });
