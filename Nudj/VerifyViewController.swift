@@ -123,11 +123,7 @@ class VerifyViewController: BaseController, SegueHandlerType {
 
             // Change user API token
             appDelegate.prepareApi()
-
-            // Sync device token
-            if (!appDelegate.deviceTokenSynced) {
-                appDelegate.syncDeviceToken()
-            }
+            appDelegate.syncDeviceToken()
 
             // Connect to the chat server
             appDelegate.chatInst!.connect(inViewController: self)

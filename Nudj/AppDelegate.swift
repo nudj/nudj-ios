@@ -25,7 +25,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
     var api: API?
     var chatInst: ChatModels?
     var deviceToken: String?
-    var deviceTokenSynced:Bool = false
+    private var deviceTokenSynced: Bool = false
     var contacts = Contacts()
     
     var shouldShowBadge = false
@@ -104,6 +104,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         self.deviceToken = deviceToken.hexString()
+        deviceTokenSynced = false
         syncDeviceToken()
     }
 
@@ -147,7 +148,10 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
         if (API.sharedInstance.token == nil) {
             return
         }
-        // TODO: gate based on deviceTokenSynced
+        if deviceTokenSynced {
+            return
+        }
+        
         if let deviceToken = self.deviceToken {
             let path = API.Endpoints.Devices.base
             let params = API.Endpoints.Devices.params(deviceToken)
