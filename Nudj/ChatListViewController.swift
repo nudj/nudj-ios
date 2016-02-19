@@ -111,7 +111,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         self.navigationController?.pushViewController(chatView, animated: true)
         
         self.data[indexPath.row].markAsRead()
-        cell.isRead(self.data[indexPath.row].isRead!)
+        cell.setRead(self.data[indexPath.row].isRead!)
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

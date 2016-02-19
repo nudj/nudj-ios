@@ -8,7 +8,7 @@
 import UIKit
 import SwiftyJSON
 
-class ChatListTableViewCell: UITableViewCell {
+final class ChatListTableViewCell: UITableViewCell {
 
     @IBOutlet var profilePicture: AsyncImage!
     @IBOutlet var userName: UILabel!
@@ -29,16 +29,10 @@ class ChatListTableViewCell: UITableViewCell {
         
         timeAgo.text = data.time
         
-        self.isRead(data.isRead!)
+        self.setRead(data.isRead!)
     }
     
-    func isRead(value:Bool){
-        
-        if (!value){
-            // TODO: magic numbers
-            self.backgroundColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 1.0)
-        }else{
-            self.backgroundColor = UIColor.whiteColor();
-        }
+    func setRead(isRead: Bool) {
+        self.backgroundColor = isRead ? UIColor.whiteColor() : UIColor(white: 240.0/255.0, alpha: 1.0)
     }
 }
