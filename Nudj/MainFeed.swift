@@ -65,14 +65,11 @@ class MainFeed: BaseController, SegueHandlerType, DataProviderProtocol, UISearch
     }
     
     func deleteData(id: Int, listener: (JSON) -> ()) {
+        // only implemented to conform to DataProviderProtocol
     }
     
-    func didfinishLoading(count:Int) {
-        if(count == 0){
-            self.noContentImage.hidden = false
-        }else{
-            self.noContentImage.hidden = true
-        }
+    func didfinishLoading(count: Int) {
+        noContentImage.hidden = (count > 0)
     }
 
     @IBAction func addJob(sender: AnyObject) {
