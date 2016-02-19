@@ -360,7 +360,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
             jobDetailedView.jobID = jobID
             
             self.navigationController?.pushViewController(jobDetailedView, animated:true);
-            break;
+
         case 2:
             //go to profile
             let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -370,7 +370,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
             GenericProfileView.preloadedName = self.participants
             
             self.navigationController?.pushViewController(GenericProfileView, animated:true);
-            break;
+
         case 3:
             //Favourite Chat
             let endpoint = API.Endpoints.Jobs.likeByID(jobID) 
@@ -382,13 +382,31 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
                 completeRequest(endpoint, method: .PUT)
             }
             selectedButton.selected = !selectedButton.selected
-            break;
+            
         case 4:
-            // Mute Conversation
-            //[self completeRequest:[NSString stringWithFormat:@"contacts/%@/mute",_chatID] withType:@"PUT"];
-            MixPanelHandler.sendData("Chat_MuteAction")
-            selectedButton.selected = !selectedButton.selected
-            break;
+            // Block User
+            guard let otherUserID = Int(participantsID) else {return} // TODO: self.participantsID should be Int not String
+            let title = Localizations.Chat.Block.Title
+            let message = Localizations.Chat.Block.Body.Format(participants)
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .ActionSheet)
+            let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
+            alert.addAction(cancelAction)
+            alert.preferredAction = cancelAction
+            let blockAction = UIAlertAction(title: Localizations.Chat.Block.Button, style: .Destructive) {
+                _ in
+                let endpoint = API.Endpoints.Users.blockByID(otherUserID)
+                MixPanelHandler.sendData("Chat_BlockUserAction")
+                let api = API.sharedInstance
+                api.request(.POST, path: endpoint, closure: {
+                    json in
+                    NSNotificationCenter.defaultCenter().postNotificationName("reloadChatTable", object: nil, userInfo:nil)
+                    // TODO: maybe filter out the offending user's chats locally while waiting for the server to respond
+                })
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+            alert.addAction(blockAction)
+            self.presentViewController(alert, animated: true, completion: nil)
+
         case 5:
             // Archive Conversation
             func dismissSelf(_: UIAlertAction) {
@@ -414,7 +432,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
                 self.presentViewController(alert, animated: true, completion: nil)
             }
             selectedButton.selected = !selectedButton.selected
-            break;
+
         default:
             break;
         }

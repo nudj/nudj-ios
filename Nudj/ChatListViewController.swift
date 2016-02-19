@@ -43,6 +43,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     }
 
     func requestData() {
+        self.activity.startAnimating()
         let path = isArchive ? API.Endpoints.Chat.archived() : API.Endpoints.Chat.active()
         let params = API.Endpoints.Chat.paramsForList(100)
         self.apiRequest(.GET, path: path, params: params, closure: { 

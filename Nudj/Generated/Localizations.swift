@@ -730,6 +730,25 @@ public struct Localizations {
 
         }
 
+        public struct Block {
+
+                    /// Base translation: Block
+            public static var Button : String = "chat.block.button".localized
+
+            /// Base translation: Block User
+            public static var Title : String = "chat.block.title".localized
+
+
+            public struct Body {
+
+                            /// Base translation: Are you sure you want to block all communications from %@?
+                public static func Format(value1 : String) -> String {
+                    return String(format: NSLocalizedString("chat.block.body.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
+                }
+
+            }
+        }
+
         public struct Restored {
 
                     /// Base translation: Chat Restored

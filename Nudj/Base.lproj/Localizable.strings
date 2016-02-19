@@ -23,6 +23,9 @@
 "chat.restored.title" = "Chat Restored";
 "chat.archived.title" = "Chat Archived";
 "chat.archived.body" = "Archived chats are stored in Settings.";
+"chat.block.title" = "Block User";
+"chat.block.body.format" = "Are you sure you want to block all communications from %@?";
+"chat.block.button" = "Block";
 "chat.contact.send.format" = "Contact %@";
 "chat.contact.success.format" = "You have successfully contacted %@";
 "chat.connection.error.title" = "Error";
