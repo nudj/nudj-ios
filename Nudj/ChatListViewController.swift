@@ -38,10 +38,6 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         NSNotificationCenter.defaultCenter().addObserver(self, selector:"reload:", name: "reloadChatTable", object: nil);
     }
     
-    func deleteChat(){
-        // TODO: ?
-    }
-    
     override func viewWillDisappear(animated: Bool) {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "reloadChatTable", object: nil)
     }
