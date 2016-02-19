@@ -141,6 +141,11 @@ extension API {
                 return jobPath + "/like"
             }
             
+            static func blockByID(jobID: Int) -> String {
+                let jobPath = byID(jobID)
+                return jobPath + "/report"
+            }
+            
             static func search(searchTerm: String?) -> String {
                 guard let searchTerm = searchTerm else {
                     return available
@@ -238,6 +243,11 @@ extension API {
             static func favouriteByID(userID: Int?) -> String {
                 let userPath = byID(userID) 
                 return userPath + "/favourite"
+            }
+            
+            static func blockByID(userID: Int) -> String {
+                let userPath = byID(userID)
+                return userPath + "/block"
             }
             
             static func paramsForFields(fields: [String]) -> [String: String] {
