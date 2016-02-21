@@ -54,7 +54,6 @@
 "jobs.report-hirer.title" = "Report Hirer";
 "jobs.report-hirer.body" = "Are you sure you want to report this hirer?";
 "jobs.report-hirer.button" = "Report %@";
-"jobs.button.edit" = "Edit";
 "jobs.button.favorite" = "Favorite";
 "jobs.button.unfavorite" = "Unfavorite";
 "jobs.employer.format" = "Employer: %@";

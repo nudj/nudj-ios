@@ -35,6 +35,8 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     @IBOutlet weak var nudgeBtn: UIButton!
     @IBOutlet weak var askForReferralButton: UIButton!
     @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
+    @IBOutlet weak var menuBarButton: UIBarButtonItem!
+    @IBOutlet weak var editBarButton: UIBarButtonItem!
   
     @IBOutlet weak var skills: TokenView!
    
@@ -102,11 +104,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         nudgeBtn.hidden = isOwnJob
         askForReferralButton.hidden = !isOwnJob
         
-        if isOwnJob {
-            navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Button.Edit
-        } else {
-            navigationItem.rightBarButtonItem?.title = "..." // Localizations.Jobs.Button.Menu
-        }
+        navigationItem.rightBarButtonItem = isOwnJob ? editBarButton : menuBarButton
         
         // Update skills
         skills.editable = false
@@ -162,14 +160,6 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         activitySpinner.stopAnimating()
     }
 
-    @IBAction func topRightNavAction(sender: UIBarButtonItem) {
-        if (sender.title == Localizations.Jobs.Button.Edit){
-            editJob(sender)
-        } else {
-            toggleMenu(sender)
-        }
-    }
-    
     @IBAction func editJob(sender: AnyObject) {
         MixPanelHandler.sendData("EditJobButtonClicked")
         performSegueWithIdentifier(.EditJob, sender: sender)

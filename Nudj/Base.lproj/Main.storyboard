@@ -1054,13 +1054,7 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Job Details" id="y3h-25-E3G">
-                        <barButtonItem key="rightBarButtonItem" id="Ixr-Y2-buy">
-                            <connections>
-                                <action selector="topRightNavAction:" destination="vRR-wd-aTg" id="uQi-Id-AnM"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Job Details" id="y3h-25-E3G"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="TextViewHeightConstraint" destination="Za0-Vv-crP" id="5XS-fs-Kjw"/>
@@ -1068,6 +1062,7 @@
                         <outlet property="askForReferralButton" destination="Kr2-47-R2H" id="jUH-wf-vh1"/>
                         <outlet property="bonusText" destination="ywj-gV-3hm" id="B3N-bi-bma"/>
                         <outlet property="descriptionText" destination="ThU-Hc-GZM" id="P3G-0o-PGE"/>
+                        <outlet property="editBarButton" destination="Ixr-Y2-buy" id="TlW-ub-lxF"/>
                         <outlet property="employerText" destination="vc3-bP-ba6" id="nUx-i5-sO3"/>
                         <outlet property="favoriteButton" destination="Ifo-Y0-3Ze" id="U51-oj-psf"/>
                         <outlet property="hirerName" destination="YAb-uZ-5ne" id="QHC-8i-PYW"/>
@@ -1075,6 +1070,7 @@
                         <outlet property="jobActive" destination="fbz-Jz-zrO" id="Uyz-Ld-1Lx"/>
                         <outlet property="jobTitleText" destination="6JZ-HT-MOn" id="7lL-wl-dHp"/>
                         <outlet property="locationText" destination="iJy-5F-cqu" id="dQj-KX-hVd"/>
+                        <outlet property="menuBarButton" destination="o6d-zW-60E" id="wC2-fv-XE7"/>
                         <outlet property="menuView" destination="7PG-Jm-4dt" id="phf-Zv-adL"/>
                         <outlet property="nudgeBtn" destination="Mji-Gj-fEa" id="CZZ-wa-6r7"/>
                         <outlet property="salaryText" destination="ftp-qH-abp" id="un8-7d-Ar7"/>
@@ -1084,6 +1080,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l1b-Cw-UAv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <barButtonItem image="3dots.png" id="o6d-zW-60E" userLabel="Menu Bar Button">
+                    <connections>
+                        <action selector="toggleMenu:" destination="vRR-wd-aTg" id="AZf-b3-NeL"/>
+                    </connections>
+                </barButtonItem>
+                <barButtonItem systemItem="edit" id="Ixr-Y2-buy">
+                    <connections>
+                        <action selector="editJob:" destination="vRR-wd-aTg" id="7bL-30-tI6"/>
+                    </connections>
+                </barButtonItem>
                 <tapGestureRecognizer id="EHb-9u-IRS" userLabel="Tap Author Name">
                     <connections>
                         <segue destination="u6h-lK-ytT" kind="show" identifier="GoToProfile" id="Dg8-rw-2fQ"/>
@@ -2843,6 +2849,7 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
         </scene>
     </scenes>
     <resources>
+        <image name="3dots.png" width="21" height="5"/>
         <image name="bio" width="26" height="26"/>
         <image name="bio-active" width="26" height="26"/>
         <image name="chatIcon" width="30" height="30"/>

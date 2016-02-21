@@ -133,9 +133,6 @@ public struct Localizations {
             /// Base translation: Favorite
             public static var Favorite : String = "jobs.button.favorite".localized
 
-            /// Base translation: Edit
-            public static var Edit : String = "jobs.button.edit".localized
-
         }
 
         public struct Delete {
