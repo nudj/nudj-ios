@@ -302,6 +302,6 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     func dismissPopUp() {
         self.popup!.removeFromSuperview()
         self.navigationController?.navigationBarHidden = false
-        // TODO: investigate if we can now set self.popup to nil
+        self.popup = nil
     }
 }
