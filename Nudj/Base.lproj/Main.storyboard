@@ -826,9 +826,13 @@
                             </label>
                             <label opaque="NO" contentMode="left" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAb-uZ-5ne">
                                 <rect key="frame" x="75" y="108" width="284" height="14"/>
+                                <gestureRecognizers/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                 <color key="textColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="EHb-9u-IRS" appends="YES" id="fAi-DC-EZh"/>
+                                </connections>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ThU-Hc-GZM">
                                 <rect key="frame" x="12" y="132" width="343" height="31"/>
@@ -902,6 +906,7 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Location:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iJy-5F-cqu" customClass="NZLabel">
                                 <rect key="frame" x="48" y="253" width="311" height="18"/>
+                                <gestureRecognizers/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -1030,12 +1035,16 @@
                         <outlet property="nudgeBtn" destination="Mji-Gj-fEa" id="CZZ-wa-6r7"/>
                         <outlet property="salaryText" destination="ftp-qH-abp" id="un8-7d-Ar7"/>
                         <outlet property="skills" destination="KXz-hf-wcR" id="gTB-Vc-6B0"/>
-                        <segue destination="u6h-lK-ytT" kind="show" identifier="GoToProfile" id="IbB-SC-7jb"/>
                         <segue destination="l4F-Ih-7ec" kind="show" identifier="AskForReferral" id="w3z-vb-UAH"/>
                         <segue destination="FfD-3r-a1P" kind="show" identifier="EditJob" id="0lF-Gf-mwR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l1b-Cw-UAv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="EHb-9u-IRS" userLabel="Tap Author Name">
+                    <connections>
+                        <segue destination="u6h-lK-ytT" kind="show" identifier="GoToProfile" id="Dg8-rw-2fQ"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-4059.5" y="728.5"/>
         </scene>
@@ -2151,7 +2160,7 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smp-rK-aNl">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smp-rK-aNl">
                                 <rect key="frame" x="4" y="140" width="406" height="596"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tdu-Qe-djm" userLabel="Skills View">
@@ -2455,7 +2464,7 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                                     <constraint firstAttribute="trailing" secondItem="eZj-Gt-ANh" secondAttribute="trailing" id="yvn-CK-YKK"/>
                                 </constraints>
                             </scrollView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MaM-1e-UFb" userLabel="Top View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MaM-1e-UFb" userLabel="Top View">
                                 <rect key="frame" x="4" y="20" width="406" height="120"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MqB-GV-Fan" userLabel="BackgroundImage" customClass="AsyncImage" customModule="Nudj" customModuleProvider="target">
@@ -2578,7 +2587,7 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                         <viewControllerLayoutGuide type="bottom" id="wdM-kP-MCQ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3a5-IX-tvj">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1vZ-hu-yWg">
@@ -2817,15 +2826,15 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
         <image name="success.png" width="88" height="88"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BCe-Pt-bFX"/>
-        <segue reference="IbB-SC-7jb"/>
-        <segue reference="TFM-Ac-ZI1"/>
         <segue reference="w3z-vb-UAH"/>
-        <segue reference="0lF-Gf-mwR"/>
+        <segue reference="TFM-Ac-ZI1"/>
+        <segue reference="BCe-Pt-bFX"/>
+        <segue reference="Dg8-rw-2fQ"/>
         <segue reference="1RO-e0-4AP"/>
-        <segue reference="gvE-qy-aNj"/>
         <segue reference="zyP-mc-EMC"/>
+        <segue reference="gvE-qy-aNj"/>
         <segue reference="oVM-eF-ddZ"/>
+        <segue reference="0lF-Gf-mwR"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
 </document>

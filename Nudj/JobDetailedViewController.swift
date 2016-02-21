@@ -18,7 +18,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     }
     
     // TODO: remove singleton access
-    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     @IBOutlet var jobTitleText: UILabel!
     @IBOutlet var authorName: UILabel!
@@ -41,12 +41,6 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     var jobID: Int?
     var userId: Int?
     var popup: CreatePopupView?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let profileTap = UITapGestureRecognizer(target:self, action:"goToProfile")
-        self.authorName.addGestureRecognizer(profileTap)
-    }
     
     override func viewWillDisappear(animated: Bool) {
         self.tabBarController?.tabBar.hidden = false
@@ -76,10 +70,6 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
                 loggingPrint("Error -> \(error)")
                 self.navigationController?.popViewControllerAnimated(true)
         }
-    }
-    
-    func goToProfile(){
-        self.performSegueWithIdentifier(.GoToProfile, sender: self)
     }
     
     func populateView(content:JSON){
