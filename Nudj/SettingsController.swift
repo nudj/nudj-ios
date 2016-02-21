@@ -15,20 +15,20 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
         case ShowStatusPicker = "showStatusPicker"
         case GoToLogin = "goToLogin"
         case GoToFeedBack = "goToFeedBack"
-        case GoToSavedJobs = "goToSavedJobs"
+        case GoToFavoriteJobs = "goToFavoriteJobs"
         case GoToPostedJobs = "goToPostedJobs"
         case GoToChats = "goToChats"
         case ShowFAQ = "ShowFAQ"
     }
     
     enum CellAction {
-        case ShowProfile, ChooseStatus, ShowSavedJobs, ShowPostedJobs, ShowChats, ToggleFacebook, ShowFAQ, GiveFeedback, DeleteAccount, TestNotification
+        case ShowProfile, ChooseStatus, ShowFavoriteJobs, ShowPostedJobs, ShowChats, ToggleFacebook, ShowFAQ, GiveFeedback, DeleteAccount, TestNotification
         
         func segueIdentifier() -> SegueIdentifier? {
             switch self {
             case ShowProfile: return SegueIdentifier.ShowProfile
             case ChooseStatus: return SegueIdentifier.ShowStatusPicker
-            case ShowSavedJobs: return SegueIdentifier.GoToSavedJobs
+            case ShowFavoriteJobs: return SegueIdentifier.GoToFavoriteJobs
             case ShowPostedJobs: return SegueIdentifier.GoToPostedJobs
             case ShowChats: return SegueIdentifier.GoToChats
             case ToggleFacebook: return nil
@@ -44,7 +44,7 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             switch self {
             case ShowProfile: return titles.Profile
             case ChooseStatus: return titles.Status
-            case ShowSavedJobs: return titles.SavedJobs
+            case ShowFavoriteJobs: return titles.FavoriteJobs
             case ShowPostedJobs: return titles.PostedJobs
             case ShowChats: return titles.Chats
             case ToggleFacebook: return titles.Facebook
@@ -70,11 +70,11 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
         [
             .ShowProfile,
             .ChooseStatus,
-            .ShowSavedJobs,
+            .ShowFavoriteJobs,
             .ShowPostedJobs,
             .ShowChats
         ],
-        // temporatily hide facebook option until #33 is resolved
+        // temporarily hide facebook option until #33 is resolved
 //        [
 //            .ToggleFacebook
 //        ],
@@ -220,9 +220,9 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
         case .GoToFeedBack:
             break
             
-        case .GoToSavedJobs:
+        case .GoToFavoriteJobs:
             let controller = segue.destinationViewController as! SavedPostedJobs
-            controller.title = Localizations.Settings.Title.SavedJobs
+            controller.title = Localizations.Settings.Title.FavoriteJobs
             controller.queryType = .Liked
             
         case .GoToPostedJobs:

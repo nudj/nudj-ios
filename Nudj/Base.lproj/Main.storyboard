@@ -1066,10 +1066,10 @@
                         <outlet property="TextViewHeightConstraint" destination="Za0-Vv-crP" id="5XS-fs-Kjw"/>
                         <outlet property="activitySpinner" destination="vkP-6P-gFq" id="8G1-LF-ZEO"/>
                         <outlet property="askForReferralButton" destination="Kr2-47-R2H" id="jUH-wf-vh1"/>
+                        <outlet property="authorName" destination="YAb-uZ-5ne" id="ytr-0E-YCU"/>
                         <outlet property="bonusText" destination="ywj-gV-3hm" id="B3N-bi-bma"/>
                         <outlet property="descriptionText" destination="ThU-Hc-GZM" id="P3G-0o-PGE"/>
                         <outlet property="employerText" destination="vc3-bP-ba6" id="nUx-i5-sO3"/>
-                        <outlet property="hirerName" destination="YAb-uZ-5ne" id="Qyk-NC-i8W"/>
                         <outlet property="interestedBtn" destination="M7K-Zz-jWR" id="GAw-2Z-Qka"/>
                         <outlet property="jobActive" destination="fbz-Jz-zrO" id="Uyz-Ld-1Lx"/>
                         <outlet property="jobTitleText" destination="6JZ-HT-MOn" id="7lL-wl-dHp"/>
@@ -1808,7 +1808,7 @@ We will invoice the client and collect payment on your behalf. Get in touch at <
                         <segue destination="F3c-zd-gaG" kind="show" identifier="showStatusPicker" id="H51-O9-Snf"/>
                         <segue destination="HUi-qm-vwZ" kind="show" identifier="goToLogin" id="zyP-mc-EMC"/>
                         <segue destination="HrJ-cc-tGk" kind="show" identifier="goToFeedBack" id="90M-dj-0pn"/>
-                        <segue destination="ALO-Pj-XQZ" kind="show" identifier="goToSavedJobs" id="oHM-Sk-no8"/>
+                        <segue destination="ALO-Pj-XQZ" kind="show" identifier="goToFavoriteJobs" id="oHM-Sk-no8"/>
                         <segue destination="ALO-Pj-XQZ" kind="show" identifier="goToPostedJobs" id="oVM-eF-ddZ"/>
                         <segue destination="qwH-I4-nQ1" kind="show" identifier="goToChats" id="gvE-qy-aNj"/>
                         <segue destination="Gf8-EF-Igy" kind="show" identifier="ShowFAQ" id="jMg-DP-Rn6"/>
@@ -2869,15 +2869,15 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
         <image name="success.png" width="88" height="88"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="w3z-vb-UAH"/>
-        <segue reference="TFM-Ac-ZI1"/>
         <segue reference="BCe-Pt-bFX"/>
         <segue reference="Dg8-rw-2fQ"/>
+        <segue reference="TFM-Ac-ZI1"/>
+        <segue reference="w3z-vb-UAH"/>
+        <segue reference="0lF-Gf-mwR"/>
         <segue reference="1RO-e0-4AP"/>
+        <segue reference="oHM-Sk-no8"/>
         <segue reference="zyP-mc-EMC"/>
         <segue reference="gvE-qy-aNj"/>
-        <segue reference="oVM-eF-ddZ"/>
-        <segue reference="0lF-Gf-mwR"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
 </document>

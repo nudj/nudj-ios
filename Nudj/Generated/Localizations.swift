@@ -389,6 +389,9 @@ public struct Localizations {
             /// Base translation: Posted Jobs
             public static var PostedJobs : String = "settings.title.posted-jobs".localized
 
+            /// Base translation: Favourite Jobs
+            public static var FavoriteJobs : String = "settings.title.favorite-jobs".localized
+
             /// Base translation: Send Feedback
             public static var Feedback : String = "settings.title.feedback".localized
 
@@ -397,9 +400,6 @@ public struct Localizations {
 
             /// Base translation: Delete Your Account
             public static var DeleteAccount : String = "settings.title.delete-account".localized
-
-            /// Base translation: Saved Jobs
-            public static var SavedJobs : String = "settings.title.saved-jobs".localized
 
         }
 

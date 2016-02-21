@@ -124,7 +124,7 @@
 // Settings
 "settings.title.profile" = "Your Profile";
 "settings.title.status" = "Your Status";
-"settings.title.saved-jobs" = "Saved Jobs";
+"settings.title.favorite-jobs" = "Favourite Jobs";
 "settings.title.posted-jobs" = "Posted Jobs";
 "settings.title.chats" = "Archived Chats";
 "settings.title.facebook" = "Facebook";
