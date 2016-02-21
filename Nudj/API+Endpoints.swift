@@ -143,7 +143,7 @@ extension API {
             
             static func blockByID(jobID: Int) -> String {
                 let jobPath = byID(jobID)
-                return jobPath + "/report"
+                return jobPath + "/block"
             }
             
             static func search(searchTerm: String?) -> String {
