@@ -9,6 +9,7 @@ import UIKit
 import Foundation
 
 class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
+    let avatarDiameter: UInt = 30
     
     var outgoingBubbleImageData :JSQMessagesBubbleImage?;
     var incomingBubbleImageData :JSQMessagesBubbleImage?;
@@ -41,8 +42,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
         self.incomingBubbleImageData = bubbleFactory.incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor());
 
         self.showLoadEarlierMessagesHeader = false
-        // TODO: magic number
-        self.templateImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(UserModel.getDefaultUserImage(), diameter: 30)
+        self.templateImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(UserModel.getDefaultUserImage(), diameter: avatarDiameter)
         
         appGlobalDelegate.chatInst!.delegate = self
         
@@ -72,18 +72,17 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
 
     //Get and convert base64 image
     func setupAvatarImage(base64Content:String?) -> JSQMessagesAvatarImage{
-        // TODO: magic number
         if let base64Content = base64Content {
             if let decodedData = NSData(base64EncodedString: base64Content, options: [])
             {
                 if let decodedimage :UIImage = UIImage(data: decodedData) {
-                    return JSQMessagesAvatarImageFactory.avatarImageWithImage(decodedimage, diameter: 30)
+                    return JSQMessagesAvatarImageFactory.avatarImageWithImage(decodedimage, diameter: avatarDiameter)
                 }
             }
         }
         
         //Default
-        return JSQMessagesAvatarImageFactory.avatarImageWithImage(UserModel.getDefaultUserImage(), diameter: 30)
+        return JSQMessagesAvatarImageFactory.avatarImageWithImage(UserModel.getDefaultUserImage(), diameter: avatarDiameter)
     }
     
     override func viewWillAppear(animated: Bool) {
