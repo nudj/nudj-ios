@@ -956,38 +956,49 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="vkP-6P-gFq">
                                 <rect key="frame" x="16" y="0.0" width="343" height="667"/>
                             </activityIndicatorView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Sxb-df-lSE" userLabel="Menu View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7PG-Jm-4dt" userLabel="Menu View">
                                 <rect key="frame" x="0.0" y="64" width="375" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ifo-Y0-3Ze">
-                                        <rect key="frame" x="0.0" y="0.0" width="125" height="50"/>
-                                        <state key="normal" title="Favourite"/>
-                                        <connections>
-                                            <action selector="favoriteJob:" destination="vRR-wd-aTg" eventType="touchUpInside" id="6xN-V5-DZr"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7U4-Y7-yGZ">
-                                        <rect key="frame" x="125" y="0.0" width="125" height="50"/>
-                                        <state key="normal" title="Block"/>
-                                        <connections>
-                                            <action selector="blockJob:" destination="vRR-wd-aTg" eventType="touchUpInside" id="Jw8-5H-8RQ"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2pl-ar-V37">
-                                        <rect key="frame" x="250" y="0.0" width="125" height="50"/>
-                                        <state key="normal" title="Report"/>
-                                        <connections>
-                                            <action selector="reportHirer:" destination="vRR-wd-aTg" eventType="touchUpInside" id="dFb-OC-pBC"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Sxb-df-lSE" userLabel="Menu Stack">
+                                        <rect key="frame" x="20" y="20" width="375" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ifo-Y0-3Ze">
+                                                <rect key="frame" x="0.0" y="0.0" width="125" height="50"/>
+                                                <state key="normal" title="Favourite"/>
+                                                <connections>
+                                                    <action selector="favoriteJob:" destination="vRR-wd-aTg" eventType="touchUpInside" id="6xN-V5-DZr"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7U4-Y7-yGZ">
+                                                <rect key="frame" x="125" y="0.0" width="125" height="50"/>
+                                                <state key="normal" title="Block"/>
+                                                <connections>
+                                                    <action selector="blockJob:" destination="vRR-wd-aTg" eventType="touchUpInside" id="Jw8-5H-8RQ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2pl-ar-V37">
+                                                <rect key="frame" x="250" y="0.0" width="125" height="50"/>
+                                                <state key="normal" title="Report"/>
+                                                <connections>
+                                                    <action selector="reportHirer:" destination="vRR-wd-aTg" eventType="touchUpInside" id="dFb-OC-pBC"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="9Pu-mr-DQB"/>
+                                    <constraint firstItem="Sxb-df-lSE" firstAttribute="width" secondItem="7PG-Jm-4dt" secondAttribute="width" id="4ea-U9-VzS"/>
+                                    <constraint firstItem="Sxb-df-lSE" firstAttribute="centerX" secondItem="7PG-Jm-4dt" secondAttribute="centerX" id="FFa-KX-6Xv"/>
+                                    <constraint firstAttribute="height" constant="50" id="OZF-w8-otq"/>
+                                    <constraint firstItem="Sxb-df-lSE" firstAttribute="centerY" secondItem="7PG-Jm-4dt" secondAttribute="centerY" id="Zm1-Fi-Hsd"/>
+                                    <constraint firstItem="Sxb-df-lSE" firstAttribute="height" secondItem="7PG-Jm-4dt" secondAttribute="height" id="kf5-zj-QSC"/>
                                 </constraints>
-                            </stackView>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="7PG-Jm-4dt" firstAttribute="leading" secondItem="vov-20-Wq3" secondAttribute="leading" id="0Iq-7k-KuX"/>
                             <constraint firstItem="iJy-5F-cqu" firstAttribute="leading" secondItem="Kg2-aW-kNL" secondAttribute="trailing" constant="8" id="2SB-gC-jbO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="KXz-hf-wcR" secondAttribute="trailing" id="3F7-0E-Aez"/>
                             <constraint firstItem="ywj-gV-3hm" firstAttribute="leading" secondItem="vov-20-Wq3" secondAttribute="leadingMargin" id="3Lv-bm-Frf"/>
@@ -998,8 +1009,6 @@
                             <constraint firstAttribute="trailingMargin" secondItem="Hbt-nR-ix5" secondAttribute="trailing" constant="-16" id="7Aa-56-3nz"/>
                             <constraint firstItem="M7K-Zz-jWR" firstAttribute="top" secondItem="ywj-gV-3hm" secondAttribute="bottom" constant="10" id="7Kw-2Y-au0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ThU-Hc-GZM" secondAttribute="trailing" constant="4" id="7vu-5V-8QZ"/>
-                            <constraint firstItem="Sxb-df-lSE" firstAttribute="top" secondItem="3F4-Zs-AO0" secondAttribute="bottom" id="Aek-iS-k7G"/>
-                            <constraint firstItem="Sxb-df-lSE" firstAttribute="leading" secondItem="vov-20-Wq3" secondAttribute="leading" id="CFu-AV-0Lk"/>
                             <constraint firstItem="iJy-5F-cqu" firstAttribute="centerY" secondItem="Kg2-aW-kNL" secondAttribute="centerY" constant="1" id="DWF-6m-WZG"/>
                             <constraint firstItem="c94-bD-7jd" firstAttribute="top" secondItem="M7K-Zz-jWR" secondAttribute="bottom" constant="20" id="GgA-dB-ZKL"/>
                             <constraint firstItem="Mji-Gj-fEa" firstAttribute="leading" secondItem="M7K-Zz-jWR" secondAttribute="trailing" constant="16" id="GxX-bp-IOJ"/>
@@ -1012,7 +1021,9 @@
                             <constraint firstItem="6JZ-HT-MOn" firstAttribute="top" secondItem="3F4-Zs-AO0" secondAttribute="bottom" constant="20" id="TKx-am-AEk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Kr2-47-R2H" secondAttribute="trailing" id="ThO-4z-wWD"/>
                             <constraint firstItem="M7K-Zz-jWR" firstAttribute="centerY" secondItem="Mji-Gj-fEa" secondAttribute="centerY" id="Tnr-M9-7H0"/>
+                            <constraint firstItem="7PG-Jm-4dt" firstAttribute="top" secondItem="3F4-Zs-AO0" secondAttribute="bottom" id="UQH-OD-yTR"/>
                             <constraint firstItem="6JZ-HT-MOn" firstAttribute="top" secondItem="ClY-JK-HuM" secondAttribute="top" constant="-24" id="UdX-Ck-D5r"/>
+                            <constraint firstAttribute="trailing" secondItem="7PG-Jm-4dt" secondAttribute="trailing" id="UqE-f6-q7u"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vkP-6P-gFq" secondAttribute="trailing" id="V1w-em-hva"/>
                             <constraint firstItem="Mji-Gj-fEa" firstAttribute="width" secondItem="M7K-Zz-jWR" secondAttribute="width" priority="500" id="Xy6-1l-dpj"/>
                             <constraint firstItem="6JZ-HT-MOn" firstAttribute="trailing" secondItem="vov-20-Wq3" secondAttribute="trailingMargin" id="Zil-0j-xM8"/>
@@ -1033,7 +1044,6 @@
                             <constraint firstItem="vc3-bP-ba6" firstAttribute="centerY" secondItem="adi-20-xUa" secondAttribute="centerY" constant="2" id="jzX-Qu-F9z"/>
                             <constraint firstItem="ywj-gV-3hm" firstAttribute="trailing" secondItem="vov-20-Wq3" secondAttribute="trailingMargin" id="l1S-qv-lRq"/>
                             <constraint firstItem="adi-20-xUa" firstAttribute="leading" secondItem="vov-20-Wq3" secondAttribute="leadingMargin" id="m57-eW-MjY"/>
-                            <constraint firstAttribute="trailing" secondItem="Sxb-df-lSE" secondAttribute="trailing" id="nYb-HS-qfA"/>
                             <constraint firstItem="Kg2-aW-kNL" firstAttribute="leading" secondItem="vov-20-Wq3" secondAttribute="leadingMargin" id="oLK-8H-osS"/>
                             <constraint firstAttribute="bottomMargin" secondItem="vkP-6P-gFq" secondAttribute="bottom" id="ttm-Rp-rer"/>
                             <constraint firstItem="ThU-Hc-GZM" firstAttribute="top" secondItem="YAb-uZ-5ne" secondAttribute="bottom" constant="10" id="uJt-N7-zJx"/>
