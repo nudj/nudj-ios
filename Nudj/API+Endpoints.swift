@@ -250,6 +250,11 @@ extension API {
                 return userPath + "/block"
             }
             
+            static func reportByID(userID: Int) -> String {
+                let userPath = byID(userID)
+                return userPath + "/report"
+            }
+            
             static func paramsForFields(fields: [String]) -> [String: String] {
                 let fieldsString = fields.joinWithSeparator(",")
                 return ["params": fieldsString]

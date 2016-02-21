@@ -389,22 +389,30 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
             let title = Localizations.Chat.Block.Title
             let message = Localizations.Chat.Block.Body.Format(participants)
             let alert = UIAlertController(title: title, message: message, preferredStyle: .ActionSheet)
+            
             let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
             alert.addAction(cancelAction)
             alert.preferredAction = cancelAction
-            let blockAction = UIAlertAction(title: Localizations.Chat.Block.Button, style: .Destructive) {
-                _ in
-                let endpoint = API.Endpoints.Users.blockByID(otherUserID)
-                MixPanelHandler.sendData("Chat_BlockUserAction")
-                let api = API.sharedInstance
-                api.request(.POST, path: endpoint, closure: {
-                    json in
-                    NSNotificationCenter.defaultCenter().postNotificationName("reloadChatTable", object: nil, userInfo:nil)
-                    // TODO: maybe filter out the offending user's chats locally while waiting for the server to respond
-                })
-                self.navigationController?.popViewControllerAnimated(true)
+            
+            func addUserBlockingAction(title: String, endpointGenerator: (Int)->String, mixPanelTitle: String) -> Void {
+                let action = UIAlertAction(title: title, style: .Destructive) {
+                    _ in
+                    let endpoint = endpointGenerator(otherUserID)
+                    MixPanelHandler.sendData(mixPanelTitle)
+                    let api = API.sharedInstance
+                    api.request(.POST, path: endpoint, closure: {
+                        json in
+                        NSNotificationCenter.defaultCenter().postNotificationName("reloadChatTable", object: nil, userInfo:nil)
+                        // TODO: maybe filter out the offending user's chats locally while waiting for the server to respond
+                    })
+                    self.navigationController?.popViewControllerAnimated(true)
+                }
+                alert.addAction(action)
             }
-            alert.addAction(blockAction)
+            
+            addUserBlockingAction(Localizations.Chat.Block.Button, endpointGenerator: API.Endpoints.Users.blockByID, mixPanelTitle: "Chat_BlockUserAction")
+            addUserBlockingAction(Localizations.Chat.Report.Button, endpointGenerator: API.Endpoints.Users.reportByID, mixPanelTitle: "Chat_ReportUserAction")
+            
             self.presentViewController(alert, animated: true, completion: nil)
 
         case 5:

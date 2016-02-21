@@ -776,6 +776,13 @@ public struct Localizations {
             }
         }
 
+        public struct Report {
+
+                    /// Base translation: Block and Report
+            public static var Button : String = "chat.report.button".localized
+
+        }
+
         public struct Contact {
 
         
