@@ -86,18 +86,6 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
         return JSQMessagesAvatarImageFactory.avatarImageWithImage(UserModel.getDefaultUserImage(), diameter: 30)
     }
     
-    
-    // ACTIONS
-    func createDropDownView(){
-        // TODO: magic numbers    
-        let dropDown = UIView(frame: CGRectMake(0, 0, 320, 50));
-        dropDown.backgroundColor = UIColor.whiteColor();
-    }
-
-    func performAction(sender: UIBarButtonItem){
-        // TODO: review
-    }
-
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         MixPanelHandler.sendData("ChatOpened")
