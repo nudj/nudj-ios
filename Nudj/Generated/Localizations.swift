@@ -37,13 +37,69 @@ public struct Localizations {
     public struct Jobs {
 
     
-        public struct Location {
+        public struct Validation {
 
-                    /// Base translation: Location: %@
-            public static func Format(value1 : String) -> String {
-                return String(format: NSLocalizedString("jobs.location.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
+        
+            public struct Error {
+
+                            /// Base translation: Missing information
+                public static var Title : String = "jobs.validation.error.title".localized
+
+                /// Base translation: Please fill in the fields marked with *
+                public static var Body : String = "jobs.validation.error.body".localized
+
             }
 
+            public struct Required {
+
+                            /// Base translation: %@ (Required)
+                public static func Format(value1 : String) -> String {
+                    return String(format: NSLocalizedString("jobs.validation.required.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
+                }
+
+            }
+        }
+
+        public struct ReportHirer {
+
+                    /// Base translation: Report %@
+            public static func Button(value1 : String) -> String {
+                return String(format: NSLocalizedString("jobs.report-hirer.button", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
+            }
+
+            /// Base translation: Report Hirer
+            public static var Title : String = "jobs.report-hirer.title".localized
+
+            /// Base translation: Are you sure you want to report this hirer?
+            public static var Body : String = "jobs.report-hirer.body".localized
+
+        }
+
+        public struct Add {
+
+        
+            public struct Button {
+
+                            /// Base translation: Update
+                public static var Update : String = "jobs.add.button.update".localized
+
+                /// Base translation: Edit Profile
+                public static var EditProfile : String = "jobs.add.button.edit-profile".localized
+
+                /// Base translation: Edit Job
+                public static var Edit : String = "jobs.add.button.edit".localized
+
+            }
+
+            public struct NeedProfile {
+
+                            /// Base translation: We need some details
+                public static var Title : String = "jobs.add.need-profile.title".localized
+
+                /// Base translation: Candidates will want to know who is hiring.You can give details on the next screen.
+                public static var Body : String = "jobs.add.need-profile.body".localized
+
+            }
         }
 
         public struct Salary {
@@ -51,6 +107,66 @@ public struct Localizations {
                     /// Base translation: Salary: %@
             public static func Format(value1 : String) -> String {
                 return String(format: NSLocalizedString("jobs.salary.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
+            }
+
+        }
+
+        public struct Update {
+
+        
+            public struct Error {
+
+                            /// Base translation: Failed to update
+                public static var Title : String = "jobs.update.error.title".localized
+
+                /// Base translation: There was an error updating the job details.
+                public static var Body : String = "jobs.update.error.body".localized
+
+            }
+        }
+
+        public struct Button {
+
+                    /// Base translation: Saved
+            public static var Saved : String = "jobs.button.saved".localized
+
+            /// Base translation: Save
+            public static var Save : String = "jobs.button.save".localized
+
+            /// Base translation: Edit
+            public static var Edit : String = "jobs.button.edit".localized
+
+        }
+
+        public struct Delete {
+
+        
+            public struct Alert {
+
+                            /// Base translation: Delete job
+                public static var Title : String = "jobs.delete.alert.title".localized
+
+                /// Base translation: Are you sure you want to delete this job?
+                public static var Body : String = "jobs.delete.alert.body".localized
+
+            }
+
+            public struct Error {
+
+                            /// Base translation: Error
+                public static var Title : String = "jobs.delete.error.title".localized
+
+                /// Base translation: There was an error deleting this job.
+                public static var Body : String = "jobs.delete.error.body".localized
+
+            }
+        }
+
+        public struct Location {
+
+                    /// Base translation: Location: %@
+            public static func Format(value1 : String) -> String {
+                return String(format: NSLocalizedString("jobs.location.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
             }
 
         }
@@ -76,99 +192,16 @@ public struct Localizations {
             }
         }
 
-        public struct Delete {
+        public struct Block {
 
-        
-            public struct Error {
+                    /// Base translation: Block Job
+            public static var Title : String = "jobs.block.title".localized
 
-                            /// Base translation: Error
-                public static var Title : String = "jobs.delete.error.title".localized
+            /// Base translation: Block
+            public static var Button : String = "jobs.block.button".localized
 
-                /// Base translation: There was an error deleting this job.
-                public static var Body : String = "jobs.delete.error.body".localized
-
-            }
-
-            public struct Alert {
-
-                            /// Base translation: Delete job
-                public static var Title : String = "jobs.delete.alert.title".localized
-
-                /// Base translation: Are you sure you want to delete this job?
-                public static var Body : String = "jobs.delete.alert.body".localized
-
-            }
-        }
-
-        public struct Bonus {
-
-                    /// Base translation: Referral Bonus: %@
-            public static func Format(value1 : String) -> String {
-                return String(format: NSLocalizedString("jobs.bonus.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
-            }
-
-        }
-
-        public struct Update {
-
-        
-            public struct Error {
-
-                            /// Base translation: Failed to update
-                public static var Title : String = "jobs.update.error.title".localized
-
-                /// Base translation: There was an error updating the job details.
-                public static var Body : String = "jobs.update.error.body".localized
-
-            }
-        }
-
-        public struct Button {
-
-                    /// Base translation: Saved
-            public static var Saved : String = "jobs.button.saved".localized
-
-            /// Base translation: Edit
-            public static var Edit : String = "jobs.button.edit".localized
-
-            /// Base translation: Save
-            public static var Save : String = "jobs.button.save".localized
-
-        }
-
-        public struct Add {
-
-        
-            public struct Button {
-
-                            /// Base translation: Edit Job
-                public static var Edit : String = "jobs.add.button.edit".localized
-
-                /// Base translation: Edit Profile
-                public static var EditProfile : String = "jobs.add.button.edit-profile".localized
-
-                /// Base translation: Update
-                public static var Update : String = "jobs.add.button.update".localized
-
-            }
-
-            public struct NeedProfile {
-
-                            /// Base translation: We need some details
-                public static var Title : String = "jobs.add.need-profile.title".localized
-
-                /// Base translation: Candidates will want to know who is hiring.You can give details on the next screen.
-                public static var Body : String = "jobs.add.need-profile.body".localized
-
-            }
-        }
-
-        public struct Employer {
-
-                    /// Base translation: Employer: %@
-            public static func Format(value1 : String) -> String {
-                return String(format: NSLocalizedString("jobs.employer.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
-            }
+            /// Base translation: Are you sure you want to block this job listing?
+            public static var Body : String = "jobs.block.body".localized
 
         }
 
@@ -210,27 +243,36 @@ public struct Localizations {
             }
         }
 
-        public struct Validation {
+        public struct Employer {
 
-        
-            public struct Error {
-
-                            /// Base translation: Missing information
-                public static var Title : String = "jobs.validation.error.title".localized
-
-                /// Base translation: Please fill in the fields marked with *
-                public static var Body : String = "jobs.validation.error.body".localized
-
+                    /// Base translation: Employer: %@
+            public static func Format(value1 : String) -> String {
+                return String(format: NSLocalizedString("jobs.employer.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
             }
 
-            public struct Required {
+        }
 
-                            /// Base translation: %@ (Required)
-                public static func Format(value1 : String) -> String {
-                    return String(format: NSLocalizedString("jobs.validation.required.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
-                }
+        public struct Bonus {
 
+                    /// Base translation: Referral Bonus: %@
+            public static func Format(value1 : String) -> String {
+                return String(format: NSLocalizedString("jobs.bonus.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
             }
+
+        }
+    }
+
+    public struct Phone {
+
+    
+        public struct Unavailable {
+
+                    /// Base translation: Phone unavailable
+            public static var Title : String = "phone.unavailable.title".localized
+
+            /// Base translation: This device cannot make phone calls.
+            public static var Body : String = "phone.unavailable.body".localized
+
         }
     }
 
@@ -303,20 +345,6 @@ public struct Localizations {
         }
     }
 
-    public struct Phone {
-
-    
-        public struct Unavailable {
-
-                    /// Base translation: Phone unavailable
-            public static var Title : String = "phone.unavailable.title".localized
-
-            /// Base translation: This device cannot make phone calls.
-            public static var Body : String = "phone.unavailable.body".localized
-
-        }
-    }
-
     public struct Server {
 
     
@@ -358,20 +386,20 @@ public struct Localizations {
             /// Base translation: Facebook
             public static var Facebook : String = "settings.title.facebook".localized
 
-            /// Base translation: Send Feedback
-            public static var Feedback : String = "settings.title.feedback".localized
-
             /// Base translation: Posted Jobs
             public static var PostedJobs : String = "settings.title.posted-jobs".localized
 
-            /// Base translation: Saved Jobs
-            public static var SavedJobs : String = "settings.title.saved-jobs".localized
+            /// Base translation: Send Feedback
+            public static var Feedback : String = "settings.title.feedback".localized
+
+            /// Base translation: Your Profile
+            public static var Profile : String = "settings.title.profile".localized
 
             /// Base translation: Delete Your Account
             public static var DeleteAccount : String = "settings.title.delete-account".localized
 
-            /// Base translation: Your Profile
-            public static var Profile : String = "settings.title.profile".localized
+            /// Base translation: Saved Jobs
+            public static var SavedJobs : String = "settings.title.saved-jobs".localized
 
         }
 
@@ -439,11 +467,11 @@ public struct Localizations {
     
         public struct Button {
 
-                    /// Base translation: Message
-            public static var Message : String = "notification.button.message".localized
-
-            /// Base translation: Details
+                    /// Base translation: Details
             public static var Details : String = "notification.button.details".localized
+
+            /// Base translation: Message
+            public static var Message : String = "notification.button.message".localized
 
             /// Base translation: NUDJ
             public static var Nudj : String = "notification.button.nudj".localized
@@ -552,20 +580,20 @@ public struct Localizations {
             public struct Sent {
 
             
-                public struct Singular {
-
-                                    /// Base translation: You have successfully asked %@ for a referral.
-                    public static func Format(value1 : String) -> String {
-                        return String(format: NSLocalizedString("referral.ask.sent.singular.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
-                    }
-
-                }
-
                 public struct Plural {
 
                                     /// Base translation: You have successfully asked %@ and %d others for a referral.
                     public static func Format(value1 : String, _ value2 : Int) -> String {
                         return String(format: NSLocalizedString("referral.ask.sent.plural.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1, value2)
+                    }
+
+                }
+
+                public struct Singular {
+
+                                    /// Base translation: You have successfully asked %@ for a referral.
+                    public static func Format(value1 : String) -> String {
+                        return String(format: NSLocalizedString("referral.ask.sent.singular.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
                     }
 
                 }
@@ -576,22 +604,6 @@ public struct Localizations {
     public struct Invitation {
 
     
-        public struct Successful {
-
-                    /// Base translation: Invitation Sent
-            public static var Title : String = "invitation.successful.title".localized
-
-
-            public struct Body {
-
-                            /// Base translation: %@ has been invited.
-                public static func Format(value1 : String) -> String {
-                    return String(format: NSLocalizedString("invitation.successful.body.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
-                }
-
-            }
-        }
-
         public struct Failed {
 
                     /// Base translation: Invitation Failed
@@ -610,11 +622,11 @@ public struct Localizations {
 
         public struct Send {
 
-                    /// Base translation: Invite
-            public static var Button : String = "invitation.send.button".localized
-
-            /// Base translation: Invite Contact
+                    /// Base translation: Invite Contact
             public static var Title : String = "invitation.send.title".localized
+
+            /// Base translation: Invite
+            public static var Button : String = "invitation.send.button".localized
 
 
             public struct Body {
@@ -626,25 +638,18 @@ public struct Localizations {
 
             }
         }
-    }
 
-    public struct Verification {
+        public struct Successful {
 
-    
-        public struct Code {
-
-                    /// Base translation: That verification code is invalid.
-            public static var Invalid : String = "verification.code.invalid".localized
-
-            /// Base translation: There was an error in code verification, please try again.
-            public static var Error : String = "verification.code.error".localized
+                    /// Base translation: Invitation Sent
+            public static var Title : String = "invitation.successful.title".localized
 
 
-            public struct Alert {
+            public struct Body {
 
-                            /// Base translation: Your verification code is %@.
+                            /// Base translation: %@ has been invited.
                 public static func Format(value1 : String) -> String {
-                    return String(format: NSLocalizedString("verification.code.alert.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
+                    return String(format: NSLocalizedString("invitation.successful.body.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
                 }
 
             }
@@ -672,6 +677,29 @@ public struct Localizations {
             /// Base translation: This device cannot send text messages.
             public static var Body : String = "sms.unavailable.body".localized
 
+        }
+    }
+
+    public struct Verification {
+
+    
+        public struct Code {
+
+                    /// Base translation: There was an error in code verification, please try again.
+            public static var Error : String = "verification.code.error".localized
+
+            /// Base translation: That verification code is invalid.
+            public static var Invalid : String = "verification.code.invalid".localized
+
+
+            public struct Alert {
+
+                            /// Base translation: Your verification code is %@.
+                public static func Format(value1 : String) -> String {
+                    return String(format: NSLocalizedString("verification.code.alert.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
+                }
+
+            }
         }
     }
 
@@ -732,11 +760,11 @@ public struct Localizations {
 
         public struct Block {
 
-                    /// Base translation: Block
-            public static var Button : String = "chat.block.button".localized
-
-            /// Base translation: Block User
+                    /// Base translation: Block User
             public static var Title : String = "chat.block.title".localized
+
+            /// Base translation: Block
+            public static var Button : String = "chat.block.button".localized
 
 
             public struct Body {
@@ -786,20 +814,20 @@ public struct Localizations {
         public struct Contact {
 
         
-            public struct Success {
-
-                            /// Base translation: You have successfully contacted %@
-                public static func Format(value1 : String) -> String {
-                    return String(format: NSLocalizedString("chat.contact.success.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
-                }
-
-            }
-
             public struct Send {
 
                             /// Base translation: Contact %@
                 public static func Format(value1 : String) -> String {
                     return String(format: NSLocalizedString("chat.contact.send.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
+                }
+
+            }
+
+            public struct Success {
+
+                            /// Base translation: You have successfully contacted %@
+                public static func Format(value1 : String) -> String {
+                    return String(format: NSLocalizedString("chat.contact.success.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
                 }
 
             }

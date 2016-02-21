@@ -136,7 +136,6 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         salaryText.text = Localizations.Jobs.Salary.Format(salary)
         salaryText.setFontColor(appDelegate.appColor, string:salary)
         
-        
         // Referral Property
         let boldFont = UIFont(name: "HelveticaNeue-Bold", size: 22)
         // TODO: use a proper number formatter
@@ -151,32 +150,88 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     @IBAction func topRightNavAction(sender: UIBarButtonItem) {
         // TODO: use something less fragile than selecting on the button title
         if (sender.title == Localizations.Jobs.Button.Save) {
-            MixPanelHandler.sendData("SaveJobButtonClicked")
-            let path = API.Endpoints.Jobs.likeByID(jobID!) 
-            API.sharedInstance.request(.PUT, path: path, params: nil, closure: { json in
-                loggingPrint("Job saved \(json)")
-                self.navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Button.Saved
-                
-                }) { 
-                    error in
-                    loggingPrint("Error -> \(error)")
-            }
+            favoriteJob(sender)
         } else if(sender.title == Localizations.Jobs.Button.Saved) {
-            MixPanelHandler.sendData("SavedJobButtonClicked")
-            let path = API.Endpoints.Jobs.likeByID(jobID!) 
-            API.sharedInstance.request(.DELETE, path: path, params: nil, closure: { 
-                json in
-                loggingPrint("un save \(json)")
-                self.navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Button.Save
-                }, errorHandler: { 
-                    error in
-                    loggingPrint("Error -> \(error)")
-            })
+            unfavoriteJob(sender)
         } else if (sender.title == Localizations.Jobs.Button.Edit){
             // Go to EditView
             MixPanelHandler.sendData("EditJobButtonClicked")
             performSegueWithIdentifier(.EditJob, sender: sender)
         }
+    }
+    
+    @IBAction func favoriteJob(sender: AnyObject) {
+        MixPanelHandler.sendData("FavoriteJobButtonClicked")
+        let path = API.Endpoints.Jobs.likeByID(jobID!) 
+        API.sharedInstance.request(.PUT, path: path, params: nil, closure: { 
+            json in
+            self.navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Button.Saved
+            }) { 
+                error in
+                loggingPrint("Error -> \(error)")
+        }
+    }
+    
+    @IBAction func unfavoriteJob(sender: AnyObject) {
+        MixPanelHandler.sendData("UnfavoriteJobButtonClicked")
+        let path = API.Endpoints.Jobs.likeByID(jobID!) 
+        API.sharedInstance.request(.DELETE, path: path, params: nil, closure: { 
+            json in
+            self.navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Button.Saved
+            }) { 
+                error in
+                loggingPrint("Error -> \(error)")
+        }
+    }
+    
+    @IBAction func blockJob(sender: AnyObject) {
+        guard let jobID = self.jobID else {return}
+        let title = Localizations.Jobs.Block.Title
+        let message = Localizations.Jobs.Block.Body
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .ActionSheet)
+        
+        let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
+        alert.addAction(cancelAction)
+        alert.preferredAction = cancelAction
+        
+        let blockAction = UIAlertAction(title: Localizations.Jobs.Block.Button, style: .Destructive) {
+            _ in //
+            let endpoint = API.Endpoints.Jobs.blockByID(jobID)
+            MixPanelHandler.sendData("JobBlocked")
+            let api = API.sharedInstance
+            api.request(.POST, path: endpoint, closure: {
+                json in
+                // TODO: maybe filter out the offending job locally while waiting for the server to respond
+            })
+            self.navigationController?.popViewControllerAnimated(true)
+        }
+        alert.addAction(blockAction)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func reportHirer(sender: AnyObject) {
+        guard let userId = self.userId, hirerName = authorName.text else {return}
+        let title = Localizations.Jobs.ReportHirer.Title
+        let message = Localizations.Jobs.ReportHirer.Body
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .ActionSheet)
+        
+        let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
+        alert.addAction(cancelAction)
+        alert.preferredAction = cancelAction
+        
+        let blockAction = UIAlertAction(title: Localizations.Jobs.ReportHirer.Button(hirerName), style: .Destructive) {
+            _ in //
+            let endpoint = API.Endpoints.Users.reportByID(userId)
+            MixPanelHandler.sendData("HirerReported")
+            let api = API.sharedInstance
+            api.request(.POST, path: endpoint, closure: {
+                json in
+                // TODO: maybe filter out the offending hirer's jobs locally while waiting for the server to respond
+            })
+            self.navigationController?.popViewControllerAnimated(true)
+        }
+        alert.addAction(blockAction)
+        presentViewController(alert, animated: true, completion: nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

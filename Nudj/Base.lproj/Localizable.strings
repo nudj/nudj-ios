@@ -48,6 +48,12 @@
 "invitation.failed.body.format" = "There was a problem inviting %@.";
 
 // Jobs
+"jobs.block.title" = "Block Job";
+"jobs.block.body" = "Are you sure you want to block this job listing?";
+"jobs.block.button" = "Block";
+"jobs.report-hirer.title" = "Report Hirer";
+"jobs.report-hirer.body" = "Are you sure you want to report this hirer?";
+"jobs.report-hirer.button" = "Report %@";
 "jobs.button.edit" = "Edit";
 "jobs.button.save" = "Save";
 "jobs.button.saved" = "Saved";
