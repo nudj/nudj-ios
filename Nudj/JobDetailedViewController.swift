@@ -29,6 +29,8 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     @IBOutlet var bonusText: NZLabel!
     @IBOutlet weak var jobActive: UIButton!
     
+    @IBOutlet weak var menuView: UIView!
+    
     @IBOutlet weak var TextViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var interestedBtn: UIButton!
@@ -41,6 +43,15 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     var jobID: Int?
     var userId: Int?
     var popup: CreatePopupView?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        menuView.layer.masksToBounds = false
+        menuView.layer.shadowOffset = CGSizeMake(0.0, 1.0)
+        menuView.layer.shadowRadius = 2.0
+        menuView.layer.shadowOpacity = 0.5
+    }
     
     override func viewWillDisappear(animated: Bool) {
         self.tabBarController?.tabBar.hidden = false

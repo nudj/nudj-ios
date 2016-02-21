@@ -959,8 +959,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7PG-Jm-4dt" userLabel="Menu View">
                                 <rect key="frame" x="0.0" y="64" width="375" height="50"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Sxb-df-lSE" userLabel="Menu Stack">
-                                        <rect key="frame" x="20" y="20" width="375" height="50"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Sxb-df-lSE" userLabel="Menu Stack">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ifo-Y0-3Ze">
                                                 <rect key="frame" x="0.0" y="0.0" width="125" height="50"/>
@@ -1074,6 +1074,7 @@
                         <outlet property="jobActive" destination="fbz-Jz-zrO" id="Uyz-Ld-1Lx"/>
                         <outlet property="jobTitleText" destination="6JZ-HT-MOn" id="7lL-wl-dHp"/>
                         <outlet property="locationText" destination="iJy-5F-cqu" id="dQj-KX-hVd"/>
+                        <outlet property="menuView" destination="7PG-Jm-4dt" id="phf-Zv-adL"/>
                         <outlet property="nudgeBtn" destination="Mji-Gj-fEa" id="CZZ-wa-6r7"/>
                         <outlet property="salaryText" destination="ftp-qH-abp" id="un8-7d-Ar7"/>
                         <outlet property="skills" destination="KXz-hf-wcR" id="gTB-Vc-6B0"/>
