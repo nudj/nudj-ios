@@ -824,7 +824,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" contentMode="left" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAb-uZ-5ne">
+                            <label opaque="NO" contentMode="left" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAb-uZ-5ne" userLabel="Hirer Name">
                                 <rect key="frame" x="75" y="108" width="284" height="14"/>
                                 <gestureRecognizers/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
@@ -1066,10 +1066,10 @@
                         <outlet property="TextViewHeightConstraint" destination="Za0-Vv-crP" id="5XS-fs-Kjw"/>
                         <outlet property="activitySpinner" destination="vkP-6P-gFq" id="8G1-LF-ZEO"/>
                         <outlet property="askForReferralButton" destination="Kr2-47-R2H" id="jUH-wf-vh1"/>
-                        <outlet property="authorName" destination="YAb-uZ-5ne" id="ytr-0E-YCU"/>
                         <outlet property="bonusText" destination="ywj-gV-3hm" id="B3N-bi-bma"/>
                         <outlet property="descriptionText" destination="ThU-Hc-GZM" id="P3G-0o-PGE"/>
                         <outlet property="employerText" destination="vc3-bP-ba6" id="nUx-i5-sO3"/>
+                        <outlet property="hirerName" destination="YAb-uZ-5ne" id="Qyk-NC-i8W"/>
                         <outlet property="interestedBtn" destination="M7K-Zz-jWR" id="GAw-2Z-Qka"/>
                         <outlet property="jobActive" destination="fbz-Jz-zrO" id="Uyz-Ld-1Lx"/>
                         <outlet property="jobTitleText" destination="6JZ-HT-MOn" id="7lL-wl-dHp"/>
