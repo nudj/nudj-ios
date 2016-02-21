@@ -27,6 +27,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     @IBOutlet weak var jobActive: UIButton!
     
     @IBOutlet weak var menuView: UIView!
+    @IBOutlet weak var favoriteButton: UIButton!
     
     @IBOutlet weak var TextViewHeightConstraint: NSLayoutConstraint!
     
@@ -45,6 +46,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
             return hirerID == currentUser?.id
         }
     }
+    var isFavorite = false
     
     var popup: CreatePopupView?
     
@@ -92,25 +94,18 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     }
     
     func populateView(content: JSON, appColor: UIColor, appBlueColor: UIColor) {
-        
         // TODO: API strings
-        if isOwnJob {
-            interestedBtn.hidden = true
-            nudgeBtn.hidden = true
-            askForReferralButton.hidden = false
-        } else {
-            interestedBtn.hidden = false
-            nudgeBtn.hidden = false
-            askForReferralButton.hidden = true
-        }
+        isFavorite = content["liked"].boolValue
+        conformFavoriteButton()
+        
+        interestedBtn.hidden = isOwnJob
+        nudgeBtn.hidden = isOwnJob
+        askForReferralButton.hidden = !isOwnJob
         
         if isOwnJob {
             navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Button.Edit
-        } else if content["liked"].boolValue {
-            // TODO: review this: I find it a confusing UX
-            navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Button.Saved
         } else {
-            navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Button.Save
+            navigationItem.rightBarButtonItem?.title = "..." // Localizations.Jobs.Button.Menu
         }
         
         // Update skills
@@ -168,40 +163,35 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     }
 
     @IBAction func topRightNavAction(sender: UIBarButtonItem) {
-        // TODO: use something less fragile than selecting on the button title
-        if (sender.title == Localizations.Jobs.Button.Save) {
-            favoriteJob(sender)
-        } else if(sender.title == Localizations.Jobs.Button.Saved) {
-            unfavoriteJob(sender)
-        } else if (sender.title == Localizations.Jobs.Button.Edit){
-            // Go to EditView
-            MixPanelHandler.sendData("EditJobButtonClicked")
-            performSegueWithIdentifier(.EditJob, sender: sender)
+        if (sender.title == Localizations.Jobs.Button.Edit){
+            editJob(sender)
+        } else {
+            toggleMenu(sender)
         }
     }
     
-    @IBAction func favoriteJob(sender: AnyObject) {
-        MixPanelHandler.sendData("FavoriteJobButtonClicked")
+    @IBAction func editJob(sender: AnyObject) {
+        MixPanelHandler.sendData("EditJobButtonClicked")
+        performSegueWithIdentifier(.EditJob, sender: sender)
+    }
+    
+    @IBAction func toggleMenu(sender: AnyObject) {
+        //
+    }
+    
+    @IBAction func toggleFavoriteJob(sender: AnyObject) {
+        let mixPanelTitle = isFavorite ? "UnfavoriteJob" : "FavoriteJob"
         let path = API.Endpoints.Jobs.likeByID(jobID!) 
-        API.sharedInstance.request(.PUT, path: path, params: nil, closure: { 
+        let method: API.Method = isFavorite ? .DELETE : .PUT
+        MixPanelHandler.sendData(mixPanelTitle)
+        API.sharedInstance.request(method, path: path, params: nil, closure: { 
             json in
-            self.navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Button.Saved
             }) { 
                 error in
                 loggingPrint("Error -> \(error)")
         }
-    }
-    
-    @IBAction func unfavoriteJob(sender: AnyObject) {
-        MixPanelHandler.sendData("UnfavoriteJobButtonClicked")
-        let path = API.Endpoints.Jobs.likeByID(jobID!) 
-        API.sharedInstance.request(.DELETE, path: path, params: nil, closure: { 
-            json in
-            self.navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Button.Saved
-            }) { 
-                error in
-                loggingPrint("Error -> \(error)")
-        }
+        isFavorite = !isFavorite
+        conformFavoriteButton()
     }
     
     @IBAction func blockJob(sender: AnyObject) {
@@ -377,6 +367,11 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
                 // TODO: better error handling
                 loggingPrint("Error -> \(error)")
         }
+    }
+    
+    private func conformFavoriteButton() {
+        let newTitle = isFavorite ? Localizations.Jobs.Button.Unfavorite : Localizations.Jobs.Button.Favorite
+        favoriteButton.titleLabel?.text = newTitle
     }
     
     func dismissPopUp() {

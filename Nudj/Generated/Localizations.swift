@@ -127,11 +127,11 @@ public struct Localizations {
 
         public struct Button {
 
-                    /// Base translation: Saved
-            public static var Saved : String = "jobs.button.saved".localized
+                    /// Base translation: Unfavorite
+            public static var Unfavorite : String = "jobs.button.unfavorite".localized
 
-            /// Base translation: Save
-            public static var Save : String = "jobs.button.save".localized
+            /// Base translation: Favorite
+            public static var Favorite : String = "jobs.button.favorite".localized
 
             /// Base translation: Edit
             public static var Edit : String = "jobs.button.edit".localized

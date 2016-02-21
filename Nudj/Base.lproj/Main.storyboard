@@ -966,7 +966,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="125" height="50"/>
                                                 <state key="normal" title="Favourite"/>
                                                 <connections>
-                                                    <action selector="favoriteJob:" destination="vRR-wd-aTg" eventType="touchUpInside" id="6xN-V5-DZr"/>
+                                                    <action selector="toggleFavoriteJob:" destination="vRR-wd-aTg" eventType="touchUpInside" id="IvT-La-wwH"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7U4-Y7-yGZ">
@@ -1066,10 +1066,11 @@
                         <outlet property="TextViewHeightConstraint" destination="Za0-Vv-crP" id="5XS-fs-Kjw"/>
                         <outlet property="activitySpinner" destination="vkP-6P-gFq" id="8G1-LF-ZEO"/>
                         <outlet property="askForReferralButton" destination="Kr2-47-R2H" id="jUH-wf-vh1"/>
-                        <outlet property="authorName" destination="YAb-uZ-5ne" id="ytr-0E-YCU"/>
                         <outlet property="bonusText" destination="ywj-gV-3hm" id="B3N-bi-bma"/>
                         <outlet property="descriptionText" destination="ThU-Hc-GZM" id="P3G-0o-PGE"/>
                         <outlet property="employerText" destination="vc3-bP-ba6" id="nUx-i5-sO3"/>
+                        <outlet property="favoriteButton" destination="Ifo-Y0-3Ze" id="U51-oj-psf"/>
+                        <outlet property="hirerName" destination="YAb-uZ-5ne" id="QHC-8i-PYW"/>
                         <outlet property="interestedBtn" destination="M7K-Zz-jWR" id="GAw-2Z-Qka"/>
                         <outlet property="jobActive" destination="fbz-Jz-zrO" id="Uyz-Ld-1Lx"/>
                         <outlet property="jobTitleText" destination="6JZ-HT-MOn" id="7lL-wl-dHp"/>
