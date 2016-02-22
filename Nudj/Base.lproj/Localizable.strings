@@ -128,6 +128,8 @@
 "settings.title.chats" = "Archived Chats";
 "settings.title.facebook" = "Facebook";
 "settings.title.FAQ" = "Frequently Asked Questions";
+"settings.title.terms" = "Terms and Conditions";
+"settings.title.privacy-policy" = "Privacy Policy";
 "settings.title.feedback" = "Send Feedback";
 "settings.title.report-issue" = "Report an Issue";
 "settings.title.delete-account" = "Delete Your Account";

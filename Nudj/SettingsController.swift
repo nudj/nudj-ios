@@ -20,10 +20,12 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
         case GoToPostedJobs = "goToPostedJobs"
         case GoToChats = "goToChats"
         case ShowFAQ = "ShowFAQ"
+        case ShowTerms = "showT&Cs"
+        case ShowPrivacyPolicy = "showPrivacyPolicy"
     }
     
     enum CellAction {
-        case ShowProfile, ChooseStatus, ShowFavoriteJobs, ShowPostedJobs, ShowChats, ToggleFacebook, ShowFAQ, GiveFeedback, ReportAnIssue, DeleteAccount, TestNotification
+        case ShowProfile, ChooseStatus, ShowFavoriteJobs, ShowPostedJobs, ShowChats, ToggleFacebook, ShowFAQ, ShowTerms, ShowPrivacyPolicy, GiveFeedback, ReportAnIssue, DeleteAccount, TestNotification
         
         func segueIdentifier() -> SegueIdentifier? {
             switch self {
@@ -34,6 +36,8 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             case ShowChats: return SegueIdentifier.GoToChats
             case ToggleFacebook: return nil
             case ShowFAQ: return SegueIdentifier.ShowFAQ
+            case ShowTerms: return SegueIdentifier.ShowTerms
+            case ShowPrivacyPolicy: return SegueIdentifier.ShowPrivacyPolicy
             case GiveFeedback: return SegueIdentifier.GoToFeedBack
             case ReportAnIssue: return SegueIdentifier.ReportAnIssue
             case DeleteAccount: return SegueIdentifier.GoToLogin
@@ -51,6 +55,8 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             case ShowChats: return titles.Chats
             case ToggleFacebook: return titles.Facebook
             case ShowFAQ: return titles.Faq
+            case ShowTerms: return titles.Terms
+            case ShowPrivacyPolicy: return titles.PrivacyPolicy
             case GiveFeedback: return titles.Feedback
             case ReportAnIssue: return titles.ReportIssue
             case DeleteAccount: return titles.DeleteAccount
@@ -83,6 +89,10 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
 //        ],
         [
             .ShowFAQ,
+            .ShowTerms,
+            .ShowPrivacyPolicy,
+        ],
+        [
             .GiveFeedback,
             .ReportAnIssue,
             .TestNotification,
@@ -251,7 +261,7 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             let controller = segue.destinationViewController as! ChatListViewController
             controller.isArchive = true
             
-        case .ShowFAQ:
+        case .ShowFAQ, .ShowTerms, .ShowPrivacyPolicy:
             break
         }
     }

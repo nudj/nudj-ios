@@ -399,38 +399,44 @@ public struct Localizations {
 
         public struct Title {
 
-                    /// Base translation: Archived Chats
-            public static var Chats : String = "settings.title.chats".localized
-
-            /// Base translation: Report an Issue
+                    /// Base translation: Report an Issue
             public static var ReportIssue : String = "settings.title.report-issue".localized
-
-            /// Base translation: Your Status
-            public static var Status : String = "settings.title.status".localized
-
-            /// Base translation: Frequently Asked Questions
-            public static var Faq : String = "settings.title.FAQ".localized
-
-            /// Base translation: Send a Test Notification
-            public static var TestNotification : String = "settings.title.test-notification".localized
-
-            /// Base translation: Facebook
-            public static var Facebook : String = "settings.title.facebook".localized
-
-            /// Base translation: Posted Jobs
-            public static var PostedJobs : String = "settings.title.posted-jobs".localized
-
-            /// Base translation: Favourite Jobs
-            public static var FavoriteJobs : String = "settings.title.favorite-jobs".localized
-
-            /// Base translation: Send Feedback
-            public static var Feedback : String = "settings.title.feedback".localized
 
             /// Base translation: Your Profile
             public static var Profile : String = "settings.title.profile".localized
 
+            /// Base translation: Terms and Conditions
+            public static var Terms : String = "settings.title.terms".localized
+
+            /// Base translation: Privacy Policy
+            public static var PrivacyPolicy : String = "settings.title.privacy-policy".localized
+
+            /// Base translation: Archived Chats
+            public static var Chats : String = "settings.title.chats".localized
+
+            /// Base translation: Send Feedback
+            public static var Feedback : String = "settings.title.feedback".localized
+
+            /// Base translation: Posted Jobs
+            public static var PostedJobs : String = "settings.title.posted-jobs".localized
+
             /// Base translation: Delete Your Account
             public static var DeleteAccount : String = "settings.title.delete-account".localized
+
+            /// Base translation: Favourite Jobs
+            public static var FavoriteJobs : String = "settings.title.favorite-jobs".localized
+
+            /// Base translation: Facebook
+            public static var Facebook : String = "settings.title.facebook".localized
+
+            /// Base translation: Frequently Asked Questions
+            public static var Faq : String = "settings.title.FAQ".localized
+
+            /// Base translation: Your Status
+            public static var Status : String = "settings.title.status".localized
+
+            /// Base translation: Send a Test Notification
+            public static var TestNotification : String = "settings.title.test-notification".localized
 
         }
 
