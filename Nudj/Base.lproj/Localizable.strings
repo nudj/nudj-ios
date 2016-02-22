@@ -145,7 +145,7 @@
 "settings.feedback.intro" = "We welcome our users’ feedback so that we can adjust, update and enhance Nudj to your needs.";
 "settings.notification-test.title" = "Test Notification Sent";
 "settings.notification-test.body" = "If push notifications are set up correctly on your device, you should soon receive a test notification.";
-"settings.report.intro" = "We welcome our users’ feedback so that we can adjust, update and enhance Nudj to your needs.";
+"settings.report.intro" = "Let us know if you have encountered any inappropriate content or issues whilst using Nudj.";
 
 // User status
 "userstatus.unknown" = "SELECT STATUS";

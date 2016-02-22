@@ -371,7 +371,7 @@ public struct Localizations {
 
         public struct Report {
 
-                    /// Base translation: We welcome our users’ feedback so that we can adjust, update and enhance Nudj to your needs.
+                    /// Base translation: Let us know if you have encountered any inappropriate content or issues whilst using Nudj.
             public static var Intro : String = "settings.report.intro".localized
 
         }
