@@ -206,6 +206,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         }
         isFavorite = !isFavorite
         conformFavoriteButton()
+        setMenuShown(false, animated: true)
     }
     
     @IBAction func blockJob(sender: AnyObject) {
@@ -231,6 +232,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
             self.navigationController?.popViewControllerAnimated(true)
         }
         alert.addAction(blockAction)
+        setMenuShown(false, animated: true)
         presentViewController(alert, animated: true, completion: nil)
     }
     
@@ -257,6 +259,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
             self.navigationController?.popViewControllerAnimated(true)
         }
         alert.addAction(blockAction)
+        setMenuShown(false, animated: true)
         presentViewController(alert, animated: true, completion: nil)
     }
     
