@@ -4284,7 +4284,7 @@ Cg
                                         <string key="content">10.24.	In the event you have any questions, comments or complaints about the Services, you can contact us by email at info@nudj.co, by writing to us at our registered office.</string>
                                         <attributes>
                                             <font key="NSFont" size="14" name="HelveticaNeue"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="6" paragraphSpacingBefore="6" tailIndent="496.10000000000002" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="6" paragraphSpacingBefore="6" tailIndent="496.10000000000002" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
                                                 <tabStops>
                                                     <textTab alignment="left" location="28.350000381469727">
                                                         <options/>
