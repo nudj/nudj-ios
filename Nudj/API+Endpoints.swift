@@ -226,6 +226,10 @@ extension API {
             }
         }
         
+        struct ReportAbuse {
+            static let base = "report-abuse"
+        }
+        
         struct Users {
             static let base = "users"
             static let me = base + "/me"

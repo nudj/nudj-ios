@@ -356,20 +356,54 @@ public struct Localizations {
     public struct Settings {
 
     
-        public struct NotificationTest {
+        public struct Delete {
 
-                    /// Base translation: Test Notification Sent
-            public static var Title : String = "settings.notification-test.title".localized
+                    /// Base translation: Delete Account
+            public static var Title : String = "settings.delete.title".localized
 
-            /// Base translation: If push notifications are set up correctly on your device, you should soon receive a test notification.
-            public static var Body : String = "settings.notification-test.body".localized
+            /// Base translation: Delete Account
+            public static var Button : String = "settings.delete.button".localized
 
+            /// Base translation: Are you sure you want to permanently delete your account information, including jobs and chats?
+            public static var Body : String = "settings.delete.body".localized
+
+        }
+
+        public struct Report {
+
+                    /// Base translation: We welcome our users’ feedback so that we can adjust, update and enhance Nudj to your needs.
+            public static var Intro : String = "settings.report.intro".localized
+
+        }
+
+        public struct Disconnect {
+
+                    /// Base translation: Disconnect
+            public static var Button : String = "settings.disconnect.button".localized
+
+
+            public struct Title {
+
+                            /// Base translation: Disconnect %@
+                public static func Format(value1 : String) -> String {
+                    return String(format: NSLocalizedString("settings.disconnect.title.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
+                }
+
+                /// Base translation: Are you sure you want to disconnect %@?
+                public static func Body(value1 : String) -> String {
+                    return String(format: NSLocalizedString("settings.disconnect.title.body", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
+                }
+
+            }
         }
 
         public struct Title {
 
                     /// Base translation: Archived Chats
             public static var Chats : String = "settings.title.chats".localized
+
+            /// Base translation: Report an Issue
+            public static var ReportIssue : String = "settings.title.report-issue".localized
 
             /// Base translation: Your Status
             public static var Status : String = "settings.title.status".localized
@@ -424,37 +458,20 @@ public struct Localizations {
             }
         }
 
-        public struct Disconnect {
+        public struct Feedback {
 
-                    /// Base translation: Disconnect
-            public static var Button : String = "settings.disconnect.button".localized
+                    /// Base translation: We welcome our users’ feedback so that we can adjust, update and enhance Nudj to your needs.
+            public static var Intro : String = "settings.feedback.intro".localized
 
-
-            public struct Title {
-
-                            /// Base translation: Disconnect %@
-                public static func Format(value1 : String) -> String {
-                    return String(format: NSLocalizedString("settings.disconnect.title.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
-                }
-
-                /// Base translation: Are you sure you want to disconnect %@?
-                public static func Body(value1 : String) -> String {
-                    return String(format: NSLocalizedString("settings.disconnect.title.body", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
-                }
-
-            }
         }
 
-        public struct Delete {
+        public struct NotificationTest {
 
-                    /// Base translation: Delete Account
-            public static var Title : String = "settings.delete.title".localized
+                    /// Base translation: Test Notification Sent
+            public static var Title : String = "settings.notification-test.title".localized
 
-            /// Base translation: Delete Account
-            public static var Button : String = "settings.delete.button".localized
-
-            /// Base translation: Are you sure you want to permanently delete your account information, including jobs and chats?
-            public static var Body : String = "settings.delete.body".localized
+            /// Base translation: If push notifications are set up correctly on your device, you should soon receive a test notification.
+            public static var Body : String = "settings.notification-test.body".localized
 
         }
     }

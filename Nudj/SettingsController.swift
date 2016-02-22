@@ -15,6 +15,7 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
         case ShowStatusPicker = "showStatusPicker"
         case GoToLogin = "goToLogin"
         case GoToFeedBack = "goToFeedBack"
+        case ReportAnIssue = "reportAnIssue"
         case GoToFavoriteJobs = "goToFavoriteJobs"
         case GoToPostedJobs = "goToPostedJobs"
         case GoToChats = "goToChats"
@@ -22,7 +23,7 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
     }
     
     enum CellAction {
-        case ShowProfile, ChooseStatus, ShowFavoriteJobs, ShowPostedJobs, ShowChats, ToggleFacebook, ShowFAQ, GiveFeedback, DeleteAccount, TestNotification
+        case ShowProfile, ChooseStatus, ShowFavoriteJobs, ShowPostedJobs, ShowChats, ToggleFacebook, ShowFAQ, GiveFeedback, ReportAnIssue, DeleteAccount, TestNotification
         
         func segueIdentifier() -> SegueIdentifier? {
             switch self {
@@ -34,6 +35,7 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             case ToggleFacebook: return nil
             case ShowFAQ: return SegueIdentifier.ShowFAQ
             case GiveFeedback: return SegueIdentifier.GoToFeedBack
+            case ReportAnIssue: return SegueIdentifier.ReportAnIssue
             case DeleteAccount: return SegueIdentifier.GoToLogin
             case TestNotification: return nil
             }
@@ -50,6 +52,7 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             case ToggleFacebook: return titles.Facebook
             case ShowFAQ: return titles.Faq
             case GiveFeedback: return titles.Feedback
+            case ReportAnIssue: return titles.ReportIssue
             case DeleteAccount: return titles.DeleteAccount
             case TestNotification: return titles.TestNotification
             }
@@ -72,7 +75,7 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             .ChooseStatus,
             .ShowFavoriteJobs,
             .ShowPostedJobs,
-            .ShowChats
+            .ShowChats,
         ],
         // temporarily hide facebook option until #33 is resolved
 //        [
@@ -81,11 +84,12 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
         [
             .ShowFAQ,
             .GiveFeedback,
-            .TestNotification
+            .ReportAnIssue,
+            .TestNotification,
         ],
         [
-            .DeleteAccount
-        ]
+            .DeleteAccount,
+        ],
     ]
 
     override func viewDidLoad() {
@@ -218,6 +222,19 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             delegate.deleteAccount(inViewController: segue.destinationViewController)
             
         case .GoToFeedBack:
+            let controller = segue.destinationViewController as! SendFeedBackViewController
+            controller.loadViewIfNeeded()
+            controller.title = Localizations.Settings.Title.Feedback
+            controller.endpoint = API.Endpoints.Feedback.base
+            controller.introText.text = Localizations.Settings.Feedback.Intro
+            break
+            
+        case .ReportAnIssue:
+            let controller = segue.destinationViewController as! SendFeedBackViewController
+            controller.loadViewIfNeeded()
+            controller.title = Localizations.Settings.Title.ReportIssue
+            controller.endpoint = API.Endpoints.ReportAbuse.base
+            controller.introText.text = Localizations.Settings.Report.Intro
             break
             
         case .GoToFavoriteJobs:
