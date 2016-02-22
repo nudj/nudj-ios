@@ -28,6 +28,8 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var menuHidingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var menuShowingConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var TextViewHeightConstraint: NSLayoutConstraint!
     
@@ -39,6 +41,8 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     @IBOutlet weak var editBarButton: UIBarButtonItem!
   
     @IBOutlet weak var skills: TokenView!
+    
+    let menuAnimationDuration: NSTimeInterval = 0.5
    
     var jobID: Int?
     var hirerID: Int?
@@ -49,6 +53,16 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         }
     }
     var isFavorite = false
+    var menuShown: Bool {
+        get{
+            return menuShowingConstraint.priority > menuHidingConstraint.priority
+        }
+        
+        set(newShown) {
+            menuShowingConstraint.priority = newShown ? UILayoutPriorityDefaultHigh : UILayoutPriorityDefaultLow
+            menuHidingConstraint.priority = newShown ? UILayoutPriorityDefaultLow : UILayoutPriorityDefaultHigh
+        }
+    }
     
     var popup: CreatePopupView?
     
@@ -166,7 +180,17 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     }
     
     @IBAction func toggleMenu(sender: AnyObject) {
-        //
+        let shown = !self.menuShown
+        setMenuShown(shown, animated: true)
+    }
+    
+    private func setMenuShown(shown: Bool, animated: Bool) {
+        let duration: NSTimeInterval = animated ? menuAnimationDuration : 0.0
+        self.view.layoutIfNeeded()
+        UIView.animateWithDuration(duration) {
+            self.menuShown = shown
+            self.view.layoutIfNeeded()
+        }
     }
     
     @IBAction func toggleFavoriteJob(sender: AnyObject) {
@@ -196,6 +220,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         
         let blockAction = UIAlertAction(title: Localizations.Jobs.Block.Button, style: .Destructive) {
             _ in //
+            self.setMenuShown(false, animated: true)
             let endpoint = API.Endpoints.Jobs.blockByID(jobID)
             MixPanelHandler.sendData("JobBlocked")
             let api = API.sharedInstance
@@ -221,6 +246,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         
         let blockAction = UIAlertAction(title: Localizations.Jobs.ReportHirer.Button(hirerName), style: .Destructive) {
             _ in //
+            self.setMenuShown(false, animated: true)
             let endpoint = API.Endpoints.Users.reportByID(userId)
             MixPanelHandler.sendData("HirerReported")
             let api = API.sharedInstance

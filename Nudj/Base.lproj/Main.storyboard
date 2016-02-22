@@ -957,7 +957,7 @@
                                 <rect key="frame" x="16" y="0.0" width="343" height="667"/>
                             </activityIndicatorView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7PG-Jm-4dt" userLabel="Menu View">
-                                <rect key="frame" x="0.0" y="64" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Sxb-df-lSE" userLabel="Menu Stack">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
@@ -1009,6 +1009,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="Hbt-nR-ix5" secondAttribute="trailing" constant="-16" id="7Aa-56-3nz"/>
                             <constraint firstItem="M7K-Zz-jWR" firstAttribute="top" secondItem="ywj-gV-3hm" secondAttribute="bottom" constant="10" id="7Kw-2Y-au0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ThU-Hc-GZM" secondAttribute="trailing" constant="4" id="7vu-5V-8QZ"/>
+                            <constraint firstItem="7PG-Jm-4dt" firstAttribute="top" secondItem="vov-20-Wq3" secondAttribute="topMargin" priority="750" identifier="Menu hider" id="9dD-j7-PKP" userLabel="Menu hider"/>
                             <constraint firstItem="iJy-5F-cqu" firstAttribute="centerY" secondItem="Kg2-aW-kNL" secondAttribute="centerY" constant="1" id="DWF-6m-WZG"/>
                             <constraint firstItem="c94-bD-7jd" firstAttribute="top" secondItem="M7K-Zz-jWR" secondAttribute="bottom" constant="20" id="GgA-dB-ZKL"/>
                             <constraint firstItem="Mji-Gj-fEa" firstAttribute="leading" secondItem="M7K-Zz-jWR" secondAttribute="trailing" constant="16" id="GxX-bp-IOJ"/>
@@ -1021,7 +1022,7 @@
                             <constraint firstItem="6JZ-HT-MOn" firstAttribute="top" secondItem="3F4-Zs-AO0" secondAttribute="bottom" constant="20" id="TKx-am-AEk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Kr2-47-R2H" secondAttribute="trailing" id="ThO-4z-wWD"/>
                             <constraint firstItem="M7K-Zz-jWR" firstAttribute="centerY" secondItem="Mji-Gj-fEa" secondAttribute="centerY" id="Tnr-M9-7H0"/>
-                            <constraint firstItem="7PG-Jm-4dt" firstAttribute="top" secondItem="3F4-Zs-AO0" secondAttribute="bottom" id="UQH-OD-yTR"/>
+                            <constraint firstItem="7PG-Jm-4dt" firstAttribute="top" secondItem="3F4-Zs-AO0" secondAttribute="bottom" priority="250" identifier="Menu shower" id="UQH-OD-yTR" userLabel="Menu shower"/>
                             <constraint firstItem="6JZ-HT-MOn" firstAttribute="top" secondItem="ClY-JK-HuM" secondAttribute="top" constant="-24" id="UdX-Ck-D5r"/>
                             <constraint firstAttribute="trailing" secondItem="7PG-Jm-4dt" secondAttribute="trailing" id="UqE-f6-q7u"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vkP-6P-gFq" secondAttribute="trailing" id="V1w-em-hva"/>
@@ -1044,6 +1045,7 @@
                             <constraint firstItem="vc3-bP-ba6" firstAttribute="centerY" secondItem="adi-20-xUa" secondAttribute="centerY" constant="2" id="jzX-Qu-F9z"/>
                             <constraint firstItem="ywj-gV-3hm" firstAttribute="trailing" secondItem="vov-20-Wq3" secondAttribute="trailingMargin" id="l1S-qv-lRq"/>
                             <constraint firstItem="adi-20-xUa" firstAttribute="leading" secondItem="vov-20-Wq3" secondAttribute="leadingMargin" id="m57-eW-MjY"/>
+                            <constraint firstItem="7PG-Jm-4dt" firstAttribute="top" secondItem="3F4-Zs-AO0" secondAttribute="bottom" priority="250" placeholder="YES" identifier="Dummy menu extender" id="mh3-IN-n9Y" userLabel="Dummy menu extender"/>
                             <constraint firstItem="Kg2-aW-kNL" firstAttribute="leading" secondItem="vov-20-Wq3" secondAttribute="leadingMargin" id="oLK-8H-osS"/>
                             <constraint firstAttribute="bottomMargin" secondItem="vkP-6P-gFq" secondAttribute="bottom" id="ttm-Rp-rer"/>
                             <constraint firstItem="ThU-Hc-GZM" firstAttribute="top" secondItem="YAb-uZ-5ne" secondAttribute="bottom" constant="10" id="uJt-N7-zJx"/>
@@ -1071,6 +1073,8 @@
                         <outlet property="jobTitleText" destination="6JZ-HT-MOn" id="7lL-wl-dHp"/>
                         <outlet property="locationText" destination="iJy-5F-cqu" id="dQj-KX-hVd"/>
                         <outlet property="menuBarButton" destination="o6d-zW-60E" id="wC2-fv-XE7"/>
+                        <outlet property="menuHidingConstraint" destination="9dD-j7-PKP" id="uCA-BX-unU"/>
+                        <outlet property="menuShowingConstraint" destination="UQH-OD-yTR" id="5dY-Hl-OpF"/>
                         <outlet property="menuView" destination="7PG-Jm-4dt" id="phf-Zv-adL"/>
                         <outlet property="nudgeBtn" destination="Mji-Gj-fEa" id="CZZ-wa-6r7"/>
                         <outlet property="salaryText" destination="ftp-qH-abp" id="un8-7d-Ar7"/>
