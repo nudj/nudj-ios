@@ -227,7 +227,7 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             controller.title = Localizations.Settings.Title.Feedback
             controller.endpoint = API.Endpoints.Feedback.base
             controller.introText.text = Localizations.Settings.Feedback.Intro
-            break
+            controller.paramWrapper = API.Endpoints.Feedback.params
             
         case .ReportAnIssue:
             let controller = segue.destinationViewController as! SendFeedBackViewController
@@ -235,7 +235,7 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             controller.title = Localizations.Settings.Title.ReportIssue
             controller.endpoint = API.Endpoints.ReportAbuse.base
             controller.introText.text = Localizations.Settings.Report.Intro
-            break
+            controller.paramWrapper = API.Endpoints.ReportAbuse.params
             
         case .GoToFavoriteJobs:
             let controller = segue.destinationViewController as! SavedPostedJobs

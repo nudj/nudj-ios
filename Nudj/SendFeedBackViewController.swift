@@ -13,6 +13,7 @@ class SendFeedBackViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var sendButton: UIBarButtonItem!
     @IBOutlet weak var introText: UILabel!
     var endpoint = API.Endpoints.Feedback.base
+    var paramWrapper: (String) -> [String: String] = API.Endpoints.Feedback.params
     
     override func viewWillAppear(animated: Bool) {
         self.tabBarController?.tabBar.hidden = true
@@ -35,7 +36,7 @@ class SendFeedBackViewController: UIViewController, UITextViewDelegate {
         guard !self.feedBackTextView.text.isEmpty else {
             return
         }
-        let params = API.Endpoints.Feedback.params(feedBackTextView.text)
+        let params = paramWrapper(feedBackTextView.text)
         API.sharedInstance.request(.POST, path: endpoint, params: params, closure: { json in
             self.navigationController?.popViewControllerAnimated(true)
             }, errorHandler: { error in

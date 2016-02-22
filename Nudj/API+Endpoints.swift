@@ -228,6 +228,11 @@ extension API {
         
         struct ReportAbuse {
             static let base = "report-abuse"
+            
+            static func params(message: String) -> [String: String] {
+                let params = ["abuse": message]
+                return params
+            }
         }
         
         struct Users {
