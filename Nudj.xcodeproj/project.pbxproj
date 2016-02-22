@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A903BAEE1B581C4F00D69863 /* NZLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A903BAED1B581C4F00D69863 /* NZLabel.m */; };
 		A9191EA61B6A402E000F9168 /* SocialStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9191EA51B6A402E000F9168 /* SocialStatus.swift */; };
 		A92324D01B7BAE77009C1F0C /* no_chats@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324C81B7BAE77009C1F0C /* no_chats@2x.png */; };
 		A92324D11B7BAE77009C1F0C /* no_contacts@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324C91B7BAE77009C1F0C /* no_contacts@2x.png */; };
@@ -392,7 +391,6 @@
 		C86F84E31C444DB800C23332 /* UIView+JSQMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E371B387CC700D5A8E9 /* UIView+JSQMessages.m */; };
 		C86F84E41C444DB800C23332 /* XMPPXOAuth2Google.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E9D1B387CC800D5A8E9 /* XMPPXOAuth2Google.m */; };
 		C86F84E51C444DB800C23332 /* JSQMessagesBubbleImageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E421B387CC700D5A8E9 /* JSQMessagesBubbleImageFactory.m */; };
-		C86F84E61C444DB800C23332 /* NZLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A903BAED1B581C4F00D69863 /* NZLabel.m */; };
 		C86F84E71C444DB800C23332 /* TURNSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F411B387CC800D5A8E9 /* TURNSocket.m */; };
 		C86F84E81C444DB800C23332 /* JSQMessagesToolbarContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E7F1B387CC800D5A8E9 /* JSQMessagesToolbarContentView.m */; };
 		C86F84E91C444DB800C23332 /* XMPPReconnect.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964ECA1B387CC800D5A8E9 /* XMPPReconnect.m */; };
@@ -627,8 +625,6 @@
 /* Begin PBXFileReference section */
 		39A67AE42E9231EE2A750094 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		91ACAE069A6F9735FED79A9F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		A903BAEC1B581C4F00D69863 /* NZLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NZLabel.h; sourceTree = "<group>"; };
-		A903BAED1B581C4F00D69863 /* NZLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NZLabel.m; sourceTree = "<group>"; };
 		A9191EA51B6A402E000F9168 /* SocialStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SocialStatus.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A92324C81B7BAE77009C1F0C /* no_chats@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_chats@2x.png"; sourceTree = "<group>"; };
 		A92324C91B7BAE77009C1F0C /* no_contacts@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_contacts@2x.png"; sourceTree = "<group>"; };
@@ -1200,15 +1196,6 @@
 				39A67AE42E9231EE2A750094 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		A903BAEB1B581C4F00D69863 /* NZLabel */ = {
-			isa = PBXGroup;
-			children = (
-				A903BAEC1B581C4F00D69863 /* NZLabel.h */,
-				A903BAED1B581C4F00D69863 /* NZLabel.m */,
-			);
-			path = NZLabel;
 			sourceTree = "<group>";
 		};
 		A92324C71B7BAE77009C1F0C /* Placeholders */ = {
@@ -2595,7 +2582,6 @@
 				A9964E841B387CC800D5A8E9 /* JSQSystemSoundPlayer */,
 				EBF1861B1B21D9DE00D8D80D /* KSTokenView */,
 				C893259F1C08BEC10069FCFD /* LoggingPrint */,
-				A903BAEB1B581C4F00D69863 /* NZLabel */,
 				A9964E871B387CC800D5A8E9 /* XMPPFramework */,
 			);
 			path = Externals;
@@ -3216,7 +3202,6 @@
 				C86F84E31C444DB800C23332 /* UIView+JSQMessages.m in Sources */,
 				C86F84E41C444DB800C23332 /* XMPPXOAuth2Google.m in Sources */,
 				C86F84E51C444DB800C23332 /* JSQMessagesBubbleImageFactory.m in Sources */,
-				C86F84E61C444DB800C23332 /* NZLabel.m in Sources */,
 				C86F84E71C444DB800C23332 /* TURNSocket.m in Sources */,
 				C86F84E81C444DB800C23332 /* JSQMessagesToolbarContentView.m in Sources */,
 				C86F84E91C444DB800C23332 /* XMPPReconnect.m in Sources */,
@@ -3455,7 +3440,6 @@
 				A9964FDC1B387CC800D5A8E9 /* UIView+JSQMessages.m in Sources */,
 				A99650071B387CC800D5A8E9 /* XMPPXOAuth2Google.m in Sources */,
 				A9964FE11B387CC800D5A8E9 /* JSQMessagesBubbleImageFactory.m in Sources */,
-				A903BAEE1B581C4F00D69863 /* NZLabel.m in Sources */,
 				A99650471B387CC800D5A8E9 /* TURNSocket.m in Sources */,
 				A9964FFC1B387CC800D5A8E9 /* JSQMessagesToolbarContentView.m in Sources */,
 				A99650171B387CC800D5A8E9 /* XMPPReconnect.m in Sources */,

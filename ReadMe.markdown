@@ -26,7 +26,6 @@ TODO
 * JSQMessagesViewController
 * JSQSystemSoundPlayer
 * KSTokenView
-* NZLabel
 * XMPPFramework
 
 ### In submodules
