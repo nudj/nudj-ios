@@ -20,10 +20,10 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     @IBOutlet var jobTitleText: UILabel!
     @IBOutlet var hirerName: UILabel!
     @IBOutlet var descriptionText: UITextView!
-    @IBOutlet var employerText: NZLabel!
-    @IBOutlet var locationText: NZLabel!
-    @IBOutlet var salaryText: NZLabel!
-    @IBOutlet var bonusText: NZLabel!
+    @IBOutlet var employerText: UILabel!
+    @IBOutlet var locationText: UILabel!
+    @IBOutlet var salaryText: UILabel!
+    @IBOutlet var bonusText: UILabel!
     @IBOutlet weak var jobActive: UIButton!
     
     @IBOutlet weak var menuView: UIView!
@@ -146,30 +146,31 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         // Set job active or not active status
         self.jobActive.selected = content["active"].boolValue
         
-        /** Using NZLABEL to style a UILabel to have multiple colors and fontsize **/
+        func formatLabel(label: UILabel, text: String, subText: String, attributes: [String: AnyObject]) {
+            let attributedString = NSMutableAttributedString(string: text)
+            let range = (text as NSString).rangeOfString(subText)
+            attributedString.addAttributes(attributes, range: range)
+            label.attributedText = attributedString
+        }
         
-        // Employer Property
+        let colorAttributes = [NSForegroundColorAttributeName: appColor]
+        
         let employer = content["company"].stringValue
-        employerText.text = Localizations.Jobs.Employer.Format(employer)
-        employerText.setFontColor(appColor, string:employer)
+        formatLabel(employerText, text: Localizations.Jobs.Employer.Format(employer), subText: employer, attributes: colorAttributes)
         
-        // Location Property
         let location = content["location"].stringValue
-        locationText.text = Localizations.Jobs.Location.Format(location)
-        locationText.setFontColor(appColor, string:location)
+        formatLabel(locationText, text: Localizations.Jobs.Location.Format(location), subText: location, attributes: colorAttributes)
         
-        // Salary Property
         let salary = content["salary"].stringValue
-        salaryText.text = Localizations.Jobs.Salary.Format(salary)
-        salaryText.setFontColor(appColor, string:salary)
+        formatLabel(locationText, text: Localizations.Jobs.Salary.Format(salary), subText: salary, attributes: colorAttributes)
         
         // Referral Property
-        let boldFont = UIFont(name: "HelveticaNeue-Bold", size: 22)
+        let boldFont = UIFont(name: "HelveticaNeue-Bold", size: 22)!
         // TODO: use a proper number formatter
         let formattedBonus = "£" + content["bonus"].stringValue
+        let boldBlueAttribs: [String: AnyObject] = [NSFontAttributeName: boldFont, NSForegroundColorAttributeName: appBlueColor]
         bonusText.text = Localizations.Jobs.Bonus.Format(formattedBonus)
-        bonusText.setFont(boldFont, string: formattedBonus)
-        bonusText.setFontColor(appBlueColor, string: formattedBonus)
+        formatLabel(bonusText, text: Localizations.Jobs.Bonus.Format(formattedBonus), subText: formattedBonus, attributes: boldBlueAttribs)
         
         activitySpinner.stopAnimating()
     }
@@ -279,7 +280,8 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
             registerForRemoteNotifications()
             let askView = segue.destinationViewController as! AskReferralViewController
             askView.jobId = Int(self.jobID!)
-            askView.isNudjRequest = true
+            askView.jobTitle = jobTitleText.text
+            askView.isNudjRequest = !isOwnJob
             
         case .EditJob:
             let addJobView = segue.destinationViewController as! AddJobController

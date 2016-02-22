@@ -151,7 +151,7 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
         switch cellType {
         case .AskToRefer:
             MixPanelHandler.sendData("Notification_DetailButtonClicked")
-            self.goToView("JobDetailedView", contentId: cell.notificationData!.jobID)
+            self.goToView("JobDetailedView", contentId: cell.notificationData!.jobID, jobTitle: cell.notificationData!.jobTitle)
             break
         case .AppApplication:
             MixPanelHandler.sendData("Notification_MessageButtonClicked")
@@ -163,7 +163,7 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
             break
         case .MatchingContact:
             MixPanelHandler.sendData("Notification_ReferButtonClicked")
-            self.nudge(cell.notificationData!.jobID)
+            self.nudge(cell.notificationData!.jobID, jobTitle: cell.notificationData!.jobTitle)
             break
         case .AppApplicationWithNoReferral:
             MixPanelHandler.sendData("Notification_MessageButtonClicked")
@@ -233,11 +233,11 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
 
-    func nudge(jobID:String?){
-        self.goToView("AskReferralView", contentId:jobID)
+    func nudge(jobID:String?, jobTitle: String?){
+        self.goToView("AskReferralView", contentId:jobID, jobTitle: jobTitle)
     }
     
-    func goToView(viewId: String, contentId: String?) {
+    func goToView(viewId: String, contentId: String?, jobTitle: String?) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         guard let job = Int(contentId ?? "") else {
             return
@@ -246,6 +246,7 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
         if(viewId == "AskReferralView"){
             let askView = storyboard.instantiateViewControllerWithIdentifier(viewId) as! AskReferralViewController
             askView.jobId = job
+            askView.jobTitle = jobTitle
             askView.isNudjRequest = true
             self.navigationController?.pushViewController(askView, animated: true);
         } else {

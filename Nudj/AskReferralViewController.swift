@@ -17,7 +17,7 @@ class AskReferralViewController: UIViewController, SegueHandlerType, UISearchBar
     @IBOutlet var askTable: UITableView!
     @IBOutlet var searchBarView: UISearchBar!
     @IBOutlet weak var messageText: UITextView!
-    @IBOutlet weak var messageLabel: NZLabel!
+    @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var activityInd: UIActivityIndicatorView!
 
     var jobId:Int?
@@ -42,11 +42,15 @@ class AskReferralViewController: UIViewController, SegueHandlerType, UISearchBar
         } else {
             if let job = self.jobTitle {
                 // TODO: eliminate singleton access
-                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
-                self.messageLabel.text = Localizations.Referral.Ask.Format(job)
-                self.messageLabel.setFontColor(appDelegate.appColor, string:job)
-                self.navigationItem.rightBarButtonItem?.title = Localizations.Referral.Ask.Button
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                let appColor = appDelegate.appColor
+                let plainString = Localizations.Referral.Ask.Format(job)
+                let messageAtrributedString = NSMutableAttributedString(string: plainString)
+                let range = (plainString as NSString).rangeOfString(job)
+                messageAtrributedString.addAttribute(NSForegroundColorAttributeName, value: appColor, range: range)
+                messageLabel.attributedText = messageAtrributedString
             }
+            navigationItem.rightBarButtonItem?.title = Localizations.Referral.Ask.Button
         }
 
         messagePlaceholder = messageText.text

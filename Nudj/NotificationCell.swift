@@ -28,7 +28,7 @@ class NotificationCell: UITableViewCell {
 
     @IBOutlet weak var profileImage: AsyncImage!
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var message: NZLabel!
+    @IBOutlet weak var message: UILabel!
 
     @IBOutlet weak var refLabel: UILabel!
     @IBOutlet weak var refAmount: UILabel!
@@ -47,11 +47,19 @@ class NotificationCell: UITableViewCell {
         let tap = UITapGestureRecognizer(target:self, action:"ImageTap:")
         profileImage.addGestureRecognizer(tap)
         
-        self.message.text = data.notificationMessage
-        
-        let boldFont = UIFont(name: "HelveticaNeue-Bold", size: 13)
-        self.message.setFont(boldFont, string: data.senderName!)
-        self.message.setFont(boldFont, string: data.jobTitle!)
+        let messageString = data.notificationMessage ?? "" as NSString
+        let messageAttibutedString = NSMutableAttributedString(string: messageString as String)
+        if let boldFont = UIFont(name: "HelveticaNeue-Bold", size: 13) {
+            if let senderName = data.senderName {
+                let range = messageString.rangeOfString(senderName)
+                messageAttibutedString.addAttribute(NSFontAttributeName, value: boldFont, range: range)
+            }
+            if let jobTitle = data.jobTitle {
+                let range = messageString.rangeOfString(jobTitle)
+                messageAttibutedString.addAttribute(NSFontAttributeName, value: boldFont, range: range)
+            }
+        }
+        message.attributedText = messageAttibutedString
 
         if(data.jobBonus!.isEmpty){
             self.refLabel.hidden = true
