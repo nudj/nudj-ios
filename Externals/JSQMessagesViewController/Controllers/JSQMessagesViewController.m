@@ -41,8 +41,6 @@
 #import "UIDevice+JSQMessages.h"
 #import "NSBundle+JSQMessages.h"
 
-#import "CPAnimationSequence.h"
-
 //#import "XMPPLogging.h"
 
 static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObservingContext;
@@ -1065,8 +1063,7 @@ JSQMessagesKeyboardControllerDelegate>{
     _jsq_isObserving = NO;
 }
 
-- (void)jsq_registerForNotifications:(BOOL)registerForNotifications
-{
+- (void)jsq_registerForNotifications:(BOOL)registerForNotifications {
     if (registerForNotifications) {
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(jsq_handleDidChangeStatusBarFrameNotification:)
@@ -1098,8 +1095,7 @@ JSQMessagesKeyboardControllerDelegate>{
     }
 }
 
-- (void)jsq_addActionToInteractivePopGestureRecognizer:(BOOL)addAction
-{
+- (void)jsq_addActionToInteractivePopGestureRecognizer:(BOOL)addAction {
     if (self.navigationController.interactivePopGestureRecognizer) {
         [self.navigationController.interactivePopGestureRecognizer removeTarget:nil
                                                                          action:@selector(jsq_handleInteractivePopGestureRecognizer:)];
@@ -1112,69 +1108,36 @@ JSQMessagesKeyboardControllerDelegate>{
 }
 
 
-/* Nudj Custom Methods */
-
-- (IBAction)dropDownAction:(id)sender {
-   
-}
-
 // MARK - ACTIONS
 
+- (IBAction)dropDownAction:(id)sender {
+    // subclass responsibility
+}
 
 - (IBAction)backAction:(id)sender {
-    
     [self.navigationController popViewControllerAnimated:YES];
-    
 }
-
 
 - (IBAction)hide_show_dropdown:(id)sender {
-    
-    if(_filterOpened){
+    if(_filterOpened) {
         [self hideFilterMenu];
-    }else{
+    } else {
         [self showFilterMenu];
     }
-
-
 }
 
-
--(void)hideFilterMenu
-{
+-(void)hideFilterMenu {
     _filterOpened = NO;
-    
-    CPAnimationSequence* animationSequence = [CPAnimationSequence sequenceWithSteps:
-                                              
-                                              
-                                              [CPAnimationStep  for:.25 animate:^{
-        [_dropDownView setFrame:CGRectMake(0, 64-64 - 7, self.view.frame.size.width, 70)];
-    }], nil];
-    
-    
-    [animationSequence run];
-    
-    
+    [UIView animateWithDuration:0.5 animations:^(){
+        [_dropDownView setFrame:CGRectMake(0.0, -7.0, self.view.frame.size.width, 70.0)];
+    }];
 }
 
-
--(void)showFilterMenu
-{
-    NSLog(@"Drop down");
-    
+-(void)showFilterMenu {
     _filterOpened = YES;
-    
-    CPAnimationSequence* animationSequence = [CPAnimationSequence sequenceWithSteps:
-                                              
-                                              
-                                              [CPAnimationStep  for:.25 animate:^{
-        [_dropDownView setFrame:CGRectMake(0, 0+64, self.view.frame.size.width, 70)];
-        
-    }], nil];
-    
-    
-    [animationSequence run];
-    
+    [UIView animateWithDuration:0.5 animations:^(){
+        [_dropDownView setFrame:CGRectMake(0.0, 64.0, self.view.frame.size.width, 70.0)];
+    }];
 }
 
 @end

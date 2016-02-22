@@ -219,9 +219,6 @@
 		A9C6EC9C1B38447700EC9140 /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC9B1B38447700EC9140 /* ChatListViewController.swift */; };
 		A9C6EC9F1B3853F900EC9140 /* ChatListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC9D1B3853F900EC9140 /* ChatListTableViewCell.swift */; };
 		A9EC313C1B72357A00356B1F /* ChatStructModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC313B1B72357A00356B1F /* ChatStructModel.swift */; };
-		A9F333271B41759A00F0D17B /* CPAnimationProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F333241B41759A00F0D17B /* CPAnimationProgram.m */; };
-		A9F333281B41759A00F0D17B /* CPAnimationSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F333251B41759A00F0D17B /* CPAnimationSequence.m */; };
-		A9F333291B41759A00F0D17B /* CPAnimationStep.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F333261B41759A00F0D17B /* CPAnimationStep.m */; };
 		A9F3332C1B41997600F0D17B /* JobDetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F3332B1B41997600F0D17B /* JobDetailedViewController.swift */; };
 		A9F3334E1B42ACCB00F0D17B /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3334D1B42ACCB00F0D17B /* check.png */; };
 		A9F3335D1B42ACDC00F0D17B /* add_skills_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333501B42ACDC00F0D17B /* add_skills_active@2x.png */; };
@@ -291,7 +288,6 @@
 		C86F84751C444DB800C23332 /* XMPPvCardAvatarCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F1E1B387CC800D5A8E9 /* XMPPvCardAvatarCoreDataStorageObject.m */; };
 		C86F84761C444DB800C23332 /* ContactsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB000F7E1AB71D6600E4D385 /* ContactsController.swift */; };
 		C86F84771C444DB800C23332 /* JSQMessagesLoadEarlierHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E7A1B387CC800D5A8E9 /* JSQMessagesLoadEarlierHeaderView.m */; };
-		C86F84781C444DB800C23332 /* CPAnimationProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F333241B41759A00F0D17B /* CPAnimationProgram.m */; };
 		C86F84791C444DB800C23332 /* XMPPvCardTempModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F321B387CC800D5A8E9 /* XMPPvCardTempModule.m */; };
 		C86F847A1C444DB800C23332 /* XMPPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EB11B387CC800D5A8E9 /* XMPPMessage.m */; };
 		C86F847B1C444DB800C23332 /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FB31B387CC800D5A8E9 /* DDAbstractDatabaseLogger.m */; };
@@ -390,7 +386,6 @@
 		C86F84DC1C444DB800C23332 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FBB1B387CC800D5A8E9 /* DDTTYLogger.m */; };
 		C86F84DD1C444DB800C23332 /* NSXMLElement+XEP_0297.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F961B387CC800D5A8E9 /* NSXMLElement+XEP_0297.m */; };
 		C86F84DE1C444DB800C23332 /* XMPPMessage+XEP_0333.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F9C1B387CC800D5A8E9 /* XMPPMessage+XEP_0333.m */; };
-		C86F84DF1C444DB800C23332 /* CPAnimationStep.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F333261B41759A00F0D17B /* CPAnimationStep.m */; };
 		C86F84E01C444DB800C23332 /* KSUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF1861F1B21DACA00D8D80D /* KSUtils.swift */; };
 		C86F84E11C444DB800C23332 /* XMPPCapsResourceCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F601B387CC800D5A8E9 /* XMPPCapsResourceCoreDataStorageObject.m */; };
 		C86F84E21C444DB800C23332 /* VerifyCodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF17A211B4C128100C67657 /* VerifyCodeTextField.swift */; };
@@ -457,7 +452,6 @@
 		C86F85221C444DB800C23332 /* XMPPMessage+XEP_0308.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F991B387CC800D5A8E9 /* XMPPMessage+XEP_0308.m */; };
 		C86F85231C444DB800C23332 /* XMPPRoomMemoryStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F0B1B387CC800D5A8E9 /* XMPPRoomMemoryStorage.m */; };
 		C86F85241C444DB800C23332 /* DDList.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FA21B387CC800D5A8E9 /* DDList.m */; };
-		C86F85251C444DB800C23332 /* CPAnimationSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F333251B41759A00F0D17B /* CPAnimationSequence.m */; };
 		C86F85261C444DB800C23332 /* JobCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBF42521AB0AF5F0001E8B6 /* JobCellTableViewCell.swift */; };
 		C86F85281C444DB800C23332 /* NSDate+XMPPDateTimeProfiles.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F491B387CC800D5A8E9 /* NSDate+XMPPDateTimeProfiles.m */; };
 		C86F85291C444DB800C23332 /* JSQMessagesTimestampFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E461B387CC700D5A8E9 /* JSQMessagesTimestampFormatter.m */; };
@@ -1033,12 +1027,6 @@
 		A9C6EC9B1B38447700EC9140 /* ChatListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ChatListViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9C6EC9D1B3853F900EC9140 /* ChatListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ChatListTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9EC313B1B72357A00356B1F /* ChatStructModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ChatStructModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		A9F333201B41759A00F0D17B /* CPAnimationProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnimationProgram.h; sourceTree = "<group>"; };
-		A9F333211B41759A00F0D17B /* CPAnimationSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnimationSequence.h; sourceTree = "<group>"; };
-		A9F333221B41759A00F0D17B /* CPAnimationStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAnimationStep.h; sourceTree = "<group>"; };
-		A9F333241B41759A00F0D17B /* CPAnimationProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAnimationProgram.m; sourceTree = "<group>"; };
-		A9F333251B41759A00F0D17B /* CPAnimationSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAnimationSequence.m; sourceTree = "<group>"; };
-		A9F333261B41759A00F0D17B /* CPAnimationStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPAnimationStep.m; sourceTree = "<group>"; };
 		A9F3332B1B41997600F0D17B /* JobDetailedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = JobDetailedViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9F3334D1B42ACCB00F0D17B /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = check.png; path = add_job_details_images/check.png; sourceTree = "<group>"; };
 		A9F333501B42ACDC00F0D17B /* add_skills_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_skills_active@2x.png"; sourceTree = "<group>"; };
@@ -2264,27 +2252,6 @@
 			name = ChatView;
 			sourceTree = "<group>";
 		};
-		A9F3331F1B41759A00F0D17B /* AnimStep */ = {
-			isa = PBXGroup;
-			children = (
-				A9F333201B41759A00F0D17B /* CPAnimationProgram.h */,
-				A9F333211B41759A00F0D17B /* CPAnimationSequence.h */,
-				A9F333221B41759A00F0D17B /* CPAnimationStep.h */,
-				A9F333231B41759A00F0D17B /* private */,
-			);
-			path = AnimStep;
-			sourceTree = "<group>";
-		};
-		A9F333231B41759A00F0D17B /* private */ = {
-			isa = PBXGroup;
-			children = (
-				A9F333241B41759A00F0D17B /* CPAnimationProgram.m */,
-				A9F333251B41759A00F0D17B /* CPAnimationSequence.m */,
-				A9F333261B41759A00F0D17B /* CPAnimationStep.m */,
-			);
-			path = private;
-			sourceTree = "<group>";
-		};
 		A9F3332A1B41994A00F0D17B /* Job Details */ = {
 			isa = PBXGroup;
 			children = (
@@ -2624,7 +2591,6 @@
 		EBF1861A1B21D9D500D8D80D /* Externals */ = {
 			isa = PBXGroup;
 			children = (
-				A9F3331F1B41759A00F0D17B /* AnimStep */,
 				A9964E261B387CC700D5A8E9 /* JSQMessagesViewController */,
 				A9964E841B387CC800D5A8E9 /* JSQSystemSoundPlayer */,
 				EBF1861B1B21D9DE00D8D80D /* KSTokenView */,
@@ -3141,7 +3107,6 @@
 				C86F84751C444DB800C23332 /* XMPPvCardAvatarCoreDataStorageObject.m in Sources */,
 				C86F84761C444DB800C23332 /* ContactsController.swift in Sources */,
 				C86F84771C444DB800C23332 /* JSQMessagesLoadEarlierHeaderView.m in Sources */,
-				C86F84781C444DB800C23332 /* CPAnimationProgram.m in Sources */,
 				C86F84791C444DB800C23332 /* XMPPvCardTempModule.m in Sources */,
 				C86F847A1C444DB800C23332 /* XMPPMessage.m in Sources */,
 				C86F847B1C444DB800C23332 /* DDAbstractDatabaseLogger.m in Sources */,
@@ -3245,7 +3210,6 @@
 				C86F84DC1C444DB800C23332 /* DDTTYLogger.m in Sources */,
 				C86F84DD1C444DB800C23332 /* NSXMLElement+XEP_0297.m in Sources */,
 				C86F84DE1C444DB800C23332 /* XMPPMessage+XEP_0333.m in Sources */,
-				C86F84DF1C444DB800C23332 /* CPAnimationStep.m in Sources */,
 				C86F84E01C444DB800C23332 /* KSUtils.swift in Sources */,
 				C86F84E11C444DB800C23332 /* XMPPCapsResourceCoreDataStorageObject.m in Sources */,
 				C86F84E21C444DB800C23332 /* VerifyCodeTextField.swift in Sources */,
@@ -3312,7 +3276,6 @@
 				C86F85221C444DB800C23332 /* XMPPMessage+XEP_0308.m in Sources */,
 				C86F85231C444DB800C23332 /* XMPPRoomMemoryStorage.m in Sources */,
 				C86F85241C444DB800C23332 /* DDList.m in Sources */,
-				C86F85251C444DB800C23332 /* CPAnimationSequence.m in Sources */,
 				C86F85261C444DB800C23332 /* JobCellTableViewCell.swift in Sources */,
 				C86F85281C444DB800C23332 /* NSDate+XMPPDateTimeProfiles.m in Sources */,
 				C86F85291C444DB800C23332 /* JSQMessagesTimestampFormatter.m in Sources */,
@@ -3384,7 +3347,6 @@
 				A99650371B387CC800D5A8E9 /* XMPPvCardAvatarCoreDataStorageObject.m in Sources */,
 				EB000F7F1AB71D6600E4D385 /* ContactsController.swift in Sources */,
 				A9964FF91B387CC800D5A8E9 /* JSQMessagesLoadEarlierHeaderView.m in Sources */,
-				A9F333271B41759A00F0D17B /* CPAnimationProgram.m in Sources */,
 				A99650411B387CC800D5A8E9 /* XMPPvCardTempModule.m in Sources */,
 				A996500E1B387CC800D5A8E9 /* XMPPMessage.m in Sources */,
 				A99650731B387CC800D5A8E9 /* DDAbstractDatabaseLogger.m in Sources */,
@@ -3487,7 +3449,6 @@
 				A99650771B387CC800D5A8E9 /* DDTTYLogger.m in Sources */,
 				A99650681B387CC800D5A8E9 /* NSXMLElement+XEP_0297.m in Sources */,
 				A996506A1B387CC800D5A8E9 /* XMPPMessage+XEP_0333.m in Sources */,
-				A9F333291B41759A00F0D17B /* CPAnimationStep.m in Sources */,
 				EBF186231B21DACA00D8D80D /* KSUtils.swift in Sources */,
 				A99650531B387CC800D5A8E9 /* XMPPCapsResourceCoreDataStorageObject.m in Sources */,
 				EBF17A221B4C128100C67657 /* VerifyCodeTextField.swift in Sources */,
@@ -3555,7 +3516,6 @@
 				A99650691B387CC800D5A8E9 /* XMPPMessage+XEP_0308.m in Sources */,
 				A99650301B387CC800D5A8E9 /* XMPPRoomMemoryStorage.m in Sources */,
 				A996506C1B387CC800D5A8E9 /* DDList.m in Sources */,
-				A9F333281B41759A00F0D17B /* CPAnimationSequence.m in Sources */,
 				EBBF42541AB0AF5F0001E8B6 /* JobCellTableViewCell.swift in Sources */,
 				A996504A1B387CC800D5A8E9 /* NSDate+XMPPDateTimeProfiles.m in Sources */,
 				A9964FE31B387CC800D5A8E9 /* JSQMessagesTimestampFormatter.m in Sources */,
