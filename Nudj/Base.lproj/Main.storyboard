@@ -957,7 +957,7 @@
                                 <rect key="frame" x="16" y="0.0" width="343" height="667"/>
                             </activityIndicatorView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7PG-Jm-4dt" userLabel="Menu View">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="50"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Sxb-df-lSE" userLabel="Menu Stack">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
@@ -1045,7 +1045,7 @@
                             <constraint firstItem="vc3-bP-ba6" firstAttribute="centerY" secondItem="adi-20-xUa" secondAttribute="centerY" constant="2" id="jzX-Qu-F9z"/>
                             <constraint firstItem="ywj-gV-3hm" firstAttribute="trailing" secondItem="vov-20-Wq3" secondAttribute="trailingMargin" id="l1S-qv-lRq"/>
                             <constraint firstItem="adi-20-xUa" firstAttribute="leading" secondItem="vov-20-Wq3" secondAttribute="leadingMargin" id="m57-eW-MjY"/>
-                            <constraint firstItem="7PG-Jm-4dt" firstAttribute="top" secondItem="3F4-Zs-AO0" secondAttribute="bottom" priority="250" placeholder="YES" identifier="Dummy menu extender" id="mh3-IN-n9Y" userLabel="Dummy menu extender"/>
+                            <constraint firstItem="7PG-Jm-4dt" firstAttribute="top" secondItem="3F4-Zs-AO0" secondAttribute="bottom" placeholder="YES" identifier="Dummy menu extender" id="mh3-IN-n9Y" userLabel="Dummy menu extender"/>
                             <constraint firstItem="Kg2-aW-kNL" firstAttribute="leading" secondItem="vov-20-Wq3" secondAttribute="leadingMargin" id="oLK-8H-osS"/>
                             <constraint firstAttribute="bottomMargin" secondItem="vkP-6P-gFq" secondAttribute="bottom" id="ttm-Rp-rer"/>
                             <constraint firstItem="ThU-Hc-GZM" firstAttribute="top" secondItem="YAb-uZ-5ne" secondAttribute="bottom" constant="10" id="uJt-N7-zJx"/>
@@ -2884,13 +2884,13 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="BCe-Pt-bFX"/>
-        <segue reference="m0n-l7-DaR"/>
+        <segue reference="Dg8-rw-2fQ"/>
+        <segue reference="6SR-Rm-L27"/>
+        <segue reference="oHM-Sk-no8"/>
         <segue reference="gvE-qy-aNj"/>
         <segue reference="zyP-mc-EMC"/>
         <segue reference="90M-dj-0pn"/>
-        <segue reference="oHM-Sk-no8"/>
         <segue reference="H51-O9-Snf"/>
-        <segue reference="6SR-Rm-L27"/>
         <segue reference="w3z-vb-UAH"/>
         <segue reference="0lF-Gf-mwR"/>
     </inferredMetricsTieBreakers>
