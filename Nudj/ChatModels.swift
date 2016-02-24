@@ -319,20 +319,19 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     }
     
     func xmppRoomDidJoin(sender: XMPPRoom!) {
-        loggingPrint("XMPPROOM JOINED ->  \(sender.roomJID))")
+        loggingPrint("Chat room \(sender.roomJID) joined")
     }
     
     func xmppRoomDidCreate(sender: XMPPRoom!) {
-       loggingPrint("XMPPROOM CREATED -> \(sender.roomJID)")
+       loggingPrint("Chat room \(sender.roomJID) created")
     }
     
     func xmppRoomDidLeave(sender: XMPPRoom!) {
-        loggingPrint("XMPPROOM LEFT -> \(sender.roomJID)")
+        loggingPrint("Chat room \(sender.roomJID) left")
         let roomID = sender.roomJID.user
         if let chatRoom = listOfActiveChatRooms[roomID] {
             chatRoom.teminateSession()
             listOfActiveChatRooms.removeValueForKey(roomID)
-            loggingPrint("removed from list")
         }
     }
     
@@ -361,7 +360,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     }
     
     func xmppRoomDidDestroy(sender: XMPPRoom!) {
-        loggingPrint("XMPPROOM DESTROYED -> \(sender.roomJID)")
+        loggingPrint("Chat room \(sender.roomJID) destroyed")
     }
     
     // MARK: Custom chat room methods
