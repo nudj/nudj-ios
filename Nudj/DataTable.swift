@@ -13,8 +13,8 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
 
     var refreshControl:UIRefreshControl!
     let spaceToScroll:CGFloat = 400
-    var cellIdentifier = "NudgeCell"
-    var cellNib:String?
+    let nibName = "JobCellTableViewCell"
+    let cellIdentifier = "NudgeCell"
     
     var dataSize = 20
     var page = 1
@@ -22,7 +22,8 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
     var loading = false
 
     var dataProvider:DataProviderProtocol?
-    var data:[JSON] = []
+    var unfilteredData = [JSON]()
+    var filteredData = [JSON]()
     var canEdit = false
 
     var selectedClosure:((JSON)->())? = nil
@@ -30,42 +31,37 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
-        self.rowHeight = UITableViewAutomaticDimension
+        rowHeight = UITableViewAutomaticDimension
 
-        self.delegate = self
-        self.dataSource = self
+        delegate = self
+        dataSource = self
 
-        self.refreshControl = UIRefreshControl()
+        refreshControl = UIRefreshControl()
         
+        // TODO: move refreshControl into IB
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        self.refreshControl.tintColor = appDelegate.appColor
-        self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
-        self.addSubview(refreshControl)
-        self.autoresizingMask = [.FlexibleBottomMargin, .FlexibleTopMargin, .FlexibleHeight]
-        self.tableFooterView = UIView(frame: CGRectZero)
-    }
-
-    func asignCellNib(name: String) {
-        self.cellNib = name
-        self.registerNib(UINib(nibName: self.cellNib!, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
+        refreshControl.tintColor = appDelegate.appColor
+        refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        addSubview(refreshControl)
+        autoresizingMask = [.FlexibleBottomMargin, .FlexibleTopMargin, .FlexibleHeight]
+        tableFooterView = UIView(frame: CGRectZero)
+        
+        self.registerNib(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: cellIdentifier)
     }
 
     func loadData(page: Int = 1) {
-        if (self.dataProvider == nil) {
+        if (dataProvider == nil) {
             loggingPrint("No dataProvider!!!")
             return
         }
 
-        if (self.loading) {
-            self.refreshControl.endRefreshing()
-            UIView.animateWithDuration(0.90, delay:0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-                self.alpha = 1
-            }, completion:nil);
+        if (loading) {
+            refreshControl.endRefreshing()
             return
         }
         
         self.dataProvider!.requestData(page, size: self.dataSize, listener: { json in
-            self.data.removeAll(keepCapacity: false)
+            self.unfilteredData.removeAll(keepCapacity: true)
             
             if let next = json["pagination"]["next"].bool {
                 if (next == false) {
@@ -74,29 +70,33 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
             }
 
             for (_, obj) in json["data"] {
-                self.data.append(obj)
+                self.unfilteredData.append(obj)
             }
 
             self.setLoadingStatus(false)
             
-            self.dataProvider!.didfinishLoading(self.data.count)
-            self.reloadData()
-            
-            UIView.animateWithDuration(0.90, delay:0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-                self.alpha = 1
-            }, completion:nil);
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let user = appDelegate.user
+            self.refilterData(user)
         })
     }
 
     func refresh(sender: AnyObject) {
-        UIView.animateWithDuration(0.25, delay:0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-            self.alpha = 0
-        }, completion:nil);
-        
-        self.clear()
-        self.loadData()
+        loadData()
     }
 
+    func refilterData(user: UserModel?) {
+        let blockedUserIDs = user?.blockedUserIDs ?? Set<Int>()
+        
+        filteredData = unfilteredData.filter(){ (json: JSON) -> Bool in
+            let userID = json["user"]["id"].intValue
+            return !blockedUserIDs.contains(userID)
+        }
+        
+        dataProvider?.didfinishLoading(filteredData.count)
+        reloadData()
+    }
+    
     func setLoadingStatus(status: Bool) {
         self.loading = status
         if (!status) {
@@ -108,13 +108,13 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
     // MARK: -- UITableViewDataSource --
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.data.isEmpty ? 0 : self.data.count
+        return filteredData.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath)
         let dataTableCell = cell as? DataTableCell
-        dataTableCell?.loadData(self.data[indexPath.row])
+        dataTableCell?.loadData(filteredData[indexPath.row])
         return cell
     }
 
@@ -126,25 +126,7 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
     // MARK: -- UITableViewDelegate --
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        selectedClosure?(self.data[indexPath.row])
-    }
-
-    func clear() {
-        if (data.isEmpty) {
-            return
-        }
-
-        var rowsToDelete: [NSIndexPath] = []
-        for (var i = 0; i < data.count; i++) {
-            rowsToDelete.append(NSIndexPath(forRow: i, inSection: 0))
-        }
-
-        data = []
-        page = 1
-        end = false
-
-        self.deleteRowsAtIndexPaths(rowsToDelete, withRowAnimation: UITableViewRowAnimation.Fade)
-        self.setLoadingStatus(false)
+        selectedClosure?(filteredData[indexPath.row])
     }
 
     //     MARK: -- Scrolling --
@@ -161,7 +143,7 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return canEdit;
+        return canEdit
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -173,11 +155,16 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
     }
     
     func deletejob(row:Int){
-        self.dataProvider!.deleteData(self.data[row]["id"].intValue) { 
-            json in
-            self.data.removeAtIndex(row)
-            self.reloadData()
+        let jobID = filteredData[row]["id"].intValue
+        self.dataProvider!.deleteData(jobID) { _ in }
+        self.filteredData.removeAtIndex(row)
+        if let unfilteredRow = unfilteredRowForJobID(jobID) {
+            self.unfilteredData.removeAtIndex(unfilteredRow)
         }
+        self.reloadData()
     }
     
+    func unfilteredRowForJobID(jobID: Int) -> Int? {
+        return unfilteredData.indexOf({(json: JSON) -> Bool in return json["id"].intValue == jobID})
+    }
 }

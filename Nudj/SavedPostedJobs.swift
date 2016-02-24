@@ -41,7 +41,6 @@ class SavedPostedJobs: BaseController, SegueHandlerType, DataProviderProtocol {
 
         // Do any additional setup after loading the view.
         //self.navigationController?.title = self.headerTitle
-        self.table.asignCellNib("JobCellTableViewCell")
         
         self.table.canEdit = self.queryType.IsEditable()
     

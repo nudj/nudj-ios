@@ -28,7 +28,6 @@ class MainFeed: BaseController, SegueHandlerType, DataProviderProtocol, UISearch
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.table.asignCellNib("JobCellTableViewCell")
         self.table.dataProvider = self as DataProviderProtocol
         self.table.delegate = self.table
         self.table.dataSource = self.table
