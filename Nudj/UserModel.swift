@@ -10,6 +10,14 @@ import SwiftyJSON
 import AddressBook
 
 class UserModel: CustomStringConvertible {
+    enum Notifications: String {
+        case BlockedUsersChanged
+        
+        func post(toCenter center: NSNotificationCenter, forUser user: UserModel) {
+            center.postNotificationName(self.rawValue, object: user)
+        }
+    }
+    
     typealias ErrorHandler = (ErrorType) -> Void
 
     var id: Int?
@@ -54,7 +62,12 @@ class UserModel: CustomStringConvertible {
     var source:JSON?
     var settings:JSON?
     
-    var blockedUserIDs = Set<Int>()
+    var blockedUserIDs = Set<Int>() {
+        didSet {
+            let notification = Notifications.BlockedUsersChanged
+            notification.post(toCenter: NSNotificationCenter.defaultCenter(), forUser: self)
+        }
+    }
 
     init(id: Int? = nil, name: String? = nil, token: String? = nil) {
         self.id = id;
