@@ -50,11 +50,13 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
         
         let center = NSNotificationCenter.defaultCenter()
         center.addObserver(self, selector:"refilter:", name: UserModel.Notifications.BlockedUsersChanged.rawValue, object: nil)
+        center.addObserver(self, selector:"refilter:", name: UserModel.Notifications.BlockedJobsChanged.rawValue, object: nil)
     }
     
     deinit {
         let center = NSNotificationCenter.defaultCenter()
         center.removeObserver(self, name: UserModel.Notifications.BlockedUsersChanged.rawValue, object: nil)
+        center.removeObserver(self, name: UserModel.Notifications.BlockedJobsChanged.rawValue, object: nil)
     }
 
     func loadData(page: Int = 1) {
@@ -100,10 +102,13 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
     
     func refilterData(user: UserModel?) {
         let blockedUserIDs = user?.blockedUserIDs ?? Set<Int>()
+        let blockedJobIDs = user?.blockedJobIDs ?? Set<Int>()
         
-        filteredData = unfilteredData.filter(){ (json: JSON) -> Bool in
+        filteredData = unfilteredData.filter(){ 
+            (json: JSON) -> Bool in
             let userID = json["user"]["id"].intValue
-            return !blockedUserIDs.contains(userID)
+            let jobID = json["id"].intValue
+            return !(blockedJobIDs.contains(jobID) || blockedUserIDs.contains(userID))
         }
         
         dataProvider?.didfinishLoading(filteredData.count)
