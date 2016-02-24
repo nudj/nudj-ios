@@ -21,10 +21,6 @@ class JobCellTableViewCell: UITableViewCell, DataTableCell {
 
     var gradient:CAGradientLayer? = nil
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
     func loadData(data:JSON?) {
         if (data == nil) {
             return
