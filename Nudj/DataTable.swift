@@ -47,6 +47,14 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
         tableFooterView = UIView(frame: CGRectZero)
         
         self.registerNib(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: cellIdentifier)
+        
+        let center = NSNotificationCenter.defaultCenter()
+        center.addObserver(self, selector:"refilterData:", name: UserModel.Notifications.BlockedUsersChanged.rawValue, object: nil)
+    }
+    
+    deinit {
+        let center = NSNotificationCenter.defaultCenter()
+        center.removeObserver(self, name: UserModel.Notifications.BlockedUsersChanged.rawValue, object: nil)
     }
 
     func loadData(page: Int = 1) {
