@@ -36,7 +36,7 @@ class UserModel: CustomStringConvertible {
     var base64Image:String?
     
     var description:String {
-        return "UserModel: id: \(id), name: \(name), completed: \(completed ? 1 : 0), status: \(status), image:\(image)"
+        return "UserModel: id: \(id), name: \(name), completed: \(completed ? 1 : 0), status: \(status), image:\(image), blocked:\(blockedUserIDs)"
     }
 
     static let fieldsForProfile = [
@@ -147,6 +147,15 @@ class UserModel: CustomStringConvertible {
         }
     }
     
+    func fetchBlockedUsers() {
+        API.sharedInstance.request(.GET, path: API.Endpoints.Users.blocked, params: nil, closure: {
+            json in
+            // TODO: API strings
+            let newBlockedIDs = json["data"]["ids"].arrayValue.map({$0.intValue})
+            self.blockedUserIDs = Set<Int>(newBlockedIDs)
+        })
+    }
+    
     func hasFullyCompletedProfile() -> Bool {
         if name?.isEmpty ?? true {return false}
         if email?.isEmpty ?? true {return false}
@@ -162,7 +171,7 @@ class UserModel: CustomStringConvertible {
     func toggleFavourite(closure: (JSON) -> (), errorHandler:ErrorHandler? = nil) {
         if (id == nil) {
             loggingPrint("Invalid User ID!")
-            return;
+            return
         }
 
         let path = API.Endpoints.Users.favouriteByID(id)

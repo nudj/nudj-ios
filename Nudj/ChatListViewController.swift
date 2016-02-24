@@ -84,10 +84,10 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     func refilterData(user: UserModel?) {
         let blockedUserIDs = user?.blockedUserIDs ?? Set<Int>()
         
-        filteredData = unfilteredData.filter({ (chat: ChatStructModel) -> Bool in
+        filteredData = unfilteredData.filter(){ (chat: ChatStructModel) -> Bool in
             guard let userIDStr = chat.participantsID, userID = Int(userIDStr) else {return false}
             return !blockedUserIDs.contains(userID)
-        })
+        }
         
         chatTable.hidden = false;
         chatTable.reloadData()

@@ -238,6 +238,7 @@ extension API {
         struct Users {
             static let base = "users"
             static let me = base + "/me"
+            static let blocked = base + "/blocked"
             
             static func byID(userID: Int?) -> String {
                 guard let userID = userID else {
