@@ -2239,14 +2239,6 @@
 			name = ChatView;
 			sourceTree = "<group>";
 		};
-		A9F3332A1B41994A00F0D17B /* Job Details */ = {
-			isa = PBXGroup;
-			children = (
-				A9F3332B1B41997600F0D17B /* JobDetailedViewController.swift */,
-			);
-			name = "Job Details";
-			sourceTree = "<group>";
-		};
 		A9F3332D1B42A84500F0D17B /* AddJob */ = {
 			isa = PBXGroup;
 			children = (
@@ -2421,8 +2413,7 @@
 		EB0926CC1A8DE4CB00E1D958 /* Nudj */ = {
 			isa = PBXGroup;
 			children = (
-				EBEA9B471AF264DF0027A2A2 /* ActionControllers */,
-				EBDD28CC1ACD8AA700956995 /* MainControllers */,
+				EBDD28CC1ACD8AA700956995 /* Controllers */,
 				EB6F22B81AAF702F007FF1B8 /* Common */,
 				EB04F6211AAD8993002F2677 /* API */,
 				EBB338311A9F5A4A000CAD88 /* Models */,
@@ -2540,22 +2531,22 @@
 			name = Settings;
 			sourceTree = "<group>";
 		};
-		EBDD28CC1ACD8AA700956995 /* MainControllers */ = {
+		EBDD28CC1ACD8AA700956995 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				C88204A51C4C258C00744554 /* SegueHandlerType.swift */,
 				A95798231B469636006E826E /* Notification */,
-				A9F3332A1B41994A00F0D17B /* Job Details */,
 				A9C6EC901B381E8800EC9140 /* ChatView */,
 				EBB338391A9F73A5000CAD88 /* Login/Register */,
 				EB000F7D1AB71D4400E4D385 /* Contatcs */,
-				EBEA9B461AF2641B0027A2A2 /* MainFeed */,
+				EBEA9B461AF2641B0027A2A2 /* Job list */,
+				A9F3332D1B42A84500F0D17B /* AddJob */,
 				EBD107411AF0BE3F00310818 /* Settings */,
 			);
-			name = MainControllers;
+			name = Controllers;
 			sourceTree = "<group>";
 		};
-		EBEA9B461AF2641B0027A2A2 /* MainFeed */ = {
+		EBEA9B461AF2641B0027A2A2 /* Job list */ = {
 			isa = PBXGroup;
 			children = (
 				EBBF42561AB1DEFF0001E8B6 /* DataTable.swift */,
@@ -2563,16 +2554,9 @@
 				EBBF42521AB0AF5F0001E8B6 /* JobCellTableViewCell.swift */,
 				C8A661FA1C0B66350088355D /* JobCellTableViewCell.xib */,
 				EB0926D11A8DE4CB00E1D958 /* MainFeed.swift */,
+				A9F3332B1B41997600F0D17B /* JobDetailedViewController.swift */,
 			);
-			name = MainFeed;
-			sourceTree = "<group>";
-		};
-		EBEA9B471AF264DF0027A2A2 /* ActionControllers */ = {
-			isa = PBXGroup;
-			children = (
-				A9F3332D1B42A84500F0D17B /* AddJob */,
-			);
-			name = ActionControllers;
+			name = "Job list";
 			sourceTree = "<group>";
 		};
 		EBF1861A1B21D9D500D8D80D /* Externals */ = {
