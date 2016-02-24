@@ -9,6 +9,7 @@ import UIKit
 import Foundation
 
 class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
+    
     let avatarDiameter: UInt = 30
     
     var outgoingBubbleImageData :JSQMessagesBubbleImage?;
@@ -389,7 +390,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
                     let api = API.sharedInstance
                     api.request(.POST, path: endpoint, closure: {
                         json in
-                        NSNotificationCenter.defaultCenter().postNotificationName("reloadChatTable", object: nil, userInfo:nil)
+                        NSNotificationCenter.defaultCenter().postNotificationName(ChatListViewController.Notifications.Refetch.rawValue, object: nil, userInfo:nil)
                         // TODO: maybe filter out the offending user's chats locally while waiting for the server to respond
                     })
                     self.navigationController?.popViewControllerAnimated(true)

@@ -11,6 +11,10 @@ import SwiftyJSON
 
 class ChatListViewController: BaseController, UITableViewDataSource, UITableViewDelegate {
     
+    enum Notifications : String {
+        case Refetch
+    }
+   
     @IBOutlet var chatTable: UITableView!
     let staticRowHeight:CGFloat = 70
     let cellIdentifier = "ChatListTableViewCell"
@@ -36,11 +40,11 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         self.tabBarController?.tabBar.hidden = false
         requestData()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"reload:", name: "reloadChatTable", object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"reload:", name: Notifications.Refetch.rawValue, object: nil);
     }
     
     override func viewWillDisappear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "reloadChatTable", object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: Notifications.Refetch.rawValue, object: nil)
     }
 
     func requestData() {

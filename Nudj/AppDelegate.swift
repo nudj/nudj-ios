@@ -455,8 +455,8 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
             // TODO: magic numbers
             NSNotificationCenter.defaultCenter().postNotificationName("updateBadgeValue", object: nil, userInfo: ["value":"1","index":"1"])
             
-            // reload table
-            NSNotificationCenter.defaultCenter().postNotificationName("reloadChatTable", object: nil, userInfo:nil)
+            // reload chat table
+            NSNotificationCenter.defaultCenter().postNotificationName(ChatListViewController.Notifications.Refetch.rawValue, object: nil, userInfo:nil)
         }
     }
 
