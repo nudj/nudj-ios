@@ -41,7 +41,7 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
         // TODO: move refreshControl into IB
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         refreshControl.tintColor = appDelegate.appColor
-        refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
         addSubview(refreshControl)
         autoresizingMask = [.FlexibleBottomMargin, .FlexibleTopMargin, .FlexibleHeight]
         tableFooterView = UIView(frame: CGRectZero)
@@ -49,7 +49,7 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
         self.registerNib(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: cellIdentifier)
         
         let center = NSNotificationCenter.defaultCenter()
-        center.addObserver(self, selector:"refilterData:", name: UserModel.Notifications.BlockedUsersChanged.rawValue, object: nil)
+        center.addObserver(self, selector:"refilter:", name: UserModel.Notifications.BlockedUsersChanged.rawValue, object: nil)
     }
     
     deinit {
@@ -93,6 +93,11 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
         loadData()
     }
 
+    func refilter(notification: NSNotification) {
+        let user = notification.object as? UserModel
+        self.refilterData(user)
+    }
+    
     func refilterData(user: UserModel?) {
         let blockedUserIDs = user?.blockedUserIDs ?? Set<Int>()
         
