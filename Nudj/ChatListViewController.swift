@@ -40,13 +40,26 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         self.tabBarController?.tabBar.hidden = false
         requestData()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"reload:", name: Notifications.Refetch.rawValue, object: nil);
+        let center = NSNotificationCenter.defaultCenter()
+        center.addObserver(self, selector:"reload:", name: Notifications.Refetch.rawValue, object: nil);
+        center.addObserver(self, selector:"refilterData:", name: UserModel.Notifications.BlockedUsersChanged.rawValue, object: nil);
     }
     
     override func viewWillDisappear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: Notifications.Refetch.rawValue, object: nil)
+        let center = NSNotificationCenter.defaultCenter()
+        center.removeObserver(self, name: Notifications.Refetch.rawValue, object: nil)
+        center.removeObserver(self, name: UserModel.Notifications.BlockedUsersChanged.rawValue, object: nil)
     }
 
+    func reload(notification: NSNotification) {
+        self.requestData()
+    }
+    
+    func refilter(notification: NSNotification) {
+        let user = notification.object as? UserModel
+        self.refilterData(user)
+    }
+    
     func requestData() {
         activity.startAnimating()
         let path = isArchive ? API.Endpoints.Chat.archived() : API.Endpoints.Chat.active()
@@ -62,14 +75,14 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
             self.unfilteredData.sortInPlace{ $0.timeinRawForm!.compare($1.timeinRawForm!) == NSComparisonResult.OrderedDescending }
             self.activity.stopAnimating()
             
-            self.refilterData()
+            // TODO: remove singleton access
+            let user = (UIApplication.sharedApplication().delegate as! AppDelegate).user
+            self.refilterData(user)
         })
     }
     
-    func refilterData() {
-        // TODO: remove singleton access
-        let user: UserModel = (UIApplication.sharedApplication().delegate as! AppDelegate).user
-        let blockedUserIDs = user.blockedUserIDs
+    func refilterData(user: UserModel?) {
+        let blockedUserIDs = user?.blockedUserIDs ?? Set<Int>()
         
         filteredData = unfilteredData.filter({ (chat: ChatStructModel) -> Bool in
             guard let userIDStr = chat.participantsID, userID = Int(userIDStr) else {return false}
@@ -156,10 +169,6 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         }, errorHandler: { 
             error in
         })
-    }
-    
-    func reload(notification: NSNotification) {
-        self.requestData()
     }
     
     func unfilteredRowForChatID(chatID: Int) -> Int? {

@@ -383,16 +383,14 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
             alert.preferredAction = cancelAction
             
             func addUserBlockingAction(title: String, endpointGenerator: (Int)->String, mixPanelTitle: String) -> Void {
+                let user = appGlobalDelegate.user
                 let action = UIAlertAction(title: title, style: .Destructive) {
                     _ in
                     let endpoint = endpointGenerator(otherUserID)
                     MixPanelHandler.sendData(mixPanelTitle)
                     let api = API.sharedInstance
-                    api.request(.POST, path: endpoint, closure: {
-                        json in
-                        NSNotificationCenter.defaultCenter().postNotificationName(ChatListViewController.Notifications.Refetch.rawValue, object: nil, userInfo:nil)
-                        // TODO: maybe filter out the offending user's chats locally while waiting for the server to respond
-                    })
+                    api.request(.POST, path: endpoint)
+                    user.blockedUserIDs.insert(otherUserID)
                     self.navigationController?.popViewControllerAnimated(true)
                 }
                 alert.addAction(action)
