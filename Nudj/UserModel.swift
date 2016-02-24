@@ -11,7 +11,7 @@ import AddressBook
 
 class UserModel: CustomStringConvertible {
     enum Notifications: String {
-        case BlockedUsersChanged
+        case BlockedUsersChanged, BlockedJobsChanged
         
         func post(toCenter center: NSNotificationCenter, forUser user: UserModel) {
             center.postNotificationName(self.rawValue, object: user)
@@ -65,6 +65,13 @@ class UserModel: CustomStringConvertible {
     var blockedUserIDs = Set<Int>() {
         didSet {
             let notification = Notifications.BlockedUsersChanged
+            notification.post(toCenter: NSNotificationCenter.defaultCenter(), forUser: self)
+        }
+    }
+
+    var blockedJobIDs = Set<Int>() {
+        didSet {
+            let notification = Notifications.BlockedJobsChanged
             notification.post(toCenter: NSNotificationCenter.defaultCenter(), forUser: self)
         }
     }

@@ -16,14 +16,6 @@ class MainFeed: BaseController, SegueHandlerType, DataProviderProtocol, UISearch
         case AddJob = "AddJob"
     }
     
-    enum Notification: String {
-        case JobBlocked
-        
-        func post(toCenter center: NSNotificationCenter, jobID: Int) {
-            center.postNotificationName(self.rawValue, object: jobID)
-        }
-    }
-
     @IBOutlet weak var table: DataTable!
 
     var selectedJobData:JSON? = nil
