@@ -230,6 +230,8 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
                 json in
                 // TODO: maybe filter out the offending job locally while waiting for the server to respond
             })
+            let notification = MainFeed.Notification.JobBlocked
+            notification.post(toCenter: NSNotificationCenter.defaultCenter(), jobID: jobID)
             self.navigationController?.popViewControllerAnimated(true)
         }
         alert.addAction(blockAction)

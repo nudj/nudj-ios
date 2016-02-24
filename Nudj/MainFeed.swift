@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  MainFeed.swift
 //  Nudj
 //
 //  Copyright (c) 2015 Nudge I.T. Limited. All rights reserved.
@@ -14,6 +14,14 @@ class MainFeed: BaseController, SegueHandlerType, DataProviderProtocol, UISearch
     enum SegueIdentifier: String {
         case GoToJob = "goToJob"
         case AddJob = "AddJob"
+    }
+    
+    enum Notification: String {
+        case JobBlocked
+        
+        func post(toCenter center: NSNotificationCenter, jobID: Int) {
+            center.postNotificationName(self.rawValue, object: jobID)
+        }
     }
 
     @IBOutlet weak var table: DataTable!
