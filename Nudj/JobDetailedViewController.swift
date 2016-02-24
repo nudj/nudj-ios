@@ -253,10 +253,9 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
             let endpoint = API.Endpoints.Users.reportByID(userId)
             MixPanelHandler.sendData("HirerReported")
             let api = API.sharedInstance
-            api.request(.POST, path: endpoint, closure: {
-                json in
-                // TODO: maybe filter out the offending hirer's jobs locally while waiting for the server to respond
-            })
+            api.request(.POST, path: endpoint)
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            appDelegate.user.blockedUserIDs.insert(userId)
             self.navigationController?.popViewControllerAnimated(true)
         }
         alert.addAction(blockAction)
