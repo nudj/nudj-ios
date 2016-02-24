@@ -16,7 +16,8 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     let cellIdentifier = "ChatListTableViewCell"
 
     @IBOutlet weak var activity: UIActivityIndicatorView!
-    var data:[ChatStructModel] = []
+    var unfilteredData = [ChatStructModel]()
+    var filteredData = [ChatStructModel]()
     var noContentImage = NoContentPlaceHolder()
     var isArchive: Bool = false
     
@@ -43,27 +44,40 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     }
 
     func requestData() {
-        self.activity.startAnimating()
+        activity.startAnimating()
         let path = isArchive ? API.Endpoints.Chat.archived() : API.Endpoints.Chat.active()
         let params = API.Endpoints.Chat.paramsForList(100)
-        self.apiRequest(.GET, path: path, params: params, closure: { 
+        apiRequest(.GET, path: path, params: params, closure: { 
             response in
-            self.data.removeAll(keepCapacity: false)
+            self.unfilteredData.removeAll(keepCapacity: false)
             
             for (_, obj) in response["data"] {
                 let chat = ChatStructModel()
-                self.data.append(chat.createData(obj))
-                self.data.sortInPlace{ $0.timeinRawForm!.compare($1.timeinRawForm!) == NSComparisonResult.OrderedDescending }
+                self.unfilteredData.append(chat.createData(obj))
             }
-            
+            self.unfilteredData.sortInPlace{ $0.timeinRawForm!.compare($1.timeinRawForm!) == NSComparisonResult.OrderedDescending }
             self.activity.stopAnimating()
-            self.chatTable.hidden = false;
-            self.chatTable.reloadData()
-            self.chatCounter = 0
-            self.navigationController?.tabBarItem.badgeValue = nil
             
-            self.noContentImage.hidden = !self.data.isEmpty
+            self.refilterData()
         })
+    }
+    
+    func refilterData() {
+        // TODO: remove singleton access
+        let user: UserModel = (UIApplication.sharedApplication().delegate as! AppDelegate).user
+        let blockedUserIDs = user.blockedUserIDs
+        
+        filteredData = unfilteredData.filter({ (chat: ChatStructModel) -> Bool in
+            guard let userIDStr = chat.participantsID, userID = Int(userIDStr) else {return false}
+            return !blockedUserIDs.contains(userID)
+        })
+        
+        chatTable.hidden = false;
+        chatTable.reloadData()
+        chatCounter = 0
+        navigationController?.tabBarItem.badgeValue = nil
+        
+        noContentImage.hidden = !filteredData.isEmpty
     }
     
     // MARK: -- UITableViewDataSource --
@@ -73,7 +87,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return filteredData.count
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -82,7 +96,7 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell:ChatListTableViewCell = chatTable.dequeueReusableCellWithIdentifier(cellIdentifier) as! ChatListTableViewCell
-        cell.loadData(self.data[indexPath.row])
+        cell.loadData(self.filteredData[indexPath.row])
         return cell
     }
     
@@ -91,27 +105,27 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath)  as! ChatListTableViewCell
 
-        let chatView:ChatViewController = ChatViewController()
+        let chatVC = ChatViewController()
         
-        let chat = self.data[indexPath.row]
-        chatView.chatID = chat.chatId;
-        chatView.participants =  chat.participantName
-        chatView.participantsID = chat.participantsID
-        chatView.chatTitle = chat.title
-        chatView.jobID = chat.jobID
-        chatView.isLiked = chat.jobLike
+        let chat = self.filteredData[indexPath.row]
+        chatVC.chatID = chat.chatId;
+        chatVC.participants =  chat.participantName
+        chatVC.participantsID = chat.participantsID
+        chatVC.chatTitle = chat.title
+        chatVC.jobID = chat.jobID
+        chatVC.isLiked = chat.jobLike
         
         if let profileImage = cell.profilePicture.image {
             let imageData = UIImagePNGRepresentation(profileImage)
             let base64String = imageData?.base64EncodedStringWithOptions([]) ?? ""
-            chatView.otherUserBase64Image = base64String
+            chatVC.otherUserBase64Image = base64String
         }
-        chatView.isArchived = isArchive
+        chatVC.isArchived = isArchive
             
-        self.navigationController?.pushViewController(chatView, animated: true)
+        self.navigationController?.pushViewController(chatVC, animated: true)
         
-        self.data[indexPath.row].markAsRead()
-        cell.setRead(self.data[indexPath.row].isRead!)
+        self.filteredData[indexPath.row].markAsRead()
+        cell.setRead(true)
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -126,12 +140,14 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     }
     
     func deleteChat(row: Int) {
-        guard let chatIDStr = data[row].chatId else {return} // TODO: data[row].chatId should be Int not String?
-        guard let chatID = Int(chatIDStr) else {return}
+        guard let chatIDStr = filteredData[row].chatId, chatID = Int(chatIDStr) else {return}
         let path = API.Endpoints.Chat.byID(chatID)
         API.sharedInstance.request(.DELETE, path: path, params: nil, closure: { 
             response in
-            self.data.removeAtIndex(row)
+            self.filteredData.removeAtIndex(row)
+            if let unfilteredIndex = self.unfilteredRowForChatID(chatID) {
+                self.unfilteredData.removeAtIndex(unfilteredIndex)                
+            }
             self.chatTable.reloadData()
         }, errorHandler: { 
             error in
@@ -140,5 +156,10 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
     
     func reload(notification: NSNotification) {
         self.requestData()
+    }
+    
+    func unfilteredRowForChatID(chatID: Int) -> Int? {
+        let chatIDStr = String(chatID) // TODO: chat IDs should be Int not String
+        return unfilteredData.indexOf({(chat: ChatStructModel) -> Bool in return chat.chatId == chatIDStr})
     }
 }

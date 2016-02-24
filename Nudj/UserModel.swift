@@ -53,6 +53,8 @@ class UserModel: CustomStringConvertible {
 
     var source:JSON?
     var settings:JSON?
+    
+    var blockedUserIDs = Set<Int>()
 
     init(id: Int? = nil, name: String? = nil, token: String? = nil) {
         self.id = id;
