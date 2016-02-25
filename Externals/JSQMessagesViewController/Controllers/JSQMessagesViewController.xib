@@ -48,7 +48,7 @@
                             <rect key="frame" x="0.0" y="8" width="320" height="44"/>
                             <subviews>
                                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OKI-0o-bya" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="1" width="64" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="64" height="44"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                     <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
@@ -61,7 +61,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hrs-Ve-WPK" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
-                                    <rect key="frame" x="64" y="1" width="64" height="43"/>
+                                    <rect key="frame" x="64" y="0.0" width="64" height="44"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                     <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
@@ -103,7 +103,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ht-ZG-OMw" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
-                                    <rect key="frame" x="256" y="1" width="64" height="43"/>
+                                    <rect key="frame" x="256" y="0.0" width="64" height="44"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                     <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
@@ -209,12 +209,12 @@
     <resources>
         <image name="3dots.png" width="21" height="5"/>
         <image name="Block" width="17" height="17"/>
-        <image name="archive.png" width="25" height="19"/>
-        <image name="archive_active.png" width="25" height="19"/>
+        <image name="archive.png" width="25" height="20"/>
+        <image name="archive_active.png" width="25" height="20"/>
         <image name="back_btn.png" width="9" height="17"/>
         <image name="favourite" width="19" height="17"/>
         <image name="favourited" width="19" height="17"/>
-        <image name="job_detail.png" width="21" height="19"/>
-        <image name="profile.png" width="19" height="19"/>
+        <image name="job_detail.png" width="22" height="20"/>
+        <image name="profile.png" width="20" height="20"/>
     </resources>
 </document>
