@@ -1128,15 +1128,17 @@ JSQMessagesKeyboardControllerDelegate>{
 
 -(void)hideFilterMenu {
     _filterOpened = NO;
+    CGFloat height = CGRectGetHeight(_dropDownView.frame);
     [UIView animateWithDuration:0.5 animations:^(){
-        [_dropDownView setFrame:CGRectMake(0.0, -7.0, self.view.frame.size.width, 70.0)];
+        [_dropDownView setFrame:CGRectMake(0.0, -7.0, self.view.frame.size.width, height)];
     }];
 }
 
 -(void)showFilterMenu {
     _filterOpened = YES;
+    CGFloat height = CGRectGetHeight(_dropDownView.frame);
     [UIView animateWithDuration:0.5 animations:^(){
-        [_dropDownView setFrame:CGRectMake(0.0, 64.0, self.view.frame.size.width, 70.0)];
+        [_dropDownView setFrame:CGRectMake(0.0, 64.0, self.view.frame.size.width, height)];
     }];
 }
 
