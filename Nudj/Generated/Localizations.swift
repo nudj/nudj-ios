@@ -60,21 +60,6 @@ public struct Localizations {
             }
         }
 
-        public struct ReportHirer {
-
-                    /// Base translation: Report %@
-            public static func Button(value1 : String) -> String {
-                return String(format: NSLocalizedString("jobs.report-hirer.button", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
-            }
-
-            /// Base translation: Report Hirer
-            public static var Title : String = "jobs.report-hirer.title".localized
-
-            /// Base translation: Are you sure you want to report this hirer?
-            public static var Body : String = "jobs.report-hirer.body".localized
-
-        }
-
         public struct Add {
 
         
@@ -189,6 +174,13 @@ public struct Localizations {
 
             /// Base translation: Are you sure you want to block this job listing?
             public static var Body : String = "jobs.block.body".localized
+
+        }
+
+        public struct Report {
+
+                    /// Base translation: Block and Report
+            public static var Button : String = "jobs.report.button".localized
 
         }
 

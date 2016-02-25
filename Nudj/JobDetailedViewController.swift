@@ -211,7 +211,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     }
     
     @IBAction func blockJob(sender: AnyObject) {
-        guard let jobID = self.jobID else {return}
+        guard let jobID = self.jobID, hirerID = self.hirerID else {return}
         let title = Localizations.Jobs.Block.Title
         let message = Localizations.Jobs.Block.Body
         let alert = UIAlertController(title: title, message: message, preferredStyle: .ActionSheet)
@@ -221,46 +221,31 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         alert.preferredAction = cancelAction
         
         let blockAction = UIAlertAction(title: Localizations.Jobs.Block.Button, style: .Destructive) {
-            _ in //
+            _ in
             self.setMenuShown(false, animated: true)
             let endpoint = API.Endpoints.Jobs.blockByID(jobID)
             MixPanelHandler.sendData("JobBlocked")
             let api = API.sharedInstance
-            api.request(.POST, path: endpoint, closure: {
-                json in
-                // TODO: maybe filter out the offending job locally while waiting for the server to respond
-            })
+            api.request(.POST, path: endpoint)
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             appDelegate.user.blockedJobIDs.insert(jobID)
             self.navigationController?.popViewControllerAnimated(true)
         }
         alert.addAction(blockAction)
-        setMenuShown(false, animated: true)
-        presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    @IBAction func reportHirer(sender: AnyObject) {
-        guard let userId = self.hirerID, hirerName = hirerName.text else {return}
-        let title = Localizations.Jobs.ReportHirer.Title
-        let message = Localizations.Jobs.ReportHirer.Body
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .ActionSheet)
         
-        let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
-        alert.addAction(cancelAction)
-        alert.preferredAction = cancelAction
-        
-        let blockAction = UIAlertAction(title: Localizations.Jobs.ReportHirer.Button(hirerName), style: .Destructive) {
-            _ in //
+        let reportAction = UIAlertAction(title: Localizations.Jobs.Report.Button, style: .Destructive) {
+            _ in
             self.setMenuShown(false, animated: true)
-            let endpoint = API.Endpoints.Users.reportByID(userId)
+            let endpoint = API.Endpoints.Users.reportByID(hirerID)
             MixPanelHandler.sendData("HirerReported")
             let api = API.sharedInstance
             api.request(.POST, path: endpoint)
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            appDelegate.user.blockedUserIDs.insert(userId)
+            appDelegate.user.blockedUserIDs.insert(hirerID)
             self.navigationController?.popViewControllerAnimated(true)
         }
-        alert.addAction(blockAction)
+        alert.addAction(reportAction)
+        
         setMenuShown(false, animated: true)
         presentViewController(alert, animated: true, completion: nil)
     }

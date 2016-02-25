@@ -963,7 +963,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ifo-Y0-3Ze" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="125" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="188" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
                                                 <state key="normal" title="Favourite" image="favourite">
@@ -977,7 +977,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7U4-Y7-yGZ" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
-                                                <rect key="frame" x="125" y="0.0" width="125" height="50"/>
+                                                <rect key="frame" x="188" y="0.0" width="187" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
                                                 <state key="normal" title="Block" image="Block">
@@ -985,17 +985,6 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="blockJob:" destination="vRR-wd-aTg" eventType="touchUpInside" id="Jw8-5H-8RQ"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2pl-ar-V37" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
-                                                <rect key="frame" x="250" y="0.0" width="125" height="50"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
-                                                <state key="normal" title="Report">
-                                                    <color key="titleColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="reportHirer:" destination="vRR-wd-aTg" eventType="touchUpInside" id="dFb-OC-pBC"/>
                                                 </connections>
                                             </button>
                                         </subviews>
