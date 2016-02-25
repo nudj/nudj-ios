@@ -42,99 +42,89 @@
                     <items/>
                 </toolbar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cVg-om-Qyy" userLabel="dropView">
-                    <rect key="frame" x="0.0" y="-7" width="320" height="54"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="43"/>
                     <subviews>
-                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OKI-0o-bya" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
-                            <rect key="frame" x="8" y="13" width="54" height="33"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                            <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
-                            <state key="normal" title="Job Detail" image="job_detail.png">
-                                <color key="titleColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="bAE-pK-e35"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hrs-Ve-WPK" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
-                            <rect key="frame" x="70" y="13" width="55" height="33"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                            <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
-                            <state key="normal" title="Profile" image="profile.png">
-                                <color key="titleColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="RbB-OZ-IUe"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9xf-wu-y6B" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
-                            <rect key="frame" x="133" y="13" width="54" height="33"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                            <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
-                            <state key="normal" title="Favourite" image="favourite">
-                                <color key="titleColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" title="Unfavourite" image="favourited">
-                                <color key="titleColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="ew2-Pr-Gg8"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GWO-Fv-2g7" userLabel="Block" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
-                            <rect key="frame" x="195" y="13" width="55" height="33"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                            <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
-                            <state key="normal" title="Block" image="mute.png">
-                                <color key="titleColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="cxk-w1-m5t"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ht-ZG-OMw" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
-                            <rect key="frame" x="258" y="13" width="54" height="33"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                            <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
-                            <state key="normal" title="Archive" image="archive.png">
-                                <color key="titleColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" title="Restore" image="archive_active.png"/>
-                            <connections>
-                                <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="BVh-QL-r6A"/>
-                            </connections>
-                        </button>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="Xhu-sD-59K">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                            <subviews>
+                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OKI-0o-bya" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="64" height="43"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                    <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
+                                    <state key="normal" title="Job Detail" image="job_detail.png">
+                                        <color key="titleColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="bAE-pK-e35"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hrs-Ve-WPK" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
+                                    <rect key="frame" x="64" y="0.0" width="64" height="43"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                    <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
+                                    <state key="normal" title="Profile" image="profile.png">
+                                        <color key="titleColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="RbB-OZ-IUe"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9xf-wu-y6B" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
+                                    <rect key="frame" x="128" y="2" width="64" height="41"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                    <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
+                                    <state key="normal" title="Favourite" image="favourite">
+                                        <color key="titleColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="selected" title="Unfavourite" image="favourited">
+                                        <color key="titleColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="ew2-Pr-Gg8"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GWO-Fv-2g7" userLabel="Block" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
+                                    <rect key="frame" x="192" y="0.0" width="64" height="43"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                    <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
+                                    <state key="normal" title="Block" image="mute.png">
+                                        <color key="titleColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="cxk-w1-m5t"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="5" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ht-ZG-OMw" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
+                                    <rect key="frame" x="256" y="0.0" width="64" height="43"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                    <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
+                                    <state key="normal" title="Archive" image="archive.png">
+                                        <color key="titleColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="selected" title="Restore" image="archive_active.png"/>
+                                    <connections>
+                                        <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="BVh-QL-r6A"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
                     </subviews>
                     <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="6Ht-ZG-OMw" firstAttribute="height" secondItem="Hrs-Ve-WPK" secondAttribute="height" id="2gp-ni-L8N"/>
-                        <constraint firstItem="GWO-Fv-2g7" firstAttribute="leading" secondItem="9xf-wu-y6B" secondAttribute="trailing" constant="8" id="2sH-H5-6qP"/>
-                        <constraint firstItem="9xf-wu-y6B" firstAttribute="top" secondItem="cVg-om-Qyy" secondAttribute="top" constant="13" id="4JJ-2S-3CD"/>
-                        <constraint firstItem="Hrs-Ve-WPK" firstAttribute="top" secondItem="cVg-om-Qyy" secondAttribute="top" constant="13" id="5TW-qi-isi"/>
-                        <constraint firstAttribute="bottom" secondItem="GWO-Fv-2g7" secondAttribute="bottom" constant="8" id="6Gi-bc-aUR"/>
-                        <constraint firstItem="6Ht-ZG-OMw" firstAttribute="width" secondItem="GWO-Fv-2g7" secondAttribute="width" id="A3b-2S-e4K"/>
-                        <constraint firstItem="9xf-wu-y6B" firstAttribute="leading" secondItem="Hrs-Ve-WPK" secondAttribute="trailing" constant="8" id="Cpw-7X-VsD"/>
-                        <constraint firstAttribute="bottom" secondItem="9xf-wu-y6B" secondAttribute="bottom" constant="8" id="M8J-5M-GIZ"/>
-                        <constraint firstItem="6Ht-ZG-OMw" firstAttribute="leading" secondItem="GWO-Fv-2g7" secondAttribute="trailing" constant="8" id="MPI-gs-bHu"/>
-                        <constraint firstItem="6Ht-ZG-OMw" firstAttribute="width" secondItem="9xf-wu-y6B" secondAttribute="width" id="Oqi-LR-0rn"/>
-                        <constraint firstItem="OKI-0o-bya" firstAttribute="leading" secondItem="cVg-om-Qyy" secondAttribute="leading" constant="8" id="PCg-ml-Fja"/>
-                        <constraint firstItem="6Ht-ZG-OMw" firstAttribute="width" secondItem="OKI-0o-bya" secondAttribute="width" id="SBh-h8-svF"/>
-                        <constraint firstAttribute="trailing" secondItem="6Ht-ZG-OMw" secondAttribute="trailing" constant="8" id="Yiq-Ko-EZd"/>
-                        <constraint firstAttribute="bottom" secondItem="OKI-0o-bya" secondAttribute="bottom" constant="8" id="ZM7-Uu-Yrh"/>
-                        <constraint firstAttribute="bottom" secondItem="6Ht-ZG-OMw" secondAttribute="bottom" constant="8" id="Zx7-ml-DvY"/>
-                        <constraint firstItem="6Ht-ZG-OMw" firstAttribute="height" secondItem="OKI-0o-bya" secondAttribute="height" id="f68-jI-wrR"/>
-                        <constraint firstItem="6Ht-ZG-OMw" firstAttribute="top" secondItem="cVg-om-Qyy" secondAttribute="top" constant="13" id="fBD-Q1-qkx"/>
-                        <constraint firstItem="GWO-Fv-2g7" firstAttribute="top" secondItem="cVg-om-Qyy" secondAttribute="top" constant="13" id="hSZ-I5-dZA"/>
-                        <constraint firstAttribute="bottom" secondItem="Hrs-Ve-WPK" secondAttribute="bottom" constant="8" id="iaj-Wf-Dw5"/>
-                        <constraint firstItem="6Ht-ZG-OMw" firstAttribute="width" secondItem="Hrs-Ve-WPK" secondAttribute="width" id="jrH-UF-bKe"/>
-                        <constraint firstItem="Hrs-Ve-WPK" firstAttribute="leading" secondItem="OKI-0o-bya" secondAttribute="trailing" constant="8" id="mp1-Oj-hh5"/>
-                        <constraint firstItem="OKI-0o-bya" firstAttribute="top" secondItem="cVg-om-Qyy" secondAttribute="top" constant="13" id="nhw-Gy-AFk"/>
-                        <constraint firstItem="6Ht-ZG-OMw" firstAttribute="height" secondItem="9xf-wu-y6B" secondAttribute="height" id="vh1-9j-dy7"/>
-                        <constraint firstItem="6Ht-ZG-OMw" firstAttribute="height" secondItem="GWO-Fv-2g7" secondAttribute="height" id="wJk-Go-OQT"/>
+                        <constraint firstAttribute="trailing" secondItem="Xhu-sD-59K" secondAttribute="trailing" id="fix-PV-Yry"/>
+                        <constraint firstItem="Xhu-sD-59K" firstAttribute="top" secondItem="cVg-om-Qyy" secondAttribute="top" id="oGN-rS-8Jb"/>
+                        <constraint firstItem="Xhu-sD-59K" firstAttribute="leading" secondItem="cVg-om-Qyy" secondAttribute="leading" id="rdC-IB-cqS"/>
+                        <constraint firstAttribute="bottom" secondItem="Xhu-sD-59K" secondAttribute="bottom" id="v8H-qa-wlQ"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qgi-uw-S4i" userLabel="Custom navbar">
@@ -200,10 +190,11 @@
                 <constraint firstItem="l9u-2b-4LK" firstAttribute="top" secondItem="Qgi-uw-S4i" secondAttribute="bottom" id="3SX-GY-HcP"/>
                 <constraint firstAttribute="trailing" secondItem="BoD-Az-3DM" secondAttribute="trailing" id="7xc-Ha-asg"/>
                 <constraint firstItem="Qgi-uw-S4i" firstAttribute="leading" secondItem="l9u-2b-4LK" secondAttribute="leading" id="EnL-x9-nJv"/>
-                <constraint firstItem="cVg-om-Qyy" firstAttribute="top" secondItem="Qgi-uw-S4i" secondAttribute="bottom" constant="-71" id="IwV-dj-3rd"/>
+                <constraint firstItem="cVg-om-Qyy" firstAttribute="top" secondItem="Qgi-uw-S4i" secondAttribute="bottom" priority="999" constant="-71" id="IwV-dj-3rd"/>
                 <constraint firstItem="cVg-om-Qyy" firstAttribute="leading" secondItem="mUa-cS-ru4" secondAttribute="leading" id="Ktp-9E-gxX"/>
                 <constraint firstItem="l9u-2b-4LK" firstAttribute="leading" secondItem="mUa-cS-ru4" secondAttribute="leading" id="MmF-oh-Y75"/>
                 <constraint firstAttribute="trailing" secondItem="l9u-2b-4LK" secondAttribute="trailing" id="O9u-TA-A0e"/>
+                <constraint firstItem="cVg-om-Qyy" firstAttribute="top" secondItem="Qgi-uw-S4i" secondAttribute="bottom" placeholder="YES" identifier="Dummy drop view extender" id="QGI-qx-qe3"/>
                 <constraint firstAttribute="bottom" secondItem="l9u-2b-4LK" secondAttribute="bottom" id="Re7-WW-UmS"/>
                 <constraint firstItem="l9u-2b-4LK" firstAttribute="top" secondItem="mUa-cS-ru4" secondAttribute="top" constant="64" id="dCQ-DM-Wdj"/>
                 <constraint firstAttribute="trailing" secondItem="cVg-om-Qyy" secondAttribute="trailing" id="oWn-og-E3c"/>
