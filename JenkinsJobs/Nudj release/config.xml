@@ -1,18 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Nightly Nudj build for QA.</description>
+  <description>Nudj release build for the App Store.</description>
   <keepDependencies>false</keepDependencies>
-  <properties>
-    <jenkins.model.BuildDiscarderProperty>
-      <strategy class="hudson.tasks.LogRotator">
-        <daysToKeep>14</daysToKeep>
-        <numToKeep>50</numToKeep>
-        <artifactDaysToKeep>-1</artifactDaysToKeep>
-        <artifactNumToKeep>-1</artifactNumToKeep>
-      </strategy>
-    </jenkins.model.BuildDiscarderProperty>
-  </properties>
+  <properties/>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.12">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
@@ -53,19 +44,14 @@
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <triggers>
-    <hudson.triggers.SCMTrigger>
-      <spec>@midnight</spec>
-      <ignorePostCommitHooks>false</ignorePostCommitHooks>
-    </hudson.triggers.SCMTrigger>
-  </triggers>
+  <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
       <command># local vars
 Workspace=&quot;Nudj.xcworkspace&quot;
-MainScheme=&quot;Nudj beta&quot;
-ProductName=&quot;Nudj beta&quot;
+MainScheme=&quot;Nudj&quot;
+ProductName=&quot;Nudj&quot;
 
 # set the desired version of Xcode
 export DEVELOPER_DIR=&quot;/Applications/Xcode.app/Contents/Developer&quot;
@@ -77,42 +63,11 @@ xcodebuild -workspace &quot;${Workspace}&quot; \
   -scheme &quot;${MainScheme}&quot; \
   -configuration Release \
   -sdk iphoneos \
-  CONFIGURATION_BUILD_DIR=&quot;${WORKSPACE}/BuildProducts&quot; \
-  clean build
+  -archivePath &quot;${WORKSPACE}/archive&quot; \
+  clean archive
 
 cd &quot;${WORKSPACE}&quot;
-zip -qr &quot;${BUILD_TAG}&quot; BuildProducts
-
-cd BuildProducts
-zip -r &quot;../${ProductName}.dSYM.zip&quot; &quot;${ProductName}.app.dSYM&quot;
-cd &quot;${WORKSPACE}&quot;
-
-/usr/bin/xcrun -sdk iphoneos PackageApplication &quot;${WORKSPACE}/BuildProducts/${ProductName}.app&quot; -o &quot;${WORKSPACE}/${ProductName}.ipa&quot;
-
-# workaround Jenkins git plugin not fetching master at the moment
-git fetch github +master:master
-
-# make release notes
-./make-qa-log.py &gt; changelog.markdown
-
-# upload to Hockey App -- the plugin writes the Jenkins build number into the dSYM so we use puck
-/usr/local/bin/puck \
-  -dsym_path=&quot;${WORKSPACE}/${ProductName}.dSYM.zip&quot; \
-  -build_server_url=&quot;${BUILD_URL}&quot; \
-  -source_path=&quot;${WORKSPACE}&quot; \
-  -notes_path=&quot;${WORKSPACE}/changelog.markdown&quot; \
-  -notes_type=markdown \
-  -submit=auto \
-  -download=true \
-  -mandatory=false \
-  -notify=true \
-  -tags=dev,internal,testers \
-  -release_type=beta \
-  -api_token=ca127f9d4c5648479847e08aa9b2ebfd \
-  -app_id=9bb5535d31f24908a06d72757a8e39e9 \
-  &quot;${WORKSPACE}/${ProductName}.ipa&quot;
-
-rm -f changelog.markdown
+zip -qr &quot;${BUILD_TAG}&quot; archive.xcarchive
 
 git push --all github
 git push --tags github
@@ -121,9 +76,9 @@ git push --tags github
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
-      <artifacts>*.ipa,*.zip</artifacts>
+      <artifacts>*.zip</artifacts>
       <allowEmptyArchive>false</allowEmptyArchive>
-      <onlyIfSuccessful>false</onlyIfSuccessful>
+      <onlyIfSuccessful>true</onlyIfSuccessful>
       <fingerprint>false</fingerprint>
       <defaultExcludes>true</defaultExcludes>
       <caseSensitive>true</caseSensitive>
@@ -133,14 +88,12 @@ git push --tags github
       <pushMerge>false</pushMerge>
       <pushOnlyIfSuccess>true</pushOnlyIfSuccess>
       <forcePush>false</forcePush>
-      <tagsToPush/>
       <branchesToPush>
         <hudson.plugins.git.GitPublisher_-BranchToPush>
           <targetRepoName>github</targetRepoName>
           <branchName>development</branchName>
         </hudson.plugins.git.GitPublisher_-BranchToPush>
       </branchesToPush>
-      <notesToPush/>
     </hudson.plugins.git.GitPublisher>
     <hudson.tasks.Mailer plugin="mailer@1.11">
       <recipients>richardb@sailmaker.co.uk</recipients>
