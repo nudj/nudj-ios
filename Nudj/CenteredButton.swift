@@ -39,7 +39,7 @@ class CenteredButton: UIButton
                 labelHeight = size.height
             }
             
-            return CGSizeMake(max(size.width, imageView.bounds.width), image.size.height + labelHeight)
+            return CGSizeMake(max(size.width, imageView.bounds.width), image.size.height + labelHeight + imageEdgeInsets.bottom + titleEdgeInsets.top)
         }
         
         return size
