@@ -42,52 +42,68 @@
                     <items/>
                 </toolbar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cVg-om-Qyy" userLabel="dropView">
-                    <rect key="frame" x="0.0" y="-7" width="320" height="70"/>
+                    <rect key="frame" x="0.0" y="-7" width="320" height="84"/>
                     <subviews>
-                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OKI-0o-bya">
-                            <rect key="frame" x="8" y="13" width="54" height="49"/>
-                            <state key="normal" image="job_detail.png">
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OKI-0o-bya" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
+                            <rect key="frame" x="8" y="13" width="54" height="63"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
+                            <state key="normal" title="Job Detail" image="job_detail.png">
+                                <color key="titleColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
                                 <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="bAE-pK-e35"/>
                             </connections>
                         </button>
-                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hrs-Ve-WPK">
-                            <rect key="frame" x="70" y="13" width="55" height="49"/>
-                            <state key="normal" image="profile.png">
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hrs-Ve-WPK" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
+                            <rect key="frame" x="70" y="13" width="55" height="63"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
+                            <state key="normal" title="Profile" image="profile.png">
+                                <color key="titleColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
                                 <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="RbB-OZ-IUe"/>
                             </connections>
                         </button>
-                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9xf-wu-y6B">
-                            <rect key="frame" x="133" y="13" width="54" height="49"/>
-                            <state key="normal" image="favouriteWText.png">
+                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9xf-wu-y6B" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
+                            <rect key="frame" x="133" y="13" width="54" height="63"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
+                            <state key="normal" title="Favourite" image="favourite">
+                                <color key="titleColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
-                            <state key="selected" image="favourite2wText.png"/>
+                            <state key="selected" title="Unfavourite" image="favourited">
+                                <color key="titleColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
                             <connections>
                                 <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="ew2-Pr-Gg8"/>
                             </connections>
                         </button>
-                        <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GWO-Fv-2g7">
-                            <rect key="frame" x="195" y="13" width="55" height="49"/>
-                            <state key="normal" image="mute.png">
+                        <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GWO-Fv-2g7" userLabel="Block" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
+                            <rect key="frame" x="195" y="13" width="55" height="63"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
+                            <state key="normal" title="Block" image="mute.png">
+                                <color key="titleColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
-                            <state key="selected" image="mute2.png"/>
                             <connections>
                                 <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="cxk-w1-m5t"/>
                             </connections>
                         </button>
-                        <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ht-ZG-OMw">
-                            <rect key="frame" x="258" y="13" width="54" height="49"/>
-                            <state key="normal" image="archive.png">
+                        <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ht-ZG-OMw" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
+                            <rect key="frame" x="258" y="13" width="54" height="63"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
+                            <state key="normal" title="Archive" image="archive.png">
+                                <color key="titleColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
-                            <state key="selected" image="archive_active.png"/>
+                            <state key="selected" title="Restore" image="archive_active.png"/>
                             <connections>
                                 <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="BVh-QL-r6A"/>
                             </connections>
@@ -204,11 +220,10 @@
         <image name="archive.png" width="53" height="49"/>
         <image name="archive_active.png" width="53" height="49"/>
         <image name="back_btn.png" width="9" height="17"/>
-        <image name="favourite2wText.png" width="53" height="49"/>
-        <image name="favouriteWText.png" width="53" height="49"/>
+        <image name="favourite" width="19" height="17"/>
+        <image name="favourited" width="19" height="17"/>
         <image name="job_detail.png" width="53" height="49"/>
         <image name="mute.png" width="53" height="49"/>
-        <image name="mute2.png" width="53" height="49"/>
         <image name="profile.png" width="53" height="49"/>
     </resources>
 </document>
