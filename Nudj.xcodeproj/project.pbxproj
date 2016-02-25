@@ -201,7 +201,6 @@
 		A99650A51B3DB3FF00D5A8E9 /* archive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A996509D1B3DB3FF00D5A8E9 /* archive@2x.png */; };
 		A99650A61B3DB3FF00D5A8E9 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A996509E1B3DB3FF00D5A8E9 /* arrow@2x.png */; };
 		A99650A91B3DB3FF00D5A8E9 /* job_detail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650A11B3DB3FF00D5A8E9 /* job_detail@2x.png */; };
-		A99650AA1B3DB3FF00D5A8E9 /* mute@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650A21B3DB3FF00D5A8E9 /* mute@2x.png */; };
 		A99650AC1B3DB3FF00D5A8E9 /* profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650A41B3DB3FF00D5A8E9 /* profile@2x.png */; };
 		A9977C8A1B6158960005A23C /* FilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9977C891B6158960005A23C /* FilterModel.swift */; };
 		A9A7C4D61B8364000051B1E5 /* InitiateChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A7C4D51B8364000051B1E5 /* InitiateChatViewController.swift */; };
@@ -518,7 +517,6 @@
 		C86F85731C444DB800C23332 /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C89325B41C08CE410069FCFD /* HockeySDKResources.bundle */; };
 		C86F85741C444DB800C23332 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C8A662081C0B69960088355D /* Localizable.strings */; };
 		C86F85751C444DB800C23332 /* success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3337D1B45532F00F0D17B /* success@2x.png */; };
-		C86F85761C444DB800C23332 /* mute@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650A21B3DB3FF00D5A8E9 /* mute@2x.png */; };
 		C86F85771C444DB800C23332 /* archive_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A94FE6CB1B84C9E600761F32 /* archive_active@2x.png */; };
 		C86F85781C444DB800C23332 /* JSQMessagesLoadEarlierHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9964E7B1B387CC800D5A8E9 /* JSQMessagesLoadEarlierHeaderView.xib */; };
 		C86F85791C444DB800C23332 /* salary_details_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333541B42ACDC00F0D17B /* salary_details_active@2x.png */; };
@@ -1002,7 +1000,6 @@
 		A996509D1B3DB3FF00D5A8E9 /* archive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archive@2x.png"; sourceTree = "<group>"; };
 		A996509E1B3DB3FF00D5A8E9 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
 		A99650A11B3DB3FF00D5A8E9 /* job_detail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "job_detail@2x.png"; sourceTree = "<group>"; };
-		A99650A21B3DB3FF00D5A8E9 /* mute@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mute@2x.png"; sourceTree = "<group>"; };
 		A99650A41B3DB3FF00D5A8E9 /* profile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile@2x.png"; sourceTree = "<group>"; };
 		A9977C891B6158960005A23C /* FilterModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FilterModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9A7C4D51B8364000051B1E5 /* InitiateChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = InitiateChatViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -2201,7 +2198,6 @@
 				A996509D1B3DB3FF00D5A8E9 /* archive@2x.png */,
 				A996509E1B3DB3FF00D5A8E9 /* arrow@2x.png */,
 				A99650A11B3DB3FF00D5A8E9 /* job_detail@2x.png */,
-				A99650A21B3DB3FF00D5A8E9 /* mute@2x.png */,
 				A99650A41B3DB3FF00D5A8E9 /* profile@2x.png */,
 			);
 			name = ChatIcons;
@@ -2767,7 +2763,6 @@
 				C86F85731C444DB800C23332 /* HockeySDKResources.bundle in Resources */,
 				C86F85741C444DB800C23332 /* Localizable.strings in Resources */,
 				C86F85751C444DB800C23332 /* success@2x.png in Resources */,
-				C86F85761C444DB800C23332 /* mute@2x.png in Resources */,
 				C86F85771C444DB800C23332 /* archive_active@2x.png in Resources */,
 				C86F85781C444DB800C23332 /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
 				C86F85791C444DB800C23332 /* salary_details_active@2x.png in Resources */,
@@ -2837,7 +2832,6 @@
 				C89325B61C08CE420069FCFD /* HockeySDKResources.bundle in Resources */,
 				C8A662061C0B69960088355D /* Localizable.strings in Resources */,
 				A9F3337E1B45532F00F0D17B /* success@2x.png in Resources */,
-				A99650AA1B3DB3FF00D5A8E9 /* mute@2x.png in Resources */,
 				A94FE6CC1B84C9E600761F32 /* archive_active@2x.png in Resources */,
 				A9964FFA1B387CC800D5A8E9 /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
 				A9F333611B42ACDC00F0D17B /* salary_details_active@2x.png in Resources */,
