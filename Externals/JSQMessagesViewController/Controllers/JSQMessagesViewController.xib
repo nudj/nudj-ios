@@ -73,11 +73,11 @@
                                         <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="RbB-OZ-IUe"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9xf-wu-y6B" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
-                                    <rect key="frame" x="128" y="10" width="64" height="41"/>
+                                <button opaque="NO" tag="3" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9xf-wu-y6B" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
+                                    <rect key="frame" x="128" y="9" width="64" height="43"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                     <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
-                                    <inset key="imageEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="12"/>
                                     <state key="normal" title="Favourite" image="favourite">
                                         <color key="titleColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
