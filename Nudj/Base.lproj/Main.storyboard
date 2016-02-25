@@ -962,9 +962,11 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Sxb-df-lSE" userLabel="Menu Stack">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ifo-Y0-3Ze">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ifo-Y0-3Ze" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="125" height="50"/>
-                                                <state key="normal" title="Favourite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <state key="normal" title="Favourite" image="favourite"/>
+                                                <state key="selected" title="Unfavourite" image="favourited"/>
                                                 <connections>
                                                     <action selector="toggleFavoriteJob:" destination="vRR-wd-aTg" eventType="touchUpInside" id="IvT-La-wwH"/>
                                                 </connections>
@@ -5789,6 +5791,8 @@ Cg
         <image name="email" width="26" height="26"/>
         <image name="email-active" width="26" height="26"/>
         <image name="employer_active.png" width="24" height="24"/>
+        <image name="favourite" width="19" height="17"/>
+        <image name="favourited" width="19" height="17"/>
         <image name="image-placeholder" width="62" height="62"/>
         <image name="job" width="24" height="24"/>
         <image name="job-active" width="24" height="24"/>
@@ -5810,15 +5814,15 @@ Cg
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="BCe-Pt-bFX"/>
-        <segue reference="m0n-l7-DaR"/>
+        <segue reference="Dg8-rw-2fQ"/>
+        <segue reference="TFM-Ac-ZI1"/>
+        <segue reference="0lF-Gf-mwR"/>
+        <segue reference="w3z-vb-UAH"/>
         <segue reference="nx1-yP-hyN"/>
         <segue reference="oHM-Sk-no8"/>
-        <segue reference="gvE-qy-aNj"/>
         <segue reference="zyP-mc-EMC"/>
+        <segue reference="gvE-qy-aNj"/>
         <segue reference="H51-O9-Snf"/>
-        <segue reference="TFM-Ac-ZI1"/>
-        <segue reference="rdc-9S-2PT"/>
-        <segue reference="w3z-vb-UAH"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
 </document>

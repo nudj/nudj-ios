@@ -555,6 +555,8 @@
 		C89325B01C08CE1C0069FCFD /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C89325AF1C08CE1C0069FCFD /* libc++.tbd */; };
 		C89325B51C08CE410069FCFD /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89325B21C08CE410069FCFD /* HockeySDK.framework */; };
 		C89325B61C08CE420069FCFD /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C89325B41C08CE410069FCFD /* HockeySDKResources.bundle */; };
+		C8A3DB151C7F194100D7EA5E /* CenteredButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A3DB141C7F194100D7EA5E /* CenteredButton.swift */; };
+		C8A3DB161C7F194100D7EA5E /* CenteredButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A3DB141C7F194100D7EA5E /* CenteredButton.swift */; };
 		C8A661EC1C0B66110088355D /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661EE1C0B66110088355D /* NotificationCell.xib */; };
 		C8A661EF1C0B66160088355D /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661F11C0B66160088355D /* ChatViewController.xib */; };
 		C8A661F21C0B66270088355D /* ChatListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661F41C0B66270088355D /* ChatListTableViewCell.xib */; };
@@ -1070,6 +1072,7 @@
 		C89325B41C08CE410069FCFD /* HockeySDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = HockeySDKResources.bundle; sourceTree = "<group>"; };
 		C898A54C1C6BEFA8001DAB38 /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "../../../Library/Developer/Xcode/DerivedData/Nudj-fdtsqpojpmyqxbgcozpglcgdnlcx/Build/Products/Debug-iphonesimulator/Pods.framework"; sourceTree = "<group>"; };
 		C89E254D1C6A99D900E55740 /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
+		C8A3DB141C7F194100D7EA5E /* CenteredButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenteredButton.swift; sourceTree = "<group>"; };
 		C8A661DE1C0B60020088355D /* Nudj.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Nudj.release.xcconfig; sourceTree = "<group>"; };
 		C8A661DF1C0B60290088355D /* Nudj.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Nudj.debug.xcconfig; sourceTree = "<group>"; };
 		C8A661E01C0B61400088355D /* Warnings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Warnings.xcconfig; sourceTree = "<group>"; };
@@ -2476,6 +2479,7 @@
 				A947CC981B7119B500C9518E /* NoContentPlaceHolder.swift */,
 				A929E4941B863D3F00AC2A5F /* MixPanelHandler.swift */,
 				C81F16A81C735BF0000927F8 /* NSData+Hex.swift */,
+				C8A3DB141C7F194100D7EA5E /* CenteredButton.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -3157,6 +3161,7 @@
 				C86F84C51C444DB800C23332 /* DDXMLNode.m in Sources */,
 				C86F85921C444F2100C23332 /* DevelopmentServer.swift in Sources */,
 				C86F84C61C444DB800C23332 /* FilterModel.swift in Sources */,
+				C8A3DB161C7F194100D7EA5E /* CenteredButton.swift in Sources */,
 				C86F84C71C444DB800C23332 /* JSQPhotoMediaItem.m in Sources */,
 				C86F84C81C444DB800C23332 /* XMPPvCardCoreDataStorage.m in Sources */,
 				C86F84C91C444DB800C23332 /* XMPPPlainAuthentication.m in Sources */,
@@ -3396,6 +3401,7 @@
 				A996507E1B387CC800D5A8E9 /* DDXMLNode.m in Sources */,
 				A9977C8A1B6158960005A23C /* FilterModel.swift in Sources */,
 				A9964FED1B387CC800D5A8E9 /* JSQPhotoMediaItem.m in Sources */,
+				C8A3DB151C7F194100D7EA5E /* CenteredButton.swift in Sources */,
 				A99650381B387CC800D5A8E9 /* XMPPvCardCoreDataStorage.m in Sources */,
 				A99650051B387CC800D5A8E9 /* XMPPPlainAuthentication.m in Sources */,
 				A9964FE91B387CC800D5A8E9 /* JSQMediaItem.m in Sources */,
