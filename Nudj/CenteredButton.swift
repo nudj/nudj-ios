@@ -7,6 +7,7 @@
 
 import UIKit
 
+@IBDesignable
 class CenteredButton: UIButton
 {
     override func titleRectForContentRect(contentRect: CGRect) -> CGRect
