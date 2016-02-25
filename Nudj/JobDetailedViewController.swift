@@ -392,8 +392,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     }
     
     private func conformFavoriteButton() {
-        let newTitle = isFavorite ? Localizations.Jobs.Button.Unfavorite : Localizations.Jobs.Button.Favorite
-        favoriteButton.setTitle(newTitle, forState: .Normal)
+        favoriteButton.selected = isFavorite
     }
     
     func dismissPopUp() {

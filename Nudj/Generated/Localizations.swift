@@ -125,16 +125,6 @@ public struct Localizations {
             }
         }
 
-        public struct Button {
-
-                    /// Base translation: Unfavorite
-            public static var Unfavorite : String = "jobs.button.unfavorite".localized
-
-            /// Base translation: Favorite
-            public static var Favorite : String = "jobs.button.favorite".localized
-
-        }
-
         public struct Delete {
 
         
@@ -159,15 +149,6 @@ public struct Localizations {
             }
         }
 
-        public struct Location {
-
-                    /// Base translation: Location: %@
-            public static func Format(value1 : String) -> String {
-                return String(format: NSLocalizedString("jobs.location.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
-            }
-
-        }
-
         public struct Nudj {
 
         
@@ -187,6 +168,15 @@ public struct Localizations {
                 public static var Body : String = "jobs.nudj.need-profile.body".localized
 
             }
+        }
+
+        public struct Location {
+
+                    /// Base translation: Location: %@
+            public static func Format(value1 : String) -> String {
+                return String(format: NSLocalizedString("jobs.location.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
+            }
+
         }
 
         public struct Block {
