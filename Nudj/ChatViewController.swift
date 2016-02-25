@@ -362,10 +362,10 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
         case 3:
             //Favourite Chat
             let endpoint = API.Endpoints.Jobs.likeByID(jobID) 
-            if(selectedButton.selected){
+            if(selectedButton.selected) {
                 MixPanelHandler.sendData("Chat_UnfavouriteJob")
                 completeRequest(endpoint, method: .DELETE)
-            }else{
+            } else {
                 MixPanelHandler.sendData("Chat_FavouriteJob")
                 completeRequest(endpoint, method: .PUT)
             }
