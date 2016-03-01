@@ -91,7 +91,6 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         
         chatTable.hidden = false;
         chatTable.reloadData()
-        chatCounter = 0
         navigationController?.tabBarItem.badgeValue = nil
         
         noContentImage.hidden = !filteredData.isEmpty
