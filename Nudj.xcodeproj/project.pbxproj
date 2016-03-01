@@ -319,7 +319,6 @@
 		C86F849C1C444DB800C23332 /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FC81B387CC800D5A8E9 /* DDXMLDocument.m */; };
 		C86F849D1C444DB800C23332 /* UIDevice+JSQMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E331B387CC700D5A8E9 /* UIDevice+JSQMessages.m */; };
 		C86F849E1C444DB800C23332 /* XMPPRoom.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9964EF71B387CC800D5A8E9 /* XMPPRoom.xcdatamodeld */; };
-		C86F849F1C444DB800C23332 /* NotificationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB866BD81B53EC9700E203CA /* NotificationButton.swift */; };
 		C86F84A01C444DB800C23332 /* XMPPStream.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EB91B387CC800D5A8E9 /* XMPPStream.m */; };
 		C86F84A11C444DB800C23332 /* XMPPMessage+XEP_0172.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F741B387CC800D5A8E9 /* XMPPMessage+XEP_0172.m */; };
 		C86F84A21C444DB800C23332 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB3382F1A9F5A44000CAD88 /* UserModel.swift */; };
@@ -571,7 +570,6 @@
 		EB6F22BA1AAF706A007FF1B8 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6F22B91AAF706A007FF1B8 /* AsyncImage.swift */; };
 		EB6F22BE1AB045C0007FF1B8 /* RBResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6F22BD1AB045C0007FF1B8 /* RBResizer.swift */; };
 		EB72C56A1B578D8100CCBD2E /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB72C5691B578D8100CCBD2E /* Notification.swift */; };
-		EB866BD91B53EC9700E203CA /* NotificationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB866BD81B53EC9700E203CA /* NotificationButton.swift */; };
 		EB866BE01B53EFAE00E203CA /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB866BDE1B53EFAE00E203CA /* NotificationCell.swift */; };
 		EB9F71DF1B0E0060000C2D9F /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9F71DE1B0E0060000C2D9F /* MainTabBar.swift */; };
 		EBA8C3461B32DFF100522167 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBA8C3441B32DFF100522167 /* Main.storyboard */; };
@@ -1091,7 +1089,6 @@
 		EB6F22B91AAF706A007FF1B8 /* AsyncImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AsyncImage.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB6F22BD1AB045C0007FF1B8 /* RBResizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RBResizer.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB72C5691B578D8100CCBD2E /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Notification.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		EB866BD81B53EC9700E203CA /* NotificationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NotificationButton.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB866BDE1B53EFAE00E203CA /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NotificationCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB9F71DE1B0E0060000C2D9F /* MainTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MainTabBar.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EBA8C3451B32DFF100522167 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -1214,7 +1211,6 @@
 		A95798231B469636006E826E /* Notification */ = {
 			isa = PBXGroup;
 			children = (
-				EB866BD81B53EC9700E203CA /* NotificationButton.swift */,
 				A95798241B46965A006E826E /* NotificationViewController.swift */,
 				EB866BDE1B53EFAE00E203CA /* NotificationCell.swift */,
 				C8A661EE1C0B66110088355D /* NotificationCell.xib */,
@@ -3094,7 +3090,6 @@
 				C86F849C1C444DB800C23332 /* DDXMLDocument.m in Sources */,
 				C86F849D1C444DB800C23332 /* UIDevice+JSQMessages.m in Sources */,
 				C86F849E1C444DB800C23332 /* XMPPRoom.xcdatamodeld in Sources */,
-				C86F849F1C444DB800C23332 /* NotificationButton.swift in Sources */,
 				C86F84A01C444DB800C23332 /* XMPPStream.m in Sources */,
 				C86F84A11C444DB800C23332 /* XMPPMessage+XEP_0172.m in Sources */,
 				C86F84A21C444DB800C23332 /* UserModel.swift in Sources */,
@@ -3334,7 +3329,6 @@
 				A996507C1B387CC800D5A8E9 /* DDXMLDocument.m in Sources */,
 				A9964FDA1B387CC800D5A8E9 /* UIDevice+JSQMessages.m in Sources */,
 				A99650281B387CC800D5A8E9 /* XMPPRoom.xcdatamodeld in Sources */,
-				EB866BD91B53EC9700E203CA /* NotificationButton.swift in Sources */,
 				A99650121B387CC800D5A8E9 /* XMPPStream.m in Sources */,
 				A996505B1B387CC800D5A8E9 /* XMPPMessage+XEP_0172.m in Sources */,
 				EBB338301A9F5A44000CAD88 /* UserModel.swift in Sources */,
