@@ -39,8 +39,7 @@ class DataTable: UITableView, UITableViewDataSource, UITableViewDelegate {
         refreshControl = UIRefreshControl()
         
         // TODO: move refreshControl into IB
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        refreshControl.tintColor = appDelegate.appColor
+        refreshControl.tintColor = ColorPalette.nudjGreen
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
         addSubview(refreshControl)
         autoresizingMask = [.FlexibleBottomMargin, .FlexibleTopMargin, .FlexibleHeight]

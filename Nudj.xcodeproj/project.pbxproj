@@ -556,6 +556,8 @@
 		C8A661FB1C0B66440088355D /* SettingsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661FD1C0B66440088355D /* SettingsCell.xib */; };
 		C8A662061C0B69960088355D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C8A662081C0B69960088355D /* Localizable.strings */; };
 		C8A6A02C1C44536C004DB1C0 /* NudgeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0926E71A8DE4CB00E1D958 /* NudgeTests.swift */; };
+		C8A6E82D1C8609850064CD79 /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A6E82C1C8609850064CD79 /* ColorPalette.swift */; };
+		C8A6E82E1C8609850064CD79 /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A6E82C1C8609850064CD79 /* ColorPalette.swift */; };
 		EB000F7C1AB2E0B800E4D385 /* DataTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB000F7B1AB2E0B800E4D385 /* DataTableCell.swift */; };
 		EB000F7F1AB71D6600E4D385 /* ContactsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB000F7E1AB71D6600E4D385 /* ContactsController.swift */; };
 		EB04F6231AAD89AF002F2677 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB04F6221AAD89AF002F2677 /* Contacts.swift */; };
@@ -1071,6 +1073,7 @@
 		C8A662071C0B69960088355D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C8A6A0321C44536C004DB1C0 /* Nudj beta tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Nudj beta tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8A6A0331C44536C004DB1C0 /* Beta-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Beta-Info.plist"; sourceTree = "<group>"; };
+		C8A6E82C1C8609850064CD79 /* ColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
 		EB000F7B1AB2E0B800E4D385 /* DataTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DataTableCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB000F7E1AB71D6600E4D385 /* ContactsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ContactsController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB04F6221AAD89AF002F2677 /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Contacts.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -2401,6 +2404,7 @@
 				EB04F6211AAD8993002F2677 /* API */,
 				EBB338311A9F5A4A000CAD88 /* Models */,
 				EB0926CF1A8DE4CB00E1D958 /* AppDelegate.swift */,
+				C8A6E82C1C8609850064CD79 /* ColorPalette.swift */,
 				EBB338451AA0EA46000CAD88 /* BaseController.swift */,
 				EBB337F91A9F5557000CAD88 /* DataModel */,
 				C84E00F61C191F160065F220 /* Generated */,
@@ -3107,6 +3111,7 @@
 				C86F84AE1C444DB800C23332 /* ChatStructModel.swift in Sources */,
 				C86F84AF1C444DB800C23332 /* JSQMessagesToolbarButtonFactory.m in Sources */,
 				C86F84B01C444DB800C23332 /* XMPPAutoPing.m in Sources */,
+				C8A6E82E1C8609850064CD79 /* ColorPalette.swift in Sources */,
 				C86F84B11C444DB800C23332 /* XMPPModule.m in Sources */,
 				C86F84B21C444DB800C23332 /* DispatchQueueLogFormatter.m in Sources */,
 				C86F84B31C444DB800C23332 /* JSQMessagesCollectionView.m in Sources */,
@@ -3346,6 +3351,7 @@
 				A9EC313C1B72357A00356B1F /* ChatStructModel.swift in Sources */,
 				A9964FE41B387CC800D5A8E9 /* JSQMessagesToolbarButtonFactory.m in Sources */,
 				A99650601B387CC800D5A8E9 /* XMPPAutoPing.m in Sources */,
+				C8A6E82D1C8609850064CD79 /* ColorPalette.swift in Sources */,
 				A996500F1B387CC800D5A8E9 /* XMPPModule.m in Sources */,
 				A99650791B387CC800D5A8E9 /* DispatchQueueLogFormatter.m in Sources */,
 				A9964FF01B387CC800D5A8E9 /* JSQMessagesCollectionView.m in Sources */,

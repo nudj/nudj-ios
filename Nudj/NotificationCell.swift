@@ -17,14 +17,14 @@ protocol NotificationCellDelegate {
 
 class NotificationCell: UITableViewCell {
 
-    var delegate :NotificationCellDelegate?
-    var type:NotificationType?
+    var delegate: NotificationCellDelegate?
+    var type: NotificationType?
     var messageText = ""
-    var meta:JSON?
-    var isRead:Bool?
-    var notificationData:Notification?
-    var notificationID:String?
-    var sender:UIButton?
+    var meta: JSON?
+    var isRead: Bool?
+    var notificationData: Notification?
+    var notificationID: String?
+    var sender: UIButton?
 
     @IBOutlet weak var profileImage: AsyncImage!
     @IBOutlet weak var dateLabel: UILabel!
@@ -36,10 +36,8 @@ class NotificationCell: UITableViewCell {
     @IBOutlet weak var smsButton: UIButton!
     @IBOutlet weak var callButton: UIButton!
 
-    func setup(data:Notification) {
-        
+    func setup(data: Notification) {
         self.notificationData = data
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
         profileImage.setCustomImage(UserModel.getDefaultUserImage())
         profileImage.downloadImage(data.senderImage, completion:nil)
@@ -97,7 +95,7 @@ class NotificationCell: UITableViewCell {
         case .MatchingContact:
             self.callButton.hidden = true
             self.smsButton.setTitle(Localizations.Notification.Button.Nudj, forState: .Normal)
-            self.smsButton.backgroundColor = appDelegate.appColor
+            self.smsButton.backgroundColor = ColorPalette.nudjGreen
             self.refLabel.hidden = false
             self.refAmount.hidden = false
             break;

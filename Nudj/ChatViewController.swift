@@ -24,9 +24,10 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
     var myImage :JSQMessagesAvatarImage?
     
     var otherUserBase64Image: String!
-    var sendOnce:Bool = false;
-    let appGlobalDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    var sendOnce:Bool = false
     
+    // TODO: eliminate this singleton access
+    let appGlobalDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -39,8 +40,8 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
 
         let bubbleFactory = JSQMessagesBubbleImageFactory()
         
-        self.outgoingBubbleImageData = bubbleFactory.outgoingMessagesBubbleImageWithColor(appGlobalDelegate.appColor);
-        self.incomingBubbleImageData = bubbleFactory.incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor());
+        self.outgoingBubbleImageData = bubbleFactory.outgoingMessagesBubbleImageWithColor(ColorPalette.nudjGreen)
+        self.incomingBubbleImageData = bubbleFactory.incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor())
 
         self.showLoadEarlierMessagesHeader = false
         self.templateImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(UserModel.getDefaultUserImage(), diameter: avatarDiameter)

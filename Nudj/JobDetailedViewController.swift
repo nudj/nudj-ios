@@ -93,15 +93,11 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     }
     
     func requestData(){
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let appColor = appDelegate.appColor
-        let appBlueColor = appDelegate.appBlueColor
-        
         let path = API.Endpoints.Jobs.byID(jobID!)
         let params = API.Endpoints.Jobs.paramsForDetail()
         API.sharedInstance.request(.GET, path: path, params: params, closure: { 
             json in
-            self.populateView(json["data"], appColor: appColor, appBlueColor: appBlueColor)
+            self.populateView(json["data"])
             }) { 
                 error in
                 loggingPrint("Error -> \(error)")
@@ -109,7 +105,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         }
     }
     
-    func populateView(content: JSON, appColor: UIColor, appBlueColor: UIColor) {
+    func populateView(content: JSON) {
         // TODO: API strings
         isFavorite = content["liked"].boolValue
         conformFavoriteButton()
@@ -153,7 +149,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
             label.attributedText = attributedString
         }
         
-        let colorAttributes = [NSForegroundColorAttributeName: appColor]
+        let colorAttributes = [NSForegroundColorAttributeName: ColorPalette.nudjGreen]
         
         let employer = content["company"].stringValue
         formatLabel(employerText, text: Localizations.Jobs.Employer.Format(employer), subText: employer, attributes: colorAttributes)
@@ -168,7 +164,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         let boldFont = UIFont(name: "HelveticaNeue-Bold", size: 22)!
         // TODO: use a proper number formatter
         let formattedBonus = "£" + content["bonus"].stringValue
-        let boldBlueAttribs: [String: AnyObject] = [NSFontAttributeName: boldFont, NSForegroundColorAttributeName: appBlueColor]
+        let boldBlueAttribs: [String: AnyObject] = [NSFontAttributeName: boldFont, NSForegroundColorAttributeName: ColorPalette.nudjBlue]
         bonusText.text = Localizations.Jobs.Bonus.Format(formattedBonus)
         formatLabel(bonusText, text: Localizations.Jobs.Bonus.Format(formattedBonus), subText: formattedBonus, attributes: boldBlueAttribs)
         

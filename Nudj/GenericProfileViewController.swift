@@ -323,12 +323,7 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
     func makeThingsWhite() {
         statusButton.changeColor(UIColor.whiteColor())
         nameLabel.textColor = UIColor.whiteColor()
-        if (backgroundImage.image != nil) {
-            backgroundImage.backgroundColor = nil
-        }else{
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
-            backgroundImage.backgroundColor = appDelegate.appColor
-        }
+        backgroundImage.backgroundColor = backgroundImage.image == nil ? ColorPalette.nudjGreen : nil
     }
 
     func getFavouriteIcon(status:Bool) -> UIImage? {

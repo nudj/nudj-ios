@@ -41,9 +41,7 @@ class AskReferralViewController: UIViewController, SegueHandlerType, UISearchBar
             self.title = Localizations.Referral.Title
         } else {
             if let job = self.jobTitle {
-                // TODO: eliminate singleton access
-                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                let appColor = appDelegate.appColor
+                let appColor = ColorPalette.nudjGreen
                 let plainString = Localizations.Referral.Ask.Format(job)
                 let messageAtrributedString = NSMutableAttributedString(string: plainString)
                 let range = (plainString as NSString).rangeOfString(job)
