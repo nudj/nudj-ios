@@ -558,6 +558,8 @@
 		C8A6A02C1C44536C004DB1C0 /* NudgeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0926E71A8DE4CB00E1D958 /* NudgeTests.swift */; };
 		C8A6E82D1C8609850064CD79 /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A6E82C1C8609850064CD79 /* ColorPalette.swift */; };
 		C8A6E82E1C8609850064CD79 /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A6E82C1C8609850064CD79 /* ColorPalette.swift */; };
+		C8A6E8301C861DC30064CD79 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A6E82F1C861DC30064CD79 /* CoreDataStack.swift */; };
+		C8A6E8311C861DC30064CD79 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A6E82F1C861DC30064CD79 /* CoreDataStack.swift */; };
 		EB000F7C1AB2E0B800E4D385 /* DataTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB000F7B1AB2E0B800E4D385 /* DataTableCell.swift */; };
 		EB000F7F1AB71D6600E4D385 /* ContactsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB000F7E1AB71D6600E4D385 /* ContactsController.swift */; };
 		EB04F6231AAD89AF002F2677 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB04F6221AAD89AF002F2677 /* Contacts.swift */; };
@@ -1074,6 +1076,7 @@
 		C8A6A0321C44536C004DB1C0 /* Nudj beta tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Nudj beta tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8A6A0331C44536C004DB1C0 /* Beta-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Beta-Info.plist"; sourceTree = "<group>"; };
 		C8A6E82C1C8609850064CD79 /* ColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
+		C8A6E82F1C861DC30064CD79 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		EB000F7B1AB2E0B800E4D385 /* DataTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DataTableCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB000F7E1AB71D6600E4D385 /* ContactsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ContactsController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB04F6221AAD89AF002F2677 /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Contacts.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -2404,6 +2407,7 @@
 				EB04F6211AAD8993002F2677 /* API */,
 				EBB338311A9F5A4A000CAD88 /* Models */,
 				EB0926CF1A8DE4CB00E1D958 /* AppDelegate.swift */,
+				C8A6E82F1C861DC30064CD79 /* CoreDataStack.swift */,
 				C8A6E82C1C8609850064CD79 /* ColorPalette.swift */,
 				EBB338451AA0EA46000CAD88 /* BaseController.swift */,
 				EBB337F91A9F5557000CAD88 /* DataModel */,
@@ -3140,6 +3144,7 @@
 				C8A3DB161C7F194100D7EA5E /* CenteredButton.swift in Sources */,
 				C86F84C71C444DB800C23332 /* JSQPhotoMediaItem.m in Sources */,
 				C86F84C81C444DB800C23332 /* XMPPvCardCoreDataStorage.m in Sources */,
+				C8A6E8311C861DC30064CD79 /* CoreDataStack.swift in Sources */,
 				C86F84C91C444DB800C23332 /* XMPPPlainAuthentication.m in Sources */,
 				C86F84CA1C444DB800C23332 /* JSQMediaItem.m in Sources */,
 				C86F84CB1C444DB800C23332 /* DDXMLElement.m in Sources */,
@@ -3380,6 +3385,7 @@
 				C8A3DB151C7F194100D7EA5E /* CenteredButton.swift in Sources */,
 				A99650381B387CC800D5A8E9 /* XMPPvCardCoreDataStorage.m in Sources */,
 				A99650051B387CC800D5A8E9 /* XMPPPlainAuthentication.m in Sources */,
+				C8A6E8301C861DC30064CD79 /* CoreDataStack.swift in Sources */,
 				A9964FE91B387CC800D5A8E9 /* JSQMediaItem.m in Sources */,
 				A996507D1B387CC800D5A8E9 /* DDXMLElement.m in Sources */,
 				EBB3383C1A9F73D4000CAD88 /* API.swift in Sources */,

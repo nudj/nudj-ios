@@ -23,6 +23,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
     var window: UIWindow?
     var user = UserModel()
     var api: API?
+    let coreDataStack = CoreDataStack()
     var chatInst: ChatModels?
     var deviceToken: String?
     private var deviceTokenSynced: Bool = false
@@ -146,7 +147,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
 
     func fetchUserData() {
         // TODO: refactor to a single-responsibility object
-        guard let moc = self.managedObjectContext else {
+        guard let moc = coreDataStack.managedObjectContext else {
             // TODO: better error handling
             loggingPrint("No managedObjectContext")
             return
@@ -192,7 +193,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
     func pushUserData() {
         // TODO: API strings
         // TODO just make self.user a managed object. This duplication is nuts
-        let moc = self.managedObjectContext!
+        let moc = coreDataStack.managedObjectContext!
         do {
             let fetchRequest = NSFetchRequest(entityName:"User")
             let results = try moc.executeFetchRequest(fetchRequest)
@@ -223,7 +224,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
     }
 
     func deleteUserData() {
-        let moc = self.managedObjectContext!
+        let moc = coreDataStack.managedObjectContext!
         let fetchRequest = NSFetchRequest(entityName:"User")
 
         do {
@@ -333,80 +334,13 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
         // Saves changes in the application's managed object context before the application terminates.
         
         MixPanelHandler.stopEventTracking("timeSpentInApplication")
-        self.saveContext()
+        coreDataStack.saveContext()
         // TODO: review the below, why commented out
 //        self.chatInst!.xmppRoom?.leaveRoom()
 //        self.chatInst!.xmppRoom?.deactivate()
 //        self.chatInst!.xmppRoom?.removeDelegate(self)
     }
 
-    // MARK: - Core Data stack
-    // TODO: refactor out
-
-    lazy var applicationDocumentsDirectory: NSURL = {
-        // The directory the application uses to store the Core Data store file.
-        let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-        return urls[urls.count-1] 
-        }()
-
-    lazy var managedObjectModel: NSManagedObjectModel = {
-        // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
-        let modelURL = NSBundle.mainBundle().URLForResource("NudgeData", withExtension: "momd")!
-        return NSManagedObjectModel(contentsOfURL: modelURL)!
-        }()
-
-    lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
-        var coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-        let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("NudgeData.sqlite")
-        do {
-            let options = [
-                NSMigratePersistentStoresAutomaticallyOption: true, 
-                NSInferMappingModelAutomaticallyOption: true]
-            try coordinator?.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: options)
-        } 
-        catch let error as NSError {
-            loggingPrint("Error opening the Core Data store \(error)")
-            do {
-                let fileManager = NSFileManager()
-                try fileManager.removeItemAtURL(url)
-                try coordinator?.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
-            }
-            catch let error as NSError {
-                loggingPrint("Error creating a new Core Data store \(error)")
-                return nil
-            }
-        }
-        
-        return coordinator
-        }()
-
-    lazy var managedObjectContext: NSManagedObjectContext? = {
-        // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.) 
-        // This property is optional since there are legitimate error conditions that could cause the creation of the context to fail.
-        // TODO: JRB: No, the above line is rubbish. We must be able to recover from any failure.
-        let coordinator = self.persistentStoreCoordinator
-        if coordinator == nil {
-            return nil
-        }
-        var managedObjectContext = NSManagedObjectContext.init(concurrencyType: .MainQueueConcurrencyType)
-        managedObjectContext.persistentStoreCoordinator = coordinator
-        return managedObjectContext
-        }()
-
-    // MARK: - Core Data Saving support
-
-    func saveContext () {
-        if let moc = self.managedObjectContext {
-            do {
-                try moc.save()
-            }
-            catch let error as NSError {
-                // TODO: error handling
-                loggingPrint("Save error: \(error)")
-            }
-        }
-    }
-    
     // MARK: JABBER Delegate Methods
     // TODO: refactor JABBER Delegate into spearate object
     
