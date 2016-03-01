@@ -30,7 +30,6 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
     
     var shouldShowBadge = false
     var appWasInBackground = false
-    var pushNotificationsPayload: NSDictionary?
     
     //Mix panel
     let MIXPANEL_TOKEN = "29fc1fec9fa6f75efd303f12c8be4acb"
@@ -76,18 +75,15 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
             // TODO: decide what to do here
         }
 
-        if let remoteNotification = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary {
-            pushNotificationsPayload = remoteNotification
-        }
-        
-        if pushNotificationsPayload != nil && pushNotificationsPayload!.count > 0 {
-            if let notification: AnyObject = pushNotificationsPayload!.valueForKey("aps") {
-                let notificationCount :Int = notification["badge"] as! Int
-                UIApplication.sharedApplication().applicationIconBadgeNumber = notificationCount
-                // TODO: why 3?
-                NSNotificationCenter.defaultCenter().postNotificationName("updateBadgeValue", object: nil, userInfo: ["value":"\(notificationCount)","index":"3"])
-                pushNotificationsPayload = nil
-            }
+        if let remoteNotification = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? [String: AnyObject] {
+            if remoteNotification.count > 0 {
+                if let notification = remoteNotification["aps"], 
+                    let notificationCount = notification["badge"] as? Int {
+                    application.applicationIconBadgeNumber = notificationCount
+                    // TODO: why 3? why wrap the ints as strings?
+                    NSNotificationCenter.defaultCenter().postNotificationName("updateBadgeValue", object: nil, userInfo: ["value":"\(notificationCount)","index":"3"])
+                }
+            }            
         }
         
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
