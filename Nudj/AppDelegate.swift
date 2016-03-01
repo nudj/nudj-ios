@@ -75,7 +75,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
             // TODO: decide what to do here
         }
 
-        if let remoteNotification = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? [String: AnyObject] {
+        if let remoteNotification = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? [NSObject: AnyObject] {
             if remoteNotification.count > 0 {
                 if let notification = remoteNotification["aps"], 
                     let notificationCount = notification["badge"] as? Int {
@@ -118,15 +118,12 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
         application.registerForRemoteNotifications()
     }
 
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+    func application(application: UIApplication, didReceiveRemoteNotification remoteNotification: [NSObject: AnyObject]) {
         // Update badge
-        let userinfo = userInfo as NSDictionary
-        loggingPrint(userinfo)
-        
-        if let notification: AnyObject = userinfo.valueForKey("aps") {
-            let notificationCount :Int =  notification.valueForKey("badge") as! Int
-            UIApplication.sharedApplication().applicationIconBadgeNumber = notificationCount
-            // TODO: why 3?
+        if let notification = remoteNotification["aps"], 
+            let notificationCount = notification["badge"] as? Int {
+            application.applicationIconBadgeNumber = notificationCount
+            // TODO: why 3? why wrap the ints as strings?
             NSNotificationCenter.defaultCenter().postNotificationName("updateBadgeValue", object: nil, userInfo: ["value":"\(notificationCount)","index":"3"])
         }
     }

@@ -58,7 +58,7 @@ class BaseController: UIViewController {
         API.sharedInstance.request(method, path: path, params: params, closure: wrappedClosure, errorHandler: errorHandler)
     }
 
-    func updateBadge(notification:NSNotification){
+    func updateBadge(notification: NSNotification) {
         let userInfo:Dictionary<String,String!> = notification.userInfo as! Dictionary<String,String!>
         
         let index = Int(userInfo["index"]!)
