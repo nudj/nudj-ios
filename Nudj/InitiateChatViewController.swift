@@ -48,12 +48,8 @@ class InitiateChatViewController: UIViewController, CreatePopupViewDelegate {
         }
     }
     
-    @IBAction func cancelAction(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(false, completion:nil)
-    }
-    
     func dismissPopUp() {
         popup!.removeFromSuperview();
-        self.dismissViewControllerAnimated(false, completion:nil)
+        self.navigationController?.popViewControllerAnimated(true)
     }
 }

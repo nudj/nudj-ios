@@ -44,11 +44,11 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cVg-om-Qyy" userLabel="dropView">
                     <rect key="frame" x="0.0" y="64" width="320" height="60"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="Xhu-sD-59K">
-                            <rect key="frame" x="0.0" y="8" width="320" height="44"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="Xhu-sD-59K">
+                            <rect key="frame" x="0.0" y="8" width="320" height="28"/>
                             <subviews>
-                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OKI-0o-bya" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="64" height="44"/>
+                                <button opaque="NO" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OKI-0o-bya" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="64" height="28"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                     <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
@@ -60,8 +60,8 @@
                                         <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="bAE-pK-e35"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hrs-Ve-WPK" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
-                                    <rect key="frame" x="64" y="0.0" width="64" height="44"/>
+                                <button opaque="NO" tag="2" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hrs-Ve-WPK" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
+                                    <rect key="frame" x="64" y="4" width="64" height="24"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                     <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
@@ -73,8 +73,8 @@
                                         <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="RbB-OZ-IUe"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9xf-wu-y6B" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
-                                    <rect key="frame" x="128" y="1" width="64" height="43"/>
+                                <button opaque="NO" tag="3" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9xf-wu-y6B" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
+                                    <rect key="frame" x="128" y="7" width="64" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                     <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="12"/>
@@ -89,8 +89,8 @@
                                         <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="ew2-Pr-Gg8"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GWO-Fv-2g7" userLabel="Block" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
-                                    <rect key="frame" x="192" y="0.0" width="64" height="44"/>
+                                <button opaque="NO" tag="4" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GWO-Fv-2g7" userLabel="Block" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
+                                    <rect key="frame" x="192" y="7" width="64" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                     <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="13"/>
@@ -102,8 +102,8 @@
                                         <action selector="dropDownAction:" destination="-1" eventType="touchUpInside" id="cxk-w1-m5t"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ht-ZG-OMw" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
-                                    <rect key="frame" x="256" y="0.0" width="64" height="44"/>
+                                <button opaque="NO" tag="5" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ht-ZG-OMw" customClass="CenteredButton" customModule="Nudj" customModuleProvider="target">
+                                    <rect key="frame" x="256" y="4" width="64" height="24"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                     <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>

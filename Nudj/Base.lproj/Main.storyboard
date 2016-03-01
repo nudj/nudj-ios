@@ -1223,10 +1223,10 @@
             </objects>
             <point key="canvasLocation" x="-2197.5" y="778.5"/>
         </scene>
-        <!--Contact-->
+        <!--Initiate chat-->
         <scene sceneID="3cQ-2r-CFH">
             <objects>
-                <viewController id="ITy-4F-VXs" customClass="InitiateChatViewController" customModule="Nudj" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InitiateChat" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ITy-4F-VXs" userLabel="Initiate chat" customClass="InitiateChatViewController" customModule="Nudj" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lHl-Rw-Xlz"/>
                         <viewControllerLayoutGuide type="bottom" id="hJW-JW-AVg"/>
@@ -1236,7 +1236,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CNy-V1-e7l">
-                                <rect key="frame" x="16" y="0.0" width="343" height="667"/>
+                                <rect key="frame" x="16" y="64" width="343" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1244,19 +1244,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="CNy-V1-e7l" firstAttribute="bottom" secondItem="hJW-JW-AVg" secondAttribute="top" id="1eo-mt-iCh"/>
                             <constraint firstItem="CNy-V1-e7l" firstAttribute="leading" secondItem="Scu-6e-New" secondAttribute="leadingMargin" id="98k-9E-DSd"/>
-                            <constraint firstItem="CNy-V1-e7l" firstAttribute="top" secondItem="Scu-6e-New" secondAttribute="topMargin" id="IjT-aG-QNe"/>
                             <constraint firstAttribute="trailingMargin" secondItem="CNy-V1-e7l" secondAttribute="trailing" id="M84-VS-sRT"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="CNy-V1-e7l" secondAttribute="bottom" id="otb-5e-13o"/>
+                            <constraint firstItem="CNy-V1-e7l" firstAttribute="top" secondItem="lHl-Rw-Xlz" secondAttribute="bottom" id="QVq-Mh-Xe7"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Contact" id="ocM-Nt-g5X">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="6J5-z3-pxF">
-                            <connections>
-                                <action selector="cancelAction:" destination="ITy-4F-VXs" id="Ywi-iZ-lSi"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Send" id="6Yn-Wv-hyY">
                             <connections>
                                 <action selector="sendAction:" destination="ITy-4F-VXs" id="O5K-PN-vvx"/>
@@ -1269,7 +1264,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T8H-g6-tGF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2846.5" y="1597.5"/>
+            <point key="canvasLocation" x="-2845.5" y="778.5"/>
         </scene>
         <!--Saved Jobs-->
         <scene sceneID="Wf9-nn-Ahp">
@@ -2222,7 +2217,7 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smp-rK-aNl">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smp-rK-aNl">
                                 <rect key="frame" x="4" y="140" width="406" height="596"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tdu-Qe-djm" userLabel="Skills View">
@@ -2526,7 +2521,7 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                                     <constraint firstAttribute="trailing" secondItem="eZj-Gt-ANh" secondAttribute="trailing" id="yvn-CK-YKK"/>
                                 </constraints>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MaM-1e-UFb" userLabel="Top View">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MaM-1e-UFb" userLabel="Top View">
                                 <rect key="frame" x="4" y="20" width="406" height="120"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MqB-GV-Fan" userLabel="BackgroundImage" customClass="AsyncImage" customModule="Nudj" customModuleProvider="target">
@@ -2774,7 +2769,7 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
                     <connections>
-                        <segue destination="yiN-Pn-yvP" kind="presentation" identifier="goToChat" id="euy-es-pfu"/>
+                        <segue destination="ITy-4F-VXs" kind="show" identifier="goToChat" id="RS7-Wg-3Ia"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1bJ-oy-08m" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2840,24 +2835,6 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ocx-wm-1nQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3509.5" y="-941.5"/>
-        </scene>
-        <!--Superfluous contacts nav-->
-        <scene sceneID="6A9-wS-yDC">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yiN-Pn-yvP" userLabel="Superfluous contacts nav" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="AXJ-ya-HwK">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="ITy-4F-VXs" kind="relationship" relationship="rootViewController" id="7Ek-VD-9tw"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Dh4-LD-Yra" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2846.5" y="778.5"/>
         </scene>
         <!--T&Cs-->
         <scene sceneID="DQv-F1-mXC">
@@ -5816,16 +5793,16 @@ Cg
         <image name="success.png" width="88" height="88"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BCe-Pt-bFX"/>
-        <segue reference="Dg8-rw-2fQ"/>
-        <segue reference="TFM-Ac-ZI1"/>
-        <segue reference="0lF-Gf-mwR"/>
-        <segue reference="w3z-vb-UAH"/>
-        <segue reference="nx1-yP-hyN"/>
         <segue reference="oHM-Sk-no8"/>
-        <segue reference="zyP-mc-EMC"/>
+        <segue reference="vho-Q5-Kri"/>
+        <segue reference="rdc-9S-2PT"/>
+        <segue reference="TFM-Ac-ZI1"/>
+        <segue reference="E5T-Ai-Mhe"/>
         <segue reference="gvE-qy-aNj"/>
         <segue reference="H51-O9-Snf"/>
+        <segue reference="90M-dj-0pn"/>
+        <segue reference="m0n-l7-DaR"/>
+        <segue reference="zyP-mc-EMC"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
 </document>
