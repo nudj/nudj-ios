@@ -76,14 +76,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
         }
 
         if let remoteNotification = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? [NSObject: AnyObject] {
-            if remoteNotification.count > 0 {
-                if let notification = remoteNotification["aps"], 
-                    let notificationCount = notification["badge"] as? Int {
-                    application.applicationIconBadgeNumber = notificationCount
-                    // TODO: why 3? why wrap the ints as strings?
-                    NSNotificationCenter.defaultCenter().postNotificationName("updateBadgeValue", object: nil, userInfo: ["value":"\(notificationCount)","index":"3"])
-                }
-            }            
+            self.application(application, didReceiveRemoteNotification: remoteNotification)
         }
         
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -119,7 +112,6 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
     }
 
     func application(application: UIApplication, didReceiveRemoteNotification remoteNotification: [NSObject: AnyObject]) {
-        // Update badge
         if let notification = remoteNotification["aps"], 
             let notificationCount = notification["badge"] as? Int {
             application.applicationIconBadgeNumber = notificationCount
