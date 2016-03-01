@@ -114,9 +114,9 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
     func application(application: UIApplication, didReceiveRemoteNotification remoteNotification: [NSObject: AnyObject]) {
         if let notification = remoteNotification["aps"], 
             let notificationCount = notification["badge"] as? Int {
-            application.applicationIconBadgeNumber = notificationCount
-            // TODO: why 3? why wrap the ints as strings?
-            NSNotificationCenter.defaultCenter().postNotificationName("updateBadgeValue", object: nil, userInfo: ["value":"\(notificationCount)","index":"3"])
+                application.applicationIconBadgeNumber = notificationCount
+                let badgeString = "\(notificationCount)"
+                MainTabBar.postBadgeNotification(badgeString, tabIndex: .Notifications)
         }
     }
 
@@ -434,8 +434,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
             }
             
             // Update badge
-            // TODO: magic numbers
-            NSNotificationCenter.defaultCenter().postNotificationName("updateBadgeValue", object: nil, userInfo: ["value":"1","index":"1"])
+            MainTabBar.postBadgeNotification("1", tabIndex: .Chats)
             
             // reload chat table
             NSNotificationCenter.defaultCenter().postNotificationName(ChatListViewController.Notifications.Refetch.rawValue, object: nil, userInfo:nil)

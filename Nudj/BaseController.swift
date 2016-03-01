@@ -5,20 +5,12 @@
 //  Copyright (c) 2015 Nudge I.T. Limited. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import SwiftyJSON
 
 private struct UnknownError : ErrorType {}
 
 class BaseController: UIViewController {
-    // TODO: review this
-    var chatCounter = 0;
-    var notificationCounter = 0;
-    
-    override func viewDidLoad() {
-         NSNotificationCenter.defaultCenter().addObserver(self, selector:"updateBadge:", name: "updateBadgeValue", object: nil);
-    }
     
     func showSimpleAlert(text: String) {
         // TODO: pass in an optional title
@@ -56,25 +48,5 @@ class BaseController: UIViewController {
         
         // TODO: remove this singleton nastiness
         API.sharedInstance.request(method, path: path, params: params, closure: wrappedClosure, errorHandler: errorHandler)
-    }
-
-    func updateBadge(notification: NSNotification) {
-        let userInfo:Dictionary<String,String!> = notification.userInfo as! Dictionary<String,String!>
-        
-        let index = Int(userInfo["index"]!)
-        let badgeNumber = Int(userInfo["value"]!) ?? 0
-        if(index == 1){
-            self.chatCounter += badgeNumber
-        }else{
-            self.notificationCounter += badgeNumber
-        }
-        
-        let tabArray = self.tabBarController?.tabBar.items as NSArray?
-        if let tabArray = tabArray {
-            if(tabArray.count > 0){
-                let tabItem = tabArray.objectAtIndex(index!) as! UITabBarItem
-                tabItem.badgeValue =  index == 1 ? "\(self.chatCounter)" : "\(self.notificationCounter)"
-            }
-        }
     }
 }
