@@ -100,7 +100,6 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
         
         self.tabBarController?.tabBar.hidden = false
         self.navigationController?.navigationBarHidden = false;
-        appGlobalDelegate.chatInst!.delegate = appGlobalDelegate;
 
         self.filterOpened = false
     }

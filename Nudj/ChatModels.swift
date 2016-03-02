@@ -9,14 +9,14 @@ import Foundation
 import CoreData
 import SwiftyJSON
 
-protocol ChatModelsDelegate {
+protocol ChatModelsDelegate: class {
     func recievedMessage(content:JSQMessage, conference:String)
     func recievedUser(content:NSDictionary)
     func isRecievingMessageIndication(user:String)
 }
 
 class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
-    var delegate : ChatModelsDelegate?
+    weak var delegate : ChatModelsDelegate?
     var chatInformation = [NSManagedObject]();
     
     var jabberUsername:String?;
@@ -234,8 +234,6 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
             defaults.setObject(data, forKey:roomID)
             defaults.synchronize()
             
-            appGlobalDelegate.shouldShowBadge = true;
-            
             //terminate room and reconnect
             chatroom.prepareChatModel(jidString, roomId: roomID, with:self.xmppStream!, delegate:self)
             self.listOfActiveChatRooms[roomID] = chatroom
@@ -296,7 +294,6 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
                 }
             } else {
                 time = NSDate();
-                appGlobalDelegate.shouldShowBadge = true;
             }
             
             if let senderStr = message.from().resource {

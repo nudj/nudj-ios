@@ -13,7 +13,7 @@ import SwiftyJSON
 import HockeySDK
 
 @UIApplicationMain
-class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
+class AppDelegate: NSObject, UIApplicationDelegate {
     
     enum ViewControllerIdentifier: String {
         case Main = "mainNavigation"
@@ -23,13 +23,13 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
     var window: UIWindow?
     var user = UserModel()
     var api: API?
-    let coreDataStack = CoreDataStack()
+    private let coreDataStack = CoreDataStack()
+    private var chatDelegate: AppChatDelegate! // TODO: try to make this a let
     var chatInst: ChatModels?
     var deviceToken: String?
     private var deviceTokenSynced: Bool = false
     var contacts = Contacts()
     
-    var shouldShowBadge = false
     var appWasInBackground = false
     
     //Mix panel
@@ -71,7 +71,8 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
         
         //Setup XMPP and connect
         chatInst = ChatModels()
-        chatInst!.delegate = self;
+        self.chatDelegate = AppChatDelegate(chatInst: chatInst!)
+        chatInst!.delegate = self.chatDelegate
         if(!chatInst!.connect(inViewController: self.window!.rootViewController!)) {
             // TODO: decide what to do here
         }
@@ -309,6 +310,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+        coreDataStack.saveContext()
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
@@ -339,47 +341,5 @@ class AppDelegate: NSObject, UIApplicationDelegate, ChatModelsDelegate {
 //        self.chatInst!.xmppRoom?.leaveRoom()
 //        self.chatInst!.xmppRoom?.deactivate()
 //        self.chatInst!.xmppRoom?.removeDelegate(self)
-    }
-
-    // MARK: JABBER Delegate Methods
-    // TODO: refactor JABBER Delegate into spearate object
-    
-    func recievedUser(content: NSDictionary) {
-        // TODO: determine what to do
-    }
-    
-    func recievedMessage(content: JSQMessage, conference: String) {
-        if(shouldShowBadge) {
-            //Store message as it's new
-            let roomID = self.chatInst!.getRoomIdFromJidString(conference)
-            
-            loggingPrint("Saving new message \(roomID)")
-            let defaults = NSUserDefaults.standardUserDefaults()
-            if let outData = defaults.dataForKey(roomID) {
-                if let dict = NSKeyedUnarchiver.unarchiveObjectWithData(outData) as? [String:Bool] {
-                    var diction = dict
-                    
-                    //overwrite previous data if it exsists
-                    diction["isRead"] = false
-                    let data = NSKeyedArchiver.archivedDataWithRootObject(diction)
-                    defaults.setObject(data, forKey:roomID)
-                    defaults.synchronize()
-                }
-            }
-            
-            // Update badge
-            MainTabBar.postBadgeNotification("1", tabIndex: .Chats)
-            
-            // reload chat table
-            NSNotificationCenter.defaultCenter().postNotificationName(ChatListViewController.Notifications.Refetch.rawValue, object: nil, userInfo:nil)
-        }
-    }
-
-    func handleEjabberedRecievedMessages(){
-        // TODO: determine what to do
-    }
-    
-    func isRecievingMessageIndication(user: String) {
-        // TODO: determine what to do
     }
 }

@@ -533,6 +533,8 @@
 		C86F85921C444F2100C23332 /* DevelopmentServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F85911C444F2100C23332 /* DevelopmentServer.swift */; };
 		C88204A61C4C258C00744554 /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88204A51C4C258C00744554 /* SegueHandlerType.swift */; };
 		C88204A71C4C258C00744554 /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88204A51C4C258C00744554 /* SegueHandlerType.swift */; };
+		C885EE421C86874600FF4448 /* AppChatDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C885EE411C86874600FF4448 /* AppChatDelegate.swift */; };
+		C885EE431C86874600FF4448 /* AppChatDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C885EE411C86874600FF4448 /* AppChatDelegate.swift */; };
 		C886F9D41C6BF438000D5AEA /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C886F9D31C6BF438000D5AEA /* Pods.framework */; };
 		C886F9D51C6BF467000D5AEA /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C898A54C1C6BEFA8001DAB38 /* Pods.framework */; };
 		C88BA0811C527416007A81EB /* Dialling Codes.plist in Resources */ = {isa = PBXBuildFile; fileRef = C88BA0801C527416007A81EB /* Dialling Codes.plist */; };
@@ -1049,6 +1051,7 @@
 		C86F858F1C444DB900C23332 /* Beta-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Beta-Info.plist"; sourceTree = "<group>"; };
 		C86F85911C444F2100C23332 /* DevelopmentServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevelopmentServer.swift; sourceTree = "<group>"; };
 		C88204A51C4C258C00744554 /* SegueHandlerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueHandlerType.swift; sourceTree = "<group>"; };
+		C885EE411C86874600FF4448 /* AppChatDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppChatDelegate.swift; sourceTree = "<group>"; };
 		C886F9D11C6BF372000D5AEA /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
 		C886F9D31C6BF438000D5AEA /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
 		C88BA0801C527416007A81EB /* Dialling Codes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Dialling Codes.plist"; sourceTree = "<group>"; };
@@ -2407,6 +2410,7 @@
 				EB04F6211AAD8993002F2677 /* API */,
 				EBB338311A9F5A4A000CAD88 /* Models */,
 				EB0926CF1A8DE4CB00E1D958 /* AppDelegate.swift */,
+				C885EE411C86874600FF4448 /* AppChatDelegate.swift */,
 				C8A6E82F1C861DC30064CD79 /* CoreDataStack.swift */,
 				C8A6E82C1C8609850064CD79 /* ColorPalette.swift */,
 				EBB338451AA0EA46000CAD88 /* BaseController.swift */,
@@ -3108,6 +3112,7 @@
 				C86F84A71C444DB800C23332 /* JSQMessagesComposerTextView.m in Sources */,
 				C86F84A81C444DB800C23332 /* XMPPRoomOccupantMemoryStorageObject.m in Sources */,
 				C86F84A91C444DB800C23332 /* NSString+JSQMessages.m in Sources */,
+				C885EE431C86874600FF4448 /* AppChatDelegate.swift in Sources */,
 				C86F84AA1C444DB800C23332 /* JSQMessagesCollectionViewCellIncoming.m in Sources */,
 				C86F84AB1C444DB800C23332 /* NSXMLElement+XMPP.m in Sources */,
 				C86F84AC1C444DB800C23332 /* XMPPMessageArchivingCoreDataStorage.m in Sources */,
@@ -3349,6 +3354,7 @@
 				A9964FF61B387CC800D5A8E9 /* JSQMessagesComposerTextView.m in Sources */,
 				A99650321B387CC800D5A8E9 /* XMPPRoomOccupantMemoryStorageObject.m in Sources */,
 				A9964FD81B387CC800D5A8E9 /* NSString+JSQMessages.m in Sources */,
+				C885EE421C86874600FF4448 /* AppChatDelegate.swift in Sources */,
 				A9964FF21B387CC800D5A8E9 /* JSQMessagesCollectionViewCellIncoming.m in Sources */,
 				A996500A1B387CC800D5A8E9 /* NSXMLElement+XMPP.m in Sources */,
 				A99650581B387CC800D5A8E9 /* XMPPMessageArchivingCoreDataStorage.m in Sources */,
