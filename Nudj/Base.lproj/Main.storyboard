@@ -20,52 +20,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ySg-qO-GEI" customClass="DataTable" customModule="Nudj" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="375" height="536"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="separatorColor" red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NudgeCell" id="5Uk-mE-W9i">
-                                        <rect key="frame" x="0.0" y="22" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Uk-mE-W9i" id="fr4-lK-f6U">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dlh-MZ-RAk">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <subviews>
+                                    <searchBar contentMode="redraw" placeholder="Search Jobs" translatesAutoresizingMaskIntoConstraints="NO" id="4VT-eY-0LM">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                        <textInputTraits key="textInputTraits"/>
                                         <connections>
-                                            <segue destination="vRR-wd-aTg" kind="show" identifier="goToJob" id="TFM-Ac-ZI1"/>
+                                            <outlet property="delegate" destination="9pv-A4-QxB" id="Yxk-2f-lAK"/>
                                         </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="tsR-hK-woN" id="bci-RK-hHK"/>
-                                    <outlet property="delegate" destination="tsR-hK-woN" id="QG4-Il-ywf"/>
-                                </connections>
-                            </tableView>
-                            <searchBar contentMode="redraw" misplaced="YES" placeholder="Search Jobs" translatesAutoresizingMaskIntoConstraints="NO" id="4VT-eY-0LM">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="9pv-A4-QxB" id="Yxk-2f-lAK"/>
-                                </connections>
-                            </searchBar>
+                                    </searchBar>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ySg-qO-GEI" customClass="DataTable" customModule="Nudj" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44" width="375" height="510"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="separatorColor" red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <prototypes>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NudgeCell" id="5Uk-mE-W9i" customClass="JobCellTableViewCell" customModule="Nudj" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="22" width="375" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Uk-mE-W9i" id="fr4-lK-f6U">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <segue destination="vRR-wd-aTg" kind="show" identifier="goToJob" id="TFM-Ac-ZI1"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="tsR-hK-woN" id="bci-RK-hHK"/>
+                                            <outlet property="delegate" destination="tsR-hK-woN" id="QG4-Il-ywf"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="4VT-eY-0LM" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-16" id="Cnp-nS-lRV"/>
-                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="ySg-qO-GEI" secondAttribute="bottom" id="OuD-6Y-txB"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="4VT-eY-0LM" secondAttribute="trailing" constant="-16" id="Tat-Ev-4gh"/>
-                            <constraint firstItem="4VT-eY-0LM" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="aki-5M-8iB"/>
-                            <constraint firstItem="ySg-qO-GEI" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-16" id="icp-Jk-Khk"/>
-                            <constraint firstItem="ySg-qO-GEI" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="44" id="kb9-tq-U8Z"/>
-                            <constraint firstItem="ySg-qO-GEI" firstAttribute="top" secondItem="4VT-eY-0LM" secondAttribute="bottom" id="rP1-V0-gOG"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ySg-qO-GEI" secondAttribute="trailing" constant="-16" id="rqN-or-Hlb"/>
+                            <constraint firstItem="dlh-MZ-RAk" firstAttribute="trailing" secondItem="tsR-hK-woN" secondAttribute="trailing" id="8pA-E6-xYh"/>
+                            <constraint firstItem="dlh-MZ-RAk" firstAttribute="bottom" secondItem="4ug-Mw-9AY" secondAttribute="top" id="K4a-Hv-jrl"/>
+                            <constraint firstItem="dlh-MZ-RAk" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="Ksa-jc-xlw"/>
+                            <constraint firstItem="dlh-MZ-RAk" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="ucf-JZ-aHK"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="kb9-tq-U8Z"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Who's Hiring" id="Xds-DF-SN0">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="xys-7o-jBt">
