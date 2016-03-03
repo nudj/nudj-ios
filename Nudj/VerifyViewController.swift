@@ -54,7 +54,7 @@ class VerifyViewController: BaseController, SegueHandlerType {
         self.showCodeField(animated: true)
     }
 
-    @IBAction func CodeChanged(sender: UITextField) {
+    @IBAction func codeChanged(sender: UITextField) {
         if let field = sender as? VerifyCodeTextField {
             field.layout()
         }
