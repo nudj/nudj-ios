@@ -1946,8 +1946,8 @@ We will invoice the client and collect payment on your behalf. Get in touch at <
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="k4u-0C-TBO" userLabel="Main stack">
-                                <rect key="frame" x="0.0" y="20" width="414" height="672"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="k4u-0C-TBO" userLabel="Main stack">
+                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GaB-TN-v0Q" userLabel="Header">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="95"/>
