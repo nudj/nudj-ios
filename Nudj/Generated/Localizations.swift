@@ -687,7 +687,7 @@ public struct Localizations {
     
         public struct Code {
 
-                    /// Base translation: There was an error in code verification, please try again.
+                    /// Base translation: That verification code is incorrect. Please try again.
             public static var Error : String = "verification.code.error".localized
 
             /// Base translation: That verification code is invalid.

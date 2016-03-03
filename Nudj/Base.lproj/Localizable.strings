@@ -154,7 +154,7 @@
 // Verification
 "verification.code.alert.format" = "Your verification code is %@.";
 "verification.code.invalid" = "That verification code is invalid.";
-"verification.code.error" = "There was an error in code verification, please try again.";
+"verification.code.error" = "That verification code is incorrect. Please try again.";
 
 // Version
 "version.full.format" = "%@ v%@ (build %@) %@";
