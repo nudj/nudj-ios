@@ -245,24 +245,24 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     
     func xmppStream(sender:XMPPStream, didReceiveIQ iq:XMPPIQ) -> Bool{
 
-        let roster = iq.elementForName("query", xmlns:"jabber:iq:roster")
-        let vCard = iq.elementForName("vCard", xmlns:"vcard-temp")
-        let conference = iq.elementForName("query", xmlns:"http://jabber.org/protocol/disco#items");
-        
-        // GET JABBER ROSTER item
-        if (roster != nil){
-            // let itemElements = roster.elementsForName("item") as NSArray;
-            //  loggingPrint("Recieved a roster for -> \(itemElements)");
-        }else if(vCard != nil){
-            //  let fullNameQuery = queryElement1.elementForName("from");
-            //  loggingPrint("Recieved a vcard for -> \(vCard)");
-        }else if(conference != nil){
-            // let itemElements = conference.elementsForName("item") as NSArray;
-            //  loggingPrint("Recieved conferences -> \(itemElements)");
-        }else{
-            // TODO: better error handling
-            //   loggingPrint("Recieved something i dont know -> \(iq)");
-        }
+//        let roster = iq.elementForName("query", xmlns:"jabber:iq:roster")
+//        let vCard = iq.elementForName("vCard", xmlns:"vcard-temp")
+//        let conference = iq.elementForName("query", xmlns:"http://jabber.org/protocol/disco#items");
+//        
+//        // GET JABBER ROSTER item
+//        if (roster != nil){
+//            // let itemElements = roster.elementsForName("item") as NSArray;
+//            //  loggingPrint("Recieved a roster for -> \(itemElements)");
+//        }else if(vCard != nil){
+//            //  let fullNameQuery = queryElement1.elementForName("from");
+//            //  loggingPrint("Recieved a vcard for -> \(vCard)");
+//        }else if(conference != nil){
+//            // let itemElements = conference.elementsForName("item") as NSArray;
+//            //  loggingPrint("Recieved conferences -> \(itemElements)");
+//        }else{
+//            // TODO: better error handling
+//            //   loggingPrint("Recieved something i dont know -> \(iq)");
+//        }
         return true
     }
 
