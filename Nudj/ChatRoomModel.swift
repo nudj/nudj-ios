@@ -29,7 +29,7 @@ class ChatRoomModel: NSObject{
             
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             
-            self.xmppRoom!.joinRoomUsingNickname("\(appDelegate.user.id!)@\(appDelegate.chatInst!.chatServer)", history:nil)
+            self.xmppRoom!.joinRoomUsingNickname("\(appDelegate.user.id!)@\(ChatModels.chatServer)", history:nil)
         }
     }
     

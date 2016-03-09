@@ -34,7 +34,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
 
         let id = appGlobalDelegate.user.id!
         // TODO: API strings
-        self.senderId = String(id) + "@chat.nudj.co";
+        self.senderId = "\(id)@\(ChatModels.chatServer)"
         
         self.senderDisplayName = appGlobalDelegate.user.name ?? ""
 
@@ -291,7 +291,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
     }
     
     func recievedMessage(content: JSQMessage, conference: String){
-        let conferenceID = self.chatID + appGlobalDelegate.chatInst!.ConferenceUrl
+        let conferenceID = "\(chatID)@\(ChatModels.conferenceDomain)"
         
         if(conferenceID == conference){
             self.scrollToBottomAnimated(true);
@@ -436,7 +436,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
         // TODO: review and dispose of commented-out code
         // Send The typing indicator
         /*if(!sendOnce){
-            var conferenceID = self.chatID+""+appGlobalDelegate.chatInst!.ConferenceUrl
+            let conferenceID = "\(chatID)@\(ChatModels.conferenceDomain)"
             
             var message = DDXMLElement.elementWithName("message") as! DDXMLElement
             message.addAttributeWithName("type",stringValue:"chat")

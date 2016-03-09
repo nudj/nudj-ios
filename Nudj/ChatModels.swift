@@ -31,8 +31,8 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     }()
     
     // TODO: API strings
-    let chatServer = "chat.nudj.co";
-    let ConferenceUrl = "@conference.chat.nudj.co";
+    static let chatServer = "chat.nudj.co"
+    static let conferenceDomain = "conference.chat.nudj.co"
     // TODO: remove singleton
     let appGlobalDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
@@ -164,7 +164,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         }
         
         jabberPassword = user.token;
-        jabberUsername = "\(id)@\(chatServer)";
+        jabberUsername = "\(id)@\(ChatModels.chatServer)"
         if ( jabberUsername!.isEmpty || jabberPassword!.isEmpty) {
             return false;
         }
@@ -375,7 +375,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
                 for (_, obj) in json["data"]{
                     let data = obj["id"].string
                     let chatroom = ChatRoomModel()
-                    chatroom.prepareChatModel("\(data!)\(self.ConferenceUrl)", roomId: data!, with:self.xmppStream!, delegate:self)
+                    chatroom.prepareChatModel("\(data!)@\(ChatModels.conferenceDomain)", roomId: data!, with:self.xmppStream!, delegate:self)
                     self.listOfActiveChatRooms[data!] = chatroom
                 }
             }

@@ -840,8 +840,7 @@ static NSMutableArray *proxyCandidates;
 		while ((proxyCandidateJID == nil) && (++proxyCandidateIndex < [proxyCandidates count]))
 		{
 			NSString *proxyCandidate = [proxyCandidates objectAtIndex:proxyCandidateIndex];
-			//proxyCandidateJID = [XMPPJID jidWithString:proxyCandidate];
-            proxyCandidateJID = [XMPPJID jidWithString:@"chat.nudj.co"];
+			proxyCandidateJID = [XMPPJID jidWithString:proxyCandidate];
 
 			if (proxyCandidateJID == nil)
 			{
