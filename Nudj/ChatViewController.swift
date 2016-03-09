@@ -33,8 +33,9 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
         super.viewDidLoad();
 
         let id = appGlobalDelegate.user.id!
-        // TODO: API strings
-        self.senderId = "\(id)@\(ChatModels.chatServer)"
+        let api = API()
+        let hostname = api.server.chatHostname
+        self.senderId = "\(id)@\(hostname)"
         
         self.senderDisplayName = appGlobalDelegate.user.name ?? ""
 
@@ -291,7 +292,9 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
     }
     
     func recievedMessage(content: JSQMessage, conference: String){
-        let conferenceID = "\(chatID)@\(ChatModels.conferenceDomain)"
+        let api = API()
+        let conferenceDomain = api.server.charConferenceDomain
+        let conferenceID = "\(chatID)@\(conferenceDomain)"
         
         if(conferenceID == conference){
             self.scrollToBottomAnimated(true);

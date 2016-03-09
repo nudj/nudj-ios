@@ -30,12 +30,6 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         return dateFormatter
     }()
     
-    // TODO: API strings
-    static let chatServer = "chat.nudj.co"
-    static let conferenceDomain = "conference.chat.nudj.co"
-    // TODO: remove singleton
-    let appGlobalDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    
     // XMPP ATTRIBUTES
     var xmppStream : XMPPStream?;
     var xmppReconnect :XMPPReconnect?;
@@ -151,20 +145,20 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         xmppStream!.sendElement(presence);
     }
     
-    func connect(inViewController viewController: UIViewController) -> Bool {
+    func connect(user: UserModel, inViewController viewController: UIViewController) -> Bool {
         if (!xmppStream!.isDisconnected()) {
-            self.goOnline();
+            self.goOnline()
             return true;
         }
-        
-        let user = appGlobalDelegate.user
         
         guard let id = user.id else {
             return false
         }
         
-        jabberPassword = user.token;
-        jabberUsername = "\(id)@\(ChatModels.chatServer)"
+        jabberPassword = user.token
+        let api = API()
+        let hostname = api.server.chatHostname
+        jabberUsername = "\(id)@\(hostname)"
         if ( jabberUsername!.isEmpty || jabberPassword!.isEmpty) {
             return false;
         }
@@ -365,7 +359,9 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
     func requestRooms(){
         let path = API.Endpoints.Chat.all()
         let params = API.Endpoints.Chat.paramsForLimit(100)
-        API.sharedInstance.request(.GET, path: path, params: params, closure:{
+        let api = API.sharedInstance
+        let conferenceDomain = api.server.charConferenceDomain
+        api.request(.GET, path: path, params: params, closure:{
             (json: JSON) in
             if (json["status"].boolValue != true && json["data"] == nil) {
                 // TODO: better error handling
@@ -375,7 +371,7 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
                 for (_, obj) in json["data"]{
                     let data = obj["id"].string
                     let chatroom = ChatRoomModel()
-                    chatroom.prepareChatModel("\(data!)@\(ChatModels.conferenceDomain)", roomId: data!, with:self.xmppStream!, delegate:self)
+                    chatroom.prepareChatModel("\(data!)@\(conferenceDomain)", roomId: data!, with:self.xmppStream!, delegate:self)
                     self.listOfActiveChatRooms[data!] = chatroom
                 }
             }

@@ -24,6 +24,19 @@ extension API {
             }
         }
         
+        var chatHostname: String {
+            switch self {
+            case Production:
+                return "chat.nudj.co"
+            case Development:
+                return "chat-dev.nudj.co"
+            }
+        }
+        
+        var charConferenceDomain: String {
+            return "conference." + chatHostname 
+        }
+        
         var description: String {
             return self.rawValue
         }

@@ -73,7 +73,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         chatInst = ChatModels()
         self.chatDelegate = AppChatDelegate(chatInst: chatInst!)
         chatInst!.delegate = self.chatDelegate
-        if(!chatInst!.connect(inViewController: self.window!.rootViewController!)) {
+        if(!chatInst!.connect(user, inViewController: self.window!.rootViewController!)) {
             // TODO: decide what to do here
         }
 
