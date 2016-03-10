@@ -58,6 +58,9 @@ class ChatModels: NSObject, XMPPStreamDelegate, XMPPRosterDelegate, XMPPRoomDele
         // The XMPPRoster will automatically integrate with XMPPvCardAvatarModule to cache roster photos in the roster.
         
         xmppStream = XMPPStream();
+        let api = API()
+        xmppStream?.hostName = api.server.chatHostname
+        xmppStream?.autoStartTLS = true
         
         xmppReconnect = XMPPReconnect();
         xmppRosterStorage = XMPPRosterCoreDataStorage();
@@ -221,6 +224,7 @@ class ChatModels: NSObject, XMPPStreamDelegate, XMPPRosterDelegate, XMPPRoomDele
     }
     
     func xmppStreamDidDisconnect(sender: XMPPStream!, withError error: NSError?) {
+        // TODO: better error handling
         loggingPrint("Chat stream disconnnected")
         if let error = error {
             loggingPrint(error)
