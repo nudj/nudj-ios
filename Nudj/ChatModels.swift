@@ -15,7 +15,7 @@ protocol ChatModelsDelegate: class {
     func isRecievingMessageIndication(user:String)
 }
 
-class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
+class ChatModels: NSObject, XMPPStreamDelegate, XMPPRosterDelegate, XMPPRoomDelegate {
     weak var delegate : ChatModelsDelegate?
     var chatInformation = [NSManagedObject]();
     
@@ -193,23 +193,38 @@ class ChatModels: NSObject, XMPPRosterDelegate, XMPPRoomDelegate {
         }
         catch let error as NSError {
             // TODO: better error handling
-            loggingPrint("Error authenticating: \(error)");
+            loggingPrint("Error authenticating chat: \(error)");
         }
     }
     
     func xmppStreamDidAuthenticate(sender :XMPPStream) {
-        self.goOnline();
-        loggingPrint("CLIENT HAS CONNECTED TO JABBER");
-        
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () -> Void in
-            self.requestRooms();
-        })
+        self.goOnline()
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) { 
+            self.requestRooms()
+        }
     }
-    
     
     func xmppStream(sender:XMPPStream, didNotAuthenticate error:DDXMLElement){
         // TODO: better error handling
-        loggingPrint("Could not authenticate Error \(error)");
+        loggingPrint("Chat could not authenticate: \(error)");
+    }
+    
+    func xmppStream(sender: XMPPStream!, willSecureWithSettings settings: NSMutableDictionary!) {
+        let api = API()
+        let hostname = api.server.chatHostname
+        let hostnameKey = kCFStreamSSLPeerName as String
+        settings.setValue(hostname, forKey: hostnameKey)
+    }
+    
+    func xmppStreamDidSecure(sender: XMPPStream!) {
+        loggingPrint("Chat stream secured")
+    }
+    
+    func xmppStreamDidDisconnect(sender: XMPPStream!, withError error: NSError?) {
+        loggingPrint("Chat stream disconnnected")
+        if let error = error {
+            loggingPrint(error)
+        }
     }
     
     func xmppStream(sender :XMPPStream, didReceiveMessage message:XMPPMessage) {
