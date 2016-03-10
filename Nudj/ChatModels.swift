@@ -60,7 +60,6 @@ class ChatModels: NSObject, XMPPStreamDelegate, XMPPRosterDelegate, XMPPRoomDele
         xmppStream = XMPPStream();
         let api = API()
         xmppStream?.hostName = api.server.chatHostname
-        xmppStream?.autoStartTLS = true
         
         xmppReconnect = XMPPReconnect();
         xmppRosterStorage = XMPPRosterCoreDataStorage();
