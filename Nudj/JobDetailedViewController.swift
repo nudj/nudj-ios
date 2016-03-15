@@ -158,7 +158,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         formatLabel(locationText, text: Localizations.Jobs.Location.Format(location), subText: location, attributes: colorAttributes)
         
         let salary = content["salary"].stringValue
-        formatLabel(locationText, text: Localizations.Jobs.Salary.Format(salary), subText: salary, attributes: colorAttributes)
+        formatLabel(salaryText, text: Localizations.Jobs.Salary.Format(salary), subText: salary, attributes: colorAttributes)
         
         // Referral Property
         let boldFont = UIFont(name: "HelveticaNeue-Bold", size: 22)!
