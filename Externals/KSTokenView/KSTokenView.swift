@@ -814,31 +814,7 @@ extension KSTokenView: KSTokenFieldDelegate {
    }
    
    func tokenFieldShouldChangeHeight(height: CGFloat) {
-    // TODO: FIXME: HACK to build without  segfault - figure this out
-//      delegate?.tokenView?(self, willChangeFrame: frame)
-//      frame.size.height = height
-//      
-//      UIView.animateWithDuration(
-//         animateDuration,
-//         animations: {
-//            self.frame.size.height = height
-//            
-//            if (KSUtils.constrainsEnabled(self)) {
-//               for index in 0 ... self.constraints.count-1 {
-//                  let constraint: NSLayoutConstraint = self.constraints[index]
-//                  if (constraint.firstItem as! NSObject == self && constraint.firstAttribute == .Height) {
-//                     constraint.constant = height
-//                  }
-//               }
-//            }
-//            
-//            self._repositionSearchResults()
-//         },
-//         completion: {completed in
-//            if (completed) {
-//               self.delegate?.tokenView?(self, didChangeFrame: self.frame)
-//            }
-//      })
+    // implemented in the subclass for now
    }
 }
 

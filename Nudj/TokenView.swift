@@ -32,6 +32,8 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
 
     var setupMode = false
     var placeholderLabel:UILabel?
+    
+    var intrinsicContentHeight: CGFloat = UIViewNoIntrinsicMetric
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -155,6 +157,16 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
         }
 
         return token
+    }
+    
+    override func intrinsicContentSize() -> CGSize {
+        return CGSize(width: UIViewNoIntrinsicMetric, height: intrinsicContentHeight)
+    }
+    
+    override func tokenFieldShouldChangeHeight(height: CGFloat) {
+        super.tokenFieldShouldChangeHeight(height)
+        intrinsicContentHeight = height
+        invalidateIntrinsicContentSize()
     }
 
     // MARK: KSTokenViewDelegate
