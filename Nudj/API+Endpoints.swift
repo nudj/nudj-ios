@@ -145,11 +145,8 @@ extension API {
                 let jobPath = byID(jobID)
                 return jobPath + "/block"
             }
-            
-            static func search(searchTerm: String?) -> String {
-                guard let searchTerm = searchTerm else {
-                    return available
-                }
+            	
+            static func search(searchTerm: String) -> String {
                 return base + "/search/\(searchTerm)"
             }
             

@@ -22,7 +22,7 @@ class MainFeed: BaseController, SegueHandlerType, DataProviderProtocol, UISearch
 
     @IBOutlet weak var searchBar: UISearchBar!
     var blackBackground = UIView()
-    var searchTerm:String?
+    var searchTerm: String?
     var noContentImage = NoContentPlaceHolder()
     
     override func viewDidLoad() {
@@ -58,7 +58,7 @@ class MainFeed: BaseController, SegueHandlerType, DataProviderProtocol, UISearch
         let imageName = (searchTerm == nil) ? "no_jobs" : "no_search_results"
         self.noContentImage.image = UIImage(named: imageName)
         
-        let path = API.Endpoints.Jobs.search(searchTerm)
+        let path = (searchTerm == nil) ? API.Endpoints.Jobs.available : API.Endpoints.Jobs.search(searchTerm!)
         let params = API.Endpoints.Jobs.paramsForList(page, pageSize: size)
         self.apiRequest(.GET, path: path, params: params, closure: listener)
     }
