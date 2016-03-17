@@ -9,7 +9,7 @@ import UIKit
 import CCMPopup
 import SwiftyJSON
 
-class AskReferralViewController: UIViewController, SegueHandlerType, UISearchBarDelegate ,UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, CreatePopupViewDelegate{
+class AskReferralViewController: UIViewController, SegueHandlerType, UISearchBarDelegate, UITableViewDelegate, UITextViewDelegate, CreatePopupViewDelegate{
     
     enum SegueIdentifier: String {
         case ShowPopup = "ShowPopup"
@@ -21,23 +21,15 @@ class AskReferralViewController: UIViewController, SegueHandlerType, UISearchBar
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var activityInd: UIActivityIndicatorView!
 
-    var jobId:Int?
-    var isNudjRequest:Bool?
+    var jobId: Int?
+    var isNudjRequest: Bool?
     
-    // TODO: refactor out the data source of AskReferralViewController and ContactsController
-    var isSearchEnabled: Bool = false
-    var filtering = FilterModel()
-    var indexes = [String]()
-    var data = [String:[ContactModel]]()
-    
-    var selected = Set<ContactModel>()
-    var popup :CreatePopupView?
+    let dataSource = ContactsDataSource()
+    var popup: CreatePopupView?
 
-    var messagePlaceholder:String?
-    var jobTitle:String?
+    var messagePlaceholder: String?
+    var jobTitle: String?
     
-    let cellIdentifier = "ContactsCell"
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -58,7 +50,8 @@ class AskReferralViewController: UIViewController, SegueHandlerType, UISearchBar
         }
 
         messagePlaceholder = messageText.text
-        askTable.registerNib(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
+        dataSource.registerNib(askTable)
+        askTable.dataSource = dataSource
         askTable.tableFooterView = UIView(frame: CGRectZero)
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () -> Void in
@@ -74,45 +67,7 @@ class AskReferralViewController: UIViewController, SegueHandlerType, UISearchBar
                 return
             }
 
-            // TODO: API strings
-            let dictionary = response["data"].sort{ $0.0 < $1.0 }
-            var content = [ContactModel]()
-            
-            for (id, obj) in dictionary {
-                if self.data[id] == nil {
-                    self.indexes.append(id)
-                    self.data[id] = [ContactModel]()
-                }
-                
-                for (_, subJson) in obj {
-                    var isUser = false
-                    var user: UserModel? = nil
-                    var userContact: JSON?
-                    
-                    if(subJson["contact"].type != .Null) {
-                        user = UserModel()
-                        user!.updateFromJson(subJson)
-                        
-                        userContact = subJson["contact"]
-                        isUser = true
-                        
-                    } else if(subJson["user"].type != .Null) {
-                        user = UserModel()
-                        user!.updateFromJson(subJson["user"])
-                    }
-                    
-                    let userId = isUser ? userContact!["id"].intValue : subJson["id"].intValue
-                    let name = isUser ? subJson["name"].stringValue : subJson["alias"].stringValue
-                    let apple_id = isUser ? userContact!["apple_id"].stringValue : subJson["apple_id"].stringValue
-                    
-                    // TODO: the server is returning old AB-stype IDs here
-                    let contact = ContactModel(id: userId, name: name, apple_id: apple_id, user: user)
-                    self.data[id]!.append(contact)
-                    content.append(contact)
-                }
-            }
-            
-            self.filtering.setContent(content)
+            self.dataSource.loadData(data: response["data"])
             self.askTable.hidden = false
             self.askTable.reloadData()
         }
@@ -146,95 +101,36 @@ class AskReferralViewController: UIViewController, SegueHandlerType, UISearchBar
     //MARK: Search bar Delegates
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        self.isSearchEnabled = false
+        dataSource.isSearchEnabled = false
         if searchBar.text?.isEmpty ?? true {
             searchBar.resignFirstResponder()
             searchBar.setShowsCancelButton(false, animated: true)
        } else {
-            self.filtering.stopFiltering()
+            dataSource.stopFiltering()
             searchBar.text = ""
-            self.askTable.reloadData()
         }
+        askTable.reloadData()
     }
 
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        self.isSearchEnabled = true
+        dataSource.isSearchEnabled = true
+        askTable.reloadData()
     }
 
     func searchBar(searchBar :UISearchBar, textDidChange searchText:String) {
         searchBar.setShowsCancelButton(true, animated: true)
         
         if(!searchText.isEmpty){
-            self.filtering.startFiltering(searchText, completionHandler: { _ in 
-                self.isSearchEnabled = true
+            dataSource.startFiltering(searchText, completionHandler: { _ in 
+                self.dataSource.isSearchEnabled = true
                 self.askTable.reloadData()
             })
         } else {
-            self.filtering.stopFiltering()
-            self.isSearchEnabled = false
-            self.askTable.reloadData()
+            dataSource.stopFiltering()
+            dataSource.isSearchEnabled = false
+            askTable.reloadData()
         }
-    }
-
-    // MARK: -- UITableViewDataSource --
-
-    
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if self.isSearchEnabled {
-            return nil
-        } else {
-            return self.indexes[section]
-        }
-    }
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if self.isSearchEnabled {
-            return 1
-        }else{
-            return self.indexes.count
-        }
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.isSearchEnabled {
-            return self.filtering.filteredContent.count
-        } else {
-            if let section = self.data[indexes[section]] {
-                return section.count
-            }
-            return 0
-        }
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell:ContactsCell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath) as! ContactsCell
-        cell.removeSelectionStyle()
-        let contact: ContactModel
-        if self.isSearchEnabled {
-            contact = self.filtering.filteredContent[indexPath.row]
-            cell.loadData(contact)
-        } else {
-            let index = indexes[indexPath.section]
-            
-            if let section = self.data[index] {
-                contact = section[indexPath.row]
-                cell.loadData(contact)
-            } else {
-                loggingPrint("Strange index in contacts table: ", indexPath.debugDescription)
-                return cell
-            }
-        }
-        
-        if selected.contains(contact) {
-            cell.accessoryType = .Checkmark
-        }
-
-        return cell
-    }
-    
-    func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
-        return self.isSearchEnabled ? nil : self.indexes
     }
 
     // MARK: -- UITableViewDelegate --
@@ -249,42 +145,41 @@ class AskReferralViewController: UIViewController, SegueHandlerType, UISearchBar
 
     func toggleRowSelection(indexPath: NSIndexPath) {
         if let cell = askTable.cellForRowAtIndexPath(indexPath) as? ContactsCell {
-            let contact = self.filtering.filteredContent[indexPath.row]
-            if selected.contains(contact) {
-                selected.remove(contact)
-                cell.accessoryType = .None
-            } else {
-                selected.insert(contact)
-                cell.accessoryType = .Checkmark
-            }
+            let contact = dataSource.contactForIndexPath(indexPath)
+            let contactID = contact.id
+            
+            let newSelected = !dataSource.isSelected(contactID)
+            dataSource.setSelected(contactID, selected: newSelected)
+            cell.accessoryType = newSelected ? .Checkmark : .None
 
             checkSelected()
         }
     }
 
     func checkSelected() {
-        self.navigationItem.rightBarButtonItem?.enabled = !selected.isEmpty
+        self.navigationItem.rightBarButtonItem?.enabled = dataSource.hasSelection()
     }
 
     @IBAction func askAction(sender: AnyObject) {
         self.resignFirstResponder()
         self.view.endEditing(true)
         
-        let contactIds:[Int] = selected.map { contact in
-            return contact.id
-        }
-
-        if(messageText.text == messagePlaceholder){
+        if messageText.text == messagePlaceholder {
             messageText.text = nil
         }
+        let contactIDs = dataSource.selectedContactIDs()
+        if contactIDs.isEmpty {
+            return
+        }
+        let contactsCount = contactIDs.count
         
-        let params = API.Endpoints.Nudge.paramsForJob(jobId!, contactIDs: contactIds, message: messageText.text)        
+        let params = API.Endpoints.Nudge.paramsForJob(jobId!, contactIDs: contactIDs, message: messageText.text)        
         self.messageText.resignFirstResponder()
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.registerForRemoteNotifications()
 
         // TODO: Refactor
-        guard let firstSelected = self.selected.first else {return}
+        guard let firstSelected = dataSource.contactWithID(contactIDs[0]) else {return}
         if(self.isNudjRequest!){
             let path = API.Endpoints.Nudge.base
             API.sharedInstance.request(.PUT, path: path, params: params, closure: { result in
@@ -293,10 +188,10 @@ class AskReferralViewController: UIViewController, SegueHandlerType, UISearchBar
                 self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true);
                 
                 let nudjContent: String
-                if self.selected.count == 1 {
+                if contactIDs.count == 1 {
                     nudjContent = Localizations.Referral.Nudge.Sent.Singular.Format(firstSelected.name)
                 } else {
-                    nudjContent = Localizations.Referral.Nudge.Sent.Plural.Format(firstSelected.name, self.selected.count - 1)
+                    nudjContent = Localizations.Referral.Nudge.Sent.Plural.Format(firstSelected.name, contactsCount - 1)
                 }
                 self.popup!.bodyText(nudjContent);
                 self.popup!.delegate = self;
@@ -314,10 +209,10 @@ class AskReferralViewController: UIViewController, SegueHandlerType, UISearchBar
                 self.popup = CreatePopupView(x: 0, yCordinate: 0, width: self.view.frame.size.width , height: self.view.frame.size.height, imageName:"success", withText: true);
                 
                 let nudjContent: String
-                if self.selected.count == 1 {
+                if contactIDs.count == 1 {
                     nudjContent = Localizations.Referral.Ask.Sent.Singular.Format(firstSelected.name)
                 } else {
-                    nudjContent = Localizations.Referral.Ask.Sent.Plural.Format(firstSelected.name, self.selected.count - 1)
+                    nudjContent = Localizations.Referral.Ask.Sent.Plural.Format(firstSelected.name, contactsCount - 1)
                 }
                 self.popup!.bodyText(nudjContent);
                 self.popup!.delegate = self;

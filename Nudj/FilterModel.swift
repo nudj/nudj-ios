@@ -38,6 +38,15 @@ class FilterModel: NSObject {
         self.filteredContent = content
     }
     
+    /// Complexity O(n)
+    func contactWithID(contactID: Int) -> ContactModel? {
+        let index = allContent.indexOf{$0.id == contactID}
+        if let index = index {
+            return allContent[index]
+        }
+        return nil
+    }
+    
     func filteredRowWithIdentifier(identifier: String) -> Int? {
         return filteredContent.indexOf{ $0.apple_id == identifier }
     }

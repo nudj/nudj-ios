@@ -698,7 +698,6 @@
                                 <rect key="frame" x="0.0" y="214" width="375" height="386"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="l4F-Ih-7ec" id="mtd-99-dHX"/>
                                     <outlet property="delegate" destination="l4F-Ih-7ec" id="OJJ-E3-oba"/>
                                 </connections>
                             </tableView>
@@ -1859,7 +1858,6 @@ We will invoice the client and collect payment on your behalf. Get in touch at <
                                 <rect key="frame" x="0.0" y="70" width="375" height="486"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="8rJ-Kc-sve" id="pjz-6T-zs9"/>
                                     <outlet property="delegate" destination="8rJ-Kc-sve" id="SPr-Z5-Vh4"/>
                                 </connections>
                             </tableView>

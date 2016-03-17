@@ -16,21 +16,24 @@ class ContactsDataSource: NSObject, UITableViewDataSource {
     private var filtering = FilterModel()
     private var indexes = [String]()
     private var data = [String:[ContactModel]]()
+    private var selectedIDs = Set<Int>()
     
     func registerNib(table: UITableView) {
         table.registerNib(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
     }
     
-    func loadData(data: JSON) {
+    func loadData(data newData: JSON) {
         indexes.removeAll(keepCapacity: true)
+        data.removeAll(keepCapacity: true)
+        selectedIDs.removeAll()
         
-        let dictionary = data.sort{ $0.0 < $1.0 }
+        let dictionary = newData.sort{ $0.0 < $1.0 }
         var content = [ContactModel]()
         
         for (id, obj) in dictionary {
-            if self.data[id] == nil {
-                self.indexes.append(id)
-                self.data[id] = [ContactModel]()
+            if data[id] == nil {
+                indexes.append(id)
+                data[id] = [ContactModel]()
             }
             
             for (_, subJson) in obj {
@@ -56,27 +59,27 @@ class ContactsDataSource: NSObject, UITableViewDataSource {
                 
                 // TODO: the server is returning old AB-stype IDs here
                 let contact = ContactModel(id: userId, name: name, apple_id: apple_id, user: user)
-                self.data[id]!.append(contact)
+                data[id]!.append(contact)
                 content.append(contact)
             }
         }
         
-        self.filtering.setContent(content)
+        filtering.setContent(content)
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if self.isSearchEnabled {
+        if isSearchEnabled {
             return nil
         } else {
-            return self.indexes[section]
+            return indexes[section]
         }
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if self.isSearchEnabled{
+        if isSearchEnabled {
             return 1
-        }else{
-            return self.indexes.count
+        } else {
+            return indexes.count
         }
     }
     
@@ -96,6 +99,9 @@ class ContactsDataSource: NSObject, UITableViewDataSource {
         cell.removeSelectionStyle()
         let contact = contactForIndexPath(indexPath)
         cell.loadData(contact)
+        if selectedIDs.contains(contact.id) {
+            cell.accessoryType = .Checkmark
+        }
         return cell
     }
     
@@ -143,4 +149,30 @@ class ContactsDataSource: NSObject, UITableViewDataSource {
             return filtering.allContent.isEmpty
         }
     }
+    
+    func hasSelection() -> Bool {
+        return !selectedIDs.isEmpty
+    }
+    
+    func selectedContactIDs() -> [Int] {
+        return [Int](selectedIDs)
+    }
+    
+    func isSelected(contactID: Int) -> Bool {
+        return selectedIDs.contains(contactID)
+    }
+    
+    func setSelected(contactID: Int, selected: Bool) {
+        if selected {
+            selectedIDs.insert(contactID)
+        } else {
+            selectedIDs.remove(contactID)
+        }
+    }
+    
+    /// Complexity O(n)
+    func contactWithID(contactID: Int) -> ContactModel? {
+        return filtering.contactWithID(contactID)
+    }
+    
 }

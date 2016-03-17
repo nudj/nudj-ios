@@ -103,7 +103,7 @@ class ContactsController: BaseController, UITableViewDelegate, UISearchBarDelega
 
         self.apiRequest(.GET, path: path, params: params, closure: { 
             response in
-            self.dataSource.loadData(response["data"])
+            self.dataSource.loadData(data: response["data"])
             self.table.reloadData()
             self.refreshControl.endRefreshing()
             
@@ -226,7 +226,7 @@ class ContactsController: BaseController, UITableViewDelegate, UISearchBarDelega
             })
         } else {
             dataSource.stopFiltering()
-            self.table.reloadData()
+            table.reloadData()
         }
     }
 }
