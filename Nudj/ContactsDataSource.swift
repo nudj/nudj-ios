@@ -9,13 +9,13 @@
 import UIKit
 import SwiftyJSON
 
-class ContactsDataSource: NSObject, UITableViewDataSource {
+final class ContactsDataSource: NSObject, UITableViewDataSource {
     var isSearchEnabled: Bool = false
     
     private let cellIdentifier = "ContactsCell"
-    private var filtering = FilterModel()
-    private var indexes = [String]()
-    private var data = [String:[ContactModel]]()
+    private var filterModel = FilterModel()
+    private var sections = [String]()
+    private var contactsBySection = [String:[ContactModel]]()
     private var selectedIDs = Set<Int>()
     
     func registerNib(table: UITableView) {
@@ -23,82 +23,71 @@ class ContactsDataSource: NSObject, UITableViewDataSource {
     }
     
     func loadData(data newData: JSON) {
-        indexes.removeAll(keepCapacity: true)
-        data.removeAll(keepCapacity: true)
+        sections.removeAll(keepCapacity: true)
+        contactsBySection.removeAll(keepCapacity: true)
         selectedIDs.removeAll()
         
-        let dictionary = newData.sort{ $0.0 < $1.0 }
-        var content = [ContactModel]()
+        let sortedData = newData.sort{ $0.0 < $1.0 }
+        var allContacts = [ContactModel]()
         
-        for (id, obj) in dictionary {
-            if data[id] == nil {
-                indexes.append(id)
-                data[id] = [ContactModel]()
-            }
+        for (section, contactsJson) in sortedData {
+            sections.append(section)
+            var contactsForSection = [ContactModel]()
             
-            for (_, subJson) in obj {
+            for (_, contactJson) in contactsJson {
                 var isUser = false
                 var user: UserModel? = nil
                 var userContact: JSON?
                 
-                if(subJson["contact"].type != .Null) {
+                if contactJson["contact"].type != .Null {
                     user = UserModel()
-                    user!.updateFromJson(subJson)
-                    
-                    userContact = subJson["contact"]
+                    user!.updateFromJson(contactJson)
+                    userContact = contactJson["contact"]
                     isUser = true
-                    
-                } else if(subJson["user"].type != .Null) {
+                } else if contactJson["user"].type != .Null {
                     user = UserModel()
-                    user!.updateFromJson(subJson["user"])
+                    user!.updateFromJson(contactJson["user"])
                 }
                 
-                let userId = isUser ? userContact!["id"].intValue : subJson["id"].intValue
-                let name = isUser ? subJson["name"].stringValue : subJson["alias"].stringValue
-                let apple_id = isUser ? userContact!["apple_id"].stringValue : subJson["apple_id"].stringValue
+                let userId = isUser ? userContact!["id"].intValue : contactJson["id"].intValue
+                let name = isUser ? contactJson["name"].stringValue : contactJson["alias"].stringValue
+                let apple_id = isUser ? userContact!["apple_id"].stringValue : contactJson["apple_id"].stringValue
                 
                 // TODO: the server is returning old AB-stype IDs here
                 let contact = ContactModel(id: userId, name: name, apple_id: apple_id, user: user)
-                data[id]!.append(contact)
-                content.append(contact)
+                contactsForSection.append(contact)
+                allContacts.append(contact)
             }
+            contactsBySection[section] = contactsForSection
         }
         
-        filtering.setContent(content)
+        filterModel.setContent(allContacts)
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if isSearchEnabled {
-            return nil
-        } else {
-            return indexes[section]
-        }
+        return isSearchEnabled ? nil : sections[section]
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if isSearchEnabled {
-            return 1
-        } else {
-            return indexes.count
-        }
+        return isSearchEnabled ? 1 : sections.count
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.isSearchEnabled {
-            return self.filtering.filteredContent.count
+        if isSearchEnabled {
+            return filterModel.filteredContent.count
         } else {
-            if let section = self.data[indexes[section]] {
-                return section.count
-            }
-            return 0
+            let section = contactsBySection[sections[section]]
+            return section?.count ?? 0
         }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell:ContactsCell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath) as! ContactsCell
         cell.removeSelectionStyle()
+        
         let contact = contactForIndexPath(indexPath)
         cell.loadData(contact)
+        
         if selectedIDs.contains(contact.id) {
             cell.accessoryType = .Checkmark
         }
@@ -106,17 +95,16 @@ class ContactsDataSource: NSObject, UITableViewDataSource {
     }
     
     func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
-        return self.isSearchEnabled ? nil : self.indexes
+        return isSearchEnabled ? nil : sections
     }
     
     func contactForIndexPath(indexPath: NSIndexPath) -> ContactModel {
         let contact: ContactModel
         if self.isSearchEnabled {
-            contact = self.filtering.filteredContent[indexPath.row]
+            contact = self.filterModel.filteredContent[indexPath.row]
         } else {
-            let index = indexes[indexPath.section]
-            
-            if let section = self.data[index] {
+            let index = sections[indexPath.section]
+            if let section = self.contactsBySection[index] {
                 contact = section[indexPath.row]
             } else {
                 fatalError("Invalid index in contacts table: \(indexPath.debugDescription)")
@@ -126,27 +114,27 @@ class ContactsDataSource: NSObject, UITableViewDataSource {
     }
     
     func rowWithAppleIdentifier(appleIdentifier: String) -> Int? {
-        // TODO: broken. Rework the data model here.
+        // TODO: The appleIdentifier thing is broken because neither stable nor globally unique. Rework the data model here.
         if isSearchEnabled {
-            return filtering.filteredRowWithIdentifier(appleIdentifier)
+            return filterModel.filteredRowWithIdentifier(appleIdentifier)
         } else {
-            return filtering.unfilteredRowWithIdentifier(appleIdentifier)
+            return filterModel.unfilteredRowWithIdentifier(appleIdentifier)
         }
     }
     
     func startFiltering(filteringText:String, completionHandler:(success:Bool) -> Void) {
-        filtering.startFiltering(filteringText, completionHandler: completionHandler)
+        filterModel.startFiltering(filteringText, completionHandler: completionHandler)
     }
     
     func stopFiltering() {
-        filtering.stopFiltering()
+        filterModel.stopFiltering()
     }
     
     func isEmpty() -> Bool {
         if isSearchEnabled {
-            return filtering.filteredContent.isEmpty
+            return filterModel.filteredContent.isEmpty
         } else {
-            return filtering.allContent.isEmpty
+            return filterModel.allContent.isEmpty
         }
     }
     
@@ -172,7 +160,7 @@ class ContactsDataSource: NSObject, UITableViewDataSource {
     
     /// Complexity O(n)
     func contactWithID(contactID: Int) -> ContactModel? {
-        return filtering.contactWithID(contactID)
+        return filterModel.contactWithID(contactID)
     }
     
 }
