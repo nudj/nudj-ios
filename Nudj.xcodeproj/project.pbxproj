@@ -2367,6 +2367,7 @@
 				EB35BBA31AB7288000842E1F /* ContactsCell.swift */,
 				C8A661F71C0B662E0088355D /* ContactsCell.xib */,
 				C8351C461C9AFEE800994F22 /* ContactsDataSource.swift */,
+				A9977C891B6158960005A23C /* FilterModel.swift */,
 			);
 			name = Contatcs;
 			sourceTree = "<group>";
@@ -2497,7 +2498,6 @@
 				EBF17A271B4E641400C67657 /* ContactModel.swift */,
 				EB04F6221AAD89AF002F2677 /* Contacts.swift */,
 				EB72C5691B578D8100CCBD2E /* Notification.swift */,
-				A9977C891B6158960005A23C /* FilterModel.swift */,
 				A984E2ED1B67ACA9009F318E /* ChatRoomModel.swift */,
 				A9B577F21B6BD58E00CFB474 /* SocialHandlerModel.swift */,
 				A9EC313B1B72357A00356B1F /* ChatStructModel.swift */,
