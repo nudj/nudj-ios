@@ -41,4 +41,8 @@ class FilterModel: NSObject {
     func filteredRowWithIdentifier(identifier: String) -> Int? {
         return filteredContent.indexOf{ $0.apple_id == identifier }
     }
+    
+    func unfilteredRowWithIdentifier(identifier: String) -> Int? {
+        return allContent.indexOf{ $0.apple_id == identifier }
+    }
 }
