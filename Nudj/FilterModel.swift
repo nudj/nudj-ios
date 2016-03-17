@@ -21,9 +21,10 @@ class FilterModel: NSObject {
     }
 
     func startFiltering(filteringText:String, completionHandler:(success:Bool) -> Void) {
+        let lowerCaseFilter = filteringText.lowercaseString
         self.filteredContent = self.allContent.filter({ 
             element in
-            element.name.lowercaseString.hasPrefix(filteringText.lowercaseString)
+            element.name.lowercaseString.hasPrefix(lowerCaseFilter)
         })
         completionHandler(success:true)
     }

@@ -5,7 +5,6 @@
 //  Copyright (c) 2015 Nudge I.T. Limited. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import SwiftyJSON
 
@@ -16,11 +15,8 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
     
     @IBOutlet weak var activityIndi: UIActivityIndicatorView!
     var searchBar =  UISearchBar()
-    var isSearchEnabled:Bool = false
+    var isSearchEnabled: Bool = false
     
-    // Hardcoded for performance improvement
-    let staticRowHeight:CGFloat = 76
-
     let cellIdentifier = "ContactsCell"
 
     var filtering = FilterModel()
@@ -46,7 +42,6 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
         self.view.addSubview(self.searchBar)
         
         table.registerNib(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
-        table.rowHeight = self.staticRowHeight
         
         table.backgroundColor = UIColor.whiteColor()
         table.tableFooterView = UIView(frame: CGRectZero)
@@ -118,7 +113,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
             self.indexes.removeAll(keepCapacity: false)
 
             let dictionary = response["data"].sort{ $0.0 < $1.0 }
-            var content = [ContactModel]();
+            var content = [ContactModel]()
             
             for (id, obj) in dictionary {
                 if self.data[id] == nil {
@@ -128,8 +123,8 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
 
                 for (_, subJson) in obj {
                     var isUser = false
-                    var user:UserModel? = nil
-                    var userContact:JSON?
+                    var user: UserModel? = nil
+                    var userContact: JSON?
 
                     if(subJson["contact"].type != .Null) {
                         user = UserModel()
@@ -172,9 +167,9 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
     // MARK: -- UITableViewDataSource --
 
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if self.isSearchEnabled{
+        if self.isSearchEnabled {
             return nil
-        }else{
+        } else {
             return self.indexes[section]
         }
     }
@@ -188,9 +183,9 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.isSearchEnabled{
+        if self.isSearchEnabled {
             return self.filtering.filteredContent.count
-        }else{
+        } else {
             if let section = self.data[indexes[section]] {
                 return section.count
             }
@@ -199,12 +194,12 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell:ContactsCell = table.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath) as! ContactsCell
+        let cell:ContactsCell = tableView.dequeueReusableCellWithIdentifier(self.cellIdentifier, forIndexPath: indexPath) as! ContactsCell
         cell.removeSelectionStyle()
-        if(self.isSearchEnabled == true){
+        if self.isSearchEnabled {
             let contact = self.filtering.filteredContent[indexPath.row]
             cell.loadData(contact)
-        }else{
+        } else {
             let index = indexes[indexPath.section]
 
             if let section = self.data[index] {
@@ -215,6 +210,10 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
             }
         }
         return cell
+    }
+    
+    func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
+        return self.isSearchEnabled ? nil : self.indexes
     }
 
     // MARK: -- UITableViewDelegate --
@@ -249,10 +248,6 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
             }
             cell.setSelected(false, animated: true)
         }
-    }
-
-    func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
-        return self.isSearchEnabled ? nil : self.indexes
     }
 
     func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -323,7 +318,7 @@ class ContactsController: BaseController, UITableViewDataSource, UITableViewDele
     
     //MARK: Searcbar
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        if(searchBar.text?.isEmpty ?? true){
+        if searchBar.text?.isEmpty ?? true {
             searchBar.resignFirstResponder()
             self.searchBar.hidden = true
             segControl.hidden = false
