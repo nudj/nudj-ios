@@ -9,27 +9,23 @@ struct FilterModel {
     var allContent = [ContactModel]()
     var filteredContent = [ContactModel]()
 
-    init(content:[ContactModel] = []){
+    init(content: [ContactModel] = []){
+        setContent(content)
+    }
+    
+    mutating func setContent(content: [ContactModel]) {
         allContent = content
         filteredContent = content
     }
 
     mutating func startFiltering(filteringText:String, completionHandler: (success: Bool) -> Void) {
         let lowerCaseFilter = filteringText.lowercaseString
-        filteredContent = allContent.filter({ 
-            element in
-            element.name.lowercaseString.hasPrefix(lowerCaseFilter)
-        })
-        completionHandler(success:true)
+        filteredContent = allContent.filter{ $0.name.lowercaseString.hasPrefix(lowerCaseFilter) }
+        completionHandler(success: true)
     }
     
-    mutating func stopFiltering(){
+    mutating func stopFiltering() {
         filteredContent = allContent
-    }
-
-    mutating func setContent(content:[ContactModel]) {
-        allContent = content
-        filteredContent = content
     }
     
     /// Complexity O(n)
