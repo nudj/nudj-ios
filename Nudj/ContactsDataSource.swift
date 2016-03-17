@@ -61,7 +61,7 @@ final class ContactsDataSource: NSObject, UITableViewDataSource {
             contactsBySection[section] = contactsForSection
         }
         
-        filterModel.setContent(allContacts)
+        filterModel = FilterModel(content: allContacts)
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -122,12 +122,15 @@ final class ContactsDataSource: NSObject, UITableViewDataSource {
         }
     }
     
-    func startFiltering(filteringText:String, completionHandler:(success:Bool) -> Void) {
-        filterModel.startFiltering(filteringText, completionHandler: completionHandler)
+    func startFiltering(filteringText:String, completionHandler: () -> Void) {
+        let newFilterModel = filterModel.filteredByWordPrefix(filteringText)
+        filterModel = newFilterModel
+        completionHandler()
     }
     
     func stopFiltering() {
-        filterModel.stopFiltering()
+        let newFilterModel = filterModel.unfiltered()
+        filterModel = newFilterModel
     }
     
     func isEmpty() -> Bool {

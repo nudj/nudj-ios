@@ -6,26 +6,41 @@
 //
 
 struct FilterModel {
-    var allContent = [ContactModel]()
-    var filteredContent = [ContactModel]()
+    var allContent: [ContactModel]
+    var filteredContent: [ContactModel]
 
     init(content: [ContactModel] = []){
-        setContent(content)
-    }
-    
-    mutating func setContent(content: [ContactModel]) {
         allContent = content
         filteredContent = content
     }
 
-    mutating func startFiltering(filteringText:String, completionHandler: (success: Bool) -> Void) {
-        let lowerCaseFilter = filteringText.lowercaseString
-        filteredContent = allContent.filter{ $0.name.lowercaseString.hasPrefix(lowerCaseFilter) }
-        completionHandler(success: true)
+    init(content: [ContactModel], filteredContent: [ContactModel]){
+        allContent = content
+        self.filteredContent = filteredContent
     }
     
-    mutating func stopFiltering() {
-        filteredContent = allContent
+    func filteredByWordPrefix(wordPrefix: String) -> FilterModel {
+        let lowerCaseWordPrefix = wordPrefix.lowercaseString
+        
+        func filterCriterion(contact: ContactModel) -> Bool {
+            // probably quicker than String.enumerateLinguisticTagsInRange(_:scheme:options:orthography:_:) 
+            let fullName = contact.name.lowercaseString
+            let separators = NSCharacterSet.whitespaceCharacterSet()
+            let words = fullName.componentsSeparatedByCharactersInSet(separators)
+            for word in words {
+                if word.hasPrefix(lowerCaseWordPrefix) {
+                    return true
+                }
+            }
+            return false 
+        }
+        
+        let filteredContent = allContent.filter(filterCriterion)
+        return FilterModel(content: allContent, filteredContent: filteredContent)
+    }
+    
+    func unfiltered() -> FilterModel {
+        return FilterModel(content: allContent)
     }
     
     /// Complexity O(n)

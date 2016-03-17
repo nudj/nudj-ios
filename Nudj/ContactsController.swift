@@ -221,7 +221,7 @@ class ContactsController: BaseController, UITableViewDelegate, UISearchBarDelega
     
     func searchBar(searchBar :UISearchBar, textDidChange searchText:String){
         if(!searchText.isEmpty){
-            dataSource.startFiltering(searchText, completionHandler: { (success) -> Void in
+            dataSource.startFiltering(searchText, completionHandler: { 
                 self.table.reloadData()
             })
         } else {

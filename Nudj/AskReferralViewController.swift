@@ -122,7 +122,7 @@ class AskReferralViewController: UIViewController, SegueHandlerType, UISearchBar
         searchBar.setShowsCancelButton(true, animated: true)
         
         if(!searchText.isEmpty){
-            dataSource.startFiltering(searchText, completionHandler: { _ in 
+            dataSource.startFiltering(searchText, completionHandler: {
                 self.dataSource.isSearchEnabled = true
                 self.askTable.reloadData()
             })
