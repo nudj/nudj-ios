@@ -5,42 +5,36 @@
 //  Copyright (c) 2015 Nudge I.T. Limited. All rights reserved.
 //
 
-import UIKit
-
-class FilterModel: NSObject {
-
+struct FilterModel {
     var allContent = [ContactModel]()
     var filteredContent = [ContactModel]()
 
-    override init() {
+    init(content:[ContactModel] = []){
+        allContent = content
+        filteredContent = content
     }
 
-    init(content:[ContactModel]){
-        self.allContent = content
-        self.filteredContent = content
-    }
-
-    func startFiltering(filteringText:String, completionHandler:(success:Bool) -> Void) {
+    mutating func startFiltering(filteringText:String, completionHandler: (success: Bool) -> Void) {
         let lowerCaseFilter = filteringText.lowercaseString
-        self.filteredContent = self.allContent.filter({ 
+        filteredContent = allContent.filter({ 
             element in
             element.name.lowercaseString.hasPrefix(lowerCaseFilter)
         })
         completionHandler(success:true)
     }
     
-    func stopFiltering(){
-        self.filteredContent = self.allContent
+    mutating func stopFiltering(){
+        filteredContent = allContent
     }
 
-    func setContent(content:[ContactModel]) {
-        self.allContent = content
-        self.filteredContent = content
+    mutating func setContent(content:[ContactModel]) {
+        allContent = content
+        filteredContent = content
     }
     
     /// Complexity O(n)
     func contactWithID(contactID: Int) -> ContactModel? {
-        let index = allContent.indexOf{$0.id == contactID}
+        let index = allContent.indexOf{ $0.id == contactID }
         if let index = index {
             return allContent[index]
         }
