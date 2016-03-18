@@ -188,8 +188,6 @@
 		A996508C1B38805B00D5A8E9 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A996508A1B38805B00D5A8E9 /* libxml2.dylib */; };
 		A996508E1B38806700D5A8E9 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A996508D1B38806700D5A8E9 /* libresolv.dylib */; };
 		A99650901B39776A00D5A8E9 /* ChatModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A996508F1B39776A00D5A8E9 /* ChatModels.swift */; };
-		A99650991B3DB2D100D5A8E9 /* 3dots@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650981B3DB2D100D5A8E9 /* 3dots@2x.png */; };
-		A996509B1B3DB2E300D5A8E9 /* back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A996509A1B3DB2E300D5A8E9 /* back_btn@2x.png */; };
 		A9977C8A1B6158960005A23C /* FilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9977C891B6158960005A23C /* FilterModel.swift */; };
 		A9A7C4D61B8364000051B1E5 /* InitiateChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A7C4D51B8364000051B1E5 /* InitiateChatViewController.swift */; };
 		A9ACE1C41B68FC0F003BD5F2 /* SendFeedBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACE1C31B68FC0F003BD5F2 /* SendFeedBackViewController.swift */; };
@@ -200,7 +198,6 @@
 		A9C6EC9F1B3853F900EC9140 /* ChatListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC9D1B3853F900EC9140 /* ChatListTableViewCell.swift */; };
 		A9EC313C1B72357A00356B1F /* ChatStructModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC313B1B72357A00356B1F /* ChatStructModel.swift */; };
 		A9F3332C1B41997600F0D17B /* JobDetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F3332B1B41997600F0D17B /* JobDetailedViewController.swift */; };
-		A9F3334E1B42ACCB00F0D17B /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3334D1B42ACCB00F0D17B /* check.png */; };
 		A9F3335D1B42ACDC00F0D17B /* add_skills_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333501B42ACDC00F0D17B /* add_skills_active@2x.png */; };
 		A9F3335E1B42ACDC00F0D17B /* employer_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333511B42ACDC00F0D17B /* employer_active@2x.png */; };
 		A9F3335F1B42ACDC00F0D17B /* job_description_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333521B42ACDC00F0D17B /* job_description_active@2x.png */; };
@@ -216,11 +213,7 @@
 		A9F3336A1B42B0B700F0D17B /* pound_sign@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333691B42B0B700F0D17B /* pound_sign@2x.png */; };
 		A9F3336C1B42BE4B00F0D17B /* this_job_has-been_posted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3336B1B42BE4B00F0D17B /* this_job_has-been_posted@2x.png */; };
 		A9F3336E1B42CD4300F0D17B /* AskReferralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F3336D1B42CD4300F0D17B /* AskReferralViewController.swift */; };
-		A9F333701B42D20C00F0D17B /* close_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3336F1B42D20C00F0D17B /* close_btn@2x.png */; };
 		A9F333741B4444D700F0D17B /* CreatePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F333731B4444D700F0D17B /* CreatePopupView.swift */; };
-		A9F3337E1B45532F00F0D17B /* success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3337D1B45532F00F0D17B /* success@2x.png */; };
-		A9F333811B45972100F0D17B /* save@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3337F1B45972100F0D17B /* save@2x.png */; };
-		A9F333821B45972100F0D17B /* saved@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333801B45972100F0D17B /* saved@2x.png */; };
 		C80486681C72132C0020EEE1 /* API+Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80486671C72132C0020EEE1 /* API+Endpoints.swift */; };
 		C80486691C72132C0020EEE1 /* API+Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80486671C72132C0020EEE1 /* API+Endpoints.swift */; };
 		C81F16A91C735BF0000927F8 /* NSData+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81F16A81C735BF0000927F8 /* NSData+Hex.swift */; };
@@ -465,23 +458,18 @@
 		C86F85461C444DB800C23332 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB337FA1A9F581F000CAD88 /* CoreData.framework */; };
 		C86F854B1C444DB800C23332 /* JSQMessagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9964E3D1B387CC700D5A8E9 /* JSQMessagesViewController.xib */; };
 		C86F854D1C444DB800C23332 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9964E831B387CC800D5A8E9 /* JSQMessagesTypingIndicatorFooterView.xib */; };
-		C86F854E1C444DB800C23332 /* close_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3336F1B42D20C00F0D17B /* close_btn@2x.png */; };
 		C86F854F1C444DB800C23332 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBA8C3441B32DFF100522167 /* Main.storyboard */; };
 		C86F85501C444DB800C23332 /* job_description@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333591B42ACDC00F0D17B /* job_description@2x.png */; };
 		C86F85511C444DB800C23332 /* pound_sign@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333691B42B0B700F0D17B /* pound_sign@2x.png */; };
 		C86F85551C444DB800C23332 /* JSQMessagesToolbarContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9964E801B387CC800D5A8E9 /* JSQMessagesToolbarContentView.xib */; };
-		C86F85561C444DB800C23332 /* 3dots@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650981B3DB2D100D5A8E9 /* 3dots@2x.png */; };
 		C86F85581C444DB800C23332 /* tag_location_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333551B42ACDC00F0D17B /* tag_location_active@2x.png */; };
-		C86F85591C444DB800C23332 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3334D1B42ACCB00F0D17B /* check.png */; };
 		C86F855A1C444DB800C23332 /* salary_details@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3335B1B42ACDC00F0D17B /* salary_details@2x.png */; };
-		C86F855C1C444DB800C23332 /* back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A996509A1B3DB2E300D5A8E9 /* back_btn@2x.png */; };
 		C86F855D1C444DB800C23332 /* add_skills@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333571B42ACDC00F0D17B /* add_skills@2x.png */; };
 		C86F855E1C444DB800C23332 /* JSQMessagesAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A9964E281B387CC700D5A8E9 /* JSQMessagesAssets.bundle */; };
 		C86F855F1C444DB800C23332 /* this_job_has-been_posted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3336B1B42BE4B00F0D17B /* this_job_has-been_posted@2x.png */; };
 		C86F85611C444DB800C23332 /* employer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333581B42ACDC00F0D17B /* employer@2x.png */; };
 		C86F85621C444DB800C23332 /* job_title@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3335A1B42ACDC00F0D17B /* job_title@2x.png */; };
 		C86F85691C444DB800C23332 /* SettingsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661FD1C0B66440088355D /* SettingsCell.xib */; };
-		C86F856A1C444DB800C23332 /* save@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3337F1B45972100F0D17B /* save@2x.png */; };
 		C86F856B1C444DB800C23332 /* employer_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333511B42ACDC00F0D17B /* employer_active@2x.png */; };
 		C86F856C1C444DB800C23332 /* tag_location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3335C1B42ACDC00F0D17B /* tag_location@2x.png */; };
 		C86F856D1C444DB800C23332 /* job_description_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333521B42ACDC00F0D17B /* job_description_active@2x.png */; };
@@ -491,11 +479,9 @@
 		C86F85721C444DB800C23332 /* ChatListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661F41C0B66270088355D /* ChatListTableViewCell.xib */; };
 		C86F85731C444DB800C23332 /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C89325B41C08CE410069FCFD /* HockeySDKResources.bundle */; };
 		C86F85741C444DB800C23332 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C8A662081C0B69960088355D /* Localizable.strings */; };
-		C86F85751C444DB800C23332 /* success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3337D1B45532F00F0D17B /* success@2x.png */; };
 		C86F85781C444DB800C23332 /* JSQMessagesLoadEarlierHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9964E7B1B387CC800D5A8E9 /* JSQMessagesLoadEarlierHeaderView.xib */; };
 		C86F85791C444DB800C23332 /* salary_details_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333541B42ACDC00F0D17B /* salary_details_active@2x.png */; };
 		C86F857A1C444DB800C23332 /* job_title_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333531B42ACDC00F0D17B /* job_title_active@2x.png */; };
-		C86F857B1C444DB800C23332 /* saved@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333801B45972100F0D17B /* saved@2x.png */; };
 		C86F857D1C444DB800C23332 /* add_skills_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333501B42ACDC00F0D17B /* add_skills_active@2x.png */; };
 		C86F857F1C444DB800C23332 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661F11C0B66160088355D /* ChatViewController.xib */; };
 		C86F85801C444DB800C23332 /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661EE1C0B66110088355D /* NotificationCell.xib */; };
@@ -962,8 +948,6 @@
 		A996508A1B38805B00D5A8E9 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		A996508D1B38806700D5A8E9 /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
 		A996508F1B39776A00D5A8E9 /* ChatModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ChatModels.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		A99650981B3DB2D100D5A8E9 /* 3dots@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3dots@2x.png"; sourceTree = "<group>"; };
-		A996509A1B3DB2E300D5A8E9 /* back_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_btn@2x.png"; sourceTree = "<group>"; };
 		A9977C891B6158960005A23C /* FilterModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FilterModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9A7C4D51B8364000051B1E5 /* InitiateChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = InitiateChatViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9ACE1C31B68FC0F003BD5F2 /* SendFeedBackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SendFeedBackViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -974,7 +958,6 @@
 		A9C6EC9D1B3853F900EC9140 /* ChatListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ChatListTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9EC313B1B72357A00356B1F /* ChatStructModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ChatStructModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9F3332B1B41997600F0D17B /* JobDetailedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = JobDetailedViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		A9F3334D1B42ACCB00F0D17B /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = check.png; path = add_job_details_images/check.png; sourceTree = "<group>"; };
 		A9F333501B42ACDC00F0D17B /* add_skills_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_skills_active@2x.png"; sourceTree = "<group>"; };
 		A9F333511B42ACDC00F0D17B /* employer_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "employer_active@2x.png"; sourceTree = "<group>"; };
 		A9F333521B42ACDC00F0D17B /* job_description_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "job_description_active@2x.png"; sourceTree = "<group>"; };
@@ -990,11 +973,7 @@
 		A9F333691B42B0B700F0D17B /* pound_sign@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pound_sign@2x.png"; sourceTree = "<group>"; };
 		A9F3336B1B42BE4B00F0D17B /* this_job_has-been_posted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "this_job_has-been_posted@2x.png"; sourceTree = "<group>"; };
 		A9F3336D1B42CD4300F0D17B /* AskReferralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AskReferralViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		A9F3336F1B42D20C00F0D17B /* close_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close_btn@2x.png"; sourceTree = "<group>"; };
 		A9F333731B4444D700F0D17B /* CreatePopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CreatePopupView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		A9F3337D1B45532F00F0D17B /* success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "success@2x.png"; sourceTree = "<group>"; };
-		A9F3337F1B45972100F0D17B /* save@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "save@2x.png"; sourceTree = "<group>"; };
-		A9F333801B45972100F0D17B /* saved@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "saved@2x.png"; sourceTree = "<group>"; };
 		C80486671C72132C0020EEE1 /* API+Endpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+Endpoints.swift"; sourceTree = "<group>"; };
 		C8182DC11C61684200E5C9F9 /* Timings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Timings.xcconfig; sourceTree = "<group>"; };
 		C81F16A81C735BF0000927F8 /* NSData+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+Hex.swift"; sourceTree = "<group>"; };
@@ -2108,23 +2087,8 @@
 			isa = PBXGroup;
 			children = (
 				A9F3332E1B42A89600F0D17B /* AddJob */,
-				A996509C1B3DB3DE00D5A8E9 /* Common */,
 			);
 			name = Images;
-			sourceTree = "<group>";
-		};
-		A996509C1B3DB3DE00D5A8E9 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				A9F3337F1B45972100F0D17B /* save@2x.png */,
-				A9F333801B45972100F0D17B /* saved@2x.png */,
-				A9F3336F1B42D20C00F0D17B /* close_btn@2x.png */,
-				A9F3334D1B42ACCB00F0D17B /* check.png */,
-				A996509A1B3DB2E300D5A8E9 /* back_btn@2x.png */,
-				A9F3337D1B45532F00F0D17B /* success@2x.png */,
-				A99650981B3DB2D100D5A8E9 /* 3dots@2x.png */,
-			);
-			name = Common;
 			sourceTree = "<group>";
 		};
 		A9C6EC901B381E8800EC9140 /* ChatView */ = {
@@ -2642,24 +2606,19 @@
 			files = (
 				C86F854B1C444DB800C23332 /* JSQMessagesViewController.xib in Resources */,
 				C86F854D1C444DB800C23332 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
-				C86F854E1C444DB800C23332 /* close_btn@2x.png in Resources */,
 				C86F854F1C444DB800C23332 /* Main.storyboard in Resources */,
 				C86F85501C444DB800C23332 /* job_description@2x.png in Resources */,
 				C88BA0821C527416007A81EB /* Dialling Codes.plist in Resources */,
 				C86F85511C444DB800C23332 /* pound_sign@2x.png in Resources */,
 				C86F85551C444DB800C23332 /* JSQMessagesToolbarContentView.xib in Resources */,
-				C86F85561C444DB800C23332 /* 3dots@2x.png in Resources */,
 				C86F85581C444DB800C23332 /* tag_location_active@2x.png in Resources */,
-				C86F85591C444DB800C23332 /* check.png in Resources */,
 				C86F855A1C444DB800C23332 /* salary_details@2x.png in Resources */,
-				C86F855C1C444DB800C23332 /* back_btn@2x.png in Resources */,
 				C86F855D1C444DB800C23332 /* add_skills@2x.png in Resources */,
 				C86F855E1C444DB800C23332 /* JSQMessagesAssets.bundle in Resources */,
 				C86F855F1C444DB800C23332 /* this_job_has-been_posted@2x.png in Resources */,
 				C86F85611C444DB800C23332 /* employer@2x.png in Resources */,
 				C86F85621C444DB800C23332 /* job_title@2x.png in Resources */,
 				C86F85691C444DB800C23332 /* SettingsCell.xib in Resources */,
-				C86F856A1C444DB800C23332 /* save@2x.png in Resources */,
 				C86F856B1C444DB800C23332 /* employer_active@2x.png in Resources */,
 				C86F856C1C444DB800C23332 /* tag_location@2x.png in Resources */,
 				C86F856D1C444DB800C23332 /* job_description_active@2x.png in Resources */,
@@ -2669,11 +2628,9 @@
 				C86F85721C444DB800C23332 /* ChatListTableViewCell.xib in Resources */,
 				C86F85731C444DB800C23332 /* HockeySDKResources.bundle in Resources */,
 				C86F85741C444DB800C23332 /* Localizable.strings in Resources */,
-				C86F85751C444DB800C23332 /* success@2x.png in Resources */,
 				C86F85781C444DB800C23332 /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
 				C86F85791C444DB800C23332 /* salary_details_active@2x.png in Resources */,
 				C86F857A1C444DB800C23332 /* job_title_active@2x.png in Resources */,
-				C86F857B1C444DB800C23332 /* saved@2x.png in Resources */,
 				C86F857D1C444DB800C23332 /* add_skills_active@2x.png in Resources */,
 				C86F857F1C444DB800C23332 /* ChatViewController.xib in Resources */,
 				C86F85801C444DB800C23332 /* NotificationCell.xib in Resources */,
@@ -2696,24 +2653,19 @@
 			files = (
 				A9964FDF1B387CC800D5A8E9 /* JSQMessagesViewController.xib in Resources */,
 				A9964FFF1B387CC800D5A8E9 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
-				A9F333701B42D20C00F0D17B /* close_btn@2x.png in Resources */,
 				EBA8C3461B32DFF100522167 /* Main.storyboard in Resources */,
 				A9F333651B42ACDC00F0D17B /* job_description@2x.png in Resources */,
 				C88BA0811C527416007A81EB /* Dialling Codes.plist in Resources */,
 				A9F3336A1B42B0B700F0D17B /* pound_sign@2x.png in Resources */,
 				A9964FFD1B387CC800D5A8E9 /* JSQMessagesToolbarContentView.xib in Resources */,
-				A99650991B3DB2D100D5A8E9 /* 3dots@2x.png in Resources */,
 				A9F333621B42ACDC00F0D17B /* tag_location_active@2x.png in Resources */,
-				A9F3334E1B42ACCB00F0D17B /* check.png in Resources */,
 				A9F333671B42ACDC00F0D17B /* salary_details@2x.png in Resources */,
-				A996509B1B3DB2E300D5A8E9 /* back_btn@2x.png in Resources */,
 				A9F333631B42ACDC00F0D17B /* add_skills@2x.png in Resources */,
 				A9964FD51B387CC800D5A8E9 /* JSQMessagesAssets.bundle in Resources */,
 				A9F3336C1B42BE4B00F0D17B /* this_job_has-been_posted@2x.png in Resources */,
 				A9F333641B42ACDC00F0D17B /* employer@2x.png in Resources */,
 				A9F333661B42ACDC00F0D17B /* job_title@2x.png in Resources */,
 				C8A661FB1C0B66440088355D /* SettingsCell.xib in Resources */,
-				A9F333811B45972100F0D17B /* save@2x.png in Resources */,
 				A9F3335E1B42ACDC00F0D17B /* employer_active@2x.png in Resources */,
 				A9F333681B42ACDC00F0D17B /* tag_location@2x.png in Resources */,
 				A9F3335F1B42ACDC00F0D17B /* job_description_active@2x.png in Resources */,
@@ -2723,11 +2675,9 @@
 				C8A661F21C0B66270088355D /* ChatListTableViewCell.xib in Resources */,
 				C89325B61C08CE420069FCFD /* HockeySDKResources.bundle in Resources */,
 				C8A662061C0B69960088355D /* Localizable.strings in Resources */,
-				A9F3337E1B45532F00F0D17B /* success@2x.png in Resources */,
 				A9964FFA1B387CC800D5A8E9 /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
 				A9F333611B42ACDC00F0D17B /* salary_details_active@2x.png in Resources */,
 				A9F333601B42ACDC00F0D17B /* job_title_active@2x.png in Resources */,
-				A9F333821B45972100F0D17B /* saved@2x.png in Resources */,
 				A9F3335D1B42ACDC00F0D17B /* add_skills_active@2x.png in Resources */,
 				C8A661EF1C0B66160088355D /* ChatViewController.xib in Resources */,
 				C8A661EC1C0B66110088355D /* NotificationCell.xib in Resources */,
