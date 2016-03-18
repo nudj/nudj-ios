@@ -30,8 +30,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     private var deviceTokenSynced: Bool = false
     var contacts = Contacts()
     
-    var appWasInBackground = false
-    
     //Mix panel
     let MIXPANEL_TOKEN = "29fc1fec9fa6f75efd303f12c8be4acb"
     
@@ -310,11 +308,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+        MixPanelHandler.stopEventTracking("timeSpentInApplication")
         coreDataStack.saveContext()
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
-        appWasInBackground = true
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -323,12 +321,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-
+        MixPanelHandler.startEventTracking("timeSpentInApplication")
         FBSDKAppEvents.activateApp()
-
-        if (appWasInBackground) {
-            appWasInBackground = false
-        }
     }
 
     func applicationWillTerminate(application: UIApplication) {
