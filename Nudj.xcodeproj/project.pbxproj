@@ -635,7 +635,6 @@
 		A92324CF1B7BAE77009C1F0C /* no_search_results@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_search_results@2x.png"; sourceTree = "<group>"; };
 		A929E4941B863D3F00AC2A5F /* MixPanelHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MixPanelHandler.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A947CC981B7119B500C9518E /* NoContentPlaceHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NoContentPlaceHolder.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		A947CC9B1B711CF000C9518E /* no_jobs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_jobs@2x.png"; sourceTree = "<group>"; };
 		A94FE6CB1B84C9E600761F32 /* archive_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archive_active@2x.png"; sourceTree = "<group>"; };
 		A95798241B46965A006E826E /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NotificationViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A984E2ED1B67ACA9009F318E /* ChatRoomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ChatRoomModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -1210,14 +1209,6 @@
 				A92324CF1B7BAE77009C1F0C /* no_search_results@2x.png */,
 			);
 			path = Placeholders;
-			sourceTree = "<group>";
-		};
-		A947CC9A1B711CE200C9518E /* Jobs */ = {
-			isa = PBXGroup;
-			children = (
-				A947CC9B1B711CF000C9518E /* no_jobs@2x.png */,
-			);
-			name = Jobs;
 			sourceTree = "<group>";
 		};
 		A95798231B469636006E826E /* Notification */ = {
@@ -2176,7 +2167,6 @@
 			isa = PBXGroup;
 			children = (
 				A92324C71B7BAE77009C1F0C /* Placeholders */,
-				A947CC9A1B711CE200C9518E /* Jobs */,
 				A9ACE1CD1B6913E6003BD5F2 /* Settings */,
 				A9F3332E1B42A89600F0D17B /* AddJob */,
 				A99650AD1B3DB40900D5A8E9 /* ChatIcons */,
