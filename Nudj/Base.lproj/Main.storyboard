@@ -208,7 +208,8 @@
                                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rbf-7S-1NT" customClass="TokenView" customModule="Nudj" customModuleProvider="target">
                                                 <rect key="frame" x="45" y="7" width="322" height="42"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="42" id="JX4-de-rK1"/>
+                                                    <constraint firstAttribute="height" priority="500" constant="42" id="JX4-de-rK1"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="42" id="Opu-eO-Emt"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="autocompleteEndpoint" value="skills/suggest"/>
@@ -922,7 +923,8 @@
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KXz-hf-wcR" customClass="TokenView" customModule="Nudj" customModuleProvider="target">
                                 <rect key="frame" x="16" y="173" width="343" height="35"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="4vZ-Pb-bnn"/>
+                                    <constraint firstAttribute="height" priority="500" constant="35" id="4vZ-Pb-bnn"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="zjC-Ad-6MW"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="autocompleteEndpoint" value="skills/suggest"/>
@@ -5803,10 +5805,10 @@ Cg
         <segue reference="BCe-Pt-bFX"/>
         <segue reference="Dg8-rw-2fQ"/>
         <segue reference="1RO-e0-4AP"/>
-        <segue reference="90M-dj-0pn"/>
         <segue reference="oHM-Sk-no8"/>
         <segue reference="gvE-qy-aNj"/>
-        <segue reference="rdc-9S-2PT"/>
+        <segue reference="90M-dj-0pn"/>
+        <segue reference="0lF-Gf-mwR"/>
         <segue reference="l7l-cF-kYn"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
