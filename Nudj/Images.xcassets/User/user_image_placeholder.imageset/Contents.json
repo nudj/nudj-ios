@@ -10,8 +10,8 @@
     },
     {
       "idiom" : "universal",
-      "scale" : "3x",
-      "filename" : "user_image_03.png"
+      "filename" : "user_image_03.png",
+      "scale" : "3x"
     }
   ],
   "info" : {
