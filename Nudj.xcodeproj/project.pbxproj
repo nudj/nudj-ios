@@ -8,13 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A9191EA61B6A402E000F9168 /* SocialStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9191EA51B6A402E000F9168 /* SocialStatus.swift */; };
-		A92324D01B7BAE77009C1F0C /* no_chats@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324C81B7BAE77009C1F0C /* no_chats@2x.png */; };
-		A92324D11B7BAE77009C1F0C /* no_contacts@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324C91B7BAE77009C1F0C /* no_contacts@2x.png */; };
-		A92324D21B7BAE77009C1F0C /* no_favourite_contacts@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324CA1B7BAE77009C1F0C /* no_favourite_contacts@2x.png */; };
-		A92324D41B7BAE77009C1F0C /* no_jobs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324CC1B7BAE77009C1F0C /* no_jobs@2x.png */; };
-		A92324D51B7BAE77009C1F0C /* no_notifications@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324CD1B7BAE77009C1F0C /* no_notifications@2x.png */; };
-		A92324D61B7BAE77009C1F0C /* no_profile_content@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324CE1B7BAE77009C1F0C /* no_profile_content@2x.png */; };
-		A92324D71B7BAE77009C1F0C /* no_search_results@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324CF1B7BAE77009C1F0C /* no_search_results@2x.png */; };
 		A929E4951B863D3F00AC2A5F /* MixPanelHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A929E4941B863D3F00AC2A5F /* MixPanelHandler.swift */; };
 		A947CC991B7119B500C9518E /* NoContentPlaceHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A947CC981B7119B500C9518E /* NoContentPlaceHolder.swift */; };
 		A94FE6CC1B84C9E600761F32 /* archive_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A94FE6CB1B84C9E600761F32 /* archive_active@2x.png */; };
@@ -480,14 +473,12 @@
 		C86F85461C444DB800C23332 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB337FA1A9F581F000CAD88 /* CoreData.framework */; };
 		C86F85491C444DB800C23332 /* connected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACE1CE1B6913F9003BD5F2 /* connected@2x.png */; };
 		C86F854B1C444DB800C23332 /* JSQMessagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9964E3D1B387CC700D5A8E9 /* JSQMessagesViewController.xib */; };
-		C86F854C1C444DB800C23332 /* no_favourite_contacts@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324CA1B7BAE77009C1F0C /* no_favourite_contacts@2x.png */; };
 		C86F854D1C444DB800C23332 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9964E831B387CC800D5A8E9 /* JSQMessagesTypingIndicatorFooterView.xib */; };
 		C86F854E1C444DB800C23332 /* close_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3336F1B42D20C00F0D17B /* close_btn@2x.png */; };
 		C86F854F1C444DB800C23332 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBA8C3441B32DFF100522167 /* Main.storyboard */; };
 		C86F85501C444DB800C23332 /* job_description@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333591B42ACDC00F0D17B /* job_description@2x.png */; };
 		C86F85511C444DB800C23332 /* pound_sign@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333691B42B0B700F0D17B /* pound_sign@2x.png */; };
 		C86F85521C444DB800C23332 /* facebook_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACE1CF1B6913F9003BD5F2 /* facebook_icon@2x.png */; };
-		C86F85541C444DB800C23332 /* no_jobs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324CC1B7BAE77009C1F0C /* no_jobs@2x.png */; };
 		C86F85551C444DB800C23332 /* JSQMessagesToolbarContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9964E801B387CC800D5A8E9 /* JSQMessagesToolbarContentView.xib */; };
 		C86F85561C444DB800C23332 /* 3dots@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650981B3DB2D100D5A8E9 /* 3dots@2x.png */; };
 		C86F85581C444DB800C23332 /* tag_location_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333551B42ACDC00F0D17B /* tag_location_active@2x.png */; };
@@ -498,12 +489,9 @@
 		C86F855D1C444DB800C23332 /* add_skills@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333571B42ACDC00F0D17B /* add_skills@2x.png */; };
 		C86F855E1C444DB800C23332 /* JSQMessagesAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A9964E281B387CC700D5A8E9 /* JSQMessagesAssets.bundle */; };
 		C86F855F1C444DB800C23332 /* this_job_has-been_posted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3336B1B42BE4B00F0D17B /* this_job_has-been_posted@2x.png */; };
-		C86F85601C444DB800C23332 /* no_notifications@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324CD1B7BAE77009C1F0C /* no_notifications@2x.png */; };
 		C86F85611C444DB800C23332 /* employer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333581B42ACDC00F0D17B /* employer@2x.png */; };
 		C86F85621C444DB800C23332 /* job_title@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3335A1B42ACDC00F0D17B /* job_title@2x.png */; };
-		C86F85631C444DB800C23332 /* no_contacts@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324C91B7BAE77009C1F0C /* no_contacts@2x.png */; };
 		C86F85661C444DB800C23332 /* archive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A996509D1B3DB3FF00D5A8E9 /* archive@2x.png */; };
-		C86F85671C444DB800C23332 /* no_search_results@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324CF1B7BAE77009C1F0C /* no_search_results@2x.png */; };
 		C86F85681C444DB800C23332 /* job_detail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650A11B3DB3FF00D5A8E9 /* job_detail@2x.png */; };
 		C86F85691C444DB800C23332 /* SettingsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661FD1C0B66440088355D /* SettingsCell.xib */; };
 		C86F856A1C444DB800C23332 /* save@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3337F1B45972100F0D17B /* save@2x.png */; };
@@ -527,11 +515,9 @@
 		C86F857E1C444DB800C23332 /* profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650A41B3DB3FF00D5A8E9 /* profile@2x.png */; };
 		C86F857F1C444DB800C23332 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661F11C0B66160088355D /* ChatViewController.xib */; };
 		C86F85801C444DB800C23332 /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661EE1C0B66110088355D /* NotificationCell.xib */; };
-		C86F85811C444DB800C23332 /* no_chats@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324C81B7BAE77009C1F0C /* no_chats@2x.png */; };
 		C86F85821C444DB800C23332 /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9964E721B387CC800D5A8E9 /* JSQMessagesCollectionViewCellOutgoing.xib */; };
 		C86F85831C444DB800C23332 /* ContactsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661F71C0B662E0088355D /* ContactsCell.xib */; };
 		C86F85841C444DB800C23332 /* JSQMessagesCollectionViewCellIncoming.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9964E6F1B387CC800D5A8E9 /* JSQMessagesCollectionViewCellIncoming.xib */; };
-		C86F85851C444DB800C23332 /* no_profile_content@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A92324CE1B7BAE77009C1F0C /* no_profile_content@2x.png */; };
 		C86F85921C444F2100C23332 /* DevelopmentServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F85911C444F2100C23332 /* DevelopmentServer.swift */; };
 		C88204A61C4C258C00744554 /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88204A51C4C258C00744554 /* SegueHandlerType.swift */; };
 		C88204A71C4C258C00744554 /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88204A51C4C258C00744554 /* SegueHandlerType.swift */; };
@@ -626,13 +612,6 @@
 		39A67AE42E9231EE2A750094 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		91ACAE069A6F9735FED79A9F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A9191EA51B6A402E000F9168 /* SocialStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SocialStatus.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		A92324C81B7BAE77009C1F0C /* no_chats@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_chats@2x.png"; sourceTree = "<group>"; };
-		A92324C91B7BAE77009C1F0C /* no_contacts@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_contacts@2x.png"; sourceTree = "<group>"; };
-		A92324CA1B7BAE77009C1F0C /* no_favourite_contacts@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_favourite_contacts@2x.png"; sourceTree = "<group>"; };
-		A92324CC1B7BAE77009C1F0C /* no_jobs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_jobs@2x.png"; sourceTree = "<group>"; };
-		A92324CD1B7BAE77009C1F0C /* no_notifications@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_notifications@2x.png"; sourceTree = "<group>"; };
-		A92324CE1B7BAE77009C1F0C /* no_profile_content@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_profile_content@2x.png"; sourceTree = "<group>"; };
-		A92324CF1B7BAE77009C1F0C /* no_search_results@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no_search_results@2x.png"; sourceTree = "<group>"; };
 		A929E4941B863D3F00AC2A5F /* MixPanelHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MixPanelHandler.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A947CC981B7119B500C9518E /* NoContentPlaceHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NoContentPlaceHolder.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A94FE6CB1B84C9E600761F32 /* archive_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archive_active@2x.png"; sourceTree = "<group>"; };
@@ -1195,20 +1174,6 @@
 				39A67AE42E9231EE2A750094 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		A92324C71B7BAE77009C1F0C /* Placeholders */ = {
-			isa = PBXGroup;
-			children = (
-				A92324C81B7BAE77009C1F0C /* no_chats@2x.png */,
-				A92324C91B7BAE77009C1F0C /* no_contacts@2x.png */,
-				A92324CA1B7BAE77009C1F0C /* no_favourite_contacts@2x.png */,
-				A92324CC1B7BAE77009C1F0C /* no_jobs@2x.png */,
-				A92324CD1B7BAE77009C1F0C /* no_notifications@2x.png */,
-				A92324CE1B7BAE77009C1F0C /* no_profile_content@2x.png */,
-				A92324CF1B7BAE77009C1F0C /* no_search_results@2x.png */,
-			);
-			path = Placeholders;
 			sourceTree = "<group>";
 		};
 		A95798231B469636006E826E /* Notification */ = {
@@ -2166,7 +2131,6 @@
 		A99650971B3DB23A00D5A8E9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				A92324C71B7BAE77009C1F0C /* Placeholders */,
 				A9ACE1CD1B6913E6003BD5F2 /* Settings */,
 				A9F3332E1B42A89600F0D17B /* AddJob */,
 				A99650AD1B3DB40900D5A8E9 /* ChatIcons */,
@@ -2726,7 +2690,6 @@
 			files = (
 				C86F85491C444DB800C23332 /* connected@2x.png in Resources */,
 				C86F854B1C444DB800C23332 /* JSQMessagesViewController.xib in Resources */,
-				C86F854C1C444DB800C23332 /* no_favourite_contacts@2x.png in Resources */,
 				C86F854D1C444DB800C23332 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
 				C86F854E1C444DB800C23332 /* close_btn@2x.png in Resources */,
 				C86F854F1C444DB800C23332 /* Main.storyboard in Resources */,
@@ -2734,7 +2697,6 @@
 				C88BA0821C527416007A81EB /* Dialling Codes.plist in Resources */,
 				C86F85511C444DB800C23332 /* pound_sign@2x.png in Resources */,
 				C86F85521C444DB800C23332 /* facebook_icon@2x.png in Resources */,
-				C86F85541C444DB800C23332 /* no_jobs@2x.png in Resources */,
 				C86F85551C444DB800C23332 /* JSQMessagesToolbarContentView.xib in Resources */,
 				C86F85561C444DB800C23332 /* 3dots@2x.png in Resources */,
 				C86F85581C444DB800C23332 /* tag_location_active@2x.png in Resources */,
@@ -2745,12 +2707,9 @@
 				C86F855D1C444DB800C23332 /* add_skills@2x.png in Resources */,
 				C86F855E1C444DB800C23332 /* JSQMessagesAssets.bundle in Resources */,
 				C86F855F1C444DB800C23332 /* this_job_has-been_posted@2x.png in Resources */,
-				C86F85601C444DB800C23332 /* no_notifications@2x.png in Resources */,
 				C86F85611C444DB800C23332 /* employer@2x.png in Resources */,
 				C86F85621C444DB800C23332 /* job_title@2x.png in Resources */,
-				C86F85631C444DB800C23332 /* no_contacts@2x.png in Resources */,
 				C86F85661C444DB800C23332 /* archive@2x.png in Resources */,
-				C86F85671C444DB800C23332 /* no_search_results@2x.png in Resources */,
 				C86F85681C444DB800C23332 /* job_detail@2x.png in Resources */,
 				C86F85691C444DB800C23332 /* SettingsCell.xib in Resources */,
 				C86F856A1C444DB800C23332 /* save@2x.png in Resources */,
@@ -2774,11 +2733,9 @@
 				C86F857E1C444DB800C23332 /* profile@2x.png in Resources */,
 				C86F857F1C444DB800C23332 /* ChatViewController.xib in Resources */,
 				C86F85801C444DB800C23332 /* NotificationCell.xib in Resources */,
-				C86F85811C444DB800C23332 /* no_chats@2x.png in Resources */,
 				C86F85821C444DB800C23332 /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
 				C86F85831C444DB800C23332 /* ContactsCell.xib in Resources */,
 				C86F85841C444DB800C23332 /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
-				C86F85851C444DB800C23332 /* no_profile_content@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2795,7 +2752,6 @@
 			files = (
 				A9ACE1D21B6913F9003BD5F2 /* connected@2x.png in Resources */,
 				A9964FDF1B387CC800D5A8E9 /* JSQMessagesViewController.xib in Resources */,
-				A92324D21B7BAE77009C1F0C /* no_favourite_contacts@2x.png in Resources */,
 				A9964FFF1B387CC800D5A8E9 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
 				A9F333701B42D20C00F0D17B /* close_btn@2x.png in Resources */,
 				EBA8C3461B32DFF100522167 /* Main.storyboard in Resources */,
@@ -2803,7 +2759,6 @@
 				C88BA0811C527416007A81EB /* Dialling Codes.plist in Resources */,
 				A9F3336A1B42B0B700F0D17B /* pound_sign@2x.png in Resources */,
 				A9ACE1D31B6913F9003BD5F2 /* facebook_icon@2x.png in Resources */,
-				A92324D41B7BAE77009C1F0C /* no_jobs@2x.png in Resources */,
 				A9964FFD1B387CC800D5A8E9 /* JSQMessagesToolbarContentView.xib in Resources */,
 				A99650991B3DB2D100D5A8E9 /* 3dots@2x.png in Resources */,
 				A9F333621B42ACDC00F0D17B /* tag_location_active@2x.png in Resources */,
@@ -2814,12 +2769,9 @@
 				A9F333631B42ACDC00F0D17B /* add_skills@2x.png in Resources */,
 				A9964FD51B387CC800D5A8E9 /* JSQMessagesAssets.bundle in Resources */,
 				A9F3336C1B42BE4B00F0D17B /* this_job_has-been_posted@2x.png in Resources */,
-				A92324D51B7BAE77009C1F0C /* no_notifications@2x.png in Resources */,
 				A9F333641B42ACDC00F0D17B /* employer@2x.png in Resources */,
 				A9F333661B42ACDC00F0D17B /* job_title@2x.png in Resources */,
-				A92324D11B7BAE77009C1F0C /* no_contacts@2x.png in Resources */,
 				A99650A51B3DB3FF00D5A8E9 /* archive@2x.png in Resources */,
-				A92324D71B7BAE77009C1F0C /* no_search_results@2x.png in Resources */,
 				A99650A91B3DB3FF00D5A8E9 /* job_detail@2x.png in Resources */,
 				C8A661FB1C0B66440088355D /* SettingsCell.xib in Resources */,
 				A9F333811B45972100F0D17B /* save@2x.png in Resources */,
@@ -2843,11 +2795,9 @@
 				A99650AC1B3DB3FF00D5A8E9 /* profile@2x.png in Resources */,
 				C8A661EF1C0B66160088355D /* ChatViewController.xib in Resources */,
 				C8A661EC1C0B66110088355D /* NotificationCell.xib in Resources */,
-				A92324D01B7BAE77009C1F0C /* no_chats@2x.png in Resources */,
 				A9964FF51B387CC800D5A8E9 /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
 				C8A661F51C0B662E0088355D /* ContactsCell.xib in Resources */,
 				A9964FF31B387CC800D5A8E9 /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
-				A92324D61B7BAE77009C1F0C /* no_profile_content@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
