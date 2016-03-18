@@ -17,7 +17,7 @@ class ContactsCell: UITableViewCell {
     
     func loadData(contact: ContactModel) {
         // TODO: MVC violation
-        profileImage.setCustomImage(UserModel.getDefaultUserImage())
+        profileImage.setCustomImage(UserModel.getDefaultUserImage(.Size60))
         
         if let user = contact.user {
             
@@ -31,7 +31,7 @@ class ContactsCell: UITableViewCell {
             }
 
         } else {
-            profileImage.setCustomImage(UserModel.getImageByContactId(contact.apple_id))
+            profileImage.setCustomImage(UserModel.getImageByContactId(contact.apple_id, size: .Size60))
 
             self.hideStatus()
         }

@@ -39,7 +39,7 @@ class NotificationCell: UITableViewCell {
     func setup(data: Notification) {
         self.notificationData = data
 
-        profileImage.setCustomImage(UserModel.getDefaultUserImage())
+        profileImage.setCustomImage(UserModel.getDefaultUserImage(.Size60))
         profileImage.downloadImage(data.senderImage, completion:nil)
         
         let tap = UITapGestureRecognizer(target:self, action:"ImageTap:")

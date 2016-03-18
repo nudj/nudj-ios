@@ -24,7 +24,7 @@ final class ChatListTableViewCell: UITableViewCell {
             jobCompany.text = job["company"].string
         }
         
-        profilePicture.setCustomImage(UserModel.getDefaultUserImage())
+        profilePicture.setCustomImage(UserModel.getDefaultUserImage(.Size50))
         profilePicture.downloadImage(data.image)
         
         timeAgo.text = data.time

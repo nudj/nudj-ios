@@ -34,7 +34,7 @@ class JobCellTableViewCell: UITableViewCell, DataTableCell {
 
         self.location.text = data?["location"].string
 
-        self.creatorImage.image = UserModel.getDefaultUserImage()
+        self.creatorImage.image = UserModel.getDefaultUserImage(.Size60)
         self.creatorImage.downloadImage(data!["user"]["image"]["profile"].stringValue)
         
         self.selectionStyle = UITableViewCellSelectionStyle.None

@@ -45,7 +45,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
         self.incomingBubbleImageData = bubbleFactory.incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor())
 
         self.showLoadEarlierMessagesHeader = false
-        self.templateImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(UserModel.getDefaultUserImage(), diameter: avatarDiameter)
+        self.templateImage = JSQMessagesAvatarImageFactory.avatarImageWithImage(UserModel.getDefaultUserImage(.Size60), diameter: avatarDiameter)
         
         appGlobalDelegate.chatInst!.delegate = self
         
@@ -85,7 +85,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
         }
         
         //Default
-        return JSQMessagesAvatarImageFactory.avatarImageWithImage(UserModel.getDefaultUserImage(), diameter: avatarDiameter)
+        return JSQMessagesAvatarImageFactory.avatarImageWithImage(UserModel.getDefaultUserImage(.Size60), diameter: avatarDiameter)
     }
     
     override func viewWillAppear(animated: Bool) {

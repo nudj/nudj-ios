@@ -15,7 +15,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="125"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="kvP-5b-4qR" customClass="AsyncImage" customModule="Nudj" customModuleProvider="target">
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User image placeholder 60x60" translatesAutoresizingMaskIntoConstraints="NO" id="kvP-5b-4qR" customClass="AsyncImage" customModule="Nudj" customModuleProvider="target">
                         <rect key="frame" x="8" y="8" width="60" height="60"/>
                         <gestureRecognizers/>
                         <constraints>
@@ -141,6 +141,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="user_image_placeholder" width="40" height="40"/>
+        <image name="User image placeholder 60x60" width="60" height="60"/>
     </resources>
 </document>

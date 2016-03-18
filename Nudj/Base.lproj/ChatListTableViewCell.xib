@@ -21,7 +21,7 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Sy0-Re-C7T" customClass="AsyncImage" customModule="Nudj" customModuleProvider="target">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User image placeholder 50x50" translatesAutoresizingMaskIntoConstraints="NO" id="Sy0-Re-C7T" customClass="AsyncImage" customModule="Nudj" customModuleProvider="target">
                         <rect key="frame" x="8" y="10" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="E5Y-vb-Jf4"/>
@@ -120,6 +120,6 @@
     </objects>
     <resources>
         <image name="ChatListArrow" width="14" height="14"/>
-        <image name="user_image_placeholder" width="40" height="40"/>
+        <image name="User image placeholder 50x50" width="50" height="50"/>
     </resources>
 </document>

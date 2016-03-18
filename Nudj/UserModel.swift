@@ -18,6 +18,20 @@ class UserModel: CustomStringConvertible {
         }
     }
     
+    enum ImageSize {
+        case Size50, Size60
+        
+        func ImageName() -> String {
+            switch self {
+            case Size50:
+                return "User image placeholder 50x50"
+                
+            case Size60:
+                return "User image placeholder 60x60"
+            }
+        }
+    }
+    
     typealias ErrorHandler = (ErrorType) -> Void
 
     var id: Int?
@@ -197,13 +211,13 @@ class UserModel: CustomStringConvertible {
         API.sharedInstance.request(.PUT, path: path, params: fields, closure: closure, errorHandler: errorHandler)
     }
     
-    static func getImageByContactId(identifier: String) -> UIImage {
+    static func getImageByContactId(identifier: String, size: ImageSize) -> UIImage {
         // TODO: remove singleton access
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
-        return appDelegate.contacts.getContactImageForId(identifier) ?? getDefaultUserImage()
+        return appDelegate.contacts.getContactImageForId(identifier) ?? getDefaultUserImage(size)
     }
 
-    static func getDefaultUserImage() -> UIImage {
-        return UIImage(named: "user_image_placeholder")!
+    static func getDefaultUserImage(size: ImageSize) -> UIImage {
+        return UIImage(named: size.ImageName())!
     }
 }
