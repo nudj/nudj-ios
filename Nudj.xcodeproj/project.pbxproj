@@ -2248,7 +2248,6 @@
 				EB6F22B91AAF706A007FF1B8 /* AsyncImage.swift */,
 				EB6F22BD1AB045C0007FF1B8 /* RBResizer.swift */,
 				EBBF42581AB1E55F0001E8B6 /* DataProviderProtocol.swift */,
-				EB9F71DE1B0E0060000C2D9F /* MainTabBar.swift */,
 				EBE5C3111B25811400CFF7E9 /* TokenView.swift */,
 				A9F333731B4444D700F0D17B /* CreatePopupView.swift */,
 				EBF17A231B4D538800C67657 /* Common.swift */,
@@ -2315,6 +2314,7 @@
 			isa = PBXGroup;
 			children = (
 				C88204A51C4C258C00744554 /* SegueHandlerType.swift */,
+				EB9F71DE1B0E0060000C2D9F /* MainTabBar.swift */,
 				A95798231B469636006E826E /* Notification */,
 				A9C6EC901B381E8800EC9140 /* ChatView */,
 				EBB338391A9F73A5000CAD88 /* Login/Register */,
