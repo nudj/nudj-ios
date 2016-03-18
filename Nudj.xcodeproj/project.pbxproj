@@ -199,9 +199,6 @@
 		A9A7C4D61B8364000051B1E5 /* InitiateChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A7C4D51B8364000051B1E5 /* InitiateChatViewController.swift */; };
 		A9ACE1C41B68FC0F003BD5F2 /* SendFeedBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACE1C31B68FC0F003BD5F2 /* SendFeedBackViewController.swift */; };
 		A9ACE1CC1B69107A003BD5F2 /* SavedPostedJobs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACE1CB1B69107A003BD5F2 /* SavedPostedJobs.swift */; };
-		A9ACE1D21B6913F9003BD5F2 /* connected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACE1CE1B6913F9003BD5F2 /* connected@2x.png */; };
-		A9ACE1D31B6913F9003BD5F2 /* facebook_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACE1CF1B6913F9003BD5F2 /* facebook_icon@2x.png */; };
-		A9ACE1D51B6913F9003BD5F2 /* not_connected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACE1D11B6913F9003BD5F2 /* not_connected@2x.png */; };
 		A9B577F31B6BD58E00CFB474 /* SocialHandlerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B577F21B6BD58E00CFB474 /* SocialHandlerModel.swift */; };
 		A9C6EC921B381EB000EC9140 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC911B381EB000EC9140 /* ChatViewController.swift */; };
 		A9C6EC9C1B38447700EC9140 /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC9B1B38447700EC9140 /* ChatListViewController.swift */; };
@@ -471,14 +468,12 @@
 		C86F85441C444DB800C23332 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A99650831B38803A00D5A8E9 /* Security.framework */; };
 		C86F85451C444DB800C23332 /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9964FD21B387CC800D5A8E9 /* libidn.a */; };
 		C86F85461C444DB800C23332 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB337FA1A9F581F000CAD88 /* CoreData.framework */; };
-		C86F85491C444DB800C23332 /* connected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACE1CE1B6913F9003BD5F2 /* connected@2x.png */; };
 		C86F854B1C444DB800C23332 /* JSQMessagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9964E3D1B387CC700D5A8E9 /* JSQMessagesViewController.xib */; };
 		C86F854D1C444DB800C23332 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9964E831B387CC800D5A8E9 /* JSQMessagesTypingIndicatorFooterView.xib */; };
 		C86F854E1C444DB800C23332 /* close_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3336F1B42D20C00F0D17B /* close_btn@2x.png */; };
 		C86F854F1C444DB800C23332 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBA8C3441B32DFF100522167 /* Main.storyboard */; };
 		C86F85501C444DB800C23332 /* job_description@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333591B42ACDC00F0D17B /* job_description@2x.png */; };
 		C86F85511C444DB800C23332 /* pound_sign@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333691B42B0B700F0D17B /* pound_sign@2x.png */; };
-		C86F85521C444DB800C23332 /* facebook_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACE1CF1B6913F9003BD5F2 /* facebook_icon@2x.png */; };
 		C86F85551C444DB800C23332 /* JSQMessagesToolbarContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9964E801B387CC800D5A8E9 /* JSQMessagesToolbarContentView.xib */; };
 		C86F85561C444DB800C23332 /* 3dots@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A99650981B3DB2D100D5A8E9 /* 3dots@2x.png */; };
 		C86F85581C444DB800C23332 /* tag_location_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333551B42ACDC00F0D17B /* tag_location_active@2x.png */; };
@@ -499,7 +494,6 @@
 		C86F856C1C444DB800C23332 /* tag_location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3335C1B42ACDC00F0D17B /* tag_location@2x.png */; };
 		C86F856D1C444DB800C23332 /* job_description_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F333521B42ACDC00F0D17B /* job_description_active@2x.png */; };
 		C86F856E1C444DB800C23332 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB0926DA1A8DE4CB00E1D958 /* LaunchScreen.xib */; };
-		C86F856F1C444DB800C23332 /* not_connected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACE1D11B6913F9003BD5F2 /* not_connected@2x.png */; };
 		C86F85701C444DB800C23332 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB0926D81A8DE4CB00E1D958 /* Images.xcassets */; };
 		C86F85711C444DB800C23332 /* JobCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661FA1C0B66350088355D /* JobCellTableViewCell.xib */; };
 		C86F85721C444DB800C23332 /* ChatListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661F41C0B66270088355D /* ChatListTableViewCell.xib */; };
@@ -989,9 +983,6 @@
 		A9A7C4D51B8364000051B1E5 /* InitiateChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = InitiateChatViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9ACE1C31B68FC0F003BD5F2 /* SendFeedBackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SendFeedBackViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9ACE1CB1B69107A003BD5F2 /* SavedPostedJobs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SavedPostedJobs.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		A9ACE1CE1B6913F9003BD5F2 /* connected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "connected@2x.png"; sourceTree = "<group>"; };
-		A9ACE1CF1B6913F9003BD5F2 /* facebook_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook_icon@2x.png"; sourceTree = "<group>"; };
-		A9ACE1D11B6913F9003BD5F2 /* not_connected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "not_connected@2x.png"; sourceTree = "<group>"; };
 		A9B577F21B6BD58E00CFB474 /* SocialHandlerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SocialHandlerModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9C6EC911B381EB000EC9140 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ChatViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9C6EC9B1B38447700EC9140 /* ChatListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ChatListViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -2168,9 +2159,6 @@
 		A9ACE1CD1B6913E6003BD5F2 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				A9ACE1CE1B6913F9003BD5F2 /* connected@2x.png */,
-				A9ACE1CF1B6913F9003BD5F2 /* facebook_icon@2x.png */,
-				A9ACE1D11B6913F9003BD5F2 /* not_connected@2x.png */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -2688,7 +2676,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C86F85491C444DB800C23332 /* connected@2x.png in Resources */,
 				C86F854B1C444DB800C23332 /* JSQMessagesViewController.xib in Resources */,
 				C86F854D1C444DB800C23332 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
 				C86F854E1C444DB800C23332 /* close_btn@2x.png in Resources */,
@@ -2696,7 +2683,6 @@
 				C86F85501C444DB800C23332 /* job_description@2x.png in Resources */,
 				C88BA0821C527416007A81EB /* Dialling Codes.plist in Resources */,
 				C86F85511C444DB800C23332 /* pound_sign@2x.png in Resources */,
-				C86F85521C444DB800C23332 /* facebook_icon@2x.png in Resources */,
 				C86F85551C444DB800C23332 /* JSQMessagesToolbarContentView.xib in Resources */,
 				C86F85561C444DB800C23332 /* 3dots@2x.png in Resources */,
 				C86F85581C444DB800C23332 /* tag_location_active@2x.png in Resources */,
@@ -2717,7 +2703,6 @@
 				C86F856C1C444DB800C23332 /* tag_location@2x.png in Resources */,
 				C86F856D1C444DB800C23332 /* job_description_active@2x.png in Resources */,
 				C86F856E1C444DB800C23332 /* LaunchScreen.xib in Resources */,
-				C86F856F1C444DB800C23332 /* not_connected@2x.png in Resources */,
 				C86F85701C444DB800C23332 /* Images.xcassets in Resources */,
 				C86F85711C444DB800C23332 /* JobCellTableViewCell.xib in Resources */,
 				C86F85721C444DB800C23332 /* ChatListTableViewCell.xib in Resources */,
@@ -2750,7 +2735,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9ACE1D21B6913F9003BD5F2 /* connected@2x.png in Resources */,
 				A9964FDF1B387CC800D5A8E9 /* JSQMessagesViewController.xib in Resources */,
 				A9964FFF1B387CC800D5A8E9 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
 				A9F333701B42D20C00F0D17B /* close_btn@2x.png in Resources */,
@@ -2758,7 +2742,6 @@
 				A9F333651B42ACDC00F0D17B /* job_description@2x.png in Resources */,
 				C88BA0811C527416007A81EB /* Dialling Codes.plist in Resources */,
 				A9F3336A1B42B0B700F0D17B /* pound_sign@2x.png in Resources */,
-				A9ACE1D31B6913F9003BD5F2 /* facebook_icon@2x.png in Resources */,
 				A9964FFD1B387CC800D5A8E9 /* JSQMessagesToolbarContentView.xib in Resources */,
 				A99650991B3DB2D100D5A8E9 /* 3dots@2x.png in Resources */,
 				A9F333621B42ACDC00F0D17B /* tag_location_active@2x.png in Resources */,
@@ -2779,7 +2762,6 @@
 				A9F333681B42ACDC00F0D17B /* tag_location@2x.png in Resources */,
 				A9F3335F1B42ACDC00F0D17B /* job_description_active@2x.png in Resources */,
 				EB0926DC1A8DE4CB00E1D958 /* LaunchScreen.xib in Resources */,
-				A9ACE1D51B6913F9003BD5F2 /* not_connected@2x.png in Resources */,
 				EB0926D91A8DE4CB00E1D958 /* Images.xcassets in Resources */,
 				C8A661F81C0B66350088355D /* JobCellTableViewCell.xib in Resources */,
 				C8A661F21C0B66270088355D /* ChatListTableViewCell.xib in Resources */,
