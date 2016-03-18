@@ -33,7 +33,7 @@ class CountryPickerDataSource: NSObject, UIPickerViewDataSource, UIPickerViewDel
         }
         
         init(country: String = "", diallingCode: String = "", iso2CountryCode: String = "", shouldStripLeadingZeros: Bool = false) {
-            self.country = country
+            self.country = NSLocale.autoupdatingCurrentLocale().displayNameForKey(NSLocaleCountryCode, value: iso2CountryCode) ?? country
             self.diallingCode = diallingCode
             self.iso2CountryCode = iso2CountryCode
             self.shouldStripLeadingZeros = shouldStripLeadingZeros
