@@ -144,6 +144,9 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
         let action = itemsArray[indexPath.section][indexPath.row]
 
         cell.textLabel!.text = action.title()
+        cell.textLabel?.textColor = .blackColor()
+        cell.accessoryView = nil
+        cell.accessoryType = .DisclosureIndicator
 
         switch action {
         case .ChooseStatus:
@@ -155,23 +158,17 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             if (self.socialStatuses.count > 0) {
                 let social = SocialStatus(connected: self.socialStatuses["facebook"]!, and: action)
                 social.delegate = self
-                cell.accessoryView = social;
-            } else {
-                cell.accessoryView = nil;
+                cell.accessoryView = social
             }
             
         case .DeleteAccount:
-            cell.accessoryView = nil
-            cell.accessoryType = UITableViewCellAccessoryType.None
-            cell.textLabel?.textColor = UIColor.redColor()
+            cell.textLabel?.textColor = .redColor()
             
         case .TestNotification:
-            cell.accessoryView = nil
-            cell.accessoryType = UITableViewCellAccessoryType.None
+            cell.accessoryType = .None
             
         default:
-            cell.accessoryView = nil
-            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+            break
         }
 
         return cell
