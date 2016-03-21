@@ -32,7 +32,7 @@
     // Additional xcodebuild arguments to use (Array of strings)
     //"extraXcodebuildArgs": [],
     // Build project before checking (Boolean)
-    //"fullBuild": false,
+    "fullBuild": true,
     // Cache project build logs (Boolean)
     //"cacheBuildLog": true,
     // Use our own modules cache (Boolean)
