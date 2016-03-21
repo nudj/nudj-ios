@@ -465,7 +465,6 @@
 		C88204A71C4C258C00744554 /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88204A51C4C258C00744554 /* SegueHandlerType.swift */; };
 		C885EE421C86874600FF4448 /* AppChatDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C885EE411C86874600FF4448 /* AppChatDelegate.swift */; };
 		C885EE431C86874600FF4448 /* AppChatDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C885EE411C86874600FF4448 /* AppChatDelegate.swift */; };
-		C886F9D41C6BF438000D5AEA /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C886F9D31C6BF438000D5AEA /* Pods.framework */; };
 		C886F9D51C6BF467000D5AEA /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C898A54C1C6BEFA8001DAB38 /* Pods.framework */; };
 		C88BA0811C527416007A81EB /* Dialling Codes.plist in Resources */ = {isa = PBXBuildFile; fileRef = C88BA0801C527416007A81EB /* Dialling Codes.plist */; };
 		C88BA0821C527416007A81EB /* Dialling Codes.plist in Resources */ = {isa = PBXBuildFile; fileRef = C88BA0801C527416007A81EB /* Dialling Codes.plist */; };
@@ -946,8 +945,6 @@
 		C86F85911C444F2100C23332 /* DevelopmentServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevelopmentServer.swift; sourceTree = "<group>"; };
 		C88204A51C4C258C00744554 /* SegueHandlerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueHandlerType.swift; sourceTree = "<group>"; };
 		C885EE411C86874600FF4448 /* AppChatDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppChatDelegate.swift; sourceTree = "<group>"; };
-		C886F9D11C6BF372000D5AEA /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
-		C886F9D31C6BF438000D5AEA /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
 		C88BA0801C527416007A81EB /* Dialling Codes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Dialling Codes.plist"; sourceTree = "<group>"; };
 		C88BA0831C5277DD007A81EB /* CountryPickerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryPickerDataSource.swift; sourceTree = "<group>"; };
 		C89325A21C08BEC10069FCFD /* LoggingPrint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggingPrint.swift; sourceTree = "<group>"; };
@@ -958,7 +955,6 @@
 		C89325B21C08CE410069FCFD /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HockeySDK.framework; sourceTree = "<group>"; };
 		C89325B41C08CE410069FCFD /* HockeySDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = HockeySDKResources.bundle; sourceTree = "<group>"; };
 		C898A54C1C6BEFA8001DAB38 /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "../../../Library/Developer/Xcode/DerivedData/Nudj-fdtsqpojpmyqxbgcozpglcgdnlcx/Build/Products/Debug-iphonesimulator/Pods.framework"; sourceTree = "<group>"; };
-		C89E254D1C6A99D900E55740 /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
 		C8A3DB141C7F194100D7EA5E /* CenteredButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenteredButton.swift; sourceTree = "<group>"; };
 		C8A661DE1C0B60020088355D /* Nudj.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Nudj.release.xcconfig; sourceTree = "<group>"; };
 		C8A661DF1C0B60290088355D /* Nudj.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Nudj.debug.xcconfig; sourceTree = "<group>"; };
@@ -1053,7 +1049,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C886F9D41C6BF438000D5AEA /* Pods.framework in Frameworks */,
 				C89325B01C08CE1C0069FCFD /* libc++.tbd in Frameworks */,
 				C89325AE1C08CCF60069FCFD /* QuickLook.framework in Frameworks */,
 				C89325AC1C08CCEA0069FCFD /* CoreText.framework in Frameworks */,
@@ -2066,10 +2061,7 @@
 		B24DF65843B49C77F100654A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C886F9D31C6BF438000D5AEA /* Pods.framework */,
-				C886F9D11C6BF372000D5AEA /* Pods.framework */,
 				C898A54C1C6BEFA8001DAB38 /* Pods.framework */,
-				C89E254D1C6A99D900E55740 /* Pods.framework */,
 				C89325AF1C08CE1C0069FCFD /* libc++.tbd */,
 				C89325B11C08CE410069FCFD /* HockeySDK.embeddedframework */,
 				C89325AD1C08CCF60069FCFD /* QuickLook.framework */,
