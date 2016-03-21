@@ -210,6 +210,7 @@
 		C8351C481C9AFEE800994F22 /* ContactsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8351C461C9AFEE800994F22 /* ContactsDataSource.swift */; };
 		C83FB6BC1C3EB5D0004ACE3E /* VersionNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83FB6BB1C3EB5D0004ACE3E /* VersionNumber.swift */; };
 		C84E00F81C191FC60065F220 /* Localizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84E00F71C191FC60065F220 /* Localizations.swift */; };
+		C86C37821CA0BBE40022449F /* Beta.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C86C37811CA0BBE40022449F /* Beta.xcassets */; };
 		C86F844B1C44257800C23332 /* API+Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F844A1C44257800C23332 /* API+Server.swift */; };
 		C86F844D1C44273A00C23332 /* ProductionServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F844C1C44273A00C23332 /* ProductionServer.swift */; };
 		C86F84521C444DB800C23332 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95798241B46965A006E826E /* NotificationViewController.swift */; };
@@ -938,6 +939,7 @@
 		C8351C461C9AFEE800994F22 /* ContactsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsDataSource.swift; sourceTree = "<group>"; };
 		C83FB6BB1C3EB5D0004ACE3E /* VersionNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionNumber.swift; sourceTree = "<group>"; };
 		C84E00F71C191FC60065F220 /* Localizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizations.swift; sourceTree = "<group>"; };
+		C86C37811CA0BBE40022449F /* Beta.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Beta.xcassets; sourceTree = "<group>"; };
 		C86F844A1C44257800C23332 /* API+Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+Server.swift"; sourceTree = "<group>"; };
 		C86F844C1C44273A00C23332 /* ProductionServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductionServer.swift; sourceTree = "<group>"; };
 		C86F858E1C444DB800C23332 /* Nudj beta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nudj beta.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2125,6 +2127,7 @@
 			isa = PBXGroup;
 			children = (
 				EB0926D81A8DE4CB00E1D958 /* Images.xcassets */,
+				C86C37811CA0BBE40022449F /* Beta.xcassets */,
 				EB0926DA1A8DE4CB00E1D958 /* LaunchScreen.xib */,
 				EBA8C3441B32DFF100522167 /* Main.storyboard */,
 				C8A662081C0B69960088355D /* Localizable.strings */,
@@ -2507,6 +2510,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C86F854B1C444DB800C23332 /* JSQMessagesViewController.xib in Resources */,
+				C86C37821CA0BBE40022449F /* Beta.xcassets in Resources */,
 				C86F854D1C444DB800C23332 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
 				C86F854F1C444DB800C23332 /* Main.storyboard in Resources */,
 				C88BA0821C527416007A81EB /* Dialling Codes.plist in Resources */,
@@ -3309,7 +3313,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C8A661DF1C0B60290088355D /* Nudj.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = BetaAppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 61;
@@ -3344,7 +3348,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C8A661DE1C0B60020088355D /* Nudj.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = BetaAppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 61;
