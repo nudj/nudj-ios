@@ -2541,7 +2541,7 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
-                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="GeY-dg-YuP" customClass="AsyncImage" customModule="Nudj" customModuleProvider="target">
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User image placeholder 80x80" translatesAutoresizingMaskIntoConstraints="NO" id="GeY-dg-YuP" customClass="AsyncImage" customModule="Nudj" customModuleProvider="target">
                                         <rect key="frame" x="16" y="20" width="80" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="Np6-Sq-l8B"/>
@@ -5771,6 +5771,7 @@ Cg
     <resources>
         <image name="3dots.png" width="21" height="5"/>
         <image name="Block" width="17" height="17"/>
+        <image name="User image placeholder 80x80" width="80" height="80"/>
         <image name="bio" width="26" height="26"/>
         <image name="bio-active" width="26" height="26"/>
         <image name="chatIcon" width="30" height="30"/>
@@ -5780,7 +5781,6 @@ Cg
         <image name="employer_active.png" width="24" height="24"/>
         <image name="favourite" width="19" height="17"/>
         <image name="favourited" width="19" height="17"/>
-        <image name="image-placeholder" width="62" height="62"/>
         <image name="job" width="24" height="24"/>
         <image name="job-active" width="24" height="24"/>
         <image name="jobsIcon" width="30" height="30"/>
