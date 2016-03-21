@@ -3332,7 +3332,7 @@
 					"$(SDKROOT)/usr/include/libxml2",
 					/usr/include/libxml2,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "co.nudj.ios-app.nudj";
+				PRODUCT_BUNDLE_IDENTIFIER = "co.nudj.ios-app.nudj.beta";
 				PRODUCT_MODULE_NAME = Nudj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -3367,10 +3367,10 @@
 					"$(SDKROOT)/usr/include/libxml2",
 					/usr/include/libxml2,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "co.nudj.ios-app.nudj";
+				PRODUCT_BUNDLE_IDENTIFIER = "co.nudj.ios-app.nudj.beta";
 				PRODUCT_MODULE_NAME = Nudj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1812ce94-194b-4be1-857f-cefd688b4242";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Nudj/Nudj-Bridging-Header.h";
 			};
 			name = Release;
@@ -3558,7 +3558,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "co.nudj.ios-app.nudj";
 				PRODUCT_NAME = Nudj;
-				PROVISIONING_PROFILE = "1812ce94-194b-4be1-857f-cefd688b4242";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Nudj/Nudj-Bridging-Header.h";
 			};
 			name = Release;
