@@ -29,7 +29,7 @@ public enum Destination: Equatable {
             return .None
         }
         switch host {
-            case "mobileweb.nudj.co":
+            case "mobileweb.nudj.co", "mobileweb-dev.nudj.co":
             break
             
         default:
