@@ -12,21 +12,48 @@ public enum Destination: Equatable {
     case None
     case Job(Int)
     
-    init(url: NSURL) {
-        self = .None
-        guard let pathComponents = url.pathComponents else {return}
-        if pathComponents.count < 3 {return}
-        let pathPrefix = pathComponents[1]
-        switch pathPrefix {
-            case "jobpreview":
-                let jobIDStr = pathComponents[2]
-                if let jobID = Int(jobIDStr) {
-                    self = .Job(jobID)
-                }
+    public init(url: NSURL) {
+        self = Destination.fromURL(url)
+    }
+    
+    static func fromURL(url: NSURL) -> Destination {
+        switch url.scheme {
+        case "http", "https":
             break
             
         default:
+            return .None
+        }
+        
+        guard let host = url.host else {
+            return .None
+        }
+        switch host {
+            case "mobileweb.nudj.co":
             break
+            
+        default:
+            return .None
+        }
+        
+        guard let pathComponents = url.pathComponents else {
+            return .None
+        }
+        if pathComponents.count < 3 {
+            return .None
+        }
+        
+        let pathPrefix = pathComponents[1]
+        switch pathPrefix {
+        case "jobpreview":
+            let jobIDStr = pathComponents[2]
+            if let jobID = Int(jobIDStr) {
+                return .Job(jobID)
+            }
+            return .None
+            
+        default:
+            return .None
         }
     }
 }
@@ -35,14 +62,18 @@ public func == (lhs: Destination, rhs: Destination) -> Bool {
     switch lhs {
     case .None:
             switch rhs {
-            case .None: return true
-            default: return false
+            case .None: 
+                return true
+            default: 
+                return false
         }
         
     case .Job(let lhsID):
         switch rhs {
-        case .Job(let rhsID): return lhsID == rhsID
-        default: return false
+        case .Job(let rhsID): 
+            return lhsID == rhsID
+        default: 
+            return false
         }
     }
 }
