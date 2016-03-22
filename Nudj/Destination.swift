@@ -17,6 +17,10 @@ public enum Destination: Equatable {
     }
     
     static func fromURL(url: NSURL) -> Destination {
+        guard let host = url.host, pathComponents = url.pathComponents else {
+            return .None
+        }
+        
         switch url.scheme {
         case "http", "https":
             break
@@ -25,9 +29,6 @@ public enum Destination: Equatable {
             return .None
         }
         
-        guard let host = url.host else {
-            return .None
-        }
         switch host {
         case "mobileweb.nudj.co", "mobileweb-dev.nudj.co":
             break
@@ -36,9 +37,6 @@ public enum Destination: Equatable {
             return .None
         }
         
-        guard let pathComponents = url.pathComponents else {
-            return .None
-        }
         if pathComponents.count < 3 {
             return .None
         }
