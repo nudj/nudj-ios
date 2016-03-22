@@ -491,7 +491,6 @@
 		C8A661F81C0B66350088355D /* JobCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661FA1C0B66350088355D /* JobCellTableViewCell.xib */; };
 		C8A661FB1C0B66440088355D /* SettingsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661FD1C0B66440088355D /* SettingsCell.xib */; };
 		C8A662061C0B69960088355D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C8A662081C0B69960088355D /* Localizable.strings */; };
-		C8A6A02C1C44536C004DB1C0 /* NudgeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0926E71A8DE4CB00E1D958 /* NudgeTests.swift */; };
 		C8A6E82D1C8609850064CD79 /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A6E82C1C8609850064CD79 /* ColorPalette.swift */; };
 		C8A6E82E1C8609850064CD79 /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A6E82C1C8609850064CD79 /* ColorPalette.swift */; };
 		C8A6E8301C861DC30064CD79 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A6E82F1C861DC30064CD79 /* CoreDataStack.swift */; };
@@ -503,7 +502,6 @@
 		EB0926D21A8DE4CB00E1D958 /* MainFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0926D11A8DE4CB00E1D958 /* MainFeed.swift */; };
 		EB0926D91A8DE4CB00E1D958 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB0926D81A8DE4CB00E1D958 /* Images.xcassets */; };
 		EB0926DC1A8DE4CB00E1D958 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB0926DA1A8DE4CB00E1D958 /* LaunchScreen.xib */; };
-		EB0926E81A8DE4CB00E1D958 /* NudgeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0926E71A8DE4CB00E1D958 /* NudgeTests.swift */; };
 		EB313D2E1AAF37FB00F008B8 /* StatusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB313D2D1AAF37FB00F008B8 /* StatusButton.swift */; };
 		EB313D301AAF4C5A00F008B8 /* StatusPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB313D2F1AAF4C5A00F008B8 /* StatusPicker.swift */; };
 		EB35BBA51AB7288000842E1F /* ContactsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB35BBA31AB7288000842E1F /* ContactsCell.swift */; };
@@ -989,7 +987,6 @@
 		EB0926DB1A8DE4CB00E1D958 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		EB0926E11A8DE4CB00E1D958 /* nudjTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nudjTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB0926E61A8DE4CB00E1D958 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EB0926E71A8DE4CB00E1D958 /* NudgeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NudgeTests.swift; sourceTree = "<group>"; };
 		EB313D2D1AAF37FB00F008B8 /* StatusButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StatusButton.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB313D2F1AAF4C5A00F008B8 /* StatusPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StatusPicker.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB35BBA31AB7288000842E1F /* ContactsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ContactsCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -2228,7 +2225,6 @@
 			isa = PBXGroup;
 			children = (
 				C85201B91CA1874800625642 /* DestinationURLTests.swift */,
-				EB0926E71A8DE4CB00E1D958 /* NudgeTests.swift */,
 				C81F16AB1C735C65000927F8 /* NSDataHexTests.swift */,
 				EB0926E51A8DE4CB00E1D958 /* Supporting Files */,
 			);
@@ -2980,7 +2976,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C85201BB1CA1874800625642 /* DestinationURLTests.swift in Sources */,
-				C8A6A02C1C44536C004DB1C0 /* NudgeTests.swift in Sources */,
 				C81F16AD1C735C65000927F8 /* NSDataHexTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3225,7 +3220,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C85201BA1CA1874800625642 /* DestinationURLTests.swift in Sources */,
-				EB0926E81A8DE4CB00E1D958 /* NudgeTests.swift in Sources */,
 				C81F16AC1C735C65000927F8 /* NSDataHexTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
