@@ -14,6 +14,20 @@ public enum Destination: Equatable {
     
     init(url: NSURL) {
         self = .None
+        guard let pathComponents = url.pathComponents else {return}
+        if pathComponents.count < 3 {return}
+        let pathPrefix = pathComponents[1]
+        switch pathPrefix {
+            case "jobpreview":
+                let jobIDStr = pathComponents[2]
+                if let jobID = Int(jobIDStr) {
+                    self = .Job(jobID)
+                }
+            break
+            
+        default:
+            break
+        }
     }
 }
 
