@@ -11,117 +11,65 @@ import Nudj
 
 class DestinationURLTests: XCTestCase {
     
-    func testNoneEqualsNone() {
-        let lhs = Destination.None
-        let rhs = Destination.None
-        XCTAssertEqual(lhs, rhs)
-    }
-
-    func testNoneDoesNotEqualJob() {
-        let lhs = Destination.None
-        let rhs = Destination.Job(42)
-        XCTAssertNotEqual(lhs, rhs)
-    }
-    
-    func testJobDoesNotEqualNone() {
-        let lhs = Destination.Job(42)
-        let rhs = Destination.None
-        XCTAssertNotEqual(lhs, rhs)
-    }
-    
-    func testJobEqualsSameJob() {
-        let lhs = Destination.Job(42)
-        let rhs = Destination.Job(42)
-        XCTAssertEqual(lhs, rhs)
-    }
-    
-    func testJobDoesNotEqualOtherJob() {
-        let lhs = Destination.Job(42)
-        let rhs = Destination.Job(43)
-        XCTAssertNotEqual(lhs, rhs)
+    func expect(urlString: String, toGive expectedDestination: Destination) {
+        let url = NSURL(string: urlString)
+        let destination = Destination(url: url!)
+        XCTAssertEqual(destination, expectedDestination)
     }
     
     func testIncorrectDomain() {
-        let url = NSURL(string: "http://example.com/")
-        let destination = Destination(url: url!)
-        XCTAssertEqual(destination, Destination.None)
+        expect("http://example.com/", toGive: .None)
     }
     
     func testNoPath() {
-        let url = NSURL(string: "https://mobileweb.nudj.co/")
-        let destination = Destination(url: url!)
-        XCTAssertEqual(destination, Destination.None)
+        expect("https://mobileweb.nudj.co/", toGive: .None)
     }
     
     func testCorrectHTTPSURL() {
-        let url = NSURL(string: "https://mobileweb.nudj.co/jobpreview/42/abcd")
-        let destination = Destination(url: url!)
-        XCTAssertEqual(destination, Destination.Job(42))
+        expect("https://mobileweb.nudj.co/jobpreview/42/abcd", toGive: .Job(42))
     }
     
     func testCorrectDevHTTPSURL() {
-        let url = NSURL(string: "https://mobileweb-dev.nudj.co/jobpreview/42/abcd")
-        let destination = Destination(url: url!)
-        XCTAssertEqual(destination, Destination.Job(42))
+        expect("https://mobileweb-dev.nudj.co/jobpreview/42/abcd", toGive: .Job(42))
     }
     
     func testCorrectNonPreviewURL() {
-        let url = NSURL(string: "https://mobileweb.nudj.co/job/42/abcd")
-        let destination = Destination(url: url!)
-        XCTAssertEqual(destination, Destination.Job(42))
+        expect("https://mobileweb.nudj.co/job/42/abcd", toGive: .Job(42))
     }
     
     func testCorrectHTTPURL() {
-        let url = NSURL(string: "http://mobileweb.nudj.co/jobpreview/42/abcd")
-        let destination = Destination(url: url!)
-        XCTAssertEqual(destination, Destination.Job(42))
+        expect("http://mobileweb.nudj.co/jobpreview/42/abcd", toGive: .Job(42))
     }
     
     func testCorrectDifferentJobID() {
-        let url = NSURL(string: "https://mobileweb.nudj.co/jobpreview/43/abcd")
-        let destination = Destination(url: url!)
-        XCTAssertEqual(destination, Destination.Job(43))
+        expect("https://mobileweb.nudj.co/jobpreview/43/abcd", toGive: .Job(43))
     }
     
     func testMalformedJobID() {
-        let url = NSURL(string: "https://mobileweb.nudj.co/jobpreview/abcd")
-        let destination = Destination(url: url!)
-        XCTAssertEqual(destination, Destination.None)
+        expect("https://mobileweb.nudj.co/jobpreview/abcd", toGive: .None)
     }
     
     func testMissingJobID() {
-        let url = NSURL(string: "https://mobileweb.nudj.co/jobpreview/")
-        let destination = Destination(url: url!)
-        XCTAssertEqual(destination, Destination.None)
+        expect("https://mobileweb.nudj.co/jobpreview/", toGive: .None)
     }
     
     func testIrrelevantPath() {
-        let url = NSURL(string: "https://mobileweb.nudj.co/foo/bar/baz/quux")
-        let destination = Destination(url: url!)
-        XCTAssertEqual(destination, Destination.None)
+        expect("https://mobileweb.nudj.co/foo/bar/baz/quux", toGive: .None)
     }
 
     func testWrongScheme() {
-        let url = NSURL(string: "xmpp://mobileweb.nudj.co/jobpreview/42/abcd")
-        let destination = Destination(url: url!)
-        XCTAssertEqual(destination, Destination.None)
+        expect("xmpp://mobileweb.nudj.co/jobpreview/42/abcd", toGive: .None)
     }
     
     func testWrongHost() {
-        let url = NSURL(string: "https://nudj.co/jobpreview/42/abcd")
-        let destination = Destination(url: url!)
-        XCTAssertEqual(destination, Destination.None)
+        expect("https://nudj.co/jobpreview/42/abcd", toGive: .None)
     }
     
     func testHashDoesntMatter() {
-        let url = NSURL(string: "https://mobileweb.nudj.co/jobpreview/42/wxyz")
-        let destination = Destination(url: url!)
-        XCTAssertEqual(destination, Destination.Job(42))
+        expect("https://mobileweb.nudj.co/jobpreview/42/wxyz", toGive: .Job(42))
     }
     
     func testHashNotRequired() {
-        let url = NSURL(string: "https://mobileweb.nudj.co/jobpreview/42")
-        let destination = Destination(url: url!)
-        XCTAssertEqual(destination, Destination.Job(42))
+        expect("https://mobileweb.nudj.co/jobpreview/42", toGive: .Job(42))
     }
 }
