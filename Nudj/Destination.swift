@@ -59,21 +59,14 @@ public enum Destination: Equatable {
 }
 
 public func == (lhs: Destination, rhs: Destination) -> Bool {
-    switch lhs {
-    case .None:
-            switch rhs {
-            case .None: 
-                return true
-            default: 
-                return false
-        }
+    switch (lhs, rhs) {
+    case (.None, .None):
+        return true
         
-    case .Job(let lhsID):
-        switch rhs {
-        case .Job(let rhsID): 
-            return lhsID == rhsID
-        default: 
-            return false
-        }
+    case (.Job(let lhsID), .Job(let rhsID)):
+        return lhsID == rhsID
+
+    default: 
+        return false
     }
 }
