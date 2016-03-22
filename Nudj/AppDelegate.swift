@@ -119,6 +119,28 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                 MainTabBar.postBadgeNotification(badgeString, tabIndex: .Notifications)
         }
     }
+    
+    func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+        switch userActivity.activityType {
+        case NSUserActivityTypeBrowsingWeb:
+            guard let url = userActivity.webpageURL else {
+                return false
+            }
+            let destination = Destination(url: url)
+            switch destination {
+            case .None:
+                application.openURL(url)
+                
+            default:
+                // TODO: go to destination
+                loggingPrint(destination)
+            }
+            return true
+            
+        default:
+            return false
+        }
+    }
 
     func syncContacts() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),{

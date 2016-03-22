@@ -70,3 +70,15 @@ public func == (lhs: Destination, rhs: Destination) -> Bool {
         return false
     }
 }
+
+extension Destination: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        switch self {
+        case .None:
+            return "Destination.None"
+            
+        case .Job(let jobID):
+            return "Destination.Job(\(jobID))"
+        }
+    }
+}
