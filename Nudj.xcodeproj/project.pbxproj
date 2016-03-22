@@ -214,6 +214,8 @@
 		C85201B81CA1861A00625642 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85201B61CA1861A00625642 /* Destination.swift */; };
 		C85201BA1CA1874800625642 /* DestinationURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85201B91CA1874800625642 /* DestinationURLTests.swift */; };
 		C85201BB1CA1874800625642 /* DestinationURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85201B91CA1874800625642 /* DestinationURLTests.swift */; };
+		C85201BE1CA1B63400625642 /* Nudj.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = C85201BC1CA1B56800625642 /* Nudj.entitlements */; };
+		C85201BF1CA1B63E00625642 /* Nudj beta.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = C85201BD1CA1B58D00625642 /* Nudj beta.entitlements */; };
 		C86C37821CA0BBE40022449F /* Beta.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C86C37811CA0BBE40022449F /* Beta.xcassets */; };
 		C86F844B1C44257800C23332 /* API+Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F844A1C44257800C23332 /* API+Server.swift */; };
 		C86F844D1C44273A00C23332 /* ProductionServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F844C1C44273A00C23332 /* ProductionServer.swift */; };
@@ -943,6 +945,8 @@
 		C84E00F71C191FC60065F220 /* Localizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizations.swift; sourceTree = "<group>"; };
 		C85201B61CA1861A00625642 /* Destination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
 		C85201B91CA1874800625642 /* DestinationURLTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestinationURLTests.swift; sourceTree = "<group>"; };
+		C85201BC1CA1B56800625642 /* Nudj.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Nudj.entitlements; sourceTree = "<group>"; };
+		C85201BD1CA1B58D00625642 /* Nudj beta.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Nudj beta.entitlements"; sourceTree = SOURCE_ROOT; };
 		C86C37811CA0BBE40022449F /* Beta.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Beta.xcassets; sourceTree = "<group>"; };
 		C86F844A1C44257800C23332 /* API+Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+Server.swift"; sourceTree = "<group>"; };
 		C86F844C1C44273A00C23332 /* ProductionServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductionServer.swift; sourceTree = "<group>"; };
@@ -2213,6 +2217,8 @@
 				A99650821B387D5000D5A8E9 /* Nudj-Prefix.pch */,
 				EB0926CE1A8DE4CB00E1D958 /* Info.plist */,
 				C86F858F1C444DB900C23332 /* Beta-Info.plist */,
+				C85201BC1CA1B56800625642 /* Nudj.entitlements */,
+				C85201BD1CA1B58D00625642 /* Nudj beta.entitlements */,
 				C8A661DE1C0B60020088355D /* Nudj.release.xcconfig */,
 				C8A661DF1C0B60290088355D /* Nudj.debug.xcconfig */,
 				C8A661E01C0B61400088355D /* Warnings.xcconfig */,
@@ -2464,6 +2470,9 @@
 							com.apple.Push = {
 								enabled = 1;
 							};
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
 						};
 					};
 					C8A6A0281C44536C004DB1C0 = {
@@ -2477,6 +2486,9 @@
 								enabled = 1;
 							};
 							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.SafariKeychain = {
 								enabled = 1;
 							};
 						};
@@ -2531,6 +2543,7 @@
 				C86F857F1C444DB800C23332 /* ChatViewController.xib in Resources */,
 				C86F85801C444DB800C23332 /* NotificationCell.xib in Resources */,
 				C86F85821C444DB800C23332 /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
+				C85201BF1CA1B63E00625642 /* Nudj beta.entitlements in Resources */,
 				C86F85831C444DB800C23332 /* ContactsCell.xib in Resources */,
 				C86F85841C444DB800C23332 /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
 			);
@@ -2551,6 +2564,7 @@
 				A9964FFF1B387CC800D5A8E9 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
 				EBA8C3461B32DFF100522167 /* Main.storyboard in Resources */,
 				C88BA0811C527416007A81EB /* Dialling Codes.plist in Resources */,
+				C85201BE1CA1B63400625642 /* Nudj.entitlements in Resources */,
 				A9964FFD1B387CC800D5A8E9 /* JSQMessagesToolbarContentView.xib in Resources */,
 				A9964FD51B387CC800D5A8E9 /* JSQMessagesAssets.bundle in Resources */,
 				C8A661FB1C0B66440088355D /* SettingsCell.xib in Resources */,
@@ -3320,6 +3334,7 @@
 			baseConfigurationReference = C8A661DF1C0B60290088355D /* Nudj.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = BetaAppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Nudj beta.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 62;
@@ -3355,6 +3370,7 @@
 			baseConfigurationReference = C8A661DE1C0B60020088355D /* Nudj.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = BetaAppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Nudj beta.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 62;
@@ -3510,6 +3526,7 @@
 			baseConfigurationReference = C8A661DF1C0B60290088355D /* Nudj.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Nudj/Nudj.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 62;
@@ -3544,6 +3561,7 @@
 			baseConfigurationReference = C8A661DE1C0B60020088355D /* Nudj.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Nudj/Nudj.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 62;
