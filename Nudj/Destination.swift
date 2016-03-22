@@ -29,7 +29,7 @@ public enum Destination: Equatable {
             return .None
         }
         switch host {
-            case "mobileweb.nudj.co", "mobileweb-dev.nudj.co":
+        case "mobileweb.nudj.co", "mobileweb-dev.nudj.co":
             break
             
         default:
@@ -45,7 +45,7 @@ public enum Destination: Equatable {
         
         let pathPrefix = pathComponents[1]
         switch pathPrefix {
-        case "jobpreview":
+        case "jobpreview", "job":
             let jobIDStr = pathComponents[2]
             if let jobID = Int(jobIDStr) {
                 return .Job(jobID)

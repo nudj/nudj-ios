@@ -65,6 +65,12 @@ class DestinationURLTests: XCTestCase {
         XCTAssertEqual(destination, Destination.Job(42))
     }
     
+    func testCorrectNonPreviewURL() {
+        let url = NSURL(string: "https://mobileweb.nudj.co/job/42/abcd")
+        let destination = Destination(url: url!)
+        XCTAssertEqual(destination, Destination.Job(42))
+    }
+    
     func testCorrectHTTPURL() {
         let url = NSURL(string: "http://mobileweb.nudj.co/jobpreview/42/abcd")
         let destination = Destination(url: url!)
