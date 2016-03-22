@@ -8,10 +8,27 @@
 
 import Foundation
 
-enum Destination {
+public enum Destination: Equatable {
     case None
+    case Job(Int)
     
     init(url: NSURL) {
         self = .None
+    }
+}
+
+public func == (lhs: Destination, rhs: Destination) -> Bool {
+    switch lhs {
+    case .None:
+            switch rhs {
+            case .None: return true
+            default: return false
+        }
+        
+    case .Job(let lhsID):
+        switch rhs {
+        case .Job(let rhsID): return lhsID == rhsID
+        default: return false
+        }
     }
 }
