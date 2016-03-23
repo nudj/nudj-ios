@@ -126,8 +126,8 @@ class MainFeed: BaseController, SegueHandlerType, DataProviderProtocol, UISearch
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             let user = appDelegate.user // TODO: use dependency injection instead
             let detailsView = segue.destinationViewController as! JobDetailedViewController
-            detailsView.jobID = selectedJobData!["id"].int
-            detailsView.hirerID = selectedJobData!["user"]["id"].int
+            detailsView.jobID = selectedJobData!["id"].intValue
+            detailsView.hirerID = selectedJobData!["user"]["id"].intValue
             detailsView.currentUser = user
         }
     }
