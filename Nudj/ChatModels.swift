@@ -329,11 +329,11 @@ class ChatModels: NSObject, XMPPStreamDelegate, XMPPRosterDelegate, XMPPRoomDele
     }
     
     func xmppRoomDidJoin(sender: XMPPRoom!) {
-        loggingPrint("Chat room \(sender.roomJID) joined")
+//        loggingPrint("Chat room \(sender.roomJID) joined")
     }
     
     func xmppRoomDidCreate(sender: XMPPRoom!) {
-       loggingPrint("Chat room \(sender.roomJID) created")
+//       loggingPrint("Chat room \(sender.roomJID) created")
     }
     
     func xmppRoomDidLeave(sender: XMPPRoom!) {
