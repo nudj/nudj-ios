@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainTabBar: UITabBarController, SegueHandlerType {
+final class MainTabBar: UITabBarController, SegueHandlerType {
     enum Notifications: String {
         case UpdateBadge
     }
@@ -55,6 +55,10 @@ class MainTabBar: UITabBarController, SegueHandlerType {
         }
     }
     
+    func selectTab(tab: Tabs) {
+        selectedIndex = tab.rawValue
+    }
+    
     func viewControllerForTab(tab: Tabs) -> UIViewController {
         return viewControllers![tab.rawValue]
     }
@@ -69,9 +73,11 @@ class MainTabBar: UITabBarController, SegueHandlerType {
             break
             
         case .Job(let jobID):
-            performSegueWithIdentifier(.UnwindToJobsList, sender: self)
-            let jobsViewController = viewControllerForTab(.Jobs) as? MainFeed
-            jobsViewController?.goToJob(jobID)
+            selectTab(.Jobs)
+            let jobsNavController = viewControllerForTab(.Jobs) as! UINavigationController
+            jobsNavController.popToRootViewControllerAnimated(true)
+            let jobsViewController = jobsNavController.viewControllers.first as! MainFeed
+            jobsViewController.goToJob(jobID)
         }
     }
 }
