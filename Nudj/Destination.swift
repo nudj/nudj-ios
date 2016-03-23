@@ -41,9 +41,8 @@ public enum Destination: Equatable {
             return .None
         }
         
-        let pathPrefix = pathComponents[1]
-        switch pathPrefix {
-        case "jobpreview", "job":
+        switch (pathComponents[0], pathComponents[1]) {
+        case ("/", "jobpreview"), ("/", "job"):
             let jobIDStr = pathComponents[2]
             if let jobID = Int(jobIDStr) {
                 return .Job(jobID)
