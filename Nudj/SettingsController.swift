@@ -21,6 +21,7 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
         case ShowFAQ = "ShowFAQ"
         case ShowTerms = "showT&Cs"
         case ShowPrivacyPolicy = "showPrivacyPolicy"
+        case UnwindToJobsList = "unwindToJobsList"
     }
     
     enum CellAction {
@@ -39,7 +40,7 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             case ShowPrivacyPolicy: return SegueIdentifier.ShowPrivacyPolicy
             case GiveFeedback: return SegueIdentifier.GoToFeedBack
             case ReportAnIssue: return SegueIdentifier.ReportAnIssue
-            case DeleteAccount: return SegueIdentifier.GoToLogin
+            case DeleteAccount: return SegueIdentifier.UnwindToJobsList
             case TestNotification: return nil
             }
         }
@@ -223,7 +224,7 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
         case .ShowStatusPicker:
             break
             
-        case .GoToLogin:
+        case .UnwindToJobsList:
             let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
             delegate.deleteAccount(inViewController: segue.destinationViewController)
             
@@ -296,7 +297,7 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
     
     func deleteAccount(_: UIAlertAction) {
         MixPanelHandler.sendData("DeleteAcountAction")
-        performSegueWithIdentifier(.GoToLogin, sender: self)
+        performSegueWithIdentifier(.UnwindToJobsList, sender: self)
     }
     
     func handleSocialAction(action: CellAction){

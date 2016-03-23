@@ -283,6 +283,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             response in
             if response["status"].boolValue {
                 self.deleteAllData()
+                self.showLogin(self)
             } else {
                 let localization = Localizations.Account.Delete.Error.self
                 let alert = UIAlertController(title: localization.Title, message: localization.Body, preferredStyle: .Alert)

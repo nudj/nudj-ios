@@ -19,7 +19,7 @@ class VerifyViewController: BaseController, SegueHandlerType {
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView! {
         didSet {
-            activityIndicator.alpha = 0;
+            activityIndicator.alpha = 0
         }
     }
 
@@ -111,7 +111,7 @@ class VerifyViewController: BaseController, SegueHandlerType {
             }
 
             // TODO: refactor the below out of the app delegate
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
             // TODO: API strings
             let user = appDelegate.user
@@ -127,7 +127,7 @@ class VerifyViewController: BaseController, SegueHandlerType {
 
             // Connect to the chat server
             appDelegate.chatInst!.connect(user, inViewController: self)
-            appDelegate.showLogin(self)
+            self.performSegueWithIdentifier(.UnwindToJobsList, sender: self)
         }, errorHandler: {_ in
             self.showCodeField(animated: true)
             self.showSimpleAlert(Localizations.Verification.Code.Error)
