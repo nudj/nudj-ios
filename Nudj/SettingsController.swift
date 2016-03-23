@@ -163,6 +163,7 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             
         case .DeleteAccount:
             cell.textLabel?.textColor = .redColor()
+            cell.accessoryType = .None
             
         case .TestNotification:
             cell.accessoryType = .None
