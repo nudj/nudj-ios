@@ -1927,9 +1927,11 @@ We will invoice the client and collect payment on your behalf. Get in touch at <
                         <segue destination="4bz-fV-glI" kind="relationship" relationship="viewControllers" id="9zR-5z-qKd"/>
                         <segue destination="d5t-oh-8QT" kind="relationship" relationship="viewControllers" id="3L6-M7-lA9"/>
                         <segue destination="HUi-qm-vwZ" kind="presentation" identifier="ShowLogin" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="qjU-uG-dBh"/>
+                        <segue destination="UVh-nA-YCn" kind="unwind" identifier="unwindToJobsList" unwindAction="unwindToJobsList:" id="nYF-WA-r6C"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
+                <exit id="UVh-nA-YCn" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-3864.5" y="-1933.5"/>
         </scene>

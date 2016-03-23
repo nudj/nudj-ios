@@ -87,11 +87,6 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         self.requestData()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func requestData(){
         let path = API.Endpoints.Jobs.byID(jobID!)
         let params = API.Endpoints.Jobs.paramsForDetail()

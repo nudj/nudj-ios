@@ -14,6 +14,7 @@ class MainTabBar: UITabBarController, SegueHandlerType {
     
     enum SegueIdentifier: String {
         case ShowLogin = "ShowLogin"
+        case UnwindToJobsList = "unwindToJobsList"
     }
     
     enum UpdateBadgeKeys: String {
@@ -25,6 +26,7 @@ class MainTabBar: UITabBarController, SegueHandlerType {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         let nc = NSNotificationCenter.defaultCenter()
         nc.addObserver(self, selector:"updateBadge:", name: Notifications.UpdateBadge.rawValue, object: nil)
     }
@@ -53,7 +55,23 @@ class MainTabBar: UITabBarController, SegueHandlerType {
         }
     }
     
+    func viewControllerForTab(tab: Tabs) -> UIViewController {
+        return viewControllers![tab.rawValue]
+    }
+    
     @IBAction func showLogin(sender: AnyObject?) {
         performSegueWithIdentifier(.ShowLogin, sender: sender)
+    }
+    
+    func goToDestination(destination: Destination) {
+        switch destination {
+        case .None:
+            break
+            
+        case .Job(let jobID):
+            performSegueWithIdentifier(.UnwindToJobsList, sender: self)
+            let jobsViewController = viewControllerForTab(.Jobs) as? MainFeed
+            jobsViewController?.goToJob(jobID)
+        }
     }
 }

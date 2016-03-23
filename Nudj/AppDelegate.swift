@@ -130,8 +130,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                 application.openURL(url)
                 
             default:
-                // TODO: go to destination
-                loggingPrint(destination)
+                goToDestination(destination)
             }
             return true
             
@@ -145,6 +144,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         mainTabBarController.showLogin(sender)
     }
 
+    func goToDestination(destination: Destination) {
+        let mainTabBarController = window?.rootViewController as! MainTabBar
+        mainTabBarController.goToDestination(destination)
+    }
+    
     func syncContacts() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),{
             self.contacts.sync()
