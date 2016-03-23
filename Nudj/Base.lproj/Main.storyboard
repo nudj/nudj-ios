@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10089" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="7wa-wJ-4AA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10089" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10072.1"/>
@@ -1815,7 +1815,6 @@ We will invoice the client and collect payment on your behalf. Get in touch at <
                         <outlet property="versionNumberLabel" destination="D1B-BW-O9i" id="FGF-cs-oob"/>
                         <segue destination="u6h-lK-ytT" kind="show" identifier="showYourProfile" id="m0n-l7-DaR"/>
                         <segue destination="F3c-zd-gaG" kind="show" identifier="showStatusPicker" id="H51-O9-Snf"/>
-                        <segue destination="HUi-qm-vwZ" kind="show" identifier="goToLogin" id="zyP-mc-EMC"/>
                         <segue destination="HrJ-cc-tGk" kind="show" identifier="goToFeedBack" id="90M-dj-0pn"/>
                         <segue destination="ALO-Pj-XQZ" kind="show" identifier="goToFavoriteJobs" id="oHM-Sk-no8"/>
                         <segue destination="ALO-Pj-XQZ" kind="show" identifier="goToPostedJobs" id="oVM-eF-ddZ"/>
@@ -1925,6 +1924,7 @@ We will invoice the client and collect payment on your behalf. Get in touch at <
                         <segue destination="SyC-B3-YIY" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="4bz-fV-glI" kind="relationship" relationship="viewControllers" id="9zR-5z-qKd"/>
                         <segue destination="d5t-oh-8QT" kind="relationship" relationship="viewControllers" id="3L6-M7-lA9"/>
+                        <segue destination="HUi-qm-vwZ" kind="presentation" identifier="ShowLogin" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="qjU-uG-dBh"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -1940,20 +1940,20 @@ We will invoice the client and collect payment on your behalf. Get in touch at <
                         <viewControllerLayoutGuide type="bottom" id="hlf-uK-Rhp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QEm-Nc-qfT">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="k4u-0C-TBO" userLabel="Main stack">
-                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GaB-TN-v0Q" userLabel="Header">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="95"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="95"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nudge_small_logo" translatesAutoresizingMaskIntoConstraints="NO" id="TJO-D8-hOR" userLabel="Logo">
-                                                <rect key="frame" x="8" y="8" width="398" height="79"/>
+                                                <rect key="frame" x="8" y="8" width="359" height="79"/>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tRc-s3-uZE" userLabel="Login Button">
-                                                <rect key="frame" x="351" y="26" width="47" height="42"/>
+                                                <rect key="frame" x="312" y="26" width="47" height="42"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <state key="normal" title="Join">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1977,10 +1977,10 @@ We will invoice the client and collect payment on your behalf. Get in touch at <
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RFW-Cg-SVV" userLabel="Body Stack">
-                                        <rect key="frame" x="20" y="103" width="374" height="569"/>
+                                        <rect key="frame" x="16" y="103" width="343" height="544"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm your phone number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="EyJ-Sc-It3">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="28"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="28" id="Jg1-x3-oYm"/>
                                                 </constraints>
@@ -1989,14 +1989,14 @@ We will invoice the client and collect payment on your behalf. Get in touch at <
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="COP-7C-8R7" userLabel="Separator 1">
-                                                <rect key="frame" x="0.0" y="36" width="374" height="1"/>
+                                                <rect key="frame" x="0.0" y="36" width="343" height="1"/>
                                                 <color key="backgroundColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="Wml-oz-fYk"/>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vXN-QH-CG8" userLabel="Phone number stack">
-                                                <rect key="frame" x="0.0" y="45" width="374" height="30"/>
+                                                <rect key="frame" x="0.0" y="45" width="343" height="30"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bZf-4c-ZsC" userLabel="Intl prefix">
                                                         <rect key="frame" x="0.0" y="0.0" width="45" height="30"/>
@@ -2013,7 +2013,7 @@ We will invoice the client and collect payment on your behalf. Get in touch at <
                                                         </connections>
                                                     </button>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="RWM-Jp-PBz" userLabel="Phone Number">
-                                                        <rect key="frame" x="53" y="0.0" width="321" height="30"/>
+                                                        <rect key="frame" x="53" y="0.0" width="290" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="7pA-3y-jWG"/>
                                                         </constraints>
@@ -2027,10 +2027,10 @@ We will invoice the client and collect payment on your behalf. Get in touch at <
                                                 </subviews>
                                             </stackView>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="260" verticalCompressionResistancePriority="740" translatesAutoresizingMaskIntoConstraints="NO" id="fu5-eG-AeT" userLabel="Country picker container">
-                                                <rect key="frame" x="0.0" y="83" width="374" height="80"/>
+                                                <rect key="frame" x="0.0" y="83" width="343" height="80"/>
                                                 <subviews>
                                                     <pickerView contentMode="scaleToFill" showsSelectionIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMG-bB-M8L" userLabel="Country picker">
-                                                        <rect key="frame" x="0.0" y="-136" width="394" height="216"/>
+                                                        <rect key="frame" x="0.0" y="-136" width="363" height="216"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <connections>
                                                             <outlet property="dataSource" destination="Evh-ak-SA5" id="yzv-jP-v1h"/>
@@ -2046,14 +2046,14 @@ We will invoice the client and collect payment on your behalf. Get in touch at <
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5sd-3T-N9W" userLabel="Separator 2">
-                                                <rect key="frame" x="0.0" y="171" width="374" height="1"/>
+                                                <rect key="frame" x="0.0" y="171" width="343" height="1"/>
                                                 <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="aeH-t5-dIA"/>
                                                 </constraints>
                                             </view>
                                             <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="240" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pqc-O3-NX1" userLabel="Boilerplate">
-                                                <rect key="frame" x="0.0" y="180" width="374" height="389"/>
+                                                <rect key="frame" x="0.0" y="180" width="343" height="364"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <string key="text">Nudj uses your phone number and address book to connect and create your personal network.
 
@@ -2099,7 +2099,7 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                     </connections>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="-5583" y="-1022"/>
+            <point key="canvasLocation" x="-3339.5" y="-1933.5"/>
         </scene>
         <!--Phone Number Verification-->
         <scene sceneID="WKY-51-rXa">
@@ -2110,14 +2110,14 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                         <viewControllerLayoutGuide type="bottom" id="plW-2u-GO1"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="VL5-Ct-D1h">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="Wcf-gG-lD2">
-                                <rect key="frame" x="20" y="64" width="374" height="266"/>
+                                <rect key="frame" x="16" y="20" width="343" height="266"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NgN-92-Sf5" userLabel="Phone label">
-                                        <rect key="frame" x="13" y="0.0" width="349" height="60"/>
+                                        <rect key="frame" x="8" y="0.0" width="328" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="j58-5i-8HB"/>
                                         </constraints>
@@ -2133,7 +2133,7 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Please enter this code below" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ncd-Z5-IIe" userLabel="Enter label">
-                                        <rect key="frame" x="77" y="92" width="220" height="30"/>
+                                        <rect key="frame" x="62" y="92" width="220" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="gvC-3D-z9Z"/>
                                         </constraints>
@@ -2142,7 +2142,7 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dzo-Qs-NFQ" userLabel="Code and spinner">
-                                        <rect key="frame" x="97" y="154" width="180" height="50"/>
+                                        <rect key="frame" x="82" y="154" width="180" height="50"/>
                                         <subviews>
                                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="wEH-Xa-xrR">
                                                 <rect key="frame" x="-117" y="-218" width="20" height="20"/>
@@ -2172,7 +2172,7 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2NT-oG-DxD">
-                                        <rect key="frame" x="135" y="236" width="105" height="30"/>
+                                        <rect key="frame" x="119" y="236" width="105" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="NrX-1z-XJZ"/>
                                         </constraints>
@@ -2196,7 +2196,6 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Phone Number Verification" id="T2a-WN-Ug5"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="activityIndicator" destination="wEH-Xa-xrR" id="Fff-hE-ye8"/>
                         <outlet property="codeField" destination="hKT-kK-LKT" id="h7i-ZC-rWc"/>
@@ -2207,7 +2206,7 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GJO-d0-MNh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="HwS-22-hmp" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-5583" y="-139"/>
+            <point key="canvasLocation" x="-2845.5" y="-1933.5"/>
         </scene>
         <!--Your Profile-->
         <scene sceneID="Aa3-rJ-CkJ">
@@ -2687,30 +2686,6 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dof-7s-Qzl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-5283" y="1617"/>
-        </scene>
-        <!--RootNavigationController-->
-        <scene sceneID="g1V-Jt-TaA">
-            <objects>
-                <navigationController storyboardIdentifier="mainNavigationController" title="RootNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="7wa-wJ-4AA" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="TYZ-Rj-M8Q">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.039215686274509803" green="0.63137254901960782" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="R6g-Be-fAp">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </toolbar>
-                    <connections>
-                        <segue destination="HUi-qm-vwZ" kind="relationship" relationship="rootViewController" id="l7l-cF-kYn"/>
-                        <segue destination="49e-Tb-3d3" kind="showDetail" identifier="showMainScreen" id="vho-Q5-Kri"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tL6-xY-Tir" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-4794" y="-1933"/>
         </scene>
         <!--Chat List-->
         <scene sceneID="7hc-uu-5uL">
@@ -5800,16 +5775,14 @@ Cg
         <image name="success.png" width="88" height="88"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="w3z-vb-UAH"/>
-        <segue reference="TFM-Ac-ZI1"/>
-        <segue reference="BCe-Pt-bFX"/>
         <segue reference="Dg8-rw-2fQ"/>
-        <segue reference="1RO-e0-4AP"/>
-        <segue reference="oHM-Sk-no8"/>
-        <segue reference="gvE-qy-aNj"/>
-        <segue reference="90M-dj-0pn"/>
+        <segue reference="TFM-Ac-ZI1"/>
         <segue reference="0lF-Gf-mwR"/>
-        <segue reference="l7l-cF-kYn"/>
+        <segue reference="w3z-vb-UAH"/>
+        <segue reference="1RO-e0-4AP"/>
+        <segue reference="90M-dj-0pn"/>
+        <segue reference="gvE-qy-aNj"/>
+        <segue reference="oHM-Sk-no8"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
 </document>

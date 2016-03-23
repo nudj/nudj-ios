@@ -7,9 +7,13 @@
 
 import UIKit
 
-class MainTabBar: UITabBarController {
+class MainTabBar: UITabBarController, SegueHandlerType {
     enum Notifications: String {
         case UpdateBadge
+    }
+    
+    enum SegueIdentifier: String {
+        case ShowLogin = "ShowLogin"
     }
     
     enum UpdateBadgeKeys: String {
@@ -47,5 +51,9 @@ class MainTabBar: UITabBarController {
             let badgeString = userInfo[UpdateBadgeKeys.BadgeString.rawValue] as? String
             tabItem.badgeValue = badgeString
         }
+    }
+    
+    @IBAction func showLogin(sender: AnyObject?) {
+        performSegueWithIdentifier(.ShowLogin, sender: sender)
     }
 }

@@ -51,10 +51,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         if user.id != nil {
             // valid user
             prefetchUserData()
-            showViewControllerWithIdentifier(.Main)
         } else {
-            // user needs to login - the login screen is currently the default start view but don't rely on that
-            showViewControllerWithIdentifier(.Login)
+            showLogin(self)
         }
         
 		// we only register for notifications if we have a valid user
@@ -140,6 +138,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         default:
             return false
         }
+    }
+    
+    func showLogin(sender: AnyObject?) {
+        let mainTabBarController = window?.rootViewController as! MainTabBar
+        mainTabBarController.showLogin(sender)
     }
 
     func syncContacts() {
@@ -321,10 +324,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         if (api == nil) {
             api = API()
         }
-    }
-
-    func showViewControllerWithIdentifier(identifier: ViewControllerIdentifier) {
-        self.window!.rootViewController = self.window?.rootViewController?.storyboard?.instantiateViewControllerWithIdentifier(identifier.rawValue)
     }
 
     func applicationWillResignActive(application: UIApplication) {

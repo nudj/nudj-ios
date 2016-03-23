@@ -13,7 +13,6 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
     enum SegueIdentifier: String {
         case ShowProfile = "showYourProfile"
         case ShowStatusPicker = "showStatusPicker"
-        case GoToLogin = "goToLogin"
         case GoToFeedBack = "goToFeedBack"
         case ReportAnIssue = "reportAnIssue"
         case GoToFavoriteJobs = "goToFavoriteJobs"
