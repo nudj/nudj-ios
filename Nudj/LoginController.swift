@@ -20,7 +20,7 @@ class LoginController: BaseController, SegueHandlerType, CountryPickerDelegate, 
     var shouldStripLeadingZeros: Bool = true // default
     var textObserver: NSObjectProtocol?
     
-    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var phoneField: UITextField!
@@ -58,8 +58,8 @@ class LoginController: BaseController, SegueHandlerType, CountryPickerDelegate, 
         switch segueIdentifierForSegue(segue) {
         case .ShowVerifyView:
             let verify = segue.destinationViewController as! VerifyViewController
-            verify.phoneNumber = self.internationalPhoneNumber()
-            verify.iso2CountryCode = self.iso2CountryCode
+            verify.phoneNumber = internationalPhoneNumber()
+            verify.iso2CountryCode = iso2CountryCode
         }
     }
     
