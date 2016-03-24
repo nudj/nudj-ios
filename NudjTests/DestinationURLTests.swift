@@ -21,6 +21,10 @@ class DestinationURLTests: XCTestCase {
         expect("http://example.com/", toGive: .None)
     }
     
+    func testNotEvenHostAndPath() {
+        expect("mailto:", toGive: .None)
+    }
+    
     func testNoPath() {
         expect("https://mobileweb.nudj.co/", toGive: .None)
     }
