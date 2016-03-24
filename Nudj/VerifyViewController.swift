@@ -127,8 +127,9 @@ class VerifyViewController: BaseController, SegueHandlerType {
 
             // Connect to the chat server
             appDelegate.chatInst!.connect(user, inViewController: self)
-            self.performSegueWithIdentifier(.UnwindToJobsList, sender: self)
-        }, errorHandler: {_ in
+            appDelegate.loginSucessful(self)
+        }, errorHandler: {
+            _ in
             self.showCodeField(animated: true)
             self.showSimpleAlert(Localizations.Verification.Code.Error)
         })

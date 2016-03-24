@@ -143,6 +143,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         let mainTabBarController = window?.rootViewController as! MainTabBar
         mainTabBarController.showLogin(sender)
     }
+    
+    func loginSucessful(verifyViewController: VerifyViewController) {
+        let mainTabBarController = window?.rootViewController as! MainTabBar
+        mainTabBarController.loginSucessful(verifyViewController)
+    }
 
     func goToDestination(destination: Destination) {
         let mainTabBarController = window?.rootViewController as! MainTabBar

@@ -25,6 +25,9 @@ final class MainTabBar: UITabBarController, SegueHandlerType {
         case Jobs = 0, Chats, Contacts, Notifications, Settings 
     }
     
+    private var pendingDestination = Destination.None
+    private var loggingInViewShown = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let nc = NSNotificationCenter.defaultCenter()
@@ -64,10 +67,31 @@ final class MainTabBar: UITabBarController, SegueHandlerType {
     }
     
     @IBAction func showLogin(sender: AnyObject?) {
+        loggingInViewShown = true
         performSegueWithIdentifier(.ShowLogin, sender: sender)
     }
     
+    func loginSucessful(verifyViewController: VerifyViewController) {
+        verifyViewController.performSegueWithIdentifier(.UnwindToJobsList, sender: self)
+        loggingInViewShown = false
+        goToDestination(pendingDestination)
+    }
+    
     func goToDestination(destination: Destination) {
+        if destination == .None {
+            return
+        }
+        
+        if loggingInViewShown {
+            // defer this destination until that is resolved
+            pendingDestination = destination
+            return
+        }
+        
+        defer {
+            pendingDestination = .None
+        }
+        
         switch destination {
         case .None:
             break
