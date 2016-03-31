@@ -206,6 +206,7 @@
 		C81F16AA1C735BF0000927F8 /* NSData+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81F16A81C735BF0000927F8 /* NSData+Hex.swift */; };
 		C81F16AC1C735C65000927F8 /* NSDataHexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81F16AB1C735C65000927F8 /* NSDataHexTests.swift */; };
 		C81F16AD1C735C65000927F8 /* NSDataHexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81F16AB1C735C65000927F8 /* NSDataHexTests.swift */; };
+		C82CBAAB1CADB08D0091DA4F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C898A54C1C6BEFA8001DAB38 /* Pods.framework */; };
 		C8351C471C9AFEE800994F22 /* ContactsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8351C461C9AFEE800994F22 /* ContactsDataSource.swift */; };
 		C8351C481C9AFEE800994F22 /* ContactsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8351C461C9AFEE800994F22 /* ContactsDataSource.swift */; };
 		C83FB6BC1C3EB5D0004ACE3E /* VersionNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83FB6BB1C3EB5D0004ACE3E /* VersionNumber.swift */; };
@@ -537,6 +538,7 @@
 		EBF186211B21DACA00D8D80D /* KSTokenField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF1861D1B21DACA00D8D80D /* KSTokenField.swift */; };
 		EBF186221B21DACA00D8D80D /* KSTokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF1861E1B21DACA00D8D80D /* KSTokenView.swift */; };
 		EBF186231B21DACA00D8D80D /* KSUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF1861F1B21DACA00D8D80D /* KSUtils.swift */; };
+		F14076CE7F05FA46D4DCB59F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDD460F204898DA0004C5B93 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1067,6 +1069,7 @@
 				C89325AA1C08CCE00069FCFD /* AssetsLibrary.framework in Frameworks */,
 				A996508E1B38806700D5A8E9 /* libresolv.dylib in Frameworks */,
 				A996508B1B38805B00D5A8E9 /* libxml2.2.dylib in Frameworks */,
+				C82CBAAB1CADB08D0091DA4F /* Pods.framework in Frameworks */,
 				A996508C1B38805B00D5A8E9 /* libxml2.dylib in Frameworks */,
 				C89325B51C08CE410069FCFD /* HockeySDK.framework in Frameworks */,
 				A99650881B38804D00D5A8E9 /* AudioToolbox.framework in Frameworks */,
@@ -1074,6 +1077,7 @@
 				A99650841B38803A00D5A8E9 /* Security.framework in Frameworks */,
 				A99650801B387CC800D5A8E9 /* libidn.a in Frameworks */,
 				EBB3382E1A9F5973000CAD88 /* CoreData.framework in Frameworks */,
+				F14076CE7F05FA46D4DCB59F /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
