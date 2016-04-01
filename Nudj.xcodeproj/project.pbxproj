@@ -3347,7 +3347,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Nudj/Nudj beta.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 65;
+				CURRENT_PROJECT_VERSION = 66;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Externals/HockeySDK-iOS/HockeySDK.embeddedframework",
@@ -3383,7 +3383,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Nudj/Nudj beta.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 65;
+				CURRENT_PROJECT_VERSION = 66;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Externals/HockeySDK-iOS/HockeySDK.embeddedframework",
@@ -3539,7 +3539,7 @@
 				CODE_SIGN_ENTITLEMENTS = Nudj/Nudj.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 65;
+				CURRENT_PROJECT_VERSION = 66;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Externals/HockeySDK-iOS/HockeySDK.embeddedframework",
@@ -3574,7 +3574,7 @@
 				CODE_SIGN_ENTITLEMENTS = Nudj/Nudj.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 65;
+				CURRENT_PROJECT_VERSION = 66;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Externals/HockeySDK-iOS/HockeySDK.embeddedframework",
