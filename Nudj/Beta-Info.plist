@@ -37,6 +37,8 @@
 	<string>437958229735243</string>
 	<key>FacebookDisplayName</key>
 	<string>$(PRODUCT_NAME)</string>
+	<key>HockeyAppID</key>
+	<string>9bb5535d31f24908a06d72757a8e39e9</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
