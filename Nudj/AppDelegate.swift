@@ -33,16 +33,25 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     //Mix panel
     let MIXPANEL_TOKEN = "29fc1fec9fa6f75efd303f12c8be4acb"
     
+    /// read the HockeyApp ID, if any, from the Info.plist file
+    func hockeyAppIdentifier() -> String? {
+        let hockeyAppKey = "HockeyAppID"
+        let bundle = NSBundle.mainBundle()
+        return bundle.objectForInfoDictionaryKey(hockeyAppKey) as? String
+    }
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         //Mixpanel
         Mixpanel.sharedInstanceWithToken(MIXPANEL_TOKEN)
         MixPanelHandler.startEventTracking("timeSpentInApplication")
         
         // HockeyApp
-        BITHockeyManager.sharedHockeyManager().configureWithIdentifier("9bb5535d31f24908a06d72757a8e39e9")
-        // Do some additional configuration if needed here
-        BITHockeyManager.sharedHockeyManager().startManager()
-        BITHockeyManager.sharedHockeyManager().authenticator.authenticateInstallation()
+        if let hockeyAppIdentifier = self.hockeyAppIdentifier() {
+            BITHockeyManager.sharedHockeyManager().configureWithIdentifier(hockeyAppIdentifier)
+            // Do some additional configuration if needed here
+            BITHockeyManager.sharedHockeyManager().startManager()
+            BITHockeyManager.sharedHockeyManager().authenticator.authenticateInstallation()
+        }
         
         // Getting of user details from CoreData
         fetchUserData()
