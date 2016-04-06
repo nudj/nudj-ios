@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10089" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10072.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -2227,7 +2227,7 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smp-rK-aNl">
                                 <rect key="frame" x="4" y="140" width="406" height="596"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tdu-Qe-djm" userLabel="Skills View">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tdu-Qe-djm" userLabel="Skills View">
                                         <rect key="frame" x="0.0" y="0.0" width="406" height="55"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Skills" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZnK-jF-nIO">
@@ -2247,7 +2247,7 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                                                     <constraint firstAttribute="width" constant="25" id="mgE-lC-2Ue"/>
                                                 </constraints>
                                             </imageView>
-                                            <view opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F3t-ez-kh9" customClass="TokenView" customModule="Nudj" customModuleProvider="target">
+                                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F3t-ez-kh9" customClass="TokenView" customModule="Nudj" customModuleProvider="target">
                                                 <rect key="frame" x="45" y="8" width="353" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="1zy-Ub-zPN"/>
@@ -2282,14 +2282,14 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                                             <constraint firstItem="i5r-zg-Q8P" firstAttribute="top" secondItem="Tdu-Qe-djm" secondAttribute="top" constant="12" id="yN0-g2-BWH"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eZj-Gt-ANh" userLabel="Separator">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eZj-Gt-ANh" userLabel="Separator">
                                         <rect key="frame" x="0.0" y="56" width="406" height="1"/>
                                         <color key="backgroundColor" red="0.94586116075515747" green="0.94583284854888916" blue="0.94584894180297852" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="IBa-6q-dh7"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="08X-Az-i4S" userLabel="About Me View">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="08X-Az-i4S" userLabel="About Me View">
                                         <rect key="frame" x="0.0" y="57" width="406" height="49"/>
                                         <subviews>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="bio" highlightedImage="bio-active" translatesAutoresizingMaskIntoConstraints="NO" id="uOz-Yc-Wal">
@@ -2309,7 +2309,7 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                                                 <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Fp-b3-xW2">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Fp-b3-xW2">
                                                 <rect key="frame" x="45" y="8" width="353" height="33"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -2317,7 +2317,6 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="u6h-lK-ytT" id="VrG-bG-Khl"/>
                                                 </connections>
@@ -2335,14 +2334,14 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                                             <constraint firstItem="9Fp-b3-xW2" firstAttribute="leading" secondItem="uOz-Yc-Wal" secondAttribute="trailing" constant="8" id="ren-rY-cIN"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gSb-np-M1I" userLabel="Separator 2">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gSb-np-M1I" userLabel="Separator 2">
                                         <rect key="frame" x="0.0" y="107" width="406" height="1"/>
                                         <color key="backgroundColor" red="0.94586116075515747" green="0.94583284854888916" blue="0.94584894180297852" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="jsS-09-R0f"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tFW-xo-igr" userLabel="Employer,Company">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tFW-xo-igr" userLabel="Employer,Company">
                                         <rect key="frame" x="0.0" y="108" width="406" height="49"/>
                                         <subviews>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="silhouette" highlightedImage="silhouette-active" translatesAutoresizingMaskIntoConstraints="NO" id="spQ-EU-FFP">
@@ -2352,7 +2351,7 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                                                     <constraint firstAttribute="height" constant="25" id="dSc-xp-zUe"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your Employer or Company" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Iva-AM-FXg">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your Employer or Company" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Iva-AM-FXg">
                                                 <rect key="frame" x="49" y="10" width="349" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="coC-Or-nFT"/>
@@ -2374,14 +2373,14 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                                             <constraint firstAttribute="bottom" secondItem="spQ-EU-FFP" secondAttribute="bottom" constant="12" id="yp0-kQ-HdH"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cgP-VC-3tD" userLabel="Separator 3">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cgP-VC-3tD" userLabel="Separator 3">
                                         <rect key="frame" x="0.0" y="157" width="406" height="1"/>
                                         <color key="backgroundColor" red="0.94586116080000004" green="0.94583284850000005" blue="0.94584894180000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="nEN-Ce-uno"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ixT-0w-D2z" userLabel="TagLocation">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ixT-0w-D2z" userLabel="TagLocation">
                                         <rect key="frame" x="0.0" y="158" width="406" height="49"/>
                                         <subviews>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="locationIcon" highlightedImage="locationIcon-active" translatesAutoresizingMaskIntoConstraints="NO" id="yEE-rx-FUa">
@@ -2391,7 +2390,7 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                                                     <constraint firstAttribute="height" constant="25" id="ofi-a5-KjX"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your Location" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A4y-bJ-U94">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your Location" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A4y-bJ-U94">
                                                 <rect key="frame" x="49" y="10" width="349" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="Ztj-WO-xE6"/>
@@ -2413,14 +2412,14 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                                             <constraint firstItem="A4y-bJ-U94" firstAttribute="trailing" secondItem="ixT-0w-D2z" secondAttribute="trailingMargin" id="yNU-m8-5Iu"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Id-MJ-WLs" userLabel="Separator 4">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Id-MJ-WLs" userLabel="Separator 4">
                                         <rect key="frame" x="0.0" y="207" width="406" height="1"/>
                                         <color key="backgroundColor" red="0.94586116080000004" green="0.94583284850000005" blue="0.94584894180000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="Lww-Yc-q6E"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oFD-wL-3OX" userLabel="Position">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oFD-wL-3OX" userLabel="Position">
                                         <rect key="frame" x="0.0" y="208" width="406" height="49"/>
                                         <subviews>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="silhouette" highlightedImage="silhouette-active" translatesAutoresizingMaskIntoConstraints="NO" id="DGo-xL-reC">
@@ -2430,7 +2429,7 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                                                     <constraint firstAttribute="width" constant="25" id="iRJ-xO-cvo"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your Position" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Zb-L3-b5R">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your Position" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Zb-L3-b5R">
                                                 <rect key="frame" x="49" y="10" width="349" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="FOa-5U-6QD"/>
@@ -2452,14 +2451,14 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                                             <constraint firstItem="1Zb-L3-b5R" firstAttribute="trailing" secondItem="oFD-wL-3OX" secondAttribute="trailingMargin" id="eMs-ZA-tGm"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MyC-Sa-fXM" userLabel="Separator 5">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MyC-Sa-fXM" userLabel="Separator 5">
                                         <rect key="frame" x="0.0" y="257" width="406" height="1"/>
                                         <color key="backgroundColor" red="0.94586116080000004" green="0.94583284850000005" blue="0.94584894180000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="GkE-ed-65k"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q7a-VT-X4W" userLabel="Email">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q7a-VT-X4W" userLabel="Email">
                                         <rect key="frame" x="0.0" y="258" width="406" height="49"/>
                                         <subviews>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="email" highlightedImage="email-active" translatesAutoresizingMaskIntoConstraints="NO" id="Bh9-hd-om8">
@@ -2469,7 +2468,7 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                                                     <constraint firstAttribute="height" constant="25" id="zbp-kj-lbQ"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your Email (it will not be shared)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="314-wO-jl0">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your Email (it will not be shared)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="314-wO-jl0">
                                                 <rect key="frame" x="49" y="10" width="349" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="ncd-Nt-9B2"/>
