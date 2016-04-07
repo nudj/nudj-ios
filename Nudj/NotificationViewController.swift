@@ -252,7 +252,8 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
         } else {
             let detailsView = storyboard.instantiateViewControllerWithIdentifier(viewId) as! JobDetailedViewController
             detailsView.jobID = job
-            self.navigationController?.pushViewController(detailsView, animated: true);
+            detailsView.currentUser = UserModel.getLocal()
+            self.navigationController?.pushViewController(detailsView, animated: true)
         }
     }
     
