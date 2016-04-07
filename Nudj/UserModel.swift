@@ -100,13 +100,13 @@ class UserModel: CustomStringConvertible {
 
     static func getLocal(closure: ((UserModel?) -> ())) {
         // TODO: remove singleton access
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         closure(appDelegate.user)
     }
 
     static func getLocal() -> UserModel? {
         // TODO: remove singleton access
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate;
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         return appDelegate.user
     }
 
