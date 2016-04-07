@@ -123,12 +123,10 @@ class MainFeed: BaseController, SegueHandlerType, DataProviderProtocol, UISearch
             break
             
         case .GoToJob:
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            let user = appDelegate.user // TODO: use dependency injection instead
             let detailsView = segue.destinationViewController as! JobDetailedViewController
             detailsView.jobID = selectedJobData!["id"].intValue
             detailsView.hirerID = selectedJobData!["user"]["id"].intValue
-            detailsView.currentUser = user
+            detailsView.currentUser = UserModel.getLocal()
         }
     }
     
