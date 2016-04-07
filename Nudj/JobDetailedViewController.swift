@@ -69,6 +69,9 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        precondition(jobID != nil, "jobID should be configured")
+        precondition(currentUser != nil, "currentUser should be configured")
+        
         menuView.layer.masksToBounds = false
         menuView.layer.shadowOffset = CGSizeMake(0.0, 1.0)
         menuView.layer.shadowRadius = 2.0
