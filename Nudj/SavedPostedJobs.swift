@@ -98,6 +98,8 @@ class SavedPostedJobs: BaseController, SegueHandlerType, DataProviderProtocol {
         case .GoToJob:
             let detailsView = segue.destinationViewController as! JobDetailedViewController
             detailsView.jobID = selectedJobData!["id"].intValue
+            detailsView.hirerID = selectedJobData!["user"]["id"].intValue
+            detailsView.currentUser = UserModel.getLocal()
         }
     }
 
