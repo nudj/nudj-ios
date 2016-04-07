@@ -419,26 +419,25 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
             loggingPrint("Inconsistency between userId and loaded user!")
             return
         }
-
-        if let localUser = UserModel.getLocal() {
-            if (localUser.id! == userId) {
-                loggingPrint("You can't favourite yourself!")
-                return;
-            }
-
-            user?.toggleFavourite({ result in
-                if (result["status"].boolValue) {
-                    if let user = self.user {
-                        user.favourite = user.favourite == nil ? true : !user.favourite!
-                        self.topRightButton.image = self.getFavouriteIcon(user.favourite!)
-                        
-                        MixPanelHandler.sendData(user.favourite == true ? "Profile_FavouriteAction" : "Profile_UnfavouriteAction")
-                    }
-                } else {
-                    loggingPrint("Favourite Error: \(result)")
-                }
-            })
+        
+        let localUser = UserModel.getLocal()
+        if (localUser.id! == userId) {
+            loggingPrint("You can't favourite yourself!")
+            return
         }
+        
+        user?.toggleFavourite({ result in
+            if (result["status"].boolValue) {
+                if let user = self.user {
+                    user.favourite = user.favourite == nil ? true : !user.favourite!
+                    self.topRightButton.image = self.getFavouriteIcon(user.favourite!)
+                    
+                    MixPanelHandler.sendData(user.favourite == true ? "Profile_FavouriteAction" : "Profile_UnfavouriteAction")
+                }
+            } else {
+                loggingPrint("Favourite Error: \(result)")
+            }
+        })
     }
 
     func updateAssets() {
