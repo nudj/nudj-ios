@@ -12,25 +12,25 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
     
     let avatarDiameter: UInt = 30
     
-    var outgoingBubbleImageData :JSQMessagesBubbleImage?;
-    var incomingBubbleImageData :JSQMessagesBubbleImage?;
-    var templateImage :JSQMessagesAvatarImage?;
-    var messages = NSMutableArray();
+    var outgoingBubbleImageData :JSQMessagesBubbleImage?
+    var incomingBubbleImageData :JSQMessagesBubbleImage?
+    var templateImage :JSQMessagesAvatarImage?
+    var messages = NSMutableArray()
     
-    var isLiked:Bool?
-    var isArchived:Bool?
+    var isLiked: Bool?
+    var isArchived: Bool?
     
-    var otherUserImage :JSQMessagesAvatarImage?
-    var myImage :JSQMessagesAvatarImage?
+    var otherUserImage: JSQMessagesAvatarImage?
+    var myImage: JSQMessagesAvatarImage?
     
     var otherUserBase64Image: String!
-    var sendOnce:Bool = false
+    var sendOnce: Bool = false
     
     // TODO: eliminate this singleton access
     let appGlobalDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     override func viewDidLoad() {
-        super.viewDidLoad();
+        super.viewDidLoad()
 
         let id = appGlobalDelegate.user.id!
         let api = API()
@@ -321,14 +321,14 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
         }
     }
     
-    override func labelsAction(sender: AnyObject!){
+    override func labelsAction(sender: AnyObject!) {
         //go to job details
         guard let jobID = Int(self.jobID) else {return} // TODO: self.jobID should be Int not String
         let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let jobDetailedView = storyboard.instantiateViewControllerWithIdentifier("JobDetailedView") as! JobDetailedViewController
         jobDetailedView.jobID = jobID
-        
-        self.navigationController?.pushViewController(jobDetailedView, animated:true);
+        jobDetailedView.currentUser = UserModel.getLocal()
+        self.navigationController?.pushViewController(jobDetailedView, animated:true)
     }
     
     override func dropDownAction(sender: AnyObject!) {
@@ -349,8 +349,8 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
             let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let jobDetailedView = storyboard.instantiateViewControllerWithIdentifier("JobDetailedView") as! JobDetailedViewController
             jobDetailedView.jobID = jobID
-            
-            self.navigationController?.pushViewController(jobDetailedView, animated:true);
+            jobDetailedView.currentUser = UserModel.getLocal()
+            self.navigationController?.pushViewController(jobDetailedView, animated:true)
 
         case 2:
             //go to profile
@@ -360,7 +360,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
             GenericProfileView.type = .Public
             GenericProfileView.preloadedName = self.participants
             
-            self.navigationController?.pushViewController(GenericProfileView, animated:true);
+            self.navigationController?.pushViewController(GenericProfileView, animated:true)
 
         case 3:
             //Favourite Chat
@@ -431,7 +431,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
             selectedButton.selected = !selectedButton.selected
 
         default:
-            break;
+            break
         }
     }
     
