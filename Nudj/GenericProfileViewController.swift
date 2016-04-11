@@ -43,7 +43,7 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
             profilePhoto.borderAlpha = 0.2
             profilePhoto.prepare()
 
-            let gesture = UITapGestureRecognizer(target: self, action: "pickLibrary")
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(pickLibrary))
             gesture.numberOfTapsRequired = 1
             profilePhoto.addGestureRecognizer(gesture)
         }
@@ -260,7 +260,7 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
     func decoratedPlaceholder(originalPlaceholder: String?, isRequired: Bool) -> String {
         var placeholder = originalPlaceholder ?? ""
         if placeholder.hasSuffix(" *") {
-            placeholder.removeRange(Range(start: placeholder.endIndex.advancedBy(-2), end: placeholder.endIndex))
+            placeholder.removeRange(placeholder.endIndex.advancedBy(-2) ..< placeholder.endIndex)
         }
         if isRequired {
             placeholder += " *"
@@ -561,8 +561,8 @@ class GenericProfileViewController: BaseController, SegueHandlerType, UINavigati
 
     func registerNotification() {
         let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.addObserver(self, selector: "keyboardWillBeShown:", name: UIKeyboardDidShowNotification, object: nil)
-        notificationCenter.addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillBeShown(_:)), name: UIKeyboardDidShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillBeHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
         notificationCenter.addObserverForName(UITextFieldTextDidChangeNotification, object: nameLabel, queue: nil) {_ in self.validate()}
         notificationCenter.addObserverForName(UITextFieldTextDidChangeNotification, object: email, queue: nil) {_ in self.validate()}
         notificationCenter.addObserverForName(UITextFieldTextDidChangeNotification, object: company, queue: nil) {_ in self.validate()}

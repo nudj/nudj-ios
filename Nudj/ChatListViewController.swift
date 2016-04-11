@@ -41,8 +41,8 @@ class ChatListViewController: BaseController, UITableViewDataSource, UITableView
         requestData()
         
         let center = NSNotificationCenter.defaultCenter()
-        center.addObserver(self, selector:"reload:", name: Notifications.Refetch.rawValue, object: nil)
-        center.addObserver(self, selector:"refilter:", name: UserModel.Notifications.BlockedUsersChanged.rawValue, object: nil)
+        center.addObserver(self, selector: #selector(reload(_:)), name: Notifications.Refetch.rawValue, object: nil)
+        center.addObserver(self, selector: #selector(refilter(_:)), name: UserModel.Notifications.BlockedUsersChanged.rawValue, object: nil)
     }
     
     override func viewWillDisappear(animated: Bool) {

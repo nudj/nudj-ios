@@ -13,11 +13,11 @@ protocol CreatePopupViewDelegate {
 }
 
 class CreatePopupView: UIView {
-    var delegate : CreatePopupViewDelegate?
-    var blackBackground : UIView?;
-    var whitepopupbox : UIView?;
-    var contentImage :UIImageView?;
-    var label :UILabel?
+    var delegate: CreatePopupViewDelegate?
+    var blackBackground: UIView?
+    var whitepopupbox: UIView?
+    var contentImage: UIImageView?
+    var label: UILabel?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -33,7 +33,7 @@ class CreatePopupView: UIView {
         self.blackBackground!.userInteractionEnabled = true;
         self.addSubview(self.blackBackground!);
         
-        let gesture :UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:"dismissPopup");
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(dismissPopup))
         self.blackBackground!.addGestureRecognizer(gesture)
         
         // TODO: magic numbers
@@ -43,7 +43,7 @@ class CreatePopupView: UIView {
         self.whitepopupbox!.layer.masksToBounds = true;
         self.whitepopupbox!.userInteractionEnabled = true;
         
-        let gestureTwo :UITapGestureRecognizer = UITapGestureRecognizer(target: self, action:"dismissPopup");
+        let gestureTwo = UITapGestureRecognizer(target: self, action: #selector(dismissPopup))
         self.whitepopupbox!.addGestureRecognizer(gestureTwo)
         
         if(withText){
@@ -64,7 +64,7 @@ class CreatePopupView: UIView {
             self.contentImage!.image = UIImage(named:i)
             self.whitepopupbox!.addSubview(self.contentImage!)
         }
-        self.addSubview(self.whitepopupbox!);
+        self.addSubview(self.whitepopupbox!)
         
         UIView.animateWithDuration(30, delay: 30, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
             //self.blurBg.alpha = 1
@@ -75,8 +75,8 @@ class CreatePopupView: UIView {
         })
     }
     
-    func bodyText(s:String){
-        self.label!.text = s;
+    func bodyText(s: String){
+        self.label!.text = s
         self.label!.numberOfLines = 0
         self.label!.adjustsFontSizeToFitWidth = true
         self.label!.minimumScaleFactor = 0.2

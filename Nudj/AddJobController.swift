@@ -64,9 +64,10 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
         self.tabBarController?.tabBar.hidden = true
         skills.placeholderLabel = self.skillsLabel
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil);
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil);
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"keyboardChanged:", name: UIKeyboardDidChangeFrameNotification, object: nil);
+        let nc = NSNotificationCenter.defaultCenter()
+        nc.addObserver(self, selector:#selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        nc.addObserver(self, selector:#selector(keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        nc.addObserver(self, selector:#selector(keyboardChanged(_:)), name: UIKeyboardDidChangeFrameNotification, object: nil)
         
         if(isEditable != nil && isEditable == true){
             

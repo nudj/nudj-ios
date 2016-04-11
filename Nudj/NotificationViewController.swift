@@ -35,7 +35,7 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
         self.tableView.registerNib(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
         self.tableView.tableFooterView = UIView(frame: CGRectZero);
 
-        self.refreshControl?.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl?.addTarget(self, action: #selector(refresh), forControlEvents: UIControlEvents.ValueChanged)
         self.view.addSubview(self.noContentImage.alignInSuperView(self.view, imageTitle: "no_notifications"))
         
         UIApplication.sharedApplication().applicationIconBadgeNumber = 0

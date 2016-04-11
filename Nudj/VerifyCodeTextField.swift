@@ -53,15 +53,15 @@ class VerifyCodeTextField: UITextField {
 
     override func drawRect(rect: CGRect) {
         UIColor.grayColor().setStroke()
-        let section = rect.width / 4;
-        let	 border = UIBezierPath(rect: rect);
+        let section = rect.width / 4
+        let	 border = UIBezierPath(rect: rect)
         border.lineWidth = lineWidth
         border.stroke()
 
         let path = UIBezierPath()
         path.lineWidth = lineWidth
-        for(var i:CGFloat = 1; i < 4; i++) {
-            let meridian:CGFloat = section * i;
+        for i in 1 ..< 4 {
+            let meridian: CGFloat = section * CGFloat(i)
             path.moveToPoint(CGPoint(x: meridian, y: padding))
             path.addLineToPoint(CGPoint(x: meridian, y: rect.height - padding))
         }
