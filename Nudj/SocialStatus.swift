@@ -34,7 +34,7 @@ class SocialStatus: UIImageView {
             self.image = UIImage(named: "not_connected")
         }
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(imageTapped(_:)))
         self.userInteractionEnabled = true
         self.addGestureRecognizer(tapGestureRecognizer)
     }

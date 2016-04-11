@@ -42,7 +42,7 @@ class ContactsController: BaseController, UITableViewDelegate, UISearchBarDelega
 
         refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: Localizations.General.PullToRefresh)
-        refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: #selector(refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         table.addSubview(refreshControl)
 
         self.refresh(self)
@@ -53,7 +53,7 @@ class ContactsController: BaseController, UITableViewDelegate, UISearchBarDelega
         self.view.addSubview(self.noContentImage.alignInSuperView(self.view, imageTitle: "no_contacts"))
         
         let nc = NSNotificationCenter.defaultCenter()
-        nc.addObserver(self, selector: Selector("contactThumbnailReceived:"), name: Contacts.Notification.ContactThumbnailReceived.rawValue, object: nil)
+        nc.addObserver(self, selector: #selector(contactThumbnailReceived(_:)), name: Contacts.Notification.ContactThumbnailReceived.rawValue, object: nil)
     }
 
     override func viewWillAppear(animated: Bool) {

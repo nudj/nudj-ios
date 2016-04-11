@@ -81,7 +81,7 @@ public struct Localizations {
                             /// Base translation: We need some details
                 public static var Title : String = "jobs.add.need-profile.title".localized
 
-                /// Base translation: Candidates will want to know who is hiring.You can give details on the next screen.
+                /// Base translation: Candidates will want to know who is hiring. You can give details on the next screen.
                 public static var Body : String = "jobs.add.need-profile.body".localized
 
             }
@@ -149,7 +149,7 @@ public struct Localizations {
                             /// Base translation: We need some details
                 public static var Title : String = "jobs.nudj.need-profile.title".localized
 
-                /// Base translation: The candidate will want to know who is referring them.You can give details on the next screen.
+                /// Base translation: The candidate will want to know who is referring them. You can give details on the next screen.
                 public static var Body : String = "jobs.nudj.need-profile.body".localized
 
             }
@@ -202,7 +202,7 @@ public struct Localizations {
                             /// Base translation: We need some details
                 public static var Title : String = "jobs.interested.need-profile.title".localized
 
-                /// Base translation: The hirer will want to see your profile.You can fill it in on the next screen.
+                /// Base translation: The hirer will want to see your profile. You can fill it in on the next screen.
                 public static var Body : String = "jobs.interested.need-profile.body".localized
 
             }
@@ -726,7 +726,7 @@ public struct Localizations {
     public struct Country {
 
     
-        public struct Default {
+        public struct _Default {
 
                     /// Base translation: United Kingdom
             public static var Name : String = "country.default.name".localized

@@ -42,7 +42,7 @@ class NotificationCell: UITableViewCell {
         profileImage.setCustomImage(UserModel.getDefaultUserImage(.Size60))
         profileImage.downloadImage(data.senderImage, completion:nil)
         
-        let tap = UITapGestureRecognizer(target:self, action:"ImageTap:")
+        let tap = UITapGestureRecognizer(target:self, action: #selector(ImageTap(_:)))
         profileImage.addGestureRecognizer(tap)
         
         let messageString = data.notificationMessage ?? "" as NSString
@@ -75,7 +75,7 @@ class NotificationCell: UITableViewCell {
         let date:NSDate = NSDate(timeIntervalSince1970:timestamp)
         self.dateLabel.text = date.timeAgoSinceNow()
         
-        self.smsButton.addTarget(self, action: "actions:", forControlEvents:.TouchUpInside)
+        self.smsButton.addTarget(self, action: #selector(actions(_:)), forControlEvents:.TouchUpInside)
         
         switch(data.notificationType!){
         case .AskToRefer:

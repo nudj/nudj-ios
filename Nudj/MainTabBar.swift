@@ -31,7 +31,7 @@ final class MainTabBar: UITabBarController, SegueHandlerType {
     override func viewDidLoad() {
         super.viewDidLoad()
         let nc = NSNotificationCenter.defaultCenter()
-        nc.addObserver(self, selector:"updateBadge:", name: Notifications.UpdateBadge.rawValue, object: nil)
+        nc.addObserver(self, selector: #selector(updateBadge(_:)), name: Notifications.UpdateBadge.rawValue, object: nil)
     }
     
     static func postBadgeNotification(badgeString: String, tabIndex: Tabs) {
