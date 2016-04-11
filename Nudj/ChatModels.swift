@@ -67,9 +67,9 @@ class ChatModels: NSObject, XMPPStreamDelegate, XMPPRosterDelegate, XMPPRoomDele
         xmppRoster = XMPPRoster(rosterStorage: xmppRosterStorage);
         
         xmppvCardStorage = XMPPvCardCoreDataStorage.sharedInstance();
-        xmppvCardTempModule = XMPPvCardTempModule(withvCardStorage:xmppvCardStorage);
+        xmppvCardTempModule = XMPPvCardTempModule(vCardStorage:xmppvCardStorage);
         
-        xmppvCardAvatarModule = XMPPvCardAvatarModule(withvCardTempModule:xmppvCardTempModule);
+        xmppvCardAvatarModule = XMPPvCardAvatarModule(vCardTempModule:xmppvCardTempModule);
         
         xmppCapabilitiesStorage = XMPPCapabilitiesCoreDataStorage.sharedInstance();
         xmppCapabilities = XMPPCapabilities(capabilitiesStorage: xmppCapabilitiesStorage);
