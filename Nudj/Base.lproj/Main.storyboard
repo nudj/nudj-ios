@@ -1127,31 +1127,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="0yX-Si-sY3" firstAttribute="leading" secondItem="hLn-EC-dhA" secondAttribute="leadingMargin" constant="-16" id="3uT-G4-Nh0"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="0yX-Si-sY3" secondAttribute="trailing" constant="-16" id="Adt-JO-g0r"/>
                             <constraint firstAttribute="centerY" secondItem="0yX-Si-sY3" secondAttribute="centerY" id="S5a-Rt-snd"/>
-                            <constraint firstItem="ATK-fJ-TBf" firstAttribute="top" secondItem="0yX-Si-sY3" secondAttribute="bottom" id="VU1-9t-d4x"/>
-                            <constraint firstItem="0yX-Si-sY3" firstAttribute="top" secondItem="lHw-a9-Aot" secondAttribute="bottom" id="fBX-gd-oWv"/>
                             <constraint firstAttribute="centerX" secondItem="0yX-Si-sY3" secondAttribute="centerX" id="zv2-3s-wZU"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="3uT-G4-Nh0"/>
-                                <exclude reference="Adt-JO-g0r"/>
-                                <exclude reference="fBX-gd-oWv"/>
-                                <exclude reference="VU1-9t-d4x"/>
-                            </mask>
-                        </variation>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="qiW-5V-zRa" appends="YES" id="nHh-nv-U2y"/>
-                        </connections>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="300" height="400"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="74f-ie-LV4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="qiW-5V-zRa"/>
             </objects>
             <point key="canvasLocation" x="-3816" y="1539"/>
         </scene>
