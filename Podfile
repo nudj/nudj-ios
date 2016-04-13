@@ -2,7 +2,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '9.2'
 use_frameworks!
 
-pod 'SwiftyJSON', '~> 2.1'
+pod 'SwiftyJSON'
 pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
 pod 'FBSDKShareKit'
