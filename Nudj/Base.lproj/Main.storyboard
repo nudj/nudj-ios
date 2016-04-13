@@ -1116,7 +1116,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="300" height="400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="success.png" translatesAutoresizingMaskIntoConstraints="NO" id="0yX-Si-sY3">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="success" translatesAutoresizingMaskIntoConstraints="NO" id="0yX-Si-sY3">
                                 <rect key="frame" x="100" y="150" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="Kpk-ur-x4P"/>
@@ -5775,7 +5775,7 @@ Cg
         <image name="silhouette-active" width="24" height="24"/>
         <image name="skills" width="24" height="24"/>
         <image name="skills-active" width="24" height="24"/>
-        <image name="success.png" width="88" height="88"/>
+        <image name="success" width="88" height="88"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="w3z-vb-UAH"/>
