@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import CCMPopup
 import SwiftyJSON
 
 class AskReferralViewController: UIViewController, SegueHandlerType, UISearchBarDelegate, UITableViewDelegate, UITextViewDelegate, CreatePopupViewDelegate{
@@ -222,19 +221,6 @@ class AskReferralViewController: UIViewController, SegueHandlerType, UISearchBar
                 }) { error in
                     loggingPrint(error)
             }
-        }
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        switch segueIdentifierForSegue(segue) {
-        case .ShowPopup:
-            let popupSegue = segue as! CCMPopupSegue
-            // TODO: magic numbers
-            popupSegue.destinationBounds = CGRectMake(0, 0, 300, 400);
-            popupSegue.backgroundBlurRadius = 7;
-            popupSegue.backgroundViewAlpha = 0.3;
-            popupSegue.backgroundViewColor = UIColor.blackColor()
-            popupSegue.dismissableByTouchingBackground = true
         }
     }
     

@@ -735,7 +735,7 @@
                         <outlet property="messageLabel" destination="OV7-Xx-yXT" id="NB5-Tw-6ni"/>
                         <outlet property="messageText" destination="L8L-bc-XZK" id="MBK-Ow-v51"/>
                         <outlet property="searchBarView" destination="6Sq-g3-IGS" id="owk-OV-Fz4"/>
-                        <segue destination="ZWG-g7-idr" kind="custom" identifier="ShowPopup" customClass="CCMPopupSegue" id="E88-IJ-DXY"/>
+                        <segue destination="ZWG-g7-idr" kind="presentation" identifier="ShowPopup" modalPresentationStyle="overFullScreen" id="E88-IJ-DXY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pmF-e8-vjl" userLabel="First Responder" sceneMemberID="firstResponder"/>
