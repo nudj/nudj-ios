@@ -1,21 +1,21 @@
 PODS:
-  - Bolts (1.6.0):
-    - Bolts/AppLinks (= 1.6.0)
-    - Bolts/Tasks (= 1.6.0)
-  - Bolts/AppLinks (1.6.0):
+  - Bolts (1.7.0):
+    - Bolts/AppLinks (= 1.7.0)
+    - Bolts/Tasks (= 1.7.0)
+  - Bolts/AppLinks (1.7.0):
     - Bolts/Tasks
-  - Bolts/Tasks (1.6.0)
+  - Bolts/Tasks (1.7.0)
   - CCMPopup (1.1.0)
   - DateTools (1.7.0)
-  - FBSDKCoreKit (4.10.0):
-    - Bolts (~> 1.5)
-  - FBSDKLoginKit (4.10.0):
+  - FBSDKCoreKit (4.11.0):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.11.0):
     - FBSDKCoreKit
-  - FBSDKShareKit (4.10.0):
+  - FBSDKShareKit (4.11.0):
     - FBSDKCoreKit
-  - Mixpanel (2.9.3):
-    - Mixpanel/Mixpanel (= 2.9.3)
-  - Mixpanel/Mixpanel (2.9.3)
+  - Mixpanel (2.9.6):
+    - Mixpanel/Mixpanel (= 2.9.6)
+  - Mixpanel/Mixpanel (2.9.6)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
@@ -25,16 +25,16 @@ DEPENDENCIES:
   - FBSDKLoginKit
   - FBSDKShareKit
   - Mixpanel
-  - SwiftyJSON (~> 2.1)
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Bolts: f52a250053bb517ca874523c3913776359ab3def
+  Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
   CCMPopup: e41fad5b8a0823c9cddea8eab6d431670c9dabe5
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
-  FBSDKCoreKit: 13bec8373fb3af94d44daf2aa1e0958687897fbd
-  FBSDKLoginKit: d3d4a2e9d31954deb00bfea964167a05ca1ea976
-  FBSDKShareKit: 54587b4624706ace1e810cf83412a918141f807a
-  Mixpanel: b9ff1c5d41fc07037d4b813bf2799c050ee3e49b
+  FBSDKCoreKit: 686ac982723a14ec9ddb85e2f81235d7706c891b
+  FBSDKLoginKit: bade9fc78277764149ccc5bfaadbf13c83175c6a
+  FBSDKShareKit: 2d1746144cfc8a9dbbd24997c34ee0471be51b6a
+  Mixpanel: 048a9f2512ac1bb8bfdecf719da024873f50a9c2
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
 COCOAPODS: 0.39.0
