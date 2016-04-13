@@ -37,11 +37,10 @@ TODO
 
 ### In CocoaPods
 
-* SwiftyJSON, ~> 2.1
+* SwiftyJSON
 * Facebook APIs
 	* FBSDKCoreKit
 	* FBSDKLoginKit
 	* FBSDKShareKit
 * DateTools  
 * Mixpanel
-* CCMPopup

@@ -5,7 +5,6 @@ PODS:
   - Bolts/AppLinks (1.7.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.7.0)
-  - CCMPopup (1.1.0)
   - DateTools (1.7.0)
   - FBSDKCoreKit (4.11.0):
     - Bolts (~> 1.7)
@@ -19,7 +18,6 @@ PODS:
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
-  - CCMPopup
   - DateTools
   - FBSDKCoreKit
   - FBSDKLoginKit
@@ -29,7 +27,6 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
-  CCMPopup: e41fad5b8a0823c9cddea8eab6d431670c9dabe5
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   FBSDKCoreKit: 686ac982723a14ec9ddb85e2f81235d7706c891b
   FBSDKLoginKit: bade9fc78277764149ccc5bfaadbf13c83175c6a
