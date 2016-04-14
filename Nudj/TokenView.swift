@@ -8,7 +8,7 @@
 import UIKit
 import Foundation
 
-class TokenView: KSTokenView, KSTokenViewDelegate {
+class TokenView: KSTokenView {
 
     @IBInspectable
     var autocompleteEndpoint: String? = nil
@@ -30,7 +30,7 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
     var startEditClosure:((TokenView)->())? = nil
     var changedClosure:((TokenView)->())? = nil
 
-    var setupMode = false
+    private var setupMode = false
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -141,7 +141,7 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
 //        }
 //    }
 
-    func prepareToken(token: KSToken) -> KSToken {
+    private func prepareToken(token: KSToken) -> KSToken {
         if let tokenBackgroundColor = self.tokenBackgroundColor {
             token.tokenBackgroundColor = tokenBackgroundColor
         }
@@ -157,44 +157,44 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
 
         return token
     }
-    
-    // MARK: KSTokenViewDelegate
+}
 
+extension TokenView: KSTokenViewDelegate {
+    func tokenViewDidBeginEditing(tokenView: KSTokenView) {
+        startEditClosure?(self)
+    }
+    
     func tokenView(tokenView: KSTokenView, shouldChangeAppearanceForToken token: KSToken) -> KSToken? {
         return prepareToken(token)
     }
-
+    
     func tokenView(token: KSTokenView, performSearchWithString string: String, completion: ((results: Array<AnyObject>) -> Void)?) {
         if var path = self.autocompleteEndpoint {
-
+            
             if (string.isEmpty) {
                 return
             }
-
+            
             path += "/" + string
-
+            
             API.sharedInstance.request(.GET, path: path, params: nil, closure: { result in
                 if let data: Array<String> = result["data"].arrayObject as? Array<String> {
                     completion!(results: data)
                 } else {
                     completion!(results: [String]())
                 }
-
-//                self._repositionSearchResults()
-
-            }, errorHandler: { _ in
-                completion!(results: [String]())
-//                self._repositionSearchResults()
+                
+                //                self._repositionSearchResults()
+                
+                }, errorHandler: { _ in
+                    completion!(results: [String]())
+                    //                self._repositionSearchResults()
             })
         }
     }
-
+    
     func tokenView(token: KSTokenView, displayTitleForObject object: AnyObject) -> String {
         return object as! String
-    }
-
-    func textFieldDidBeginEditing(textField: UITextField) {
-        startEditClosure?(self)
     }
     
     func tokenView(tokenView: KSTokenView, didAddToken token: KSToken) {
@@ -202,7 +202,7 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
             self.changedClosure?(self)
         }
     }
-
+    
     func tokenView(tokenView: KSTokenView, didDeleteToken token: KSToken) {
         if (!setupMode) {
             self.changedClosure?(self)
