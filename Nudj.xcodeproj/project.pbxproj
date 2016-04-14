@@ -2372,7 +2372,8 @@
 				EBF1861E1B21DACA00D8D80D /* KSTokenView.swift */,
 				EBF1861F1B21DACA00D8D80D /* KSUtils.swift */,
 			);
-			path = KSTokenView;
+			name = KSTokenView;
+			path = KSTokenView/KSTokenView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
