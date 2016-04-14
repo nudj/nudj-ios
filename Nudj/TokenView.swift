@@ -50,17 +50,12 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
     }
 
     func setup() {
-        promptText = "";
+        promptText = ""
 
         self.delegate = self
 
         backgroundColor = UIColor.clearColor()
         font = UIFont.systemFontOfSize(15)
-
-        _tokenField.backgroundColor = UIColor.clearColor()
-
-        searchResultBackgroundColor = UIColor.whiteColor()
-        activityIndicatorColor = UIColor.blueColor()
 
         suggestionsParent = self.superview?.superview
 
@@ -76,71 +71,70 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
         for t in tokens {
             addTokenWithTitle(t)
         }
-        _tokenField.tokenize()
 
         setupMode = false
     }
-
-    override func _showSearchResults() {
-        if (_tokenField.isFirstResponder()) {
-
-            if (_showingSearchResult) {
-                return
-            }
-
-            _showingSearchResult = true
-
-            if (KSUtils.isIpad()) {
-                _popover?.presentPopoverFromRect(_tokenField.frame, inView: _tokenField, permittedArrowDirections: .Up, animated: false)
-            } else {
-                if let parent = suggestionsParent {
-                    parent.addSubview(_searchTableView)
-                    let point = parent.convertPoint(CGPoint(x: 0, y: bounds.height), fromView: self)
-                    _searchTableView.frame.origin = point
-                } else {
-                    addSubview(_searchTableView)
-                    _searchTableView.frame.origin = CGPoint(x: 0, y: bounds.height)
-                }
-
-                _searchTableView.hidden = false
-                resizeSearchTable()
-            }
-        }
-    }
-
-    override func _repositionSearchResults() {
-        if (!_showingSearchResult) {
-            return
-        }
-
-        if (KSUtils.isIpad()) {
-            if (_popover!.popoverVisible) {
-                _popover?.dismissPopoverAnimated(false)
-            }
-            if (_showingSearchResult) {
-                _popover?.presentPopoverFromRect(_tokenField.frame, inView: _tokenField, permittedArrowDirections: .Up, animated: false)
-            }
-
-        } else {
-            if let parent = suggestionsParent {
-                let point = parent.convertPoint(CGPoint(x: 0, y: bounds.height), fromView: self)
-                _searchTableView.frame.origin = point
-            } else {
-                _searchTableView.frame.origin = CGPoint(x: 0, y: bounds.height)
-            }
-
-            resizeSearchTable()
-        }
-    }
-
-    func resizeSearchTable() {
-        if (_resultArray.count <= 0) {
-            _hideSearchResults()
-        } else {
-            _searchTableView.layoutIfNeeded()
-            _searchTableView.frame.size = _searchTableView.contentSize
-        }
-    }
+//
+//    override func _showSearchResults() {
+//        if (_tokenField.isFirstResponder()) {
+//
+//            if (_showingSearchResult) {
+//                return
+//            }
+//
+//            _showingSearchResult = true
+//
+//            if (KSUtils.isIpad()) {
+//                _popover?.presentPopoverFromRect(_tokenField.frame, inView: _tokenField, permittedArrowDirections: .Up, animated: false)
+//            } else {
+//                if let parent = suggestionsParent {
+//                    parent.addSubview(_searchTableView)
+//                    let point = parent.convertPoint(CGPoint(x: 0, y: bounds.height), fromView: self)
+//                    _searchTableView.frame.origin = point
+//                } else {
+//                    addSubview(_searchTableView)
+//                    _searchTableView.frame.origin = CGPoint(x: 0, y: bounds.height)
+//                }
+//
+//                _searchTableView.hidden = false
+//                resizeSearchTable()
+//            }
+//        }
+//    }
+//
+//    override func _repositionSearchResults() {
+//        if (!_showingSearchResult) {
+//            return
+//        }
+//
+//        if (KSUtils.isIpad()) {
+//            if (_popover!.popoverVisible) {
+//                _popover?.dismissPopoverAnimated(false)
+//            }
+//            if (_showingSearchResult) {
+//                _popover?.presentPopoverFromRect(_tokenField.frame, inView: _tokenField, permittedArrowDirections: .Up, animated: false)
+//            }
+//
+//        } else {
+//            if let parent = suggestionsParent {
+//                let point = parent.convertPoint(CGPoint(x: 0, y: bounds.height), fromView: self)
+//                _searchTableView.frame.origin = point
+//            } else {
+//                _searchTableView.frame.origin = CGPoint(x: 0, y: bounds.height)
+//            }
+//
+//            resizeSearchTable()
+//        }
+//    }
+//
+//    func resizeSearchTable() {
+//        if (_resultArray.count <= 0) {
+//            _hideSearchResults()
+//        } else {
+//            _searchTableView.layoutIfNeeded()
+//            _searchTableView.frame.size = _searchTableView.contentSize
+//        }
+//    }
 
     func prepareToken(token: KSToken) -> KSToken {
         if (tokenBackgroundColor != nil) {
@@ -191,11 +185,11 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
                     completion!(results: [String]())
                 }
 
-                self._repositionSearchResults()
+//                self._repositionSearchResults()
 
             }, errorHandler: { _ in
                 completion!(results: [String]())
-                self._repositionSearchResults()
+//                self._repositionSearchResults()
             })
         }
     }
@@ -226,10 +220,10 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
         }
     }
 
-    func tokenView(tokenView: KSTokenView, didSelectToken token: KSToken) {
-        if (!_tokenField.isFirstResponder()) {
-            _tokenField.becomeFirstResponder()
-            _tokenField.selectToken(token)
-        }
-    }
+//    func tokenView(tokenView: KSTokenView, didSelectToken token: KSToken) {
+//        if (!_tokenField.isFirstResponder()) {
+//            _tokenField.becomeFirstResponder()
+//            _tokenField.selectToken(token)
+//        }
+//    }
 }
