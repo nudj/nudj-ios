@@ -31,7 +31,7 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
     var changedClosure:((TokenView)->())? = nil
 
     var setupMode = false
-    var placeholderLabel:UILabel?
+    var placeholderLabel: UILabel?
     
     var intrinsicContentHeight: CGFloat = UIViewNoIntrinsicMetric
 
@@ -220,10 +220,4 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
         }
     }
 
-//    func tokenView(tokenView: KSTokenView, didSelectToken token: KSToken) {
-//        if (!_tokenField.isFirstResponder()) {
-//            _tokenField.becomeFirstResponder()
-//            _tokenField.selectToken(token)
-//        }
-//    }
 }
