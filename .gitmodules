@@ -4,3 +4,6 @@
 [submodule "Externals/Laurine"]
 	path = Externals/Laurine
 	url = git@github.com:richardbuckle/Laurine.git
+[submodule "Externals/KSTokenView"]
+	path = Externals/KSTokenView
+	url = https://richardbuckle@github.com/Nudj/KSTokenView.git
