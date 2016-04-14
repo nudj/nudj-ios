@@ -31,8 +31,6 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
     var changedClosure:((TokenView)->())? = nil
 
     var setupMode = false
-    
-    var intrinsicContentHeight: CGFloat = UIViewNoIntrinsicMetric
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -64,6 +62,9 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
 
     func fillTokens(tokens:[String]) {
         setupMode = true
+        defer {
+            setupMode = false
+        }
 
         self.deleteAllTokens()
         for t in tokens {
@@ -77,7 +78,6 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
                 break
             }
         }
-        setupMode = false
     }
 //
 //    override func _showSearchResults() {
@@ -158,16 +158,6 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
         return token
     }
     
-    override func intrinsicContentSize() -> CGSize {
-        return CGSize(width: UIViewNoIntrinsicMetric, height: intrinsicContentHeight)
-    }
-    
-    override func tokenFieldShouldChangeHeight(height: CGFloat) {
-        super.tokenFieldShouldChangeHeight(height)
-        intrinsicContentHeight = height
-        invalidateIntrinsicContentSize()
-    }
-
     // MARK: KSTokenViewDelegate
 
     func tokenView(tokenView: KSTokenView, shouldChangeAppearanceForToken token: KSToken) -> KSToken? {
@@ -218,5 +208,4 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
             self.changedClosure?(self)
         }
     }
-
 }
