@@ -31,7 +31,6 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
     var changedClosure:((TokenView)->())? = nil
 
     var setupMode = false
-    var placeholderLabel: UILabel?
     
     var intrinsicContentHeight: CGFloat = UIViewNoIntrinsicMetric
 
@@ -67,7 +66,6 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
         setupMode = true
 
         self.deleteAllTokens()
-
         for t in tokens {
             addTokenWithTitle(t)
         }
@@ -200,7 +198,6 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
 
     func textFieldDidBeginEditing(textField: UITextField) {
         startEditClosure?(self)
-        placeholderLabel?.hidden = true
     }
     
     func tokenView(tokenView: KSTokenView, didAddToken token: KSToken) {

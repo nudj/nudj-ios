@@ -62,7 +62,7 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
     override func viewDidLoad() {
 
         self.tabBarController?.tabBar.hidden = true
-        skills.placeholderLabel = self.skillsLabel
+        skills.placeholder = self.skillsLabel.text ?? ""
         
         let nc = NSNotificationCenter.defaultCenter()
         nc.addObserver(self, selector:#selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
@@ -281,10 +281,6 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
 
     func textFieldDidBeginEditing(textField: UITextField) {
         scrollToSuperView(textField)
-        
-        if skills.tokens()?.count == 0 {
-            skills.placeholderLabel?.hidden = false
-        }
     }
 
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
