@@ -69,7 +69,14 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
         for t in tokens {
             addTokenWithTitle(t)
         }
-
+        
+        // unfortunately settings removesTokensOnEndEditing = false doesn't tokenize input that is done this way, so we have to force it with this ugly hack
+        for view in subviews {
+            if let tokenField = view as? KSTokenField {
+                tokenField.tokenize()
+                break
+            }
+        }
         setupMode = false
     }
 //
