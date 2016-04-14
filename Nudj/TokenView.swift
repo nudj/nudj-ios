@@ -11,21 +11,21 @@ import Foundation
 class TokenView: KSTokenView, KSTokenViewDelegate {
 
     @IBInspectable
-    var autocompleteEndpoint:String? = nil
+    var autocompleteEndpoint: String? = nil
 
     @IBInspectable
-    var tokenBackgroundColor:UIColor? = nil
+    var tokenBackgroundColor: UIColor? = nil
 
     @IBInspectable
-    var tokenTextColor:UIColor? = nil
+    var tokenTextColor: UIColor? = nil
 
     @IBInspectable
-    var tokenBorderColor:UIColor? = nil
+    var tokenBorderColor: UIColor? = nil
 
     @IBInspectable
-    var tokenBorderWidth:CGFloat = 0
+    var tokenBorderWidth: CGFloat = 0.0
 
-    var suggestionsParent:UIView? = nil
+    var suggestionsParent: UIView? = nil
 
     var startEditClosure:((TokenView)->())? = nil
     var changedClosure:((TokenView)->())? = nil
@@ -137,17 +137,17 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
 //    }
 
     func prepareToken(token: KSToken) -> KSToken {
-        if (tokenBackgroundColor != nil) {
-            token.tokenBackgroundColor = tokenBackgroundColor!
+        if let tokenBackgroundColor = self.tokenBackgroundColor {
+            token.tokenBackgroundColor = tokenBackgroundColor
         }
 
-        if (tokenTextColor != nil) {
-            token.tokenTextColor = tokenTextColor!
+        if let tokenTextColor = self.tokenTextColor {
+            token.tokenTextColor = tokenTextColor
         }
 
-        if (tokenBorderColor != nil) {
+        if let tokenBorderColor = self.tokenBorderColor {
             token.borderWidth = self.tokenBorderWidth
-            token.borderColor = tokenBorderColor!
+            token.borderColor = tokenBorderColor
         }
 
         return token
@@ -199,13 +199,8 @@ class TokenView: KSTokenView, KSTokenViewDelegate {
     }
 
     func textFieldDidBeginEditing(textField: UITextField) {
-        if (startEditClosure != nil) {
-            startEditClosure!(self)
-        }
-        
-        if(placeholderLabel != nil){
-            placeholderLabel!.hidden = true
-        }
+        startEditClosure?(self)
+        placeholderLabel?.hidden = true
     }
     
     func tokenView(tokenView: KSTokenView, didAddToken token: KSToken) {
