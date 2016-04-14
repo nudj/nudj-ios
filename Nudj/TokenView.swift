@@ -25,8 +25,6 @@ class TokenView: KSTokenView {
     @IBInspectable
     var tokenBorderWidth: CGFloat = 0.0
 
-    var suggestionsParent: UIView? = nil
-
     var startEditClosure:((TokenView)->())? = nil
     var changedClosure:((TokenView)->())? = nil
 
@@ -54,8 +52,6 @@ class TokenView: KSTokenView {
         backgroundColor = UIColor.clearColor()
         font = UIFont.systemFontOfSize(15)
 
-        suggestionsParent = self.superview?.superview
-
         removesTokensOnEndEditing = false
         shouldSortResultsAlphabatically = false
     }
@@ -79,67 +75,6 @@ class TokenView: KSTokenView {
             }
         }
     }
-//
-//    override func _showSearchResults() {
-//        if (_tokenField.isFirstResponder()) {
-//
-//            if (_showingSearchResult) {
-//                return
-//            }
-//
-//            _showingSearchResult = true
-//
-//            if (KSUtils.isIpad()) {
-//                _popover?.presentPopoverFromRect(_tokenField.frame, inView: _tokenField, permittedArrowDirections: .Up, animated: false)
-//            } else {
-//                if let parent = suggestionsParent {
-//                    parent.addSubview(_searchTableView)
-//                    let point = parent.convertPoint(CGPoint(x: 0, y: bounds.height), fromView: self)
-//                    _searchTableView.frame.origin = point
-//                } else {
-//                    addSubview(_searchTableView)
-//                    _searchTableView.frame.origin = CGPoint(x: 0, y: bounds.height)
-//                }
-//
-//                _searchTableView.hidden = false
-//                resizeSearchTable()
-//            }
-//        }
-//    }
-//
-//    override func _repositionSearchResults() {
-//        if (!_showingSearchResult) {
-//            return
-//        }
-//
-//        if (KSUtils.isIpad()) {
-//            if (_popover!.popoverVisible) {
-//                _popover?.dismissPopoverAnimated(false)
-//            }
-//            if (_showingSearchResult) {
-//                _popover?.presentPopoverFromRect(_tokenField.frame, inView: _tokenField, permittedArrowDirections: .Up, animated: false)
-//            }
-//
-//        } else {
-//            if let parent = suggestionsParent {
-//                let point = parent.convertPoint(CGPoint(x: 0, y: bounds.height), fromView: self)
-//                _searchTableView.frame.origin = point
-//            } else {
-//                _searchTableView.frame.origin = CGPoint(x: 0, y: bounds.height)
-//            }
-//
-//            resizeSearchTable()
-//        }
-//    }
-//
-//    func resizeSearchTable() {
-//        if (_resultArray.count <= 0) {
-//            _hideSearchResults()
-//        } else {
-//            _searchTableView.layoutIfNeeded()
-//            _searchTableView.frame.size = _searchTableView.contentSize
-//        }
-//    }
 
     private func prepareToken(token: KSToken) -> KSToken {
         if let tokenBackgroundColor = self.tokenBackgroundColor {
