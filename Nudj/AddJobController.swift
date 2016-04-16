@@ -62,7 +62,10 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
     override func viewDidLoad() {
 
         self.tabBarController?.tabBar.hidden = true
-        skills.placeholder = self.skillsLabel.text ?? ""
+        skills.font = skillsLabel.font
+        skills.placeholder = skillsLabel.text ?? ""
+        skills.placeholderColor = skillsLabel.textColor
+        skillsLabel.hidden = true
         
         let nc = NSNotificationCenter.defaultCenter()
         nc.addObserver(self, selector:#selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
