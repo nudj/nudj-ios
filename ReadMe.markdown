@@ -25,7 +25,6 @@ TODO
   Version 3.8.5 licensed from [http://hockeyapp.net/]().
 * JSQMessagesViewController
 * JSQSystemSoundPlayer
-* KSTokenView
 * XMPPFramework
 
 ### In submodules
@@ -34,6 +33,8 @@ TODO
   Supports compile-time checking of the loading of localised text.
 * LoggingPrint  
   Used to confine developer logging to debug builds of the app, to improve performance of the release builds.
+* KSTokenView
+  Used for the skills field in job listings and user profiles.
 
 ### In CocoaPods
 
