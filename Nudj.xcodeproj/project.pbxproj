@@ -500,6 +500,10 @@
 		C8A6E82E1C8609850064CD79 /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A6E82C1C8609850064CD79 /* ColorPalette.swift */; };
 		C8A6E8301C861DC30064CD79 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A6E82F1C861DC30064CD79 /* CoreDataStack.swift */; };
 		C8A6E8311C861DC30064CD79 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A6E82F1C861DC30064CD79 /* CoreDataStack.swift */; };
+		C8CDC5E51CEB858600BF449E /* JobURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CDC5E41CEB858600BF449E /* JobURL.swift */; };
+		C8CDC5E61CEB858600BF449E /* JobURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CDC5E41CEB858600BF449E /* JobURL.swift */; };
+		C8CDC5E81CEB85A500BF449E /* JobURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CDC5E71CEB85A500BF449E /* JobURLTests.swift */; };
+		C8CDC5E91CEB85A500BF449E /* JobURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CDC5E71CEB85A500BF449E /* JobURLTests.swift */; };
 		EB000F7C1AB2E0B800E4D385 /* DataTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB000F7B1AB2E0B800E4D385 /* DataTableCell.swift */; };
 		EB000F7F1AB71D6600E4D385 /* ContactsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB000F7E1AB71D6600E4D385 /* ContactsController.swift */; };
 		EB04F6231AAD89AF002F2677 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB04F6221AAD89AF002F2677 /* Contacts.swift */; };
@@ -985,6 +989,8 @@
 		C8A6A0331C44536C004DB1C0 /* Beta-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Beta-Info.plist"; sourceTree = "<group>"; };
 		C8A6E82C1C8609850064CD79 /* ColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
 		C8A6E82F1C861DC30064CD79 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		C8CDC5E41CEB858600BF449E /* JobURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobURL.swift; sourceTree = "<group>"; };
+		C8CDC5E71CEB85A500BF449E /* JobURLTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobURLTests.swift; sourceTree = "<group>"; };
 		EB000F7B1AB2E0B800E4D385 /* DataTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DataTableCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB000F7E1AB71D6600E4D385 /* ContactsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ContactsController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB04F6221AAD89AF002F2677 /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Contacts.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -2240,6 +2246,7 @@
 				C863DAD51CA1F089007A847A /* DestinationEquatableTests.swift */,
 				C85201B91CA1874800625642 /* DestinationURLTests.swift */,
 				C81F16AB1C735C65000927F8 /* NSDataHexTests.swift */,
+				C8CDC5E71CEB85A500BF449E /* JobURLTests.swift */,
 				EB0926E51A8DE4CB00E1D958 /* Supporting Files */,
 			);
 			path = NudjTests;
@@ -2290,6 +2297,7 @@
 				EB04F6221AAD89AF002F2677 /* Contacts.swift */,
 				C85201B61CA1861A00625642 /* Destination.swift */,
 				EBF17A251B4D76C600C67657 /* JobModel.swift */,
+				C8CDC5E41CEB858600BF449E /* JobURL.swift */,
 				EB72C5691B578D8100CCBD2E /* Notification.swift */,
 				A9B577F21B6BD58E00CFB474 /* SocialHandlerModel.swift */,
 				EBB3382F1A9F5A44000CAD88 /* UserModel.swift */,
@@ -2830,6 +2838,7 @@
 				C88BA0851C5277DD007A81EB /* CountryPickerDataSource.swift in Sources */,
 				C86F84951C444DB800C23332 /* GCDMulticastDelegate.m in Sources */,
 				C86F84961C444DB800C23332 /* NotificationCell.swift in Sources */,
+				C8CDC5E61CEB858600BF449E /* JobURL.swift in Sources */,
 				C86F84971C444DB800C23332 /* JSQMessagesLabel.m in Sources */,
 				C86F84981C444DB800C23332 /* MainFeed.swift in Sources */,
 				C86F84991C444DB800C23332 /* XMPPProcessOne.m in Sources */,
@@ -2999,6 +3008,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C85201BB1CA1874800625642 /* DestinationURLTests.swift in Sources */,
+				C8CDC5E91CEB85A500BF449E /* JobURLTests.swift in Sources */,
 				C863DAD71CA1F089007A847A /* DestinationEquatableTests.swift in Sources */,
 				C81F16AD1C735C65000927F8 /* NSDataHexTests.swift in Sources */,
 			);
@@ -3075,6 +3085,7 @@
 				C88BA0841C5277DD007A81EB /* CountryPickerDataSource.swift in Sources */,
 				A996506D1B387CC800D5A8E9 /* GCDMulticastDelegate.m in Sources */,
 				EB866BE01B53EFAE00E203CA /* NotificationCell.swift in Sources */,
+				C8CDC5E51CEB858600BF449E /* JobURL.swift in Sources */,
 				A9964FF81B387CC800D5A8E9 /* JSQMessagesLabel.m in Sources */,
 				EB0926D21A8DE4CB00E1D958 /* MainFeed.swift in Sources */,
 				A99650161B387CC800D5A8E9 /* XMPPProcessOne.m in Sources */,
@@ -3244,6 +3255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C85201BA1CA1874800625642 /* DestinationURLTests.swift in Sources */,
+				C8CDC5E81CEB85A500BF449E /* JobURLTests.swift in Sources */,
 				C863DAD61CA1F089007A847A /* DestinationEquatableTests.swift in Sources */,
 				C81F16AC1C735C65000927F8 /* NSDataHexTests.swift in Sources */,
 			);
