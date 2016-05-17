@@ -33,6 +33,15 @@ extension API {
             }
         }
         
+        var mobileWebHostname: String {
+            switch self {
+            case Production:
+                return "mobileweb.nudj.co"
+            case Development:
+                return "mobileweb-dev.nudj.co"
+            }
+        }
+        
         var charConferenceDomain: String {
             return "conference." + chatHostname 
         }
