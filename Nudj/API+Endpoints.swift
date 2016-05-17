@@ -196,11 +196,12 @@ extension API {
             static let ask = base + "/ask"
             static let chat = base + "/chat"
            
-            static func paramsForJob(jobID: Int, contactIDs: [Int], message: String) -> [String: AnyObject] {
+            static func paramsForJob(jobID: Int, contactIDs: [Int], message: String, clientWillSend: Bool) -> [String: AnyObject] {
                 let params: [String: AnyObject] = [
                     "job": jobID,
                     "contacts": contactIDs,
                     "message": message,
+                    "client_will_send": clientWillSend ? "true" : "false",
                 ]
                 return params
             }
