@@ -153,6 +153,19 @@ public struct Localizations {
                 public static var Body : String = "jobs.nudj.need-profile.body".localized
 
             }
+
+            public struct Sms {
+
+            
+                public struct _Default {
+
+                                    /// Base translation: This job on Nudj may interest you: %@
+                    public static func Format(value1 : String) -> String {
+                        return String(format: NSLocalizedString("jobs.nudj.sms.default.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
+                    }
+
+                }
+            }
         }
 
         public struct Location {
@@ -162,6 +175,23 @@ public struct Localizations {
                 return String(format: NSLocalizedString("jobs.location.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
             }
 
+        }
+
+        public struct Referral {
+
+        
+            public struct Sms {
+
+            
+                public struct _Default {
+
+                                    /// Base translation: Do you know anyone who would suit this job on Nudj? %@
+                    public static func Format(value1 : String) -> String {
+                        return String(format: NSLocalizedString("jobs.referral.sms.default.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
+                    }
+
+                }
+            }
         }
 
         public struct Block {
