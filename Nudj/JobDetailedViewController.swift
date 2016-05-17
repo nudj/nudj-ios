@@ -7,9 +7,10 @@
 
 import UIKit
 import Foundation
+import MessageUI
 import SwiftyJSON
 
-class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupViewDelegate {
+class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupViewDelegate, MFMessageComposeViewControllerDelegate {
     
     enum SegueIdentifier: String {
         case GoToProfile = "GoToProfile"
@@ -334,7 +335,41 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     }
     
     @IBAction func askForReferral(sender: AnyObject) {
-        performSegueWithIdentifier(.AskForReferral, sender: sender)
+        if 	MFMessageComposeViewController.canSendText() {
+            let jobURL: JobURL = .Preview(jobID!)
+            let url = jobURL.url()
+            let message: String
+            if isOwnJob {
+                message = Localizations.Jobs.Referral.Sms._Default.Format(url.absoluteString)
+            } else {
+                message = Localizations.Jobs.Nudj.Sms._Default.Format(url.absoluteString)
+            }
+            let composeVC = MFMessageComposeViewController()
+            composeVC.messageComposeDelegate = self
+            composeVC.body = message
+            self.presentViewController(composeVC, animated: true, completion: nil)
+        } else {
+            performSegueWithIdentifier(.AskForReferral, sender: sender)
+        }
+    }
+
+    func messageComposeViewController(controller: MFMessageComposeViewController,
+                                      didFinishWithResult result: MessageComposeResult) {
+        switch result {
+        case MessageComposeResultSent:
+            // need the contact IDs
+            let params = API.Endpoints.Nudge.paramsForJob(jobID!, contactIDs: [], message: controller.body ?? "", clientWillSend: true)        
+            let path = isOwnJob ? API.Endpoints.Nudge.ask : API.Endpoints.Nudge.base
+            API.sharedInstance.request(.PUT, path: path, params: params){ error in
+                loggingPrint(error)
+            }
+            
+        default:
+            break
+        }
+        
+        // Dismiss the mail compose view controller.
+        controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
     private func registerForRemoteNotifications() {
