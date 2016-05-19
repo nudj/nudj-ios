@@ -357,7 +357,6 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
                                       didFinishWithResult result: MessageComposeResult) {
         switch result {
         case MessageComposeResultSent:
-            // need the contact IDs
             let params = API.Endpoints.Nudge.paramsForJob(jobID!, contactIDs: [], message: controller.body ?? "", clientWillSend: true)        
             let path = isOwnJob ? API.Endpoints.Nudge.ask : API.Endpoints.Nudge.base
             API.sharedInstance.request(.PUT, path: path, params: params){ error in
