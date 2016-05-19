@@ -159,7 +159,7 @@ public struct Localizations {
             
                 public struct _Default {
 
-                                    /// Base translation: This job on Nudj may interest you: %@
+                                    /// Base translation: Hey! I saw this job and thought of you… %@
                     public static func Format(value1 : String) -> String {
                         return String(format: NSLocalizedString("jobs.nudj.sms.default.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
                     }
@@ -185,7 +185,7 @@ public struct Localizations {
             
                 public struct _Default {
 
-                                    /// Base translation: Do you know anyone who would suit this job on Nudj? %@
+                                    /// Base translation: Hey! I’m using nudj to hire, but need your help. Do you know anyone who might be interested in this? %@
                     public static func Format(value1 : String) -> String {
                         return String(format: NSLocalizedString("jobs.referral.sms.default.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
                     }

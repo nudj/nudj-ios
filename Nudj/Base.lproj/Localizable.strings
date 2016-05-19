@@ -65,8 +65,8 @@
 "jobs.nudj.button.edit-profile" = "Edit Profile";
 "jobs.nudj.need-profile.title" = "We need some details";
 "jobs.nudj.need-profile.body" = "The candidate will want to know who is referring them.\nYou can give details on the next screen.";
-"jobs.nudj.sms.default.format" = "This job on Nudj may interest you:\n%@";
-"jobs.referral.sms.default.format" = "Do you know anyone who would suit this job on Nudj?\n%@";
+"jobs.nudj.sms.default.format" = "Hey! I saw this job and thought of you…\n%@";
+"jobs.referral.sms.default.format" = "Hey! I’m using nudj to hire, but need your help. Do you know anyone who might be interested in this?\n%@";
 "jobs.add.button.update" = "Update";
 "jobs.add.button.edit" = "Edit Job";
 "jobs.add.button.edit-profile" = "Edit Profile";
