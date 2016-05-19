@@ -636,22 +636,6 @@ public struct Localizations {
     public struct Invitation {
 
     
-        public struct Failed {
-
-                    /// Base translation: Invitation Failed
-            public static var Title : String = "invitation.failed.title".localized
-
-
-            public struct Body {
-
-                            /// Base translation: There was a problem inviting %@.
-                public static func Format(value1 : String) -> String {
-                    return String(format: NSLocalizedString("invitation.failed.body.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
-                }
-
-            }
-        }
-
         public struct Send {
 
                     /// Base translation: Invite Contact
@@ -666,6 +650,29 @@ public struct Localizations {
                             /// Base translation: Would you like to tell %@ about Nudj?
                 public static func Format(value1 : String) -> String {
                     return String(format: NSLocalizedString("invitation.send.body.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
+                }
+
+            }
+        }
+
+        public struct Sms {
+
+                    /// Base translation: Hey! I'm using nudj to help me hire. You should check it out too. https://geo.itunes.apple.com/gb/app/nudj-the-talent-referral-app/id1081609782?mt=8
+            public static var Template : String = "invitation.sms.template".localized
+
+        }
+
+        public struct Failed {
+
+                    /// Base translation: Invitation Failed
+            public static var Title : String = "invitation.failed.title".localized
+
+
+            public struct Body {
+
+                            /// Base translation: There was a problem inviting %@.
+                public static func Format(value1 : String) -> String {
+                    return String(format: NSLocalizedString("invitation.failed.body.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
                 }
 
             }

@@ -46,6 +46,7 @@
 "invitation.successful.body.format" = "%@ has been invited.";
 "invitation.failed.title" = "Invitation Failed";
 "invitation.failed.body.format" = "There was a problem inviting %@.";
+"invitation.sms.template" = "Hey! I'm using nudj to help me hire. You should check it out too.\nhttps://geo.itunes.apple.com/gb/app/nudj-the-talent-referral-app/id1081609782?mt=8";
 
 // Jobs
 "jobs.block.title" = "Block Job";
