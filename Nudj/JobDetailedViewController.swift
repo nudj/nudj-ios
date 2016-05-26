@@ -335,7 +335,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     }
     
     @IBAction func askForReferral(sender: AnyObject) {
-        if 	MFMessageComposeViewController.canSendText() {
+        if MFMessageComposeViewController.canSendText() {
             let jobURL: JobURL = .Preview(jobID!)
             let url = jobURL.url()
             let message: String

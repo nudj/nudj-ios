@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import MessageUI
 import SwiftyJSON
 
 @IBDesignable
-class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDelegate, UITextFieldDelegate, UITextViewDelegate {
+class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDelegate, UITextFieldDelegate, UITextViewDelegate, MFMessageComposeViewControllerDelegate {
 
     enum SegueIdentifier: String {
         case ShowAskForReferral = "showAskForReferal"
@@ -368,10 +369,40 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
             self.closeCurrentView()
         }else{
             MixPanelHandler.sendData("NewJobAdded")
-            performSegueWithIdentifier(.ShowAskForReferral, sender: self)
+            // TODO: refactor with JobDetailedViewController
+            if MFMessageComposeViewController.canSendText() {
+                let jobURL: JobURL = .Preview(jobId!)
+                let url = jobURL.url()
+                let message = Localizations.Jobs.Referral.Sms._Default.Format(url.absoluteString)
+                let composeVC = MFMessageComposeViewController()
+                composeVC.messageComposeDelegate = self
+                composeVC.body = message
+                self.presentViewController(composeVC, animated: true, completion: nil)
+            } else {
+                performSegueWithIdentifier(.ShowAskForReferral, sender: self)
+            }
         }
     }
 
+    func messageComposeViewController(controller: MFMessageComposeViewController,
+                                      didFinishWithResult result: MessageComposeResult) {
+        // TODO: refactor with JobDetailedViewController
+        switch result {
+        case MessageComposeResultSent:
+            let params = API.Endpoints.Nudge.paramsForJob(jobId!, contactIDs: [], message: controller.body ?? "", clientWillSend: true)        
+            let path = API.Endpoints.Nudge.ask
+            API.sharedInstance.request(.PUT, path: path, params: params){ error in
+                loggingPrint(error)
+            }
+            
+        default:
+            break
+        }
+        
+        // Dismiss the mail compose view controller.
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segueIdentifierForSegue(segue) {
         case .ShowAskForReferral:
