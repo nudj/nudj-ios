@@ -15,11 +15,24 @@ class AppChatDelegate: ChatModelsDelegate {
         self.chatInst = chatInst
     }
     
-    func recievedUser(content: NSDictionary) {
+    func failedToConnect(error: NSError) {
+        dispatch_async(dispatch_get_main_queue()){
+            let title = Localizations.Chat.Connection.Error.Title
+            let message = Localizations.Chat.Connection.Error.Body.Format(error.localizedDescription)
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+            let defaultAction = UIAlertAction(title: Localizations.General.Button.Ok, style: .Default, handler: nil)
+            alert.addAction(defaultAction)
+            alert.preferredAction = defaultAction
+            let rootViewController = UIApplication.sharedApplication().keyWindow?.rootViewController
+            rootViewController?.presentViewController(alert, animated: true, completion: nil)
+        }
+    }
+
+    func receivedUser(content: NSDictionary) {
         // TODO: determine what to do
     }
     
-    func recievedMessage(content: JSQMessage, conference: String) {
+    func receivedMessage(content: JSQMessage, conference: String) {
         //Store message as it's new
         let roomID = self.chatInst.getRoomIdFromJidString(conference)
         
@@ -44,7 +57,7 @@ class AppChatDelegate: ChatModelsDelegate {
         NSNotificationCenter.defaultCenter().postNotificationName(ChatListViewController.Notifications.Refetch.rawValue, object: nil, userInfo:nil)
     }
     
-    func isRecievingMessageIndication(user: String) {
+    func isReceivingMessageIndication(user: String) {
         // TODO: determine what to do
     }
 }

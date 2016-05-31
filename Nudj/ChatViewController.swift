@@ -110,6 +110,18 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
         self.collectionView?.collectionViewLayout.springinessEnabled = true
         self.finishReceivingMessageAnimated(true)
     }
+    
+    func failedToConnect(error: NSError) {
+        dispatch_async(dispatch_get_main_queue()){
+            let title = Localizations.Chat.Connection.Error.Title
+            let message = Localizations.Chat.Connection.Error.Body.Format(error.localizedDescription)
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+            let defaultAction = UIAlertAction(title: Localizations.General.Button.Ok, style: .Default, handler: nil)
+            alert.addAction(defaultAction)
+            alert.preferredAction = defaultAction
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+    }
 
     // JSQMessagesViewController method overrides
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
@@ -287,11 +299,11 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
         loggingPrint("Tapped avatar!")
     }
 
-    func recievedUser(content: NSDictionary) {
+    func receivedUser(content: NSDictionary) {
         // TODO: why not implemented?
     }
     
-    func recievedMessage(content: JSQMessage, conference: String){
+    func receivedMessage(content: JSQMessage, conference: String){
         let api = API()
         let conferenceDomain = api.server.charConferenceDomain
         let conferenceID = "\(chatID)@\(conferenceDomain)"
@@ -475,7 +487,7 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
         return true
     }
     
-    func isRecievingMessageIndication(user: String) {
+    func isReceivingMessageIndication(user: String) {
         // TODO: do we need this?        
     }
     

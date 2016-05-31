@@ -10,9 +10,10 @@ import CoreData
 import SwiftyJSON
 
 protocol ChatModelsDelegate: class {
-    func recievedMessage(content:JSQMessage, conference:String)
-    func recievedUser(content:NSDictionary)
-    func isRecievingMessageIndication(user:String)
+    func failedToConnect(error: NSError)
+    func receivedMessage(content:JSQMessage, conference:String)
+    func receivedUser(content:NSDictionary)
+    func isReceivingMessageIndication(user:String)
 }
 
 class ChatModels: NSObject, XMPPStreamDelegate, XMPPRosterDelegate, XMPPRoomDelegate {
@@ -169,17 +170,11 @@ class ChatModels: NSObject, XMPPStreamDelegate, XMPPRosterDelegate, XMPPRoomDele
         xmppStream!.myJID = XMPPJID.jidWithString(jabberUsername);
         do {
             try xmppStream!.connectWithTimeout(XMPPStreamTimeoutNone)
-            return true;
+            return true
         }
         catch let error as NSError {
-            let title = Localizations.Chat.Connection.Error.Title
-            let message = Localizations.Chat.Connection.Error.Body.Format(error.localizedDescription)
-            let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-            let defaultAction = UIAlertAction(title: Localizations.General.Button.Ok, style: .Default, handler: nil)
-            alert.addAction(defaultAction)
-            alert.preferredAction = defaultAction
-            viewController.presentViewController(alert, animated: true, completion: nil)
-            return false;
+            delegate?.failedToConnect(error)
+            return false
         }
     }
     
@@ -195,8 +190,7 @@ class ChatModels: NSObject, XMPPStreamDelegate, XMPPRosterDelegate, XMPPRoomDele
             try self.xmppStream!.authenticateWithPassword(jabberPassword)
         }
         catch let error as NSError {
-            // TODO: better error handling
-            loggingPrint("Error authenticating chat: \(error)");
+            delegate?.failedToConnect(error)
         }
     }
     
@@ -208,8 +202,10 @@ class ChatModels: NSObject, XMPPStreamDelegate, XMPPRosterDelegate, XMPPRoomDele
     }
     
     func xmppStream(sender:XMPPStream, didNotAuthenticate error:DDXMLElement){
-        // TODO: better error handling
-        loggingPrint("Chat could not authenticate: \(error)");
+        let nudjError = NudjError.AuthenticationFailure 
+        let wrappedError = NSError(domain: NudjError.domain, code: nudjError.rawValue, userInfo: [NSLocalizedDescriptionKey: nudjError.localizedDescription(),
+            "Server response": error])
+        delegate?.failedToConnect(wrappedError)
     }
     
     func xmppStream(sender: XMPPStream!, willSecureWithSettings settings: NSMutableDictionary!) {
@@ -224,10 +220,9 @@ class ChatModels: NSObject, XMPPStreamDelegate, XMPPRosterDelegate, XMPPRoomDele
     }
     
     func xmppStreamDidDisconnect(sender: XMPPStream!, withError error: NSError?) {
-        // TODO: better error handling
         loggingPrint("Chat stream disconnnected")
         if let error = error {
-            loggingPrint(error)
+            delegate?.failedToConnect(error)
         }
     }
     
@@ -320,7 +315,7 @@ class ChatModels: NSObject, XMPPStreamDelegate, XMPPRosterDelegate, XMPPRoomDele
                 }
         
                 let jsqMessage = JSQMessage(senderId: sendersId, senderDisplayName: sendersId, date:time!, text: message.body())
-                delegate?.recievedMessage(jsqMessage, conference: sender.roomJID.bare())
+                delegate?.receivedMessage(jsqMessage, conference: sender.roomJID.bare())
             } else {
                 // TODO: better error handling
                 loggingPrint("Error getting sender of this message")
