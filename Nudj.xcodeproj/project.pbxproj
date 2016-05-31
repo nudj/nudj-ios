@@ -202,6 +202,8 @@
 		A9F333741B4444D700F0D17B /* CreatePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F333731B4444D700F0D17B /* CreatePopupView.swift */; };
 		C80486681C72132C0020EEE1 /* API+Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80486671C72132C0020EEE1 /* API+Endpoints.swift */; };
 		C80486691C72132C0020EEE1 /* API+Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80486671C72132C0020EEE1 /* API+Endpoints.swift */; };
+		C810B09F1CFE107A00F45655 /* NudjError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C810B09E1CFE107A00F45655 /* NudjError.swift */; };
+		C810B0A01CFE107A00F45655 /* NudjError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C810B09E1CFE107A00F45655 /* NudjError.swift */; };
 		C81F16A91C735BF0000927F8 /* NSData+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81F16A81C735BF0000927F8 /* NSData+Hex.swift */; };
 		C81F16AA1C735BF0000927F8 /* NSData+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81F16A81C735BF0000927F8 /* NSData+Hex.swift */; };
 		C81F16AC1C735C65000927F8 /* NSDataHexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81F16AB1C735C65000927F8 /* NSDataHexTests.swift */; };
@@ -945,6 +947,7 @@
 		A9F3336D1B42CD4300F0D17B /* AskReferralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AskReferralViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9F333731B4444D700F0D17B /* CreatePopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CreatePopupView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C80486671C72132C0020EEE1 /* API+Endpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+Endpoints.swift"; sourceTree = "<group>"; };
+		C810B09E1CFE107A00F45655 /* NudjError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NudjError.swift; sourceTree = "<group>"; };
 		C8182DC11C61684200E5C9F9 /* Timings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Timings.xcconfig; sourceTree = "<group>"; };
 		C81F16A81C735BF0000927F8 /* NSData+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+Hex.swift"; sourceTree = "<group>"; };
 		C81F16AB1C735C65000927F8 /* NSDataHexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDataHexTests.swift; sourceTree = "<group>"; };
@@ -2299,6 +2302,7 @@
 				EBF17A251B4D76C600C67657 /* JobModel.swift */,
 				C8CDC5E41CEB858600BF449E /* JobURL.swift */,
 				EB72C5691B578D8100CCBD2E /* Notification.swift */,
+				C810B09E1CFE107A00F45655 /* NudjError.swift */,
 				A9B577F21B6BD58E00CFB474 /* SocialHandlerModel.swift */,
 				EBB3382F1A9F5A44000CAD88 /* UserModel.swift */,
 			);
@@ -2984,6 +2988,7 @@
 				C86F85241C444DB800C23332 /* DDList.m in Sources */,
 				C86F85261C444DB800C23332 /* JobCellTableViewCell.swift in Sources */,
 				C86F85281C444DB800C23332 /* NSDate+XMPPDateTimeProfiles.m in Sources */,
+				C810B0A01CFE107A00F45655 /* NudjError.swift in Sources */,
 				C86F85291C444DB800C23332 /* JSQMessagesTimestampFormatter.m in Sources */,
 				C86F852A1C444DB800C23332 /* JSQMessagesCellTextView.m in Sources */,
 				C86F852B1C444DB800C23332 /* NSString+XEP_0106.m in Sources */,
@@ -3231,6 +3236,7 @@
 				A996506C1B387CC800D5A8E9 /* DDList.m in Sources */,
 				EBBF42541AB0AF5F0001E8B6 /* JobCellTableViewCell.swift in Sources */,
 				A996504A1B387CC800D5A8E9 /* NSDate+XMPPDateTimeProfiles.m in Sources */,
+				C810B09F1CFE107A00F45655 /* NudjError.swift in Sources */,
 				A9964FE31B387CC800D5A8E9 /* JSQMessagesTimestampFormatter.m in Sources */,
 				A9964FEF1B387CC800D5A8E9 /* JSQMessagesCellTextView.m in Sources */,
 				A996504F1B387CC800D5A8E9 /* NSString+XEP_0106.m in Sources */,
