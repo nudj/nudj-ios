@@ -828,13 +828,13 @@ public struct Localizations {
         
             public struct Error {
 
-                            /// Base translation: Error
+                            /// Base translation: Chat Unavailable
                 public static var Title : String = "chat.connection.error.title".localized
 
 
                 public struct Body {
 
-                                    /// Base translation: Can't connect to the chat server. %@
+                                    /// Base translation: There was a problem connecting to the chat server. %@
                     public static func Format(value1 : String) -> String {
                         return String(format: NSLocalizedString("chat.connection.error.body.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
                     }
