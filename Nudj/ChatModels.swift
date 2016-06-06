@@ -149,7 +149,7 @@ class ChatModels: NSObject, XMPPStreamDelegate, XMPPRosterDelegate, XMPPRoomDele
         xmppStream!.sendElement(presence);
     }
     
-    func connect(user: UserModel, inViewController viewController: UIViewController) -> Bool {
+    func connect(user: UserModel) -> Bool {
         if (!xmppStream!.isDisconnected()) {
             self.goOnline()
             return true;

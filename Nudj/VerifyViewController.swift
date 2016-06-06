@@ -126,7 +126,7 @@ class VerifyViewController: BaseController, SegueHandlerType {
             appDelegate.syncDeviceToken()
 
             // Connect to the chat server
-            appDelegate.chatInst!.connect(user, inViewController: self)
+            appDelegate.chatInst!.connect(user)
             appDelegate.loginSucessful(self)
         }, errorHandler: {
             _ in
