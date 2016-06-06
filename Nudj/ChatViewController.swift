@@ -92,7 +92,8 @@ class ChatViewController: JSQMessagesViewController, ChatModelsDelegate {
         super.viewWillAppear(animated)
         MixPanelHandler.sendData("ChatOpened")
         
-        self.navigationController?.navigationBarHidden = true;
+        appGlobalDelegate.chatInst!.connect(appGlobalDelegate.user)
+        self.navigationController?.navigationBarHidden = true
         self.tabBarController?.tabBar.hidden = true
     }
 
