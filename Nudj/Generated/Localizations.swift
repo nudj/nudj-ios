@@ -787,13 +787,6 @@ public struct Localizations {
     public struct Chat {
 
     
-        public struct Report {
-
-                    /// Base translation: Block and Report
-            public static var Button : String = "chat.report.button".localized
-
-        }
-
         public struct Archived {
 
                     /// Base translation: Chat Archived
@@ -823,6 +816,31 @@ public struct Localizations {
             }
         }
 
+        public struct Restored {
+
+                    /// Base translation: Chat Restored
+            public static var Title : String = "chat.restored.title".localized
+
+        }
+
+        public struct Authentication {
+
+        
+            public struct Error {
+
+                            /// Base translation: Authentication Failure
+                public static var Description : String = "chat.authentication.error.description".localized
+
+            }
+        }
+
+        public struct Report {
+
+                    /// Base translation: Block and Report
+            public static var Button : String = "chat.report.button".localized
+
+        }
+
         public struct Contact {
 
         
@@ -842,44 +860,6 @@ public struct Localizations {
                     return String(format: NSLocalizedString("chat.contact.success.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
                 }
 
-            }
-        }
-
-        public struct Restored {
-
-                    /// Base translation: Chat Restored
-            public static var Title : String = "chat.restored.title".localized
-
-        }
-
-        public struct Authentication {
-
-        
-            public struct Error {
-
-                            /// Base translation: Authentication Failure
-                public static var Description : String = "chat.authentication.error.description".localized
-
-            }
-        }
-
-        public struct Connection {
-
-        
-            public struct Error {
-
-                            /// Base translation: Chat Unavailable
-                public static var Title : String = "chat.connection.error.title".localized
-
-
-                public struct Body {
-
-                                    /// Base translation: There was a problem connecting to the chat server. %@
-                    public static func Format(value1 : String) -> String {
-                        return String(format: NSLocalizedString("chat.connection.error.body.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
-                    }
-
-                }
             }
         }
     }

@@ -16,16 +16,7 @@ class AppChatDelegate: ChatModelsDelegate {
     }
     
     func failedToConnect(error: NSError) {
-        dispatch_async(dispatch_get_main_queue()){
-            let title = Localizations.Chat.Connection.Error.Title
-            let message = Localizations.Chat.Connection.Error.Body.Format(error.localizedDescription)
-            let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-            let defaultAction = UIAlertAction(title: Localizations.General.Button.Ok, style: .Default, handler: nil)
-            alert.addAction(defaultAction)
-            alert.preferredAction = defaultAction
-            let rootViewController = UIApplication.sharedApplication().keyWindow?.rootViewController
-            rootViewController?.presentViewController(alert, animated: true, completion: nil)
-        }
+        loggingPrint("\(error.localizedDescription)\n\(error.localizedFailureReason)")
     }
 
     func receivedUser(content: NSDictionary) {

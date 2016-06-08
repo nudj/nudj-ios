@@ -30,8 +30,6 @@
 "chat.contact.send.format" = "Contact %@";
 "chat.contact.success.format" = "You have successfully contacted %@";
 "chat.authentication.error.description" = "Authentication Failure";
-"chat.connection.error.title" = "Chat Unavailable";
-"chat.connection.error.body.format" = "There was a problem connecting to the chat server.\n%@";
 
 // Country selection
 "country.default.dialcode" = "+44";
