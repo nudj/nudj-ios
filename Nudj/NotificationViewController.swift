@@ -26,6 +26,7 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
         MixPanelHandler.sendData("NotificationsTabOpened")
         
         self.tabBarController?.tabBar.hidden = false
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         refresh()
     }
     
