@@ -44,6 +44,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     @IBOutlet weak var skills: TokenView!
     
     let menuAnimationDuration: NSTimeInterval = 0.5
+    let locale = NSLocale.autoupdatingCurrentLocale()
    
     var jobID: Int?
     var hirerID: Int?
@@ -161,8 +162,14 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         
         // Referral Property
         let boldFont = UIFont(name: "HelveticaNeue-Bold", size: 22)!
-        // TODO: use a proper number formatter
-        let formattedBonus = "£" + content["bonus"].stringValue
+        
+        // TODO: move formatting code to data model
+        let currencyFormatter = NSNumberFormatter()
+        currencyFormatter.locale = self.locale
+        currencyFormatter.numberStyle = .CurrencyStyle
+        currencyFormatter.maximumFractionDigits = 0
+        currencyFormatter.currencyCode = content["bonus_currency"].stringValue
+        let formattedBonus = currencyFormatter.stringFromNumber(content["bonus"].intValue) ?? content["bonus"].stringValue
         let boldBlueAttribs: [String: AnyObject] = [NSFontAttributeName: boldFont, NSForegroundColorAttributeName: ColorPalette.nudjBlue]
         bonusText.text = Localizations.Jobs.Bonus.Format(formattedBonus)
         formatLabel(bonusText, text: Localizations.Jobs.Bonus.Format(formattedBonus), subText: formattedBonus, attributes: boldBlueAttribs)

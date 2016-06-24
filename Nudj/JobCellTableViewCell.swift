@@ -20,22 +20,31 @@ class JobCellTableViewCell: UITableViewCell, DataTableCell {
     @IBOutlet weak var location: UILabel!
 
     var gradient:CAGradientLayer? = nil
+    let locale = NSLocale.autoupdatingCurrentLocale()
 
     func loadData(data:JSON?) {
-        if (data == nil) {
+        guard let data = data else {
             return
         }
         // TODO: API strings and MVC violation
-        self.title.text = data!["title"].stringValue
-        self.salary.text = data!["salary"].stringValue
-        self.bonusAmount.text = "£" + data!["bonus"].stringValue
-        self.creator.text = data!["user"]["name"].stringValue
-        self.company.text = data?["company"].string
+        
+        // TODO: move formatting code to data model
+        let currencyFormatter = NSNumberFormatter()
+        currencyFormatter.locale = self.locale
+        currencyFormatter.numberStyle = .CurrencyStyle
+        currencyFormatter.maximumFractionDigits = 0
+        currencyFormatter.currencyCode = data["bonus_currency"].stringValue
+        
+        self.title.text = data["title"].stringValue
+        self.salary.text = data["salary"].stringValue
+        self.bonusAmount.text = currencyFormatter.stringFromNumber(data["bonus"].intValue) ?? data["bonus"].stringValue
+        self.creator.text = data["user"]["name"].stringValue
+        self.company.text = data["company"].string
 
-        self.location.text = data?["location"].string
+        self.location.text = data["location"].string
 
         self.creatorImage.image = UserModel.getDefaultUserImage(.Size60)
-        self.creatorImage.downloadImage(data!["user"]["image"]["profile"].stringValue)
+        self.creatorImage.downloadImage(data["user"]["image"]["profile"].stringValue)
         
         self.selectionStyle = UITableViewCellSelectionStyle.None
 
