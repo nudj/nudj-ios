@@ -37,7 +37,7 @@ struct JobModel {
         return formattedBonus
     }
     
-    init(json: JSON, locale: NSLocale? = nil) {
+    init(json: JSON, locale: NSLocale = NSLocale.autoupdatingCurrentLocale()) {
         title = json["title"].stringValue
         description = json["description"].stringValue
         salaryFreeText = json["salary"].stringValue
@@ -47,10 +47,10 @@ struct JobModel {
         bonusCurrency = json["bonus_currency"].string ?? "GBP" // due to a server bug the currency code is being returned as integer 0
         active = json["active"].boolValue
         skills = json["skills"].arrayValue.map{$0["name"].stringValue}
-        self.locale = locale ?? NSLocale.autoupdatingCurrentLocale()
+        self.locale = locale
     }
     
-    init(title: String, description: String, salaryFreeText: String, company: String, location: String, bonusAmount: Int, bonusCurrency: String, active: Bool, skills: [String], locale: NSLocale? = nil) {
+    init(title: String, description: String, salaryFreeText: String, company: String, location: String, bonusAmount: Int, bonusCurrency: String, active: Bool, skills: [String], locale: NSLocale = NSLocale.autoupdatingCurrentLocale()) {
         self.title = title
         self.description = description
         self.salaryFreeText = salaryFreeText
@@ -60,7 +60,7 @@ struct JobModel {
         self.bonusCurrency = bonusCurrency
         self.active = active
         self.skills = skills
-        self.locale = locale ?? NSLocale.autoupdatingCurrentLocale()
+        self.locale = locale
     }
     
     func params() -> [String: AnyObject] {
