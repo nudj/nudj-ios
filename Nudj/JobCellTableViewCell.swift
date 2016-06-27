@@ -20,28 +20,20 @@ class JobCellTableViewCell: UITableViewCell, DataTableCell {
     @IBOutlet weak var location: UILabel!
 
     var gradient:CAGradientLayer? = nil
-    let locale = NSLocale.autoupdatingCurrentLocale()
 
     func loadData(data:JSON?) {
         guard let data = data else {
             return
         }
-        // TODO: API strings and MVC violation
+        let job = JobModel(json: data)
         
-        // TODO: move formatting code to data model
-        let currencyFormatter = NSNumberFormatter()
-        currencyFormatter.locale = self.locale
-        currencyFormatter.numberStyle = .CurrencyStyle
-        currencyFormatter.maximumFractionDigits = 0
-        currencyFormatter.currencyCode = data["bonus_currency"].stringValue
-        
-        self.title.text = data["title"].stringValue
-        self.salary.text = data["salary"].stringValue
-        self.bonusAmount.text = currencyFormatter.stringFromNumber(data["bonus"].intValue) ?? data["bonus"].stringValue
+        self.title.text = job.title
+        self.salary.text = job.salaryFreeText
+        self.bonusAmount.text = job.formattedBonus
         self.creator.text = data["user"]["name"].stringValue
-        self.company.text = data["company"].string
+        self.company.text = job.company
 
-        self.location.text = data["location"].string
+        self.location.text = job.location
 
         self.creatorImage.image = UserModel.getDefaultUserImage(.Size60)
         self.creatorImage.downloadImage(data["user"]["image"]["profile"].stringValue)
