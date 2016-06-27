@@ -16,12 +16,12 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
         case ShowAskForReferral = "showAskForReferal"
     }
     
-    var popup :CreatePopupView?
-    var isEditable:Bool?
-    var jobId:Int?
+    var popup: CreatePopupView?
+    var isEditable: Bool?
+    var jobId: Int?
 
     @IBOutlet weak var scrollView: UIScrollView!
-    var openSpace:CGFloat = 0.0;
+    var openSpace:CGFloat = 0.0
 
     // Fields
 
@@ -32,7 +32,7 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
     @IBOutlet weak var jobDescriptionLabel: UILabel!
     @IBOutlet weak var jobDescriptionIcon: UIImageView!
 
-    @IBOutlet weak var skills: TokenView!{
+    @IBOutlet weak var skills: TokenView! {
         didSet {
             skills.startEditClosure = scrollToSuperView
             skills.changedClosure = { _ in self.updateAssets() }
@@ -224,20 +224,10 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
         employer.text = json["company"].stringValue
         location.text = json["location"].stringValue
         
-        // Update skills
-        
         self.skills.editable = true
         self.skills.userInteractionEnabled = true
-        
-        var skillsArr:[String] = [];
-        
-        for i in json["skills"].arrayValue{
-            
-            skillsArr.append(i["name"].stringValue)
-            
-        }
-        
-        self.skills.fillTokens(skillsArr)
+        let skills = json["skills"].arrayValue.map{$0["name"].stringValue}
+        self.skills.fillTokens(skills)
 
         activeButton.selected = json["active"].boolValue
         bonus.text = json["bonus"].stringValue
