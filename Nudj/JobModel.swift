@@ -22,18 +22,22 @@ struct JobModel {
     var active: Bool
     var skills: [String]
     
-    var formattedBonus: String {
-        let locale = NSLocale.currentLocale()
+    let locale: NSLocale
+    var currencyFormatter: NSNumberFormatter {
         let currencyFormatter = NSNumberFormatter()
         currencyFormatter.locale = locale
         currencyFormatter.numberStyle = .CurrencyStyle
         currencyFormatter.maximumFractionDigits = 0
         currencyFormatter.currencyCode = bonusCurrency
+        return currencyFormatter
+    }
+    
+    var formattedBonus: String {
         let formattedBonus = currencyFormatter.stringFromNumber(bonusAmount) ?? "\(bonusCurrency) \(bonusAmount)"
         return formattedBonus
     }
     
-    init(json: JSON) {
+    init(json: JSON, locale: NSLocale? = nil) {
         title = json["title"].stringValue
         description = json["description"].stringValue
         salaryFreeText = json["salary"].stringValue
@@ -43,9 +47,10 @@ struct JobModel {
         bonusCurrency = json["bonus_currency"].string ?? "GBP" // due to a server bug the currency code is being returned as integer 0
         active = json["active"].boolValue
         skills = json["skills"].arrayValue.map{$0["name"].stringValue}
+        self.locale = locale ?? NSLocale.autoupdatingCurrentLocale()
     }
     
-    init(title: String, description: String, salaryFreeText: String, company: String, location: String, bonusAmount: Int, bonusCurrency: String, active: Bool, skills: [String]) {
+    init(title: String, description: String, salaryFreeText: String, company: String, location: String, bonusAmount: Int, bonusCurrency: String, active: Bool, skills: [String], locale: NSLocale? = nil) {
         self.title = title
         self.description = description
         self.salaryFreeText = salaryFreeText
@@ -55,6 +60,7 @@ struct JobModel {
         self.bonusCurrency = bonusCurrency
         self.active = active
         self.skills = skills
+        self.locale = locale ?? NSLocale.autoupdatingCurrentLocale()
     }
     
     func params() -> [String: AnyObject] {
