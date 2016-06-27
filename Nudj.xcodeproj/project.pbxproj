@@ -209,6 +209,8 @@
 		C81F16AC1C735C65000927F8 /* NSDataHexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81F16AB1C735C65000927F8 /* NSDataHexTests.swift */; };
 		C81F16AD1C735C65000927F8 /* NSDataHexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81F16AB1C735C65000927F8 /* NSDataHexTests.swift */; };
 		C82CBAAB1CADB08D0091DA4F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C898A54C1C6BEFA8001DAB38 /* Pods.framework */; };
+		C831CCCD1D21E88C00509B7E /* JobModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C831CCCC1D21E88C00509B7E /* JobModelTests.swift */; };
+		C831CCCE1D21E88C00509B7E /* JobModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C831CCCC1D21E88C00509B7E /* JobModelTests.swift */; };
 		C8351C471C9AFEE800994F22 /* ContactsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8351C461C9AFEE800994F22 /* ContactsDataSource.swift */; };
 		C8351C481C9AFEE800994F22 /* ContactsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8351C461C9AFEE800994F22 /* ContactsDataSource.swift */; };
 		C83FB6BC1C3EB5D0004ACE3E /* VersionNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83FB6BB1C3EB5D0004ACE3E /* VersionNumber.swift */; };
@@ -951,6 +953,7 @@
 		C8182DC11C61684200E5C9F9 /* Timings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Timings.xcconfig; sourceTree = "<group>"; };
 		C81F16A81C735BF0000927F8 /* NSData+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+Hex.swift"; sourceTree = "<group>"; };
 		C81F16AB1C735C65000927F8 /* NSDataHexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDataHexTests.swift; sourceTree = "<group>"; };
+		C831CCCC1D21E88C00509B7E /* JobModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobModelTests.swift; sourceTree = "<group>"; };
 		C8351C461C9AFEE800994F22 /* ContactsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsDataSource.swift; sourceTree = "<group>"; };
 		C83FB6BB1C3EB5D0004ACE3E /* VersionNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionNumber.swift; sourceTree = "<group>"; };
 		C84E00F71C191FC60065F220 /* Localizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizations.swift; sourceTree = "<group>"; };
@@ -2248,8 +2251,9 @@
 			children = (
 				C863DAD51CA1F089007A847A /* DestinationEquatableTests.swift */,
 				C85201B91CA1874800625642 /* DestinationURLTests.swift */,
-				C81F16AB1C735C65000927F8 /* NSDataHexTests.swift */,
+				C831CCCC1D21E88C00509B7E /* JobModelTests.swift */,
 				C8CDC5E71CEB85A500BF449E /* JobURLTests.swift */,
+				C81F16AB1C735C65000927F8 /* NSDataHexTests.swift */,
 				EB0926E51A8DE4CB00E1D958 /* Supporting Files */,
 			);
 			path = NudjTests;
@@ -3014,6 +3018,7 @@
 			files = (
 				C85201BB1CA1874800625642 /* DestinationURLTests.swift in Sources */,
 				C8CDC5E91CEB85A500BF449E /* JobURLTests.swift in Sources */,
+				C831CCCE1D21E88C00509B7E /* JobModelTests.swift in Sources */,
 				C863DAD71CA1F089007A847A /* DestinationEquatableTests.swift in Sources */,
 				C81F16AD1C735C65000927F8 /* NSDataHexTests.swift in Sources */,
 			);
@@ -3262,6 +3267,7 @@
 			files = (
 				C85201BA1CA1874800625642 /* DestinationURLTests.swift in Sources */,
 				C8CDC5E81CEB85A500BF449E /* JobURLTests.swift in Sources */,
+				C831CCCD1D21E88C00509B7E /* JobModelTests.swift in Sources */,
 				C863DAD61CA1F089007A847A /* DestinationEquatableTests.swift in Sources */,
 				C81F16AC1C735C65000927F8 /* NSDataHexTests.swift in Sources */,
 			);
