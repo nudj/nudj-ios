@@ -39,34 +39,34 @@ class Notification {
     
     var chatId:String?
     
-    static func createFromJSON(data:JSON) -> Notification? {
-        guard let rawType = Int(data["type"].stringValue) else {
+    init?(json: JSON) {
+        guard let rawType = Int(json["type"].stringValue) else {
             return nil
         }
         let type = NotificationType(rawValue: rawType)
-        let obj = Notification()
+
         // TODO: API strings
-        obj.senderImage = data["sender"]["image"]["profile"].stringValue
-        obj.senderId = data["sender"]["id"].stringValue
-        obj.senderName = data["sender"]["name"].stringValue
-        obj.senderPhoneNumber = data["meta"]["phone"].stringValue
+        let sender = json["sender"]
+        let metadata = json["meta"]
+        senderImage = sender["image"]["profile"].stringValue
+        senderId = sender["id"].stringValue
+        senderName = sender["name"].stringValue
+        senderPhoneNumber = metadata["phone"].stringValue
         
-        obj.employerName = data["meta"]["employer"].stringValue
+        employerName = metadata["employer"].stringValue
         
-        obj.jobBonus = data["meta"]["job_bonus"].stringValue
-        obj.jobMessage = data["meta"]["message"].stringValue
-        obj.jobID = data["meta"]["job_id"].stringValue
-        obj.jobTitle = data["meta"]["job_title"].stringValue
+        jobBonus = metadata["job_bonus"].stringValue
+        jobMessage = metadata["message"].stringValue
+        jobID = metadata["job_id"].stringValue
+        jobTitle = metadata["job_title"].stringValue
     
-        obj.notificationReadStatus = data["read"].boolValue
-        obj.notificationTime = data["created"].doubleValue
-        obj.notificationMessage = data["message"].stringValue
-        obj.notificationId = data["id"].stringValue
+        notificationReadStatus = json["read"].boolValue
+        notificationTime = json["created"].doubleValue
+        notificationMessage = json["message"].stringValue
+        notificationId = json["id"].stringValue
         
-        obj.notificationType = type
+        notificationType = type
         
-        obj.chatId =  data["meta"]["chat_id"].stringValue
-        
-        return obj
+        chatId =  metadata["chat_id"].stringValue
     }
 }

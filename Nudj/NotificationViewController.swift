@@ -80,7 +80,7 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
 
     func populate(data:JSON) {
         for (_, obj) in data["data"] {
-            if let val = Notification.createFromJSON(obj){
+            if let val = Notification(json: obj){
                 self.data.append(val)
             }
         }
