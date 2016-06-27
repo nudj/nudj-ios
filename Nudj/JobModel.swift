@@ -6,12 +6,13 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 struct JobModel {
     // TODO: revisit error handling
     private struct UnknownError: ErrorType {}
 
-    var title:String
+    var title: String
     var description: String
     var salaryFreeText: String
     var company: String
@@ -20,6 +21,41 @@ struct JobModel {
     var bonusCurrency: String
     var active: Bool
     var skills: [String]
+    
+    var formattedBonus: String {
+        let locale = NSLocale.currentLocale()
+        let currencyFormatter = NSNumberFormatter()
+        currencyFormatter.locale = locale
+        currencyFormatter.numberStyle = .CurrencyStyle
+        currencyFormatter.maximumFractionDigits = 0
+        currencyFormatter.currencyCode = bonusCurrency
+        let formattedBonus = currencyFormatter.stringFromNumber(bonusAmount) ?? "\(bonusCurrency) \(bonusAmount)"
+        return formattedBonus
+    }
+    
+    init(json: JSON) {
+        title = json["title"].stringValue
+        description = json["description"].stringValue
+        salaryFreeText = json["salary"].stringValue
+        company = json["company"].stringValue
+        location = json["location"].stringValue
+        bonusAmount = json["bonus"].intValue
+        bonusCurrency = json["bonus_currency"].string ?? "GBP" // due to a server bug the currency code is being returned as integer 0
+        active = json["active"].boolValue
+        skills = json["skills"].arrayValue.map{$0["name"].stringValue}
+    }
+    
+    init(title: String, description: String, salaryFreeText: String, company: String, location: String, bonusAmount: Int, bonusCurrency: String, active: Bool, skills: [String]) {
+        self.title = title
+        self.description = description
+        self.salaryFreeText = salaryFreeText
+        self.company = company
+        self.location = location
+        self.bonusAmount = bonusAmount
+        self.bonusCurrency = bonusCurrency
+        self.active = active
+        self.skills = skills
+    }
     
     func params() -> [String: AnyObject] {
         let params:[String: AnyObject] = [
