@@ -7,18 +7,19 @@
 
 import Foundation
 import XCTest
+import SwiftyJSON
 @testable import Nudj
 
 class JobModelTests: XCTestCase {
-    var locale: NSLocale = NSLocale.systemLocale()
+    let locale: NSLocale = NSLocale.systemLocale()
     
-    func jobFromComponents(currencyCode: String) -> JobModel {
-        let result = JobModel(title: "test title", description: "test desc", salaryFreeText: "test salary", company: "test company", location: "test location", bonusAmount: 42, bonusCurrency: currencyCode, active: true, skills: ["test skill"], locale: locale)
+    func jobWithCurrrency(currencyCode: String, active: Bool = true) -> JobModel {
+        let result = JobModel(title: "test title", description: "test desc", salaryFreeText: "test salary", company: "test company", location: "test location", bonusAmount: 42, bonusCurrency: currencyCode, active: active, skills: ["test skill"], locale: locale)
         return result
     }
     
     func testInitFromComponents() {
-        let job = jobFromComponents("USD")
+        let job = jobWithCurrrency("USD")
         XCTAssertEqual(job.title, "test title")
         XCTAssertEqual(job.description, "test desc")
         XCTAssertEqual(job.salaryFreeText, "test salary")
@@ -31,19 +32,72 @@ class JobModelTests: XCTestCase {
         XCTAssertEqual(job.formattedBonus, "US$ 42") // NB non-breaking space here
     }
     
+    func testInitFromJSON() {
+        let json = JSON(stringLiteral: "")
+        let job = JobModel(json: json, locale: locale)
+        XCTAssertEqual(job.formattedBonus, "£ 0") // NB non-breaking space here
+    }
+    
     func testGBP() {
-        let job = jobFromComponents("GBP")
+        let job = jobWithCurrrency("GBP")
         XCTAssertEqual(job.formattedBonus, "£ 42") // NB non-breaking space here
     }
     
     func testEUR() {
-        let job = jobFromComponents("EUR")
+        let job = jobWithCurrrency("EUR")
         XCTAssertEqual(job.formattedBonus, "€ 42") // NB non-breaking space here
     }
     
     func testNonsenseCurrency() {
-        let job = jobFromComponents("Foo")
+        let job = jobWithCurrrency("Foo")
         XCTAssertEqual(job.formattedBonus, "Foo 42") // NB non-breaking space here
     }
     
+    func testParamsForActiveJob() {
+        let job = jobWithCurrrency("Foo")
+        let params = job.params()
+        let expectedParams: [String: AnyObject] = [
+            "title": "test title",
+            "description": "test desc",
+            "salary": "test salary",
+            "company": "test company",
+            "location": "test location",
+            "bonus": 42,
+            "bonus_currency": "Foo",
+            "active": 1,
+            "skills": ["test skill"]
+        ]
+        
+        // sadly we cannot do an Equatable test here where the value is AnyObject
+        XCTAssertEqual(params.count, expectedParams.count)
+        for key in expectedParams.keys {
+            let lhs = expectedParams[key]
+            let rhs = params[key]
+            XCTAssertTrue(lhs?.isEqual(rhs) ?? false, "\(lhs) != \(rhs)")
+        }
+    }
+    
+    func testParamsForInactiveJob() {
+        let job = jobWithCurrrency("Foo", active: false)
+        let params = job.params()
+        let expectedParams: [String: AnyObject] = [
+            "title": "test title",
+            "description": "test desc",
+            "salary": "test salary",
+            "company": "test company",
+            "location": "test location",
+            "bonus": 42,
+            "bonus_currency": "Foo",
+            "active": 0,
+            "skills": ["test skill"]
+        ]
+        
+        // sadly we cannot do an Equatable test here where the value is AnyObject
+        XCTAssertEqual(params.count, expectedParams.count)
+        for key in expectedParams.keys {
+            let lhs = expectedParams[key]
+            let rhs = params[key]
+            XCTAssertTrue(lhs?.isEqual(rhs) ?? false, "\(lhs) != \(rhs)")
+        }
+    }
 }

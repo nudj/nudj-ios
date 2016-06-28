@@ -72,7 +72,7 @@ struct JobModel {
             "location": self.location,
             "bonus": self.bonusAmount,
             "bonus_currency": self.bonusCurrency,
-            "active": self.active ? "1" : "0",
+            "active": self.active ? 1 : 0,
             "skills": self.skills
         ]
         return params
