@@ -211,6 +211,8 @@
 		C82CBAAB1CADB08D0091DA4F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C898A54C1C6BEFA8001DAB38 /* Pods.framework */; };
 		C831CCCD1D21E88C00509B7E /* JobModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C831CCCC1D21E88C00509B7E /* JobModelTests.swift */; };
 		C831CCCE1D21E88C00509B7E /* JobModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C831CCCC1D21E88C00509B7E /* JobModelTests.swift */; };
+		C831CCD01D22012600509B7E /* TestJobData.json in Resources */ = {isa = PBXBuildFile; fileRef = C831CCCF1D22012600509B7E /* TestJobData.json */; };
+		C831CCD11D22012600509B7E /* TestJobData.json in Resources */ = {isa = PBXBuildFile; fileRef = C831CCCF1D22012600509B7E /* TestJobData.json */; };
 		C8351C471C9AFEE800994F22 /* ContactsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8351C461C9AFEE800994F22 /* ContactsDataSource.swift */; };
 		C8351C481C9AFEE800994F22 /* ContactsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8351C461C9AFEE800994F22 /* ContactsDataSource.swift */; };
 		C83FB6BC1C3EB5D0004ACE3E /* VersionNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83FB6BB1C3EB5D0004ACE3E /* VersionNumber.swift */; };
@@ -954,6 +956,7 @@
 		C81F16A81C735BF0000927F8 /* NSData+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+Hex.swift"; sourceTree = "<group>"; };
 		C81F16AB1C735C65000927F8 /* NSDataHexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDataHexTests.swift; sourceTree = "<group>"; };
 		C831CCCC1D21E88C00509B7E /* JobModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobModelTests.swift; sourceTree = "<group>"; };
+		C831CCCF1D22012600509B7E /* TestJobData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestJobData.json; sourceTree = "<group>"; };
 		C8351C461C9AFEE800994F22 /* ContactsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsDataSource.swift; sourceTree = "<group>"; };
 		C83FB6BB1C3EB5D0004ACE3E /* VersionNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionNumber.swift; sourceTree = "<group>"; };
 		C84E00F71C191FC60065F220 /* Localizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizations.swift; sourceTree = "<group>"; };
@@ -2254,6 +2257,7 @@
 				C831CCCC1D21E88C00509B7E /* JobModelTests.swift */,
 				C8CDC5E71CEB85A500BF449E /* JobURLTests.swift */,
 				C81F16AB1C735C65000927F8 /* NSDataHexTests.swift */,
+				C831CCCF1D22012600509B7E /* TestJobData.json */,
 				EB0926E51A8DE4CB00E1D958 /* Supporting Files */,
 			);
 			path = NudjTests;
@@ -2578,6 +2582,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C831CCD11D22012600509B7E /* TestJobData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2612,6 +2617,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C831CCD01D22012600509B7E /* TestJobData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,14 +12,24 @@ import SwiftyJSON
 
 class JobModelTests: XCTestCase {
     let locale: NSLocale = NSLocale.systemLocale()
+    let expectedParams: [String: AnyObject] = [
+        "title": "test title",
+        "description": "test desc",
+        "salary": "test salary",
+        "company": "test company",
+        "location": "test location",
+        "bonus": 42,
+        "bonus_currency": "Foo",
+        "active": 1,
+        "skills": ["test skill"]
+    ]
     
-    func jobWithCurrrency(currencyCode: String, active: Bool = true) -> JobModel {
+    private func jobWithCurrrency(currencyCode: String, active: Bool = true) -> JobModel {
         let result = JobModel(title: "test title", description: "test desc", salaryFreeText: "test salary", company: "test company", location: "test location", bonusAmount: 42, bonusCurrency: currencyCode, active: active, skills: ["test skill"], locale: locale)
         return result
     }
     
-    func testInitFromComponents() {
-        let job = jobWithCurrrency("USD")
+    private func assertIsCannedData(job: JobModel) {
         XCTAssertEqual(job.title, "test title")
         XCTAssertEqual(job.description, "test desc")
         XCTAssertEqual(job.salaryFreeText, "test salary")
@@ -32,10 +42,25 @@ class JobModelTests: XCTestCase {
         XCTAssertEqual(job.formattedBonus, "US$ 42") // NB non-breaking space here
     }
     
+    private func assertSameParams(params: [String: AnyObject], expectedParams: [String: AnyObject]) {
+        // sadly we cannot do an Equatable test here where the value type is AnyObject
+        XCTAssertEqual(params.count, expectedParams.count)
+        for key in expectedParams.keys {
+            let lhs = expectedParams[key]
+            let rhs = params[key]
+            XCTAssertTrue(lhs?.isEqual(rhs) ?? false, "\(lhs) != \(rhs)")
+        }
+    }
+    
+    func testInitFromComponents() {
+        let job = jobWithCurrrency("USD")
+        assertIsCannedData(job)
+    }
+    
     func testInitFromJSON() {
-        let json = JSON(stringLiteral: "")
+        let json = JSON(expectedParams)
         let job = JobModel(json: json, locale: locale)
-        XCTAssertEqual(job.formattedBonus, "£ 0") // NB non-breaking space here
+        XCTAssertEqual(job.formattedBonus, "Foo 42") // NB non-breaking space here
     }
     
     func testGBP() {
@@ -56,48 +81,15 @@ class JobModelTests: XCTestCase {
     func testParamsForActiveJob() {
         let job = jobWithCurrrency("Foo")
         let params = job.params()
-        let expectedParams: [String: AnyObject] = [
-            "title": "test title",
-            "description": "test desc",
-            "salary": "test salary",
-            "company": "test company",
-            "location": "test location",
-            "bonus": 42,
-            "bonus_currency": "Foo",
-            "active": 1,
-            "skills": ["test skill"]
-        ]
         
-        // sadly we cannot do an Equatable test here where the value is AnyObject
-        XCTAssertEqual(params.count, expectedParams.count)
-        for key in expectedParams.keys {
-            let lhs = expectedParams[key]
-            let rhs = params[key]
-            XCTAssertTrue(lhs?.isEqual(rhs) ?? false, "\(lhs) != \(rhs)")
-        }
+        assertSameParams(params, expectedParams: expectedParams)
     }
     
     func testParamsForInactiveJob() {
         let job = jobWithCurrrency("Foo", active: false)
         let params = job.params()
-        let expectedParams: [String: AnyObject] = [
-            "title": "test title",
-            "description": "test desc",
-            "salary": "test salary",
-            "company": "test company",
-            "location": "test location",
-            "bonus": 42,
-            "bonus_currency": "Foo",
-            "active": 0,
-            "skills": ["test skill"]
-        ]
-        
-        // sadly we cannot do an Equatable test here where the value is AnyObject
-        XCTAssertEqual(params.count, expectedParams.count)
-        for key in expectedParams.keys {
-            let lhs = expectedParams[key]
-            let rhs = params[key]
-            XCTAssertTrue(lhs?.isEqual(rhs) ?? false, "\(lhs) != \(rhs)")
-        }
+        var expectedParams = self.expectedParams
+        expectedParams["active"] = 0        
+        assertSameParams(params, expectedParams: expectedParams)
     }
 }
