@@ -213,6 +213,8 @@
 		C831CCCE1D21E88C00509B7E /* JobModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C831CCCC1D21E88C00509B7E /* JobModelTests.swift */; };
 		C831CCD01D22012600509B7E /* TestJobData.json in Resources */ = {isa = PBXBuildFile; fileRef = C831CCCF1D22012600509B7E /* TestJobData.json */; };
 		C831CCD11D22012600509B7E /* TestJobData.json in Resources */ = {isa = PBXBuildFile; fileRef = C831CCCF1D22012600509B7E /* TestJobData.json */; };
+		C831CCD31D22C12F00509B7E /* CurrencyPickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C831CCD21D22C12F00509B7E /* CurrencyPickerDataSource.swift */; };
+		C831CCD41D22C12F00509B7E /* CurrencyPickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C831CCD21D22C12F00509B7E /* CurrencyPickerDataSource.swift */; };
 		C8351C471C9AFEE800994F22 /* ContactsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8351C461C9AFEE800994F22 /* ContactsDataSource.swift */; };
 		C8351C481C9AFEE800994F22 /* ContactsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8351C461C9AFEE800994F22 /* ContactsDataSource.swift */; };
 		C83FB6BC1C3EB5D0004ACE3E /* VersionNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83FB6BB1C3EB5D0004ACE3E /* VersionNumber.swift */; };
@@ -957,6 +959,7 @@
 		C81F16AB1C735C65000927F8 /* NSDataHexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDataHexTests.swift; sourceTree = "<group>"; };
 		C831CCCC1D21E88C00509B7E /* JobModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobModelTests.swift; sourceTree = "<group>"; };
 		C831CCCF1D22012600509B7E /* TestJobData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestJobData.json; sourceTree = "<group>"; };
+		C831CCD21D22C12F00509B7E /* CurrencyPickerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyPickerDataSource.swift; sourceTree = "<group>"; };
 		C8351C461C9AFEE800994F22 /* ContactsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsDataSource.swift; sourceTree = "<group>"; };
 		C83FB6BB1C3EB5D0004ACE3E /* VersionNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionNumber.swift; sourceTree = "<group>"; };
 		C84E00F71C191FC60065F220 /* Localizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizations.swift; sourceTree = "<group>"; };
@@ -2085,6 +2088,7 @@
 			children = (
 				EBEA9B481AF265150027A2A2 /* AddJobController.swift */,
 				A9F3336D1B42CD4300F0D17B /* AskReferralViewController.swift */,
+				C831CCD21D22C12F00509B7E /* CurrencyPickerDataSource.swift */,
 			);
 			name = AddJob;
 			sourceTree = "<group>";
@@ -2852,6 +2856,7 @@
 				C88BA0851C5277DD007A81EB /* CountryPickerDataSource.swift in Sources */,
 				C86F84951C444DB800C23332 /* GCDMulticastDelegate.m in Sources */,
 				C86F84961C444DB800C23332 /* NotificationCell.swift in Sources */,
+				C831CCD41D22C12F00509B7E /* CurrencyPickerDataSource.swift in Sources */,
 				C8CDC5E61CEB858600BF449E /* JobURL.swift in Sources */,
 				C86F84971C444DB800C23332 /* JSQMessagesLabel.m in Sources */,
 				C86F84981C444DB800C23332 /* MainFeed.swift in Sources */,
@@ -3101,6 +3106,7 @@
 				C88BA0841C5277DD007A81EB /* CountryPickerDataSource.swift in Sources */,
 				A996506D1B387CC800D5A8E9 /* GCDMulticastDelegate.m in Sources */,
 				EB866BE01B53EFAE00E203CA /* NotificationCell.swift in Sources */,
+				C831CCD31D22C12F00509B7E /* CurrencyPickerDataSource.swift in Sources */,
 				C8CDC5E51CEB858600BF449E /* JobURL.swift in Sources */,
 				A9964FF81B387CC800D5A8E9 /* JSQMessagesLabel.m in Sources */,
 				EB0926D21A8DE4CB00E1D958 /* MainFeed.swift in Sources */,

@@ -41,7 +41,7 @@ class CountryPickerDataSource: NSObject, UIPickerViewDataSource, UIPickerViewDel
         }
     }
     
-    let data: [Data]
+    private let data: [Data]
     @IBOutlet weak var delegate: CountryPickerDelegate?
     
     override convenience init() {
