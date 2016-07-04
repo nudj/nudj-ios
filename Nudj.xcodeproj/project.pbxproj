@@ -495,6 +495,10 @@
 		C89325B01C08CE1C0069FCFD /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C89325AF1C08CE1C0069FCFD /* libc++.tbd */; };
 		C89325B51C08CE410069FCFD /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89325B21C08CE410069FCFD /* HockeySDK.framework */; };
 		C89325B61C08CE420069FCFD /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C89325B41C08CE410069FCFD /* HockeySDKResources.bundle */; };
+		C89F0B4E1D2AC12100BABB3B /* Array+Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89F0B4D1D2AC12100BABB3B /* Array+Sections.swift */; };
+		C89F0B4F1D2AC12100BABB3B /* Array+Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89F0B4D1D2AC12100BABB3B /* Array+Sections.swift */; };
+		C89F0B511D2AC1FD00BABB3B /* ArraySectionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89F0B501D2AC1FD00BABB3B /* ArraySectionsTests.swift */; };
+		C89F0B521D2AC1FD00BABB3B /* ArraySectionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89F0B501D2AC1FD00BABB3B /* ArraySectionsTests.swift */; };
 		C8A3DB151C7F194100D7EA5E /* CenteredButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A3DB141C7F194100D7EA5E /* CenteredButton.swift */; };
 		C8A3DB161C7F194100D7EA5E /* CenteredButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A3DB141C7F194100D7EA5E /* CenteredButton.swift */; };
 		C8A661EC1C0B66110088355D /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8A661EE1C0B66110088355D /* NotificationCell.xib */; };
@@ -986,6 +990,8 @@
 		C89325B21C08CE410069FCFD /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HockeySDK.framework; sourceTree = "<group>"; };
 		C89325B41C08CE410069FCFD /* HockeySDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = HockeySDKResources.bundle; sourceTree = "<group>"; };
 		C898A54C1C6BEFA8001DAB38 /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "../../../Library/Developer/Xcode/DerivedData/Nudj-fdtsqpojpmyqxbgcozpglcgdnlcx/Build/Products/Debug-iphonesimulator/Pods.framework"; sourceTree = "<group>"; };
+		C89F0B4D1D2AC12100BABB3B /* Array+Sections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Sections.swift"; sourceTree = "<group>"; };
+		C89F0B501D2AC1FD00BABB3B /* ArraySectionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArraySectionsTests.swift; sourceTree = "<group>"; };
 		C8A3DB141C7F194100D7EA5E /* CenteredButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenteredButton.swift; sourceTree = "<group>"; };
 		C8A661DE1C0B60020088355D /* Nudj.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Nudj.release.xcconfig; sourceTree = "<group>"; };
 		C8A661DF1C0B60290088355D /* Nudj.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Nudj.debug.xcconfig; sourceTree = "<group>"; };
@@ -2256,6 +2262,7 @@
 		EB0926E41A8DE4CB00E1D958 /* NudjTests */ = {
 			isa = PBXGroup;
 			children = (
+				C89F0B501D2AC1FD00BABB3B /* ArraySectionsTests.swift */,
 				C863DAD51CA1F089007A847A /* DestinationEquatableTests.swift */,
 				C85201B91CA1874800625642 /* DestinationURLTests.swift */,
 				C831CCCC1D21E88C00509B7E /* JobModelTests.swift */,
@@ -2279,6 +2286,7 @@
 		EB6F22B81AAF702F007FF1B8 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				C89F0B4D1D2AC12100BABB3B /* Array+Sections.swift */,
 				EB6F22B91AAF706A007FF1B8 /* AsyncImage.swift */,
 				EB6F22BD1AB045C0007FF1B8 /* RBResizer.swift */,
 				EBBF42581AB1E55F0001E8B6 /* DataProviderProtocol.swift */,
@@ -3014,6 +3022,7 @@
 				C86F85301C444DB800C23332 /* XMPPvCardAvatarModule.m in Sources */,
 				C86F85311C444DB800C23332 /* XMPPMessage+XEP_0085.m in Sources */,
 				C86F85321C444DB800C23332 /* XMPPSRVResolver.m in Sources */,
+				C89F0B4F1D2AC12100BABB3B /* Array+Sections.swift in Sources */,
 				C86F85331C444DB800C23332 /* AskReferralViewController.swift in Sources */,
 				C86F85341C444DB800C23332 /* XMPPDigestMD5Authentication.m in Sources */,
 				C86F85351C444DB800C23332 /* Notification.swift in Sources */,
@@ -3028,6 +3037,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C85201BB1CA1874800625642 /* DestinationURLTests.swift in Sources */,
+				C89F0B521D2AC1FD00BABB3B /* ArraySectionsTests.swift in Sources */,
 				C8CDC5E91CEB85A500BF449E /* JobURLTests.swift in Sources */,
 				C831CCCE1D21E88C00509B7E /* JobModelTests.swift in Sources */,
 				C863DAD71CA1F089007A847A /* DestinationEquatableTests.swift in Sources */,
@@ -3264,6 +3274,7 @@
 				A996505A1B387CC800D5A8E9 /* XMPPvCardAvatarModule.m in Sources */,
 				A996504C1B387CC800D5A8E9 /* XMPPMessage+XEP_0085.m in Sources */,
 				A99650701B387CC800D5A8E9 /* XMPPSRVResolver.m in Sources */,
+				C89F0B4E1D2AC12100BABB3B /* Array+Sections.swift in Sources */,
 				A9F3336E1B42CD4300F0D17B /* AskReferralViewController.swift in Sources */,
 				A99650041B387CC800D5A8E9 /* XMPPDigestMD5Authentication.m in Sources */,
 				EB72C56A1B578D8100CCBD2E /* Notification.swift in Sources */,
@@ -3278,6 +3289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C85201BA1CA1874800625642 /* DestinationURLTests.swift in Sources */,
+				C89F0B511D2AC1FD00BABB3B /* ArraySectionsTests.swift in Sources */,
 				C8CDC5E81CEB85A500BF449E /* JobURLTests.swift in Sources */,
 				C831CCCD1D21E88C00509B7E /* JobModelTests.swift in Sources */,
 				C863DAD61CA1F089007A847A /* DestinationEquatableTests.swift in Sources */,
