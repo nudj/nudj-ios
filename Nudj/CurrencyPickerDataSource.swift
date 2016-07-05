@@ -88,11 +88,11 @@ class CurrencyPickerDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return String(sectionedData[section].first?.initialCharacter())
+        return String(sectionedData[section].first!.initialCharacter()!)
     }
     
     func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
-        return sectionedData.map{String($0.first?.initialCharacter)}
+        return sectionedData.map{String($0.first!.initialCharacter()!)}
     }
     
     func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
