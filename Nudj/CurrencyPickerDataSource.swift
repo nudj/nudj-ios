@@ -62,7 +62,19 @@ class CurrencyPickerDataSource: NSObject, UITableViewDataSource {
         return locale.displayNameForKey(NSLocaleCurrencySymbol, value: isoCode) ?? isoCode
     }
     
+    func isSearching() -> Bool {
+        return searchController.active && !(searchController.searchBar.text?.isEmpty ?? true)
+    }
+    
     func dataForIndexPath(indexPath: NSIndexPath) -> Data? {
+        if isSearching() {
+            let row = indexPath.row
+            guard row < filteredData.count else {
+                return nil
+            }
+            return filteredData[indexPath.row]
+        }
+        
         let section = indexPath.section
         guard section < sectionedData.count else {
             return nil
@@ -80,14 +92,18 @@ class CurrencyPickerDataSource: NSObject, UITableViewDataSource {
             return nil
         }
         
+        if isSearching() {
+            guard let row = filteredData.indexOf({ $0.isoCode == isoCode }) else {
+                return nil
+            }
+            return NSIndexPath(forRow: row, inSection: 0)
+        }
+        
         var section: Int? = nil
         var row: Int? = nil
         section = sectionedData.indexOf{
             array in
-            row = array.indexOf{
-                data in
-                return data.isoCode == isoCode
-            }
+            row = array.indexOf{ $0.isoCode == isoCode }
             return row != nil
         }
         guard let foundSection = section, foundRow = row else {
@@ -97,14 +113,23 @@ class CurrencyPickerDataSource: NSObject, UITableViewDataSource {
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        if isSearching() {
+            return 1
+        }
         return sectionedData.count
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if isSearching() {
+            return nil
+        }
         return String(sectionedData[section].first!.initialCharacter()!)
     }
     
     func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
+        if isSearching() {
+            return nil
+        }
         return sectionedData.map{String($0.first!.initialCharacter()!)}
     }
     
@@ -113,6 +138,9 @@ class CurrencyPickerDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isSearching() {
+            return filteredData.count
+        }
         return sectionedData[section].count
     }
     
