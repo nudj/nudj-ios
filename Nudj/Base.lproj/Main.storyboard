@@ -644,8 +644,16 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="Choose Currency" id="FKD-Pf-un7">
-                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="aSI-ol-6zx"/>
-                                        <barButtonItem key="rightBarButtonItem" title="Done" id="V9v-8W-cyj"/>
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="aSI-ol-6zx">
+                                            <connections>
+                                                <action selector="cancel:" destination="I2T-wb-TLG" id="9IN-Xl-jYi"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="V9v-8W-cyj">
+                                            <connections>
+                                                <action selector="done:" destination="I2T-wb-TLG" id="JzI-e2-a4k"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -687,6 +695,10 @@
                             <constraint firstItem="Vsa-La-jmh" firstAttribute="top" secondItem="nM8-o7-W1d" secondAttribute="bottom" id="wgJ-U4-0lY"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="currencyTable" destination="Vsa-La-jmh" id="20k-al-Gkr"/>
+                        <outlet property="dataSource" destination="fjT-Gw-Ifp" id="4jc-DL-ruu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2GG-05-Q6Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="fjT-Gw-Ifp" customClass="CurrencyPickerDataSource" customModule="Nudj" customModuleProvider="target"/>
