@@ -9,7 +9,7 @@ import UIKit
 import Foundation
 import SwiftyJSON
 
-class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupViewDelegate {
+class JobDetailedViewController: BaseController, SegueHandlerType, JobSharableType, CreatePopupViewDelegate {
     
     enum SegueIdentifier: String {
         case GoToProfile = "GoToProfile"
@@ -333,30 +333,7 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     }
     
     @IBAction func askForReferral(sender: AnyObject) {
-        let jobURL: JobURL = .Preview(jobID!)
-        let url = jobURL.url()
-        let message: String
-        if isOwnJob {
-            message = Localizations.Jobs.Referral.Sms._Default.Format(url.absoluteString)
-        } else {
-            message = Localizations.Jobs.Nudj.Sms._Default.Format(url.absoluteString)
-        }
-        
-        let activityVC = UIActivityViewController(activityItems: [message], applicationActivities: nil)
-        func handler(activityType: String?, completed: Bool, returnedItems: [AnyObject]?, error: NSError?) -> Void {
-            if completed {
-                MixPanelHandler.sendData(isOwnJob ? "Asked for Referral via \(activityType)" : "Sent Nudj via \(activityType)")
-                let actualMessage = returnedItems?.first as? String ?? message
-                let params = API.Endpoints.Nudge.paramsForJob(jobID!, contactIDs: [], message: actualMessage, clientWillSend: true)
-                let path = isOwnJob ? API.Endpoints.Nudge.ask : API.Endpoints.Nudge.base
-                API.sharedInstance.request(.PUT, path: path, params: params){
-                    error in
-                    loggingPrint(error)
-                }
-            }
-        }
-        activityVC.completionWithItemsHandler = handler
-        self.presentViewController(activityVC, animated: true, completion: nil)
+        shareJob(jobID!, isOwnJob: isOwnJob)
     }
     
     private func registerForRemoteNotifications() {

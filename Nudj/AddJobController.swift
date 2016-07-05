@@ -9,7 +9,7 @@ import UIKit
 import SwiftyJSON
 
 @IBDesignable
-class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDelegate, UITextFieldDelegate, UITextViewDelegate {
+class AddJobController: UIViewController, SegueHandlerType, JobSharableType, CreatePopupViewDelegate, UITextFieldDelegate, UITextViewDelegate {
 
     enum SegueIdentifier: String {
         case ShowAskForReferral = "showAskForReferal"
@@ -369,26 +369,7 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
             self.closeCurrentView()
         } else {
             MixPanelHandler.sendData("NewJobAdded")
-            // TODO: refactor with JobDetailedViewController
-            let jobURL: JobURL = .Preview(jobID!)
-            let url = jobURL.url()
-            let message = Localizations.Jobs.Referral.Sms._Default.Format(url.absoluteString)
-            
-            let activityVC = UIActivityViewController(activityItems: [message], applicationActivities: nil)
-            func handler(activityType: String?, completed: Bool, returnedItems: [AnyObject]?, error: NSError?) -> Void {
-                if completed {
-                    MixPanelHandler.sendData("Asked for Referral via \(activityType)")
-                    let actualMessage = returnedItems?.first as? String ?? message
-                    let params = API.Endpoints.Nudge.paramsForJob(jobID!, contactIDs: [], message: actualMessage, clientWillSend: true)
-                    let path = API.Endpoints.Nudge.ask
-                    API.sharedInstance.request(.PUT, path: path, params: params){
-                        error in
-                        loggingPrint(error)
-                    }
-                }
-            }
-            activityVC.completionWithItemsHandler = handler
-            self.presentViewController(activityVC, animated: true, completion: nil)
+            shareJob(jobID!, isOwnJob: true)
         }
     }
     
