@@ -34,3 +34,26 @@ extension Array {
         return result
     }
 }
+
+protocol HasInitialCharacter {
+    func initialCharacter() -> Character?
+}
+
+extension String: HasInitialCharacter {
+    func initialCharacter() -> Character? {
+        return self.characters.first
+    }
+}
+
+extension Array where Element: HasInitialCharacter {
+    private func splitByInitialLetter(first: HasInitialCharacter, second: HasInitialCharacter) -> Bool {
+        let firstInitial = String(first.initialCharacter())
+        let secondInitial = String(second.initialCharacter())
+        let comparison =  firstInitial.caseInsensitiveCompare(secondInitial)
+        return comparison != .OrderedSame
+    }
+    
+    func sectionsByInitialCharacter() -> [[Element]] {
+        return sectionsSplitBy(splitByInitialLetter)
+    }
+}
