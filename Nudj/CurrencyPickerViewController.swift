@@ -20,7 +20,6 @@ class CurrencyPickerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        currencyTable.delegate = self
     }
     
     var selectedCurrencyIsoCode: String? {

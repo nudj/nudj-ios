@@ -681,6 +681,7 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="fjT-Gw-Ifp" id="U6A-AA-BOL"/>
+                                    <outlet property="delegate" destination="I2T-wb-TLG" id="FUE-WP-ADf"/>
                                 </connections>
                             </tableView>
                         </subviews>
