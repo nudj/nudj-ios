@@ -53,6 +53,7 @@ class CurrencyPickerDataSource: NSObject, UITableViewDataSource {
 
         searchController = UISearchController(searchResultsController: nil)
         searchController.dimsBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = true
 
         super.init()
         searchController.searchResultsUpdater = self

@@ -53,7 +53,7 @@ class CurrencyPickerViewController: UIViewController {
     }
     
     @IBAction func cancel(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+        presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func done(sender: AnyObject) {
@@ -61,7 +61,7 @@ class CurrencyPickerViewController: UIViewController {
             let symbol = symbolForCurrencyCode(isoCode)
             delegate?.didSelectCurrency(isoCode, symbol: symbol)
         }
-        dismissViewControllerAnimated(true, completion: nil)
+        presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
     }
 }
 
