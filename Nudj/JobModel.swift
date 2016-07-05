@@ -50,7 +50,19 @@ struct JobModel {
         self.locale = locale
     }
     
-    init(title: String, description: String, salaryFreeText: String, company: String, location: String, bonusAmount: Int, bonusCurrency: String, active: Bool, skills: [String], locale: NSLocale = NSLocale.autoupdatingCurrentLocale()) {
+    init(title: String = "",
+         description: String = "",
+         salaryFreeText: String = "",
+         company: String = "",
+         location: String = "",
+         bonusAmount: Int = 0,
+         bonusCurrency: String? = nil,
+         active: Bool = true,
+         skills: [String] = [],
+         locale: NSLocale = NSLocale.autoupdatingCurrentLocale()
+        ) {
+        let nativeCurrency = locale.objectForKey(NSLocaleCurrencyCode) as? String ?? "USD"
+        let bonusCurrency = bonusCurrency ?? nativeCurrency
         self.title = title
         self.description = description
         self.salaryFreeText = salaryFreeText
