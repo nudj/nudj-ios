@@ -21,6 +21,7 @@ class CurrencyPickerViewController: UIViewController {
         super.viewDidLoad()
         
         self.definesPresentationContext = true
+        dataSource.searchController.searchBar.tintColor = currencyTable.tintColor
         dataSource.searchController.searchBar.sizeToFit()
         
         currencyTable.tableHeaderView = dataSource.searchController.searchBar
