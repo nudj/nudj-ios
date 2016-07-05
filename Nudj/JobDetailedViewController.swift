@@ -106,6 +106,8 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
     
     func populateView(content: JSON) {
         // TODO: API strings
+        let job = JobModel(json: content)
+        
         isFavorite = content["liked"].boolValue
         conformFavoriteButton()
         
@@ -118,13 +120,9 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         // Update skills
         skills.editable = false
         skills.userInteractionEnabled = false
-        var skillsArr:[String] = [];
-        for i in content["skills"].arrayValue{
-            skillsArr.append(i["name"].stringValue)
-        }
-        skills.fillTokens(skillsArr)
+        skills.fillTokens(job.skills)
         
-        jobTitleText.text = content["title"].stringValue
+        jobTitleText.text = job.title
         jobTitleText.numberOfLines = 0
         jobTitleText.adjustsFontSizeToFitWidth = true
         jobTitleText.minimumScaleFactor = 0.2
@@ -133,13 +131,14 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         hirerID = content["user"]["id"].intValue
         
         descriptionText.scrollEnabled = false
-        descriptionText.text = content["description"].stringValue
+        descriptionText.text = job.description
         
+        // TODO: revise this to be UIStackView friendly
         let sizeThatFitsTextView:CGSize = descriptionText.sizeThatFits( CGSizeMake(descriptionText.frame.size.width, CGFloat.max) )
         TextViewHeightConstraint.constant = sizeThatFitsTextView.height;
         
         // Set job active or not active status
-        self.jobActive.selected = content["active"].boolValue
+        self.jobActive.selected = job.active
         
         func formatLabel(label: UILabel, text: String, subText: String, attributes: [String: AnyObject]) {
             let attributedString = NSMutableAttributedString(string: text)
@@ -150,19 +149,19 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         
         let colorAttributes = [NSForegroundColorAttributeName: ColorPalette.nudjGreen]
         
-        let employer = content["company"].stringValue
+        let employer = job.company
         formatLabel(employerText, text: Localizations.Jobs.Employer.Format(employer), subText: employer, attributes: colorAttributes)
         
-        let location = content["location"].stringValue
+        let location = job.location
         formatLabel(locationText, text: Localizations.Jobs.Location.Format(location), subText: location, attributes: colorAttributes)
         
-        let salary = content["salary"].stringValue
+        let salary = job.salaryFreeText
         formatLabel(salaryText, text: Localizations.Jobs.Salary.Format(salary), subText: salary, attributes: colorAttributes)
         
         // Referral Property
         let boldFont = UIFont(name: "HelveticaNeue-Bold", size: 22)!
-        // TODO: use a proper number formatter
-        let formattedBonus = "£" + content["bonus"].stringValue
+        
+        let formattedBonus = job.formattedBonus
         let boldBlueAttribs: [String: AnyObject] = [NSFontAttributeName: boldFont, NSForegroundColorAttributeName: ColorPalette.nudjBlue]
         bonusText.text = Localizations.Jobs.Bonus.Format(formattedBonus)
         formatLabel(bonusText, text: Localizations.Jobs.Bonus.Format(formattedBonus), subText: formattedBonus, attributes: boldBlueAttribs)

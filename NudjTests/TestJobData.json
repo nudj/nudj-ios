@@ -1,0 +1,11 @@
+{
+	"title": "test title",
+	"description": "test desc",
+	"salary": "test salary",
+	"company": "test company",
+	"location": "test location",
+	"bonus": 42,
+	"bonus_currency": "Foo",
+	"active": 1,
+	"skills": ["test skill"]
+}

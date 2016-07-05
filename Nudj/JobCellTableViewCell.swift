@@ -22,20 +22,21 @@ class JobCellTableViewCell: UITableViewCell, DataTableCell {
     var gradient:CAGradientLayer? = nil
 
     func loadData(data:JSON?) {
-        if (data == nil) {
+        guard let data = data else {
             return
         }
-        // TODO: API strings and MVC violation
-        self.title.text = data!["title"].stringValue
-        self.salary.text = data!["salary"].stringValue
-        self.bonusAmount.text = "£" + data!["bonus"].stringValue
-        self.creator.text = data!["user"]["name"].stringValue
-        self.company.text = data?["company"].string
+        let job = JobModel(json: data)
+        
+        self.title.text = job.title
+        self.salary.text = job.salaryFreeText
+        self.bonusAmount.text = job.formattedBonus
+        self.creator.text = data["user"]["name"].stringValue
+        self.company.text = job.company
 
-        self.location.text = data?["location"].string
+        self.location.text = job.location
 
         self.creatorImage.image = UserModel.getDefaultUserImage(.Size60)
-        self.creatorImage.downloadImage(data!["user"]["image"]["profile"].stringValue)
+        self.creatorImage.downloadImage(data["user"]["image"]["profile"].stringValue)
         
         self.selectionStyle = UITableViewCellSelectionStyle.None
 

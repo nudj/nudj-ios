@@ -48,65 +48,57 @@ class NotificationCell: UITableViewCell {
         let messageString = data.notificationMessage ?? "" as NSString
         let messageAttibutedString = NSMutableAttributedString(string: messageString as String)
         if let boldFont = UIFont(name: "HelveticaNeue-Bold", size: 13) {
-            if let senderName = data.senderName {
-                let range = messageString.rangeOfString(senderName)
-                messageAttibutedString.addAttribute(NSFontAttributeName, value: boldFont, range: range)
-            }
-            if let jobTitle = data.jobTitle {
-                let range = messageString.rangeOfString(jobTitle)
-                messageAttibutedString.addAttribute(NSFontAttributeName, value: boldFont, range: range)
-            }
+            let senderRange = messageString.rangeOfString(data.senderName)
+            messageAttibutedString.addAttribute(NSFontAttributeName, value: boldFont, range: senderRange)
+            let titleRange = messageString.rangeOfString(data.jobTitle)
+            messageAttibutedString.addAttribute(NSFontAttributeName, value: boldFont, range: titleRange)
         }
         message.attributedText = messageAttibutedString
 
-        if(data.jobBonus!.isEmpty){
+        if(data.jobBonus.isEmpty){
             self.refLabel.hidden = true
             self.refAmount.hidden = true
-        }else{
-            self.refAmount.text = data.jobBonus;
+        } else {
+            self.refAmount.text = data.jobBonus
         }
         
-        self.readStatus(data.notificationReadStatus!)
+        self.readStatus(data.notificationReadStatus)
         
         self.type = data.notificationType
         self.notificationID = data.notificationId
         
-        let timestamp:NSTimeInterval =  NSTimeInterval(data.notificationTime!)
-        let date:NSDate = NSDate(timeIntervalSince1970:timestamp)
+        let timestamp = NSTimeInterval(data.notificationTime)
+        let date = NSDate(timeIntervalSince1970: timestamp)
         self.dateLabel.text = date.timeAgoSinceNow()
         
         self.smsButton.addTarget(self, action: #selector(actions(_:)), forControlEvents:.TouchUpInside)
         
-        switch(data.notificationType!){
+        switch(data.notificationType) {
         case .AskToRefer:
             self.callButton.hidden = true
             self.smsButton.setTitle(Localizations.Notification.Button.Details, forState: .Normal)
             self.refLabel.hidden = false
             self.refAmount.hidden = false
-            break;
         case .AppApplication:
             self.callButton.hidden = true
             self.smsButton.setTitle(Localizations.Notification.Button.Message, forState: .Normal)
             self.refLabel.hidden = false
             self.refAmount.hidden = false
-            break;
         case .WebApplication:
-            break;
+            break
         case .MatchingContact:
             self.callButton.hidden = true
             self.smsButton.setTitle(Localizations.Notification.Button.Nudj, forState: .Normal)
             self.smsButton.backgroundColor = ColorPalette.nudjGreen
             self.refLabel.hidden = false
             self.refAmount.hidden = false
-            break;
         case .AppApplicationWithNoReferral:
             self.callButton.hidden = true
             self.smsButton.setTitle(Localizations.Notification.Button.Message, forState: .Normal)
             self.refLabel.hidden = false
             self.refAmount.hidden = false
-            break;
         case .WebApplicationWithNoReferral:
-            break;
+            break
         }
     }
     

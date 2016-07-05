@@ -6,12 +6,13 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 struct JobModel {
     // TODO: revisit error handling
     private struct UnknownError: ErrorType {}
 
-    var title:String
+    var title: String
     var description: String
     var salaryFreeText: String
     var company: String
@@ -20,6 +21,59 @@ struct JobModel {
     var bonusCurrency: String
     var active: Bool
     var skills: [String]
+    
+    let locale: NSLocale
+    var currencyFormatter: NSNumberFormatter {
+        let currencyFormatter = NSNumberFormatter()
+        currencyFormatter.locale = locale
+        currencyFormatter.numberStyle = .CurrencyStyle
+        currencyFormatter.maximumFractionDigits = 0
+        currencyFormatter.currencyCode = bonusCurrency
+        return currencyFormatter
+    }
+    
+    var formattedBonus: String {
+        let formattedBonus = currencyFormatter.stringFromNumber(bonusAmount) ?? "\(bonusCurrency) \(bonusAmount)"
+        return formattedBonus
+    }
+    
+    init(json: JSON, locale: NSLocale = NSLocale.autoupdatingCurrentLocale()) {
+        title = json["title"].stringValue
+        description = json["description"].stringValue
+        salaryFreeText = json["salary"].stringValue
+        company = json["company"].stringValue
+        location = json["location"].stringValue
+        bonusAmount = json["bonus"].intValue
+        bonusCurrency = json["bonus_currency"].string ?? "GBP" // due to a server bug the currency code is being returned as integer 0
+        active = json["active"].boolValue
+        skills = json["skills"].arrayValue.map{$0["name"].stringValue}
+        self.locale = locale
+    }
+    
+    init(title: String = "",
+         description: String = "",
+         salaryFreeText: String = "",
+         company: String = "",
+         location: String = "",
+         bonusAmount: Int = 0,
+         bonusCurrency: String? = nil,
+         active: Bool = true,
+         skills: [String] = [],
+         locale: NSLocale = NSLocale.autoupdatingCurrentLocale()
+        ) {
+        let nativeCurrency = locale.objectForKey(NSLocaleCurrencyCode) as? String ?? "USD"
+        let bonusCurrency = bonusCurrency ?? nativeCurrency
+        self.title = title
+        self.description = description
+        self.salaryFreeText = salaryFreeText
+        self.company = company
+        self.location = location
+        self.bonusAmount = bonusAmount
+        self.bonusCurrency = bonusCurrency
+        self.active = active
+        self.skills = skills
+        self.locale = locale
+    }
     
     func params() -> [String: AnyObject] {
         let params:[String: AnyObject] = [
@@ -30,12 +84,16 @@ struct JobModel {
             "location": self.location,
             "bonus": self.bonusAmount,
             "bonus_currency": self.bonusCurrency,
-            "active": self.active ? "1" : "0",
+            "active": self.active ? 1 : 0,
             "skills": self.skills
         ]
         return params
     }
-
+    
+    func symbolForCurrency(isoCode: String) -> String {
+        return locale.displayNameForKey(NSLocaleCurrencySymbol, value: isoCode) ?? isoCode
+    }
+    
     func save(closure:(ErrorType?, Int) -> ()) {
         let path = API.Endpoints.Jobs.base
         let params = self.params()
@@ -64,3 +122,4 @@ struct JobModel {
         })
     }
 }
+

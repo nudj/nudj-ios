@@ -152,7 +152,7 @@ extension API {
             
             static func paramsForList(page: Int, pageSize: Int) -> [String: AnyObject] {
                 let params: [String: AnyObject] = [
-                    "params": "job.title,job.salary,job.bonus,job.user,job.location,job.company,user.name,user.image",
+                    "params": "job.title,job.salary,job.bonus,job.bonus_currency,job.user,job.location,job.company,user.name,user.image",
                     "sizes": "user.profile",
                     "page": page,
                     "limit": pageSize
@@ -162,7 +162,7 @@ extension API {
             
             static func paramsForDetail() -> [String: AnyObject] {
                 let params: [String: AnyObject] = [
-                    "params": "job.title,job.company,job.liked,job.salary,job.active,job.description,job.skills,job.bonus,job.user,job.location,user.image,user.name,user.contact"
+                    "params": "job.title,job.company,job.liked,job.salary,job.active,job.description,job.skills,job.bonus,job.bonus_currency,job.user,job.location,user.image,user.name,user.contact"
                 ]
                 return params
             }

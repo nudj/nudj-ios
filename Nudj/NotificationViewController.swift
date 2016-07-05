@@ -80,7 +80,7 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
 
     func populate(data:JSON) {
         for (_, obj) in data["data"] {
-            if let val = Notification.createFromJSON(obj){
+            if let val = Notification(json: obj){
                 self.data.append(val)
             }
         }
@@ -129,7 +129,7 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
         //go to profile
         let storyboard :UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let GenericProfileView = storyboard.instantiateViewControllerWithIdentifier("GenericProfileView") as! GenericProfileViewController
-        GenericProfileView.userId = Int(cell.notificationData!.senderId!)!
+        GenericProfileView.userId = cell.notificationData!.senderId
         GenericProfileView.type = .Public
         GenericProfileView.preloadedName = cell.notificationData?.senderName
         
@@ -152,7 +152,7 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
         switch cellType {
         case .AskToRefer:
             MixPanelHandler.sendData("Notification_DetailButtonClicked")
-            self.goToView("JobDetailedView", contentId: cell.notificationData!.jobID, jobTitle: cell.notificationData!.jobTitle)
+            self.goToView("JobDetailedView", jobId: cell.notificationData!.jobID, jobTitle: cell.notificationData!.jobTitle)
             break
         case .AppApplication:
             MixPanelHandler.sendData("Notification_MessageButtonClicked")
@@ -234,25 +234,22 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
 
-    func nudge(jobID:String?, jobTitle: String?){
-        self.goToView("AskReferralView", contentId:jobID, jobTitle: jobTitle)
+    func nudge(jobID: Int, jobTitle: String){
+        self.goToView("AskReferralView", jobId: jobID, jobTitle: jobTitle)
     }
     
-    func goToView(viewId: String, contentId: String?, jobTitle: String?) {
+    func goToView(viewId: String, jobId: Int, jobTitle: String) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let job = Int(contentId ?? "") else {
-            return
-        }
         
         if(viewId == "AskReferralView"){
             let askView = storyboard.instantiateViewControllerWithIdentifier(viewId) as! AskReferralViewController
-            askView.jobId = job
+            askView.jobId = jobId
             askView.jobTitle = jobTitle
             askView.isNudjRequest = true
             self.navigationController?.pushViewController(askView, animated: true);
         } else {
             let detailsView = storyboard.instantiateViewControllerWithIdentifier(viewId) as! JobDetailedViewController
-            detailsView.jobID = job
+            detailsView.jobID = jobId
             detailsView.currentUser = UserModel.getLocal()
             self.navigationController?.pushViewController(detailsView, animated: true)
         }
@@ -262,7 +259,7 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
         let chatData = cell.notificationData!
         cell.userInteractionEnabled = false
         
-        if chatData.chatId != nil && !chatData.chatId!.isEmpty{
+        if chatData.chatId != 0 {
             self.gotTochatAction(cell)
         } else {
             performSegueWithIdentifier(.GoToChat, sender: self)
@@ -273,12 +270,12 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
     func gotTochatAction(cell:NotificationCell){
         let chatData = cell.notificationData!
         
-        let chatView:ChatViewController = ChatViewController()
-        chatView.chatID = chatData.chatId;
+        let chatView = ChatViewController()
+        chatView.chatID = String(chatData.chatId) // TODO: make these properties Int in ChatViewController
         chatView.participants =  chatData.senderName
-        chatView.participantsID = chatData.senderId
+        chatView.participantsID = String(chatData.senderId)
         chatView.chatTitle = chatData.jobTitle
-        chatView.jobID = chatData.jobID
+        chatView.jobID = String(chatData.jobID)
         
         if let image = cell.profileImage.image {
             let imageData = UIImagePNGRepresentation(image)
@@ -294,10 +291,10 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
         switch segueIdentifierForSegue(segue) {
         case .GoToChat:
             let chatView = segue.destinationViewController as! InitiateChatViewController
-            chatView.jobid = Int(selectedContent!.jobID!) ?? 0 // TODO: straighten these optional types out
-            chatView.userid = Int(selectedContent!.senderId!) ?? 0
-            chatView.username = selectedContent!.senderName!
-            chatView.notificationid = selectedContent!.notificationId!
+            chatView.jobid = Int(selectedContent!.jobID) ?? 0
+            chatView.userid = Int(selectedContent!.senderId) ?? 0
+            chatView.username = selectedContent!.senderName
+            chatView.notificationid = selectedContent!.notificationId
         }
     }
 }

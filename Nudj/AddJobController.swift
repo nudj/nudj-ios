@@ -14,17 +14,19 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
 
     enum SegueIdentifier: String {
         case ShowAskForReferral = "showAskForReferal"
+        case ChooseCurrency = "chooseCurrency"
     }
     
-    var popup :CreatePopupView?
-    var isEditable:Bool?
-    var jobId:Int?
+    var popup: CreatePopupView?
+    var isEditable: Bool?
+    var jobId: Int?
+    var job: JobModel?
 
     @IBOutlet weak var scrollView: UIScrollView!
-    var openSpace:CGFloat = 0.0;
+    @IBOutlet weak var bonusCurrencyButton: UIButton!
+    var openSpace:CGFloat = 0.0
 
     // Fields
-
     @IBOutlet weak var jobTitle: UITextField!
     @IBOutlet weak var jobIcon: UIImageView!
 
@@ -32,7 +34,7 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
     @IBOutlet weak var jobDescriptionLabel: UILabel!
     @IBOutlet weak var jobDescriptionIcon: UIImageView!
 
-    @IBOutlet weak var skills: TokenView!{
+    @IBOutlet weak var skills: TokenView! {
         didSet {
             skills.startEditClosure = scrollToSuperView
             skills.changedClosure = { _ in self.updateAssets() }
@@ -61,7 +63,6 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
     lazy var nonNumericCharacterSet = NSCharacterSet.decimalDigitCharacterSet().invertedSet
 
     override func viewDidLoad() {
-
         self.tabBarController?.tabBar.hidden = true
         skills.font = skillsLabel.font
         skills.placeholder = skillsLabel.text ?? ""
@@ -73,8 +74,7 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
         nc.addObserver(self, selector:#selector(keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         nc.addObserver(self, selector:#selector(keyboardChanged(_:)), name: UIKeyboardDidChangeFrameNotification, object: nil)
         
-        if(isEditable != nil && isEditable == true){
-            
+        if(isEditable ?? false) {
             self.navigationItem.rightBarButtonItem?.title = Localizations.Jobs.Add.Button.Update
             self.title = Localizations.Jobs.Add.Button.Edit
             
@@ -86,10 +86,15 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
             let params = API.Endpoints.Jobs.paramsForDetail()
             API.sharedInstance.request(.GET, path: path, params: params, closure: {
                 json in
-                self.prefillData(json["data"])
+                let job = JobModel(json: json["data"])
+                self.showJob(job)
                 }) { error in
                     // TODO: handle error
             }
+        } else {
+            // default job
+            let job = JobModel()
+            showJob(job)
         }
     }
 
@@ -113,6 +118,10 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
         scrollView.setContentOffset(CGPointMake(self.scrollView.contentOffset.x, 0), animated: true)
         
         if(self.checkFields()){
+            if self.job == nil {
+                self.job = JobModel()
+            }
+            
             let job = JobModel(
                 title: jobTitle.text!,
                 description: jobDescription.text,
@@ -120,11 +129,11 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
                 company: employer.text!,
                 location: location.text!,
                 bonusAmount: Int(bonus.text!) ?? 0,
-                bonusCurrency: "GBP",
+                bonusCurrency: self.job!.bonusCurrency,
                 active: activeButton.selected,
                 skills: skills.tokens()!.map({token in return token.title})
             )
-            
+            self.job = job
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             appDelegate.registerForRemoteNotifications()
 
@@ -216,31 +225,23 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
         return Localizations.Jobs.Validation.Required.Format(value)
     }
     
-    func prefillData(json:JSON){
-        jobTitle.text = json["title"].stringValue
+    func showJob(job: JobModel){
+        self.job = job
+        jobTitle.text = job.title
         jobDescriptionLabel.alpha = 0
-        jobDescription.text = json["description"].stringValue
-        salary.text = json["salary"].stringValue
-        employer.text = json["company"].stringValue
-        location.text = json["location"].stringValue
-        
-        // Update skills
+        jobDescription.text = job.description
+        salary.text = job.salaryFreeText
+        employer.text = job.company
+        location.text = job.location
         
         self.skills.editable = true
         self.skills.userInteractionEnabled = true
-        
-        var skillsArr:[String] = [];
-        
-        for i in json["skills"].arrayValue{
-            
-            skillsArr.append(i["name"].stringValue)
-            
-        }
-        
-        self.skills.fillTokens(skillsArr)
+        self.skills.fillTokens(job.skills)
 
-        activeButton.selected = json["active"].boolValue
-        bonus.text = json["bonus"].stringValue
+        activeButton.selected = job.active
+        let symbol = job.symbolForCurrency(job.bonusCurrency)
+        bonusCurrencyButton.setTitle(symbol, forState: .Normal)
+        bonus.text = String(job.bonusAmount) // not formattedBonus
         updateAssets()
     }
 
@@ -411,6 +412,14 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
                 refView.isNudjRequest = false
                 refView.jobTitle = self.jobTitle.text
             }
+        
+        case .ChooseCurrency:
+            if let currencyPickerVC = segue.destinationViewController as? CurrencyPickerViewController {
+                currencyPickerVC.delegate = self
+                currencyPickerVC.loadViewIfNeeded()
+                currencyPickerVC.selectedCurrencyIsoCode = job?.bonusCurrency
+            }
+            break
         }
     }
     
@@ -445,5 +454,12 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
     
     func closeCurrentView(){
          self.navigationController?.popViewControllerAnimated(true)
+    }
+}
+
+extension AddJobController: CurrencyPickerDelegate {
+    func didSelectCurrency(isoCode: String, symbol: String) {
+        job?.bonusCurrency = isoCode
+        bonusCurrencyButton.setTitle(symbol, forState: .Normal)
     }
 }
