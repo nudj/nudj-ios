@@ -19,6 +19,7 @@ class CurrencyPickerDataSource: NSObject, UITableViewDataSource {
     }
     
     @IBOutlet weak var currencyTable: UITableView!
+    var searchController: UISearchController!
     
     let nativeCurrency: String
     private let locale: NSLocale
@@ -49,8 +50,12 @@ class CurrencyPickerDataSource: NSObject, UITableViewDataSource {
         
         sectionedData = allData.sectionsByInitialCharacter()
         filteredData = allData
-        
+
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.dimsBackgroundDuringPresentation = false
+
         super.init()
+        searchController.searchResultsUpdater = self
     }
     
     func symbolForCurrency(isoCode: String) -> String {
