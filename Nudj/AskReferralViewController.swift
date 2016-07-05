@@ -20,7 +20,7 @@ class AskReferralViewController: UIViewController, SegueHandlerType, UISearchBar
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var activityInd: UIActivityIndicatorView!
 
-    var jobId: Int?
+    var jobID: Int?
     var isNudjRequest: Bool?
     
     let dataSource = ContactsDataSource()
@@ -172,7 +172,7 @@ class AskReferralViewController: UIViewController, SegueHandlerType, UISearchBar
         }
         let contactsCount = contactIDs.count
         
-        let params = API.Endpoints.Nudge.paramsForJob(jobId!, contactIDs: contactIDs, message: messageText.text, clientWillSend: false)        
+        let params = API.Endpoints.Nudge.paramsForJob(jobID!, contactIDs: contactIDs, message: messageText.text, clientWillSend: false)
         self.messageText.resignFirstResponder()
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.registerForRemoteNotifications()

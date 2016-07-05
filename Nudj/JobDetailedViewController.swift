@@ -258,13 +258,13 @@ class JobDetailedViewController: BaseController, SegueHandlerType, CreatePopupVi
         case .AskForReferral:
             registerForRemoteNotifications()
             let askView = segue.destinationViewController as! AskReferralViewController
-            askView.jobId = Int(self.jobID!)
+            askView.jobID = Int(self.jobID!)
             askView.jobTitle = jobTitleText.text
             askView.isNudjRequest = !isOwnJob
             
         case .EditJob:
             let addJobView = segue.destinationViewController as! AddJobController
-            addJobView.jobId = Int(self.jobID!)
+            addJobView.jobID = Int(self.jobID!)
             addJobView.isEditable = true
         }        
     }

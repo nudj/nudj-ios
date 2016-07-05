@@ -18,7 +18,7 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
     
     var popup: CreatePopupView?
     var isEditable: Bool?
-    var jobId: Int?
+    var jobID: Int?
     var job: JobModel?
 
     @IBOutlet weak var scrollView: UIScrollView!
@@ -81,7 +81,7 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
             self.topGreyBorder.hidden = false
             self.bottomGreyBorder.hidden = false
             
-            let path = API.Endpoints.Jobs.byID(jobId!)
+            let path = API.Endpoints.Jobs.byID(jobID!)
             let params = API.Endpoints.Jobs.paramsForDetail()
             API.sharedInstance.request(.GET, path: path, params: params, closure: {
                 json in
@@ -138,7 +138,7 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
 
             // TODO: select by something less fragile than the title
             if(sender.title == Localizations.Jobs.Add.Button.Update){
-                job.edit(self.jobId!) { 
+                job.edit(self.jobID!) {
                     result in
                     if result == true {
                         self.showSuccessPopup()
@@ -150,7 +150,7 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
                 job.save() { 
                     error, id in
                     if error == nil {
-                        self.jobId = id
+                        self.jobID = id
                         self.showSuccessPopup()
                     } else {
                         self.postFailed()
@@ -367,10 +367,10 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
         if(self.navigationItem.rightBarButtonItem?.title == Localizations.Jobs.Add.Button.Update){
             MixPanelHandler.sendData("JobUpdated")
             self.closeCurrentView()
-        }else{
+        } else {
             MixPanelHandler.sendData("NewJobAdded")
             // TODO: refactor with JobDetailedViewController
-            let jobURL: JobURL = .Preview(jobId!)
+            let jobURL: JobURL = .Preview(jobID!)
             let url = jobURL.url()
             let message = Localizations.Jobs.Referral.Sms._Default.Format(url.absoluteString)
             
@@ -379,7 +379,7 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
                 if completed {
                     MixPanelHandler.sendData("Asked for Referral via \(activityType)")
                     let actualMessage = returnedItems?.first as? String ?? message
-                    let params = API.Endpoints.Nudge.paramsForJob(jobId!, contactIDs: [], message: actualMessage, clientWillSend: true)
+                    let params = API.Endpoints.Nudge.paramsForJob(jobID!, contactIDs: [], message: actualMessage, clientWillSend: true)
                     let path = API.Endpoints.Nudge.ask
                     API.sharedInstance.request(.PUT, path: path, params: params){
                         error in
@@ -396,7 +396,7 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
         switch segueIdentifierForSegue(segue) {
         case .ShowAskForReferral:
             if let refView = segue.destinationViewController as? AskReferralViewController {
-                refView.jobId = self.jobId
+                refView.jobID = self.jobID
                 refView.isNudjRequest = false
                 refView.jobTitle = self.jobTitle.text
             }
@@ -423,8 +423,8 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
     }
     
     func deleteJob(_: UIAlertAction) {
-        guard let jobId = jobId else {return}
-        let path = API.Endpoints.Jobs.byID(jobId)
+        guard let jobID = jobID else {return}
+        let path = API.Endpoints.Jobs.byID(jobID)
         API.sharedInstance.request(.DELETE, path: path, params: nil, closure: { 
             json in
             MixPanelHandler.sendData("JobDeleted")
