@@ -18,6 +18,11 @@ class CurrencyPickerViewController: UIViewController {
     
     weak var delegate: CurrencyPickerDelegate?
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        currencyTable.delegate = self
+    }
+    
     var selectedCurrencyIsoCode: String? {
         get {
             guard let indexPath = currencyTable.indexPathForSelectedRow else {
@@ -30,9 +35,11 @@ class CurrencyPickerViewController: UIViewController {
             let isoCode = newValue ?? dataSource.nativeCurrency
             if let indexPath = dataSource.indexPathForCurrencyCode(isoCode) {
                 currencyTable.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: .Middle)
+                tableView(currencyTable, didSelectRowAtIndexPath: indexPath)
             } else {
                 if let indexPath = currencyTable.indexPathForSelectedRow {
                     currencyTable.deselectRowAtIndexPath(indexPath, animated: true)
+                    tableView(currencyTable, didDeselectRowAtIndexPath: indexPath)
                 }
             }
         }
@@ -52,5 +59,21 @@ class CurrencyPickerViewController: UIViewController {
             delegate?.didSelectCurrency(isoCode, symbol: symbol)
         }
         dismissViewControllerAnimated(true, completion: nil)
+    }
+}
+
+extension CurrencyPickerViewController: UITableViewDelegate {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        cell?.accessoryType = .Checkmark
+    }
+    
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        cell?.accessoryType = .None
+    }
+    
+    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.tintColor = UIColor.groupTableViewBackgroundColor()
     }
 }

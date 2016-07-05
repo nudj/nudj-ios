@@ -111,6 +111,9 @@ class CurrencyPickerDataSource: NSObject, UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
         let data = dataForIndexPath(indexPath)
         cell.textLabel?.text = data?.name
+        let selectedIndexPath = tableView.indexPathForSelectedRow
+        let selected = (selectedIndexPath?.compare(indexPath) ?? .OrderedAscending) == .OrderedSame
+        cell.accessoryType = selected ? .Checkmark : .None
         return cell
     }
     
