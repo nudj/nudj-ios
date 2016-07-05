@@ -442,7 +442,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <state key="normal" title="£"/>
                                                 <connections>
-                                                    <segue destination="I2T-wb-TLG" kind="presentation" id="Gnz-Fh-gp4"/>
+                                                    <segue destination="I2T-wb-TLG" kind="presentation" identifier="chooseCurrency" id="Gnz-Fh-gp4"/>
                                                 </connections>
                                             </button>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add Amount*" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jbw-X4-z9y">

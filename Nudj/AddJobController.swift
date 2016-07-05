@@ -14,6 +14,7 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
 
     enum SegueIdentifier: String {
         case ShowAskForReferral = "showAskForReferal"
+        case ChooseCurrency = "chooseCurrency"
     }
     
     var popup: CreatePopupView?
@@ -402,6 +403,10 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
                 refView.isNudjRequest = false
                 refView.jobTitle = self.jobTitle.text
             }
+        
+        case .ChooseCurrency:
+            // TODO: set currency
+            break
         }
     }
     
