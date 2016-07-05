@@ -516,6 +516,8 @@
 		C8CDC5E61CEB858600BF449E /* JobURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CDC5E41CEB858600BF449E /* JobURL.swift */; };
 		C8CDC5E81CEB85A500BF449E /* JobURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CDC5E71CEB85A500BF449E /* JobURLTests.swift */; };
 		C8CDC5E91CEB85A500BF449E /* JobURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CDC5E71CEB85A500BF449E /* JobURLTests.swift */; };
+		C8DC14211D2C158C00BE6625 /* CurrencyPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DC14201D2C158C00BE6625 /* CurrencyPickerViewController.swift */; };
+		C8DC14221D2C158C00BE6625 /* CurrencyPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DC14201D2C158C00BE6625 /* CurrencyPickerViewController.swift */; };
 		EB000F7C1AB2E0B800E4D385 /* DataTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB000F7B1AB2E0B800E4D385 /* DataTableCell.swift */; };
 		EB000F7F1AB71D6600E4D385 /* ContactsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB000F7E1AB71D6600E4D385 /* ContactsController.swift */; };
 		EB04F6231AAD89AF002F2677 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB04F6221AAD89AF002F2677 /* Contacts.swift */; };
@@ -1009,6 +1011,7 @@
 		C8A6E82F1C861DC30064CD79 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		C8CDC5E41CEB858600BF449E /* JobURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobURL.swift; sourceTree = "<group>"; };
 		C8CDC5E71CEB85A500BF449E /* JobURLTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobURLTests.swift; sourceTree = "<group>"; };
+		C8DC14201D2C158C00BE6625 /* CurrencyPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyPickerViewController.swift; sourceTree = "<group>"; };
 		EB000F7B1AB2E0B800E4D385 /* DataTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DataTableCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB000F7E1AB71D6600E4D385 /* ContactsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ContactsController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB04F6221AAD89AF002F2677 /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Contacts.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -2095,6 +2098,7 @@
 				EBEA9B481AF265150027A2A2 /* AddJobController.swift */,
 				A9F3336D1B42CD4300F0D17B /* AskReferralViewController.swift */,
 				C831CCD21D22C12F00509B7E /* CurrencyPickerDataSource.swift */,
+				C8DC14201D2C158C00BE6625 /* CurrencyPickerViewController.swift */,
 			);
 			name = AddJob;
 			sourceTree = "<group>";
@@ -2868,6 +2872,7 @@
 				C8CDC5E61CEB858600BF449E /* JobURL.swift in Sources */,
 				C86F84971C444DB800C23332 /* JSQMessagesLabel.m in Sources */,
 				C86F84981C444DB800C23332 /* MainFeed.swift in Sources */,
+				C8DC14221D2C158C00BE6625 /* CurrencyPickerViewController.swift in Sources */,
 				C86F84991C444DB800C23332 /* XMPPProcessOne.m in Sources */,
 				C86F849A1C444DB800C23332 /* GCDAsyncSocket.m in Sources */,
 				C86F849B1C444DB800C23332 /* RBResizer.swift in Sources */,
@@ -3120,6 +3125,7 @@
 				C8CDC5E51CEB858600BF449E /* JobURL.swift in Sources */,
 				A9964FF81B387CC800D5A8E9 /* JSQMessagesLabel.m in Sources */,
 				EB0926D21A8DE4CB00E1D958 /* MainFeed.swift in Sources */,
+				C8DC14211D2C158C00BE6625 /* CurrencyPickerViewController.swift in Sources */,
 				A99650161B387CC800D5A8E9 /* XMPPProcessOne.m in Sources */,
 				A99650721B387CC800D5A8E9 /* GCDAsyncSocket.m in Sources */,
 				EB6F22BE1AB045C0007FF1B8 /* RBResizer.swift in Sources */,
