@@ -8,21 +8,22 @@
 
 import UIKit
 
-@objc protocol CurrencyPickerDelegate: class {
-    func didSelectCurrency(isoCode: String, symbol: String)
-}
-
-class CurrencyPickerDataSource: NSObject, UIPickerViewDataSource, UIPickerViewDelegate {
-    struct Data {
+class CurrencyPickerDataSource: NSObject, UITableViewDataSource {
+    struct Data: HasInitialCharacter {
         let name: String
         let isoCode: String
+
+        func initialCharacter() -> Character? {
+            return name.initialCharacter()
+        }
     }
     
-    @IBOutlet weak var delegate: CurrencyPickerDelegate?
     let nativeCurrency: String
     private let locale: NSLocale
     private let currencyFormatter: NSNumberFormatter
-    private let data: [Data]
+    private let allData: [Data]
+    private let sectionedData: [[Data]]
+    private let cellIdentifier = "CurrencyCell"
     
     override init() {
         let locale = NSLocale.autoupdatingCurrentLocale()
@@ -37,11 +38,13 @@ class CurrencyPickerDataSource: NSObject, UIPickerViewDataSource, UIPickerViewDe
         currencyFormatter.maximumFractionDigits = 0
         
         let codes = NSLocale.commonISOCurrencyCodes()
-        data = codes.map {
+        allData = codes.map {
             code -> Data in
             let name = locale.displayNameForKey(NSLocaleCurrencyCode, value: code)
             return Data(name: name ?? code, isoCode: code)
         }.sort { $0.name < $1.name }
+        
+        sectionedData = allData.sectionsByInitialCharacter()
         
         super.init()
     }
@@ -50,29 +53,64 @@ class CurrencyPickerDataSource: NSObject, UIPickerViewDataSource, UIPickerViewDe
         return locale.displayNameForKey(NSLocaleCurrencySymbol, value: isoCode) ?? isoCode
     }
     
-    func rowForCurrency(isoCode: String) -> Int? {
-        return data.indexOf { $0.isoCode == isoCode }
+    func dataForIndexPath(indexPath: NSIndexPath) -> Data? {
+        let section = indexPath.section
+        guard section < sectionedData.count else {
+            return nil
+        }
+        let sectionArray = sectionedData[section]
+        let row = indexPath.row
+        guard row < sectionArray.count else {
+            return nil
+        }
+        return sectionArray[row]
     }
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 1
+    func indexPathForCurrencyCode(isoCode: String) -> NSIndexPath? {
+        var section: Int? = nil
+        var row: Int? = nil
+        section = sectionedData.indexOf{
+            array in
+            row = array.indexOf{
+                data in
+                return data.isoCode == isoCode
+            }
+            return row != nil
+        }
+        guard let foundSection = section, foundRow = row else {
+            return nil
+        }
+        return NSIndexPath(forRow: foundRow, inSection: foundSection)
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return data.count
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return sectionedData.count
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        guard component == 0 else {return nil}
-        let rowData = data[row]
-        return rowData.name
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return String(sectionedData[section].first?.initialCharacter())
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        guard component == 0 else {return}
-        let rowData = data[row]
-        let isoCode = rowData.isoCode
-        let symbol = symbolForCurrency(isoCode)
-        delegate?.didSelectCurrency(isoCode, symbol: symbol)
+    func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
+        return sectionedData.map{String($0.first?.initialCharacter)}
+    }
+    
+    func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
+        return index
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return sectionedData[section].count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
+        let data = dataForIndexPath(indexPath)
+        cell.textLabel?.text = data?.name
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return false
     }
 }
