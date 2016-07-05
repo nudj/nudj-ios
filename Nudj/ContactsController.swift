@@ -6,10 +6,9 @@
 //
 
 import UIKit
-import MessageUI
 import SwiftyJSON
 
-class ContactsController: BaseController, UITableViewDelegate, UISearchBarDelegate, MFMessageComposeViewControllerDelegate {
+class ContactsController: BaseController, SharableMessageType, UITableViewDelegate, UISearchBarDelegate {
 
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var segControl: UISegmentedControl!
@@ -153,48 +152,13 @@ class ContactsController: BaseController, UITableViewDelegate, UISearchBarDelega
         guard let contactID = lastSelectedContact?.id else {
             return
         }
-        if MFMessageComposeViewController.canSendText() {
-            let composeVC = MFMessageComposeViewController()
-            composeVC.messageComposeDelegate = self
-            composeVC.body = Localizations.Invitation.Sms.Template
-            self.presentViewController(composeVC, animated: true, completion: nil)
-        } else {
-            let path = API.Endpoints.Contacts.inviteByID(contactID)
-            API.sharedInstance.request(.POST, path: path, params: nil, 
-                                       closure: { 
-                                        result in
-                                        let title: String
-                                        let message: String
-                                        if (result["status"].boolValue) {
-                                            title = Localizations.Invitation.Successful.Title
-                                            message = Localizations.Invitation.Successful.Body.Format(contactName)
-                                        } else {
-                                            title = Localizations.Invitation.Failed.Title
-                                            message = Localizations.Invitation.Failed.Body.Format(contactName)
-                                        }
-                                        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-                                        let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
-                                        alert.addAction(cancelAction)
-                                        alert.preferredAction = cancelAction
-                                        self.presentViewController(alert, animated: true, completion: nil)
-                },
-                                       errorHandler: { 
-                                        error in
-                                        let title = Localizations.Invitation.Failed.Title
-                                        let message = Localizations.Invitation.Failed.Body.Format(contactName)
-                                        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-                                        let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
-                                        alert.addAction(cancelAction)
-                                        alert.preferredAction = cancelAction
-                                        self.presentViewController(alert, animated: true, completion: nil)
-            })
+        
+        func handler(activityType: String?, completed: Bool, returnedItems: [AnyObject]?, error: NSError?) -> Void {
+            if completed {
+                MixPanelHandler.sendData("Invited someone via \(activityType)")
+            }
         }
-    }
-    
-    func messageComposeViewController(controller: MFMessageComposeViewController,
-                                      didFinishWithResult result: MessageComposeResult) {
-        // Dismiss the mail compose view controller.
-        controller.dismissViewControllerAnimated(true, completion: nil)
+        shareMessage(Localizations.Invitation.Sms.Template, completionWithItemsHandler: handler)
     }
     
     @IBAction func segmentSelection(sender: UISegmentedControl) {
