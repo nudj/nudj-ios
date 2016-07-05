@@ -1,5 +1,5 @@
 //
-//  JobSharableType.swift
+//  SharableMessageType.swift
 //  Nudj
 //
 //  Created by Richard Buckle on 05/07/2016.
@@ -8,10 +8,16 @@
 
 import UIKit
 
-protocol JobSharableType {
+protocol SharableMessageType {
 }
 
-extension JobSharableType where Self: UIViewController {
+extension SharableMessageType where Self: UIViewController {
+    func shareMessage(message: String, completionWithItemsHandler: UIActivityViewControllerCompletionWithItemsHandler) {
+        let activityVC = UIActivityViewController(activityItems: [message], applicationActivities: nil)
+        activityVC.completionWithItemsHandler = completionWithItemsHandler
+        self.presentViewController(activityVC, animated: true, completion: nil)
+    }
+    
     func shareJob(jobID: Int, isOwnJob: Bool) -> Void {
         let jobURL: JobURL = .Preview(jobID)
         let url = jobURL.url()
@@ -22,7 +28,6 @@ extension JobSharableType where Self: UIViewController {
             message = Localizations.Jobs.Nudj.Sms._Default.Format(url.absoluteString)
         }
         
-        let activityVC = UIActivityViewController(activityItems: [message], applicationActivities: nil)
         func handler(activityType: String?, completed: Bool, returnedItems: [AnyObject]?, error: NSError?) -> Void {
             if completed {
                 MixPanelHandler.sendData(isOwnJob ? "Asked for Referral via \(activityType)" : "Sent Nudj via \(activityType)")
@@ -35,7 +40,6 @@ extension JobSharableType where Self: UIViewController {
                 }
             }
         }
-        activityVC.completionWithItemsHandler = handler
-        self.presentViewController(activityVC, animated: true, completion: nil)
+        shareMessage(message, completionWithItemsHandler: handler)
     }
 }

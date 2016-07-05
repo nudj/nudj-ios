@@ -9,7 +9,7 @@ import UIKit
 import Foundation
 import SwiftyJSON
 
-class JobDetailedViewController: BaseController, SegueHandlerType, JobSharableType, CreatePopupViewDelegate {
+class JobDetailedViewController: BaseController, SegueHandlerType, SharableMessageType, CreatePopupViewDelegate {
     
     enum SegueIdentifier: String {
         case GoToProfile = "GoToProfile"

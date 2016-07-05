@@ -9,7 +9,7 @@ import UIKit
 import SwiftyJSON
 
 @IBDesignable
-class AddJobController: UIViewController, SegueHandlerType, JobSharableType, CreatePopupViewDelegate, UITextFieldDelegate, UITextViewDelegate {
+class AddJobController: UIViewController, SegueHandlerType, SharableMessageType, CreatePopupViewDelegate, UITextFieldDelegate, UITextViewDelegate {
 
     enum SegueIdentifier: String {
         case ShowAskForReferral = "showAskForReferal"
