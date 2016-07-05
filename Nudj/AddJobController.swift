@@ -6,11 +6,10 @@
 //
 
 import UIKit
-import MessageUI
 import SwiftyJSON
 
 @IBDesignable
-class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDelegate, UITextFieldDelegate, UITextViewDelegate, MFMessageComposeViewControllerDelegate {
+class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDelegate, UITextFieldDelegate, UITextViewDelegate {
 
     enum SegueIdentifier: String {
         case ShowAskForReferral = "showAskForReferal"
@@ -333,7 +332,7 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
 
     func scrollToSuperView(view: UIView) {
         if (view.superview == nil) {
-            return;
+            return
         }
 
         var origin = view.superview!.frame.origin
@@ -371,37 +370,26 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
         }else{
             MixPanelHandler.sendData("NewJobAdded")
             // TODO: refactor with JobDetailedViewController
-            if MFMessageComposeViewController.canSendText() {
-                let jobURL: JobURL = .Preview(jobId!)
-                let url = jobURL.url()
-                let message = Localizations.Jobs.Referral.Sms._Default.Format(url.absoluteString)
-                let composeVC = MFMessageComposeViewController()
-                composeVC.messageComposeDelegate = self
-                composeVC.body = message
-                self.presentViewController(composeVC, animated: true, completion: nil)
-            } else {
-                performSegueWithIdentifier(.ShowAskForReferral, sender: self)
-            }
-        }
-    }
-
-    func messageComposeViewController(controller: MFMessageComposeViewController,
-                                      didFinishWithResult result: MessageComposeResult) {
-        // TODO: refactor with JobDetailedViewController
-        switch result {
-        case MessageComposeResultSent:
-            let params = API.Endpoints.Nudge.paramsForJob(jobId!, contactIDs: [], message: controller.body ?? "", clientWillSend: true)        
-            let path = API.Endpoints.Nudge.ask
-            API.sharedInstance.request(.PUT, path: path, params: params){ error in
-                loggingPrint(error)
-            }
+            let jobURL: JobURL = .Preview(jobId!)
+            let url = jobURL.url()
+            let message = Localizations.Jobs.Referral.Sms._Default.Format(url.absoluteString)
             
-        default:
-            break
+            let activityVC = UIActivityViewController(activityItems: [message], applicationActivities: nil)
+            func handler(activityType: String?, completed: Bool, returnedItems: [AnyObject]?, error: NSError?) -> Void {
+                if completed {
+                    MixPanelHandler.sendData("Asked for Referral via \(activityType)")
+                    let actualMessage = returnedItems?.first as? String ?? message
+                    let params = API.Endpoints.Nudge.paramsForJob(jobId!, contactIDs: [], message: actualMessage, clientWillSend: true)
+                    let path = API.Endpoints.Nudge.ask
+                    API.sharedInstance.request(.PUT, path: path, params: params){
+                        error in
+                        loggingPrint(error)
+                    }
+                }
+            }
+            activityVC.completionWithItemsHandler = handler
+            self.presentViewController(activityVC, animated: true, completion: nil)
         }
-        
-        // Dismiss the mail compose view controller.
-        controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
