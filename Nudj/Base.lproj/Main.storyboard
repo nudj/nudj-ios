@@ -446,7 +446,7 @@
                                                 </connections>
                                             </button>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add Amount*" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jbw-X4-z9y">
-                                                <rect key="frame" x="50" y="10" width="317" height="30"/>
+                                                <rect key="frame" x="42" y="10" width="325" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="ZgJ-Sx-4RX"/>
                                                 </constraints>
@@ -461,7 +461,7 @@
                                         <constraints>
                                             <constraint firstItem="Jbw-X4-z9y" firstAttribute="trailing" secondItem="r4K-kL-nVh" secondAttribute="trailingMargin" id="Dlj-nU-IsV"/>
                                             <constraint firstItem="Jbw-X4-z9y" firstAttribute="baseline" secondItem="MIl-BO-E6b" secondAttribute="baseline" id="LJn-NU-fyv"/>
-                                            <constraint firstItem="Jbw-X4-z9y" firstAttribute="leading" secondItem="MIl-BO-E6b" secondAttribute="trailing" constant="8" symbolic="YES" id="gW1-Gl-4yo"/>
+                                            <constraint firstItem="Jbw-X4-z9y" firstAttribute="leading" secondItem="MIl-BO-E6b" secondAttribute="trailing" id="gW1-Gl-4yo"/>
                                             <constraint firstItem="MIl-BO-E6b" firstAttribute="leading" secondItem="r4K-kL-nVh" secondAttribute="leading" constant="12" id="k9u-kk-TNO"/>
                                             <constraint firstItem="Jbw-X4-z9y" firstAttribute="top" secondItem="r4K-kL-nVh" secondAttribute="top" constant="10" id="n1Y-bg-xNT"/>
                                             <constraint firstAttribute="height" constant="49" id="xjh-Gb-d30"/>
