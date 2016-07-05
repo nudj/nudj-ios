@@ -15,11 +15,19 @@ protocol CurrencyPickerDelegate: class {
 class CurrencyPickerViewController: UIViewController {
     @IBOutlet weak var currencyTable: UITableView!
     @IBOutlet var dataSource: CurrencyPickerDataSource!
+    var searchController: UISearchController!
     
     weak var delegate: CurrencyPickerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = dataSource
+        searchController.dimsBackgroundDuringPresentation = false
+        
+        searchController.searchBar.sizeToFit()
+        currencyTable.tableHeaderView = searchController.searchBar
     }
     
     var selectedCurrencyIsoCode: String? {

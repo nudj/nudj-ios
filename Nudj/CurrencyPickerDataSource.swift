@@ -121,3 +121,9 @@ class CurrencyPickerDataSource: NSObject, UITableViewDataSource {
         return false
     }
 }
+
+extension CurrencyPickerDataSource: UISearchResultsUpdating {
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        //
+    }
+}
