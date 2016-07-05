@@ -29,7 +29,7 @@ class CurrencyPickerViewController: UIViewController {
         set {
             let isoCode = newValue ?? dataSource.nativeCurrency
             if let indexPath = dataSource.indexPathForCurrencyCode(isoCode) {
-                currencyTable.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: UITableViewScrollPosition.None)
+                currencyTable.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: .Middle)
             } else {
                 if let indexPath = currencyTable.indexPathForSelectedRow {
                     currencyTable.deselectRowAtIndexPath(indexPath, animated: true)
