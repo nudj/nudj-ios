@@ -16,7 +16,6 @@ class CurrencyPickerViewController: UIViewController {
     @IBOutlet weak var currencyTable: UITableView!
     @IBOutlet var dataSource: CurrencyPickerDataSource!
     var searchController: UISearchController!
-    
     weak var delegate: CurrencyPickerDelegate?
     
     override func viewDidLoad() {
@@ -25,8 +24,9 @@ class CurrencyPickerViewController: UIViewController {
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = dataSource
         searchController.dimsBackgroundDuringPresentation = false
-        
+        self.definesPresentationContext = true
         searchController.searchBar.sizeToFit()
+        
         currencyTable.tableHeaderView = searchController.searchBar
     }
     

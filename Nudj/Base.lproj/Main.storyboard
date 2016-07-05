@@ -698,11 +698,15 @@
                     </view>
                     <connections>
                         <outlet property="currencyTable" destination="Vsa-La-jmh" id="20k-al-Gkr"/>
-                        <outlet property="dataSource" destination="fjT-Gw-Ifp" id="4jc-DL-ruu"/>
+                        <outlet property="dataSource" destination="fjT-Gw-Ifp" id="ktk-5F-JkO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2GG-05-Q6Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="fjT-Gw-Ifp" customClass="CurrencyPickerDataSource" customModule="Nudj" customModuleProvider="target"/>
+                <customObject id="fjT-Gw-Ifp" customClass="CurrencyPickerDataSource" customModule="Nudj" customModuleProvider="target">
+                    <connections>
+                        <outlet property="currencyTable" destination="Vsa-La-jmh" id="B2S-AR-QhB"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="-4848.5" y="1573.5"/>
         </scene>

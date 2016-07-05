@@ -18,10 +18,13 @@ class CurrencyPickerDataSource: NSObject, UITableViewDataSource {
         }
     }
     
+    @IBOutlet weak var currencyTable: UITableView!
+    
     let nativeCurrency: String
     private let locale: NSLocale
     private let currencyFormatter: NSNumberFormatter
     private let allData: [Data]
+    private var filteredData: [Data]
     private let sectionedData: [[Data]]
     private let cellIdentifier = "CurrencyCell"
     
@@ -45,6 +48,7 @@ class CurrencyPickerDataSource: NSObject, UITableViewDataSource {
         }.sort { $0.name < $1.name }
         
         sectionedData = allData.sectionsByInitialCharacter()
+        filteredData = allData
         
         super.init()
     }
@@ -124,6 +128,11 @@ class CurrencyPickerDataSource: NSObject, UITableViewDataSource {
 
 extension CurrencyPickerDataSource: UISearchResultsUpdating {
     func updateSearchResultsForSearchController(searchController: UISearchController) {
-        //
+        if let searchString = searchController.searchBar.text?.lowercaseString {
+            filteredData = allData.filter{ $0.name.lowercaseString.containsString(searchString) }
+        } else {
+            filteredData = allData
+        }
+        currencyTable.reloadData()
     }
 }
