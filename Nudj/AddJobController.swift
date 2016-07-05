@@ -6,11 +6,10 @@
 //
 
 import UIKit
-import MessageUI
 import SwiftyJSON
 
 @IBDesignable
-class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDelegate, UITextFieldDelegate, UITextViewDelegate, MFMessageComposeViewControllerDelegate {
+class AddJobController: UIViewController, SegueHandlerType, SharableMessageType, CreatePopupViewDelegate, UITextFieldDelegate, UITextViewDelegate {
 
     enum SegueIdentifier: String {
         case ShowAskForReferral = "showAskForReferal"
@@ -19,7 +18,7 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
     
     var popup: CreatePopupView?
     var isEditable: Bool?
-    var jobId: Int?
+    var jobID: Int?
     var job: JobModel?
 
     @IBOutlet weak var scrollView: UIScrollView!
@@ -82,7 +81,7 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
             self.topGreyBorder.hidden = false
             self.bottomGreyBorder.hidden = false
             
-            let path = API.Endpoints.Jobs.byID(jobId!)
+            let path = API.Endpoints.Jobs.byID(jobID!)
             let params = API.Endpoints.Jobs.paramsForDetail()
             API.sharedInstance.request(.GET, path: path, params: params, closure: {
                 json in
@@ -139,7 +138,7 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
 
             // TODO: select by something less fragile than the title
             if(sender.title == Localizations.Jobs.Add.Button.Update){
-                job.edit(self.jobId!) { 
+                job.edit(self.jobID!) {
                     result in
                     if result == true {
                         self.showSuccessPopup()
@@ -151,7 +150,7 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
                 job.save() { 
                     error, id in
                     if error == nil {
-                        self.jobId = id
+                        self.jobID = id
                         self.showSuccessPopup()
                     } else {
                         self.postFailed()
@@ -333,7 +332,7 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
 
     func scrollToSuperView(view: UIView) {
         if (view.superview == nil) {
-            return;
+            return
         }
 
         var origin = view.superview!.frame.origin
@@ -368,47 +367,17 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
         if(self.navigationItem.rightBarButtonItem?.title == Localizations.Jobs.Add.Button.Update){
             MixPanelHandler.sendData("JobUpdated")
             self.closeCurrentView()
-        }else{
+        } else {
             MixPanelHandler.sendData("NewJobAdded")
-            // TODO: refactor with JobDetailedViewController
-            if MFMessageComposeViewController.canSendText() {
-                let jobURL: JobURL = .Preview(jobId!)
-                let url = jobURL.url()
-                let message = Localizations.Jobs.Referral.Sms._Default.Format(url.absoluteString)
-                let composeVC = MFMessageComposeViewController()
-                composeVC.messageComposeDelegate = self
-                composeVC.body = message
-                self.presentViewController(composeVC, animated: true, completion: nil)
-            } else {
-                performSegueWithIdentifier(.ShowAskForReferral, sender: self)
-            }
+            shareJob(jobID!, isOwnJob: true)
         }
-    }
-
-    func messageComposeViewController(controller: MFMessageComposeViewController,
-                                      didFinishWithResult result: MessageComposeResult) {
-        // TODO: refactor with JobDetailedViewController
-        switch result {
-        case MessageComposeResultSent:
-            let params = API.Endpoints.Nudge.paramsForJob(jobId!, contactIDs: [], message: controller.body ?? "", clientWillSend: true)        
-            let path = API.Endpoints.Nudge.ask
-            API.sharedInstance.request(.PUT, path: path, params: params){ error in
-                loggingPrint(error)
-            }
-            
-        default:
-            break
-        }
-        
-        // Dismiss the mail compose view controller.
-        controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segueIdentifierForSegue(segue) {
         case .ShowAskForReferral:
             if let refView = segue.destinationViewController as? AskReferralViewController {
-                refView.jobId = self.jobId
+                refView.jobID = self.jobID
                 refView.isNudjRequest = false
                 refView.jobTitle = self.jobTitle.text
             }
@@ -435,8 +404,8 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
     }
     
     func deleteJob(_: UIAlertAction) {
-        guard let jobId = jobId else {return}
-        let path = API.Endpoints.Jobs.byID(jobId)
+        guard let jobID = jobID else {return}
+        let path = API.Endpoints.Jobs.byID(jobID)
         API.sharedInstance.request(.DELETE, path: path, params: nil, closure: { 
             json in
             MixPanelHandler.sendData("JobDeleted")

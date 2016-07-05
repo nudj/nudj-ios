@@ -152,7 +152,7 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
         switch cellType {
         case .AskToRefer:
             MixPanelHandler.sendData("Notification_DetailButtonClicked")
-            self.goToView("JobDetailedView", jobId: cell.notificationData!.jobID, jobTitle: cell.notificationData!.jobTitle)
+            self.goToView("JobDetailedView", jobID: cell.notificationData!.jobID, jobTitle: cell.notificationData!.jobTitle)
             break
         case .AppApplication:
             MixPanelHandler.sendData("Notification_MessageButtonClicked")
@@ -235,21 +235,21 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
     }
 
     func nudge(jobID: Int, jobTitle: String){
-        self.goToView("AskReferralView", jobId: jobID, jobTitle: jobTitle)
+        self.goToView("AskReferralView", jobID: jobID, jobTitle: jobTitle)
     }
     
-    func goToView(viewId: String, jobId: Int, jobTitle: String) {
+    func goToView(viewId: String, jobID: Int, jobTitle: String) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
         if(viewId == "AskReferralView"){
             let askView = storyboard.instantiateViewControllerWithIdentifier(viewId) as! AskReferralViewController
-            askView.jobId = jobId
+            askView.jobID = jobID
             askView.jobTitle = jobTitle
             askView.isNudjRequest = true
             self.navigationController?.pushViewController(askView, animated: true);
         } else {
             let detailsView = storyboard.instantiateViewControllerWithIdentifier(viewId) as! JobDetailedViewController
-            detailsView.jobID = jobId
+            detailsView.jobID = jobID
             detailsView.currentUser = UserModel.getLocal()
             self.navigationController?.pushViewController(detailsView, animated: true)
         }

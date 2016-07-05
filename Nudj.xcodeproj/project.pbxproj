@@ -518,6 +518,8 @@
 		C8CDC5E91CEB85A500BF449E /* JobURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CDC5E71CEB85A500BF449E /* JobURLTests.swift */; };
 		C8DC14211D2C158C00BE6625 /* CurrencyPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DC14201D2C158C00BE6625 /* CurrencyPickerViewController.swift */; };
 		C8DC14221D2C158C00BE6625 /* CurrencyPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DC14201D2C158C00BE6625 /* CurrencyPickerViewController.swift */; };
+		C8DE7D711D2C4853002BDADA /* SharableMessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DE7D701D2C4853002BDADA /* SharableMessageType.swift */; };
+		C8DE7D721D2C4853002BDADA /* SharableMessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DE7D701D2C4853002BDADA /* SharableMessageType.swift */; };
 		EB000F7C1AB2E0B800E4D385 /* DataTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB000F7B1AB2E0B800E4D385 /* DataTableCell.swift */; };
 		EB000F7F1AB71D6600E4D385 /* ContactsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB000F7E1AB71D6600E4D385 /* ContactsController.swift */; };
 		EB04F6231AAD89AF002F2677 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB04F6221AAD89AF002F2677 /* Contacts.swift */; };
@@ -1012,6 +1014,7 @@
 		C8CDC5E41CEB858600BF449E /* JobURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobURL.swift; sourceTree = "<group>"; };
 		C8CDC5E71CEB85A500BF449E /* JobURLTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobURLTests.swift; sourceTree = "<group>"; };
 		C8DC14201D2C158C00BE6625 /* CurrencyPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyPickerViewController.swift; sourceTree = "<group>"; };
+		C8DE7D701D2C4853002BDADA /* SharableMessageType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharableMessageType.swift; sourceTree = "<group>"; };
 		EB000F7B1AB2E0B800E4D385 /* DataTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DataTableCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB000F7E1AB71D6600E4D385 /* ContactsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ContactsController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB04F6221AAD89AF002F2677 /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Contacts.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -2362,6 +2365,7 @@
 		EBDD28CC1ACD8AA700956995 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C8DE7D701D2C4853002BDADA /* SharableMessageType.swift */,
 				C88204A51C4C258C00744554 /* SegueHandlerType.swift */,
 				EB9F71DE1B0E0060000C2D9F /* MainTabBar.swift */,
 				A95798231B469636006E826E /* Notification */,
@@ -2988,6 +2992,7 @@
 				C86F85061C444DB800C23332 /* XMPPMessage+XEP_0224.m in Sources */,
 				C86F85071C444DB800C23332 /* XMPPMessage+XEP_0066.m in Sources */,
 				C86F85081C444DB800C23332 /* XMPPDeprecatedDigestAuthentication.m in Sources */,
+				C8DE7D721D2C4853002BDADA /* SharableMessageType.swift in Sources */,
 				C86F85091C444DB800C23332 /* XMPPPresence.m in Sources */,
 				C86F850A1C444DB800C23332 /* AddJobController.swift in Sources */,
 				C86F850B1C444DB800C23332 /* XMPPMUC.m in Sources */,
@@ -3241,6 +3246,7 @@
 				A99650491B387CC800D5A8E9 /* XMPPMessage+XEP_0066.m in Sources */,
 				A99650021B387CC800D5A8E9 /* XMPPDeprecatedDigestAuthentication.m in Sources */,
 				A99650111B387CC800D5A8E9 /* XMPPPresence.m in Sources */,
+				C8DE7D711D2C4853002BDADA /* SharableMessageType.swift in Sources */,
 				EBEA9B491AF265150027A2A2 /* AddJobController.swift in Sources */,
 				A99650341B387CC800D5A8E9 /* XMPPMUC.m in Sources */,
 				A9964FE71B387CC800D5A8E9 /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,
