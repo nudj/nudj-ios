@@ -77,7 +77,11 @@ struct JobModel {
         ]
         return params
     }
-
+    
+    func symbolForCurrency(isoCode: String) -> String {
+        return locale.displayNameForKey(NSLocaleCurrencySymbol, value: isoCode) ?? isoCode
+    }
+    
     func save(closure:(ErrorType?, Int) -> ()) {
         let path = API.Endpoints.Jobs.base
         let params = self.params()
@@ -106,3 +110,4 @@ struct JobModel {
         })
     }
 }
+
