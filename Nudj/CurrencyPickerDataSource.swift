@@ -66,7 +66,11 @@ class CurrencyPickerDataSource: NSObject, UITableViewDataSource {
         return sectionArray[row]
     }
     
-    func indexPathForCurrencyCode(isoCode: String) -> NSIndexPath? {
+    func indexPathForCurrencyCode(isoCode: String?) -> NSIndexPath? {
+        guard let isoCode = isoCode else {
+            return nil
+        }
+        
         var section: Int? = nil
         var row: Int? = nil
         section = sectionedData.indexOf{
