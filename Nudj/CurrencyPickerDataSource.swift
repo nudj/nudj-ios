@@ -42,11 +42,11 @@ class CurrencyPickerDataSource: NSObject, UITableViewDataSource {
         currencyFormatter.maximumFractionDigits = 0
         
         let codes = NSLocale.commonISOCurrencyCodes()
-        allData = codes.map {
-            code -> Data in
+        func codeToData(code: String) -> Data {
             let name = locale.displayNameForKey(NSLocaleCurrencyCode, value: code)
             return Data(name: name ?? code, isoCode: code)
-        }.sort { $0.name < $1.name }
+        }
+        allData = codes.map(codeToData).sort { $0.name < $1.name }
         
         sectionedData = allData.sectionsByInitialCharacter()
         filteredData = allData
