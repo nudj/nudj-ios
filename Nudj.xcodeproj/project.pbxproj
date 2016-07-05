@@ -2288,16 +2288,16 @@
 			children = (
 				C89F0B4D1D2AC12100BABB3B /* Array+Sections.swift */,
 				EB6F22B91AAF706A007FF1B8 /* AsyncImage.swift */,
-				EB6F22BD1AB045C0007FF1B8 /* RBResizer.swift */,
-				EBBF42581AB1E55F0001E8B6 /* DataProviderProtocol.swift */,
-				EBE5C3111B25811400CFF7E9 /* TokenView.swift */,
-				A9F333731B4444D700F0D17B /* CreatePopupView.swift */,
-				EBF17A231B4D538800C67657 /* Common.swift */,
-				A9191EA51B6A402E000F9168 /* SocialStatus.swift */,
-				A947CC981B7119B500C9518E /* NoContentPlaceHolder.swift */,
-				A929E4941B863D3F00AC2A5F /* MixPanelHandler.swift */,
-				C81F16A81C735BF0000927F8 /* NSData+Hex.swift */,
 				C8A3DB141C7F194100D7EA5E /* CenteredButton.swift */,
+				EBF17A231B4D538800C67657 /* Common.swift */,
+				A9F333731B4444D700F0D17B /* CreatePopupView.swift */,
+				EBBF42581AB1E55F0001E8B6 /* DataProviderProtocol.swift */,
+				A929E4941B863D3F00AC2A5F /* MixPanelHandler.swift */,
+				A947CC981B7119B500C9518E /* NoContentPlaceHolder.swift */,
+				C81F16A81C735BF0000927F8 /* NSData+Hex.swift */,
+				EB6F22BD1AB045C0007FF1B8 /* RBResizer.swift */,
+				A9191EA51B6A402E000F9168 /* SocialStatus.swift */,
+				EBE5C3111B25811400CFF7E9 /* TokenView.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
