@@ -21,6 +21,7 @@ class AddJobController: UIViewController, SegueHandlerType, CreatePopupViewDeleg
     var jobId: Int?
 
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var bonusCurrencyButton: UIButton!
     var openSpace:CGFloat = 0.0
 
     // Fields
