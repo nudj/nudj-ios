@@ -152,7 +152,8 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
         switch cellType {
         case .AskToRefer:
             MixPanelHandler.sendData("Notification_DetailButtonClicked")
-            self.goToView("JobDetailedView", jobID: cell.notificationData!.jobID, jobTitle: cell.notificationData!.jobTitle)
+            let jobDestination = Destination.Job(cell.notificationData!.jobID)
+            self.goToView(jobDestination)
             break
         case .AppApplication:
             MixPanelHandler.sendData("Notification_MessageButtonClicked")
@@ -238,14 +239,19 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
         shareJob(jobID, isOwnJob: false)
     }
     
-    func goToView(viewId: String, jobID: Int, jobTitle: String) {
-        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+    func goToView(destination: Destination) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        if(viewId == "JobDetailedView") {
-            let detailsView = storyboard.instantiateViewControllerWithIdentifier(viewId) as! JobDetailedViewController
+        switch destination {
+        case .Job(let jobID):
+            let viewID = JobDetailedViewController.storyboardID
+            let detailsView = storyboard.instantiateViewControllerWithIdentifier(viewID) as! JobDetailedViewController
             detailsView.jobID = jobID
             detailsView.currentUser = UserModel.getLocal()
             self.navigationController?.pushViewController(detailsView, animated: true)
+        
+        case .None:
+            break
         }
     }
     

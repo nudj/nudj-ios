@@ -16,6 +16,8 @@ class JobDetailedViewController: BaseController, SegueHandlerType, SharableMessa
         case EditJob = "EditJob"
     }
     
+    static let storyboardID = "JobDetailedView"
+    
     @IBOutlet var jobTitleText: UILabel!
     @IBOutlet var hirerName: UILabel!
     @IBOutlet var descriptionText: UITextView!
