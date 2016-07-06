@@ -621,7 +621,6 @@
                         <outlet property="skillsIcon" destination="boY-Up-4MZ" id="tm7-cw-gnU"/>
                         <outlet property="skillsLabel" destination="kSE-5w-9ME" id="HZx-dC-6OG"/>
                         <outlet property="topGreyBorder" destination="1I5-E4-obG" id="08r-Re-KJl"/>
-                        <segue destination="l4F-Ih-7ec" kind="show" identifier="showAskForReferal" id="E5T-Ai-Mhe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lLg-GA-XFy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -708,7 +707,7 @@
                     </connections>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="-4848.5" y="1573.5"/>
+            <point key="canvasLocation" x="-4815.5" y="1582.5"/>
         </scene>
         <!--Ask For Referral-->
         <scene sceneID="2Qq-cM-5Ew">
@@ -719,11 +718,11 @@
                         <viewControllerLayoutGuide type="bottom" id="2vb-zw-F13"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="LYw-OP-G4h">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter your personalised message" translatesAutoresizingMaskIntoConstraints="NO" id="L8L-bc-XZK">
-                                <rect key="frame" x="16" y="80" width="343" height="50"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="Enter your personalised message" translatesAutoresizingMaskIntoConstraints="NO" id="L8L-bc-XZK">
+                                <rect key="frame" x="20" y="80" width="560" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Qj1-9P-Jts"/>
@@ -740,11 +739,11 @@
                                     <outlet property="delegate" destination="l4F-Ih-7ec" id="Uv6-CJ-YXR"/>
                                 </connections>
                             </textView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rKx-ay-gWi">
-                                <rect key="frame" x="0.0" y="140" width="375" height="74"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rKx-ay-gWi">
+                                <rect key="frame" x="4" y="140" width="592" height="74"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Select the contacts you would like to refer for this position." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OV7-Xx-yXT">
-                                        <rect key="frame" x="10" y="0.0" width="355" height="64"/>
+                                        <rect key="frame" x="10" y="0.0" width="572" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="64" id="FOt-Xx-gCP"/>
                                             <constraint firstAttribute="height" constant="64" id="XOX-eP-7nQ"/>
@@ -766,8 +765,8 @@
                                     <constraint firstAttribute="trailing" secondItem="OV7-Xx-yXT" secondAttribute="trailing" constant="10" id="z2r-g8-vMR"/>
                                 </constraints>
                             </view>
-                            <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="6Sq-g3-IGS">
-                                <rect key="frame" x="0.0" y="214" width="375" height="44"/>
+                            <searchBar contentMode="redraw" misplaced="YES" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="6Sq-g3-IGS">
+                                <rect key="frame" x="4" y="214" width="592" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="g73-QJ-2JI"/>
                                 </constraints>
@@ -777,12 +776,12 @@
                                     <outlet property="delegate" destination="l4F-Ih-7ec" id="XuR-na-Azl"/>
                                 </connections>
                             </searchBar>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="6LG-k0-csB">
-                                <rect key="frame" x="178" y="324" width="20" height="20"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="6LG-k0-csB">
+                                <rect key="frame" x="291" y="291" width="20" height="20"/>
                                 <color key="color" red="0.0" green="0.63137254899999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
-                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="76" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vXR-VJ-TP6">
-                                <rect key="frame" x="0.0" y="258" width="375" height="360"/>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="76" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vXR-VJ-TP6">
+                                <rect key="frame" x="4" y="258" width="592" height="360"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="delegate" destination="l4F-Ih-7ec" id="OJJ-E3-oba"/>
@@ -1167,7 +1166,6 @@
                         <outlet property="nudgeBtn" destination="Mji-Gj-fEa" id="CZZ-wa-6r7"/>
                         <outlet property="salaryText" destination="ftp-qH-abp" id="un8-7d-Ar7"/>
                         <outlet property="skills" destination="KXz-hf-wcR" id="gTB-Vc-6B0"/>
-                        <segue destination="l4F-Ih-7ec" kind="show" identifier="AskForReferral" id="w3z-vb-UAH"/>
                         <segue destination="FfD-3r-a1P" kind="show" identifier="EditJob" id="0lF-Gf-mwR"/>
                     </connections>
                 </viewController>
@@ -2294,7 +2292,7 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smp-rK-aNl">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smp-rK-aNl">
                                 <rect key="frame" x="4" y="184" width="406" height="503"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tdu-Qe-djm" userLabel="Skills View">
@@ -2599,7 +2597,7 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                                     <constraint firstAttribute="trailing" secondItem="eZj-Gt-ANh" secondAttribute="trailing" id="yvn-CK-YKK"/>
                                 </constraints>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MaM-1e-UFb" userLabel="Top View">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MaM-1e-UFb" userLabel="Top View">
                                 <rect key="frame" x="4" y="64" width="406" height="120"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MqB-GV-Fan" userLabel="BackgroundImage" customClass="AsyncImage" customModule="Nudj" customModuleProvider="target">
@@ -2722,10 +2720,10 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                         <viewControllerLayoutGuide type="bottom" id="wdM-kP-MCQ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3a5-IX-tvj">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1vZ-hu-yWg">
+                            <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1vZ-hu-yWg">
                                 <rect key="frame" x="20" y="64" width="374" height="170"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -2758,7 +2756,7 @@ Your number is safe with us and we won’t be spamming your contacts either.</st
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dof-7s-Qzl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5283" y="1617"/>
+            <point key="canvasLocation" x="-5377" y="1588"/>
         </scene>
         <!--Chat List-->
         <scene sceneID="7hc-uu-5uL">
@@ -5849,7 +5847,6 @@ Cg
         <segue reference="Dg8-rw-2fQ"/>
         <segue reference="TFM-Ac-ZI1"/>
         <segue reference="rdc-9S-2PT"/>
-        <segue reference="E5T-Ai-Mhe"/>
         <segue reference="1RO-e0-4AP"/>
         <segue reference="90M-dj-0pn"/>
         <segue reference="gvE-qy-aNj"/>

@@ -13,7 +13,6 @@ class JobDetailedViewController: BaseController, SegueHandlerType, SharableMessa
     
     enum SegueIdentifier: String {
         case GoToProfile = "GoToProfile"
-        case AskForReferral = "AskForReferral"
         case EditJob = "EditJob"
     }
     
@@ -254,13 +253,6 @@ class JobDetailedViewController: BaseController, SegueHandlerType, SharableMessa
                 profileView.type = .Public
                 profileView.preloadedName = hirerName.text
             }
-            
-        case .AskForReferral:
-            registerForRemoteNotifications()
-            let askView = segue.destinationViewController as! AskReferralViewController
-            askView.jobID = Int(self.jobID!)
-            askView.jobTitle = jobTitleText.text
-            askView.isNudjRequest = !isOwnJob
             
         case .EditJob:
             let addJobView = segue.destinationViewController as! AddJobController

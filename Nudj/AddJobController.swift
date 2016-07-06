@@ -12,7 +12,6 @@ import SwiftyJSON
 class AddJobController: UIViewController, SegueHandlerType, SharableMessageType, CreatePopupViewDelegate, UITextFieldDelegate, UITextViewDelegate {
 
     enum SegueIdentifier: String {
-        case ShowAskForReferral = "showAskForReferal"
         case ChooseCurrency = "chooseCurrency"
     }
     
@@ -375,20 +374,12 @@ class AddJobController: UIViewController, SegueHandlerType, SharableMessageType,
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segueIdentifierForSegue(segue) {
-        case .ShowAskForReferral:
-            if let refView = segue.destinationViewController as? AskReferralViewController {
-                refView.jobID = self.jobID
-                refView.isNudjRequest = false
-                refView.jobTitle = self.jobTitle.text
-            }
-        
         case .ChooseCurrency:
             if let currencyPickerVC = segue.destinationViewController as? CurrencyPickerViewController {
                 currencyPickerVC.delegate = self
                 currencyPickerVC.loadViewIfNeeded()
                 currencyPickerVC.selectedCurrencyIsoCode = job?.bonusCurrency
             }
-            break
         }
     }
     
