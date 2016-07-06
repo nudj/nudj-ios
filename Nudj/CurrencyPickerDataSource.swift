@@ -18,10 +18,14 @@ class CurrencyPickerDataSource: NSObject, UITableViewDataSource {
         }
     }
     
+    @IBOutlet weak var currencyTable: UITableView!
+    var searchController: UISearchController!
+    
     let nativeCurrency: String
     private let locale: NSLocale
     private let currencyFormatter: NSNumberFormatter
     private let allData: [Data]
+    private var filteredData: [Data]
     private let sectionedData: [[Data]]
     private let cellIdentifier = "CurrencyCell"
     
@@ -38,22 +42,40 @@ class CurrencyPickerDataSource: NSObject, UITableViewDataSource {
         currencyFormatter.maximumFractionDigits = 0
         
         let codes = NSLocale.commonISOCurrencyCodes()
-        allData = codes.map {
-            code -> Data in
+        func codeToData(code: String) -> Data {
             let name = locale.displayNameForKey(NSLocaleCurrencyCode, value: code)
             return Data(name: name ?? code, isoCode: code)
-        }.sort { $0.name < $1.name }
+        }
+        allData = codes.map(codeToData).sort { $0.name < $1.name }
         
         sectionedData = allData.sectionsByInitialCharacter()
-        
+        filteredData = allData
+
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = true
+
         super.init()
+        searchController.searchResultsUpdater = self
     }
     
     func symbolForCurrency(isoCode: String) -> String {
         return locale.displayNameForKey(NSLocaleCurrencySymbol, value: isoCode) ?? isoCode
     }
     
+    func isSearching() -> Bool {
+        return searchController.active && !(searchController.searchBar.text?.isEmpty ?? true)
+    }
+    
     func dataForIndexPath(indexPath: NSIndexPath) -> Data? {
+        if isSearching() {
+            let row = indexPath.row
+            guard row < filteredData.count else {
+                return nil
+            }
+            return filteredData[indexPath.row]
+        }
+        
         let section = indexPath.section
         guard section < sectionedData.count else {
             return nil
@@ -71,14 +93,18 @@ class CurrencyPickerDataSource: NSObject, UITableViewDataSource {
             return nil
         }
         
+        if isSearching() {
+            guard let row = filteredData.indexOf({ $0.isoCode == isoCode }) else {
+                return nil
+            }
+            return NSIndexPath(forRow: row, inSection: 0)
+        }
+        
         var section: Int? = nil
         var row: Int? = nil
         section = sectionedData.indexOf{
             array in
-            row = array.indexOf{
-                data in
-                return data.isoCode == isoCode
-            }
+            row = array.indexOf{ $0.isoCode == isoCode }
             return row != nil
         }
         guard let foundSection = section, foundRow = row else {
@@ -88,22 +114,40 @@ class CurrencyPickerDataSource: NSObject, UITableViewDataSource {
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        if isSearching() {
+            return 1
+        }
         return sectionedData.count
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if isSearching() {
+            return nil
+        }
         return String(sectionedData[section].first!.initialCharacter()!)
     }
     
     func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
-        return sectionedData.map{String($0.first!.initialCharacter()!)}
+        if isSearching() {
+            return nil
+        }
+        let indices = sectionedData.map{String($0.first!.initialCharacter()!)}
+        let result = [UITableViewIndexSearch] + indices
+        return result
     }
     
     func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
-        return index
+        if title == UITableViewIndexSearch {
+            tableView.scrollRectToVisible(searchController.searchBar.frame, animated: false)
+            return NSNotFound
+        }
+        return index - 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isSearching() {
+            return filteredData.count
+        }
         return sectionedData[section].count
     }
     
@@ -119,5 +163,16 @@ class CurrencyPickerDataSource: NSObject, UITableViewDataSource {
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return false
+    }
+}
+
+extension CurrencyPickerDataSource: UISearchResultsUpdating {
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        if let searchString = searchController.searchBar.text?.lowercaseString {
+            filteredData = allData.filter{ $0.name.lowercaseString.containsString(searchString) }
+        } else {
+            filteredData = allData
+        }
+        currencyTable.reloadData()
     }
 }

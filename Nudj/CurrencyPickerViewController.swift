@@ -15,12 +15,16 @@ protocol CurrencyPickerDelegate: class {
 class CurrencyPickerViewController: UIViewController {
     @IBOutlet weak var currencyTable: UITableView!
     @IBOutlet var dataSource: CurrencyPickerDataSource!
-    
     weak var delegate: CurrencyPickerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        currencyTable.delegate = self
+        
+        self.definesPresentationContext = true
+        dataSource.searchController.searchBar.tintColor = currencyTable.tintColor
+        dataSource.searchController.searchBar.sizeToFit()
+        
+        currencyTable.tableHeaderView = dataSource.searchController.searchBar
     }
     
     var selectedCurrencyIsoCode: String? {
@@ -50,7 +54,7 @@ class CurrencyPickerViewController: UIViewController {
     }
     
     @IBAction func cancel(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+        presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func done(sender: AnyObject) {
@@ -58,7 +62,7 @@ class CurrencyPickerViewController: UIViewController {
             let symbol = symbolForCurrencyCode(isoCode)
             delegate?.didSelectCurrency(isoCode, symbol: symbol)
         }
-        dismissViewControllerAnimated(true, completion: nil)
+        presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
     }
 }
 
