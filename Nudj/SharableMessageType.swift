@@ -23,9 +23,9 @@ extension SharableMessageType where Self: UIViewController {
         let url = jobURL.url()
         let message: String
         if isOwnJob {
-            message = Localizations.Jobs.Referral.Sms._Default.Format(url.absoluteString)
+            message = Localizations.Jobs.Referral.Sms._Default.Format("")
         } else {
-            message = Localizations.Jobs.Nudj.Sms._Default.Format(url.absoluteString)
+            message = Localizations.Jobs.Nudj.Sms._Default.Format("")
         }
         
         func handler(activityType: String?, completed: Bool, returnedItems: [AnyObject]?, error: NSError?) -> Void {
@@ -40,6 +40,8 @@ extension SharableMessageType where Self: UIViewController {
                 }
             }
         }
-        shareMessage(message, completionWithItemsHandler: handler)
+        let activityVC = UIActivityViewController(activityItems: [message, url], applicationActivities: nil)
+        activityVC.completionWithItemsHandler = handler
+        self.presentViewController(activityVC, animated: true, completion: nil)
     }
 }
