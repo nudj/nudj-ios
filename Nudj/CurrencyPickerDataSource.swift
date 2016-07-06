@@ -131,11 +131,17 @@ class CurrencyPickerDataSource: NSObject, UITableViewDataSource {
         if isSearching() {
             return nil
         }
-        return sectionedData.map{String($0.first!.initialCharacter()!)}
+        let indices = sectionedData.map{String($0.first!.initialCharacter()!)}
+        let result = [UITableViewIndexSearch] + indices
+        return result
     }
     
     func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
-        return index
+        if title == UITableViewIndexSearch {
+            tableView.scrollRectToVisible(searchController.searchBar.frame, animated: false)
+            return NSNotFound
+        }
+        return index - 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
