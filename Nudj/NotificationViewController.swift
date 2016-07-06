@@ -9,7 +9,7 @@ import UIKit
 import SwiftyJSON
 import MessageUI
 
-class NotificationViewController: UITableViewController, SegueHandlerType, NotificationCellDelegate, MFMessageComposeViewControllerDelegate {
+class NotificationViewController: UITableViewController, SegueHandlerType, NotificationCellDelegate, SharableMessageType, MFMessageComposeViewControllerDelegate {
     
     enum SegueIdentifier: String {
         case GoToChat = "goToChat"
@@ -235,19 +235,13 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
     }
 
     func nudge(jobID: Int, jobTitle: String){
-        self.goToView("AskReferralView", jobID: jobID, jobTitle: jobTitle)
+        shareJob(jobID, isOwnJob: false)
     }
     
     func goToView(viewId: String, jobID: Int, jobTitle: String) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
-        if(viewId == "AskReferralView"){
-            let askView = storyboard.instantiateViewControllerWithIdentifier(viewId) as! AskReferralViewController
-            askView.jobID = jobID
-            askView.jobTitle = jobTitle
-            askView.isNudjRequest = true
-            self.navigationController?.pushViewController(askView, animated: true);
-        } else {
+        if(viewId == "JobDetailedView") {
             let detailsView = storyboard.instantiateViewControllerWithIdentifier(viewId) as! JobDetailedViewController
             detailsView.jobID = jobID
             detailsView.currentUser = UserModel.getLocal()
