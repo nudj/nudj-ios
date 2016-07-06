@@ -198,7 +198,6 @@
 		A9C6EC9F1B3853F900EC9140 /* ChatListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC9D1B3853F900EC9140 /* ChatListTableViewCell.swift */; };
 		A9EC313C1B72357A00356B1F /* ChatStructModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC313B1B72357A00356B1F /* ChatStructModel.swift */; };
 		A9F3332C1B41997600F0D17B /* JobDetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F3332B1B41997600F0D17B /* JobDetailedViewController.swift */; };
-		A9F3336E1B42CD4300F0D17B /* AskReferralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F3336D1B42CD4300F0D17B /* AskReferralViewController.swift */; };
 		A9F333741B4444D700F0D17B /* CreatePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F333731B4444D700F0D17B /* CreatePopupView.swift */; };
 		C80486681C72132C0020EEE1 /* API+Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80486671C72132C0020EEE1 /* API+Endpoints.swift */; };
 		C80486691C72132C0020EEE1 /* API+Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80486671C72132C0020EEE1 /* API+Endpoints.swift */; };
@@ -441,7 +440,6 @@
 		C86F85301C444DB800C23332 /* XMPPvCardAvatarModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F711B387CC800D5A8E9 /* XMPPvCardAvatarModule.m */; };
 		C86F85311C444DB800C23332 /* XMPPMessage+XEP_0085.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F4E1B387CC800D5A8E9 /* XMPPMessage+XEP_0085.m */; };
 		C86F85321C444DB800C23332 /* XMPPSRVResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964FAA1B387CC800D5A8E9 /* XMPPSRVResolver.m */; };
-		C86F85331C444DB800C23332 /* AskReferralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F3336D1B42CD4300F0D17B /* AskReferralViewController.swift */; };
 		C86F85341C444DB800C23332 /* XMPPDigestMD5Authentication.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964E941B387CC800D5A8E9 /* XMPPDigestMD5Authentication.m */; };
 		C86F85351C444DB800C23332 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB72C5691B578D8100CCBD2E /* Notification.swift */; };
 		C86F85361C444DB800C23332 /* XMPPIQ+XEP_0066.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F441B387CC800D5A8E9 /* XMPPIQ+XEP_0066.m */; };
@@ -958,7 +956,6 @@
 		A9C6EC9D1B3853F900EC9140 /* ChatListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ChatListTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9EC313B1B72357A00356B1F /* ChatStructModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ChatStructModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9F3332B1B41997600F0D17B /* JobDetailedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = JobDetailedViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		A9F3336D1B42CD4300F0D17B /* AskReferralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AskReferralViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9F333731B4444D700F0D17B /* CreatePopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CreatePopupView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C80486671C72132C0020EEE1 /* API+Endpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "API+Endpoints.swift"; sourceTree = "<group>"; };
 		C810B09E1CFE107A00F45655 /* NudjError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NudjError.swift; sourceTree = "<group>"; };
@@ -2099,7 +2096,6 @@
 			isa = PBXGroup;
 			children = (
 				EBEA9B481AF265150027A2A2 /* AddJobController.swift */,
-				A9F3336D1B42CD4300F0D17B /* AskReferralViewController.swift */,
 				C831CCD21D22C12F00509B7E /* CurrencyPickerDataSource.swift */,
 				C8DC14201D2C158C00BE6625 /* CurrencyPickerViewController.swift */,
 			);
@@ -3033,7 +3029,6 @@
 				C86F85311C444DB800C23332 /* XMPPMessage+XEP_0085.m in Sources */,
 				C86F85321C444DB800C23332 /* XMPPSRVResolver.m in Sources */,
 				C89F0B4F1D2AC12100BABB3B /* Array+Sections.swift in Sources */,
-				C86F85331C444DB800C23332 /* AskReferralViewController.swift in Sources */,
 				C86F85341C444DB800C23332 /* XMPPDigestMD5Authentication.m in Sources */,
 				C86F85351C444DB800C23332 /* Notification.swift in Sources */,
 				C86F85361C444DB800C23332 /* XMPPIQ+XEP_0066.m in Sources */,
@@ -3287,7 +3282,6 @@
 				A996504C1B387CC800D5A8E9 /* XMPPMessage+XEP_0085.m in Sources */,
 				A99650701B387CC800D5A8E9 /* XMPPSRVResolver.m in Sources */,
 				C89F0B4E1D2AC12100BABB3B /* Array+Sections.swift in Sources */,
-				A9F3336E1B42CD4300F0D17B /* AskReferralViewController.swift in Sources */,
 				A99650041B387CC800D5A8E9 /* XMPPDigestMD5Authentication.m in Sources */,
 				EB72C56A1B578D8100CCBD2E /* Notification.swift in Sources */,
 				A99650481B387CC800D5A8E9 /* XMPPIQ+XEP_0066.m in Sources */,
