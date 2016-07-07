@@ -101,10 +101,13 @@ public struct Localizations {
         
             public struct ActionSheet {
 
-                            /// Base translation: Ask for Referral
+                            /// Base translation: Ask your friends for a referral
+                public static var Title : String = "jobs.ask.action-sheet.title".localized
+
+                /// Base translation: Ask for Referral
                 public static var Button : String = "jobs.ask.action-sheet.button".localized
 
-                /// Base translation: Ask your friends for a referral. Send a few personalised requests via WhatsApp or email and then share on social media to maximise your job’s reach.
+                /// Base translation: Send a few personalised requests via WhatsApp or email and then share on social media to maximise your job’s reach.
                 public static var Body : String = "jobs.ask.action-sheet.body".localized
 
             }
@@ -183,10 +186,13 @@ public struct Localizations {
 
             public struct ActionSheet {
 
-                            /// Base translation: Nudj
+                            /// Base translation: Right, who do you know who could be interested in this job?
+                public static var Title : String = "jobs.nudj.action-sheet.title".localized
+
+                /// Base translation: Nudj
                 public static var Button : String = "jobs.nudj.action-sheet.button".localized
 
-                /// Base translation: Right, who do you know who could be interested in this job? Ping them a message or email, they’’ll appreciate you thinking  of them. Had a mind blank? Don’t worry, help the hirer out and share on social media. If your ‘nudj’ leads to a hire, you get rewarded ;-) 
+                /// Base translation: Ping them a message or email, they’’ll appreciate you thinking  of them. Had a mind blank? Don’t worry, help the hirer out and share on social media. If your ‘nudj’ leads to a hire, you get rewarded ;-)
                 public static var Body : String = "jobs.nudj.action-sheet.body".localized
 
             }
