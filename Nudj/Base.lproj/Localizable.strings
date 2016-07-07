@@ -48,6 +48,8 @@
 "invitation.sms.template" = "Hey! I'm using nudj to help me hire. You should check it out too.\nhttps://geo.itunes.apple.com/gb/app/nudj-the-talent-referral-app/id1081609782?mt=8";
 
 // Jobs
+"jobs.ask.action-sheet.body" = "Ask your friends for a referral.\nSend a few personalised requests via WhatsApp or email and then share on social media to maximise your job’s reach.";
+"jobs.ask.action-sheet.button" = "Ask for Referral";
 "jobs.block.title" = "Block Job";
 "jobs.block.body" = "Are you sure you want to block this job listing?";
 "jobs.block.button" = "Block";
@@ -63,6 +65,9 @@
 "jobs.interested.need-profile.body" = "The hirer will want to see your profile.\nYou can fill it in on the next screen.";
 "jobs.interested.confirmation.body" = "The hirer has been notified.";
 "jobs.nudj.button.edit-profile" = "Edit Profile";
+"jobs.nudj.action-sheet.body" = "Right, who do you know who could be interested in this job?\nPing them a message or email, they’’ll appreciate you thinking  of them.\nHad a mind blank? Don’t worry, help the hirer out and share on social media.\nIf your ‘nudj’ leads to a hire, you get rewarded ;-) 
+";
+"jobs.nudj.action-sheet.button" = "Nudj";
 "jobs.nudj.need-profile.title" = "We need some details";
 "jobs.nudj.need-profile.body" = "The candidate will want to know who is referring them.\nYou can give details on the next screen.";
 "jobs.nudj.sms.default.format" = "Hey! I saw this job and thought of you…\n%@";

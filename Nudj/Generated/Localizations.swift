@@ -65,14 +65,14 @@ public struct Localizations {
         
             public struct Button {
 
-                            /// Base translation: Edit Job
-                public static var Edit : String = "jobs.add.button.edit".localized
+                            /// Base translation: Update
+                public static var Update : String = "jobs.add.button.update".localized
 
                 /// Base translation: Edit Profile
                 public static var EditProfile : String = "jobs.add.button.edit-profile".localized
 
-                /// Base translation: Update
-                public static var Update : String = "jobs.add.button.update".localized
+                /// Base translation: Edit Job
+                public static var Edit : String = "jobs.add.button.edit".localized
 
             }
 
@@ -96,6 +96,20 @@ public struct Localizations {
 
         }
 
+        public struct Ask {
+
+        
+            public struct ActionSheet {
+
+                            /// Base translation: Ask for Referral
+                public static var Button : String = "jobs.ask.action-sheet.button".localized
+
+                /// Base translation: Ask your friends for a referral. Send a few personalised requests via WhatsApp or email and then share on social media to maximise your job’s reach.
+                public static var Body : String = "jobs.ask.action-sheet.body".localized
+
+            }
+        }
+
         public struct Update {
 
         
@@ -113,16 +127,6 @@ public struct Localizations {
         public struct Delete {
 
         
-            public struct Error {
-
-                            /// Base translation: Error
-                public static var Title : String = "jobs.delete.error.title".localized
-
-                /// Base translation: There was an error deleting this job.
-                public static var Body : String = "jobs.delete.error.body".localized
-
-            }
-
             public struct Alert {
 
                             /// Base translation: Delete job
@@ -130,6 +134,16 @@ public struct Localizations {
 
                 /// Base translation: Are you sure you want to delete this job?
                 public static var Body : String = "jobs.delete.alert.body".localized
+
+            }
+
+            public struct Error {
+
+                            /// Base translation: Error
+                public static var Title : String = "jobs.delete.error.title".localized
+
+                /// Base translation: There was an error deleting this job.
+                public static var Body : String = "jobs.delete.error.body".localized
 
             }
         }
@@ -166,6 +180,16 @@ public struct Localizations {
                 public static var EditProfile : String = "jobs.nudj.button.edit-profile".localized
 
             }
+
+            public struct ActionSheet {
+
+                            /// Base translation: Nudj
+                public static var Button : String = "jobs.nudj.action-sheet.button".localized
+
+                /// Base translation: Right, who do you know who could be interested in this job? Ping them a message or email, they’’ll appreciate you thinking  of them. Had a mind blank? Don’t worry, help the hirer out and share on social media. If your ‘nudj’ leads to a hire, you get rewarded ;-) 
+                public static var Body : String = "jobs.nudj.action-sheet.body".localized
+
+            }
         }
 
         public struct Location {
@@ -192,26 +216,6 @@ public struct Localizations {
 
                 }
             }
-        }
-
-        public struct Block {
-
-                    /// Base translation: Block Job
-            public static var Title : String = "jobs.block.title".localized
-
-            /// Base translation: Block
-            public static var Button : String = "jobs.block.button".localized
-
-            /// Base translation: Are you sure you want to block this job listing?
-            public static var Body : String = "jobs.block.body".localized
-
-        }
-
-        public struct Report {
-
-                    /// Base translation: Block and Report
-            public static var Button : String = "jobs.report.button".localized
-
         }
 
         public struct Interested {
@@ -252,6 +256,26 @@ public struct Localizations {
             }
         }
 
+        public struct Report {
+
+                    /// Base translation: Block and Report
+            public static var Button : String = "jobs.report.button".localized
+
+        }
+
+        public struct Block {
+
+                    /// Base translation: Block Job
+            public static var Title : String = "jobs.block.title".localized
+
+            /// Base translation: Block
+            public static var Button : String = "jobs.block.button".localized
+
+            /// Base translation: Are you sure you want to block this job listing?
+            public static var Body : String = "jobs.block.body".localized
+
+        }
+
         public struct Employer {
 
                     /// Base translation: Employer: %@
@@ -267,6 +291,20 @@ public struct Localizations {
             public static func Format(value1 : String) -> String {
                 return String(format: NSLocalizedString("jobs.bonus.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
             }
+
+        }
+    }
+
+    public struct Phone {
+
+    
+        public struct Unavailable {
+
+                    /// Base translation: Phone unavailable
+            public static var Title : String = "phone.unavailable.title".localized
+
+            /// Base translation: This device cannot make phone calls.
+            public static var Body : String = "phone.unavailable.body".localized
 
         }
     }
@@ -340,20 +378,6 @@ public struct Localizations {
         }
     }
 
-    public struct Phone {
-
-    
-        public struct Unavailable {
-
-                    /// Base translation: Phone unavailable
-            public static var Title : String = "phone.unavailable.title".localized
-
-            /// Base translation: This device cannot make phone calls.
-            public static var Body : String = "phone.unavailable.body".localized
-
-        }
-    }
-
     public struct Server {
 
     
@@ -368,13 +392,6 @@ public struct Localizations {
     public struct Settings {
 
     
-        public struct Report {
-
-                    /// Base translation: Let us know if you have encountered any inappropriate content or issues whilst using Nudj.
-            public static var Intro : String = "settings.report.intro".localized
-
-        }
-
         public struct Delete {
 
                     /// Base translation: Delete Account
@@ -385,6 +402,13 @@ public struct Localizations {
 
             /// Base translation: Are you sure you want to permanently delete your account information, including jobs and chats?
             public static var Body : String = "settings.delete.body".localized
+
+        }
+
+        public struct Report {
+
+                    /// Base translation: Let us know if you have encountered any inappropriate content or issues whilst using Nudj.
+            public static var Intro : String = "settings.report.intro".localized
 
         }
 
@@ -409,23 +433,16 @@ public struct Localizations {
             }
         }
 
-        public struct Feedback {
-
-                    /// Base translation: We welcome our users’ feedback so that we can adjust, update and enhance Nudj to your needs.
-            public static var Intro : String = "settings.feedback.intro".localized
-
-        }
-
         public struct Title {
 
                     /// Base translation: Report an Issue
             public static var ReportIssue : String = "settings.title.report-issue".localized
 
-            /// Base translation: Terms and Conditions
-            public static var Terms : String = "settings.title.terms".localized
-
             /// Base translation: Your Profile
             public static var Profile : String = "settings.title.profile".localized
+
+            /// Base translation: Terms and Conditions
+            public static var Terms : String = "settings.title.terms".localized
 
             /// Base translation: Privacy Policy
             public static var PrivacyPolicy : String = "settings.title.privacy-policy".localized
@@ -483,6 +500,13 @@ public struct Localizations {
             }
         }
 
+        public struct Feedback {
+
+                    /// Base translation: We welcome our users’ feedback so that we can adjust, update and enhance Nudj to your needs.
+            public static var Intro : String = "settings.feedback.intro".localized
+
+        }
+
         public struct NotificationTest {
 
                     /// Base translation: Test Notification Sent
@@ -499,11 +523,11 @@ public struct Localizations {
     
         public struct Button {
 
-                    /// Base translation: Message
-            public static var Message : String = "notification.button.message".localized
-
-            /// Base translation: Details
+                    /// Base translation: Details
             public static var Details : String = "notification.button.details".localized
+
+            /// Base translation: Message
+            public static var Message : String = "notification.button.message".localized
 
             /// Base translation: NUDJ
             public static var Nudj : String = "notification.button.nudj".localized
@@ -564,11 +588,11 @@ public struct Localizations {
     
         public struct Send {
 
-                    /// Base translation: Invite
-            public static var Button : String = "invitation.send.button".localized
-
-            /// Base translation: Invite Contact
+                    /// Base translation: Invite Contact
             public static var Title : String = "invitation.send.title".localized
+
+            /// Base translation: Invite
+            public static var Button : String = "invitation.send.button".localized
 
 
             public struct Body {
@@ -621,29 +645,6 @@ public struct Localizations {
         }
     }
 
-    public struct Verification {
-
-    
-        public struct Code {
-
-                    /// Base translation: That verification code is invalid.
-            public static var Invalid : String = "verification.code.invalid".localized
-
-            /// Base translation: That verification code is incorrect. Please try again.
-            public static var Error : String = "verification.code.error".localized
-
-
-            public struct Alert {
-
-                            /// Base translation: Your verification code is %@.
-                public static func Format(value1 : String) -> String {
-                    return String(format: NSLocalizedString("verification.code.alert.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
-                }
-
-            }
-        }
-    }
-
     public struct Sms {
 
     
@@ -665,6 +666,29 @@ public struct Localizations {
             /// Base translation: This device cannot send text messages.
             public static var Body : String = "sms.unavailable.body".localized
 
+        }
+    }
+
+    public struct Verification {
+
+    
+        public struct Code {
+
+                    /// Base translation: That verification code is incorrect. Please try again.
+            public static var Error : String = "verification.code.error".localized
+
+            /// Base translation: That verification code is invalid.
+            public static var Invalid : String = "verification.code.invalid".localized
+
+
+            public struct Alert {
+
+                            /// Base translation: Your verification code is %@.
+                public static func Format(value1 : String) -> String {
+                    return String(format: NSLocalizedString("verification.code.alert.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
+                }
+
+            }
         }
     }
 
@@ -725,11 +749,11 @@ public struct Localizations {
 
         public struct Block {
 
-                    /// Base translation: Block
-            public static var Button : String = "chat.block.button".localized
-
-            /// Base translation: Block User
+                    /// Base translation: Block User
             public static var Title : String = "chat.block.title".localized
+
+            /// Base translation: Block
+            public static var Button : String = "chat.block.button".localized
 
 
             public struct Body {
@@ -740,6 +764,13 @@ public struct Localizations {
                 }
 
             }
+        }
+
+        public struct Restored {
+
+                    /// Base translation: Chat Restored
+            public static var Title : String = "chat.restored.title".localized
+
         }
 
         public struct Authentication {
@@ -753,13 +784,6 @@ public struct Localizations {
             }
         }
 
-        public struct Restored {
-
-                    /// Base translation: Chat Restored
-            public static var Title : String = "chat.restored.title".localized
-
-        }
-
         public struct Report {
 
                     /// Base translation: Block and Report
@@ -770,20 +794,20 @@ public struct Localizations {
         public struct Contact {
 
         
-            public struct Success {
-
-                            /// Base translation: You have successfully contacted %@
-                public static func Format(value1 : String) -> String {
-                    return String(format: NSLocalizedString("chat.contact.success.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
-                }
-
-            }
-
             public struct Send {
 
                             /// Base translation: Contact %@
                 public static func Format(value1 : String) -> String {
                     return String(format: NSLocalizedString("chat.contact.send.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
+                }
+
+            }
+
+            public struct Success {
+
+                            /// Base translation: You have successfully contacted %@
+                public static func Format(value1 : String) -> String {
+                    return String(format: NSLocalizedString("chat.contact.success.format", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: ""), value1)
                 }
 
             }
