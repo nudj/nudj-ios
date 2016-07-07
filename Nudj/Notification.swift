@@ -64,7 +64,7 @@ class Notification {
         jobTitle = metadata["job_title"].stringValue
         
         let bonusAmount = metadata["job_bonus"].intValue
-        let bonusCurrency = metadata["job_currency"].string ?? ""
+        let bonusCurrency = metadata["job_bonus_currency"].string ?? ""
         
         let job = JobModel(title: jobTitle, description: "", salaryFreeText: "", company: employerName, location: "", bonusAmount: bonusAmount, bonusCurrency: bonusCurrency, active: true, skills: [])
         jobBonus = job.formattedBonus 
