@@ -66,8 +66,8 @@
 "jobs.interested.need-profile.body" = "The hirer will want to see your profile.\nYou can fill it in on the next screen.";
 "jobs.interested.confirmation.body" = "The hirer has been notified.";
 "jobs.nudj.button.edit-profile" = "Edit Profile";
-"jobs.nudj.action-sheet.title" = "Right, who do you know who could be interested in this job?";
-"jobs.nudj.action-sheet.body" = "Ping them a message or email, they’’ll appreciate you thinking  of them.\nHad a mind blank? Don’t worry, help the hirer out and share on social media.\nIf your ‘nudj’ leads to a hire, you get rewarded ;-)";
+"jobs.nudj.action-sheet.title" = "Send the job to your friends";
+"jobs.nudj.action-sheet.body" = "Ping them a message; they’ll appreciate you thinking of them. If you’ve had a mind blank help the hirer by sharing on social media.";
 "jobs.nudj.action-sheet.button" = "Nudj";
 "jobs.nudj.need-profile.title" = "We need some details";
 "jobs.nudj.need-profile.body" = "The candidate will want to know who is referring them.\nYou can give details on the next screen.";

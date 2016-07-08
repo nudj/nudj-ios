@@ -186,13 +186,13 @@ public struct Localizations {
 
             public struct ActionSheet {
 
-                            /// Base translation: Right, who do you know who could be interested in this job?
+                            /// Base translation: Send the job to your friends
                 public static var Title : String = "jobs.nudj.action-sheet.title".localized
 
                 /// Base translation: Nudj
                 public static var Button : String = "jobs.nudj.action-sheet.button".localized
 
-                /// Base translation: Ping them a message or email, they’’ll appreciate you thinking  of them. Had a mind blank? Don’t worry, help the hirer out and share on social media. If your ‘nudj’ leads to a hire, you get rewarded ;-)
+                /// Base translation: Ping them a message; they’ll appreciate you thinking of them. If you’ve had a mind blank help the hirer by sharing on social media.
                 public static var Body : String = "jobs.nudj.action-sheet.body".localized
 
             }
