@@ -202,14 +202,20 @@ static char facebookAppIdKey;
         return nil;
     }
 	
+#if 0 // old  code
 	srand([[NSDate date] timeIntervalSince1970]);
+#endif
 	
 	NSMutableString *buffer = [NSMutableString stringWithCapacity:250];
 	[buffer appendFormat:@"method=%@&", method];
 	[buffer appendFormat:@"nonce=%@&", nonce];
 	[buffer appendFormat:@"access_token=%@&", accessToken];
 	[buffer appendFormat:@"api_key=%@&", appId];
+#if 0 // old  code
 	[buffer appendFormat:@"call_id=%d&", rand()];
+#else // JRB fix
+    [buffer appendFormat:@"call_id=%d&", arc4random()];
+#endif
 	[buffer appendFormat:@"v=%@",@"1.0"];
 	
 	XMPPLogVerbose(@"XMPPXFacebookPlatformAuthentication: response for facebook: %@", buffer);

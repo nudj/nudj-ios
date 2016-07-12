@@ -671,12 +671,15 @@ static NSMutableSet *databaseFileNames;
 	{
 		XMPPLogVerbose(@"%@: Creating managedObjectContext", [self class]);
 		
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 		if ([NSManagedObjectContext instancesRespondToSelector:@selector(initWithConcurrencyType:)])
 			managedObjectContext =
 			    [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
 		else
 			managedObjectContext = [[NSManagedObjectContext alloc] init];
-		
+#pragma clang diagnostic pop
+        
 		managedObjectContext.persistentStoreCoordinator = coordinator;
 		managedObjectContext.undoManager = nil;
 		
@@ -716,6 +719,8 @@ static NSMutableSet *databaseFileNames;
 	{
 		XMPPLogVerbose(@"%@: Creating mainThreadManagedObjectContext", [self class]);
 		
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 		if ([NSManagedObjectContext instancesRespondToSelector:@selector(initWithConcurrencyType:)])
 			mainThreadManagedObjectContext =
 			    [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
@@ -724,6 +729,7 @@ static NSMutableSet *databaseFileNames;
 		
 		mainThreadManagedObjectContext.persistentStoreCoordinator = coordinator;
 		mainThreadManagedObjectContext.undoManager = nil;
+#pragma clang diagnostic pop
 		
 		[[NSNotificationCenter defaultCenter] addObserver:self
 		                                         selector:@selector(managedObjectContextDidSave:)
