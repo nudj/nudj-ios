@@ -1,17 +1,5 @@
 PODS:
-  - Bolts (1.8.3):
-    - Bolts/AppLinks (= 1.8.3)
-    - Bolts/Tasks (= 1.8.3)
-  - Bolts/AppLinks (1.8.3):
-    - Bolts/Tasks
-  - Bolts/Tasks (1.8.3)
   - DateTools (1.7.0)
-  - FBSDKCoreKit (4.13.1):
-    - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.13.1):
-    - FBSDKCoreKit
-  - FBSDKShareKit (4.13.1):
-    - FBSDKCoreKit
   - Mixpanel (3.0.0):
     - Mixpanel/Mixpanel (= 3.0.0)
   - Mixpanel/Mixpanel (3.0.0)
@@ -19,18 +7,11 @@ PODS:
 
 DEPENDENCIES:
   - DateTools
-  - FBSDKCoreKit
-  - FBSDKLoginKit
-  - FBSDKShareKit
   - Mixpanel
   - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Bolts: 52551f96df2f8aac6b4414347f3f8353a39f1966
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
-  FBSDKCoreKit: 2807fe0da2ddb49a1469da6d6ff597f99912980f
-  FBSDKLoginKit: 6d350cb6a22d6956e9d078885de6ee8a0ebc51b4
-  FBSDKShareKit: c9438df7573b33780ac8c3451201c5ebb260ffca
   Mixpanel: ac92056ee35a961362513ba11049e67cffcaa1f1
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 

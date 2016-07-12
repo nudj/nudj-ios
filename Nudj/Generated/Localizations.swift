@@ -411,6 +411,56 @@ public struct Localizations {
 
         }
 
+        public struct NotificationTest {
+
+                    /// Base translation: Test Notification Sent
+            public static var Title : String = "settings.notification-test.title".localized
+
+            /// Base translation: If push notifications are set up correctly on your device, you should soon receive a test notification.
+            public static var Body : String = "settings.notification-test.body".localized
+
+        }
+
+        public struct Title {
+
+                    /// Base translation: Report an Issue
+            public static var ReportIssue : String = "settings.title.report-issue".localized
+
+            /// Base translation: Terms and Conditions
+            public static var Terms : String = "settings.title.terms".localized
+
+            /// Base translation: Your Profile
+            public static var Profile : String = "settings.title.profile".localized
+
+            /// Base translation: Privacy Policy
+            public static var PrivacyPolicy : String = "settings.title.privacy-policy".localized
+
+            /// Base translation: Archived Chats
+            public static var Chats : String = "settings.title.chats".localized
+
+            /// Base translation: Send Feedback
+            public static var Feedback : String = "settings.title.feedback".localized
+
+            /// Base translation: Posted Jobs
+            public static var PostedJobs : String = "settings.title.posted-jobs".localized
+
+            /// Base translation: Delete Your Account
+            public static var DeleteAccount : String = "settings.title.delete-account".localized
+
+            /// Base translation: Favourite Jobs
+            public static var FavoriteJobs : String = "settings.title.favorite-jobs".localized
+
+            /// Base translation: Frequently Asked Questions
+            public static var Faq : String = "settings.title.FAQ".localized
+
+            /// Base translation: Your Status
+            public static var Status : String = "settings.title.status".localized
+
+            /// Base translation: Send a Test Notification
+            public static var TestNotification : String = "settings.title.test-notification".localized
+
+        }
+
         public struct Report {
 
                     /// Base translation: Let us know if you have encountered any inappropriate content or issues whilst using Nudj.
@@ -439,87 +489,10 @@ public struct Localizations {
             }
         }
 
-        public struct Title {
-
-                    /// Base translation: Report an Issue
-            public static var ReportIssue : String = "settings.title.report-issue".localized
-
-            /// Base translation: Your Profile
-            public static var Profile : String = "settings.title.profile".localized
-
-            /// Base translation: Terms and Conditions
-            public static var Terms : String = "settings.title.terms".localized
-
-            /// Base translation: Privacy Policy
-            public static var PrivacyPolicy : String = "settings.title.privacy-policy".localized
-
-            /// Base translation: Archived Chats
-            public static var Chats : String = "settings.title.chats".localized
-
-            /// Base translation: Send Feedback
-            public static var Feedback : String = "settings.title.feedback".localized
-
-            /// Base translation: Posted Jobs
-            public static var PostedJobs : String = "settings.title.posted-jobs".localized
-
-            /// Base translation: Delete Your Account
-            public static var DeleteAccount : String = "settings.title.delete-account".localized
-
-            /// Base translation: Favourite Jobs
-            public static var FavoriteJobs : String = "settings.title.favorite-jobs".localized
-
-            /// Base translation: Facebook
-            public static var Facebook : String = "settings.title.facebook".localized
-
-            /// Base translation: Frequently Asked Questions
-            public static var Faq : String = "settings.title.FAQ".localized
-
-            /// Base translation: Your Status
-            public static var Status : String = "settings.title.status".localized
-
-            /// Base translation: Send a Test Notification
-            public static var TestNotification : String = "settings.title.test-notification".localized
-
-        }
-
-        public struct Facebook {
-
-        
-            public struct Connected {
-
-                            /// Base translation: Facebook Connected
-                public static var Title : String = "settings.facebook.connected.title".localized
-
-                /// Base translation: You have successfully connected your Facebook account.
-                public static var Body : String = "settings.facebook.connected.body".localized
-
-            }
-
-            public struct Disconnected {
-
-                            /// Base translation: Facebook Disconnected
-                public static var Title : String = "settings.facebook.disconnected.title".localized
-
-                /// Base translation: You have successfully disconnected your Facebook account.
-                public static var Body : String = "settings.facebook.disconnected.body".localized
-
-            }
-        }
-
         public struct Feedback {
 
                     /// Base translation: We welcome our users’ feedback so that we can adjust, update and enhance Nudj to your needs.
             public static var Intro : String = "settings.feedback.intro".localized
-
-        }
-
-        public struct NotificationTest {
-
-                    /// Base translation: Test Notification Sent
-            public static var Title : String = "settings.notification-test.title".localized
-
-            /// Base translation: If push notifications are set up correctly on your device, you should soon receive a test notification.
-            public static var Body : String = "settings.notification-test.body".localized
 
         }
     }

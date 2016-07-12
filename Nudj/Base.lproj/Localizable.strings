@@ -120,7 +120,6 @@
 "settings.title.favorite-jobs" = "Favourite Jobs";
 "settings.title.posted-jobs" = "Posted Jobs";
 "settings.title.chats" = "Archived Chats";
-"settings.title.facebook" = "Facebook";
 "settings.title.FAQ" = "Frequently Asked Questions";
 "settings.title.terms" = "Terms and Conditions";
 "settings.title.privacy-policy" = "Privacy Policy";
@@ -134,10 +133,6 @@
 "settings.disconnect.button" = "Disconnect";
 "settings.disconnect.title.format" = "Disconnect %@";
 "settings.disconnect.title.body" = "Are you sure you want to disconnect %@?";
-"settings.facebook.connected.title" = "Facebook Connected";
-"settings.facebook.connected.body" = "You have successfully connected your Facebook account.";
-"settings.facebook.disconnected.title" = "Facebook Disconnected";
-"settings.facebook.disconnected.body" = "You have successfully disconnected your Facebook account.";
 "settings.feedback.intro" = "We welcome our users’ feedback so that we can adjust, update and enhance Nudj to your needs.";
 "settings.notification-test.title" = "Test Notification Sent";
 "settings.notification-test.body" = "If push notifications are set up correctly on your device, you should soon receive a test notification.";

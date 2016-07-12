@@ -8,7 +8,7 @@
 import UIKit
 import SwiftyJSON
 
-class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSource, UITableViewDelegate, SocialStatusDelegate {
+class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSource, UITableViewDelegate {
     
     enum SegueIdentifier: String {
         case ShowProfile = "showYourProfile"
@@ -25,7 +25,7 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
     }
     
     enum CellAction {
-        case ShowProfile, ChooseStatus, ShowFavoriteJobs, ShowPostedJobs, ShowChats, ToggleFacebook, ShowFAQ, ShowTerms, ShowPrivacyPolicy, GiveFeedback, ReportAnIssue, DeleteAccount, TestNotification
+        case ShowProfile, ChooseStatus, ShowFavoriteJobs, ShowPostedJobs, ShowChats, ShowFAQ, ShowTerms, ShowPrivacyPolicy, GiveFeedback, ReportAnIssue, DeleteAccount, TestNotification
         
         func segueIdentifier() -> SegueIdentifier? {
             switch self {
@@ -34,7 +34,6 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             case ShowFavoriteJobs: return SegueIdentifier.GoToFavoriteJobs
             case ShowPostedJobs: return SegueIdentifier.GoToPostedJobs
             case ShowChats: return SegueIdentifier.GoToChats
-            case ToggleFacebook: return nil
             case ShowFAQ: return SegueIdentifier.ShowFAQ
             case ShowTerms: return SegueIdentifier.ShowTerms
             case ShowPrivacyPolicy: return SegueIdentifier.ShowPrivacyPolicy
@@ -53,7 +52,6 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             case ShowFavoriteJobs: return titles.FavoriteJobs
             case ShowPostedJobs: return titles.PostedJobs
             case ShowChats: return titles.Chats
-            case ToggleFacebook: return titles.Facebook
             case ShowFAQ: return titles.Faq
             case ShowTerms: return titles.Terms
             case ShowPrivacyPolicy: return titles.PrivacyPolicy
@@ -73,8 +71,6 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
     
     let cellIdentifier = "SettingsCell"
     
-    var socialhander: SocialHandlerModel?
-    var statusParent: SocialStatus?
     let itemsArray: [[CellAction]] = [
         [
             .ShowProfile,
@@ -83,10 +79,6 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             .ShowPostedJobs,
             .ShowChats,
         ],
-        // temporarily hide facebook option until #33 is resolved
-//        [
-//            .ToggleFacebook
-//        ],
         [
             .ShowFAQ,
             .ShowTerms,
@@ -107,7 +99,6 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
 
         table.registerNib(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
         versionNumberLabel.text = fullVersionNumber()
-        self.socialhander = SocialHandlerModel()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -153,14 +144,6 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
             cell.accessoryView = self.statusButton
             cell.accessoryView?.userInteractionEnabled = false
             
-        case .ToggleFacebook:
-            cell.imageView!.image = UIImage(named: "facebook_icon")
-            if (self.socialStatuses.count > 0) {
-                let social = SocialStatus(connected: self.socialStatuses["facebook"]!, and: action)
-                social.delegate = self
-                cell.accessoryView = social
-            }
-            
         case .DeleteAccount:
             cell.textLabel?.textColor = .redColor()
             cell.accessoryType = .None
@@ -178,9 +161,6 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let action = itemsArray[indexPath.section][indexPath.row]
         switch action {
-        case .ToggleFacebook:
-            break
-            
         case .DeleteAccount:
             let localization = Localizations.Settings.Delete.self
             let alert = UIAlertController(title: localization.Title, message: localization.Body, preferredStyle: .Alert)
@@ -264,65 +244,8 @@ class SettingsController: UIViewController, SegueHandlerType, UITableViewDataSou
         }
     }
 
-    func didTap(socialStatus: SocialStatus) {
-        self.statusParent = socialStatus;
-        let statusIdentifier = socialStatus.statusIdentifier
-        switch statusIdentifier {
-        case .ToggleFacebook:
-            let statusName = statusIdentifier.title()
-            if(socialStatus.connected){
-                let title = Localizations.Settings.Disconnect.Title.Format(statusName)
-                let message = Localizations.Settings.Disconnect.Title.Body(statusName)
-                let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-                
-                let cancelAction = UIAlertAction(title: Localizations.General.Button.Cancel, style: .Cancel, handler: nil)
-                alert.addAction(cancelAction)
-                
-                let disconnectAction = UIAlertAction(title: Localizations.Settings.Disconnect.Button, style: .Default) {
-                    _ in
-                    self.handleSocialAction(.ToggleFacebook)
-                }
-                alert.addAction(disconnectAction)
-                
-                alert.preferredAction = cancelAction
-                self.presentViewController(alert, animated: true, completion: nil)
-            } else {
-                self.handleSocialAction(.ToggleFacebook)
-            }
-            break
-            
-        default:
-            break
-        }
-    }
-    
     func deleteAccount(_: UIAlertAction) {
         MixPanelHandler.sendData("DeleteAcountAction")
         performSegueWithIdentifier(.UnwindToJobsList, sender: self)
-    }
-    
-    func handleSocialAction(action: CellAction){
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .Alert)
-        let cancelAction = UIAlertAction(title: Localizations.General.Button.Ok, style: .Cancel, handler: nil)
-        alert.addAction(cancelAction)
-        alert.preferredAction = cancelAction
-        
-        if action == .ToggleFacebook {
-            self.socialhander!.configureFacebook(self.statusParent!.connected, completionHandler: { 
-                success in
-                if(success){
-                    self.statusParent!.toggleConnected()
-                    self.socialStatuses["facebook"] = self.statusParent!.connected
-                    if(self.statusParent!.connected){
-                        alert.title = Localizations.Settings.Facebook.Connected.Title
-                        alert.message = Localizations.Settings.Facebook.Connected.Body
-                    }else{
-                        alert.title = Localizations.Settings.Facebook.Disconnected.Title
-                        alert.message = Localizations.Settings.Facebook.Disconnected.Body
-                    }
-                    self.presentViewController(alert, animated: true, completion: nil)
-                }
-            })
-        }
     }
 }

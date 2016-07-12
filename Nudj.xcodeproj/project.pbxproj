@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A9191EA61B6A402E000F9168 /* SocialStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9191EA51B6A402E000F9168 /* SocialStatus.swift */; };
 		A929E4951B863D3F00AC2A5F /* MixPanelHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A929E4941B863D3F00AC2A5F /* MixPanelHandler.swift */; };
 		A947CC991B7119B500C9518E /* NoContentPlaceHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A947CC981B7119B500C9518E /* NoContentPlaceHolder.swift */; };
 		A95798251B46965A006E826E /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95798241B46965A006E826E /* NotificationViewController.swift */; };
@@ -192,7 +191,6 @@
 		A9A7C4D61B8364000051B1E5 /* InitiateChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A7C4D51B8364000051B1E5 /* InitiateChatViewController.swift */; };
 		A9ACE1C41B68FC0F003BD5F2 /* SendFeedBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACE1C31B68FC0F003BD5F2 /* SendFeedBackViewController.swift */; };
 		A9ACE1CC1B69107A003BD5F2 /* SavedPostedJobs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACE1CB1B69107A003BD5F2 /* SavedPostedJobs.swift */; };
-		A9B577F31B6BD58E00CFB474 /* SocialHandlerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B577F21B6BD58E00CFB474 /* SocialHandlerModel.swift */; };
 		A9C6EC921B381EB000EC9140 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC911B381EB000EC9140 /* ChatViewController.swift */; };
 		A9C6EC9C1B38447700EC9140 /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC9B1B38447700EC9140 /* ChatListViewController.swift */; };
 		A9C6EC9F1B3853F900EC9140 /* ChatListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C6EC9D1B3853F900EC9140 /* ChatListTableViewCell.swift */; };
@@ -249,7 +247,6 @@
 		C86F84631C444DB800C23332 /* XMPPAttentionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F911B387CC800D5A8E9 /* XMPPAttentionModule.m */; };
 		C86F84641C444DB800C23332 /* XMPPvCard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9964F1B1B387CC800D5A8E9 /* XMPPvCard.xcdatamodeld */; };
 		C86F84651C444DB800C23332 /* XMPPGoogleSharedStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EC41B387CC800D5A8E9 /* XMPPGoogleSharedStatus.m */; };
-		C86F84661C444DB800C23332 /* SocialStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9191EA51B6A402E000F9168 /* SocialStatus.swift */; };
 		C86F84671C444DB800C23332 /* XMPPPing.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F831B387CC800D5A8E9 /* XMPPPing.m */; };
 		C86F84681C444DB800C23332 /* XMPPUserCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964ED51B387CC800D5A8E9 /* XMPPUserCoreDataStorageObject.m */; };
 		C86F84691C444DB800C23332 /* XMPPResourceMemoryStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964ED81B387CC800D5A8E9 /* XMPPResourceMemoryStorageObject.m */; };
@@ -411,7 +408,6 @@
 		C86F850F1C444DB800C23332 /* CreatePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F333731B4444D700F0D17B /* CreatePopupView.swift */; };
 		C86F85101C444DB800C23332 /* XMPPRoster.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EE01B387CC800D5A8E9 /* XMPPRoster.m */; };
 		C86F85111C444DB800C23332 /* XMPPBandwidthMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964EBD1B387CC800D5A8E9 /* XMPPBandwidthMonitor.m */; };
-		C86F85121C444DB800C23332 /* SocialHandlerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B577F21B6BD58E00CFB474 /* SocialHandlerModel.swift */; };
 		C86F85131C444DB800C23332 /* StatusPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB313D2F1AAF4C5A00F008B8 /* StatusPicker.swift */; };
 		C86F85141C444DB800C23332 /* XMPPCapsCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F5E1B387CC800D5A8E9 /* XMPPCapsCoreDataStorageObject.m */; };
 		C86F85151C444DB800C23332 /* XMPPMessage+XEP_0184.m in Sources */ = {isa = PBXBuildFile; fileRef = A9964F791B387CC800D5A8E9 /* XMPPMessage+XEP_0184.m */; };
@@ -579,7 +575,6 @@
 /* Begin PBXFileReference section */
 		39A67AE42E9231EE2A750094 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		91ACAE069A6F9735FED79A9F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		A9191EA51B6A402E000F9168 /* SocialStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SocialStatus.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A929E4941B863D3F00AC2A5F /* MixPanelHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MixPanelHandler.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A947CC981B7119B500C9518E /* NoContentPlaceHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NoContentPlaceHolder.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A95798241B46965A006E826E /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NotificationViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -950,7 +945,6 @@
 		A9A7C4D51B8364000051B1E5 /* InitiateChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = InitiateChatViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9ACE1C31B68FC0F003BD5F2 /* SendFeedBackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SendFeedBackViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9ACE1CB1B69107A003BD5F2 /* SavedPostedJobs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SavedPostedJobs.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		A9B577F21B6BD58E00CFB474 /* SocialHandlerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SocialHandlerModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9C6EC911B381EB000EC9140 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ChatViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9C6EC9B1B38447700EC9140 /* ChatListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ChatListViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A9C6EC9D1B3853F900EC9140 /* ChatListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ChatListTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -2299,7 +2293,6 @@
 				A947CC981B7119B500C9518E /* NoContentPlaceHolder.swift */,
 				C81F16A81C735BF0000927F8 /* NSData+Hex.swift */,
 				EB6F22BD1AB045C0007FF1B8 /* RBResizer.swift */,
-				A9191EA51B6A402E000F9168 /* SocialStatus.swift */,
 				EBE5C3111B25811400CFF7E9 /* TokenView.swift */,
 			);
 			name = Common;
@@ -2326,7 +2319,6 @@
 				C8CDC5E41CEB858600BF449E /* JobURL.swift */,
 				EB72C5691B578D8100CCBD2E /* Notification.swift */,
 				C810B09E1CFE107A00F45655 /* NudjError.swift */,
-				A9B577F21B6BD58E00CFB474 /* SocialHandlerModel.swift */,
 				EBB3382F1A9F5A44000CAD88 /* UserModel.swift */,
 			);
 			name = Models;
@@ -2822,7 +2814,6 @@
 				C86F84631C444DB800C23332 /* XMPPAttentionModule.m in Sources */,
 				C86F84641C444DB800C23332 /* XMPPvCard.xcdatamodeld in Sources */,
 				C86F84651C444DB800C23332 /* XMPPGoogleSharedStatus.m in Sources */,
-				C86F84661C444DB800C23332 /* SocialStatus.swift in Sources */,
 				C86F84671C444DB800C23332 /* XMPPPing.m in Sources */,
 				C86F84681C444DB800C23332 /* XMPPUserCoreDataStorageObject.m in Sources */,
 				C86F84691C444DB800C23332 /* XMPPResourceMemoryStorageObject.m in Sources */,
@@ -2998,7 +2989,6 @@
 				C86F850F1C444DB800C23332 /* CreatePopupView.swift in Sources */,
 				C86F85101C444DB800C23332 /* XMPPRoster.m in Sources */,
 				C86F85111C444DB800C23332 /* XMPPBandwidthMonitor.m in Sources */,
-				C86F85121C444DB800C23332 /* SocialHandlerModel.swift in Sources */,
 				C86F85131C444DB800C23332 /* StatusPicker.swift in Sources */,
 				C86F85141C444DB800C23332 /* XMPPCapsCoreDataStorageObject.m in Sources */,
 				C86F85151C444DB800C23332 /* XMPPMessage+XEP_0184.m in Sources */,
@@ -3075,7 +3065,6 @@
 				A99650661B387CC800D5A8E9 /* XMPPAttentionModule.m in Sources */,
 				A99650361B387CC800D5A8E9 /* XMPPvCard.xcdatamodeld in Sources */,
 				A99650151B387CC800D5A8E9 /* XMPPGoogleSharedStatus.m in Sources */,
-				A9191EA61B6A402E000F9168 /* SocialStatus.swift in Sources */,
 				A99650611B387CC800D5A8E9 /* XMPPPing.m in Sources */,
 				A996501C1B387CC800D5A8E9 /* XMPPUserCoreDataStorageObject.m in Sources */,
 				A996501D1B387CC800D5A8E9 /* XMPPResourceMemoryStorageObject.m in Sources */,
@@ -3250,7 +3239,6 @@
 				A9F333741B4444D700F0D17B /* CreatePopupView.swift in Sources */,
 				A99650201B387CC800D5A8E9 /* XMPPRoster.m in Sources */,
 				A99650131B387CC800D5A8E9 /* XMPPBandwidthMonitor.m in Sources */,
-				A9B577F31B6BD58E00CFB474 /* SocialHandlerModel.swift in Sources */,
 				EB313D301AAF4C5A00F008B8 /* StatusPicker.swift in Sources */,
 				A99650521B387CC800D5A8E9 /* XMPPCapsCoreDataStorageObject.m in Sources */,
 				A996505D1B387CC800D5A8E9 /* XMPPMessage+XEP_0184.m in Sources */,

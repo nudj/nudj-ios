@@ -7,7 +7,6 @@
 
 import UIKit
 import CoreData
-import FBSDKLoginKit
 import Mixpanel
 import SwiftyJSON
 import HockeySDK
@@ -86,15 +85,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             self.application(application, didReceiveRemoteNotification: remoteNotification)
         }
         
-        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         return true
     }
 
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-        // TODO: deprecated in iOS 9
-        return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
-    }
-    
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         self.deviceToken = deviceToken.hexString()
         deviceTokenSynced = false
@@ -362,7 +355,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         MixPanelHandler.startEventTracking("timeSpentInApplication")
-        FBSDKAppEvents.activateApp()
     }
 
     func applicationWillTerminate(application: UIApplication) {
