@@ -1,7 +1,3 @@
-#if ! __has_feature(objc_arc)
-#error This file must be compiled with ARC. Either turn on ARC for the project or use -fobjc-arc flag on this file.
-#endif
-
 #import <QuartzCore/QuartzCore.h>
 #import <UIKit/UIKit.h>
 #import "UIView+MPHelpers.h"
@@ -46,6 +42,8 @@
 
 @interface MPActionButton : UIButton
 
+@property (nonatomic, assign) BOOL isLight;
+
 @end
 
 @interface MPNotificationViewController ()
@@ -69,10 +67,10 @@
 @property (nonatomic, strong) IBOutlet UIImageView *imageView;
 @property (nonatomic, strong) IBOutlet UILabel *titleView;
 @property (nonatomic, strong) IBOutlet UILabel *bodyView;
-@property (nonatomic, strong) IBOutlet UIButton *okayButton;
+@property (nonatomic, strong) IBOutlet MPActionButton *okayButton;
 @property (nonatomic, strong) IBOutlet UIButton *closeButton;
 @property (nonatomic, strong) IBOutlet UIImageView *backgroundImageView;
-@property (nonatomic, strong) IBOutlet UIView *imageDragView;
+@property (nonatomic, strong) IBOutlet UIView *viewMask;
 
 @end
 
@@ -99,8 +97,21 @@
         self.titleView.text = self.notification.title;
         self.bodyView.text = self.notification.body;
 
-        if (self.notification.callToAction && [self.notification.callToAction length] > 0) {
+        if (self.notification.callToAction.length > 0) {
             [self.okayButton setTitle:self.notification.callToAction forState:UIControlStateNormal];
+        }
+        
+        if ([self.notification.style isEqualToString:@"light"]) {
+            self.viewMask.backgroundColor = [UIColor whiteColor];
+            self.titleView.textColor = [UIColor colorWithRed:92/255.0 green:101/255.0 blue:120/255.0 alpha:1];
+            self.bodyView.textColor = [UIColor colorWithRed:123/255.0 green:146/255.0 blue:163/255.0 alpha:1];
+            self.okayButton.isLight = YES;
+            [self.okayButton setTitleColor:[UIColor colorWithRed:123/255.0 green:146/255.0 blue:163/255.0 alpha:1] forState:UIControlStateNormal];
+            self.okayButton.layer.borderColor = [UIColor colorWithRed:218/255.0 green:223/255.0 blue:232/255.0 alpha:1].CGColor;
+            UIImage *origImage = [self.closeButton imageForState:UIControlStateNormal];
+            UIImage *tintedImage = [origImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            [self.closeButton setImage:tintedImage forState:UIControlStateNormal];
+            self.closeButton.tintColor = [UIColor colorWithRed:217/255.0 green:217/255.0 blue:217/255.0 alpha:1];
         }
     }
     
@@ -110,6 +121,8 @@
     self.imageView.layer.shadowOpacity = 1.0f;
     self.imageView.layer.shadowRadius = 5.0f;
     self.imageView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.viewMask.clipsToBounds = YES;
+    self.viewMask.layer.cornerRadius = 6.f;
 }
 
 - (void)hideWithAnimation:(BOOL)animated completion:(void (^)(void))completion
@@ -129,40 +142,32 @@
     return NO;
 }
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
 }
-#endif
 
 - (UIStatusBarAnimation)preferredStatusBarUpdateAnimation
 {
     return UIStatusBarAnimationFade;
 }
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 90000
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations
-#else
-- (NSUInteger)supportedInterfaceOrientations
-#endif
 {
     return UIInterfaceOrientationMaskAll;
 }
 
 - (IBAction)pressedOkay
 {
-    id<MPNotificationViewControllerDelegate> delegate = self.delegate;
-    if (delegate && [delegate respondsToSelector:@selector(notificationController:wasDismissedWithStatus:)]) {
-        [delegate notificationController:self wasDismissedWithStatus:YES];
+    if ([self.delegate respondsToSelector:@selector(notificationController:wasDismissedWithStatus:)]) {
+        [self.delegate notificationController:self wasDismissedWithStatus:YES];
     }
 }
 
 - (IBAction)pressedClose
 {
-    id<MPNotificationViewControllerDelegate> delegate = self.delegate;
-    if (delegate && [delegate respondsToSelector:@selector(notificationController:wasDismissedWithStatus:)]) {
-        [delegate notificationController:self wasDismissedWithStatus:NO];
+    if ([self.delegate respondsToSelector:@selector(notificationController:wasDismissedWithStatus:)]) {
+        [self.delegate notificationController:self wasDismissedWithStatus:NO];
     }
 }
 
@@ -174,7 +179,7 @@
             _touching = YES;
         } else if (gesture.state == UIGestureRecognizerStateChanged) {
             CGPoint translation = [gesture translationInView:self.view];
-            self.imageView.layer.position = CGPointMake(0.3f * (translation.x) + _viewStart.x, 0.3f * (translation.y) + _viewStart.y);
+            self.imageView.layer.position = CGPointMake(0.3f * translation.x + _viewStart.x, 0.3f * translation.y + _viewStart.y);
         }
     }
 
@@ -206,6 +211,8 @@
 
 @implementation MPMiniNotificationViewController
 
+static const NSUInteger MPMiniNotificationSpacingFromBottom = 10;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -224,15 +231,7 @@
     self.bodyLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.bodyLabel.numberOfLines = 0;
 
-    if (!self.backgroundColor) {
-        self.backgroundColor = [UIColor mp_applicationPrimaryColor];
-        if (!self.backgroundColor) {
-            self.backgroundColor = [UIColor mp_darkEffectColor];
-        }
-    }
-
-    UIColor *backgroundColorWithAlphaComponent = [self.backgroundColor colorWithAlphaComponent:0.95f];
-    self.view.backgroundColor = backgroundColorWithAlphaComponent;
+    [self initializeMiniNotification];
 
     if (self.notification != nil) {
         if (self.notification.image != nil) {
@@ -248,15 +247,21 @@
         } else {
             self.bodyLabel.hidden = YES;
         }
+        
+        if ([self.notification.style isEqualToString:@"light"]) {
+            self.view.backgroundColor = [UIColor whiteColor];
+            self.bodyLabel.textColor = [UIColor colorWithRed:123/255.0 green:146/255.0 blue:163/255.0 alpha:1];
+            UIImage *origImage = self.imageView.image;
+            UIImage *tintedImage = [origImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            self.imageView.image = tintedImage;
+            self.imageView.tintColor = [UIColor colorWithRed:123/255.0 green:146/255.0 blue:163/255.0 alpha:1];
+            self.view.layer.borderColor = [UIColor colorWithRed:218/255.0 green:223/255.0 blue:232/255.0 alpha:1].CGColor;
+            self.view.layer.borderWidth = 1;
+        }
     }
-
-    self.circleLayer = [CircleLayer layer];
-    self.circleLayer.contentsScale = [UIScreen mainScreen].scale;
-    [self.circleLayer setNeedsDisplay];
 
     [self.view addSubview:self.imageView];
     [self.view addSubview:self.bodyLabel];
-    [self.view.layer addSublayer:self.circleLayer];
 
     self.view.frame = CGRectMake(0.0f, 0.0f, 0.0f, 30.0f);
 
@@ -268,25 +273,23 @@
     [self.view addGestureRecognizer:pan];
 }
 
+- (void)initializeMiniNotification {
+    self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.901f];
+    self.view.backgroundColor = self.backgroundColor;
+}
+
 - (void)viewWillLayoutSubviews
 {
     UIView *parentView = self.view.superview;
-    CGRect parentFrame;
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 80000
-    parentFrame = parentView.frame;
-#elif __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
-    if ([self respondsToSelector:@selector(viewWillTransitionToSize:withTransitionCoordinator:)]) {
-        parentFrame = parentView.frame;
-    } else {
-        double angle = [self angleForInterfaceOrientation:[self interfaceOrientation]];
-        parentFrame = CGRectApplyAffineTransform(parentView.frame, CGAffineTransformMakeRotation((float)angle));
-    }
-#else
-    double angle = [self angleForInterfaceOrientation:[self interfaceOrientation]];
-    parentFrame = CGRectApplyAffineTransform(parentView.frame, CGAffineTransformMakeRotation((float)angle));
-#endif
+    CGRect parentFrame = parentView.frame;
 
-    self.view.frame = CGRectMake(0.0f, parentFrame.size.height - MPNotifHeight, parentFrame.size.width, MPNotifHeight * 3.0f);
+    if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation) && UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        self.view.frame = CGRectMake(15, parentFrame.size.height - MPNotifHeight - MPMiniNotificationSpacingFromBottom, parentFrame.size.width - 30, MPNotifHeight);
+    } else {
+        self.view.frame = CGRectMake(parentFrame.size.width/4, parentFrame.size.height - MPNotifHeight - MPMiniNotificationSpacingFromBottom, parentFrame.size.width/2, MPNotifHeight);
+    }
+    self.view.clipsToBounds = YES;
+    self.view.layer.cornerRadius = 6.f;
 
     // Position images
     self.imageView.layer.position = CGPointMake(MPNotifHeight / 2.0f, MPNotifHeight / 2.0f);
@@ -297,29 +300,10 @@
 
     // Position body label
     CGSize constraintSize = CGSizeMake(self.view.frame.size.width - MPNotifHeight - 12.5f, CGFLOAT_MAX);
-    CGSize sizeToFit;
-    // Use boundingRectWithSize for iOS 7 and above, sizeWithFont otherwise.
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
-    if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_7_0) {
-        sizeToFit = [self.bodyLabel.text boundingRectWithSize:constraintSize
-                                                  options:NSStringDrawingUsesLineFragmentOrigin
-                                               attributes:@{NSFontAttributeName: self.bodyLabel.font}
-                                                  context:nil].size;
-    } else {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated"
-
-        sizeToFit = [self.bodyLabel.text sizeWithFont:self.bodyLabel.font
-                                constrainedToSize:constraintSize
-                                    lineBreakMode:self.bodyLabel.lineBreakMode];
-
-#pragma clang diagnostic pop
-    }
-#else
-        sizeToFit = [self.bodyLabel.text sizeWithFont:self.bodyLabel.font
-                                constrainedToSize:constraintSize
-                                    lineBreakMode:self.bodyLabel.lineBreakMode];
-#endif
+    CGSize sizeToFit = [self.bodyLabel.text boundingRectWithSize:constraintSize
+                                                         options:NSStringDrawingUsesLineFragmentOrigin
+                                                      attributes:@{NSFontAttributeName: self.bodyLabel.font}
+                                                         context:nil].size;
 
     self.bodyLabel.frame = CGRectMake(MPNotifHeight, (CGFloat)ceil((MPNotifHeight - sizeToFit.height) / 2.0f) - 2.0f, (CGFloat)ceil(sizeToFit.width), (CGFloat)ceil(sizeToFit.height));
 }
@@ -327,12 +311,9 @@
 - (UIView *)getTopView
 {
     UIView *topView = nil;
-    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-    if(window) {
-        for (UIView *subview in window.subviews) {
-            if (!subview.hidden && subview.alpha > 0 && subview.frame.size.width > 0 && subview.frame.size.height > 0) {
-                topView = subview;
-            }
+    for (UIView *subview in [UIApplication sharedApplication].keyWindow.subviews) {
+        if (!subview.hidden && subview.alpha > 0 && subview.frame.size.width > 0 && subview.frame.size.height > 0) {
+            topView = subview;
         }
     }
     return topView;
@@ -358,23 +339,7 @@
 
     UIView *topView = [self getTopView];
     if (topView) {
-
-        CGRect topFrame;
-
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 80000
-        topFrame = topView.frame;
-#elif __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
-        if ([self respondsToSelector:@selector(viewWillTransitionToSize:withTransitionCoordinator:)]) {
-            topFrame = topView.frame;
-        } else {
-            double angle = [self angleForInterfaceOrientation:[self interfaceOrientation]];
-            topFrame = CGRectApplyAffineTransform(topView.frame, CGAffineTransformMakeRotation((float)angle));
-        }
-#else
-        double angle = [self angleForInterfaceOrientation:[self interfaceOrientation]];
-        topFrame = CGRectApplyAffineTransform(topView.frame, CGAffineTransformMakeRotation((float)angle));
-#endif
-
+        CGRect topFrame = topView.frame;
         [topView addSubview:self.view];
 
         _canPan = NO;
@@ -419,48 +384,26 @@
 
     if (!_isBeingDismissed) {
         _isBeingDismissed = YES;
-
-        CGFloat duration;
-
-        if (animated) {
-            duration = 0.5f;
-        } else {
-            duration = 0.0f;
-        }
-
-        UIView *parentView = self.view.superview;
-        CGRect parentFrame;
-
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 80000
-        parentFrame = parentView.frame;
-#elif __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
-        if ([self respondsToSelector:@selector(viewWillTransitionToSize:withTransitionCoordinator:)]) {
-            parentFrame = parentView.frame;
-        } else {
-            double angle = [self angleForInterfaceOrientation:[self interfaceOrientation]];
-            parentFrame = CGRectApplyAffineTransform(parentView.frame, CGAffineTransformMakeRotation((float)angle));
-        }
-#else
-        double angle = [self angleForInterfaceOrientation:[self interfaceOrientation]];
-        parentFrame = CGRectApplyAffineTransform(parentView.frame, CGAffineTransformMakeRotation((float)angle));
-#endif
-
-        [UIView animateWithDuration:duration animations:^{
-            self.view.frame = CGRectMake(0.0f, parentFrame.size.height, parentFrame.size.width, MPNotifHeight * 3.0f);
-        } completion:^(BOOL finished) {
-            [self.view removeFromSuperview];
-            if (completion) {
-                completion();
-            }
-        }];
+        
+        CGFloat duration = animated ? 0.5f : 0.f;
+        CGRect parentFrame = self.view.superview.frame;
+        
+        [UIView animateWithDuration:duration
+                         animations:^{
+                             self.view.frame = CGRectMake(self.view.frame.origin.x, parentFrame.size.height, self.view.frame.size.width, self.view.frame.size.height);
+                         } completion:^(BOOL finished) {
+                             [self.view removeFromSuperview];
+                             if (completion) {
+                                 completion();
+                             }
+                         }];
     }
 }
 
 - (void)didTap:(UITapGestureRecognizer *)gesture
 {
-    id strongDelegate = self.delegate;
-    if (!_isBeingDismissed && gesture.state == UIGestureRecognizerStateEnded && strongDelegate != nil) {
-        [strongDelegate notificationController:self wasDismissedWithStatus:YES];
+    if (!_isBeingDismissed && gesture.state == UIGestureRecognizerStateEnded) {
+        [self.delegate notificationController:self wasDismissedWithStatus:YES];
     }
 }
 
@@ -499,7 +442,7 @@
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
-    if(self = [super initWithCoder:aDecoder]) {
+    if (self = [super initWithCoder:aDecoder]) {
         _maskLayer = [GradientMaskLayer layer];
         [self.layer setMask:_maskLayer];
         self.opaque = NO;
@@ -523,8 +466,7 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     if (self = [super initWithCoder:aDecoder]) {
-        self.layer.backgroundColor = [UIColor colorWithRed:43.0f/255.0f green:43.0f/255.0f blue:52.0f/255.0f alpha:1.0f].CGColor;
-        self.layer.cornerRadius = 17.0f;
+        self.layer.cornerRadius = 5.0f;
         self.layer.borderColor = [UIColor whiteColor].CGColor;
         self.layer.borderWidth = 2.0f;
     }
@@ -537,7 +479,11 @@
     if (highlighted) {
         self.layer.borderColor = [UIColor grayColor].CGColor;
     } else {
-        self.layer.borderColor = [UIColor whiteColor].CGColor;
+        if (self.isLight) {
+            self.layer.borderColor = [UIColor colorWithRed:123/255.0 green:146/255.0 blue:163/255.0 alpha:1].CGColor;
+        } else {
+            self.layer.borderColor = [UIColor whiteColor].CGColor;
+        }
     }
 
     [super setHighlighted:highlighted];
@@ -617,17 +563,16 @@
 
 - (void)drawInContext:(CGContextRef)ctx
 {
-
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
-    CGFloat components[] = {
+
+    CGFloat components[] = { //[Grayscale, Alpha] for each component
         1.0f, 1.0f,
         1.0f, 1.0f,
-        1.0f, 0.9f,
+        1.0f, 0.0f,
         1.0f, 0.0f};
 
-    CGFloat locations[] = {0.0f, 0.7f, 0.8f, 1.0f};
-
-    CGGradientRef gradient = CGGradientCreateWithColorComponents(colorSpace, components, locations, 7);
+    CGFloat locations[] = {0.0f, 0.4f, 0.9f, 1.0f};
+    CGGradientRef gradient = CGGradientCreateWithColorComponents(colorSpace, components, locations, 4);
     CGContextDrawLinearGradient(ctx, gradient, CGPointMake(0.0f, 0.0f), CGPointMake(5.0f, self.bounds.size.height), (CGGradientDrawingOptions)0);
 
 
