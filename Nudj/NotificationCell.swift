@@ -83,25 +83,18 @@ class NotificationCell: UITableViewCell {
             self.smsButton.setTitle(Localizations.Notification.Button.Details, forState: .Normal)
             self.refLabel.hidden = false
             self.refAmount.hidden = false
-        case .AppApplication:
-            self.callButton.hidden = true
-            self.smsButton.setTitle(Localizations.Notification.Button.Message, forState: .Normal)
-            self.refLabel.hidden = false
-            self.refAmount.hidden = false
-        case .WebApplication:
-            break
         case .MatchingContact:
             self.callButton.hidden = true
             self.smsButton.setTitle(Localizations.Notification.Button.Nudj, forState: .Normal)
             self.smsButton.backgroundColor = ColorPalette.nudjGreen
             self.refLabel.hidden = false
             self.refAmount.hidden = false
-        case .AppApplicationWithNoReferral:
+        case .AppApplication, .AppApplicationWithNoReferral:
             self.callButton.hidden = true
             self.smsButton.setTitle(Localizations.Notification.Button.Message, forState: .Normal)
             self.refLabel.hidden = false
             self.refAmount.hidden = false
-        case .WebApplicationWithNoReferral:
+        case .WebApplication, .WebApplicationWithNoReferral:
             break
         }
     }
