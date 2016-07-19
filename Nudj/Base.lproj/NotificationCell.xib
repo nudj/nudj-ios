@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10089" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10072.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -88,6 +88,7 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="thK-lb-a5W" userLabel="Call Button">
                         <rect key="frame" x="104" y="92" width="100" height="25"/>
                         <color key="backgroundColor" red="0.074533462519999996" green="0.577712059" blue="0.45876827840000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="width" constant="100" id="1Zs-vM-Vx3"/>
                             <constraint firstAttribute="height" constant="25" id="wxA-AS-1JR"/>
@@ -103,7 +104,7 @@
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                         </userDefinedRuntimeAttributes>
                         <connections>
-                            <action selector="callAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ZvP-QS-yGF"/>
+                            <action selector="didPressCallButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="bNM-hB-Hex"/>
                         </connections>
                     </button>
                 </subviews>
@@ -128,6 +129,7 @@
                     <constraint firstItem="DDm-rj-pTR" firstAttribute="leading" secondItem="kvP-5b-4qR" secondAttribute="trailing" constant="8" id="yRf-kO-Q1j"/>
                 </constraints>
             </tableViewCellContentView>
+            <gestureRecognizers/>
             <connections>
                 <outlet property="callButton" destination="thK-lb-a5W" id="giA-JS-hW4"/>
                 <outlet property="dateLabel" destination="hYK-Tk-6OR" id="BBG-as-3n3"/>

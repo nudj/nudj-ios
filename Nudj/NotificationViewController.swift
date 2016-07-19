@@ -134,7 +134,7 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
         }
         
         if cell.isRead == false {
-            cell.readStatus(true)
+            cell.isRead = true
             cell.markAsRead()
         }
         

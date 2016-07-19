@@ -21,7 +21,11 @@ class NotificationCell: UITableViewCell {
     var type: NotificationType?
     var messageText = ""
     var meta: JSON?
-    var isRead: Bool?
+    var isRead: Bool = false {
+        didSet {
+            self.contentView.backgroundColor = isRead ? UIColor.whiteColor() : UIColor(white: 240.0/255.0, alpha: 1.0)
+        }
+    }
     var notificationData: Notification?
     var notificationID: String?
     var sender: UIButton?
@@ -42,7 +46,7 @@ class NotificationCell: UITableViewCell {
         profileImage.setCustomImage(UserModel.getDefaultUserImage(.Size60))
         profileImage.downloadImage(data.senderImage, completion:nil)
         
-        let tap = UITapGestureRecognizer(target:self, action: #selector(ImageTap(_:)))
+        let tap = UITapGestureRecognizer(target:self, action: #selector(didTapUserImage(_:)))
         profileImage.addGestureRecognizer(tap)
         
         let messageString = data.notificationMessage ?? "" as NSString
@@ -62,7 +66,7 @@ class NotificationCell: UITableViewCell {
             self.refAmount.text = data.jobBonus
         }
         
-        self.readStatus(data.notificationReadStatus)
+        self.isRead = data.notificationReadStatus
         
         self.type = data.notificationType
         self.notificationID = data.notificationId
@@ -102,21 +106,16 @@ class NotificationCell: UITableViewCell {
         }
     }
     
-    func readStatus(read:Bool) {
-        self.isRead = read
-        self.contentView.backgroundColor = read ? UIColor.whiteColor() : UIColor(white: 240.0/255.0, alpha: 1.0)
-    }
-    
     func actions(sender:UIButton) {
         self.sender = sender
         delegate?.didPressRightButton(self)
     }
     
-    @IBAction func callAction(sender: UIButton) {
+    @IBAction func didPressCallButton(sender: UIButton) {
          delegate?.didPressCallButton(self)
     }
 
-    @IBAction func ImageTap(sender: UITapGestureRecognizer) {
+    @IBAction func didTapUserImage(sender: UITapGestureRecognizer) {
         delegate?.didTapUserImage(self)
     }
 
