@@ -8,7 +8,7 @@ import UIKit
 import SwiftyJSON
 import DateTools
 
-protocol NotificationCellDelegate {
+protocol NotificationCellDelegate: class {
     func didPressRightButton(cell:NotificationCell)
     func didPressCallButton(cell:NotificationCell)
     func didTapUserImage(cell:NotificationCell)
@@ -16,8 +16,7 @@ protocol NotificationCellDelegate {
 
 
 class NotificationCell: UITableViewCell {
-
-    var delegate: NotificationCellDelegate?
+    weak var delegate: NotificationCellDelegate?
     var type: NotificationType?
     var messageText = ""
     var meta: JSON?
@@ -28,7 +27,6 @@ class NotificationCell: UITableViewCell {
     }
     var notificationData: Notification?
     var notificationID: String?
-    var sender: UIButton?
 
     @IBOutlet weak var profileImage: AsyncImage!
     @IBOutlet weak var dateLabel: UILabel!
@@ -46,6 +44,7 @@ class NotificationCell: UITableViewCell {
         profileImage.setCustomImage(UserModel.getDefaultUserImage(.Size60))
         profileImage.downloadImage(data.senderImage, completion:nil)
         
+        // unfortunately we can't wire this up in the NIB because the gesture recognizer has to be a top-level object
         let tap = UITapGestureRecognizer(target:self, action: #selector(didTapUserImage(_:)))
         profileImage.addGestureRecognizer(tap)
         
@@ -59,23 +58,17 @@ class NotificationCell: UITableViewCell {
         }
         message.attributedText = messageAttibutedString
 
-        if(data.jobBonus.isEmpty) {
-            self.refLabel.hidden = true
-            self.refAmount.hidden = true
-        } else {
-            self.refAmount.text = data.jobBonus
-        }
+        self.refLabel.hidden = data.jobBonus.isEmpty
+        self.refAmount.hidden = data.jobBonus.isEmpty
+        self.refAmount.text = data.jobBonus
         
         self.isRead = data.notificationReadStatus
-        
         self.type = data.notificationType
         self.notificationID = data.notificationId
         
         let timestamp = NSTimeInterval(data.notificationTime)
         let date = NSDate(timeIntervalSince1970: timestamp)
         self.dateLabel.text = date.timeAgoSinceNow()
-        
-        self.smsButton.addTarget(self, action: #selector(actions(_:)), forControlEvents:.TouchUpInside)
         
         switch(data.notificationType) {
         case .AskToRefer:
@@ -99,13 +92,12 @@ class NotificationCell: UITableViewCell {
         }
     }
     
-    func actions(sender:UIButton) {
-        self.sender = sender
+    @IBAction func didPressRightButton(sender: UIButton) {
         delegate?.didPressRightButton(self)
     }
     
     @IBAction func didPressCallButton(sender: UIButton) {
-         delegate?.didPressCallButton(self)
+        delegate?.didPressCallButton(self)
     }
 
     @IBAction func didTapUserImage(sender: UITapGestureRecognizer) {
@@ -114,11 +106,9 @@ class NotificationCell: UITableViewCell {
 
     func markAsRead() {
         let path = API.Endpoints.Notifications.markReadByID(notificationID!)
-        API.sharedInstance.request(.PUT, path: path, params: nil, closure: { json in
-            loggingPrint("success \(json)")
-        }) { 
+        API.sharedInstance.request(.PUT, path: path, params: nil, closure: nil) { 
             error in
-            loggingPrint("error \(error)")
+            loggingPrint("error marking notifcation as read \(error)")
         }
     }
 }

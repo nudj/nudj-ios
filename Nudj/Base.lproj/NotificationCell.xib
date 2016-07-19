@@ -3,25 +3,20 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" restorationIdentifier="NotificationCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="NotificationCell" rowHeight="126" id="KGk-i7-Jjw" customClass="NotificationCell" customModule="Nudj" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="126"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="NotificationCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="NotificationCell" rowHeight="120" id="KGk-i7-Jjw" customClass="NotificationCell" customModule="Nudj" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="125"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="119"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User image placeholder 60x60" translatesAutoresizingMaskIntoConstraints="NO" id="kvP-5b-4qR" customClass="AsyncImage" customModule="Nudj" customModuleProvider="target">
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="User image placeholder 60x60" translatesAutoresizingMaskIntoConstraints="NO" id="kvP-5b-4qR" customClass="AsyncImage" customModule="Nudj" customModuleProvider="target">
                         <rect key="frame" x="8" y="8" width="60" height="60"/>
                         <gestureRecognizers/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="60" id="Bfg-fN-uNN"/>
-                            <constraint firstAttribute="width" constant="60" id="QRa-dS-6pz"/>
-                        </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="circleShape" value="YES"/>
                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -29,51 +24,46 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today at 10:06" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hYK-Tk-6OR" userLabel="Date Label">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Today at 10:06" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hYK-Tk-6OR" userLabel="Date Label">
                         <rect key="frame" x="76" y="8" width="236" height="18"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="18" id="IAz-62-6xF"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" red="0.72341954708099365" green="0.72339779138565063" blue="0.72341012954711914" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDm-rj-pTR" userLabel="Message">
-                        <rect key="frame" x="76" y="23" width="236" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDm-rj-pTR" userLabel="Message">
+                        <rect key="frame" x="76" y="23" width="236" height="45"/>
                         <attributedString key="attributedText">
-                            <fragment content="User referred by Other User">
+                            <fragment content="Joe Bloggs is interested ">
                                 <attributes>
                                     <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <font key="NSFont" size="13" name=".HelveticaNeueDeskInterface-Regular"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                 </attributes>
                             </fragment>
+                            <fragment content="in the Flubrble Turbinator position">
+                                <attributes>
+                                    <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                </attributes>
+                            </fragment>
                         </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ref Bonus:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWA-bF-6Rk" userLabel="Ref Label">
-                        <rect key="frame" x="8" y="96" width="69" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="21" id="MVh-yD-gPK"/>
-                            <constraint firstAttribute="width" constant="69" id="UWl-LA-kFC"/>
-                        </constraints>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ref Bonus:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWA-bF-6Rk" userLabel="Ref Label">
+                        <rect key="frame" x="8" y="90" width="69" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="£800" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oZS-K5-OUZ" userLabel="Ref Amount">
-                        <rect key="frame" x="80" y="96" width="37" height="21"/>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="£800" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oZS-K5-OUZ" userLabel="Ref Amount">
+                        <rect key="frame" x="80" y="90" width="37" height="21"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                         <color key="textColor" red="0.087011836469173431" green="0.50277942419052124" blue="0.68618696928024292" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5bg-fG-yLK" userLabel="SMS Button">
-                        <rect key="frame" x="212" y="92" width="100" height="25"/>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5bg-fG-yLK" userLabel="SMS Button">
+                        <rect key="frame" x="232" y="86" width="80" height="25"/>
                         <color key="backgroundColor" red="0.074533462524414062" green="0.57771205902099609" blue="0.45876827836036682" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="100" id="N0c-l1-8Dt"/>
-                            <constraint firstAttribute="height" constant="25" id="zDm-QY-h43"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                         <state key="normal" title="SMS">
                             <color key="titleColor" red="1" green="0.99997437000274658" blue="0.99999129772186279" alpha="1" colorSpace="calibratedRGB"/>
@@ -84,15 +74,14 @@
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="didPressRightButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="p1u-LG-bQb"/>
+                        </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="thK-lb-a5W" userLabel="Call Button">
-                        <rect key="frame" x="104" y="92" width="100" height="25"/>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="thK-lb-a5W" userLabel="Call Button">
+                        <rect key="frame" x="144" y="86" width="80" height="25"/>
                         <color key="backgroundColor" red="0.074533462519999996" green="0.577712059" blue="0.45876827840000001" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="100" id="1Zs-vM-Vx3"/>
-                            <constraint firstAttribute="height" constant="25" id="wxA-AS-1JR"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                         <state key="normal" title="Call">
                             <color key="titleColor" red="1" green="0.99997437" blue="0.99999129769999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -108,26 +97,6 @@
                         </connections>
                     </button>
                 </subviews>
-                <constraints>
-                    <constraint firstItem="kvP-5b-4qR" firstAttribute="top" secondItem="DDm-rj-pTR" secondAttribute="top" constant="-15" id="2cL-K0-C1H"/>
-                    <constraint firstItem="hYK-Tk-6OR" firstAttribute="leading" secondItem="kvP-5b-4qR" secondAttribute="trailing" constant="8" symbolic="YES" id="5f9-Ga-h5q"/>
-                    <constraint firstItem="oZS-K5-OUZ" firstAttribute="leading" secondItem="gWA-bF-6Rk" secondAttribute="trailing" constant="3" id="90Y-QK-R7z"/>
-                    <constraint firstItem="kvP-5b-4qR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="IUZ-UV-eku"/>
-                    <constraint firstItem="gWA-bF-6Rk" firstAttribute="height" secondItem="oZS-K5-OUZ" secondAttribute="height" id="R6q-HR-uMN"/>
-                    <constraint firstItem="5bg-fG-yLK" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="Ski-qH-xTa"/>
-                    <constraint firstItem="hYK-Tk-6OR" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="Wp6-JZ-Jw8"/>
-                    <constraint firstItem="gWA-bF-6Rk" firstAttribute="top" secondItem="DDm-rj-pTR" secondAttribute="bottom" constant="56" id="eUy-hL-TG6"/>
-                    <constraint firstItem="5bg-fG-yLK" firstAttribute="leading" secondItem="thK-lb-a5W" secondAttribute="trailing" constant="8" id="eqj-13-N6d"/>
-                    <constraint firstItem="hYK-Tk-6OR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="iGe-Hx-1Ar"/>
-                    <constraint firstItem="kvP-5b-4qR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="j46-5C-dCt"/>
-                    <constraint firstItem="thK-lb-a5W" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="kOO-HM-FSv"/>
-                    <constraint firstItem="gWA-bF-6Rk" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="kX3-8M-clZ"/>
-                    <constraint firstItem="gWA-bF-6Rk" firstAttribute="baseline" secondItem="oZS-K5-OUZ" secondAttribute="baseline" id="mBN-dk-djG"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="DDm-rj-pTR" secondAttribute="trailing" id="rVY-dX-INg"/>
-                    <constraint firstItem="gWA-bF-6Rk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="vor-ar-Y9z"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="5bg-fG-yLK" secondAttribute="bottom" id="xmR-Jt-Jgq"/>
-                    <constraint firstItem="DDm-rj-pTR" firstAttribute="leading" secondItem="kvP-5b-4qR" secondAttribute="trailing" constant="8" id="yRf-kO-Q1j"/>
-                </constraints>
             </tableViewCellContentView>
             <gestureRecognizers/>
             <connections>
