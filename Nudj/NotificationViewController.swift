@@ -34,7 +34,7 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
         super.viewDidLoad()
         
         self.tableView.registerNib(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
-        self.tableView.tableFooterView = UIView(frame: CGRectZero);
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
 
         self.refreshControl?.addTarget(self, action: #selector(refresh), forControlEvents: UIControlEvents.ValueChanged)
         self.view.addSubview(self.noContentImage.alignInSuperView(self.view, imageTitle: "no_notifications"))
@@ -89,11 +89,7 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
         self.tableView.reloadData()
         self.refreshControl?.endRefreshing()
         
-        if(self.data.count == 0){
-            self.noContentImage.hidden = false
-        } else {
-            self.noContentImage.hidden = true
-        }
+        self.noContentImage.hidden = self.data.count != 0
     }
     
     // MARK: -- UITableViewDataSource --
@@ -105,11 +101,6 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.data.count
-    }
-
-    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        // TODO: magic number
-        return 120
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

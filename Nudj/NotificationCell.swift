@@ -55,7 +55,7 @@ class NotificationCell: UITableViewCell {
         }
         message.attributedText = messageAttibutedString
 
-        if(data.jobBonus.isEmpty){
+        if(data.jobBonus.isEmpty) {
             self.refLabel.hidden = true
             self.refAmount.hidden = true
         } else {
@@ -102,12 +102,12 @@ class NotificationCell: UITableViewCell {
         }
     }
     
-    func readStatus(read:Bool){
+    func readStatus(read:Bool) {
         self.isRead = read
         self.contentView.backgroundColor = read ? UIColor.whiteColor() : UIColor(white: 240.0/255.0, alpha: 1.0)
     }
     
-    func actions(sender:UIButton){
+    func actions(sender:UIButton) {
         self.sender = sender
         delegate?.didPressRightButton(self)
     }
@@ -120,7 +120,7 @@ class NotificationCell: UITableViewCell {
         delegate?.didTapUserImage(self)
     }
 
-    func markAsRead(){
+    func markAsRead() {
         let path = API.Endpoints.Notifications.markReadByID(notificationID!)
         API.sharedInstance.request(.PUT, path: path, params: nil, closure: { json in
             loggingPrint("success \(json)")
