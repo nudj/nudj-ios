@@ -128,7 +128,6 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
     }
     
     func didPressRightButton(cell: NotificationCell){
-        
         guard let cellType = cell.type else {
             return
         }
@@ -150,7 +149,7 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
             self.nudge(cell.notificationData!.jobID, jobTitle: cell.notificationData!.jobTitle)
         case .AppApplication, .AppApplicationWithNoReferral:
             MixPanelHandler.sendData("Notification_MessageButtonClicked")
-            self.gotTochat(cell)
+            self.goToChat(cell)
         case .WebApplication, .WebApplicationWithNoReferral:
             MixPanelHandler.sendData("Notification_SmsButtonClicked")
              self.createSms(cell.notificationData!.senderPhoneNumber)
@@ -180,14 +179,14 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
         }
     }
     
-    func createSms(receiver:String?){
-        if let reciverNumber = receiver {
+    func createSms(receiver:String?) {
+        if let receiverNumber = receiver {
             // TODO: instead of failing and showing an alert, do not enable the SMS feature if it is not available
             if(MFMessageComposeViewController.canSendText()){
                 let messageComposer = MFMessageComposeViewController()
                 messageComposer.messageComposeDelegate = self
                 messageComposer.body = ""
-                messageComposer.recipients = [reciverNumber]
+                messageComposer.recipients = [receiverNumber]
                 self.presentViewController(messageComposer, animated: true, completion: nil)
             } else {
                 let alert = UIAlertController(title: Localizations.Sms.Unavailable.Title, message: Localizations.Sms.Unavailable.Body, preferredStyle: .Alert)
@@ -234,7 +233,7 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
         }
     }
     
-    func gotTochat(cell:NotificationCell) {
+    func goToChat(cell: NotificationCell) {
         let chatData = cell.notificationData!
         cell.userInteractionEnabled = false
         
