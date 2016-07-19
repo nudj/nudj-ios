@@ -145,27 +145,15 @@ class NotificationViewController: UITableViewController, SegueHandlerType, Notif
             MixPanelHandler.sendData("Notification_DetailButtonClicked")
             let jobDestination = Destination.Job(cell.notificationData!.jobID)
             self.goToView(jobDestination)
-            break
-        case .AppApplication:
-            MixPanelHandler.sendData("Notification_MessageButtonClicked")
-            self.gotTochat(cell)
-            break
-        case .WebApplication:
-            MixPanelHandler.sendData("Notification_SmsButtonClicked")
-            self.createSms(cell.notificationData!.senderPhoneNumber)
-            break
         case .MatchingContact:
             MixPanelHandler.sendData("Notification_ReferButtonClicked")
             self.nudge(cell.notificationData!.jobID, jobTitle: cell.notificationData!.jobTitle)
-            break
-        case .AppApplicationWithNoReferral:
+        case .AppApplication, .AppApplicationWithNoReferral:
             MixPanelHandler.sendData("Notification_MessageButtonClicked")
             self.gotTochat(cell)
-            break
-        case .WebApplicationWithNoReferral:
+        case .WebApplication, .WebApplicationWithNoReferral:
             MixPanelHandler.sendData("Notification_SmsButtonClicked")
              self.createSms(cell.notificationData!.senderPhoneNumber)
-            break
         }
     }
     
