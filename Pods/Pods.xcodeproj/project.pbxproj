@@ -1221,7 +1221,7 @@
 				<string>36D943AA47AA07E0D1DE98279445652A</string>
 				<string>F0341D310E0F4D2CC21309A8052D7682</string>
 				<string>094ED010B14F31C9ADF1E6661679A210</string>
-				<string>BF65D2FB9302A258CD1C3D5134AE06A4</string>
+				<string>637E3B3A0752091B8488B114B73BB81F</string>
 				<string>746550A0A18C273F2F09AE9086FD8B9F</string>
 				<string>C365C4C62084D9F0C3AD8CA2E219D912</string>
 				<string>01BCD162DF04CFBEDFBE2F6AA8AB7284</string>
@@ -2431,6 +2431,20 @@
 				<key>ATTRIBUTES</key>
 				<array>
 					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>637E3B3A0752091B8488B114B73BB81F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E6F97025BC998A654155DD9D763B257B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Private</string>
 				</array>
 			</dict>
 		</dict>
@@ -4797,20 +4811,6 @@
 			<string>Mixpanel/MPNetworkPrivate.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>BF65D2FB9302A258CD1C3D5134AE06A4</key>
-		<dict>
-			<key>fileRef</key>
-			<string>E6F97025BC998A654155DD9D763B257B</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
 		</dict>
 		<key>BFAA89F7E15D2260BE5FFCF94AF2338F</key>
 		<dict>

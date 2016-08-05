@@ -74,14 +74,6 @@ NS_ASSUME_NONNULL_BEGIN
  @property
 
  @abstract
- Current user's name in Mixpanel Streams.
- */
-@property (nullable, atomic, copy) NSString *nameTag;
-
-/*!
- @property
-
- @abstract
  The base URL used for Mixpanel API requests.
 
  @discussion
@@ -124,7 +116,7 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion
  Defaults to YES.
  */
-@property (atomic) BOOL showNetworkActivityIndicator;
+@property (atomic) BOOL shouldManageNetworkActivityIndicator;
 
 /*!
  @property
@@ -238,14 +230,34 @@ NS_ASSUME_NONNULL_BEGIN
  @property
  
  @abstract
- Controls whether to enable the visual A/B test designer on mixpanel.com, you will 
- be unable to edit A/B tests with this disabled, however previously created A/B 
- tests and their variants will still be delivered.
+ Controls whether to enable the visual test designer for A/B testing and codeless on mixpanel.com. 
+ You will be unable to edit A/B tests and codeless events with this disabled, however *previously*
+ created A/B tests and codeless events will still be delivered.
  
  @discussion
  Defaults to YES.
  */
-@property (atomic) BOOL enableABTestDesigner;
+@property (atomic) BOOL enableVisualABTestAndCodeless;
+
+/*!
+ @property
+ 
+ @abstract
+ Controls whether to enable the run time debug logging at all levels. Note that the
+ Mixpanel SDK uses Apple System Logging to forward log messages to `STDERR`, this also
+ means that mixpanel logs are segmented by log level. Settings this to `YES` will enable 
+ Mixpanel logging at the following levels:
+ 
+   * Error - Something has failed 
+   * Warning - Something is amiss and might fail if not corrected
+   * Info - The lowest priority that is normally logged, purely informational in nature
+   * Debug - Information useful only to developers, and normally not logged.
+ 
+ 
+ @discussion
+ Defaults to NO.
+ */
+@property (atomic) BOOL enableLogging;
 
 /*!
  @property
@@ -778,6 +790,15 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)joinExperimentsWithCallback:(nullable void (^)())experimentsLoadedCallback;
 
 #endif
+
+#pragma mark - Deprecated
+/*!
+ @property
+ 
+ @abstract
+ Current user's name in Mixpanel Streams.
+ */
+@property (nullable, atomic, copy) NSString *nameTag __deprecated; // Deprecated in v3.0.1
 
 @end
 

@@ -1,8 +1,8 @@
 PODS:
   - DateTools (1.7.0)
-  - Mixpanel (3.0.0):
-    - Mixpanel/Mixpanel (= 3.0.0)
-  - Mixpanel/Mixpanel (3.0.0)
+  - Mixpanel (3.0.2):
+    - Mixpanel/Mixpanel (= 3.0.2)
+  - Mixpanel/Mixpanel (3.0.2)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
@@ -12,7 +12,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
-  Mixpanel: ac92056ee35a961362513ba11049e67cffcaa1f1
+  Mixpanel: 0e4f1f9a2ac612b589b2894830038418c2587428
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
 COCOAPODS: 0.39.0
