@@ -7,15 +7,21 @@ PODS:
 
 DEPENDENCIES:
   - DateTools
-  - Mixpanel
+  - Mixpanel (from `https://github.com/Nudj/mixpanel-iphone.git`, tag `nudj-3.0.3`)
   - SwiftyJSON (from `https://github.com/Nudj/SwiftyJSON.git`, tag `nudj-2.3.4`)
 
 EXTERNAL SOURCES:
+  Mixpanel:
+    :git: https://github.com/Nudj/mixpanel-iphone.git
+    :tag: nudj-3.0.3
   SwiftyJSON:
     :git: https://github.com/Nudj/SwiftyJSON.git
     :tag: nudj-2.3.4
 
 CHECKOUT OPTIONS:
+  Mixpanel:
+    :git: https://github.com/Nudj/mixpanel-iphone.git
+    :tag: nudj-3.0.3
   SwiftyJSON:
     :git: https://github.com/Nudj/SwiftyJSON.git
     :tag: nudj-2.3.4
