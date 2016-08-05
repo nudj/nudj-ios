@@ -8,7 +8,17 @@ PODS:
 DEPENDENCIES:
   - DateTools
   - Mixpanel
-  - SwiftyJSON
+  - SwiftyJSON (from `https://github.com/Nudj/SwiftyJSON.git`, tag `nudj-2.3.4`)
+
+EXTERNAL SOURCES:
+  SwiftyJSON:
+    :git: https://github.com/Nudj/SwiftyJSON.git
+    :tag: nudj-2.3.4
+
+CHECKOUT OPTIONS:
+  SwiftyJSON:
+    :git: https://github.com/Nudj/SwiftyJSON.git
+    :tag: nudj-2.3.4
 
 SPEC CHECKSUMS:
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
