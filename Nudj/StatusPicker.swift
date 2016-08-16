@@ -33,13 +33,12 @@ class StatusPicker: BaseController, UIPickerViewDelegate, UIPickerViewDataSource
     @IBAction func done(sender: UIBarButtonItem) {
         let path = API.Endpoints.Users.base
         let params = ["status": self.selectedStatus]
-        self.apiRequest(.PUT, path: path, params: params, closure: { _ in
-            self.hide()
-        })
+        self.apiRequest(.PUT, path: path, params: params)
+        self.hide()
     }
 
     func hide() {
-        self.navigationController!.popViewControllerAnimated(true)
+        self.navigationController?.popViewControllerAnimated(true)
     }
 
     //MARK: - Delegates and datasources
